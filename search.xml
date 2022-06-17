@@ -326,5 +326,11 @@
 <p><img src="/2022/06/17/Abaqus%E5%AE%9E%E6%88%98-1/%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6set%E9%80%89%E9%A1%B9.png" alt="边界条件set选项"></p>
 <p>若勾选 **Create set **选项, 在创建分析作业阶段提交时会报错.</p>
 ]]></content>
+      <categories>
+        <category>FEM</category>
+      </categories>
+      <tags>
+        <tag>Abaqus</tag>
+      </tags>
   </entry>
 </search>
