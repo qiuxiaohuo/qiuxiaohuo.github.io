@@ -333,4 +333,42 @@
         <tag>Abaqus</tag>
       </tags>
   </entry>
+  <entry>
+    <title>复合材料物理场模型</title>
+    <url>/2022/06/17/%E5%A4%8D%E5%90%88%E6%9D%90%E6%96%99%E7%89%A9%E7%90%86%E5%9C%BA%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h2 id="文档目的"><a href="#文档目的" class="headerlink" title="文档目的"></a>文档目的</h2><p>复合材料加工过程至少涉及<strong>热学-化学-机械</strong>三种物理场的耦合作用, 其中, 热学的场方程遵循 Fourier 传热定律, 而化学和机械的场方程形式依赖于材料的类型. 例如热固性材料的化学场方程需要考虑材料的<strong>固化程度</strong>, 而热塑性材料则需要考虑其<strong>结晶度</strong>. 对于碳纤维增强的基体材料, 基体和纤维可能都需要考虑<strong>损伤本构模型</strong>, 基体材料可能还需要加入<strong>黏弹性本构模型</strong>. </p>
+<p>故本文档旨在整理复合材料除力学本构模型之外的物理场模型. </p>
+<h2 id="热力学模型"><a href="#热力学模型" class="headerlink" title="热力学模型"></a>热力学模型</h2><p>热传导模型就是经典的 Fourier 方程:<br>$$<br>\rho C_p \frac{\partial T}{\partial t} &#x3D; \nabla(\boldsymbol{k} \nabla T) + q_{gen}<br>\label{eq:transient}<br>$$<br>不同类型的材料, 热源项产生的原因不同. 热固性材料放热是因为固化过程中的<strong>交联反应放热</strong>; 热塑性材料是因为降温过程中<strong>材料结晶放热</strong>. 式$\eqref{eq:transient}$中热源项可以表示成如下形式:<br>$$<br>q_{gen} &#x3D; (1 - V_f) \rho_r H_{tr} R_{r}(\psi, T)<br>\label{eq:heat_source}<br>$$<br>其中, $H_{tr}$ 是总反应热, $\psi$ 表示材料固化或结晶化程度.</p>
+<h2 id="化学反应模型"><a href="#化学反应模型" class="headerlink" title="化学反应模型"></a>化学反应模型</h2><p> 在介绍化学反应模型之前, 先引入一些化学反应中常用的术语和概念.</p>
+<h3 id="一些术语"><a href="#一些术语" class="headerlink" title="一些术语"></a>一些术语</h3><h4 id="玻璃化转变温度"><a href="#玻璃化转变温度" class="headerlink" title="玻璃化转变温度"></a>玻璃化转变温度</h4><blockquote>
+<p> <strong>the cured glass transition temperature</strong> ($T_g$) of a polymeric material is the temperature at which it changes from a rigid, glassy solid into a softer, semiflexible material.   </p>
+</blockquote>
+<p>需要强调的是, $T_{g}$ 是<strong>热固性材料</strong>特有的属性, 在此时聚合物的结构仍然完整, 但交联不再锁定在固定的位置. $T_{g}$ 一般低于熔化温度 $T_{m}$ .</p>
+<p>$T_{g}$ 会使材料力学性质明显降低, 因此 $T_{g}$ 决定了复合材料或胶粘剂的<strong>使用温度上限</strong>. </p>
+<p>影响 $T_{g}$ 的因素包括但不限于: 材料的吸湿量和固化程度等. 大多数热固性聚合物吸湿后 $T_{g}$ 会严重降低. 材料的 $T_{g}$ 会随着固化程度增加而上升, 如图所示.</p>
+<p>测定复合材料 $T_{g}$ 需要用到热分析技术, 例如示差量热扫描法(DSC), 这将在下文进行介绍.</p>
+<h4 id="示差量热扫描法-DSC"><a href="#示差量热扫描法-DSC" class="headerlink" title="示差量热扫描法 (DSC)"></a>示差量热扫描法 (DSC)</h4><blockquote>
+<p><strong>Differential scanning calorimetry (DSC)</strong> is the most widely used method for obtaining the degree of cure and reaction rate. It is based on the measurement of the differential voltage, converted into heat flow in a calorimeter, necessary to obtain thermal equilibrium between the resin sample and an inert reference.  A small sample of  resin is placed in a sealed packet and then inserted into the calorimeter heating chamber along with a known standard of material. The<br>temperature is increased and the amount of heat given off (exothermic) or taken in (endothermic) is compared to a known standard  </p>
+</blockquote>
+<p>典型的DSC测试装置示意图如下, 右下角表明DSC可以测量材料的比热容, 熔点以及熔化过程中的焓变等热力学属性.</p>
+<img src="DSC测量装置示意图.png" alt="DSC测量装置示意图" style="zoom: 50%;" />
+
+<p>DSC测量热固性材料熔化及冷却曲线图如下</p>
+<img src="热固性材料熔化冷却测量曲线图.png" alt="热固性材料熔化冷却测量曲线图" style="zoom:50%;" />
+
+<p>DSC测量不同材料的玻璃化转变温度如图所示. 由图可见, 在玻璃化转变温度附近, 测试曲线会有一个阶梯状的变化.</p>
+<img src="DSC测量玻璃化转变温度.png" alt="DSC测量玻璃化转变温度" style="zoom:50%;" />
+
+<p>下图使DSC测量材料固化程度对玻璃化转变温度的影响.</p>
+<img src="材料固化程度对玻璃化转变温度的影响.png" alt="材料固化程度对玻璃化转变温度的影响" style="zoom:50%;" />
+
+<h3 id="热固性材料固化模型"><a href="#热固性材料固化模型" class="headerlink" title="热固性材料固化模型"></a>热固性材料固化模型</h3><p>首先定义用来描述热固性材料固化程度的标量 $\alpha$ . 若材料固化反应放出的总热量为 $H_{tr}$ , 在某一时刻因固化反应放出的热量为 $H(t)$ , 则材料固化程度 $\alpha$ 可以定义为<br>$$<br>\alpha &#x3D; \frac{H(t)}{H_{tr}}<br>\label{eq:degree_of_curing}<br>$$<br>热源项 $\eqref{eq:heat_source}$ 中 $R_{r}(\alpha, T)$ 的函数关系受 $\alpha$ 影响. 大多数固化动力学模型采用<strong>阿伦尼乌斯公式</strong>如下<br>$$<br>R_{r}(\alpha, T)&#x3D;\frac{d \alpha}{d t}&#x3D;A_{0} \exp \left(\frac{-E_{a}}{R T}\right) \alpha^{m}(1-\alpha)^{n}<br>$$<br>对于不同固化程度下的玻璃化转变温度 $T_{g}$ , 可以由以下公式得到:<br>$$<br>\frac{T_{g}-T_{g 0}}{T_{g \infty}-T_{g 0}}&#x3D;\frac{\lambda \alpha}{1-(1-\lambda) \alpha}<br>$$<br>式中, $T_{g0}$ 和 $T_{g \infty}$ 分别为未固化和完全固化状态下的玻璃化转变温度, $\lambda$ 为常数.</p>
+]]></content>
+      <categories>
+        <category>复合材料</category>
+      </categories>
+      <tags>
+        <tag>复合材料物理模型</tag>
+      </tags>
+  </entry>
 </search>

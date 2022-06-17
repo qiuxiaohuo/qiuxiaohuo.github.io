@@ -161,6 +161,87 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/17/%E5%A4%8D%E5%90%88%E6%9D%90%E6%96%99%E7%89%A9%E7%90%86%E5%9C%BA%E6%A8%A1%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="秋天">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋天的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/06/17/%E5%A4%8D%E5%90%88%E6%9D%90%E6%96%99%E7%89%A9%E7%90%86%E5%9C%BA%E6%A8%A1%E5%9E%8B/" class="post-title-link" itemprop="url">复合材料物理场模型</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-17 21:55:55 / 修改时间：21:59:35" itemprop="dateCreated datePublished" datetime="2022-06-17T21:55:55+08:00">2022-06-17</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%A4%8D%E5%90%88%E6%9D%90%E6%96%99/" itemprop="url" rel="index"><span itemprop="name">复合材料</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="文档目的"><a href="#文档目的" class="headerlink" title="文档目的"></a>文档目的</h2><p>复合材料加工过程至少涉及<strong>热学-化学-机械</strong>三种物理场的耦合作用, 其中, 热学的场方程遵循 Fourier 传热定律, 而化学和机械的场方程形式依赖于材料的类型. 例如热固性材料的化学场方程需要考虑材料的<strong>固化程度</strong>, 而热塑性材料则需要考虑其<strong>结晶度</strong>. 对于碳纤维增强的基体材料, 基体和纤维可能都需要考虑<strong>损伤本构模型</strong>, 基体材料可能还需要加入<strong>黏弹性本构模型</strong>. </p>
+<p>故本文档旨在整理复合材料除力学本构模型之外的物理场模型. </p>
+<h2 id="热力学模型"><a href="#热力学模型" class="headerlink" title="热力学模型"></a>热力学模型</h2><p>热传导模型就是经典的 Fourier 方程:<br>$$<br>\rho C_p \frac{\partial T}{\partial t} &#x3D; \nabla(\boldsymbol{k} \nabla T) + q_{gen}<br>\label{eq:transient}<br>$$<br>不同类型的材料, 热源项产生的原因不同. 热固性材料放热是因为固化过程中的<strong>交联反应放热</strong>; 热塑性材料是因为降温过程中<strong>材料结晶放热</strong>. 式$\eqref{eq:transient}$中热源项可以表示成如下形式:<br>$$<br>q_{gen} &#x3D; (1 - V_f) \rho_r H_{tr} R_{r}(\psi, T)<br>\label{eq:heat_source}<br>$$<br>其中, $H_{tr}$ 是总反应热, $\psi$ 表示材料固化或结晶化程度.</p>
+<h2 id="化学反应模型"><a href="#化学反应模型" class="headerlink" title="化学反应模型"></a>化学反应模型</h2><p> 在介绍化学反应模型之前, 先引入一些化学反应中常用的术语和概念.</p>
+<h3 id="一些术语"><a href="#一些术语" class="headerlink" title="一些术语"></a>一些术语</h3><h4 id="玻璃化转变温度"><a href="#玻璃化转变温度" class="headerlink" title="玻璃化转变温度"></a>玻璃化转变温度</h4><blockquote>
+<p> <strong>the cured glass transition temperature</strong> ($T_g$) of a polymeric material is the temperature at which it changes from a rigid, glassy solid into a softer, semiflexible material.   </p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/17/%E5%A4%8D%E5%90%88%E6%9D%90%E6%96%99%E7%89%A9%E7%90%86%E5%9C%BA%E6%A8%A1%E5%9E%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/17/Abaqus%E5%AE%9E%E6%88%98-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -559,20 +640,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-count">5</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
