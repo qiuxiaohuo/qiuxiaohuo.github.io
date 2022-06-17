@@ -223,4 +223,108 @@
         <tag>学习经验</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Abaqus实战(1)</title>
+    <url>/2022/06/17/Abaqus%E5%AE%9E%E6%88%98-1/</url>
+    <content><![CDATA[<h2 id="文档目的"><a href="#文档目的" class="headerlink" title="文档目的"></a>文档目的</h2><p>本文档(或之后一系列文档)属于技术文档范畴, 旨在熟悉 ABAQUS 软件的操作. 文档的内容主要是分析某一具体实例时软件的操作过程. 同时, 作者希望文档内容不是仅仅机械地重复软件的操作过程, 还能够进行一些理论上的说明.</p>
+<p>本文档使用的仿真平台为: <strong>ABAQUS 6.14</strong></p>
+<p>本文档的主要参考文献为: <strong>庄茁等, 基于ABAQUS的有限元分析和应用, 清华大学出版社, 2009</strong></p>
+<h2 id="文档实例"><a href="#文档实例" class="headerlink" title="文档实例"></a>文档实例</h2><p>用 ABAQUS&#x2F;CAE 生成桥式吊架模型, 吊架几何形状, 材料属性, 边界约束如图所示.</p>
+<img src="桥式吊架图形.png" alt="桥式吊架图形" style="zoom: 50%;" />
+
+<p>本文档应用 ABAQUS&#x2F;Standard 进行模拟, 确定结构中杆件的<strong>静位移</strong>和<strong>峰值应力</strong>.</p>
+<h2 id="操作流程"><a href="#操作流程" class="headerlink" title="操作流程"></a>操作流程</h2><p>一个完整的仿真分析过程一般由三个明确的步骤组成: <strong>前处理, 模拟计算, 后处理</strong>. 若使用商业软件进行仿真. 模拟计算步骤是封闭的, 用户只需要在前处理阶段提供模拟计算的参数即可. 因此, 使用商业软件进行仿真分析的工作量主要体现在前处理阶段. </p>
+<p>对于桥式吊架, 需进入 ABAQUS&#x2F;CAE 的以下功能模块并依次完成如下任务:</p>
+<ol>
+<li>Part(部件): 绘制二维几何模型, 并创建代表桁架的部件</li>
+<li>Property(特性): 定义材料参数和析架的截面性质</li>
+<li>Assembly(装配): 装配模型</li>
+<li>Step(分析步): 设置分析过程和输出要求</li>
+<li>Load(载荷): 对析架施加载荷和边界条件</li>
+<li>Mesh(网格): 对析架进行网格划分</li>
+<li>Job(作业): 生成一个作业并提交进行分析计算</li>
+<li>Visualization(可视化): 观察分析结果</li>
+</ol>
+<p>其中, 1,2,3,5,6属于前处理阶段; 4,7属于模拟计算阶段; 8属于后处理阶段. 下面将详细介绍.</p>
+<h3 id="量纲系统"><a href="#量纲系统" class="headerlink" title="量纲系统"></a>量纲系统</h3><p>在进入 ABAQUS 仿真之前, 用户需要自己确定仿真用到的<strong>量纲系统</strong>. 有些仿真软件用户可以设置仿真所使用的单位体系, 而 ABAQUS 的输入并没有指定量纲, 因此用户所有的输入数据必须指定<strong>一致性</strong>的量纲系统.</p>
+<h3 id="创建部件"><a href="#创建部件" class="headerlink" title="创建部件"></a>创建部件</h3><p>部件定义了模型的几何形体, 即实现<strong>CAD</strong>的功能. 用户可以在 ABAQUS&#x2F;CAE 环境中直接建立部件, 也可以从其它软件建立的几何体或有限元网格导入.</p>
+<h3 id="创建材料"><a href="#创建材料" class="headerlink" title="创建材料"></a>创建材料</h3><p>创建材料即确定材料的本构方程. ABAQUS 提供了多种本构模型, 用户只需要提供某一本构模型所需要的参数[^1]即可. 如图所示</p>
+<img src="材料本构模型.png" alt="材料本构模型" style="zoom: 67%;" />
+
+<p>作者可以认出来的本构有: </p>
+<ul>
+<li>弹性(Elasticity)</li>
+<li>塑性(Plasticity)</li>
+<li>韧性金属损伤(Damage for Ductile Metals)</li>
+<li>纤维加强复合材料损伤(Damage for Fiber-Reinforce Composites)</li>
+<li>脆性断裂(Brittle Cracking)</li>
+<li>黏性(Viscosity)</li>
+<li>…</li>
+</ul>
+<p>对于本实例, 桁架的杆件是钢制杆件, 并假设<strong>各向同性线弹性</strong>, 因此用户只需要给定<strong>2个参数</strong>. 在本例中, 用户给定的参数为:</p>
+<ul>
+<li>杨氏模量: 200GPa</li>
+<li>泊松比: 0.3</li>
+</ul>
+<h3 id="定义和赋予截面属性"><a href="#定义和赋予截面属性" class="headerlink" title="定义和赋予截面属性"></a>定义和赋予截面属性</h3><p>截面属性是材料力学中被简化的一个几何尺度. 用户需要在 Property 模块中创建一个截面(Section). 对于<strong>桁架单元</strong>, 用户只需要提供截面面积参数即可. 值得提出的是, 若赋予<strong>梁单元</strong>的截面属性, 则还需要额外提供梁单元形状(Beam Shape)信息, 如图所示.</p>
+<img src="梁单元截面属性.png" alt="梁单元截面属性" style="zoom:50%;" />
+
+<h3 id="定义装配"><a href="#定义装配" class="headerlink" title="定义装配"></a>定义装配</h3><p>作者并不清楚 ABAQUS 这一步想干什么. 在有限元理论当中, 装配(Assembly)是<strong>指将单元刚度矩阵组装成整体刚度矩阵</strong>, 即单元局部坐标系映射到整体坐标系. 这一过程类似于参考文献提到的:</p>
+<blockquote>
+<p>每一个部件都创建在自己的坐标系中,在模型中彼此独立. Assembly (装配)模块中, 通过创建各个部件的实体(instance)并在整体坐标系中将它们相互定位, 用户能够定义装配件的几何形状. 尽管一个模型可能包含多个部件, 但只能包含一个装配件. </p>
+</blockquote>
+<p>作者困惑的是, <strong>ABAQUS 在定义装配之前还没有划分网格单元, 这怎么装配啊?</strong></p>
+<h3 id="设置分析过程"><a href="#设置分析过程" class="headerlink" title="设置分析过程"></a>设置分析过程</h3><p>在这一步骤中, 用户需要完成两部分工作: <strong>创建分析步</strong>; <strong>设定输出数据</strong>.</p>
+<p>在本实例中, 只考虑桁架的静态响应. 这是个单一事件, 只需要单一分析步进行模拟. 因此, 整个分析由两个步骤组成:</p>
+<ul>
+<li>一个初始步(initial step), <strong>施加边界条件</strong>, 约束桁架的端点;</li>
+<li>一个分析步(analysis step), 在桁架的中心<strong>施加集中力</strong>.</li>
+</ul>
+<p>ABAQUS&#x2F;CAE 会自动生成初始步, 但是用户必须应用 Step 模块自己创建分析步. 本实例定义分析步的类型为<strong>静态线性摄动步</strong>.</p>
+<p>有限元分析中会创建大量的输出数据. ABAQUS 允许用户控制和管理这些输出数据, 从而只产生需要用来说明模拟结果的数据. ABAQUS 分析中可以输出以下4种类型的数据:</p>
+<ul>
+<li>结果输出保存到一个中间二进制文件中, 由 ABAQUS&#x2F;CAE应用于后处理. 这个文件称为ABAQUS输出数据库文件,文件后缀为<code>.odb</code></li>
+<li>结果以打印列表的形式输到 ABAQUS 数据(<code>.dat</code>)文件中. 仅在 ABAQUS&#x2F;Standard 有输出数据文件的功能</li>
+<li>重启动数据用于继续分析过程, 输出在 ABAQUS 重启动(<code>.res</code>)文件中</li>
+<li>结果保存在一个二进制文件中, 用于第三方软件进行后处理,写入到 ABAQUS 结果(<code>.fil</code>)文件</li>
+</ul>
+<p><strong>注</strong>: ABAQUS 文件系统各种类型文件如表所示(摘自 ABAQUS 6.12有限元分析从入门到精通)</p>
+<img src="文件系统1.png" alt="文件系统1" style="zoom:80%;" />
+
+<img src="文件系统2.png" alt="文件系统2" style="zoom:80%;" />
+
+<h3 id="在模型上施加边界条件和载荷"><a href="#在模型上施加边界条件和载荷" class="headerlink" title="在模型上施加边界条件和载荷"></a>在模型上施加边界条件和载荷</h3><p>施加的条件, 例如边界条件 (boundary condition) 和载荷 (loads), 是与<strong>分析步</strong>相关的, 即用户必须指定边界条件和载荷在哪个或哪些分析步中起作用. 现在, 已经定义了分析中的步骤, 可以应用 Load (载荷) 模块定义施加的条件.</p>
+<h4 id="在桁架上施加边界条件"><a href="#在桁架上施加边界条件" class="headerlink" title="在桁架上施加边界条件"></a>在桁架上施加边界条件</h4><p>ABAQUS 平移和转动自由度的标识如图所示</p>
+<img src="自由度符号.png" alt="自由度符号" style="zoom: 50%;" />
+
+<p>在施加边界条件时需注意:</p>
+<ul>
+<li>若选择 <strong>Initial</strong>(初始步) 作为边界条件起作用的分析步, 则所有指定在<strong>初始步</strong>的力学边界条件必须赋值为<strong>0</strong>, 该条件是在 ABAQUS&#x2F;CAE 中自动强加的.</li>
+</ul>
+<p>桁架的自由度约束如图所示</p>
+<img src="自由度约束.png" alt="自由度约束" style="zoom: 33%;" />
+
+<h4 id="在桁架上施加载荷"><a href="#在桁架上施加载荷" class="headerlink" title="在桁架上施加载荷"></a>在桁架上施加载荷</h4><p>在本实例种, 10kN的集中力施加在桁架底部中点的轴2负方向, 载荷施加在<strong>分析步模拟中创建的线性摄动步</strong>中. 如图所示</p>
+<img src="集中力载荷.png" alt="集中力载荷" style="zoom: 33%;" />
+
+<h3 id="模型的网格划分"><a href="#模型的网格划分" class="headerlink" title="模型的网格划分"></a>模型的网格划分</h3><p>应用 Mesh(网格) 模块可以生成有限元网络. 本实例中, 使用二维桁架(Truss)单元模拟吊架. 二维桁架模型在 ABAQUS 单元标号为 <strong>T2D2</strong>单元.</p>
+<h3 id="创建分析作业"><a href="#创建分析作业" class="headerlink" title="创建分析作业"></a>创建分析作业</h3><p>Submission.</p>
+<h3 id="后处理"><a href="#后处理" class="headerlink" title="后处理"></a>后处理</h3><h4 id="显示和设置变形形状图"><a href="#显示和设置变形形状图" class="headerlink" title="显示和设置变形形状图"></a>显示和设置变形形状图</h4><img src="变形图.png" alt="变形图" style="zoom: 33%;" />
+
+<h4 id="数据列表报告"><a href="#数据列表报告" class="headerlink" title="数据列表报告"></a>数据列表报告</h4><figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">********************************************************************************</span><br><span class="line">Field Output Report, written Thu Apr <span class="number">28</span> <span class="number">16</span>:<span class="number">54</span>:<span class="number">02</span> <span class="number">2022</span></span><br><span class="line"></span><br><span class="line">Source <span class="number">1</span></span><br><span class="line">---------</span><br><span class="line"></span><br><span class="line">   ODB: F:/SIMULIA/Abaqus/Commands/Frame.odb</span><br><span class="line">   Step: Apply load</span><br><span class="line">   Frame: Increment      <span class="number">1</span>: Step Time =   <span class="number">2.2200E-16</span></span><br><span class="line"></span><br><span class="line">Loc <span class="number">1</span> : Integration point values from source <span class="number">1</span></span><br><span class="line"></span><br><span class="line">Output sorted by column <span class="string">&quot;Element Label&quot;</span>.</span><br><span class="line"></span><br><span class="line">Field Output reported at integration points for part: PART-<span class="number">1</span>-<span class="number">1</span></span><br><span class="line"></span><br><span class="line">         Element             <span class="built_in">Int</span>           S.S11</span><br><span class="line">           Label              Pt          @Loc <span class="number">1</span></span><br><span class="line">-------------------------------------------------</span><br><span class="line">               <span class="number">1</span>               <span class="number">1</span>    -<span class="number">294.116E+06</span></span><br><span class="line">               <span class="number">2</span>               <span class="number">1</span>     <span class="number">294.116E+06</span></span><br><span class="line">               <span class="number">3</span>               <span class="number">1</span>     <span class="number">147.058E+06</span></span><br><span class="line">               <span class="number">4</span>               <span class="number">1</span>    -<span class="number">294.116E+06</span></span><br><span class="line">               <span class="number">5</span>               <span class="number">1</span>    -<span class="number">294.116E+06</span></span><br><span class="line">               <span class="number">6</span>               <span class="number">1</span>     <span class="number">147.058E+06</span></span><br><span class="line">               <span class="number">7</span>               <span class="number">1</span>     <span class="number">294.116E+06</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Minimum                           -<span class="number">294.116E+06</span></span><br><span class="line">      At Element                               <span class="number">5</span></span><br><span class="line"></span><br><span class="line">          <span class="built_in">Int</span> Pt                               <span class="number">1</span></span><br><span class="line">  Maximum                            <span class="number">294.116E+06</span></span><br><span class="line">      At Element                               <span class="number">7</span></span><br><span class="line"></span><br><span class="line">          <span class="built_in">Int</span> Pt                               <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">********************************************************************************</span><br><span class="line">Field Output Report, written Thu Apr <span class="number">28</span> <span class="number">16</span>:<span class="number">54</span>:<span class="number">50</span> <span class="number">2022</span></span><br><span class="line"></span><br><span class="line">Source <span class="number">1</span></span><br><span class="line">---------</span><br><span class="line"></span><br><span class="line">   ODB: F:/SIMULIA/Abaqus/Commands/Frame.odb</span><br><span class="line">   Step: Apply load</span><br><span class="line">   Frame: Increment      <span class="number">1</span>: Step Time =   <span class="number">2.2200E-16</span></span><br><span class="line"></span><br><span class="line">Loc <span class="number">1</span> : Nodal values from source <span class="number">1</span></span><br><span class="line"></span><br><span class="line">Output sorted by column <span class="string">&quot;Node Label&quot;</span>.</span><br><span class="line"></span><br><span class="line">Field Output reported at nodes for part: PART-<span class="number">1</span>-<span class="number">1</span></span><br><span class="line"></span><br><span class="line">            Node            U.U1            U.U2</span><br><span class="line">           Label          @Loc <span class="number">1</span>          @Loc <span class="number">1</span></span><br><span class="line">-------------------------------------------------</span><br><span class="line">               <span class="number">1</span>     <span class="number">1.47058E-03</span>    -<span class="number">2.54712E-03</span></span><br><span class="line">               <span class="number">2</span>    -<span class="number">216.840E-21</span>    -<span class="number">2.54712E-03</span></span><br><span class="line">               <span class="number">3</span>     <span class="number">735.291E-06</span>    -<span class="number">4.66972E-03</span></span><br><span class="line">               <span class="number">4</span>     <span class="number">1.47058E-03</span>    -<span class="number">5.00000E-33</span></span><br><span class="line">               <span class="number">5</span>              <span class="number">0.</span>    -<span class="number">5.00000E-33</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Minimum           -<span class="number">216.840E-21</span>    -<span class="number">4.66972E-03</span></span><br><span class="line"></span><br><span class="line">         At Node               <span class="number">2</span>               <span class="number">3</span></span><br><span class="line">  Maximum            <span class="number">1.47058E-03</span>    -<span class="number">5.00000E-33</span></span><br><span class="line"></span><br><span class="line">         At Node               <span class="number">4</span>               <span class="number">5</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">********************************************************************************</span><br><span class="line">Field Output Report, written Thu Apr <span class="number">28</span> <span class="number">16</span>:<span class="number">55</span>:<span class="number">19</span> <span class="number">2022</span></span><br><span class="line"></span><br><span class="line">Source <span class="number">1</span></span><br><span class="line">---------</span><br><span class="line"></span><br><span class="line">   ODB: F:/SIMULIA/Abaqus/Commands/Frame.odb</span><br><span class="line">   Step: Apply load</span><br><span class="line">   Frame: Increment      <span class="number">1</span>: Step Time =   <span class="number">2.2200E-16</span></span><br><span class="line"></span><br><span class="line">Loc <span class="number">1</span> : Nodal values from source <span class="number">1</span></span><br><span class="line"></span><br><span class="line">Output sorted by column <span class="string">&quot;Node Label&quot;</span>.</span><br><span class="line"></span><br><span class="line">Field Output reported at nodes for part: PART-<span class="number">1</span>-<span class="number">1</span></span><br><span class="line"></span><br><span class="line">            Node          RF.RF1          RF.RF2</span><br><span class="line">           Label          @Loc <span class="number">1</span>          @Loc <span class="number">1</span></span><br><span class="line">-------------------------------------------------</span><br><span class="line">               <span class="number">1</span>              <span class="number">0.</span>              <span class="number">0.</span></span><br><span class="line">               <span class="number">2</span>              <span class="number">0.</span>              <span class="number">0.</span></span><br><span class="line">               <span class="number">3</span>              <span class="number">0.</span>              <span class="number">0.</span></span><br><span class="line">               <span class="number">4</span>              <span class="number">0.</span>          <span class="number">5.E+03</span></span><br><span class="line">               <span class="number">5</span>    -<span class="number">454.747E-15</span>          <span class="number">5.E+03</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Minimum           -<span class="number">454.747E-15</span>              <span class="number">0.</span></span><br><span class="line">         At Node               <span class="number">5</span>               <span class="number">3</span></span><br><span class="line"></span><br><span class="line">  Maximum                     <span class="number">0.</span>          <span class="number">5.E+03</span></span><br><span class="line">         At Node               <span class="number">4</span>               <span class="number">5</span></span><br><span class="line"></span><br><span class="line">           Total    -<span class="number">454.747E-15</span>         <span class="number">10.E+03</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p>[^1]: 模拟计算的参数包括但不限于: 数值算法选择, 输出物理量, 时间步长等</p>
+<h2 id="踩坑内容"><a href="#踩坑内容" class="headerlink" title="踩坑内容"></a>踩坑内容</h2><h3 id="定义装配-1"><a href="#定义装配-1" class="headerlink" title="定义装配"></a>定义装配</h3><p>在定义装配时正确的设置如下:</p>
+<img src="装配步骤踩坑.png" alt="装配步骤踩坑" style="zoom: 67%;" />
+
+<p>作者原本选择的是 <strong>Dependent</strong>选项, Mesh 阶段不能划分网格.</p>
+<h3 id="定义边界条件和载荷"><a href="#定义边界条件和载荷" class="headerlink" title="定义边界条件和载荷"></a>定义边界条件和载荷</h3><p>在定义边界条件时, 提示区会出现如下提示:</p>
+<img src="提示区位置.png" alt="提示区位置" style="zoom: 25%;" />
+
+<p><img src="/2022/06/17/Abaqus%E5%AE%9E%E6%88%98-1/%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6set%E9%80%89%E9%A1%B9.png" alt="边界条件set选项"></p>
+<p>若勾选 **Create set **选项, 在创建分析作业阶段提交时会报错.</p>
+]]></content>
+  </entry>
 </search>
