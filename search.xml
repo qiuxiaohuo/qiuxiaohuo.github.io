@@ -1,0 +1,1177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>Abaqus实战(1)-软件基本操作</title>
+    <url>/2022/06/17/Abaqus%E5%AE%9E%E6%88%98-1/</url>
+    <content><![CDATA[<h2 id="文档目的">文档目的</h2>
+<p>本文档(或之后一系列文档)属于技术文档范畴, 旨在熟悉 ABAQUS 软件的操作.
+文档的内容主要是分析某一具体实例时软件的操作过程. 同时,
+作者希望文档内容不是仅仅机械地重复软件的操作过程,
+还能够进行一些理论上的说明.</p>
+<p>本文档使用的仿真平台为: <strong>ABAQUS 6.14</strong></p>
+<p>本文档的主要参考文献为: <strong>庄茁等, 基于ABAQUS的有限元分析和应用,
+清华大学出版社, 2009</strong></p>
+<h2 id="文档实例">文档实例</h2>
+<p>用 ABAQUS/CAE 生成桥式吊架模型, 吊架几何形状, 材料属性,
+边界约束如图所示.</p>
+<p><img src="桥式吊架图形.png" alt="桥式吊架图形" style="zoom: 50%;" /></p>
+<p>本文档应用 ABAQUS/Standard 进行模拟,
+确定结构中杆件的<strong>静位移</strong>和<strong>峰值应力</strong>.</p>
+<h2 id="操作流程">操作流程</h2>
+<p>一个完整的仿真分析过程一般由三个明确的步骤组成: <strong>前处理,
+模拟计算, 后处理</strong>. 若使用商业软件进行仿真. 模拟计算步骤是封闭的,
+用户只需要在前处理阶段提供模拟计算的参数即可. 因此,
+使用商业软件进行仿真分析的工作量主要体现在前处理阶段.</p>
+<p>对于桥式吊架, 需进入 ABAQUS/CAE 的以下功能模块并依次完成如下任务:</p>
+<ol type="1">
+<li>Part(部件): 绘制二维几何模型, 并创建代表桁架的部件</li>
+<li>Property(特性): 定义材料参数和析架的截面性质</li>
+<li>Assembly(装配): 装配模型</li>
+<li>Step(分析步): 设置分析过程和输出要求</li>
+<li>Load(载荷): 对析架施加载荷和边界条件</li>
+<li>Mesh(网格): 对析架进行网格划分</li>
+<li>Job(作业): 生成一个作业并提交进行分析计算</li>
+<li>Visualization(可视化): 观察分析结果</li>
+</ol>
+<p>其中, 1,2,3,5,6属于前处理阶段; 4,7属于模拟计算阶段; 8属于后处理阶段.
+下面将详细介绍.</p>
+<h3 id="量纲系统">量纲系统</h3>
+<p>在进入 ABAQUS 仿真之前,
+用户需要自己确定仿真用到的<strong>量纲系统</strong>.
+有些仿真软件用户可以设置仿真所使用的单位体系, 而 ABAQUS
+的输入并没有指定量纲,
+因此用户所有的输入数据必须指定<strong>一致性</strong>的量纲系统.</p>
+<h3 id="创建部件">创建部件</h3>
+<p>部件定义了模型的几何形体, 即实现<strong>CAD</strong>的功能.
+用户可以在 ABAQUS/CAE 环境中直接建立部件,
+也可以从其它软件建立的几何体或有限元网格导入.</p>
+<h3 id="创建材料">创建材料</h3>
+<p>创建材料即确定材料的本构方程. ABAQUS 提供了多种本构模型,
+用户只需要提供某一本构模型所需要的参数<a href="#fn1"
+class="footnote-ref" id="fnref1"
+role="doc-noteref"><sup>1</sup></a>即可. 如图所示</p>
+<p><img src="材料本构模型.png" alt="材料本构模型" style="zoom: 67%;" /></p>
+<p>作者可以认出来的本构有:</p>
+<ul>
+<li>弹性(Elasticity)</li>
+<li>塑性(Plasticity)</li>
+<li>韧性金属损伤(Damage for Ductile Metals)</li>
+<li>纤维加强复合材料损伤(Damage for Fiber-Reinforce Composites)</li>
+<li>脆性断裂(Brittle Cracking)</li>
+<li>黏性(Viscosity)</li>
+<li>...</li>
+</ul>
+<p>对于本实例, 桁架的杆件是钢制杆件,
+并假设<strong>各向同性线弹性</strong>,
+因此用户只需要给定<strong>2个参数</strong>. 在本例中,
+用户给定的参数为:</p>
+<ul>
+<li>杨氏模量: 200GPa</li>
+<li>泊松比: 0.3</li>
+</ul>
+<h3 id="定义和赋予截面属性">定义和赋予截面属性</h3>
+<p>截面属性是材料力学中被简化的一个几何尺度. 用户需要在 Property
+模块中创建一个截面(Section). 对于<strong>桁架单元</strong>,
+用户只需要提供截面面积参数即可. 值得提出的是,
+若赋予<strong>梁单元</strong>的截面属性, 则还需要额外提供梁单元形状(Beam
+Shape)信息, 如图所示.</p>
+<p><img src="梁单元截面属性.png" alt="梁单元截面属性" style="zoom:50%;" /></p>
+<h3 id="定义装配">定义装配</h3>
+<p>作者并不清楚 ABAQUS 这一步想干什么. 在有限元理论当中,
+装配(Assembly)是<strong>指将单元刚度矩阵组装成整体刚度矩阵</strong>,
+即单元局部坐标系映射到整体坐标系. 这一过程类似于参考文献提到的:</p>
+<blockquote>
+<p>每一个部件都创建在自己的坐标系中,在模型中彼此独立. Assembly
+(装配)模块中,
+通过创建各个部件的实体(instance)并在整体坐标系中将它们相互定位,
+用户能够定义装配件的几何形状. 尽管一个模型可能包含多个部件,
+但只能包含一个装配件.</p>
+</blockquote>
+<p>作者困惑的是, <strong>ABAQUS 在定义装配之前还没有划分网格单元,
+这怎么装配啊?</strong></p>
+<h3 id="设置分析过程">设置分析过程</h3>
+<p>在这一步骤中, 用户需要完成两部分工作: <strong>创建分析步</strong>;
+<strong>设定输出数据</strong>.</p>
+<p>在本实例中, 只考虑桁架的静态响应. 这是个单一事件,
+只需要单一分析步进行模拟. 因此, 整个分析由两个步骤组成:</p>
+<ul>
+<li>一个初始步(initial step), <strong>施加边界条件</strong>,
+约束桁架的端点;</li>
+<li>一个分析步(analysis step),
+在桁架的中心<strong>施加集中力</strong>.</li>
+</ul>
+<p>ABAQUS/CAE 会自动生成初始步, 但是用户必须应用 Step
+模块自己创建分析步.
+本实例定义分析步的类型为<strong>静态线性摄动步</strong>.</p>
+<p>有限元分析中会创建大量的输出数据. ABAQUS
+允许用户控制和管理这些输出数据, 从而只产生需要用来说明模拟结果的数据.
+ABAQUS 分析中可以输出以下4种类型的数据:</p>
+<ul>
+<li>结果输出保存到一个中间二进制文件中, 由 ABAQUS/CAE应用于后处理.
+这个文件称为ABAQUS输出数据库文件,文件后缀为<code>.odb</code></li>
+<li>结果以打印列表的形式输到 ABAQUS 数据(<code>.dat</code>)文件中. 仅在
+ABAQUS/Standard 有输出数据文件的功能</li>
+<li>重启动数据用于继续分析过程, 输出在 ABAQUS
+重启动(<code>.res</code>)文件中</li>
+<li>结果保存在一个二进制文件中, 用于第三方软件进行后处理,写入到 ABAQUS
+结果(<code>.fil</code>)文件</li>
+</ul>
+<p><strong>注</strong>: ABAQUS 文件系统各种类型文件如表所示(摘自 ABAQUS
+6.12有限元分析从入门到精通)</p>
+<p><img src="文件系统1.png" alt="文件系统1" style="zoom:80%;" /></p>
+<p><img src="文件系统2.png" alt="文件系统2" style="zoom:80%;" /></p>
+<h3 id="在模型上施加边界条件和载荷">在模型上施加边界条件和载荷</h3>
+<p>施加的条件, 例如边界条件 (boundary condition) 和载荷 (loads),
+是与<strong>分析步</strong>相关的,
+即用户必须指定边界条件和载荷在哪个或哪些分析步中起作用. 现在,
+已经定义了分析中的步骤, 可以应用 Load (载荷) 模块定义施加的条件.</p>
+<h4 id="在桁架上施加边界条件">在桁架上施加边界条件</h4>
+<p>ABAQUS 平移和转动自由度的标识如图所示</p>
+<p><img src="自由度符号.png" alt="自由度符号" style="zoom: 50%;" /></p>
+<p>在施加边界条件时需注意:</p>
+<ul>
+<li>若选择 <strong>Initial</strong>(初始步) 作为边界条件起作用的分析步,
+则所有指定在<strong>初始步</strong>的力学边界条件必须赋值为<strong>0</strong>,
+该条件是在 ABAQUS/CAE 中自动强加的.</li>
+</ul>
+<p>桁架的自由度约束如图所示</p>
+<p><img src="自由度约束.png" alt="自由度约束" style="zoom: 33%;" /></p>
+<h4 id="在桁架上施加载荷">在桁架上施加载荷</h4>
+<p>在本实例种, 10kN的集中力施加在桁架底部中点的轴2负方向,
+载荷施加在<strong>分析步模拟中创建的线性摄动步</strong>中. 如图所示</p>
+<p><img src="集中力载荷.png" alt="集中力载荷" style="zoom: 33%;" /></p>
+<h3 id="模型的网格划分">模型的网格划分</h3>
+<p>应用 Mesh(网格) 模块可以生成有限元网络. 本实例中,
+使用二维桁架(Truss)单元模拟吊架. 二维桁架模型在 ABAQUS 单元标号为
+<strong>T2D2</strong>单元.</p>
+<h3 id="创建分析作业">创建分析作业</h3>
+<p>Submission.</p>
+<h3 id="后处理">后处理</h3>
+<h4 id="显示和设置变形形状图">显示和设置变形形状图</h4>
+<p><img src="变形图.png" alt="变形图" style="zoom: 33%;" /></p>
+<h4 id="数据列表报告">数据列表报告</h4>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line">********************************************************************************</span><br><span class="line">Field Output Report, written Thu Apr <span class="number">28</span> <span class="number">16</span>:<span class="number">54</span>:<span class="number">02</span> <span class="number">2022</span></span><br><span class="line"></span><br><span class="line">Source <span class="number">1</span></span><br><span class="line">---------</span><br><span class="line"></span><br><span class="line">   ODB: F:/SIMULIA/Abaqus/Commands/Frame.odb</span><br><span class="line">   Step: Apply load</span><br><span class="line">   Frame: Increment      <span class="number">1</span>: Step Time =   <span class="number">2.2200E-16</span></span><br><span class="line"></span><br><span class="line">Loc <span class="number">1</span> : Integration point values from source <span class="number">1</span></span><br><span class="line"></span><br><span class="line">Output sorted by column <span class="string">&quot;Element Label&quot;</span>.</span><br><span class="line"></span><br><span class="line">Field Output reported at integration points for part: PART-<span class="number">1</span>-<span class="number">1</span></span><br><span class="line"></span><br><span class="line">         Element             <span class="built_in">Int</span>           S.S11</span><br><span class="line">           Label              Pt          @Loc <span class="number">1</span></span><br><span class="line">-------------------------------------------------</span><br><span class="line">               <span class="number">1</span>               <span class="number">1</span>    -<span class="number">294.116E+06</span></span><br><span class="line">               <span class="number">2</span>               <span class="number">1</span>     <span class="number">294.116E+06</span></span><br><span class="line">               <span class="number">3</span>               <span class="number">1</span>     <span class="number">147.058E+06</span></span><br><span class="line">               <span class="number">4</span>               <span class="number">1</span>    -<span class="number">294.116E+06</span></span><br><span class="line">               <span class="number">5</span>               <span class="number">1</span>    -<span class="number">294.116E+06</span></span><br><span class="line">               <span class="number">6</span>               <span class="number">1</span>     <span class="number">147.058E+06</span></span><br><span class="line">               <span class="number">7</span>               <span class="number">1</span>     <span class="number">294.116E+06</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Minimum                           -<span class="number">294.116E+06</span></span><br><span class="line">      At Element                               <span class="number">5</span></span><br><span class="line"></span><br><span class="line">          <span class="built_in">Int</span> Pt                               <span class="number">1</span></span><br><span class="line">  Maximum                            <span class="number">294.116E+06</span></span><br><span class="line">      At Element                               <span class="number">7</span></span><br><span class="line"></span><br><span class="line">          <span class="built_in">Int</span> Pt                               <span class="number">1</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">********************************************************************************</span><br><span class="line">Field Output Report, written Thu Apr <span class="number">28</span> <span class="number">16</span>:<span class="number">54</span>:<span class="number">50</span> <span class="number">2022</span></span><br><span class="line"></span><br><span class="line">Source <span class="number">1</span></span><br><span class="line">---------</span><br><span class="line"></span><br><span class="line">   ODB: F:/SIMULIA/Abaqus/Commands/Frame.odb</span><br><span class="line">   Step: Apply load</span><br><span class="line">   Frame: Increment      <span class="number">1</span>: Step Time =   <span class="number">2.2200E-16</span></span><br><span class="line"></span><br><span class="line">Loc <span class="number">1</span> : Nodal values from source <span class="number">1</span></span><br><span class="line"></span><br><span class="line">Output sorted by column <span class="string">&quot;Node Label&quot;</span>.</span><br><span class="line"></span><br><span class="line">Field Output reported at nodes for part: PART-<span class="number">1</span>-<span class="number">1</span></span><br><span class="line"></span><br><span class="line">            Node            U.U1            U.U2</span><br><span class="line">           Label          @Loc <span class="number">1</span>          @Loc <span class="number">1</span></span><br><span class="line">-------------------------------------------------</span><br><span class="line">               <span class="number">1</span>     <span class="number">1.47058E-03</span>    -<span class="number">2.54712E-03</span></span><br><span class="line">               <span class="number">2</span>    -<span class="number">216.840E-21</span>    -<span class="number">2.54712E-03</span></span><br><span class="line">               <span class="number">3</span>     <span class="number">735.291E-06</span>    -<span class="number">4.66972E-03</span></span><br><span class="line">               <span class="number">4</span>     <span class="number">1.47058E-03</span>    -<span class="number">5.00000E-33</span></span><br><span class="line">               <span class="number">5</span>              <span class="number">0.</span>    -<span class="number">5.00000E-33</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Minimum           -<span class="number">216.840E-21</span>    -<span class="number">4.66972E-03</span></span><br><span class="line"></span><br><span class="line">         At Node               <span class="number">2</span>               <span class="number">3</span></span><br><span class="line">  Maximum            <span class="number">1.47058E-03</span>    -<span class="number">5.00000E-33</span></span><br><span class="line"></span><br><span class="line">         At Node               <span class="number">4</span>               <span class="number">5</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">********************************************************************************</span><br><span class="line">Field Output Report, written Thu Apr <span class="number">28</span> <span class="number">16</span>:<span class="number">55</span>:<span class="number">19</span> <span class="number">2022</span></span><br><span class="line"></span><br><span class="line">Source <span class="number">1</span></span><br><span class="line">---------</span><br><span class="line"></span><br><span class="line">   ODB: F:/SIMULIA/Abaqus/Commands/Frame.odb</span><br><span class="line">   Step: Apply load</span><br><span class="line">   Frame: Increment      <span class="number">1</span>: Step Time =   <span class="number">2.2200E-16</span></span><br><span class="line"></span><br><span class="line">Loc <span class="number">1</span> : Nodal values from source <span class="number">1</span></span><br><span class="line"></span><br><span class="line">Output sorted by column <span class="string">&quot;Node Label&quot;</span>.</span><br><span class="line"></span><br><span class="line">Field Output reported at nodes for part: PART-<span class="number">1</span>-<span class="number">1</span></span><br><span class="line"></span><br><span class="line">            Node          RF.RF1          RF.RF2</span><br><span class="line">           Label          @Loc <span class="number">1</span>          @Loc <span class="number">1</span></span><br><span class="line">-------------------------------------------------</span><br><span class="line">               <span class="number">1</span>              <span class="number">0.</span>              <span class="number">0.</span></span><br><span class="line">               <span class="number">2</span>              <span class="number">0.</span>              <span class="number">0.</span></span><br><span class="line">               <span class="number">3</span>              <span class="number">0.</span>              <span class="number">0.</span></span><br><span class="line">               <span class="number">4</span>              <span class="number">0.</span>          <span class="number">5.E+03</span></span><br><span class="line">               <span class="number">5</span>    -<span class="number">454.747E-15</span>          <span class="number">5.E+03</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  Minimum           -<span class="number">454.747E-15</span>              <span class="number">0.</span></span><br><span class="line">         At Node               <span class="number">5</span>               <span class="number">3</span></span><br><span class="line"></span><br><span class="line">  Maximum                     <span class="number">0.</span>          <span class="number">5.E+03</span></span><br><span class="line">         At Node               <span class="number">4</span>               <span class="number">5</span></span><br><span class="line"></span><br><span class="line">           Total    -<span class="number">454.747E-15</span>         <span class="number">10.E+03</span></span><br></pre></td></tr></table></figure>
+<h2 id="踩坑内容">踩坑内容</h2>
+<h3 id="定义装配-1">定义装配</h3>
+<p>在定义装配时正确的设置如下:</p>
+<p><img src="装配步骤踩坑.png" alt="装配步骤踩坑" style="zoom: 67%;" /></p>
+<p>作者原本选择的是 <strong>Dependent</strong>选项, Mesh
+阶段不能划分网格.</p>
+<h3 id="定义边界条件和载荷">定义边界条件和载荷</h3>
+<p>在定义边界条件时, 提示区会出现如下提示:</p>
+<p><img src="提示区位置.png" alt="提示区位置" style="zoom: 25%;" /></p>
+<figure>
+<img src="边界条件set选项.png" alt="边界条件set选项" />
+<figcaption aria-hidden="true">边界条件set选项</figcaption>
+</figure>
+<p>若勾选 <strong>Create set </strong>选项,
+在创建分析作业阶段提交时会报错.</p>
+<section class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1" role="doc-endnote"><p>模拟计算的参数包括但不限于:
+数值算法选择, 输出物理量, 时间步长等<a href="#fnref1"
+class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+]]></content>
+      <categories>
+        <category>FEM</category>
+      </categories>
+      <tags>
+        <tag>Abaqus</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>LaTeX提升编译速度</title>
+    <url>/2022/06/20/LaTeX%E6%8F%90%E5%8D%87%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/</url>
+    <content><![CDATA[<h2 id="问题来源">问题来源</h2>
+<p>基于"所想即所得"的LaTeX需要编译之后才能看到自己所想的内容. 然而,
+对于复杂的公式, <strong>第一次</strong>编译所得总不是自己所想的.
+由此多次调整编译消耗了不少时间.</p>
+<h2 id="本文主要参考内容">本文主要参考内容</h2>
+<p><a
+href="https://www.zhihu.com/question/264248150">如何提高LaTeX的编译速度？
+- 知乎</a></p>
+<p><a
+href="https://blog.csdn.net/x_1203/article/details/105615355">Latex的分段编译(input,includeonly,include的使用)_x_1203的博客-CSDN博客_latex分段编译</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/55043560">如何加速 LaTeX 编译 -
+知乎</a></p>
+<p><a
+href="https://zhuanlan.zhihu.com/p/357926809">小技巧：加快LaTeX论文的编译
+- 知乎</a></p>
+<p><a
+href="https://www.zhihu.com/question/264248150/answer/279823270">如何提高LaTeX的编译速度？
+- 知乎</a></p>
+<h2 id="分拆文档章节">分拆文档章节</h2>
+<p>此种方法适用于多章节文档的编译. 将原文档按照章节拆成不同的
+<code>.tex</code>文件, 在源文件 <code>main.tex</code> 中, 通过使用
+<code>\include</code> 命令<strong>选择性地</strong>编译想要的章节.</p>
+<p>LaTeX 中与 include 相关的命令有: <code>\input</code>,
+<code>\include</code>, <code>\includeonly</code>. 下面将分别进行介绍</p>
+<h3 id="input"><code>\input</code></h3>
+<p><code>\input</code> 的作用为文本替换, 并可以放在导言区当中. 因此,
+可以将常用的文档配置或命令放在配置文档中,
+使用<code>\input</code>命令包含进去.</p>
+<p><code>\input</code>命令用法为:</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\input</span>&#123;file&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="include-includeonly"><code>\include</code> &amp;
+<code>\includeonly</code></h3>
+<p>这两个命令原理与 C++ 链接库类似. 一般的, <code>\include</code>
+和<code>\includeonly</code> 在一起使用, <code>\includeonly</code>
+规定范围, <code>\include</code>把文件包含进去.
+其中的<code>\include</code> 只能在正文区使用,
+而后者可以在导言区使用.</p>
+<p>例如:</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\includeonly</span>&#123;qianyan,end&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">	<span class="keyword">\include</span>&#123;qianyan&#125;</span><br><span class="line">	<span class="keyword">\include</span>&#123;end&#125;</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="更换操作系统">更换操作系统</h2>
+<p>TeX 编译的速度瓶颈主要在于<strong>文件 I/O</strong>.</p>
+<blockquote>
+<p>任何TeX，影响它速度主要还是文件I/O，尤其是Windows下面的影响，非常显著。同等的硬件，换成Linux+ext4的话，效果会很不一样。
+其次是解析上的操作，从源文件到token这一级别，中间有可能做编码转换之类。但是这一部分不会耗时太长。之所以能够影响速度是因为调用的包的子文件比较多，尤其是tikz之类的大包。</p>
+</blockquote>
+<p>而文件 <strong>I/O</strong> 的速度主要取决于操作系统和硬件.
+根据前人实际测试, Mac 与 Linux 操作系统下 TeX 的编译时间大概是 Windows
+操作系统下的 <strong>50%</strong></p>
+<h2 id="取消压缩输出的pdf文件">取消压缩输出的PDF文件</h2>
+<p>TeX 默认输出压缩后的PDF文档, 压缩文档会耗费一定的时间.
+因此可以不压缩输出的PDF文档. 在导言区设置 <code>\special&#123;&#125;</code>
+命令</p>
+<figure class="highlight latex"><table><tr><td class="code"><pre><span class="line"><span class="keyword">\special</span>&#123;dvipdfmx:config z 0&#125;</span><br><span class="line"><span class="keyword">\documentclass</span>&#123;article&#125;</span><br><span class="line"><span class="keyword">\begin</span>&#123;document&#125;</span><br><span class="line">hello world.</span><br><span class="line"><span class="keyword">\end</span>&#123;document&#125;</span><br></pre></td></tr></table></figure>
+<p>其中, 参数 z 表示压缩属性, 压缩程度范围为 0~9, 0 表示不压缩</p>
+<h3 id="其它方法">其它方法</h3>
+<ul>
+<li>如果文档不使用中文, 可将导言区 CJK 宏包取消(亲测可用)</li>
+<li>...</li>
+</ul>
+<h2 id="结论">结论</h2>
+<p>上述方法能够有效减少<strong>第一次</strong>编译的时间,
+但当<strong>已经生成编译需要的辅助文件后</strong>,
+在微调文档内容的前提下(包括但不限于: 不加入新的参考文献,
+不修改目录结构等), 再次编译的时间会少很多.
+上述方法可能除了更换操作系统之外, 对<strong>第 n 次</strong> (n&gt;1)
+整体编译时间没有太大的影响.</p>
+<blockquote><p>We should forget about small efficiencies, say about 97% of the time:
+premature optimization is the root of all evil. Yet we should not pass
+up our opportunities in that critical 3%.</p>
+<footer><strong>Donald E. Knuth.</strong></footer></blockquote>
+]]></content>
+      <categories>
+        <category>效率工具</category>
+      </categories>
+      <tags>
+        <tag>LaTeX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MiKTeX链接自定义宏包</title>
+    <url>/2022/06/20/MiKTeX%E9%93%BE%E6%8E%A5%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AE%8F%E5%8C%85/</url>
+    <content><![CDATA[<h2 id="问题描述">问题描述</h2>
+<p>本文档旨在解决的问题是:</p>
+<ul>
+<li>如何将自定义样式文件<code>.sty</code>通过 MiKTeX 链接到 TeXstudio
+平台?</li>
+<li>如何<strong>更新</strong>自定义宏包?</li>
+</ul>
+<h2 id="问题解决">问题解决</h2>
+<h3 id="第一个问题">第一个问题</h3>
+<p>第一个问题有一个比较笨的解决方案:
+将所有的<code>.sty</code>文件与自己编写的<code>.tex</code>文件放在<strong>同一文件目录</strong>下.
+但这不符合审美. MiKTeX 也下载了许多宏包,
+但并不需要将下载的宏包放在同一文件目录下. 所以,
+能否将自定义的<code>.sty</code>文件作为类似于 MiKTeX 自动下载的宏包一样,
+在外部链接到自己当前工作目录下?</p>
+<p>MiKTeX 官方提供了一种方式: 设置<a
+href="https://miktex.org/kb/texmf-roots"><code>TEXMF root directories</code></a>.
+这篇文档写得"通俗易懂", 但很难实操. 一个写的比较好的回答可参考这个<a
+href="https://tex.stackexchange.com/questions/69483/create-a-local-texmf-tree-in-miktex">网址</a>:</p>
+<ul>
+<li><p>Create a folder somewhere on your computer – with an
+<em>important exception</em>. It <strong>must not</strong> be a
+subfolder of your MiKTeX installation(<strong><em>MiKTeX
+安装子目录</em></strong>) (it worked this way in older MiKTeX versions,
+but was changed for security reasons). Avoid as far as possible spaces
+in the path, it is a potential risk for malfunction. For use with MiKTeX
+portable the folder must be, of course, on the same drive as the MiKTeX
+installation, it will be saved as relative path. Here I will use
+<code>c:\localtexmf</code>.</p>
+<p>This folder must be TDS compliant (see thereto <a
+href="http://tug.org/tds/tds.html"><em>A Directory Structure for TeX
+Files</em></a>)(<strong><em>就是我之前提到的<code>TEXMF root directories</code></em></strong>);
+MiKTeX will complain, if not. What you need, depends on what you want to
+install into this directory, at least a
+<strong><code>tex\latex</code></strong> subtree should be sufficient.
+You will go safe, if you mimic the structure of the <em>(itself TDS
+compliant)</em> MiKTEX tree, but binaries can directly go into a
+subfolder <code>c:\localtexmf\bin</code>.</p></li>
+<li><p>Now, using the GUI:</p>
+<ol type="1">
+<li>In the Start Menu go to the MiKTeX entry and open the settings – if
+you act as admin respectively “Settings (Admin)”, of course. The “MiKTeX
+Options” window will open.</li>
+<li>Go to the “Roots” tab. Click on “Add” and choose
+<code>c:\localtexmf\</code>. If there are more than one local directory,
+one can choose the search order with the “Up” and “Down” buttons.</li>
+<li>Now the almost <strong>most important part</strong>: Go to the
+“General” tab and click there on “Refresh FNDB” <em>(FNDB = File Name
+Data Base)</em>(<strong><em>MiKTeX4.5, 中文环境下,
+直接点击上方工作栏"任务"-&gt;"刷新文件名数据库"</em></strong>). In some
+cases, especially if new fonts are installed, one has to press also the
+“Update Formats” button.</li>
+</ol>
+<p>If you’d forget this step, all earlier steps would be done to no
+purpose.(<strong><em>第三步不做, 前面白搞</em></strong>)</p></li>
+</ul>
+<h3 id="第二个问题">第二个问题</h3>
+<p>若更新自定义宏包<code>.sty</code>文件,
+这时在LaTeX文档中使用新定义的命令,
+会报<code>undefined sequence control</code>错误.
+第二个问题的解决方式也很简单:</p>
+<ul>
+<li>在第一步时将目录设置为SVN下的目录(这样就不用自己手动复制粘贴了),</li>
+<li>每次更新完自定义宏包文件之后, 回到MiKTeX工作台,
+<strong>刷新文件名数据库</strong></li>
+</ul>
+]]></content>
+      <categories>
+        <category>效率工具</category>
+      </categories>
+      <tags>
+        <tag>LaTeX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello, 我的博客!</title>
+    <url>/2022/06/16/hello-world/</url>
+    <content><![CDATA[<p>这是 Hexo 自带的帮助文档, 在此记录一下自己搭建博客成功 ^ _ ^</p>
+<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very
+first post. Check <a href="https://hexo.io/docs/">documentation</a> for
+more info. If you get any problems when using Hexo, you can find the
+answer in <a
+href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
+you can ask me on <a
+href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="create-a-new-post">Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/writing.html">Writing</a></p>
+<h3 id="run-server">Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p>
+<h3 id="generate-static-files">Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/generating.html">Generating</a></p>
+<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a
+href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+        <tag>博客</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>复合材料物理场模型</title>
+    <url>/2022/06/17/%E5%A4%8D%E5%90%88%E6%9D%90%E6%96%99%E7%89%A9%E7%90%86%E5%9C%BA%E6%A8%A1%E5%9E%8B/</url>
+    <content><![CDATA[<h2 id="文档目的">文档目的</h2>
+<p>复合材料加工过程至少涉及<strong>热学-化学-机械</strong>三种物理场的耦合作用,
+其中, 热学的场方程遵循 Fourier 传热定律,
+而化学和机械的场方程形式依赖于材料的类型.
+例如热固性材料的化学场方程需要考虑材料的<strong>固化程度</strong>,
+而热塑性材料则需要考虑其<strong>结晶度</strong>.
+对于碳纤维增强的基体材料,
+基体和纤维可能都需要考虑<strong>损伤本构模型</strong>,
+基体材料可能还需要加入<strong>黏弹性本构模型</strong>.</p>
+<p>故本文档旨在整理复合材料除力学本构模型之外的物理场模型.</p>
+<h2 id="热力学模型">热力学模型</h2>
+<p>热传导模型就是经典的 Fourier 方程: <span class="math display">\[
+\rho C_p \frac{\partial T}{\partial t} = \nabla(\boldsymbol{k} \nabla T)
++ q_{gen}
+\label{eq:transient}
+\]</span> 不同类型的材料, 热源项产生的原因不同.
+热固性材料放热是因为固化过程中的<strong>交联反应放热</strong>;
+热塑性材料是因为降温过程中<strong>材料结晶放热</strong>. 式<span
+class="math inline">\(\eqref{eq:transient}\)</span>中热源项可以表示成如下形式:
+<span class="math display">\[
+q_{gen} = (1 - V_f) \rho_r H_{tr} R_{r}(\psi, T)
+\label{eq:heat_source}
+\]</span> 其中, <span class="math inline">\(H_{tr}\)</span> 是总反应热,
+<span class="math inline">\(\psi\)</span> 表示材料固化或结晶化程度.</p>
+<h2 id="化学反应模型">化学反应模型</h2>
+<p>在介绍化学反应模型之前, 先引入一些化学反应中常用的术语和概念.</p>
+<h3 id="一些术语">一些术语</h3>
+<h4 id="玻璃化转变温度">玻璃化转变温度</h4>
+<blockquote>
+<p><strong>the cured glass transition temperature</strong> (<span
+class="math inline">\(T_g\)</span>) of a polymeric material is the
+temperature at which it changes from a rigid, glassy solid into a
+softer, semiflexible material.</p>
+</blockquote>
+<p>需要强调的是, <span class="math inline">\(T_{g}\)</span>
+是<strong>热固性材料</strong>特有的属性, 在此时聚合物的结构仍然完整,
+但交联不再锁定在固定的位置. <span class="math inline">\(T_{g}\)</span>
+一般低于熔化温度 <span class="math inline">\(T_{m}\)</span> .</p>
+<p><span class="math inline">\(T_{g}\)</span> 会使材料力学性质明显降低,
+因此 <span class="math inline">\(T_{g}\)</span>
+决定了复合材料或胶粘剂的<strong>使用温度上限</strong>.</p>
+<p>影响 <span class="math inline">\(T_{g}\)</span> 的因素包括但不限于:
+材料的吸湿量和固化程度等. 大多数热固性聚合物吸湿后 <span
+class="math inline">\(T_{g}\)</span> 会严重降低. 材料的 <span
+class="math inline">\(T_{g}\)</span> 会随着固化程度增加而上升,
+如图所示.</p>
+<p>测定复合材料 <span class="math inline">\(T_{g}\)</span>
+需要用到热分析技术, 例如示差量热扫描法(DSC), 这将在下文进行介绍.</p>
+<h4 id="示差量热扫描法-dsc">示差量热扫描法 (DSC)</h4>
+<blockquote>
+<p><strong>Differential scanning calorimetry (DSC)</strong> is the most
+widely used method for obtaining the degree of cure and reaction rate.
+It is based on the measurement of the differential voltage, converted
+into heat flow in a calorimeter, necessary to obtain thermal equilibrium
+between the resin sample and an inert reference. A small sample of resin
+is placed in a sealed packet and then inserted into the calorimeter
+heating chamber along with a known standard of material. The temperature
+is increased and the amount of heat given off (exothermic) or taken in
+(endothermic) is compared to a known standard</p>
+</blockquote>
+<p>典型的DSC测试装置示意图如下, 右下角表明DSC可以测量材料的比热容,
+熔点以及熔化过程中的焓变等热力学属性.</p>
+<p><img src="DSC测量装置示意图.png" alt="DSC测量装置示意图" style="zoom: 50%;" /></p>
+<p>DSC测量热固性材料熔化及冷却曲线图如下</p>
+<p><img src="热固性材料熔化冷却测量曲线图.png" alt="热固性材料熔化冷却测量曲线图" style="zoom:50%;" /></p>
+<p>DSC测量不同材料的玻璃化转变温度如图所示. 由图可见,
+在玻璃化转变温度附近, 测试曲线会有一个阶梯状的变化.</p>
+<p><img src="DSC测量玻璃化转变温度.png" alt="DSC测量玻璃化转变温度" style="zoom:50%;" /></p>
+<p>下图使DSC测量材料固化程度对玻璃化转变温度的影响.</p>
+<p><img src="材料固化程度对玻璃化转变温度的影响.png" alt="材料固化程度对玻璃化转变温度的影响" style="zoom:50%;" /></p>
+<h3 id="热固性材料固化模型">热固性材料固化模型</h3>
+<p>首先定义用来描述热固性材料固化程度的标量 <span
+class="math inline">\(\alpha\)</span> . 若材料固化反应放出的总热量为
+<span class="math inline">\(H_{tr}\)</span> ,
+在某一时刻因固化反应放出的热量为 <span
+class="math inline">\(H(t)\)</span> , 则材料固化程度 <span
+class="math inline">\(\alpha\)</span> 可以定义为 <span
+class="math display">\[
+\alpha = \frac{H(t)}{H_{tr}}
+\label{eq:degree_of_curing}
+\]</span> 热源项 <span
+class="math inline">\(\eqref{eq:heat_source}\)</span> 中 <span
+class="math inline">\(R_{r}(\alpha, T)\)</span> 的函数关系受 <span
+class="math inline">\(\alpha\)</span> 影响.
+大多数固化动力学模型采用<strong>阿伦尼乌斯公式</strong>如下 <span
+class="math display">\[
+R_{r}(\alpha, T)=\frac{d \alpha}{d t}=A_{0} \exp \left(\frac{-E_{a}}{R
+T}\right) \alpha^{m}(1-\alpha)^{n}
+\]</span> 对于不同固化程度下的玻璃化转变温度 <span
+class="math inline">\(T_{g}\)</span> , 可以由以下公式得到: <span
+class="math display">\[
+\frac{T_{g}-T_{g 0}}{T_{g \infty}-T_{g 0}}=\frac{\lambda
+\alpha}{1-(1-\lambda) \alpha}
+\]</span> 式中, <span class="math inline">\(T_{g0}\)</span> 和 <span
+class="math inline">\(T_{g \infty}\)</span>
+分别为未固化和完全固化状态下的玻璃化转变温度, <span
+class="math inline">\(\lambda\)</span> 为常数.</p>
+]]></content>
+      <categories>
+        <category>复合材料</category>
+      </categories>
+      <tags>
+        <tag>复合材料物理模型</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常微分方程数值解</title>
+    <url>/2022/06/17/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/</url>
+    <content><![CDATA[<figure>
+<img src="常微分方程数值解_页面_01.png"
+alt="常微分方程数值解_页面_01" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_01</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_02.png"
+alt="常微分方程数值解_页面_02" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_02</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_03.png"
+alt="常微分方程数值解_页面_03" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_03</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_04.png"
+alt="常微分方程数值解_页面_04" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_04</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_05.png"
+alt="常微分方程数值解_页面_05" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_05</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_06.png"
+alt="常微分方程数值解_页面_06" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_06</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_07.png"
+alt="常微分方程数值解_页面_07" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_07</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_08.png"
+alt="常微分方程数值解_页面_08" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_08</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_09.png"
+alt="常微分方程数值解_页面_09" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_09</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_10.png"
+alt="常微分方程数值解_页面_10" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_10</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_11.png"
+alt="常微分方程数值解_页面_11" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_11</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_12.png"
+alt="常微分方程数值解_页面_12" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_12</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_13.png"
+alt="常微分方程数值解_页面_13" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_13</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_14.png"
+alt="常微分方程数值解_页面_14" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_14</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_15.png"
+alt="常微分方程数值解_页面_15" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_15</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_16.png"
+alt="常微分方程数值解_页面_16" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_16</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_17.png"
+alt="常微分方程数值解_页面_17" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_17</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_18.png"
+alt="常微分方程数值解_页面_18" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_18</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_19.png"
+alt="常微分方程数值解_页面_19" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_19</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_20.png"
+alt="常微分方程数值解_页面_20" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_20</figcaption>
+</figure>
+<figure>
+<img src="常微分方程数值解_页面_21.png"
+alt="常微分方程数值解_页面_21" />
+<figcaption aria-hidden="true">常微分方程数值解_页面_21</figcaption>
+</figure>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+        <tag>数值计算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>微分方程数值解</title>
+    <url>/2022/06/22/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/</url>
+    <content><![CDATA[<p>这一系列文档是根据我在本科期间<strong>微分方程数值解课程</strong>实验报告基础上修改得到的.
+这是我第一次构造出一个具有自洽逻辑体系的文档, 同时也是我第一次使用 <span
+class="math inline">\(\LaTeX\)</span> , 因此对我来说很有纪念意义.</p>
+<p>原始报告是用<span class="math inline">\(\LaTeX\)</span>写的,
+我原本想把它们转换成博客上用的<code>markdown</code>文件,
+但是这样就不能保留原始的公式和表格排版形式.
+最终我还是选择将报告输出成图片放在博客上.
+原报告附录当中的<code>MATLAB</code>代码我用<code>markdown</code>重新生成了一遍.</p>
+<p>报告内容是按照课后习题进行展开的(参考书为<em>微分方程数值解,
+李荣华</em>), 即, 对于这一道特定的题目, 罗列出用到的数值计算的知识,
+再用程序实现. 这其实和日常授课的思路不太一样的.
+我们一般是学到一大堆知识, 再用学到的知识去解决问题,
+这就有点<strong>事后诸葛</strong>. 而我的这一系列报告是以问题驱动的.</p>
+<p>对于我自己来说, 如果抽象的知识不能以具体的实例进行解释,
+我就很难理解它.
+这种问题驱动的方式第一次让我有一种<strong>我真的弄懂了这一块</strong>的感觉.
+这是一种强烈的自信, 自信这些知识完全为我所有, 即使一些细节我可能会忘记,
+但我也相信自己可以很快地掌握它们. 正是这种强烈的自信感,
+驱使着我去尽自己最大的智力与精力, 去探索,
+去打磨这些属于我自己的知识殿堂.</p>
+<p>是为序.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>有限单元法基本概念(1)</title>
+    <url>/2022/07/18/%E6%9C%89%E9%99%90%E5%8D%95%E5%85%83%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-1/</url>
+    <content><![CDATA[<h4
+id="已知一个数学微分方程-如何建立它的等效积分形式-如何证明两者是等效的">已知一个数学微分方程,
+如何建立它的等效积分形式? 如何证明两者是等效的?</h4>
+<p>若微分方程<span
+class="math inline">\(\boldsymbol{A}(\boldsymbol{\phi}) =
+\boldsymbol{0}\)</span>在域<span
+class="math inline">\(\Omega\)</span>中恒成立, 则下式成立: <span
+class="math display">\[
+\int_{\Omega} \boldsymbol{v}^T \boldsymbol{A}(\boldsymbol{\phi})
+\mathrm{d} \Omega = 0
+    \label{eq:equivalent_integration_form}
+\]</span> 其中 <span class="math inline">\(\boldsymbol{v}\)</span>
+是<strong>任意函数</strong>. 正是由 <span
+class="math inline">\(\boldsymbol{v}\)</span> 的任意性,
+才能保证上式与原微分方程是等效的.</p>
+<p>证明等效性, 必要性有微分方程在域<span
+class="math inline">\(\Omega\)</span>恒等于0, 积分形式自然对任意函数
+<span class="math inline">\(\boldsymbol{v}\)</span> 都成立;
+充分性可以通过反证法, 假设微分方程在域 <span
+class="math inline">\(\Omega\)</span> 中某点处不等于0, 则总可以构造出
+<span class="math inline">\(\boldsymbol{v}\)</span>,
+比如在该点处的Delta函数, 使得等效积分形式不等于0<strong>.</strong></p>
+<h4
+id="等效积分形式和等效积分弱形式的区别何在-为什么后者在数值分析中得到更多的应用">等效积分形式和等效积分"弱"形式的区别何在?
+为什么后者在数值分析中得到更多的应用?</h4>
+<p><span class="math display">\[
+\text{等效积分形式} \stackrel{\text{分部积分}}{\longrightarrow}
+\text{等效积分&quot;弱&quot;形式}
+    \notag
+\]</span></p>
+<p>通过分部积分, 原微分方程作用于场变量上的导数阶次降低,
+转移到试探函数<span class="math inline">\(\boldsymbol{v}\)</span>上,
+由此降低了近似解的连续性要求, 因此在数值求解中近似函数可选择的空间更大.
+例如, 对于一般弹性力学问题, 方程中关于位移场的导数最高阶次为1,
+故只需要保证位移场函数<span class="math inline">\(C_0\)</span>连续.
+对于梁相关的问题, 方程中关于挠度的导数最高阶次为2,
+故需要保证挠度函数<span class="math inline">\(C_1\)</span>连续.</p>
+<h4
+id="不同形式的加权余量法之间的区别何在">不同形式的加权余量法之间的区别何在?</h4>
+<p>对于微分方程<span
+class="math inline">\(\boldsymbol{A}(\boldsymbol{\phi}) =
+\boldsymbol{0}\)</span>, 取近似函数<span
+class="math inline">\(\bar{\boldsymbol{\phi}} = \boldsymbol
+{N}\boldsymbol{a}\)</span>, 代入微分方程当中, 会得到残差如下 <span
+class="math display">\[
+\boldsymbol{R} = \boldsymbol{A}(\boldsymbol{N} \boldsymbol{a}) \neq
+\boldsymbol{0} ~\text{on} ~ \Omega
+\]</span> 加权残值法是等效积分形式的<strong>有限形式</strong>,
+即用有限数量<span
+class="math inline">\(n\)</span>个规定的权函数代替任意函数<span
+class="math inline">\(\boldsymbol{v}\)</span>, 可得 <span
+class="math display">\[
+\int_{\Omega} \boldsymbol{W}_{j}^{T} \boldsymbol{A}(\boldsymbol{N}
+\boldsymbol{a}) \mathrm{d} \Omega = \boldsymbol{0} \quad (j = 1~to~n)
+\]</span> 不同的加权余量法权函数是不同的. 例如, 配点法的权函数是 Delta
+函数, 子域法的权函数是子区域恒为1, 其它区域恒为0的函数.</p>
+<h4
+id="什么是加权余量的伽辽金方法-它有什么特点">什么是加权余量的伽辽金方法?
+它有什么特点?</h4>
+<p>伽辽金方法的权函数取自于近似函数序列, 即取 <span
+class="math inline">\(\boldsymbol{W}_j = \boldsymbol{N}_j\)</span>.
+若定义近似解<span
+class="math inline">\(\bar{\boldsymbol{\phi}}\)</span>的变分为 <span
+class="math display">\[
+\delta \bar{\boldsymbol{\phi}} = \boldsymbol{N}_1 \delta
+\boldsymbol{a}_1 + \cdots + \boldsymbol{N}_n \delta \boldsymbol{a}_n
+\]</span> 则伽辽金法可以表示成如下形式: <span class="math display">\[
+\int_{\Omega} \delta \bar{\boldsymbol{\phi}}^{T}
+\boldsymbol{A}(\bar{\boldsymbol{\phi}}) \mathrm{d} \Omega =
+\boldsymbol{0}
+\]</span> 若算子<span
+class="math inline">\(\boldsymbol{A}\)</span>是<span
+class="math inline">\(2m\)</span>阶线性自伴随的,
+则采用伽辽金方法得到的方程系数矩阵是对称的.</p>
+<h4
+id="如何识别一个微分算子是线性-自伴随的-识别它的意义何在">如何识别一个微分算子是线性,
+自伴随的? 识别它的意义何在?</h4>
+<p>若算子<span class="math inline">\(\boldsymbol{L}\)</span>是线性的,
+则有如下性质:</p>
+<ul>
+<li><span class="math inline">\(\boldsymbol{L}(\boldsymbol{u}_1 +
+\boldsymbol{u}_2) = \boldsymbol{L}(\boldsymbol{u}_1) +
+\boldsymbol{L}(\boldsymbol{u}_2)\)</span></li>
+<li><span class="math inline">\(\boldsymbol{L}(c\boldsymbol{u}) =
+c\boldsymbol{L}(\boldsymbol{u})\)</span></li>
+</ul>
+<p>若算子<span class="math inline">\(\boldsymbol{L}\)</span>是自伴随的,
+则有如下性质:</p>
+<ul>
+<li><span class="math inline">\(\int\nolimits_{\Omega}
+\boldsymbol{L}(\boldsymbol{u}) \boldsymbol{v} \mathrm{d} \Omega =
+\int\nolimits_{\Omega} \boldsymbol{L}(\boldsymbol{v}) \boldsymbol{u}
+\mathrm{d} \Omega + b.t.(\boldsymbol{u}, \boldsymbol{v})\)</span></li>
+</ul>
+<p>若微分算子是线性, 自伴随的, 则可以构造某一泛函<span
+class="math inline">\(\Pi\)</span>, 使得该泛函的变分<span
+class="math inline">\(\delta \Pi = 0\)</span>等价于原微分方程.</p>
+<h4
+id="如何建立与线性-自伴随微分方程相等效的泛函和变分原理-如何证明它和加权余量的伽辽金方法之间的等效性">如何建立与线性,
+自伴随微分方程相等效的泛函和变分原理?
+如何证明它和加权余量的伽辽金方法之间的等效性?</h4>
+<p>根据微分方程的伽辽金形式(此处只提取方程中最主要的一项) <span
+class="math display">\[
+\begin{aligned}
+        \int_{\Omega} \delta \boldsymbol{u}^{T}
+\boldsymbol{L}(\boldsymbol{u}) \mathrm{d} \Omega
+        &amp;= \int_{\Omega} \left[ \frac{1}{2} \delta
+\boldsymbol{u}^{T} \boldsymbol{L}(\boldsymbol{u}) + \frac{1}{2} \delta
+\boldsymbol{u}^{T} \boldsymbol{L}(\boldsymbol{u}) \right] \mathrm{d}
+\Omega \\
+        &amp;\stackrel{\text{自伴随}}{=} \int_{\Omega} \left[
+\frac{1}{2} \delta \boldsymbol{u}^{T} \boldsymbol{L}(\boldsymbol{u}) +
+\frac{1}{2} \boldsymbol{u}^{T} \boldsymbol{L}(\delta\boldsymbol{u})
+\right] \mathrm{d} \Omega \\
+        &amp;\stackrel{\text{交换性}}{=} \int_{\Omega} \left[
+\frac{1}{2} \delta \boldsymbol{u}^{T} \boldsymbol{L}(\boldsymbol{u}) +
+\frac{1}{2} \boldsymbol{u}^{T} \delta \boldsymbol{L}(\boldsymbol{u})
+\right] \mathrm{d} \Omega \\
+        &amp;\stackrel{\text{变分乘积公式}}{=} \delta \int_{\Omega}
+\frac{1}{2} \boldsymbol{u}^{T} \boldsymbol{L}(\boldsymbol{u}) \mathrm{d}
+\Omega
+    \end{aligned}
+\]</span></p>
+<h4
+id="自然边界条件和强制边界条件的区别何在-为什么这样命名-对于一个给定的微分方程-如何区分这两类边界条件">自然边界条件和强制边界条件的区别何在?
+为什么这样命名? 对于一个给定的微分方程, 如何区分这两类边界条件?</h4>
+<p>在给定微分方程的等效积分形式后, 选取的场函数<span
+class="math inline">\(\boldsymbol{\phi}\)</span>需要<strong>预先满足</strong>强制边界条件,
+自然边界条件则在推导等效积分形式的弱形式时自然得到, 无需事先满足.</p>
+<h4
+id="泛函在什么条件下具有极值性-了解泛函是否具有极值性的意义何在">泛函在什么条件下具有极值性?
+了解泛函是否具有极值性的意义何在?</h4>
+<p>若线性自伴随算子是<strong>偶数阶</strong>的, 则相应的泛函具有极值性.
+在力学当中, 为证明最小位能与余能原理, 需要利用泛函的极值性,
+来说明真实解位移与应力是系统位能和余能是最小的.</p>
+<h4
+id="什么是里兹方法-通过它建立的求解方法有什么特点-里兹方法收敛性的定义是什么-收敛的条件是什么">什么是里兹方法?
+通过它建立的求解方法有什么特点? 里兹方法收敛性的定义是什么?
+收敛的条件是什么?</h4>
+<p>在得到与原微分方程等价的泛函之后, 类似于加权残值法的流程,
+取未知场函数的近似解为一族带有待定参数的试探函数, 即 <span
+class="math display">\[
+\boldsymbol{u} \approx \bar{\boldsymbol{u}} = \sum_{i=1}^{n}
+\boldsymbol{N}_{i} \boldsymbol{A}
+\]</span> 根据变分原理, 泛函的变分为0. 解析形式的泛函变分是对函数的导数,
+函数是<strong>无穷维</strong>的, 因此很难操作. 对于近似解得到的泛函,
+参数是<strong>有限</strong>的, 因此有 <span class="math display">\[
+\delta \Pi(\boldsymbol{A}_1, \boldsymbol{A}_2, \cdots, \boldsymbol{A}_n)
+= \frac{\partial \Pi}{\partial \boldsymbol{A}_1} \delta \boldsymbol{A}_1
++ \frac{\partial \Pi}{\partial \boldsymbol{A}_2} \delta \boldsymbol{A}_2
++ \cdots + \frac{\partial \Pi}{\partial \boldsymbol{A}_n} \delta
+\boldsymbol{A}_n
+\]</span> 由<span class="math inline">\(\delta
+\boldsymbol{A}_i\)</span>的任意性, 可以得到一系列关于<span
+class="math inline">\(\boldsymbol{A}_i\)</span>的方程: <span
+class="math display">\[
+\frac{\partial \Pi}{\partial \boldsymbol{A}_i} = 0, i = 1,2, \cdots, n
+\]</span> 里兹法是寻求近似函数族中满足泛函变分的<strong>最优解</strong>.
+因此, 里兹法有如下特点:</p>
+<ul>
+<li>里兹法的精度可通过改进近似解的构造来提高(而不是简单地增加近似解项数)</li>
+<li>若精确解可由近似函数族表示, 则里兹法就可以得到精确解</li>
+</ul>
+<p>当近似解的项数<span class="math inline">\(n\)</span>趋于无穷时,
+若得到的近似解<span
+class="math inline">\(\bar{\boldsymbol{\phi}}\)</span>收敛于精确解,
+则称里兹方法收敛. 里兹方法收敛的条件如下:</p>
+<ul>
+<li>试探函数序列是<strong>完备的</strong> <span
+class="math inline">\(\rightarrow\)</span>
+精确解可由试探函数级数表示</li>
+<li>试探函数序列满足<span
+class="math inline">\(\mathcal{C}_{m-1}\)</span>连续性,
+即<strong>协调性</strong>, 若泛函中关于场函数最高微分阶数为<span
+class="math inline">\(m\)</span> <span
+class="math inline">\(\rightarrow\)</span> 保证积分存在</li>
+</ul>
+<h4 id="里兹方法的优缺点是什么">里兹方法的优缺点是什么?</h4>
+<p>里兹方法的优点:</p>
+<ul>
+<li>求解方程的系数矩阵是对称的</li>
+<li>解具有明确的上,下界性质</li>
+</ul>
+<p>里兹方法的缺点:</p>
+<ul>
+<li>不适用于求解域复杂的情况.
+这时很难选取一个满足全域边界条件的试探函数</li>
+<li>无法实现局部精度的提升. 这个问题还是因为试探函数是全域的</li>
+</ul>
+<p>所以, 离散形式的里兹方法, 即有限元法, 才会有更多的工程应用</p>
+<h4
+id="虚功原理有哪两种不同形式-各和弹性力学的什么方程等效">虚功原理有哪两种不同形式?
+各和弹性力学的什么方程等效?</h4>
+<p>虚位移原理与虚应力原理.
+虚位移原理是平衡方程和力边界条件的等效积分"弱"形式;
+虚应力原理是几何方程和位移边界条件的等效积分"弱"形式.</p>
+<p>虚位移原理的力学意义是: 如果力系是平衡的,
+则它们在虚位移和相应的满足几何方程的虚应变上所作功之和为0.</p>
+<p>虚应力原理的力学意义是: 如果位移是协调的,
+则满足平衡方程的虚应力和虚边界约束反力在上面所作功之和为0.</p>
+<p>需要指出的是, 虚功原理不涉及本构方程,
+因此可应用于非线性弹性及弹塑性等非线性问题. 但是,
+虚功原理用到的几何方程是小变形条件下得到的,
+故不能直接应用于大变形理论当中.</p>
+<h4
+id="什么是最小位能原理-它们是如何导出的-场函数是什么-它事先应满足什么条件-对场函数的试探函数有什么要求">什么是最小位能原理?
+它们是如何导出的? 场函数是什么? 它事先应满足什么条件?
+对场函数的试探函数有什么要求?</h4>
+<p>最小位能原理是通过将线弹性本构方程代入虚位移定理,
+再根据分部积分得到的泛函, 该泛函的物理意义是系统的总位能,
+是弹性体变形位能和外力位能之和. 场函数是位移, 事先应该满足强制边界条件,
+即给定位移条件. 最小位能的物理意义是:
+在所有满足边界上给定位移条件的可能位移当中,
+真实位移使系统总位能取<strong>最小值</strong>.</p>
+<h4
+id="如何利用最小位能原理建立数值解的求解方程-方程有何特点-解的收敛性和极值性的条件是什么">如何利用最小位能原理建立数值解的求解方程?
+方程有何特点? 解的收敛性和极值性的条件是什么?</h4>
+<p>最小位能原理就是里兹方法在力学当中的具体应用,
+里兹方法的特点它全有.</p>
+<h4
+id="为什么最小位能原理的近似解的应变能取下界-即解总体偏于刚硬">为什么最小位能原理的近似解的应变能取下界,
+即解总体偏于"刚硬"</h4>
+<p>根据最小位能原理, 近似解不是真实解,
+因此由真实解得到的系统总位能应该小于近似解.
+而最小位能原理得到的泛函物理意义是负总应变能,
+因此真实解的应变能大于近似解的应变能,
+由此可以得到系统真实的应变大于近似解得到的应变.
+故结构的计算模型偏于刚硬.</p>
+]]></content>
+      <categories>
+        <category>FEM</category>
+      </categories>
+      <tags>
+        <tag>等效积分形式</tag>
+        <tag>加权余量法</tag>
+        <tag>泛函和变分原理</tag>
+        <tag>里兹方法</tag>
+        <tag>虚功原理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>抛物型微分方程数值解</title>
+    <url>/2022/06/24/%E6%8A%9B%E7%89%A9%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/</url>
+    <content><![CDATA[<h2 id="显式计算格式">显式计算格式</h2>
+<p><img src="抛物型微分方程数值解_Page1.png" /> <img
+src="抛物型微分方程数值解_Page2.png" /></p>
+<h2 id="交替方向隐格式法">交替方向隐格式法</h2>
+<p><img src="抛物型微分方程数值解_Page3.png" /> <img
+src="抛物型微分方程数值解_Page4.png" /> <img
+src="抛物型微分方程数值解_Page5.png" /> <img
+src="抛物型微分方程数值解_Page6.png" /> <img
+src="抛物型微分方程数值解_Page7.png" /></p>
+<h2 id="程序源码">程序源码</h2>
+<h3 id="显式计算程序">显式计算程序</h3>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">%% 观察误差思路</span></span><br><span class="line"><span class="comment">% 求解一维抛物型微分方程\frac&#123;\partial u&#125;&#123;\partial t&#125;= a\frac&#123;\partial^2 u&#125;&#123;\partial x^2&#125;</span></span><br><span class="line"><span class="comment">% 设置初始条件,边界条件均为0, 如此, 该方程解析解为u = 0;</span></span><br><span class="line"><span class="comment">% 在中点初始时刻设置一个扰动,观察该扰动传播的情况即可</span></span><br><span class="line"><span class="comment">%% 初始参数设置</span></span><br><span class="line">a = <span class="number">1</span>;</span><br><span class="line">r = <span class="number">5</span>/<span class="number">9</span>;   <span class="comment">% 网比设置</span></span><br><span class="line">h = <span class="number">1</span>/<span class="number">32</span>;   <span class="comment">% 空间步长设置</span></span><br><span class="line">tau = r*h^<span class="number">2</span>/a;<span class="comment">% 时间计算步长</span></span><br><span class="line">N = <span class="number">20</span>; <span class="comment">% 总计算时间步数</span></span><br><span class="line">strN = num2str(N);</span><br><span class="line"><span class="comment">%% 计算区域设置</span></span><br><span class="line">T = <span class="number">0</span>:tau:N*tau;   <span class="comment">% 计算10个时间步长</span></span><br><span class="line">X = <span class="number">0</span>:h:<span class="number">1</span>;</span><br><span class="line">nMid = <span class="built_in">ceil</span>(<span class="built_in">length</span>(X)/<span class="number">2</span>);   <span class="comment">% 取中间节点设置扰动</span></span><br><span class="line"><span class="comment">%% 内存分配</span></span><br><span class="line">U = <span class="built_in">zeros</span>(<span class="built_in">length</span>(T),<span class="built_in">length</span>(X)); <span class="comment">% 矩阵的行数代表时间层,列数代表空间节点</span></span><br><span class="line"><span class="comment">%% 初始条件与边界条件设置</span></span><br><span class="line"><span class="comment">% 因为边界条件均为0,之前内存分配时设置为0矩阵,所以不用再设置了</span></span><br><span class="line">epsilon = <span class="number">0.1</span>;  <span class="comment">% 在中间节点设置初始扰动</span></span><br><span class="line">U(<span class="number">1</span>,nMid) = epsilon;</span><br><span class="line"><span class="comment">%% 数值求解</span></span><br><span class="line"><span class="keyword">for</span> n = <span class="number">2</span>:<span class="built_in">length</span>(T)</span><br><span class="line">   <span class="keyword">for</span> <span class="built_in">j</span> = <span class="number">2</span>:(<span class="built_in">length</span>(X)<span class="number">-1</span>)</span><br><span class="line">      U(n,<span class="built_in">j</span>) = r*U(n<span class="number">-1</span>,<span class="built_in">j</span>+<span class="number">1</span>) + (<span class="number">1</span><span class="number">-2</span>*r)*U(n<span class="number">-1</span>,<span class="built_in">j</span>) + r*U(n<span class="number">-1</span>,<span class="built_in">j</span><span class="number">-1</span>); </span><br><span class="line">   <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment">% 归一化数值解</span></span><br><span class="line">U = U/epsilon;</span><br><span class="line">...(此处省略绘图与数据存储)</span><br></pre></td></tr></table></figure>
+<h3 id="交替方向隐格式法-1">交替方向隐格式法</h3>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">%% 初始参数设置</span></span><br><span class="line">h = <span class="number">0.1</span>;</span><br><span class="line">tau = <span class="number">0.05</span>;</span><br><span class="line">x = h:h:<span class="number">1</span>-h;</span><br><span class="line">y = x;</span><br><span class="line">N = <span class="built_in">length</span>(x);</span><br><span class="line">[Y,X] = <span class="built_in">meshgrid</span>(x,y);  <span class="comment">% 不包含边界</span></span><br><span class="line">t = <span class="number">0</span>:tau:<span class="number">0.8</span>;</span><br><span class="line">r = tau/h^<span class="number">2</span>;</span><br><span class="line"><span class="comment">%% 内存分配</span></span><br><span class="line">U = <span class="built_in">zeros</span>(<span class="built_in">size</span>(X));</span><br><span class="line">UT = <span class="built_in">zeros</span>([<span class="built_in">size</span>(U),<span class="built_in">length</span>(t)]);</span><br><span class="line"><span class="comment">%% 初始条件及边界条件设置</span></span><br><span class="line"><span class="comment">% 注: 因为求解方程是齐次边界条件,所以不需要设置边界条件</span></span><br><span class="line"><span class="comment">% 注: 初始条件为U=0, 在内存分配时已经设置完毕</span></span><br><span class="line"><span class="comment">%% 构造系数矩阵</span></span><br><span class="line">I = <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,N));</span><br><span class="line">B = <span class="built_in">diag</span>(<span class="number">-2</span>*<span class="built_in">ones</span>(<span class="number">1</span>,N)) + <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,N<span class="number">-1</span>),<span class="number">1</span>) + <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,N<span class="number">-1</span>),<span class="number">-1</span>);</span><br><span class="line">C1 = inv(I - r/<span class="number">2</span>*B);</span><br><span class="line">C2 = (I + r/<span class="number">2</span>*B);</span><br><span class="line"><span class="comment">%% 数值求解</span></span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">2</span>:<span class="built_in">length</span>(t)</span><br><span class="line">    F = <span class="built_in">sin</span>(<span class="number">5</span>*<span class="built_in">pi</span>*(t(<span class="built_in">i</span>)<span class="number">-0.5</span>*tau)) .* <span class="built_in">sin</span>(<span class="number">2</span>*<span class="built_in">pi</span>*X) .*<span class="built_in">sin</span>(<span class="built_in">pi</span>*Y);</span><br><span class="line">    UMid = C1*U(:,:,<span class="built_in">i</span><span class="number">-1</span>)*C2 + tau/<span class="number">4</span>*C1*F;</span><br><span class="line">    U(:,:,<span class="built_in">i</span>) = C2*UMid*C1 + tau/<span class="number">4</span>*F*C1;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数值计算</tag>
+        <tag>抛物型微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数学学习</title>
+    <url>/2022/06/17/%E6%95%B0%E5%AD%A6%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h2 id="写这份文档的目的">写这份文档的目的</h2>
+<p>读研究生不到两个月，我已经见到周围5个人觉得自己数学不够用（包括我自己），想提升自己的数学能力。因为我之前辅修过数学专业，所以觉得自己有这方面的经验，于是便<del>好为人师地</del>去给别人推荐各种各样的教材和课程。但我在交流的过程中发现如下问题：</p>
+<ul>
+<li>我在向别人推荐数学教材与课程时，更多的是在炫耀自己的表面的学识（装X）</li>
+<li>我现在还没达到教人做事的水平。目前唯一可以做的，是讲述自己的经验，提出自己的建议，供别人进行判断</li>
+<li>我自己也需要一个提升数学能力的计划</li>
+</ul>
+<p>成功的人各有各的经验，遇到的坑却往往惊人的相似。在这篇文档中，我将重点阐述自己遇到的坑。有意思的是，坑是<strong>经验</strong>的，这意味着：如果我没踩过，我可能就不觉得这是坑（手动滑稽）。踩坑可以说是一种<strong>反例式</strong>的实践的学习方法，但有时非常耗时。所以，若能从我踩过的坑中吸取经验，避免踩坑；或者之前身处坑中而不自觉，看到这篇文档稍有醒悟，那我写这篇文档的目的就达到了。当然，这篇文档也不是用踩过的坑反向教人做事，判断与选择的权利依旧掌握在读者手上。</p>
+<h2 id="自己学习数学的经历">自己学习数学的经历</h2>
+<p>我会以时间顺序讲述自己学数学的过程，其中评注内容我会用分割线与主体部分隔开，这样可以不影响叙述的完整性。</p>
+<h3 id="确定辅修数学的原因">确定辅修数学的原因</h3>
+<p>我在大二上学期开始尝试自学一些数学学科，其中有常微分方程（MIT OCW
+18.03），线性代数（MIT OCW
+18.06）等，但在大三上学期我决定辅修数学，原因如下：</p>
+<ul>
+<li>我想系统地学习数学知识，而不是停留在兴趣的层面上</li>
+<li>通过听课、作业、交流、考试，我可以对某一方面的数学知识有一个比较好的把握；而自学只有听课环节，所以即使花费很多精力看完所有课程录像，我还是觉得没能真正掌握这门课教授的知识</li>
+<li>选课会施加一种外部的压力，让我学到自闭时也不敢放松（比如学习实变函数和泛函分析）。这一点和第一条很像，兴趣和意识到某件事的重要性当然很重要，但是对于我来说，它们难以让我克服重重困难</li>
+<li>辅修提供一个清晰的可以达到的学习目标，同时有验收指标，比如考试成绩（这很重要。自学的往往缺乏一种对所学课程的自信，我觉得部分是这个原因）</li>
+</ul>
+<h3
+id="数学专业课程培养计划信息与计算科学方向">数学专业课程培养计划（信息与计算科学方向）</h3>
+<p>本科学校数学学院提供三个数学方向：数学与应用数学、信息与计算科学、统计。其中信息与计算科学需要修以下课程：</p>
+<ul>
+<li>实变函数（4.5学分）</li>
+<li>复变函数（4.5学分）</li>
+<li>泛函分析（4学分）</li>
+<li>数学物理方法（3学分）</li>
+<li>微分方程数值解（4学分）</li>
+<li>信息论基础（3学分）</li>
+</ul>
+<p>其中，前四门课程是所有方向都要修的课程。数学与应用数学的专业课为：微分几何、近世代数、点集拓扑</p>
+<h3 id="准备工作">准备工作</h3>
+<p>在系统辅修数学之前，我想补一下数学分析和高等代数（以下简称数分、高代）方面的知识。因为在我们学校在大一结束时提供一次转专业的机会，如果转到数学专业，需要从<strong>大一</strong>重新开始修读，这是数学系特有的情况，所以我认为数学学院大一的课程很重要。这是第一个难题，因为：</p>
+<ul>
+<li>数学分析和高等代数和我之前学的高数线代有重叠</li>
+</ul>
+<p>这就导致：</p>
+<ul>
+<li>从头开始学数分高代会浪费不少时间在我已经知道的概念上面</li>
+<li>从头开始学数分高代很耗时间（数分和高代加在一起大概有25学分）</li>
+</ul>
+<p>最终我选择只学习数学分析方面的课程，只听课，不进行习题训练。在B站<del>大学</del>对比了多家数分课程之后，我最终选择中科大史济怀老师讲的课。数分在单变量微积分阶段的教学顺序与高数很像，但多了很多关键的概念，包括但不限于：</p>
+<ul>
+<li>极限当中的四条定理：确界原理、bw定理、闭区间套定理、￥#%#%</li>
+<li>连续与一致连续</li>
+<li>……</li>
+</ul>
+<hr />
+<p>下面我将陈述自己踩的第一个坑，前面我提到：</p>
+<blockquote>
+<p>最终我选择只学习数学分析方面的课程，只听课，不进行习题训练。</p>
+</blockquote>
+<p>只听课当然进度很快，还比较容易有成就感。但是，到了后面比较难的概念，这种方法的弊端就出现了。我经常需要花很多时间回顾之前的定义与定理，才能理解老师所讲的内容。所以，第一个坑是：</p>
+<p><strong><em>以为自己把网课看完就能掌握这门课</em></strong></p>
+<p>我认为，在数学学习过程中，尤其是基础课（例如，数分，高代，实变，复变），<strong>一本好的习题集要比看网课重要得多</strong>。</p>
+<hr />
+<p>学到数分后面的课程，我认为有必要选择一本<strong>合适</strong>的数分习题集巩固之前学到的知识。这里的<strong>合适</strong>指：</p>
+<ul>
+<li>题目不能太多，我没时间做</li>
+<li>题目不能太难，做了就难受</li>
+<li>有答案，做了得知道自己做得对不对</li>
+</ul>
+<p>最终选择北大出版的习题集（林源渠），但我也只<del>做</del>看了里面单变量微积分部分的例题。数分中的多变量函数，级数等内容实在没时间去学了。</p>
+<hr />
+<p>这应该是我踩的第二个坑。因为非数学系学的高等数学在单变量微积分这块的框架，和数学系还比较像，但是到了多变量微积分和级数这块，高数课程理论上讲得不深，考试也基本上重点考计算。还记得复变老师上课时如此<del>嘲讽</del>评价：</p>
+<blockquote>
+<p>复变函数理论性这么强的课程，到你们这里，全是计算题了。考试的内容都是算些留数，级数，Laplace变换啥的，唉！</p>
+</blockquote>
+<p>这就导致我学习数学物理方程时，对偏导形式的微分方程怀有一种难以消除的不信任感；对用级数构造解的方式只会埋头抄书。归根到底，还是我这部分的坑没能填上</p>
+<hr />
+<h3 id="数学物理方程">数学物理方程</h3>
+<p>数学系的数学物理<strong>方程</strong>和非数学系的数学物理<strong>方法</strong>有<strong>亿</strong>点点不同：两者虽然都是讨论三类偏微分方程，但数学系重点在于：</p>
+<ul>
+<li>判断方程是否<strong>适定</strong>（方程的解是否1.存在2.唯一3.解随初始条件连续变化）</li>
+<li>三类方程的一般解法（分离变量法，Fourier方法）</li>
+<li>方程解的性质（热传导方程和调和方程的极值原理）</li>
+<li>相对于古典解的弱解形式</li>
+</ul>
+<p>（其实我觉得最大的区别是：数学系这门课考试考的几乎全是<strong>证明题</strong>）</p>
+<p>相对于物理系的数学物理方法，数学系<del>几乎</del>就没讲特殊函数</p>
+<p>这门课在<strong>本科阶段</strong>的难度并不是很大，我记得老师在绪论当中概括了这门课需要用到的三条定理（只记得里面有一条是Fubini定理，讲的是积分交换次序的条件），之后就没再频繁用到其它数学课程知识了。这是我第一门辅修的数学课，学得贼认真，之前上课不怎么记笔记，但自从上了这门课之后，只要是偏数学的课程，我都会记笔记。</p>
+<hr />
+<p><strong><em>听数学课不记笔记</em></strong>，这也是我踩的坑之一，记笔记的好处有：</p>
+<ul>
+<li>如果老师比较好，一般都会形成一个与教材不同的完备的授课逻辑。记笔记可以说是将厚厚的一本数学教材提炼出逻辑链，方便自己复习与查找相关知识</li>
+<li>数学课遇到听不懂的地方，如果手头不记笔记，很容易睡着</li>
+<li>记笔记会有一种成就感，即使自己时隔多年<del>一周之内</del>全部忘记自己上课学的东西，笔记就是唯一证明你学过这门课的东西
+<del>这时候就可以拿着一沓你早已看不懂的笔记向别人炫耀自己的学识了</del></li>
+</ul>
+<p>记笔记也有些不好的地方。记笔记会压缩课堂上自己对概念的理解与把握的时间，这里因人而异。我抱的数学系的大腿，他就不怎么记笔记，只在教材上写一些评注性的理解</p>
+<hr />
+<h3 id="实变函数">实变函数</h3>
+<p>这门课是在疫情期间上的，考试没有平时作业分，所以我就没怎么做作业，所以我学得很烂。</p>
+<hr />
+<p>这里其实也有一个坑：<strong><em>不做大量的习题（比如教材后面所有）就想学好数学，我认为自己是办不到的</em></strong>，因为：</p>
+<ul>
+<li><p>习题的训练对于任何一门理论课都是很重要的，不进行<strong>实时</strong>的习题训练，我很难把握住课程中的概念</p></li>
+<li><p>对于前后连贯性较强的课程，前面的概念不通过习题训练熟悉一下，很难理解后续的内容</p></li>
+<li><p><strong>数学的习题不仅仅是熟练度的训练，还是对课程理论框架的补充（一些不太重要的定理放在习题当中），这对于理解整门课程至关重要</strong>。</p></li>
+</ul>
+<hr />
+<h3 id="泛函分析基础">泛函分析基础</h3>
+<p>泛函分析是我学得最认真的数学课，笔记和习题写了厚厚一沓。泛函分析每周都会有助教举办的习题课。习题课对我帮助很大，这不仅仅在于能跟助教套近乎多给点平时分（及格全靠平时分），之前提到过，数学的习题本身也是对课程内容的补充与诠释。通过具体的习题，可以更好地理解泛函授课过程中抽象的概念。而且，泛函的连贯性很强，必须一点一点跟着做题，否则后面很难听懂。</p>
+<hr />
+<p><strong><em>没打好数分的基础就去学更上层的分析知识</em></strong></p>
+<p>这里想提一下数分的重要性。泛函老师课后有一次跟助教聊天：</p>
+<blockquote>
+<p>泛函老师：辅修的同学学习数分吗？</p>
+<p>助教：不学，他们从实变函数开始辅修的</p>
+<p>泛函老师：这不是本末倒置吗？</p>
+</blockquote>
+<p>泛函老师这么说确实有他的道理。泛函是用分析的手段研究无限维空间的性质，许多方法和数分是直接联系起来的，甚至可以说泛函给出了一些数分结论的更一般的形式。当然，这里也<strong>不是说</strong>数分没学好就不能学更上层的知识，只是在学习更上层的知识过程当中，数分的短板会反复刺痛我，而且，越往上走，这种感觉会越强烈。</p>
+<hr />
+<h3 id="微分方程数值解">微分方程数值解</h3>
+<p>我觉得数值类的课程一个很重要的环节就是<strong>上机作业</strong>，这门课我笔记记得少，但上机实验报告花的时间比听课的时间还要多。</p>
+<h2 id="一些好的学习资源">一些好的学习资源</h2>
+<h3 id="网站">网站</h3>
+<ul>
+<li><p><a href="https://www.bilibili.com/">哔哩哔哩 (゜-゜)つロ
+干杯~-bilibili</a>
+B站大学汇集了全球顶尖高校的优质教学资源，我愿称之为最强</p></li>
+<li><p><a href="https://ocw.mit.edu/index.htm">MIT OpenCourseWare</a>
+B站上可能只有视频资源（如果评论区不给力的话），可以在这个网站上下载相应的作业和讲义</p></li>
+</ul>
+<h3 id="网课及教材">网课及教材</h3>
+<p><strong>以下只是我的个人体会，仅作参考</strong></p>
+<h4 id="数学分析">数学分析</h4>
+<p>数学分析的网课有很多，国内的讲得很不错，比如<a
+href="https://www.bilibili.com/video/BV1ZW411e7PF?share_source=copy_web">中科大史济怀老师的网课</a>（年代可能久远一些，非典刚过那会儿录的）。MIT的更像是高等数学内容。</p>
+<ul>
+<li><strong>微积分学教程.菲赫金哥尔茨</strong> 数分大字典。</li>
+<li><strong>数学分析教程.史济怀</strong>
+这本书讲得平易近人（书中序言有提到为什么用这种风格），很有特色（里面讲可积性时就用到了实变中a.e.的说法，还专门写一章讨论插值函数）</li>
+<li><strong>数学分析教程.Rudin </strong>
+强烈推荐想要在高数基础上提升水平的人看这本书！</li>
+<li><strong>数学分析习题集.吉米多维奇</strong>
+这本书数学系的人似乎并不是很在意，可能是上面的计算题太多了。之前我想把这本习题做一下，现在放弃了。不如做Rudin书后习题</li>
+</ul>
+<h4 id="线性代数">线性代数</h4>
+<p>高代国内有丘维生老师的课，国外最出名的应该是MIT18.06，Gilbert
+Strang教授的线性代数课程。之前看过一点Gilbert Strang教授<a
+href="https://www.bilibili.com/video/BV18Z4y1W7pD?share_source=copy_web">18.065数据分析、信号处理和机器学习中的矩阵方法</a>，感觉体系性不是很强</p>
+<ul>
+<li><strong>线性代数应该这样学</strong>
+做完这本书的课后习题，线代水平绝对会有一个质的提升</li>
+<li><strong>矩阵分析.Horn</strong> 这本书也是当字典查的，难度比较高</li>
+<li><strong>矩阵计算</strong> Turing数学系列的书</li>
+</ul>
+<h4 id="常微分方程">常微分方程</h4>
+<p>常微分方程<a
+href="https://www.bilibili.com/video/BV1tx411S77o?share_source=copy_web">MIT18.03</a>很不错，不过画质有点渣</p>
+<ul>
+<li><strong>18.03课程讲义</strong>
+直接白嫖OCW的讲义，配合网课食用，效果很好</li>
+</ul>
+<h4 id="数学物理方法">数学物理方法</h4>
+<p>国内有吴崇试老师的网课，上半学期教复变函数，下半学期才是数学物理方程的主题内容。</p>
+<ul>
+<li><p><strong>数学物理方法.顾樵</strong>
+这本书对一些问题的物理背景讲得挺好</p></li>
+<li><p><strong>数学物理方程.谷超豪</strong>
+我学这门课用的教材教材，很数学</p></li>
+<li><p><strong>数学物理方法.柯朗</strong>
+我觉得可以拿来吓唬人，真要学这本书大可不必。这本书有点像是目录，里面讲得很广，但缺乏细节</p></li>
+</ul>
+<h4 id="实变函数-1">实变函数</h4>
+<p>实变函数网上有上交和川大的，川大的网课不全，授课教材还是陶哲轩的《实分析》，不适合应试，所以我就没再听下去；上交的还不错，用的是郭懋正的书</p>
+<ul>
+<li><strong>实变函数论.周民强</strong>
+这本书是我主要参考教材。每次快要看不下去时，周老师序言中的「道虽远，不行不至；事虽难，不为不成」
+都会激励我接着啃</li>
+<li><strong>实变函数与泛函分析概要.郑维行</strong>
+这是我们实变函数课的教材，习题根据这本书布置的</li>
+<li><strong>实分析中的反例</strong> 数院腿哥推荐的</li>
+</ul>
+<h4 id="复变函数">复变函数</h4>
+<ul>
+<li><strong>复变函数.余家荣</strong> 这也是经典的国内教材</li>
+</ul>
+<h4 id="泛函分析">泛函分析</h4>
+<p>泛函分析老师教得好，不用看网课，所以没研究</p>
+<ul>
+<li><strong>泛函分析.Rudin</strong>
+没错，这和之前推荐的数学分析教程是同一个作者。简洁优美是Rudin书的一大特色</li>
+</ul>
+<h4 id="偏微分方程数值解">偏微分方程数值解</h4>
+<ul>
+<li><strong>微分方程数值解.李荣华</strong>
+这本书是课程用的教材，很不错</li>
+</ul>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>学习经验</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>罗素留给世人的箴言</title>
+    <url>/2022/06/18/%E7%BD%97%E7%B4%A0%E7%95%99%E7%BB%99%E4%B8%96%E4%BA%BA%E7%9A%84%E7%AE%B4%E8%A8%80/</url>
+    <content><![CDATA[<p>在一段采访中, 有人问罗素: "假如你可以将自己的一段话保存下来,
+就像死海古卷一样, 那么, 你想对世人说什么呢?" 罗素是这么说的:</p>
+<p>I should like to say two things, one intellectual and one moral.</p>
+<p>The intellectual thing I should want to say to them, is this: When
+you are studying any matter, or considering any philosophy, ask yourself
+only what are the facts and what is the truth that the facts bear out.
+Never let yourself be diverted, either by what you wish to believe, or
+by what you think would have beneficent social effects if it were
+believed. But look only, and solely, at what are the facts. That is the
+intellectual thing that I should wish to say.</p>
+<p>The moral thing I should wish to say to them is very simple: I should
+say, love is wise, hatred is foolish. In this world, which is getting
+more and more closely interconnected, we have to learn to tolerate each
+other, we have to learn to put up with the fact that some people say
+things that we don’t like. We can only live together in that way—and if
+we are to live together and not die together—we must learn a kind of
+charity and a kind of tolerance, which is absolutely vital to the
+continuation of human life on this planet.</p>
+]]></content>
+      <categories>
+        <category>开卷有益</category>
+      </categories>
+      <tags>
+        <tag>摘抄</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>椭圆型微分方程数值解</title>
+    <url>/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/</url>
+    <content><![CDATA[<h2 id="问题描述">问题描述</h2>
+<p><img src="椭圆型微分方程数值解_Page1.png" /></p>
+<h2 id="理论推导">理论推导</h2>
+<p><img src="椭圆型微分方程数值解_Page2.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page3.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page4.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page5.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page6.png" /></p>
+<h2 id="结果分析">结果分析</h2>
+<p><img src="椭圆型微分方程数值解_Page7.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page8.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page9.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page10.png" /></p>
+<h2 id="附录-matlab-代码">附录 MATLAB 代码</h2>
+<p>运行环境：MATLAB R2016a, Intel(R) Core(TM)i7-7500U CPU@2.70GHz 单核,
+8GB内存</p>
+<h3 id="主程序">主程序</h3>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">%% 不同迭代方法求解椭圆形方程</span></span><br><span class="line"><span class="comment">% 方程为矩形边界第一类齐次边界条件，详见教材P93T3</span></span><br><span class="line">clear;</span><br><span class="line"><span class="comment">%% 初始参数设置</span></span><br><span class="line">N = <span class="number">32</span><span class="number">-1</span>;</span><br><span class="line">h = <span class="number">1</span>/(N+<span class="number">1</span>);</span><br><span class="line">maxN = <span class="number">50000</span>;</span><br><span class="line"><span class="comment">%% 解析解求解</span></span><br><span class="line">[Y,X] = <span class="built_in">meshgrid</span>(h:h:<span class="number">1</span>-h);</span><br><span class="line">U_A = <span class="built_in">exp</span>(<span class="built_in">pi</span>*(X+Y)).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*X).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*Y);</span><br><span class="line"><span class="comment">%% 系数矩阵构造</span></span><br><span class="line">B = <span class="built_in">diag</span>(<span class="number">4</span>*<span class="built_in">ones</span>(<span class="number">1</span>,N)) + <span class="built_in">diag</span>(-<span class="built_in">ones</span>(<span class="number">1</span>,N<span class="number">-1</span>),<span class="number">1</span>) + <span class="built_in">diag</span>(-<span class="built_in">ones</span>(<span class="number">1</span>,N<span class="number">-1</span>),<span class="number">-1</span>);</span><br><span class="line">H = <span class="built_in">zeros</span>(N^<span class="number">2</span>,N^<span class="number">2</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:N</span><br><span class="line">   H(((<span class="built_in">i</span><span class="number">-1</span>)*N + <span class="number">1</span>):<span class="built_in">i</span>*N,((<span class="built_in">i</span><span class="number">-1</span>)*N + <span class="number">1</span>):<span class="built_in">i</span>*N) = B; </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">H = H + <span class="built_in">diag</span>(-<span class="built_in">ones</span>(<span class="number">1</span>,N^<span class="number">2</span>-N),N) + <span class="built_in">diag</span>(-<span class="built_in">ones</span>(<span class="number">1</span>,N^<span class="number">2</span>-N),-N);</span><br><span class="line">F = <span class="number">-2</span>*<span class="built_in">pi</span>^<span class="number">2</span>*<span class="built_in">exp</span>( <span class="built_in">pi</span>*(X+Y) ) .* ( <span class="built_in">sin</span>(<span class="built_in">pi</span>*X).*<span class="built_in">cos</span>(<span class="built_in">pi</span>*Y) + <span class="built_in">sin</span>(<span class="built_in">pi</span>*Y).*<span class="built_in">cos</span>(<span class="built_in">pi</span>*X) );</span><br><span class="line">f = <span class="built_in">zeros</span>(N^<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:N</span><br><span class="line">   f(((<span class="built_in">i</span><span class="number">-1</span>)*N + <span class="number">1</span>):<span class="built_in">i</span>*N,<span class="number">1</span>) = F(<span class="built_in">i</span>,:)&#x27;; </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">g = h^<span class="number">2</span>*f;</span><br><span class="line"><span class="built_in">figure</span>(<span class="number">1</span>)</span><br><span class="line">mesh(X,Y,U_A);</span><br><span class="line"><span class="comment">%------------------------------PR方法系数矩阵-------------------------------</span></span><br><span class="line"><span class="comment">% 此处代码对应PR方法的系数矩阵，若不使用PR方法，则该处代码可以注释掉</span></span><br><span class="line"><span class="comment">% L1 = diag(2*ones(1,N^2)) + diag(-ones(1,N^2-N),N) + diag(-ones(1,N^2-N),-N);</span></span><br><span class="line"><span class="comment">% L2 = H-L1;</span></span><br><span class="line"><span class="comment">% L1 = L1/h^2;</span></span><br><span class="line"><span class="comment">% L2 = L2/h^2;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%------------------------------PCG方法系数矩阵------------------------------</span></span><br><span class="line"><span class="comment">% 此处代码对应PCG方法的系数矩阵，若不使用PCG方法，则该处代码可以注释掉</span></span><br><span class="line">L = <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,<span class="built_in">length</span>(g)));</span><br><span class="line">D = <span class="built_in">diag</span>(<span class="built_in">zeros</span>(<span class="number">1</span>,N^<span class="number">2</span>));</span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N^<span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span>(n<span class="number">-1</span>&lt;=<span class="number">0</span>)</span><br><span class="line">       D(n,n) = H(n,n); </span><br><span class="line">    <span class="keyword">elseif</span>(n-N&lt;=<span class="number">0</span>)</span><br><span class="line">       D(n,n) = H(n,n) - D(n<span class="number">-1</span>,n<span class="number">-1</span>)*L(n<span class="number">-1</span>,n)^<span class="number">2</span>; </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">       D(n,n) = H(n,n) - D(n<span class="number">-1</span>,n<span class="number">-1</span>)*L(n<span class="number">-1</span>,n)^<span class="number">2</span> - D(n-N,n-N)*L(n-N,n)^<span class="number">2</span>;  </span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span>(n&lt;=N^<span class="number">2</span><span class="number">-1</span>)</span><br><span class="line">        L(n,n+<span class="number">1</span>) = H(n,n+<span class="number">1</span>)/D(n,n);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span>(n&lt;=N^<span class="number">2</span>-N)</span><br><span class="line">        L(n,n+N) = H(n,n+N)/D(n,n);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">B = L&#x27;*D*L;</span><br><span class="line">invL = inv(L);</span><br><span class="line">invB = invL*inv(D)*invL&#x27;;</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 线性方程组 Hu = g 迭代求解</span></span><br><span class="line"><span class="comment">%------------------------------Jacobi方法----------------------------------</span></span><br><span class="line"><span class="comment">% [ UJacobi, EJacobi ] = Jacobi( H, g, U_A, X, Y, N, maxN, h );</span></span><br><span class="line"><span class="comment">%------------------------------Gauss-Seidel方法----------------------------</span></span><br><span class="line"><span class="comment">% % [ UGS, EGS ] = GS( H, g, U_A, X, Y, N, maxN, h );</span></span><br><span class="line"><span class="comment">%------------------------------SOR方法-------------------------------------</span></span><br><span class="line"><span class="comment">% miu = cos(pi*h);</span></span><br><span class="line"><span class="comment">% omega = 2/(1 + sqrt(1-miu^2));</span></span><br><span class="line"><span class="comment">% % omega = 1.2;</span></span><br><span class="line"><span class="comment">% [ USOR, ESOR ] = SOR( H, g, omega, U_A, X, Y, N, maxN, h );</span></span><br><span class="line"><span class="comment">%------------------------------PR方法--------------------------------------</span></span><br><span class="line"><span class="comment">% [ UPR, EPR ] = PR( L1, L2, f, U_A, X, Y, N, maxN, h );</span></span><br><span class="line"><span class="comment">%------------------------------CG方法--------------------------------------</span></span><br><span class="line"><span class="comment">% [ UCG, ECG ] = CG( H, g, U_A, X, Y, N, maxN, h );</span></span><br><span class="line">[ UPCG, EPCG ] = PCG( H, g, invB, U_A, X, Y, N, maxN, h );</span><br></pre></td></tr></table></figure>
+<h3 id="jacobi-方法包含数据存储">Jacobi 方法(包含数据存储)</h3>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ UJacobi, EJacobi ]</span> = <span class="title">Jacobi</span><span class="params">( H, g, U_A, X, Y, N, maxN, h )</span></span></span><br><span class="line"><span class="comment">%% 迭代计算</span></span><br><span class="line"><span class="comment">% 开始计时</span></span><br><span class="line">tCal = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">tStart = tic;</span><br><span class="line"><span class="comment">% 为方程解分配内存空间，同时设置初值为ones矩阵</span></span><br><span class="line">uJacobi = <span class="built_in">ones</span>(<span class="built_in">length</span>(g),<span class="number">1</span>);</span><br><span class="line">UJacobi = <span class="built_in">ones</span>(<span class="built_in">size</span>(U_A));</span><br><span class="line"><span class="comment">% 求解Jacobi方法的系数矩阵</span></span><br><span class="line">I = <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,<span class="built_in">length</span>(g)));</span><br><span class="line">M = I<span class="number">-0.25</span>*H;</span><br><span class="line">F = <span class="number">0.25</span>;</span><br><span class="line"><span class="comment">% 迭代准备时间</span></span><br><span class="line">tCal(<span class="number">1</span>) = toc(tStart);</span><br><span class="line">tIter = tic;</span><br><span class="line"><span class="comment">% 为方便两次迭代之间进行比较，再分配一份内存空间存储下一次迭代的值</span></span><br><span class="line"><span class="comment">% 首先在while外部迭代一次</span></span><br><span class="line">I = <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,<span class="built_in">length</span>(g)));</span><br><span class="line">uNext = M*uJacobi + F*g;</span><br><span class="line"><span class="comment">% 设置迭代循环变量</span></span><br><span class="line">nIter = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">max</span>(<span class="built_in">abs</span>(uJacobi-uNext))&gt;<span class="number">10</span>^<span class="number">-4</span> &amp;&amp; nIter&lt;maxN)</span><br><span class="line">    uJacobi = uNext;</span><br><span class="line">    uNext = M*uJacobi + F*g;</span><br><span class="line">    nIter = nIter+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mod</span>(nIter,<span class="number">200</span>)==<span class="number">0</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;当前已经迭代 %d 次，当前余差为 %f \n&#x27;</span>,nIter,<span class="built_in">max</span>(<span class="built_in">abs</span>(uJacobi-uNext)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">uJacobi = uNext;</span><br><span class="line">...(此处略去数据存储与绘制图像)</span><br></pre></td></tr></table></figure>
+<h3 id="gauss-seidel-方法">Gauss-Seidel 方法</h3>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ UGS, EGS ]</span> = <span class="title">GS</span><span class="params">( H, g, U_A, X, Y, N, maxN, h )</span></span></span><br><span class="line"><span class="comment">%% 迭代计算</span></span><br><span class="line"><span class="comment">% 开始计时</span></span><br><span class="line">tCal = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">tStart = tic;</span><br><span class="line"><span class="comment">% 为方程解分配内存空间，同时设置初值为ones矩阵</span></span><br><span class="line">uGS = <span class="built_in">ones</span>(<span class="built_in">length</span>(g),<span class="number">1</span>);</span><br><span class="line">UGS = <span class="built_in">ones</span>(<span class="built_in">size</span>(U_A));</span><br><span class="line"><span class="comment">% 求解GS方法的系数矩阵</span></span><br><span class="line">I = <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,<span class="built_in">length</span>(g)));</span><br><span class="line">B = (I<span class="number">-0.25</span>*H);</span><br><span class="line">L = <span class="built_in">tril</span>(B);</span><br><span class="line">R = <span class="built_in">triu</span>(B);</span><br><span class="line">omega = <span class="number">1</span>;  <span class="comment">% GS方法，\omega 对应为1</span></span><br><span class="line">invF = inv(I-omega*L);</span><br><span class="line">M = invF*(omega*R + (<span class="number">1</span>-omega)*L);</span><br><span class="line">F = <span class="number">0.25</span>*omega*invF;</span><br><span class="line"><span class="comment">% 迭代准备时间</span></span><br><span class="line">tCal(<span class="number">1</span>) = toc(tStart);</span><br><span class="line">tIter = tic;</span><br><span class="line"><span class="comment">% 为方便两次迭代之间进行比较，再分配一份内存空间存储下一次迭代的值</span></span><br><span class="line"><span class="comment">% 首先在while外部迭代一次</span></span><br><span class="line">uNext = M*uGS + F*g;</span><br><span class="line"><span class="comment">% 设置迭代循环变量</span></span><br><span class="line">nIter = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">max</span>(<span class="built_in">abs</span>(uGS-uNext))&gt;<span class="number">10</span>^<span class="number">-4</span> &amp;&amp; nIter&lt;maxN)</span><br><span class="line">    uGS = uNext;</span><br><span class="line">    uNext = M*uGS + F*g;</span><br><span class="line">    nIter = nIter+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mod</span>(nIter,<span class="number">50</span>)==<span class="number">0</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;当前已经迭代 %d 次，当前余差为 %f \n&#x27;</span>,nIter,<span class="built_in">max</span>(<span class="built_in">abs</span>(uGS-uNext)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">uGS = uNext;</span><br><span class="line">...(此处略去数据存储与绘制图像)</span><br></pre></td></tr></table></figure>
+<h3 id="sor-方法">SOR 方法</h3>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">%% 迭代计算</span></span><br><span class="line"><span class="comment">% 开始计时</span></span><br><span class="line">tCal = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">tStart = tic;</span><br><span class="line"><span class="comment">% 为方程解分配内存空间，同时设置初值为ones矩阵</span></span><br><span class="line">uSOR = <span class="built_in">ones</span>(<span class="built_in">length</span>(g),<span class="number">1</span>);</span><br><span class="line">USOR = <span class="built_in">ones</span>(<span class="built_in">size</span>(U_A));</span><br><span class="line"><span class="comment">% 求解GS方法的系数矩阵</span></span><br><span class="line">I = <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,<span class="built_in">length</span>(g)));</span><br><span class="line">B = (I<span class="number">-0.25</span>*H);</span><br><span class="line">L = <span class="built_in">tril</span>(B);</span><br><span class="line">R = <span class="built_in">triu</span>(B);</span><br><span class="line">invF = inv(I-omega*L);</span><br><span class="line">M = invF*(omega*R + (<span class="number">1</span>-omega)*I);</span><br><span class="line">F = <span class="number">0.25</span>*omega*invF;</span><br><span class="line"><span class="comment">% 迭代准备时间</span></span><br><span class="line">tCal(<span class="number">1</span>) = toc(tStart);</span><br><span class="line">tIter = tic;</span><br><span class="line"><span class="comment">% 为方便两次迭代之间进行比较，再分配一份内存空间存储下一次迭代的值</span></span><br><span class="line"><span class="comment">% 首先在while外部迭代一次</span></span><br><span class="line">uNext = M*uSOR + F*g;</span><br><span class="line"><span class="comment">% 设置迭代循环变量</span></span><br><span class="line">nIter = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">max</span>(<span class="built_in">abs</span>(uSOR-uNext))&gt;<span class="number">10</span>^<span class="number">-4</span> &amp;&amp; nIter&lt;maxN)</span><br><span class="line">    uSOR = uNext;</span><br><span class="line">    uNext = M*uSOR + F*g;</span><br><span class="line">    nIter = nIter+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mod</span>(nIter,<span class="number">10</span>)==<span class="number">0</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;当前已经迭代 %d 次，当前余差为 %f \n&#x27;</span>,nIter,<span class="built_in">max</span>(<span class="built_in">abs</span>(uSOR-uNext)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">uSOR = uNext;</span><br><span class="line">...(此处略去数据存储与绘制图像)</span><br></pre></td></tr></table></figure>
+<h3 id="pr-方法">PR 方法</h3>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ UPR, EPR ]</span> = <span class="title">PR</span><span class="params">( L1, L2, g, U_A, X, Y, N, maxN, h )</span></span></span><br><span class="line"><span class="comment">%% 迭代计算</span></span><br><span class="line">tCal = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">tStart = tic;</span><br><span class="line"><span class="comment">% 为方程解分配内存空间，同时设置初值为ones矩阵</span></span><br><span class="line">uPR = <span class="built_in">ones</span>(<span class="built_in">length</span>(g),<span class="number">1</span>);</span><br><span class="line">UPR = <span class="built_in">ones</span>(<span class="built_in">size</span>(U_A));</span><br><span class="line">I = <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,<span class="built_in">length</span>(g)));</span><br><span class="line"><span class="comment">% 迭代准备时间</span></span><br><span class="line">tCal(<span class="number">1</span>) = toc(tStart);</span><br><span class="line">tIter = tic;</span><br><span class="line"><span class="comment">% 首先在while外部迭代一次</span></span><br><span class="line">a = ( <span class="built_in">sin</span>(<span class="built_in">pi</span>*h/<span class="number">2</span>) )^<span class="number">2</span>;</span><br><span class="line">tau(<span class="number">1</span>) = (h^<span class="number">2</span>/<span class="number">4</span>/a)*(<span class="built_in">sqrt</span>(<span class="number">2</span>) - <span class="number">1</span>); </span><br><span class="line">A1 = inv(I + tau(<span class="number">1</span>)*L1);</span><br><span class="line">A2 = inv(I + tau(<span class="number">1</span>)*L2);</span><br><span class="line">B1 = (I-tau(<span class="number">1</span>)*L2);</span><br><span class="line">B2 = (I-tau(<span class="number">1</span>)*L1);</span><br><span class="line">uMid = A1*B1*uPR + tau(<span class="number">1</span>)*A1*g;</span><br><span class="line">uNext = A2*B2*uMid + tau(<span class="number">1</span>)*A2*g;</span><br><span class="line"><span class="comment">% 设置迭代循环变量</span></span><br><span class="line">nIter = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">max</span>(<span class="built_in">abs</span>(uPR-uNext))&gt;<span class="number">10</span>^<span class="number">-4</span> &amp;&amp; nIter&lt;maxN)</span><br><span class="line">    uPR = uNext;</span><br><span class="line">    tau(nIter+<span class="number">1</span>) = (h^<span class="number">2</span>/<span class="number">4</span>/a)*(<span class="built_in">sqrt</span>(<span class="number">2</span>) - <span class="number">1</span>)^(<span class="number">2</span>*nIter+<span class="number">1</span>); </span><br><span class="line">    A1 = inv(I + tau(nIter+<span class="number">1</span>)*L1);</span><br><span class="line">    A2 = inv(I + tau(nIter+<span class="number">1</span>)*L2);</span><br><span class="line">    B1 = (I-tau(nIter+<span class="number">1</span>)*L2);</span><br><span class="line">    B2 = (I-tau(nIter+<span class="number">1</span>)*L1);</span><br><span class="line">    uMid = A1*B1*uPR + tau(nIter+<span class="number">1</span>)*A1*g;</span><br><span class="line">    uNext = A2*B2*uMid + tau(nIter+<span class="number">1</span>)*A2*g;</span><br><span class="line">    nIter = nIter+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mod</span>(nIter,<span class="number">1</span>)==<span class="number">0</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;当前已经迭代 %d 次，当前余差为 %f \n&#x27;</span>,nIter,<span class="built_in">max</span>(<span class="built_in">abs</span>(uPR-uNext)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">uPR = uNext;</span><br><span class="line">...(此处略去数据存储与绘制图像)</span><br></pre></td></tr></table></figure>
+<h3 id="共轭梯度法">共轭梯度法</h3>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ UCG, ECG ]</span> = <span class="title">CG</span><span class="params">( H, g, U_A, X, Y, N, maxN, h )</span></span></span><br><span class="line"><span class="comment">%% 迭代计算</span></span><br><span class="line"><span class="comment">% 开始计时</span></span><br><span class="line">tCal = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">tStart = tic;</span><br><span class="line"><span class="comment">% 为方程解分配内存空间，同时设置初值为ones矩阵</span></span><br><span class="line">uCG = <span class="built_in">ones</span>(<span class="built_in">length</span>(g),<span class="number">1</span>);</span><br><span class="line">UCG = <span class="built_in">ones</span>(<span class="built_in">size</span>(U_A));</span><br><span class="line"><span class="comment">% 首先在while外部迭代一次</span></span><br><span class="line">p = g - H*uCG;</span><br><span class="line">r = p;</span><br><span class="line">rNorm2Square(<span class="number">1</span>) = sum(r.*r);</span><br><span class="line">alpha = rNorm2Square(<span class="number">1</span>)/sum((H*p).*p);</span><br><span class="line">uNext = uCG + alpha*p;</span><br><span class="line"><span class="comment">% 迭代准备时间</span></span><br><span class="line">tCal(<span class="number">1</span>) = toc(tStart);</span><br><span class="line">tIter = tic;</span><br><span class="line"><span class="comment">% 设置迭代循环变量</span></span><br><span class="line">nIter = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">max</span>(<span class="built_in">abs</span>(uCG-uNext))&gt;<span class="number">10</span>^<span class="number">-4</span> &amp;&amp; nIter&lt;maxN)</span><br><span class="line">    r = r - alpha*H*p;</span><br><span class="line">    rNorm2Square(nIter+<span class="number">1</span>) = sum(r.*r);</span><br><span class="line">    <span class="built_in">beta</span> = rNorm2Square(nIter+<span class="number">1</span>)/rNorm2Square(nIter);</span><br><span class="line">    p = r + <span class="built_in">beta</span>*p;</span><br><span class="line">    alpha = rNorm2Square(nIter+<span class="number">1</span>)/sum((H*p).*p);</span><br><span class="line">    uCG = uNext;</span><br><span class="line">    uNext = uCG + alpha*p;</span><br><span class="line">    nIter = nIter+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mod</span>(nIter,<span class="number">20</span>)==<span class="number">0</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;当前已经迭代 %d 次，当前余差为 %f \n&#x27;</span>,nIter,<span class="built_in">max</span>(<span class="built_in">abs</span>(uCG-uNext)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">uCG = uNext;</span><br><span class="line">...(此处略去数据存储与绘制图像)</span><br></pre></td></tr></table></figure>
+<h3 id="预处理共轭梯度法">预处理共轭梯度法</h3>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ UPCG, EPCG ]</span> = <span class="title">PCG</span><span class="params">( H, g, invB, U_A, X, Y, N, maxN, h )</span></span></span><br><span class="line"><span class="comment">%% 迭代计算</span></span><br><span class="line"><span class="comment">% 开始计时</span></span><br><span class="line">tCal = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">tStart = tic;</span><br><span class="line"><span class="comment">% 为方程解分配内存空间，同时设置初值为ones矩阵</span></span><br><span class="line">uPCG = <span class="built_in">ones</span>(<span class="built_in">length</span>(g),<span class="number">1</span>);</span><br><span class="line">UPCG = <span class="built_in">ones</span>(<span class="built_in">size</span>(U_A));</span><br><span class="line"><span class="comment">% 首先在while外部迭代一次</span></span><br><span class="line">p = g - H*uPCG;</span><br><span class="line">r = p;</span><br><span class="line">s = invB*r;</span><br><span class="line">rs(<span class="number">1</span>) = sum(r.*s);</span><br><span class="line">alpha = rs(<span class="number">1</span>)/sum((H*p).*p);</span><br><span class="line">uNext = uPCG + alpha*p;</span><br><span class="line"><span class="comment">% 迭代准备时间</span></span><br><span class="line">tCal(<span class="number">1</span>) = toc(tStart);</span><br><span class="line">tIter = tic;</span><br><span class="line"><span class="comment">% 设置迭代循环变量</span></span><br><span class="line">nIter = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">max</span>(<span class="built_in">abs</span>(uPCG-uNext))&gt;<span class="number">10</span>^<span class="number">-4</span> &amp;&amp; nIter&lt;maxN)</span><br><span class="line">    r = r - alpha*H*p;</span><br><span class="line">    s = invB*r;</span><br><span class="line">    rs(nIter+<span class="number">1</span>) = sum(r.*s);</span><br><span class="line">    <span class="built_in">beta</span> = rs(nIter+<span class="number">1</span>)/rs(nIter);</span><br><span class="line">    p = s + <span class="built_in">beta</span>*p;</span><br><span class="line">    alpha = rs(nIter+<span class="number">1</span>)/sum((H*p).*p);</span><br><span class="line">    uPCG = uNext;</span><br><span class="line">    uNext = uPCG + alpha*p;</span><br><span class="line">    nIter = nIter+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mod</span>(nIter,<span class="number">20</span>)==<span class="number">0</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;当前已经迭代 %d 次，当前余差为 %f \n&#x27;</span>,nIter,<span class="built_in">max</span>(<span class="built_in">abs</span>(uPCG-uNext)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">uPCG = uNext;</span><br><span class="line">...(此处略去数据存储与绘制图像)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>数值计算</tag>
+        <tag>椭圆型微分方程</tag>
+      </tags>
+  </entry>
+</search>

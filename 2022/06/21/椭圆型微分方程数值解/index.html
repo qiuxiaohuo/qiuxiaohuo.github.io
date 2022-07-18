@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="4IgN6N71kznUS9PIMp6itE5oUv0s3hzVzFzFOpC-4Ig">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"qiuxiaohuo.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="问题描述  理论推导      结果分析">
+<meta property="og:type" content="article">
+<meta property="og:title" content="椭圆型微分方程数值解">
+<meta property="og:url" content="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/index.html">
+<meta property="og:site_name" content="秋天的博客">
+<meta property="og:description" content="问题描述  理论推导      结果分析">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/椭圆型微分方程数值解_Page1.png">
+<meta property="og:image" content="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/椭圆型微分方程数值解_Page2.png">
+<meta property="og:image" content="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/椭圆型微分方程数值解_Page3.png">
+<meta property="og:image" content="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/椭圆型微分方程数值解_Page4.png">
+<meta property="og:image" content="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/椭圆型微分方程数值解_Page5.png">
+<meta property="og:image" content="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/椭圆型微分方程数值解_Page6.png">
+<meta property="og:image" content="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/椭圆型微分方程数值解_Page7.png">
+<meta property="og:image" content="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/椭圆型微分方程数值解_Page8.png">
+<meta property="og:image" content="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/椭圆型微分方程数值解_Page9.png">
+<meta property="og:image" content="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/椭圆型微分方程数值解_Page10.png">
+<meta property="article:published_time" content="2022-06-21T13:36:53.000Z">
+<meta property="article:modified_time" content="2022-06-21T13:56:50.404Z">
+<meta property="article:author" content="秋天">
+<meta property="article:tag" content="数值计算">
+<meta property="article:tag" content="椭圆型微分方程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/椭圆型微分方程数值解_Page1.png">
+
+<link rel="canonical" href="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>椭圆型微分方程数值解 | 秋天的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">秋天的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">A good life is one inspired by love and guided by knowledge.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-series">
+
+    <a href="/series/" rel="section"><i class="fas fa-book fa-fw"></i>系列</a>
+
+  </li>
+        <li class="menu-item menu-item-notes">
+
+    <a href="/notes/" rel="section"><i class="fas fa-clipboard fa-fw"></i>碎碎念</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qiuxiaohuo.github.io/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.jpg">
+      <meta itemprop="name" content="秋天">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋天的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          椭圆型微分方程数值解
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-06-21 21:36:53 / 修改时间：21:56:50" itemprop="dateCreated datePublished" datetime="2022-06-21T21:36:53+08:00">2022-06-21</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/06/21/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>6.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>6 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h2 id="问题描述">问题描述</h2>
+<p><img src="椭圆型微分方程数值解_Page1.png" /></p>
+<h2 id="理论推导">理论推导</h2>
+<p><img src="椭圆型微分方程数值解_Page2.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page3.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page4.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page5.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page6.png" /></p>
+<h2 id="结果分析">结果分析</h2>
+<p><img src="椭圆型微分方程数值解_Page7.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page8.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page9.png" /></p>
+<p><img src="椭圆型微分方程数值解_Page10.png" /></p>
+<h2 id="附录-matlab-代码">附录 MATLAB 代码</h2>
+<p>运行环境：MATLAB R2016a, Intel(R) Core(TM)i7-7500U CPU@2.70GHz 单核,
+8GB内存</p>
+<h3 id="主程序">主程序</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% 不同迭代方法求解椭圆形方程</span></span><br><span class="line"><span class="comment">% 方程为矩形边界第一类齐次边界条件，详见教材P93T3</span></span><br><span class="line">clear;</span><br><span class="line"><span class="comment">%% 初始参数设置</span></span><br><span class="line">N = <span class="number">32</span><span class="number">-1</span>;</span><br><span class="line">h = <span class="number">1</span>/(N+<span class="number">1</span>);</span><br><span class="line">maxN = <span class="number">50000</span>;</span><br><span class="line"><span class="comment">%% 解析解求解</span></span><br><span class="line">[Y,X] = <span class="built_in">meshgrid</span>(h:h:<span class="number">1</span>-h);</span><br><span class="line">U_A = <span class="built_in">exp</span>(<span class="built_in">pi</span>*(X+Y)).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*X).*<span class="built_in">sin</span>(<span class="built_in">pi</span>*Y);</span><br><span class="line"><span class="comment">%% 系数矩阵构造</span></span><br><span class="line">B = <span class="built_in">diag</span>(<span class="number">4</span>*<span class="built_in">ones</span>(<span class="number">1</span>,N)) + <span class="built_in">diag</span>(-<span class="built_in">ones</span>(<span class="number">1</span>,N<span class="number">-1</span>),<span class="number">1</span>) + <span class="built_in">diag</span>(-<span class="built_in">ones</span>(<span class="number">1</span>,N<span class="number">-1</span>),<span class="number">-1</span>);</span><br><span class="line">H = <span class="built_in">zeros</span>(N^<span class="number">2</span>,N^<span class="number">2</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:N</span><br><span class="line">   H(((<span class="built_in">i</span><span class="number">-1</span>)*N + <span class="number">1</span>):<span class="built_in">i</span>*N,((<span class="built_in">i</span><span class="number">-1</span>)*N + <span class="number">1</span>):<span class="built_in">i</span>*N) = B; </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">H = H + <span class="built_in">diag</span>(-<span class="built_in">ones</span>(<span class="number">1</span>,N^<span class="number">2</span>-N),N) + <span class="built_in">diag</span>(-<span class="built_in">ones</span>(<span class="number">1</span>,N^<span class="number">2</span>-N),-N);</span><br><span class="line">F = <span class="number">-2</span>*<span class="built_in">pi</span>^<span class="number">2</span>*<span class="built_in">exp</span>( <span class="built_in">pi</span>*(X+Y) ) .* ( <span class="built_in">sin</span>(<span class="built_in">pi</span>*X).*<span class="built_in">cos</span>(<span class="built_in">pi</span>*Y) + <span class="built_in">sin</span>(<span class="built_in">pi</span>*Y).*<span class="built_in">cos</span>(<span class="built_in">pi</span>*X) );</span><br><span class="line">f = <span class="built_in">zeros</span>(N^<span class="number">2</span>,<span class="number">1</span>);</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:N</span><br><span class="line">   f(((<span class="built_in">i</span><span class="number">-1</span>)*N + <span class="number">1</span>):<span class="built_in">i</span>*N,<span class="number">1</span>) = F(<span class="built_in">i</span>,:)&#x27;; </span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">g = h^<span class="number">2</span>*f;</span><br><span class="line"><span class="built_in">figure</span>(<span class="number">1</span>)</span><br><span class="line">mesh(X,Y,U_A);</span><br><span class="line"><span class="comment">%------------------------------PR方法系数矩阵-------------------------------</span></span><br><span class="line"><span class="comment">% 此处代码对应PR方法的系数矩阵，若不使用PR方法，则该处代码可以注释掉</span></span><br><span class="line"><span class="comment">% L1 = diag(2*ones(1,N^2)) + diag(-ones(1,N^2-N),N) + diag(-ones(1,N^2-N),-N);</span></span><br><span class="line"><span class="comment">% L2 = H-L1;</span></span><br><span class="line"><span class="comment">% L1 = L1/h^2;</span></span><br><span class="line"><span class="comment">% L2 = L2/h^2;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">%------------------------------PCG方法系数矩阵------------------------------</span></span><br><span class="line"><span class="comment">% 此处代码对应PCG方法的系数矩阵，若不使用PCG方法，则该处代码可以注释掉</span></span><br><span class="line">L = <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,<span class="built_in">length</span>(g)));</span><br><span class="line">D = <span class="built_in">diag</span>(<span class="built_in">zeros</span>(<span class="number">1</span>,N^<span class="number">2</span>));</span><br><span class="line"><span class="keyword">for</span> n=<span class="number">1</span>:N^<span class="number">2</span></span><br><span class="line">    <span class="keyword">if</span>(n<span class="number">-1</span>&lt;=<span class="number">0</span>)</span><br><span class="line">       D(n,n) = H(n,n); </span><br><span class="line">    <span class="keyword">elseif</span>(n-N&lt;=<span class="number">0</span>)</span><br><span class="line">       D(n,n) = H(n,n) - D(n<span class="number">-1</span>,n<span class="number">-1</span>)*L(n<span class="number">-1</span>,n)^<span class="number">2</span>; </span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">       D(n,n) = H(n,n) - D(n<span class="number">-1</span>,n<span class="number">-1</span>)*L(n<span class="number">-1</span>,n)^<span class="number">2</span> - D(n-N,n-N)*L(n-N,n)^<span class="number">2</span>;  </span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span>(n&lt;=N^<span class="number">2</span><span class="number">-1</span>)</span><br><span class="line">        L(n,n+<span class="number">1</span>) = H(n,n+<span class="number">1</span>)/D(n,n);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">if</span>(n&lt;=N^<span class="number">2</span>-N)</span><br><span class="line">        L(n,n+N) = H(n,n+N)/D(n,n);</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">B = L&#x27;*D*L;</span><br><span class="line">invL = inv(L);</span><br><span class="line">invB = invL*inv(D)*invL&#x27;;</span><br><span class="line"></span><br><span class="line"><span class="comment">%% 线性方程组 Hu = g 迭代求解</span></span><br><span class="line"><span class="comment">%------------------------------Jacobi方法----------------------------------</span></span><br><span class="line"><span class="comment">% [ UJacobi, EJacobi ] = Jacobi( H, g, U_A, X, Y, N, maxN, h );</span></span><br><span class="line"><span class="comment">%------------------------------Gauss-Seidel方法----------------------------</span></span><br><span class="line"><span class="comment">% % [ UGS, EGS ] = GS( H, g, U_A, X, Y, N, maxN, h );</span></span><br><span class="line"><span class="comment">%------------------------------SOR方法-------------------------------------</span></span><br><span class="line"><span class="comment">% miu = cos(pi*h);</span></span><br><span class="line"><span class="comment">% omega = 2/(1 + sqrt(1-miu^2));</span></span><br><span class="line"><span class="comment">% % omega = 1.2;</span></span><br><span class="line"><span class="comment">% [ USOR, ESOR ] = SOR( H, g, omega, U_A, X, Y, N, maxN, h );</span></span><br><span class="line"><span class="comment">%------------------------------PR方法--------------------------------------</span></span><br><span class="line"><span class="comment">% [ UPR, EPR ] = PR( L1, L2, f, U_A, X, Y, N, maxN, h );</span></span><br><span class="line"><span class="comment">%------------------------------CG方法--------------------------------------</span></span><br><span class="line"><span class="comment">% [ UCG, ECG ] = CG( H, g, U_A, X, Y, N, maxN, h );</span></span><br><span class="line">[ UPCG, EPCG ] = PCG( H, g, invB, U_A, X, Y, N, maxN, h );</span><br></pre></td></tr></table></figure>
+<h3 id="jacobi-方法包含数据存储">Jacobi 方法(包含数据存储)</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ UJacobi, EJacobi ]</span> = <span class="title">Jacobi</span><span class="params">( H, g, U_A, X, Y, N, maxN, h )</span></span></span><br><span class="line"><span class="comment">%% 迭代计算</span></span><br><span class="line"><span class="comment">% 开始计时</span></span><br><span class="line">tCal = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">tStart = tic;</span><br><span class="line"><span class="comment">% 为方程解分配内存空间，同时设置初值为ones矩阵</span></span><br><span class="line">uJacobi = <span class="built_in">ones</span>(<span class="built_in">length</span>(g),<span class="number">1</span>);</span><br><span class="line">UJacobi = <span class="built_in">ones</span>(<span class="built_in">size</span>(U_A));</span><br><span class="line"><span class="comment">% 求解Jacobi方法的系数矩阵</span></span><br><span class="line">I = <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,<span class="built_in">length</span>(g)));</span><br><span class="line">M = I<span class="number">-0.25</span>*H;</span><br><span class="line">F = <span class="number">0.25</span>;</span><br><span class="line"><span class="comment">% 迭代准备时间</span></span><br><span class="line">tCal(<span class="number">1</span>) = toc(tStart);</span><br><span class="line">tIter = tic;</span><br><span class="line"><span class="comment">% 为方便两次迭代之间进行比较，再分配一份内存空间存储下一次迭代的值</span></span><br><span class="line"><span class="comment">% 首先在while外部迭代一次</span></span><br><span class="line">I = <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,<span class="built_in">length</span>(g)));</span><br><span class="line">uNext = M*uJacobi + F*g;</span><br><span class="line"><span class="comment">% 设置迭代循环变量</span></span><br><span class="line">nIter = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">max</span>(<span class="built_in">abs</span>(uJacobi-uNext))&gt;<span class="number">10</span>^<span class="number">-4</span> &amp;&amp; nIter&lt;maxN)</span><br><span class="line">    uJacobi = uNext;</span><br><span class="line">    uNext = M*uJacobi + F*g;</span><br><span class="line">    nIter = nIter+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mod</span>(nIter,<span class="number">200</span>)==<span class="number">0</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;当前已经迭代 %d 次，当前余差为 %f \n&#x27;</span>,nIter,<span class="built_in">max</span>(<span class="built_in">abs</span>(uJacobi-uNext)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">uJacobi = uNext;</span><br><span class="line">...(此处略去数据存储与绘制图像)</span><br></pre></td></tr></table></figure>
+<h3 id="gauss-seidel-方法">Gauss-Seidel 方法</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ UGS, EGS ]</span> = <span class="title">GS</span><span class="params">( H, g, U_A, X, Y, N, maxN, h )</span></span></span><br><span class="line"><span class="comment">%% 迭代计算</span></span><br><span class="line"><span class="comment">% 开始计时</span></span><br><span class="line">tCal = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">tStart = tic;</span><br><span class="line"><span class="comment">% 为方程解分配内存空间，同时设置初值为ones矩阵</span></span><br><span class="line">uGS = <span class="built_in">ones</span>(<span class="built_in">length</span>(g),<span class="number">1</span>);</span><br><span class="line">UGS = <span class="built_in">ones</span>(<span class="built_in">size</span>(U_A));</span><br><span class="line"><span class="comment">% 求解GS方法的系数矩阵</span></span><br><span class="line">I = <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,<span class="built_in">length</span>(g)));</span><br><span class="line">B = (I<span class="number">-0.25</span>*H);</span><br><span class="line">L = <span class="built_in">tril</span>(B);</span><br><span class="line">R = <span class="built_in">triu</span>(B);</span><br><span class="line">omega = <span class="number">1</span>;  <span class="comment">% GS方法，\omega 对应为1</span></span><br><span class="line">invF = inv(I-omega*L);</span><br><span class="line">M = invF*(omega*R + (<span class="number">1</span>-omega)*L);</span><br><span class="line">F = <span class="number">0.25</span>*omega*invF;</span><br><span class="line"><span class="comment">% 迭代准备时间</span></span><br><span class="line">tCal(<span class="number">1</span>) = toc(tStart);</span><br><span class="line">tIter = tic;</span><br><span class="line"><span class="comment">% 为方便两次迭代之间进行比较，再分配一份内存空间存储下一次迭代的值</span></span><br><span class="line"><span class="comment">% 首先在while外部迭代一次</span></span><br><span class="line">uNext = M*uGS + F*g;</span><br><span class="line"><span class="comment">% 设置迭代循环变量</span></span><br><span class="line">nIter = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">max</span>(<span class="built_in">abs</span>(uGS-uNext))&gt;<span class="number">10</span>^<span class="number">-4</span> &amp;&amp; nIter&lt;maxN)</span><br><span class="line">    uGS = uNext;</span><br><span class="line">    uNext = M*uGS + F*g;</span><br><span class="line">    nIter = nIter+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mod</span>(nIter,<span class="number">50</span>)==<span class="number">0</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;当前已经迭代 %d 次，当前余差为 %f \n&#x27;</span>,nIter,<span class="built_in">max</span>(<span class="built_in">abs</span>(uGS-uNext)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">uGS = uNext;</span><br><span class="line">...(此处略去数据存储与绘制图像)</span><br></pre></td></tr></table></figure>
+<h3 id="sor-方法">SOR 方法</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">%% 迭代计算</span></span><br><span class="line"><span class="comment">% 开始计时</span></span><br><span class="line">tCal = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">tStart = tic;</span><br><span class="line"><span class="comment">% 为方程解分配内存空间，同时设置初值为ones矩阵</span></span><br><span class="line">uSOR = <span class="built_in">ones</span>(<span class="built_in">length</span>(g),<span class="number">1</span>);</span><br><span class="line">USOR = <span class="built_in">ones</span>(<span class="built_in">size</span>(U_A));</span><br><span class="line"><span class="comment">% 求解GS方法的系数矩阵</span></span><br><span class="line">I = <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,<span class="built_in">length</span>(g)));</span><br><span class="line">B = (I<span class="number">-0.25</span>*H);</span><br><span class="line">L = <span class="built_in">tril</span>(B);</span><br><span class="line">R = <span class="built_in">triu</span>(B);</span><br><span class="line">invF = inv(I-omega*L);</span><br><span class="line">M = invF*(omega*R + (<span class="number">1</span>-omega)*I);</span><br><span class="line">F = <span class="number">0.25</span>*omega*invF;</span><br><span class="line"><span class="comment">% 迭代准备时间</span></span><br><span class="line">tCal(<span class="number">1</span>) = toc(tStart);</span><br><span class="line">tIter = tic;</span><br><span class="line"><span class="comment">% 为方便两次迭代之间进行比较，再分配一份内存空间存储下一次迭代的值</span></span><br><span class="line"><span class="comment">% 首先在while外部迭代一次</span></span><br><span class="line">uNext = M*uSOR + F*g;</span><br><span class="line"><span class="comment">% 设置迭代循环变量</span></span><br><span class="line">nIter = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">max</span>(<span class="built_in">abs</span>(uSOR-uNext))&gt;<span class="number">10</span>^<span class="number">-4</span> &amp;&amp; nIter&lt;maxN)</span><br><span class="line">    uSOR = uNext;</span><br><span class="line">    uNext = M*uSOR + F*g;</span><br><span class="line">    nIter = nIter+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mod</span>(nIter,<span class="number">10</span>)==<span class="number">0</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;当前已经迭代 %d 次，当前余差为 %f \n&#x27;</span>,nIter,<span class="built_in">max</span>(<span class="built_in">abs</span>(uSOR-uNext)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">uSOR = uNext;</span><br><span class="line">...(此处略去数据存储与绘制图像)</span><br></pre></td></tr></table></figure>
+<h3 id="pr-方法">PR 方法</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ UPR, EPR ]</span> = <span class="title">PR</span><span class="params">( L1, L2, g, U_A, X, Y, N, maxN, h )</span></span></span><br><span class="line"><span class="comment">%% 迭代计算</span></span><br><span class="line">tCal = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">tStart = tic;</span><br><span class="line"><span class="comment">% 为方程解分配内存空间，同时设置初值为ones矩阵</span></span><br><span class="line">uPR = <span class="built_in">ones</span>(<span class="built_in">length</span>(g),<span class="number">1</span>);</span><br><span class="line">UPR = <span class="built_in">ones</span>(<span class="built_in">size</span>(U_A));</span><br><span class="line">I = <span class="built_in">diag</span>(<span class="built_in">ones</span>(<span class="number">1</span>,<span class="built_in">length</span>(g)));</span><br><span class="line"><span class="comment">% 迭代准备时间</span></span><br><span class="line">tCal(<span class="number">1</span>) = toc(tStart);</span><br><span class="line">tIter = tic;</span><br><span class="line"><span class="comment">% 首先在while外部迭代一次</span></span><br><span class="line">a = ( <span class="built_in">sin</span>(<span class="built_in">pi</span>*h/<span class="number">2</span>) )^<span class="number">2</span>;</span><br><span class="line">tau(<span class="number">1</span>) = (h^<span class="number">2</span>/<span class="number">4</span>/a)*(<span class="built_in">sqrt</span>(<span class="number">2</span>) - <span class="number">1</span>); </span><br><span class="line">A1 = inv(I + tau(<span class="number">1</span>)*L1);</span><br><span class="line">A2 = inv(I + tau(<span class="number">1</span>)*L2);</span><br><span class="line">B1 = (I-tau(<span class="number">1</span>)*L2);</span><br><span class="line">B2 = (I-tau(<span class="number">1</span>)*L1);</span><br><span class="line">uMid = A1*B1*uPR + tau(<span class="number">1</span>)*A1*g;</span><br><span class="line">uNext = A2*B2*uMid + tau(<span class="number">1</span>)*A2*g;</span><br><span class="line"><span class="comment">% 设置迭代循环变量</span></span><br><span class="line">nIter = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">max</span>(<span class="built_in">abs</span>(uPR-uNext))&gt;<span class="number">10</span>^<span class="number">-4</span> &amp;&amp; nIter&lt;maxN)</span><br><span class="line">    uPR = uNext;</span><br><span class="line">    tau(nIter+<span class="number">1</span>) = (h^<span class="number">2</span>/<span class="number">4</span>/a)*(<span class="built_in">sqrt</span>(<span class="number">2</span>) - <span class="number">1</span>)^(<span class="number">2</span>*nIter+<span class="number">1</span>); </span><br><span class="line">    A1 = inv(I + tau(nIter+<span class="number">1</span>)*L1);</span><br><span class="line">    A2 = inv(I + tau(nIter+<span class="number">1</span>)*L2);</span><br><span class="line">    B1 = (I-tau(nIter+<span class="number">1</span>)*L2);</span><br><span class="line">    B2 = (I-tau(nIter+<span class="number">1</span>)*L1);</span><br><span class="line">    uMid = A1*B1*uPR + tau(nIter+<span class="number">1</span>)*A1*g;</span><br><span class="line">    uNext = A2*B2*uMid + tau(nIter+<span class="number">1</span>)*A2*g;</span><br><span class="line">    nIter = nIter+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mod</span>(nIter,<span class="number">1</span>)==<span class="number">0</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;当前已经迭代 %d 次，当前余差为 %f \n&#x27;</span>,nIter,<span class="built_in">max</span>(<span class="built_in">abs</span>(uPR-uNext)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">uPR = uNext;</span><br><span class="line">...(此处略去数据存储与绘制图像)</span><br></pre></td></tr></table></figure>
+<h3 id="共轭梯度法">共轭梯度法</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ UCG, ECG ]</span> = <span class="title">CG</span><span class="params">( H, g, U_A, X, Y, N, maxN, h )</span></span></span><br><span class="line"><span class="comment">%% 迭代计算</span></span><br><span class="line"><span class="comment">% 开始计时</span></span><br><span class="line">tCal = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">tStart = tic;</span><br><span class="line"><span class="comment">% 为方程解分配内存空间，同时设置初值为ones矩阵</span></span><br><span class="line">uCG = <span class="built_in">ones</span>(<span class="built_in">length</span>(g),<span class="number">1</span>);</span><br><span class="line">UCG = <span class="built_in">ones</span>(<span class="built_in">size</span>(U_A));</span><br><span class="line"><span class="comment">% 首先在while外部迭代一次</span></span><br><span class="line">p = g - H*uCG;</span><br><span class="line">r = p;</span><br><span class="line">rNorm2Square(<span class="number">1</span>) = sum(r.*r);</span><br><span class="line">alpha = rNorm2Square(<span class="number">1</span>)/sum((H*p).*p);</span><br><span class="line">uNext = uCG + alpha*p;</span><br><span class="line"><span class="comment">% 迭代准备时间</span></span><br><span class="line">tCal(<span class="number">1</span>) = toc(tStart);</span><br><span class="line">tIter = tic;</span><br><span class="line"><span class="comment">% 设置迭代循环变量</span></span><br><span class="line">nIter = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">max</span>(<span class="built_in">abs</span>(uCG-uNext))&gt;<span class="number">10</span>^<span class="number">-4</span> &amp;&amp; nIter&lt;maxN)</span><br><span class="line">    r = r - alpha*H*p;</span><br><span class="line">    rNorm2Square(nIter+<span class="number">1</span>) = sum(r.*r);</span><br><span class="line">    <span class="built_in">beta</span> = rNorm2Square(nIter+<span class="number">1</span>)/rNorm2Square(nIter);</span><br><span class="line">    p = r + <span class="built_in">beta</span>*p;</span><br><span class="line">    alpha = rNorm2Square(nIter+<span class="number">1</span>)/sum((H*p).*p);</span><br><span class="line">    uCG = uNext;</span><br><span class="line">    uNext = uCG + alpha*p;</span><br><span class="line">    nIter = nIter+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mod</span>(nIter,<span class="number">20</span>)==<span class="number">0</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;当前已经迭代 %d 次，当前余差为 %f \n&#x27;</span>,nIter,<span class="built_in">max</span>(<span class="built_in">abs</span>(uCG-uNext)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">uCG = uNext;</span><br><span class="line">...(此处略去数据存储与绘制图像)</span><br></pre></td></tr></table></figure>
+<h3 id="预处理共轭梯度法">预处理共轭梯度法</h3>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="params">[ UPCG, EPCG ]</span> = <span class="title">PCG</span><span class="params">( H, g, invB, U_A, X, Y, N, maxN, h )</span></span></span><br><span class="line"><span class="comment">%% 迭代计算</span></span><br><span class="line"><span class="comment">% 开始计时</span></span><br><span class="line">tCal = <span class="built_in">zeros</span>(<span class="number">1</span>,<span class="number">4</span>);</span><br><span class="line">tStart = tic;</span><br><span class="line"><span class="comment">% 为方程解分配内存空间，同时设置初值为ones矩阵</span></span><br><span class="line">uPCG = <span class="built_in">ones</span>(<span class="built_in">length</span>(g),<span class="number">1</span>);</span><br><span class="line">UPCG = <span class="built_in">ones</span>(<span class="built_in">size</span>(U_A));</span><br><span class="line"><span class="comment">% 首先在while外部迭代一次</span></span><br><span class="line">p = g - H*uPCG;</span><br><span class="line">r = p;</span><br><span class="line">s = invB*r;</span><br><span class="line">rs(<span class="number">1</span>) = sum(r.*s);</span><br><span class="line">alpha = rs(<span class="number">1</span>)/sum((H*p).*p);</span><br><span class="line">uNext = uPCG + alpha*p;</span><br><span class="line"><span class="comment">% 迭代准备时间</span></span><br><span class="line">tCal(<span class="number">1</span>) = toc(tStart);</span><br><span class="line">tIter = tic;</span><br><span class="line"><span class="comment">% 设置迭代循环变量</span></span><br><span class="line">nIter = <span class="number">1</span>;</span><br><span class="line"><span class="keyword">while</span> (<span class="built_in">max</span>(<span class="built_in">abs</span>(uPCG-uNext))&gt;<span class="number">10</span>^<span class="number">-4</span> &amp;&amp; nIter&lt;maxN)</span><br><span class="line">    r = r - alpha*H*p;</span><br><span class="line">    s = invB*r;</span><br><span class="line">    rs(nIter+<span class="number">1</span>) = sum(r.*s);</span><br><span class="line">    <span class="built_in">beta</span> = rs(nIter+<span class="number">1</span>)/rs(nIter);</span><br><span class="line">    p = s + <span class="built_in">beta</span>*p;</span><br><span class="line">    alpha = rs(nIter+<span class="number">1</span>)/sum((H*p).*p);</span><br><span class="line">    uPCG = uNext;</span><br><span class="line">    uNext = uPCG + alpha*p;</span><br><span class="line">    nIter = nIter+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">mod</span>(nIter,<span class="number">20</span>)==<span class="number">0</span>)</span><br><span class="line">        fprintf(<span class="string">&#x27;当前已经迭代 %d 次，当前余差为 %f \n&#x27;</span>,nIter,<span class="built_in">max</span>(<span class="built_in">abs</span>(uPCG-uNext)));</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">uPCG = uNext;</span><br><span class="line">...(此处略去数据存储与绘制图像)</span><br></pre></td></tr></table></figure>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%95%B0%E5%80%BC%E8%AE%A1%E7%AE%97/" rel="tag"># 数值计算</a>
+              <a href="/tags/%E6%A4%AD%E5%9C%86%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" rel="tag"># 椭圆型微分方程</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/20/LaTeX%E6%8F%90%E5%8D%87%E7%BC%96%E8%AF%91%E9%80%9F%E5%BA%A6/" rel="prev" title="LaTeX提升编译速度">
+      <i class="fa fa-chevron-left"></i> LaTeX提升编译速度
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/06/22/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/" rel="next" title="微分方程数值解">
+      微分方程数值解 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%90%86%E8%AE%BA%E6%8E%A8%E5%AF%BC"><span class="nav-number">2.</span> <span class="nav-text">理论推导</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%9C%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">结果分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95-matlab-%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">附录 MATLAB 代码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BB%E7%A8%8B%E5%BA%8F"><span class="nav-number">4.1.</span> <span class="nav-text">主程序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jacobi-%E6%96%B9%E6%B3%95%E5%8C%85%E5%90%AB%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8"><span class="nav-number">4.2.</span> <span class="nav-text">Jacobi 方法(包含数据存储)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gauss-seidel-%E6%96%B9%E6%B3%95"><span class="nav-number">4.3.</span> <span class="nav-text">Gauss-Seidel 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sor-%E6%96%B9%E6%B3%95"><span class="nav-number">4.4.</span> <span class="nav-text">SOR 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pr-%E6%96%B9%E6%B3%95"><span class="nav-number">4.5.</span> <span class="nav-text">PR 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B1%E8%BD%AD%E6%A2%AF%E5%BA%A6%E6%B3%95"><span class="nav-number">4.6.</span> <span class="nav-text">共轭梯度法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A2%84%E5%A4%84%E7%90%86%E5%85%B1%E8%BD%AD%E6%A2%AF%E5%BA%A6%E6%B3%95"><span class="nav-number">4.7.</span> <span class="nav-text">预处理共轭梯度法</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="秋天"
+      src="/images/me.jpg">
+  <p class="site-author-name" itemprop="name">秋天</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秋天</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">30k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">27 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'j9EHsU72rPPTGWXVHOTKJsay-gzGzoHsz',
+      appKey     : 'DCclSuENuRWhJ8WXApGNfSD2',
+      placeholder: "Thanks for your comment~",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/crash_cheat.js"></script>

@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="4IgN6N71kznUS9PIMp6itE5oUv0s3hzVzFzFOpC-4Ig">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"qiuxiaohuo.github.io","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="已知一个数学微分方程, 如何建立它的等效积分形式? 如何证明两者是等效的? 若微分方程\(\boldsymbol{A}(\boldsymbol{\phi}) &#x3D; \boldsymbol{0}\)在域\(\Omega\)中恒成立, 则下式成立: \[ \int_{\Omega} \boldsymbol{v}^T \boldsymbol{A}(\boldsymbol{\phi}) \math">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有限单元法基本概念(1)">
+<meta property="og:url" content="https://qiuxiaohuo.github.io/2022/07/18/%E6%9C%89%E9%99%90%E5%8D%95%E5%85%83%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-1/index.html">
+<meta property="og:site_name" content="秋天的博客">
+<meta property="og:description" content="已知一个数学微分方程, 如何建立它的等效积分形式? 如何证明两者是等效的? 若微分方程\(\boldsymbol{A}(\boldsymbol{\phi}) &#x3D; \boldsymbol{0}\)在域\(\Omega\)中恒成立, 则下式成立: \[ \int_{\Omega} \boldsymbol{v}^T \boldsymbol{A}(\boldsymbol{\phi}) \math">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-07-18T07:35:06.000Z">
+<meta property="article:modified_time" content="2022-07-18T08:04:28.061Z">
+<meta property="article:author" content="秋天">
+<meta property="article:tag" content="等效积分形式">
+<meta property="article:tag" content="加权余量法">
+<meta property="article:tag" content="泛函和变分原理">
+<meta property="article:tag" content="里兹方法">
+<meta property="article:tag" content="虚功原理">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://qiuxiaohuo.github.io/2022/07/18/%E6%9C%89%E9%99%90%E5%8D%95%E5%85%83%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-1/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>有限单元法基本概念(1) | 秋天的博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">秋天的博客</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">A good life is one inspired by love and guided by knowledge.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-series">
+
+    <a href="/series/" rel="section"><i class="fas fa-book fa-fw"></i>系列</a>
+
+  </li>
+        <li class="menu-item menu-item-notes">
+
+    <a href="/notes/" rel="section"><i class="fas fa-clipboard fa-fw"></i>碎碎念</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qiuxiaohuo.github.io/2022/07/18/%E6%9C%89%E9%99%90%E5%8D%95%E5%85%83%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.jpg">
+      <meta itemprop="name" content="秋天">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋天的博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          有限单元法基本概念(1)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-18 15:35:06 / 修改时间：16:04:28" itemprop="dateCreated datePublished" datetime="2022-07-18T15:35:06+08:00">2022-07-18</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/FEM/" itemprop="url" rel="index"><span itemprop="name">FEM</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/07/18/%E6%9C%89%E9%99%90%E5%8D%95%E5%85%83%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-1/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/18/%E6%9C%89%E9%99%90%E5%8D%95%E5%85%83%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-1/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>5.2k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>5 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h4
+id="已知一个数学微分方程-如何建立它的等效积分形式-如何证明两者是等效的">已知一个数学微分方程,
+如何建立它的等效积分形式? 如何证明两者是等效的?</h4>
+<p>若微分方程<span
+class="math inline">\(\boldsymbol{A}(\boldsymbol{\phi}) =
+\boldsymbol{0}\)</span>在域<span
+class="math inline">\(\Omega\)</span>中恒成立, 则下式成立: <span
+class="math display">\[
+\int_{\Omega} \boldsymbol{v}^T \boldsymbol{A}(\boldsymbol{\phi})
+\mathrm{d} \Omega = 0
+    \label{eq:equivalent_integration_form}
+\]</span> 其中 <span class="math inline">\(\boldsymbol{v}\)</span>
+是<strong>任意函数</strong>. 正是由 <span
+class="math inline">\(\boldsymbol{v}\)</span> 的任意性,
+才能保证上式与原微分方程是等效的.</p>
+<p>证明等效性, 必要性有微分方程在域<span
+class="math inline">\(\Omega\)</span>恒等于0, 积分形式自然对任意函数
+<span class="math inline">\(\boldsymbol{v}\)</span> 都成立;
+充分性可以通过反证法, 假设微分方程在域 <span
+class="math inline">\(\Omega\)</span> 中某点处不等于0, 则总可以构造出
+<span class="math inline">\(\boldsymbol{v}\)</span>,
+比如在该点处的Delta函数, 使得等效积分形式不等于0<strong>.</strong></p>
+<h4
+id="等效积分形式和等效积分弱形式的区别何在-为什么后者在数值分析中得到更多的应用">等效积分形式和等效积分"弱"形式的区别何在?
+为什么后者在数值分析中得到更多的应用?</h4>
+<p><span class="math display">\[
+\text{等效积分形式} \stackrel{\text{分部积分}}{\longrightarrow}
+\text{等效积分&quot;弱&quot;形式}
+    \notag
+\]</span></p>
+<p>通过分部积分, 原微分方程作用于场变量上的导数阶次降低,
+转移到试探函数<span class="math inline">\(\boldsymbol{v}\)</span>上,
+由此降低了近似解的连续性要求, 因此在数值求解中近似函数可选择的空间更大.
+例如, 对于一般弹性力学问题, 方程中关于位移场的导数最高阶次为1,
+故只需要保证位移场函数<span class="math inline">\(C_0\)</span>连续.
+对于梁相关的问题, 方程中关于挠度的导数最高阶次为2,
+故需要保证挠度函数<span class="math inline">\(C_1\)</span>连续.</p>
+<h4
+id="不同形式的加权余量法之间的区别何在">不同形式的加权余量法之间的区别何在?</h4>
+<p>对于微分方程<span
+class="math inline">\(\boldsymbol{A}(\boldsymbol{\phi}) =
+\boldsymbol{0}\)</span>, 取近似函数<span
+class="math inline">\(\bar{\boldsymbol{\phi}} = \boldsymbol
+{N}\boldsymbol{a}\)</span>, 代入微分方程当中, 会得到残差如下 <span
+class="math display">\[
+\boldsymbol{R} = \boldsymbol{A}(\boldsymbol{N} \boldsymbol{a}) \neq
+\boldsymbol{0} ~\text{on} ~ \Omega
+\]</span> 加权残值法是等效积分形式的<strong>有限形式</strong>,
+即用有限数量<span
+class="math inline">\(n\)</span>个规定的权函数代替任意函数<span
+class="math inline">\(\boldsymbol{v}\)</span>, 可得 <span
+class="math display">\[
+\int_{\Omega} \boldsymbol{W}_{j}^{T} \boldsymbol{A}(\boldsymbol{N}
+\boldsymbol{a}) \mathrm{d} \Omega = \boldsymbol{0} \quad (j = 1~to~n)
+\]</span> 不同的加权余量法权函数是不同的. 例如, 配点法的权函数是 Delta
+函数, 子域法的权函数是子区域恒为1, 其它区域恒为0的函数.</p>
+<h4
+id="什么是加权余量的伽辽金方法-它有什么特点">什么是加权余量的伽辽金方法?
+它有什么特点?</h4>
+<p>伽辽金方法的权函数取自于近似函数序列, 即取 <span
+class="math inline">\(\boldsymbol{W}_j = \boldsymbol{N}_j\)</span>.
+若定义近似解<span
+class="math inline">\(\bar{\boldsymbol{\phi}}\)</span>的变分为 <span
+class="math display">\[
+\delta \bar{\boldsymbol{\phi}} = \boldsymbol{N}_1 \delta
+\boldsymbol{a}_1 + \cdots + \boldsymbol{N}_n \delta \boldsymbol{a}_n
+\]</span> 则伽辽金法可以表示成如下形式: <span class="math display">\[
+\int_{\Omega} \delta \bar{\boldsymbol{\phi}}^{T}
+\boldsymbol{A}(\bar{\boldsymbol{\phi}}) \mathrm{d} \Omega =
+\boldsymbol{0}
+\]</span> 若算子<span
+class="math inline">\(\boldsymbol{A}\)</span>是<span
+class="math inline">\(2m\)</span>阶线性自伴随的,
+则采用伽辽金方法得到的方程系数矩阵是对称的.</p>
+<h4
+id="如何识别一个微分算子是线性-自伴随的-识别它的意义何在">如何识别一个微分算子是线性,
+自伴随的? 识别它的意义何在?</h4>
+<p>若算子<span class="math inline">\(\boldsymbol{L}\)</span>是线性的,
+则有如下性质:</p>
+<ul>
+<li><span class="math inline">\(\boldsymbol{L}(\boldsymbol{u}_1 +
+\boldsymbol{u}_2) = \boldsymbol{L}(\boldsymbol{u}_1) +
+\boldsymbol{L}(\boldsymbol{u}_2)\)</span></li>
+<li><span class="math inline">\(\boldsymbol{L}(c\boldsymbol{u}) =
+c\boldsymbol{L}(\boldsymbol{u})\)</span></li>
+</ul>
+<p>若算子<span class="math inline">\(\boldsymbol{L}\)</span>是自伴随的,
+则有如下性质:</p>
+<ul>
+<li><span class="math inline">\(\int\nolimits_{\Omega}
+\boldsymbol{L}(\boldsymbol{u}) \boldsymbol{v} \mathrm{d} \Omega =
+\int\nolimits_{\Omega} \boldsymbol{L}(\boldsymbol{v}) \boldsymbol{u}
+\mathrm{d} \Omega + b.t.(\boldsymbol{u}, \boldsymbol{v})\)</span></li>
+</ul>
+<p>若微分算子是线性, 自伴随的, 则可以构造某一泛函<span
+class="math inline">\(\Pi\)</span>, 使得该泛函的变分<span
+class="math inline">\(\delta \Pi = 0\)</span>等价于原微分方程.</p>
+<h4
+id="如何建立与线性-自伴随微分方程相等效的泛函和变分原理-如何证明它和加权余量的伽辽金方法之间的等效性">如何建立与线性,
+自伴随微分方程相等效的泛函和变分原理?
+如何证明它和加权余量的伽辽金方法之间的等效性?</h4>
+<p>根据微分方程的伽辽金形式(此处只提取方程中最主要的一项) <span
+class="math display">\[
+\begin{aligned}
+        \int_{\Omega} \delta \boldsymbol{u}^{T}
+\boldsymbol{L}(\boldsymbol{u}) \mathrm{d} \Omega
+        &amp;= \int_{\Omega} \left[ \frac{1}{2} \delta
+\boldsymbol{u}^{T} \boldsymbol{L}(\boldsymbol{u}) + \frac{1}{2} \delta
+\boldsymbol{u}^{T} \boldsymbol{L}(\boldsymbol{u}) \right] \mathrm{d}
+\Omega \\
+        &amp;\stackrel{\text{自伴随}}{=} \int_{\Omega} \left[
+\frac{1}{2} \delta \boldsymbol{u}^{T} \boldsymbol{L}(\boldsymbol{u}) +
+\frac{1}{2} \boldsymbol{u}^{T} \boldsymbol{L}(\delta\boldsymbol{u})
+\right] \mathrm{d} \Omega \\
+        &amp;\stackrel{\text{交换性}}{=} \int_{\Omega} \left[
+\frac{1}{2} \delta \boldsymbol{u}^{T} \boldsymbol{L}(\boldsymbol{u}) +
+\frac{1}{2} \boldsymbol{u}^{T} \delta \boldsymbol{L}(\boldsymbol{u})
+\right] \mathrm{d} \Omega \\
+        &amp;\stackrel{\text{变分乘积公式}}{=} \delta \int_{\Omega}
+\frac{1}{2} \boldsymbol{u}^{T} \boldsymbol{L}(\boldsymbol{u}) \mathrm{d}
+\Omega
+    \end{aligned}
+\]</span></p>
+<h4
+id="自然边界条件和强制边界条件的区别何在-为什么这样命名-对于一个给定的微分方程-如何区分这两类边界条件">自然边界条件和强制边界条件的区别何在?
+为什么这样命名? 对于一个给定的微分方程, 如何区分这两类边界条件?</h4>
+<p>在给定微分方程的等效积分形式后, 选取的场函数<span
+class="math inline">\(\boldsymbol{\phi}\)</span>需要<strong>预先满足</strong>强制边界条件,
+自然边界条件则在推导等效积分形式的弱形式时自然得到, 无需事先满足.</p>
+<h4
+id="泛函在什么条件下具有极值性-了解泛函是否具有极值性的意义何在">泛函在什么条件下具有极值性?
+了解泛函是否具有极值性的意义何在?</h4>
+<p>若线性自伴随算子是<strong>偶数阶</strong>的, 则相应的泛函具有极值性.
+在力学当中, 为证明最小位能与余能原理, 需要利用泛函的极值性,
+来说明真实解位移与应力是系统位能和余能是最小的.</p>
+<h4
+id="什么是里兹方法-通过它建立的求解方法有什么特点-里兹方法收敛性的定义是什么-收敛的条件是什么">什么是里兹方法?
+通过它建立的求解方法有什么特点? 里兹方法收敛性的定义是什么?
+收敛的条件是什么?</h4>
+<p>在得到与原微分方程等价的泛函之后, 类似于加权残值法的流程,
+取未知场函数的近似解为一族带有待定参数的试探函数, 即 <span
+class="math display">\[
+\boldsymbol{u} \approx \bar{\boldsymbol{u}} = \sum_{i=1}^{n}
+\boldsymbol{N}_{i} \boldsymbol{A}
+\]</span> 根据变分原理, 泛函的变分为0. 解析形式的泛函变分是对函数的导数,
+函数是<strong>无穷维</strong>的, 因此很难操作. 对于近似解得到的泛函,
+参数是<strong>有限</strong>的, 因此有 <span class="math display">\[
+\delta \Pi(\boldsymbol{A}_1, \boldsymbol{A}_2, \cdots, \boldsymbol{A}_n)
+= \frac{\partial \Pi}{\partial \boldsymbol{A}_1} \delta \boldsymbol{A}_1
++ \frac{\partial \Pi}{\partial \boldsymbol{A}_2} \delta \boldsymbol{A}_2
++ \cdots + \frac{\partial \Pi}{\partial \boldsymbol{A}_n} \delta
+\boldsymbol{A}_n
+\]</span> 由<span class="math inline">\(\delta
+\boldsymbol{A}_i\)</span>的任意性, 可以得到一系列关于<span
+class="math inline">\(\boldsymbol{A}_i\)</span>的方程: <span
+class="math display">\[
+\frac{\partial \Pi}{\partial \boldsymbol{A}_i} = 0, i = 1,2, \cdots, n
+\]</span> 里兹法是寻求近似函数族中满足泛函变分的<strong>最优解</strong>.
+因此, 里兹法有如下特点:</p>
+<ul>
+<li>里兹法的精度可通过改进近似解的构造来提高(而不是简单地增加近似解项数)</li>
+<li>若精确解可由近似函数族表示, 则里兹法就可以得到精确解</li>
+</ul>
+<p>当近似解的项数<span class="math inline">\(n\)</span>趋于无穷时,
+若得到的近似解<span
+class="math inline">\(\bar{\boldsymbol{\phi}}\)</span>收敛于精确解,
+则称里兹方法收敛. 里兹方法收敛的条件如下:</p>
+<ul>
+<li>试探函数序列是<strong>完备的</strong> <span
+class="math inline">\(\rightarrow\)</span>
+精确解可由试探函数级数表示</li>
+<li>试探函数序列满足<span
+class="math inline">\(\mathcal{C}_{m-1}\)</span>连续性,
+即<strong>协调性</strong>, 若泛函中关于场函数最高微分阶数为<span
+class="math inline">\(m\)</span> <span
+class="math inline">\(\rightarrow\)</span> 保证积分存在</li>
+</ul>
+<h4 id="里兹方法的优缺点是什么">里兹方法的优缺点是什么?</h4>
+<p>里兹方法的优点:</p>
+<ul>
+<li>求解方程的系数矩阵是对称的</li>
+<li>解具有明确的上,下界性质</li>
+</ul>
+<p>里兹方法的缺点:</p>
+<ul>
+<li>不适用于求解域复杂的情况.
+这时很难选取一个满足全域边界条件的试探函数</li>
+<li>无法实现局部精度的提升. 这个问题还是因为试探函数是全域的</li>
+</ul>
+<p>所以, 离散形式的里兹方法, 即有限元法, 才会有更多的工程应用</p>
+<h4
+id="虚功原理有哪两种不同形式-各和弹性力学的什么方程等效">虚功原理有哪两种不同形式?
+各和弹性力学的什么方程等效?</h4>
+<p>虚位移原理与虚应力原理.
+虚位移原理是平衡方程和力边界条件的等效积分"弱"形式;
+虚应力原理是几何方程和位移边界条件的等效积分"弱"形式.</p>
+<p>虚位移原理的力学意义是: 如果力系是平衡的,
+则它们在虚位移和相应的满足几何方程的虚应变上所作功之和为0.</p>
+<p>虚应力原理的力学意义是: 如果位移是协调的,
+则满足平衡方程的虚应力和虚边界约束反力在上面所作功之和为0.</p>
+<p>需要指出的是, 虚功原理不涉及本构方程,
+因此可应用于非线性弹性及弹塑性等非线性问题. 但是,
+虚功原理用到的几何方程是小变形条件下得到的,
+故不能直接应用于大变形理论当中.</p>
+<h4
+id="什么是最小位能原理-它们是如何导出的-场函数是什么-它事先应满足什么条件-对场函数的试探函数有什么要求">什么是最小位能原理?
+它们是如何导出的? 场函数是什么? 它事先应满足什么条件?
+对场函数的试探函数有什么要求?</h4>
+<p>最小位能原理是通过将线弹性本构方程代入虚位移定理,
+再根据分部积分得到的泛函, 该泛函的物理意义是系统的总位能,
+是弹性体变形位能和外力位能之和. 场函数是位移, 事先应该满足强制边界条件,
+即给定位移条件. 最小位能的物理意义是:
+在所有满足边界上给定位移条件的可能位移当中,
+真实位移使系统总位能取<strong>最小值</strong>.</p>
+<h4
+id="如何利用最小位能原理建立数值解的求解方程-方程有何特点-解的收敛性和极值性的条件是什么">如何利用最小位能原理建立数值解的求解方程?
+方程有何特点? 解的收敛性和极值性的条件是什么?</h4>
+<p>最小位能原理就是里兹方法在力学当中的具体应用,
+里兹方法的特点它全有.</p>
+<h4
+id="为什么最小位能原理的近似解的应变能取下界-即解总体偏于刚硬">为什么最小位能原理的近似解的应变能取下界,
+即解总体偏于"刚硬"</h4>
+<p>根据最小位能原理, 近似解不是真实解,
+因此由真实解得到的系统总位能应该小于近似解.
+而最小位能原理得到的泛函物理意义是负总应变能,
+因此真实解的应变能大于近似解的应变能,
+由此可以得到系统真实的应变大于近似解得到的应变.
+故结构的计算模型偏于刚硬.</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%AD%89%E6%95%88%E7%A7%AF%E5%88%86%E5%BD%A2%E5%BC%8F/" rel="tag"># 等效积分形式</a>
+              <a href="/tags/%E5%8A%A0%E6%9D%83%E4%BD%99%E9%87%8F%E6%B3%95/" rel="tag"># 加权余量法</a>
+              <a href="/tags/%E6%B3%9B%E5%87%BD%E5%92%8C%E5%8F%98%E5%88%86%E5%8E%9F%E7%90%86/" rel="tag"># 泛函和变分原理</a>
+              <a href="/tags/%E9%87%8C%E5%85%B9%E6%96%B9%E6%B3%95/" rel="tag"># 里兹方法</a>
+              <a href="/tags/%E8%99%9A%E5%8A%9F%E5%8E%9F%E7%90%86/" rel="tag"># 虚功原理</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/06/24/%E6%8A%9B%E7%89%A9%E5%9E%8B%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/" rel="prev" title="抛物型微分方程数值解">
+      <i class="fa fa-chevron-left"></i> 抛物型微分方程数值解
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B7%B2%E7%9F%A5%E4%B8%80%E4%B8%AA%E6%95%B0%E5%AD%A6%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B-%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E5%AE%83%E7%9A%84%E7%AD%89%E6%95%88%E7%A7%AF%E5%88%86%E5%BD%A2%E5%BC%8F-%E5%A6%82%E4%BD%95%E8%AF%81%E6%98%8E%E4%B8%A4%E8%80%85%E6%98%AF%E7%AD%89%E6%95%88%E7%9A%84"><span class="nav-number">1.</span> <span class="nav-text">已知一个数学微分方程,
+如何建立它的等效积分形式? 如何证明两者是等效的?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%AD%89%E6%95%88%E7%A7%AF%E5%88%86%E5%BD%A2%E5%BC%8F%E5%92%8C%E7%AD%89%E6%95%88%E7%A7%AF%E5%88%86%E5%BC%B1%E5%BD%A2%E5%BC%8F%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BD%95%E5%9C%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E5%90%8E%E8%80%85%E5%9C%A8%E6%95%B0%E5%80%BC%E5%88%86%E6%9E%90%E4%B8%AD%E5%BE%97%E5%88%B0%E6%9B%B4%E5%A4%9A%E7%9A%84%E5%BA%94%E7%94%A8"><span class="nav-number">2.</span> <span class="nav-text">等效积分形式和等效积分&quot;弱&quot;形式的区别何在?
+为什么后者在数值分析中得到更多的应用?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%8D%E5%90%8C%E5%BD%A2%E5%BC%8F%E7%9A%84%E5%8A%A0%E6%9D%83%E4%BD%99%E9%87%8F%E6%B3%95%E4%B9%8B%E9%97%B4%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BD%95%E5%9C%A8"><span class="nav-number">3.</span> <span class="nav-text">不同形式的加权余量法之间的区别何在?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E5%8A%A0%E6%9D%83%E4%BD%99%E9%87%8F%E7%9A%84%E4%BC%BD%E8%BE%BD%E9%87%91%E6%96%B9%E6%B3%95-%E5%AE%83%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9"><span class="nav-number">4.</span> <span class="nav-text">什么是加权余量的伽辽金方法?
+它有什么特点?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E8%AF%86%E5%88%AB%E4%B8%80%E4%B8%AA%E5%BE%AE%E5%88%86%E7%AE%97%E5%AD%90%E6%98%AF%E7%BA%BF%E6%80%A7-%E8%87%AA%E4%BC%B4%E9%9A%8F%E7%9A%84-%E8%AF%86%E5%88%AB%E5%AE%83%E7%9A%84%E6%84%8F%E4%B9%89%E4%BD%95%E5%9C%A8"><span class="nav-number">5.</span> <span class="nav-text">如何识别一个微分算子是线性,
+自伴随的? 识别它的意义何在?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%BB%BA%E7%AB%8B%E4%B8%8E%E7%BA%BF%E6%80%A7-%E8%87%AA%E4%BC%B4%E9%9A%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E7%9B%B8%E7%AD%89%E6%95%88%E7%9A%84%E6%B3%9B%E5%87%BD%E5%92%8C%E5%8F%98%E5%88%86%E5%8E%9F%E7%90%86-%E5%A6%82%E4%BD%95%E8%AF%81%E6%98%8E%E5%AE%83%E5%92%8C%E5%8A%A0%E6%9D%83%E4%BD%99%E9%87%8F%E7%9A%84%E4%BC%BD%E8%BE%BD%E9%87%91%E6%96%B9%E6%B3%95%E4%B9%8B%E9%97%B4%E7%9A%84%E7%AD%89%E6%95%88%E6%80%A7"><span class="nav-number">6.</span> <span class="nav-text">如何建立与线性,
+自伴随微分方程相等效的泛函和变分原理?
+如何证明它和加权余量的伽辽金方法之间的等效性?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%87%AA%E7%84%B6%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6%E5%92%8C%E5%BC%BA%E5%88%B6%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6%E7%9A%84%E5%8C%BA%E5%88%AB%E4%BD%95%E5%9C%A8-%E4%B8%BA%E4%BB%80%E4%B9%88%E8%BF%99%E6%A0%B7%E5%91%BD%E5%90%8D-%E5%AF%B9%E4%BA%8E%E4%B8%80%E4%B8%AA%E7%BB%99%E5%AE%9A%E7%9A%84%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B-%E5%A6%82%E4%BD%95%E5%8C%BA%E5%88%86%E8%BF%99%E4%B8%A4%E7%B1%BB%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6"><span class="nav-number">7.</span> <span class="nav-text">自然边界条件和强制边界条件的区别何在?
+为什么这样命名? 对于一个给定的微分方程, 如何区分这两类边界条件?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%B3%9B%E5%87%BD%E5%9C%A8%E4%BB%80%E4%B9%88%E6%9D%A1%E4%BB%B6%E4%B8%8B%E5%85%B7%E6%9C%89%E6%9E%81%E5%80%BC%E6%80%A7-%E4%BA%86%E8%A7%A3%E6%B3%9B%E5%87%BD%E6%98%AF%E5%90%A6%E5%85%B7%E6%9C%89%E6%9E%81%E5%80%BC%E6%80%A7%E7%9A%84%E6%84%8F%E4%B9%89%E4%BD%95%E5%9C%A8"><span class="nav-number">8.</span> <span class="nav-text">泛函在什么条件下具有极值性?
+了解泛函是否具有极值性的意义何在?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E9%87%8C%E5%85%B9%E6%96%B9%E6%B3%95-%E9%80%9A%E8%BF%87%E5%AE%83%E5%BB%BA%E7%AB%8B%E7%9A%84%E6%B1%82%E8%A7%A3%E6%96%B9%E6%B3%95%E6%9C%89%E4%BB%80%E4%B9%88%E7%89%B9%E7%82%B9-%E9%87%8C%E5%85%B9%E6%96%B9%E6%B3%95%E6%94%B6%E6%95%9B%E6%80%A7%E7%9A%84%E5%AE%9A%E4%B9%89%E6%98%AF%E4%BB%80%E4%B9%88-%E6%94%B6%E6%95%9B%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">9.</span> <span class="nav-text">什么是里兹方法?
+通过它建立的求解方法有什么特点? 里兹方法收敛性的定义是什么?
+收敛的条件是什么?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%87%8C%E5%85%B9%E6%96%B9%E6%B3%95%E7%9A%84%E4%BC%98%E7%BC%BA%E7%82%B9%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">10.</span> <span class="nav-text">里兹方法的优缺点是什么?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%99%9A%E5%8A%9F%E5%8E%9F%E7%90%86%E6%9C%89%E5%93%AA%E4%B8%A4%E7%A7%8D%E4%B8%8D%E5%90%8C%E5%BD%A2%E5%BC%8F-%E5%90%84%E5%92%8C%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E7%9A%84%E4%BB%80%E4%B9%88%E6%96%B9%E7%A8%8B%E7%AD%89%E6%95%88"><span class="nav-number">11.</span> <span class="nav-text">虚功原理有哪两种不同形式?
+各和弹性力学的什么方程等效?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AF%E6%9C%80%E5%B0%8F%E4%BD%8D%E8%83%BD%E5%8E%9F%E7%90%86-%E5%AE%83%E4%BB%AC%E6%98%AF%E5%A6%82%E4%BD%95%E5%AF%BC%E5%87%BA%E7%9A%84-%E5%9C%BA%E5%87%BD%E6%95%B0%E6%98%AF%E4%BB%80%E4%B9%88-%E5%AE%83%E4%BA%8B%E5%85%88%E5%BA%94%E6%BB%A1%E8%B6%B3%E4%BB%80%E4%B9%88%E6%9D%A1%E4%BB%B6-%E5%AF%B9%E5%9C%BA%E5%87%BD%E6%95%B0%E7%9A%84%E8%AF%95%E6%8E%A2%E5%87%BD%E6%95%B0%E6%9C%89%E4%BB%80%E4%B9%88%E8%A6%81%E6%B1%82"><span class="nav-number">12.</span> <span class="nav-text">什么是最小位能原理?
+它们是如何导出的? 场函数是什么? 它事先应满足什么条件?
+对场函数的试探函数有什么要求?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E5%88%A9%E7%94%A8%E6%9C%80%E5%B0%8F%E4%BD%8D%E8%83%BD%E5%8E%9F%E7%90%86%E5%BB%BA%E7%AB%8B%E6%95%B0%E5%80%BC%E8%A7%A3%E7%9A%84%E6%B1%82%E8%A7%A3%E6%96%B9%E7%A8%8B-%E6%96%B9%E7%A8%8B%E6%9C%89%E4%BD%95%E7%89%B9%E7%82%B9-%E8%A7%A3%E7%9A%84%E6%94%B6%E6%95%9B%E6%80%A7%E5%92%8C%E6%9E%81%E5%80%BC%E6%80%A7%E7%9A%84%E6%9D%A1%E4%BB%B6%E6%98%AF%E4%BB%80%E4%B9%88"><span class="nav-number">13.</span> <span class="nav-text">如何利用最小位能原理建立数值解的求解方程?
+方程有何特点? 解的收敛性和极值性的条件是什么?</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E6%9C%80%E5%B0%8F%E4%BD%8D%E8%83%BD%E5%8E%9F%E7%90%86%E7%9A%84%E8%BF%91%E4%BC%BC%E8%A7%A3%E7%9A%84%E5%BA%94%E5%8F%98%E8%83%BD%E5%8F%96%E4%B8%8B%E7%95%8C-%E5%8D%B3%E8%A7%A3%E6%80%BB%E4%BD%93%E5%81%8F%E4%BA%8E%E5%88%9A%E7%A1%AC"><span class="nav-number">14.</span> <span class="nav-text">为什么最小位能原理的近似解的应变能取下界,
+即解总体偏于&quot;刚硬&quot;</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="秋天"
+      src="/images/me.jpg">
+  <p class="site-author-name" itemprop="name">秋天</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">秋天</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+      <span class="post-meta-item-text">站点总字数：</span>
+    <span title="站点总字数">30k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+      <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
+    <span title="站点阅读时长">27 分钟</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+  <script>
+    (function(){
+      var canonicalURL, curProtocol;
+      //Get the <link> tag
+      var x=document.getElementsByTagName("link");
+		//Find the last canonical URL
+		if(x.length > 0){
+			for (i=0;i<x.length;i++){
+				if(x[i].rel.toLowerCase() == 'canonical' && x[i].href){
+					canonicalURL=x[i].href;
+				}
+			}
+		}
+    //Get protocol
+	    if (!canonicalURL){
+	    	curProtocol = window.location.protocol.split(':')[0];
+	    }
+	    else{
+	    	curProtocol = canonicalURL.split(':')[0];
+	    }
+      //Get current URL if the canonical URL does not exist
+	    if (!canonicalURL) canonicalURL = window.location.href;
+	    //Assign script content. Replace current URL with the canonical URL
+      !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=canonicalURL,t=document.referrer;if(!e.test(r)){var n=(String(curProtocol).toLowerCase() === 'https')?"https://sp0.baidu.com/9_Q4simg2RQJ8t7jm9iCKT-xh_/s.gif":"//api.share.baidu.com/s.gif";t?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var i=new Image;i.src=n}}(window);})();
+  </script>
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : true,
+      appId      : 'j9EHsU72rPPTGWXVHOTKJsay-gzGzoHsz',
+      appKey     : 'DCclSuENuRWhJ8WXApGNfSD2',
+      placeholder: "Thanks for your comment~",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+</body>
+</html>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/crash_cheat.js"></script>
