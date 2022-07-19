@@ -202,6 +202,166 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://qiuxiaohuo.github.io/2022/07/19/%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/me.jpg">
+      <meta itemprop="name" content="秋天">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="秋天的博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2022/07/19/%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-2/" class="post-title-link" itemprop="url">有限元方法基本概念(2)</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2022-07-19 09:58:40 / 修改时间：10:02:02" itemprop="dateCreated datePublished" datetime="2022-07-19T09:58:40+08:00">2022-07-19</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/FEM/" itemprop="url" rel="index"><span itemprop="name">FEM</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/07/19/%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-2/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/07/19/%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-2/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>3.5k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>3 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h4 id="什么是广义坐标有限元-什么是广义坐标-什么是位移模式-两者之间有什么关系">什么是广义坐标有限元?
+什么是广义坐标? 什么是位移模式? 两者之间有什么关系?</h4>
+<p>广义坐标有限元首先给出单元位移场的函数式, 位移场是关于<span class="math inline">\(x\)</span>, <span class="math inline">\(y\)</span>坐标的函数.
+位移模式是插值函数序列当中的函数, 是完全确定的;
+广义坐标是位移模式的待定系数, 是与结点位移和单元形状相关的参数.
+位移模式给出插值函数性质(线性, 二次等等),
+广义坐标由某一具体单元的几何性质和结点上的位移所确定,
+两者组合在一起得到单元上的位移函数.</p>
+<h4 id="选择位移模式的原则是什么-以8结点四边形单元为例-如何选择体现所述原则的位移模式">选择位移模式的原则是什么?
+以8结点四边形单元为例, 如何选择体现所述原则的位移模式?</h4>
+<p>选取位移模式的原则:</p>
+<ul>
+<li>广义坐标的个数应该与结点自由度数相等</li>
+<li>位移模式选取的多项式中要包含常数项和一次多项式,
+从而描述刚体位移和常应变</li>
+<li>多项式的选取应该从低阶到高阶, 尽量选取完全多项式以提高单元的精度;
+同时选取的多项式应具有对称性</li>
+</ul>
+<p>例如8结点四边形单元, 选取广义坐标的个数应该为16个. 其位移模式为:
+<span class="math display">\[
+1, ~ x, ~ y, ~ x^2, ~ y^2, ~ xy, ~ x^2y, ~ xy^2
+\]</span> 位移模式包含常数项和一次多项式,
+同时多项式的选取是按照从低阶到高阶的规律选取的.
+8结点单元包含一次和二次的完全多项式, 三次多项式只选择了对称的<span class="math inline">\(x^2y, ~ xy^2\)</span>两项.</p>
+<h4 id="什么是位移插值函数-它有什么性质-如何建立广义坐标有限元的位移插值函数-建立过程中可能遇到什么困难">什么是位移插值函数?
+它有什么性质? 如何建立广义坐标有限元的位移插值函数?
+建立过程中可能遇到什么困难?</h4>
+<p>位移插值函数, 又称为形函数, 它是关于坐标<span class="math inline">\(x,~y\)</span>的(多项式)函数,
+其系数与单元结点处的坐标相关. 通过位移插值函数和结点处的位移,
+可以近似得到单元内部任一点处的位移. 单元内部的位移场可表示为 <span class="math display">\[
+\boldsymbol{u}(x, y) =
+    \begin{pmatrix}
+        u(x, y) \\ v(x, y)
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        N_i(x, y) &amp; 0 &amp; N_j(x, y) &amp; 0 &amp; N_k(x, y) &amp;
+0 \\
+         0 &amp; N_i(x, y) &amp; 0 &amp; N_j(x, y) &amp; 0 &amp; N_k(x,
+y)
+    \end{pmatrix}
+    \begin{pmatrix}
+        u_i \\ v_i \\ u_j \\ v_j \\ u_k \\ v_k
+    \end{pmatrix}
+\]</span> 位移插值函数具有如下性质:</p>
+<ul>
+<li>在结点处插值函数的值满足 Kronecker delta 性质,
+将结点坐标代入形函数当中即可得证<br>
+</li>
+<li>各节点上的插值函数之和恒等于1.
+这是保证插值结果可以反映单元的刚体位移<br>
+</li>
+<li>不同单元相邻边界处位移是<strong>协调的</strong></li>
+</ul>
+<p>关于最后一条性质, 在此给出四边形四结点及八结点单元形函数的图像.
+从图像可以看出, 结点处的形函数在非相邻边界处取值为0. 因此,
+某一边界上形函数插值结果只与这条边上的结点形函数相关,
+因为这些结点是公共的, 所以单元相邻边界的位移是协调的.</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/07/19/%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://qiuxiaohuo.github.io/2022/07/18/%E6%9C%89%E9%99%90%E5%8D%95%E5%85%83%E6%B3%95%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1350,154 +1510,6 @@ softer, semiflexible material.</p>
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://qiuxiaohuo.github.io/2022/06/17/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/me.jpg">
-      <meta itemprop="name" content="秋天">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="秋天的博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2022/06/17/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/" class="post-title-link" itemprop="url">常微分方程数值解</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2022-06-17 21:16:58" itemprop="dateCreated datePublished" datetime="2022-06-17T21:16:58+08:00">2022-06-17</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-18 15:05:55" itemprop="dateModified" datetime="2022-06-18T15:05:55+08:00">2022-06-18</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-                </span>
-            </span>
-
-          
-  
-  <span class="post-meta-item">
-    
-      <span class="post-meta-item-icon">
-        <i class="far fa-comment"></i>
-      </span>
-      <span class="post-meta-item-text">Valine：</span>
-    
-    <a title="valine" href="/2022/06/17/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/06/17/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/" itemprop="commentCount"></span>
-    </a>
-  </span>
-  
-  <br>
-            <span class="post-meta-item" title="本文字数">
-              <span class="post-meta-item-icon">
-                <i class="far fa-file-word"></i>
-              </span>
-                <span class="post-meta-item-text">本文字数：</span>
-              <span>294</span>
-            </span>
-            <span class="post-meta-item" title="阅读时长">
-              <span class="post-meta-item-icon">
-                <i class="far fa-clock"></i>
-              </span>
-                <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <figure>
-<img src="常微分方程数值解_页面_01.png" alt="常微分方程数值解_页面_01">
-<figcaption aria-hidden="true">常微分方程数值解_页面_01</figcaption>
-</figure>
-<figure>
-<img src="常微分方程数值解_页面_02.png" alt="常微分方程数值解_页面_02">
-<figcaption aria-hidden="true">常微分方程数值解_页面_02</figcaption>
-</figure>
-<figure>
-<img src="常微分方程数值解_页面_03.png" alt="常微分方程数值解_页面_03">
-<figcaption aria-hidden="true">常微分方程数值解_页面_03</figcaption>
-</figure>
-<figure>
-<img src="常微分方程数值解_页面_04.png" alt="常微分方程数值解_页面_04">
-<figcaption aria-hidden="true">常微分方程数值解_页面_04</figcaption>
-</figure>
-<figure>
-<img src="常微分方程数值解_页面_05.png" alt="常微分方程数值解_页面_05">
-<figcaption aria-hidden="true">常微分方程数值解_页面_05</figcaption>
-</figure>
-<figure>
-<img src="常微分方程数值解_页面_06.png" alt="常微分方程数值解_页面_06">
-<figcaption aria-hidden="true">常微分方程数值解_页面_06</figcaption>
-</figure>
-<figure>
-<img src="常微分方程数值解_页面_07.png" alt="常微分方程数值解_页面_07">
-<figcaption aria-hidden="true">常微分方程数值解_页面_07</figcaption>
-</figure>
-<figure>
-<img src="常微分方程数值解_页面_08.png" alt="常微分方程数值解_页面_08">
-<figcaption aria-hidden="true">常微分方程数值解_页面_08</figcaption>
-</figure>
-<figure>
-<img src="常微分方程数值解_页面_09.png" alt="常微分方程数值解_页面_09">
-<figcaption aria-hidden="true">常微分方程数值解_页面_09</figcaption>
-</figure>
-<figure>
-<img src="常微分方程数值解_页面_10.png" alt="常微分方程数值解_页面_10">
-<figcaption aria-hidden="true">常微分方程数值解_页面_10</figcaption>
-</figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/06/17/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E6%95%B0%E5%80%BC%E8%A7%A3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1569,7 +1581,7 @@ softer, semiflexible material.</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1582,7 +1594,7 @@ softer, semiflexible material.</p>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">22</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -1619,13 +1631,13 @@ softer, semiflexible material.</p>
       <i class="fa fa-chart-area"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">30k</span>
+    <span title="站点总字数">33k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">27 分钟</span>
+    <span title="站点阅读时长">30 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
   </div>
