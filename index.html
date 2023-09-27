@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-09-27 15:55:54 / 修改时间：15:57:55" itemprop="dateCreated datePublished" datetime="2023-09-27T15:55:54+08:00">2023-09-27</time>
+              <time title="创建时间：2023-09-27 15:55:54 / 修改时间：18:20:24" itemprop="dateCreated datePublished" datetime="2023-09-27T15:55:54+08:00">2023-09-27</time>
             </span>
 
           
@@ -233,12 +233,9 @@ class="math inline">\(f(x)\)</span> 与 <span
 class="math inline">\(g(x)\)</span> 在 <span
 class="math inline">\(x=0\)</span> 处并不相等, 如果用数学味比较浓的表达,
 那就是</p>
-<blockquote>
-<p>函数 <span class="math inline">\(f(x)\)</span> 与 <span
-class="math inline">\(g(x)\)</span> 在区间 <span
-class="math inline">\([-1,1]\)</span> 上并不是<strong>逐点</strong>
-(pointwise) 相等的.</p>
-</blockquote>
+<div class="note success no-icon">
+            <p>函数 <span class="math inline">\(f(x)\)</span> 与 <spanclass="math inline">\(g(x)\)</span> 在区间 <spanclass="math inline">\([-1,1]\)</span> 上并不是<strong>逐点</strong>(pointwise) 相等的.</p>
+          </div>
 <p>为了调和这一概念上的矛盾, 我们有 2 个思路: 1) 修改范数的定义; 2)
 修改函数相等的定义.</p>
 <p>对于第 1 个思路, 我们可以验证, 如果函数的范数定义为 <span
@@ -260,26 +257,16 @@ class="math inline">\(v+v^0\)</span>, <span class="math inline">\(v^0
 \in V^0\)</span> 共同组成同一个等价类</strong>.</p>
 <p>这样, 我们重新定义相等 "<span class="math inline">\(=\)</span>"
 的概念为</p>
-<blockquote>
-<p><span class="math inline">\(f=g\)</span> <span
-class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(f\)</span> 与 <span
-class="math inline">\(g\)</span> 属于同一个等价类, 即 <span
-class="math inline">\(f = g+v^0\)</span>, <span
-class="math inline">\(v^0 \in V^0\)</span>.</p>
-</blockquote>
+<div class="note success no-icon">
+            <p><span class="math inline">\(f=g\)</span> <spanclass="math inline">\(\Leftrightarrow\)</span> <spanclass="math inline">\(f\)</span> 与 <spanclass="math inline">\(g\)</span> 属于同一个等价类, 即 <spanclass="math inline">\(f = g+v^0\)</span>, <spanclass="math inline">\(v^0 \in V^0\)</span>.</p>
+          </div>
 <p>在上述相等的意义下, <span class="math inline">\(f\)</span> 与 <span
 class="math inline">\(g\)</span> 并不一定是逐点相等的,
 但只相差一个范数为 0 的函数 <span class="math inline">\(v^0\)</span>.
 因此,</p>
-<blockquote>
-<p><span class="math inline">\(f=g\)</span> <span
-class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(f = g+v^0\)</span>, <span
-class="math inline">\(v^0 \in V^0\)</span> <span
-class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(\| f-g \| = 0\)</span>.</p>
-</blockquote>
+<div class="note success no-icon">
+            <p><span class="math inline">\(f=g\)</span> <spanclass="math inline">\(\Leftrightarrow\)</span> <spanclass="math inline">\(f = g+v^0\)</span>, <spanclass="math inline">\(v^0 \in V^0\)</span> <spanclass="math inline">\(\Leftrightarrow\)</span> <spanclass="math inline">\(\| f-g \| = 0\)</span>.</p>
+          </div>
 <p>这样我们就保证了范数定义中条件 1 的等价性.</p>
 
       
@@ -325,7 +312,7 @@ class="math inline">\(\| f-g \| = 0\)</span>.</p>
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-09-27 15:54:32 / 修改时间：16:57:19" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:32+08:00">2023-09-27</time>
+              <time title="创建时间：2023-09-27 15:54:32 / 修改时间：18:16:21" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:32+08:00">2023-09-27</time>
             </span>
 
           
@@ -365,42 +352,30 @@ Bug
 </ul>
 <p>然后是使用 <code>npm</code> 安装 Hexo：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>:bulb: <strong>小贴士</strong></p>
-<p>NPM 是随同 NodeJS
-一起安装的包管理工具。其它参数就不管了，按教程走吧。</p>
-</blockquote>
+<div class="note info">
+            <p>NPM 是随同 NodeJS一起安装的包管理工具。其它参数就不管了，按教程走吧。</p>
+          </div>
 <h2 id="初始化-hexo">初始化 Hexo</h2>
 <p>我们现在需要在本机的某一文件夹下初始化 Hexo，例如想将博客文件放在
 <code>\Blog</code> 目录下，在该文件夹中打开命令行，运行如下命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>:bulb: <strong>小贴士</strong></p>
 <p>注意哈，这里的初始化并不是 “软件” 的初始化，运行上述命令之后，在
-<code>\Blog</code> 文件夹下会生成如下子目录结构：</p>
+<code>\Blog</code> 文件夹下会生成如下子目录结构</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
-<p>删除该文件夹并不会卸载 Hexo，而是把你的博客文件全部删掉了！</p>
-</blockquote>
-<blockquote>
-<p>:warning: <strong>警告</strong></p>
+<div class="note danger">
+            <p>删除该文件夹并不会卸载 Hexo，而是把你的博客文件全部删掉了！</p>
+          </div>
 <p>第一次使用 Hexo 命令时，可能会报如下错误：</p>
-<blockquote>
-<p>emmm，不好意思，当时的警告信息没有截图</p>
-</blockquote>
+<div class="note danger">
+            <p>emmm，不好意思，当时的警告信息没有截图</p>
+          </div>
 <p>错误是关于 PowerShell 不能信任 Hexo 脚本，并在界面中指向<a
 target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">网址</a>。不用看它冗长的说明，直接把执行策略改成
 <code>Bypass</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy -ExecutionPolicy Bypass</span><br></pre></td></tr></table></figure>
-<p>关于 <code>Bypass</code> 的说明：</p>
-<blockquote>
-<ul>
-<li>不阻止任何操作，并且没有任何警告或提示。</li>
-<li>此执行策略适用于 PowerShell 脚本内置于较大应用程序的配置，或针对
-PowerShell 是具有自身安全模型的程序基础的配置。</li>
-</ul>
-</blockquote>
-<p>总之就是啥都能运行。</p>
-</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy -ExecutionPolicy Bypass</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <h4 id="关于-bypass-的说明">关于 Bypass 的说明</h4><ul><li><p>不阻止任何操作，并且没有任何警告或提示。</p></li><li><p>此执行策略适用于 PowerShell 脚本内置于较大应用程序的配置，或针对PowerShell 是具有自身安全模型的程序基础的配置。</p></li></ul><p>总之就是啥都能运行。</p>
+          </div>
 <p>其中一些目录结构说明一下：</p>
 <ul>
 <li><code>_config.yml</code>
@@ -428,10 +403,9 @@ target="_blank" rel="noopener" href="https://qiuxiaohuo.github.io/2023/09/20/myt
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
 <p>或者简写为</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>:bulb: <strong>小贴士</strong></p>
-<p>其实不用每次都清理，但有时不清理会报错（比如更换了主题）。</p>
-</blockquote>
+<div class="note info">
+            <p>其实不用每次都清理，但有时不清理会报错（比如更换了主题）。</p>
+          </div>
 <p>然后生成静态文档</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
 <p>或简写为</p>

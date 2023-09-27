@@ -28,7 +28,7 @@
 <meta property="og:description" content="首先我们先理清一下这三者的关系：  Hexo 本身是自动生成博客网页的框架代码，它不需要我们自己编写网页（例如 .css，.js ），而是修改 _config.yml （以下我们称之为站点配置文件）文件提供的参量，自动生成静态网页，可以在本机浏览； NexT 是 Hexo 的主题插件（？我不知道这个是不是插件），本身依赖于 Hexo，提供额外的主题。它同样也提供 _config.">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-27T07:54:32.000Z">
-<meta property="article:modified_time" content="2023-09-27T08:57:19.530Z">
+<meta property="article:modified_time" content="2023-09-27T10:16:21.808Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta name="twitter:card" content="summary">
 
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-09-27 15:54:32 / 修改时间：16:57:19" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:32+08:00">2023-09-27</time>
+              <time title="创建时间：2023-09-27 15:54:32 / 修改时间：18:16:21" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:32+08:00">2023-09-27</time>
             </span>
 
           
@@ -214,42 +214,30 @@ Bug
 </ul>
 <p>然后是使用 <code>npm</code> 安装 Hexo：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>:bulb: <strong>小贴士</strong></p>
-<p>NPM 是随同 NodeJS
-一起安装的包管理工具。其它参数就不管了，按教程走吧。</p>
-</blockquote>
+<div class="note info">
+            <p>NPM 是随同 NodeJS一起安装的包管理工具。其它参数就不管了，按教程走吧。</p>
+          </div>
 <h2 id="初始化-hexo">初始化 Hexo</h2>
 <p>我们现在需要在本机的某一文件夹下初始化 Hexo，例如想将博客文件放在
 <code>\Blog</code> 目录下，在该文件夹中打开命令行，运行如下命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>:bulb: <strong>小贴士</strong></p>
 <p>注意哈，这里的初始化并不是 “软件” 的初始化，运行上述命令之后，在
-<code>\Blog</code> 文件夹下会生成如下子目录结构：</p>
+<code>\Blog</code> 文件夹下会生成如下子目录结构</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
-<p>删除该文件夹并不会卸载 Hexo，而是把你的博客文件全部删掉了！</p>
-</blockquote>
-<blockquote>
-<p>:warning: <strong>警告</strong></p>
+<div class="note danger">
+            <p>删除该文件夹并不会卸载 Hexo，而是把你的博客文件全部删掉了！</p>
+          </div>
 <p>第一次使用 Hexo 命令时，可能会报如下错误：</p>
-<blockquote>
-<p>emmm，不好意思，当时的警告信息没有截图</p>
-</blockquote>
+<div class="note danger">
+            <p>emmm，不好意思，当时的警告信息没有截图</p>
+          </div>
 <p>错误是关于 PowerShell 不能信任 Hexo 脚本，并在界面中指向<a
 target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">网址</a>。不用看它冗长的说明，直接把执行策略改成
 <code>Bypass</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy -ExecutionPolicy Bypass</span><br></pre></td></tr></table></figure>
-<p>关于 <code>Bypass</code> 的说明：</p>
-<blockquote>
-<ul>
-<li>不阻止任何操作，并且没有任何警告或提示。</li>
-<li>此执行策略适用于 PowerShell 脚本内置于较大应用程序的配置，或针对
-PowerShell 是具有自身安全模型的程序基础的配置。</li>
-</ul>
-</blockquote>
-<p>总之就是啥都能运行。</p>
-</blockquote>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy -ExecutionPolicy Bypass</span><br></pre></td></tr></table></figure>
+<div class="note info">
+            <h4 id="关于-bypass-的说明">关于 Bypass 的说明</h4><ul><li><p>不阻止任何操作，并且没有任何警告或提示。</p></li><li><p>此执行策略适用于 PowerShell 脚本内置于较大应用程序的配置，或针对PowerShell 是具有自身安全模型的程序基础的配置。</p></li></ul><p>总之就是啥都能运行。</p>
+          </div>
 <p>其中一些目录结构说明一下：</p>
 <ul>
 <li><code>_config.yml</code>
@@ -277,10 +265,9 @@ target="_blank" rel="noopener" href="https://qiuxiaohuo.github.io/2023/09/20/myt
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
 <p>或者简写为</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>:bulb: <strong>小贴士</strong></p>
-<p>其实不用每次都清理，但有时不清理会报错（比如更换了主题）。</p>
-</blockquote>
+<div class="note info">
+            <p>其实不用每次都清理，但有时不清理会报错（比如更换了主题）。</p>
+          </div>
 <p>然后生成静态文档</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
 <p>或简写为</p>
@@ -416,7 +403,7 @@ id="step2.-將專案名稱命名為-username.github.iousername-記得改成自�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-hexo"><span class="nav-number">1.</span> <span class="nav-text">安装 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96-hexo"><span class="nav-number">2.</span> <span class="nav-text">初始化 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-%E4%B8%8A%E4%BC%A0%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%8D%9A%E5%AE%A2%E6%96%87%E6%A1%A3"><span class="nav-number">3.</span> <span class="nav-text">Hexo 上传第一份博客文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%BD%91%E7%AB%99%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">生成网站文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0-github"><span class="nav-number">5.</span> <span class="nav-text">部署到 GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B-github-%E5%B0%88%E6%A1%88"><span class="nav-number">5.1.</span> <span class="nav-text">建立 GitHub 專案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#step1.-%E9%BB%9E%E9%81%B8-new-%E6%96%B0%E5%A2%9E%E4%B8%80%E5%80%8B-repository%E5%B0%88%E6%A1%88"><span class="nav-number">5.1.1.</span> <span class="nav-text">Step1. 點選 New
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-hexo"><span class="nav-number">1.</span> <span class="nav-text">安装 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96-hexo"><span class="nav-number">2.</span> <span class="nav-text">初始化 Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-bypass-%E7%9A%84%E8%AF%B4%E6%98%8E"><span class="nav-number">2.0.1.</span> <span class="nav-text">关于 Bypass 的说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-%E4%B8%8A%E4%BC%A0%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%8D%9A%E5%AE%A2%E6%96%87%E6%A1%A3"><span class="nav-number">3.</span> <span class="nav-text">Hexo 上传第一份博客文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%BD%91%E7%AB%99%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">生成网站文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0-github"><span class="nav-number">5.</span> <span class="nav-text">部署到 GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B-github-%E5%B0%88%E6%A1%88"><span class="nav-number">5.1.</span> <span class="nav-text">建立 GitHub 專案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#step1.-%E9%BB%9E%E9%81%B8-new-%E6%96%B0%E5%A2%9E%E4%B8%80%E5%80%8B-repository%E5%B0%88%E6%A1%88"><span class="nav-number">5.1.1.</span> <span class="nav-text">Step1. 點選 New
 新增一個 Repository（專案）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step2.-%E5%B0%87%E5%B0%88%E6%A1%88%E5%90%8D%E7%A8%B1%E5%91%BD%E5%90%8D%E7%82%BA-username.github.iousername-%E8%A8%98%E5%BE%97%E6%94%B9%E6%88%90%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B8%B3%E8%99%9F%E5%90%8D%E7%A8%B1"><span class="nav-number">5.1.2.</span> <span class="nav-text">Step2.
 將專案名稱命名為 username.github.io，username
 記得改成自己的帳號名稱</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%87%E6%AA%94%E6%A1%88%E7%99%BC%E5%B8%83%E5%88%B0-github"><span class="nav-number">5.2.</span> <span class="nav-text">將檔案發布到 GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#step1.-%E5%AE%89%E8%A3%9D-git-%E7%9B%B8%E9%97%9C%E5%A5%97%E4%BB%B6"><span class="nav-number">5.2.1.</span> <span class="nav-text">Step1. 安裝 Git 相關套件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step2.-%E4%BF%AE%E6%94%B9%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84-deployment-%E8%A8%AD%E5%AE%9A"><span class="nav-number">5.2.2.</span> <span class="nav-text">Step2.

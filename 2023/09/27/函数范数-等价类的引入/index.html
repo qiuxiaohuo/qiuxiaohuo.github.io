@@ -28,7 +28,7 @@
 <meta property="og:description" content="定义某一空间 \(V\) 上的范数, 就是确定该空间上某一个非负实值映射 \(\| \cdot \|\), 且该映射满足如下条件:  对任意的 \(v \in V\), \(\| v \| \geq 0\) 成立, 当且仅当 \(v &#x3D; 0\) 时 \(\| v \| &#x3D; 0\); 对任意的 \(c \in \mathbb{R}\) 和 \(v \in V\), \(\|cv\| &#x3D;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-27T07:55:54.000Z">
-<meta property="article:modified_time" content="2023-09-27T07:57:55.355Z">
+<meta property="article:modified_time" content="2023-09-27T10:20:24.840Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta name="twitter:card" content="summary">
 
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-09-27 15:55:54 / 修改时间：15:57:55" itemprop="dateCreated datePublished" datetime="2023-09-27T15:55:54+08:00">2023-09-27</time>
+              <time title="创建时间：2023-09-27 15:55:54 / 修改时间：18:20:24" itemprop="dateCreated datePublished" datetime="2023-09-27T15:55:54+08:00">2023-09-27</time>
             </span>
 
           
@@ -237,12 +237,9 @@ class="math inline">\(f(x)\)</span> 与 <span
 class="math inline">\(g(x)\)</span> 在 <span
 class="math inline">\(x=0\)</span> 处并不相等, 如果用数学味比较浓的表达,
 那就是</p>
-<blockquote>
-<p>函数 <span class="math inline">\(f(x)\)</span> 与 <span
-class="math inline">\(g(x)\)</span> 在区间 <span
-class="math inline">\([-1,1]\)</span> 上并不是<strong>逐点</strong>
-(pointwise) 相等的.</p>
-</blockquote>
+<div class="note success no-icon">
+            <p>函数 <span class="math inline">\(f(x)\)</span> 与 <spanclass="math inline">\(g(x)\)</span> 在区间 <spanclass="math inline">\([-1,1]\)</span> 上并不是<strong>逐点</strong>(pointwise) 相等的.</p>
+          </div>
 <p>为了调和这一概念上的矛盾, 我们有 2 个思路: 1) 修改范数的定义; 2)
 修改函数相等的定义.</p>
 <p>对于第 1 个思路, 我们可以验证, 如果函数的范数定义为 <span
@@ -264,26 +261,16 @@ class="math inline">\(v+v^0\)</span>, <span class="math inline">\(v^0
 \in V^0\)</span> 共同组成同一个等价类</strong>.</p>
 <p>这样, 我们重新定义相等 "<span class="math inline">\(=\)</span>"
 的概念为</p>
-<blockquote>
-<p><span class="math inline">\(f=g\)</span> <span
-class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(f\)</span> 与 <span
-class="math inline">\(g\)</span> 属于同一个等价类, 即 <span
-class="math inline">\(f = g+v^0\)</span>, <span
-class="math inline">\(v^0 \in V^0\)</span>.</p>
-</blockquote>
+<div class="note success no-icon">
+            <p><span class="math inline">\(f=g\)</span> <spanclass="math inline">\(\Leftrightarrow\)</span> <spanclass="math inline">\(f\)</span> 与 <spanclass="math inline">\(g\)</span> 属于同一个等价类, 即 <spanclass="math inline">\(f = g+v^0\)</span>, <spanclass="math inline">\(v^0 \in V^0\)</span>.</p>
+          </div>
 <p>在上述相等的意义下, <span class="math inline">\(f\)</span> 与 <span
 class="math inline">\(g\)</span> 并不一定是逐点相等的,
 但只相差一个范数为 0 的函数 <span class="math inline">\(v^0\)</span>.
 因此,</p>
-<blockquote>
-<p><span class="math inline">\(f=g\)</span> <span
-class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(f = g+v^0\)</span>, <span
-class="math inline">\(v^0 \in V^0\)</span> <span
-class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(\| f-g \| = 0\)</span>.</p>
-</blockquote>
+<div class="note success no-icon">
+            <p><span class="math inline">\(f=g\)</span> <spanclass="math inline">\(\Leftrightarrow\)</span> <spanclass="math inline">\(f = g+v^0\)</span>, <spanclass="math inline">\(v^0 \in V^0\)</span> <spanclass="math inline">\(\Leftrightarrow\)</span> <spanclass="math inline">\(\| f-g \| = 0\)</span>.</p>
+          </div>
 <p>这样我们就保证了范数定义中条件 1 的等价性.</p>
 
     </div>
