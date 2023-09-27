@@ -115,7 +115,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">2</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a>
 
   </li>
   </ul>
@@ -145,7 +145,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/20/mytest/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/27/%E5%87%BD%E6%95%B0%E8%8C%83%E6%95%B0-%E7%AD%89%E4%BB%B7%E7%B1%BB%E7%9A%84%E5%BC%95%E5%85%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -159,7 +159,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/09/20/mytest/" class="post-title-link" itemprop="url">测试我的第一篇博客文档</a>
+            <a href="/2023/09/27/%E5%87%BD%E6%95%B0%E8%8C%83%E6%95%B0-%E7%AD%89%E4%BB%B7%E7%B1%BB%E7%9A%84%E5%BC%95%E5%85%A5/" class="post-title-link" itemprop="url">函数范数: 等价类的引入</a>
         </h2>
 
         <div class="post-meta">
@@ -170,7 +170,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-09-20 22:58:04 / 修改时间：23:44:40" itemprop="dateCreated datePublished" datetime="2023-09-20T22:58:04+08:00">2023-09-20</time>
+              <time title="创建时间：2023-09-27 15:55:54 / 修改时间：15:57:55" itemprop="dateCreated datePublished" datetime="2023-09-27T15:55:54+08:00">2023-09-27</time>
             </span>
 
           
@@ -184,26 +184,103 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>你好！</p>
-<p>这是我的第一篇博客文档！</p>
-<p>Have a nice day!</p>
-<h2 id="这是二级标题">这是二级标题</h2>
-<p>这是一个行内公式：<span class="math inline">\(E = mc^2\)</span>.</p>
-<p>下面是一个行间公式：</p>
-<p><span class="math display">\[
+          <p>定义某一空间 <span class="math inline">\(V\)</span> 上的范数,
+就是确定该空间上某一个非负实值映射 <span class="math inline">\(\| \cdot
+\|\)</span>, 且该映射满足如下条件:</p>
+<ol type="1">
+<li>对任意的 <span class="math inline">\(v \in V\)</span>, <span
+class="math inline">\(\| v \| \geq 0\)</span> 成立, 当且仅当 <span
+class="math inline">\(v = 0\)</span> 时 <span class="math inline">\(\| v
+\| = 0\)</span>;</li>
+<li>对任意的 <span class="math inline">\(c \in \mathbb{R}\)</span> 和
+<span class="math inline">\(v \in V\)</span>, <span
+class="math inline">\(\|cv\| = |c| \|v\|\)</span>;</li>
+<li>对任意的 <span class="math inline">\(u, v \in V\)</span>, 不等式
+<span class="math inline">\(\|u+v\| \leq \|u\| + \|v\|\)</span>
+成立.</li>
+</ol>
+<p>我现在想处理的是, 当空间的概念从有限维的向量空间,
+拓展到无穷维的函数空间上时, 条件 1 中 <span class="math inline">\(v =
+0\)</span> 的定义也需要加以推广, 以适应这个条件中 <span
+class="math inline">\(v=0\)</span> 与 <span class="math inline">\(\|v\|
+= 0\)</span> 的等价性. 我们以函数的 <span
+class="math inline">\(1-\)</span>范数 <span class="math display">\[
 \begin{equation}
-  E=mc^2
-  \label{eq1}
+  \|\cdot\| = \int|\cdot| \mathrm{d} \Omega
 \end{equation}
-\]</span></p>
-<p>下面是一段代码：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> <span class="built_in">i</span> = <span class="number">1</span>:<span class="number">10</span></span><br><span class="line">  fprintf(<span class="string">&quot;Hello World!\n&quot;</span>);</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<p>这是一段提示：</p>
+\]</span> 以及定义在 <span class="math inline">\(\Omega = [-1,
+1]\)</span> 上的两个函数 <span class="math inline">\(f(x)\)</span>,
+<span class="math inline">\(g(x)\)</span> <span class="math display">\[
+\begin{equation}
+  f(x) = \begin{cases}
+    1 \quad x \geq 0 \\
+    0 \quad x &lt; 0
+  \end{cases} \quad \quad
+  g(x) = \begin{cases}
+    1 \quad x &gt; 0 \\
+    0 \quad x \leq 0
+  \end{cases}
+\end{equation}
+\]</span> 为例. 函数 <span class="math inline">\(f-g\)</span> 的范数为
+<span class="math display">\[
+\begin{equation}
+  \|f-g\| = \int_{-1}^{1} |f-g| \mathrm{d}x = 0,
+\end{equation}
+\]</span> 根据范数成立的条件 1, 则应该有 <span
+class="math inline">\(f-g=0\)</span>, 或者等价的 <span
+class="math inline">\(f=g\)</span>. 可是, 函数 <span
+class="math inline">\(f(x)\)</span> 与 <span
+class="math inline">\(g(x)\)</span> 在 <span
+class="math inline">\(x=0\)</span> 处并不相等, 如果用数学味比较浓的表达,
+那就是</p>
 <blockquote>
-<p>:bulb: <strong>提示</strong></p>
-<p>All work and no play makes Jack a dull boy.</p>
-<p>— <em>Shinning</em></p>
+<p>函数 <span class="math inline">\(f(x)\)</span> 与 <span
+class="math inline">\(g(x)\)</span> 在区间 <span
+class="math inline">\([-1,1]\)</span> 上并不是<strong>逐点</strong>
+(pointwise) 相等的.</p>
 </blockquote>
+<p>为了调和这一概念上的矛盾, 我们有 2 个思路: 1) 修改范数的定义; 2)
+修改函数相等的定义.</p>
+<p>对于第 1 个思路, 我们可以验证, 如果函数的范数定义为 <span
+class="math display">\[
+\|\cdot\| = \max_{-1 \leq x \leq 1} |\cdot|,
+\]</span> 那么 <span class="math inline">\(\|f-g\|\)</span> 等价于 <span
+class="math inline">\(f\)</span>, <span class="math inline">\(g\)</span>
+逐点相等. 这实际是函数的 <span
+class="math inline">\(\infty-\)</span>范数.</p>
+<p>至于思路 2, 我们需要引入<strong>等价类</strong>的概念. 首先我们定义
+<span class="math inline">\(V\)</span> 的子空间 <span
+class="math inline">\(V^0\)</span> <span class="math display">\[
+\begin{equation}
+    V^0 = \{ v^0 \mid \| v^0 \|=0 \}.
+\end{equation}
+\]</span> 那么, 对任意 <span class="math inline">\(v \in V\)</span>,
+<strong><span class="math inline">\(v\)</span> 与所有其它的函数 <span
+class="math inline">\(v+v^0\)</span>, <span class="math inline">\(v^0
+\in V^0\)</span> 共同组成同一个等价类</strong>.</p>
+<p>这样, 我们重新定义相等 "<span class="math inline">\(=\)</span>"
+的概念为</p>
+<blockquote>
+<p><span class="math inline">\(f=g\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(f\)</span> 与 <span
+class="math inline">\(g\)</span> 属于同一个等价类, 即 <span
+class="math inline">\(f = g+v^0\)</span>, <span
+class="math inline">\(v^0 \in V^0\)</span>.</p>
+</blockquote>
+<p>在上述相等的意义下, <span class="math inline">\(f\)</span> 与 <span
+class="math inline">\(g\)</span> 并不一定是逐点相等的,
+但只相差一个范数为 0 的函数 <span class="math inline">\(v^0\)</span>.
+因此,</p>
+<blockquote>
+<p><span class="math inline">\(f=g\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(f = g+v^0\)</span>, <span
+class="math inline">\(v^0 \in V^0\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(\| f-g \| = 0\)</span>.</p>
+</blockquote>
+<p>这样我们就保证了范数定义中条件 1 的等价性.</p>
 
       
     </div>
@@ -223,7 +300,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/19/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/27/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -237,7 +314,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2023/09/19/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
+            <a href="/2023/09/27/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Hexo + NexT + Github：搭建博客</a>
         </h2>
 
         <div class="post-meta">
@@ -248,7 +325,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-09-19 08:26:29 / 修改时间：08:05:47" itemprop="dateCreated datePublished" datetime="2023-09-19T08:26:29+08:00">2023-09-19</time>
+              <time title="创建时间：2023-09-27 15:54:32 / 修改时间：16:57:19" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:32+08:00">2023-09-27</time>
             </span>
 
           
@@ -262,29 +339,226 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very
-first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for
-more info. If you get any problems when using Hexo, you can find the
-answer in <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or
-you can ask me on <a
-target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a
-target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+          <p>首先我们先理清一下这三者的关系：</p>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo</a>
+本身是自动生成博客网页的<strong>框架</strong>代码，它不需要我们自己编写网页（例如
+<code>.css</code>，<code>.js</code> ），而是修改
+<code>_config.yml</code>
+（以下我们称之为<mark>站点配置文件</mark>）文件提供的参量，自动生成静态网页，可以在本机浏览；</li>
+<li><a target="_blank" rel="noopener" href="https://theme-next.js.org/">NexT</a> 是 Hexo
+的主题插件（？我不知道这个是不是插件），本身依赖于
+Hexo，提供额外的主题。它同样也提供 <code>_config.yml</code>
+文件（以下我们称之为<mark>主题配置文件</mark>）供我们配置；</li>
+<li>使用 Github 将生成的静态网页推送到互联网当中。</li>
+</ul>
+<p>在这篇文档中，我不会去详细说明配置参数的具体含义（官方文档都有），而是提供一份简单明了的操作指南，以及配置过程中我遇到的
+Bug
+及解决方案。按照该文档的流程一步步走，就可以<strong>使用</strong>（而不是理解）Hexo
++ NexT + Github 写博客文档。</p>
+<h2 id="安装-hexo">安装 Hexo</h2>
+<p>Hexo 的官方配置文档在<a target="_blank" rel="noopener" href="https://hexo.io/docs/">这里</a>。</p>
+<p>首先是安装一些必备的工具：</p>
+<ul>
+<li>Node.js；</li>
+<li>Git。</li>
+</ul>
+<p>然后是使用 <code>npm</code> 安装 Hexo：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>:bulb: <strong>小贴士</strong></p>
+<p>NPM 是随同 NodeJS
+一起安装的包管理工具。其它参数就不管了，按教程走吧。</p>
+</blockquote>
+<h2 id="初始化-hexo">初始化 Hexo</h2>
+<p>我们现在需要在本机的某一文件夹下初始化 Hexo，例如想将博客文件放在
+<code>\Blog</code> 目录下，在该文件夹中打开命令行，运行如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>:bulb: <strong>小贴士</strong></p>
+<p>注意哈，这里的初始化并不是 “软件” 的初始化，运行上述命令之后，在
+<code>\Blog</code> 文件夹下会生成如下子目录结构：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
+<p>删除该文件夹并不会卸载 Hexo，而是把你的博客文件全部删掉了！</p>
+</blockquote>
+<blockquote>
+<p>:warning: <strong>警告</strong></p>
+<p>第一次使用 Hexo 命令时，可能会报如下错误：</p>
+<blockquote>
+<p>emmm，不好意思，当时的警告信息没有截图</p>
+</blockquote>
+<p>错误是关于 PowerShell 不能信任 Hexo 脚本，并在界面中指向<a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">网址</a>。不用看它冗长的说明，直接把执行策略改成
+<code>Bypass</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy -ExecutionPolicy Bypass</span><br></pre></td></tr></table></figure>
+<p>关于 <code>Bypass</code> 的说明：</p>
+<blockquote>
+<ul>
+<li>不阻止任何操作，并且没有任何警告或提示。</li>
+<li>此执行策略适用于 PowerShell 脚本内置于较大应用程序的配置，或针对
+PowerShell 是具有自身安全模型的程序基础的配置。</li>
+</ul>
+</blockquote>
+<p>总之就是啥都能运行。</p>
+</blockquote>
+<p>其中一些目录结构说明一下：</p>
+<ul>
+<li><code>_config.yml</code>
+：站点配置文件，我们博客的一些基本设置（比如博客的名称，作者名称，站点
+url 等）就是在这里配置的；</li>
+<li><code>\source</code> ：我们博客的文档存放在该文件夹当中。</li>
+</ul>
+<h2 id="hexo-上传第一份博客文档">Hexo 上传第一份博客文档</h2>
+<p>新建文档的命令是 <code>new</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>可选参数 <code>[layout]</code>：默认是
+<code>post</code>，官方文档比比了一大堆我也没明白这个命令搞什么用的，就默认不管了；</li>
+<li>文档题目 <code>&lt;title&gt;</code>：不需要加后缀，默认生成
+<code>&lt;title&gt;.md</code>
+文档。如果题目中没有空格啥的，也可以不用加双引号。</li>
+</ul>
+<p>例如新建文档：<a
+target="_blank" rel="noopener" href="https://qiuxiaohuo.github.io/2023/09/20/mytest/">测试我的第一篇博客文档</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new 测试我的第一篇博客文档</span><br></pre></td></tr></table></figure>
+<p>这样就可以在 <code>\source</code> 目录下找到对应的
+<code>测试我的第一篇博客文档.md</code> 文档了。</p>
+<h2 id="生成网站文件">生成网站文件</h2>
+<p>首先先清楚一下原来的站点文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
+<p>或者简写为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>:bulb: <strong>小贴士</strong></p>
+<p>其实不用每次都清理，但有时不清理会报错（比如更换了主题）。</p>
+</blockquote>
+<p>然后生成静态文档</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
+<p>或简写为</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
+<p>后面还可以加一点组合命令，比如 <code>-d</code>
+表示生成完静态站点之后直接推送到 Github 上去，它与如下命令是等价的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy -g</span><br></pre></td></tr></table></figure>
+<p>上个命令意思是在 <code>deploy</code> 之前先
+<code>generate</code>（md，这不是一样的么）。</p>
+<p>如果想在本机中查看网页生成的效果，可以运行</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<h2 id="部署到-github">部署到 GitHub</h2>
+<p><em>这部分偷个懒，直接抄的这篇<a
+target="_blank" rel="noopener" href="https://hackmd.io/@Heidi-Liu/note-hexo-github#Step2-%E5%88%9D%E5%A7%8B%E5%8C%96-Hexo">博客</a>。</em></p>
+<h3 id="建立-github-專案">建立 GitHub 專案</h3>
+<p>在架設網誌之前，還必須準備一個存放網站的空間，例如架設主機，或是選擇現有的平台，例如
+GitHub Pages 或 Heroku 等，本篇以 GitHub 作為範例。</p>
+<p>接著可依照下列步驟在 GitHub 新增專案：</p>
+<h4 id="step1.-點選-new-新增一個-repository專案">Step1. 點選 New
+新增一個 Repository（專案）</h4>
+<h4
+id="step2.-將專案名稱命名為-username.github.iousername-記得改成自己的帳號名稱">Step2.
+將專案名稱命名為 <code>username.github.io</code>，username
+記得改成自己的帳號名稱</h4>
+<p>這樣就成功建立了一個網域：<code>username.github.io</code></p>
+<h3 id="將檔案發布到-github">將檔案發布到 GitHub</h3>
+<h4 id="step1.-安裝-git-相關套件">Step1. 安裝 Git 相關套件</h4>
+<p>回到 Hexo 資料夾，在終端機輸入下列指令安裝部署所需套件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
+<h4 id="step2.-修改站点配置文件的-deployment-設定">Step2.
+修改站点配置文件的 Deployment 設定</h4>
+<p>接著是修改 <code>_config.ym</code>l 設定檔中，有關 deploy
+的設定。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/qiuxiaohuo/qiuxiaohuo.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>type：選擇部屬模式，這裡填 git</li>
+<li>repo：GitHub repository 的連結，記得將 username
+修改成自己的帳號名稱</li>
+<li>branch：選擇分支</li>
+</ul>
+<h4 id="step3.-輸入部署指令">Step3. 輸入部署指令</h4>
+<p>使用下列指令即可部署檔案到網站上，第一次輸入可能會要求登入 GitHub
+帳號：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+<p>通常在完成每次修改後，會依序輸入 clean -&gt; generate -&gt; deploy
+三行指令，避免更新不完全：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo cl    // 清除之前建立的靜態檔案</span><br><span class="line">hexo g     // 建立靜態頁面</span><br><span class="line">hexo d     // 部署至 GitHub</span><br></pre></td></tr></table></figure>
+<p>或是合併第二、三行指令：<code>hexo g -d</code>
+即可在產生靜態頁面後立刻部署。</p>
+<p>這樣就完成部署網誌到 GitHub 了！可在個人頁面
+<code>https://username.github.io</code>
+確認是否有發布成功，預設畫面如下：</p>
+<h2 id="总结">总结</h2>
+<p>上面参杂了一些安装命令，在配置完成之后，我的工作流程如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> 博客文档 <span class="comment">// 1. 在 \source 目录中生成 `博客文档.md` 文件</span></span><br><span class="line">								 <span class="comment">// 2. 编写 `博客文档.md` 文档(可以不在 Hexo 生成的 .md 文件中编写，完成后将文档内容复制到该文件中)</span></span><br><span class="line">hexo cl          <span class="comment">// 3. 清除生成的静态文件</span></span><br><span class="line">hexo g           <span class="comment">// 4. 重新生成静态文件</span></span><br><span class="line">hexo s					 <span class="comment">// 5. 查看生成网页的效果，若不满意，则返回第 2 步</span></span><br><span class="line">hexo d           <span class="comment">// 6. 上传到 Github 去，博客的内容展示在互联网上</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/27/%E6%9D%82%E6%83%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2023/09/27/%E6%9D%82%E6%83%B3/" class="post-title-link" itemprop="url">杂想</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2023-09-27 15:54:14 / 修改时间：15:58:23" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:14+08:00">2023-09-27</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>打破全能的幻觉，认识到自己的局限性，结果是痛苦的。</p>
+<p>我？在一直不停地去认识自己。这过程中，也有取悦自己的意图，寻找种种的理论，解释自己的行为。或者说，用理论支持自己的力量。难免倾向于美化自己。</p>
+<p>别人呢，也会把我推向编织好的结论中去，却不愿讲述他们所推论的依据。事实远比结论更加重要，无论结论是好是坏。</p>
+<p>抛弃种种的理论，逐渐发展自己的语言。我发现，我的身上，有两种比食色还要冲动的本能：对理解的渴望，以及难以抑制的怀疑倾向。前者让我为它营造出诸多幻象，后者则将我推向虚无的深渊。</p>
+<p>我无法编造出一种理论，说这两种冲动都可以是好的，只要我怎么怎么做。请不要再用理论，去卸掉我本来的生命的重负了！不要再留幻想，以为它们可以为我所
+“用”！不要再把它们与 “我”
+分离，因为它们就是我，我就是它们！任何分解的举措，都是对 “我”
+的消减。它们并不是我的归属，我的属性，我的可以去除的部分。就像是水，它们交融在其中，与我生命的其它力量，理性，情感，爱，恨，交揉错杂，难舍难分，共同组成
+“我”！</p>
+<p>“我”
+是无法被剖析的。“我”无法像机械一样被拆解，一个零件一个零件的分析。“我”是一个不可分割的整体，像一条江河，喧嚣着，裹挟着所有的力量，彻夜不息地奔腾着。一种机械的观念，以为掌握了局部就可以知晓全貌。不！不要这样去做，不要试图去用定义，用概念，用分析的手段，去限制生命，一种不断发展的力量。只需静静地站在它旁边，倾听它的喧响，感受它氤氲的水汽，望着它奔向远方。</p>
+<p>不要尝试去把握
+“我”，以为可以控制它的方向。生命永远在流动中。一切皆注定，而命定的结果，却无人能够破解。只要还在流动，就无法被预告结局怎样。</p>
+<p>流动吧！做一条奔腾不息的河，不舍昼夜地喧嚣，不执著于将要流向哪里。我们都只有一个归宿——大海。在此之前，就让我奉献出最虔敬的行动，谨以作为生命的赞歌！</p>
 
       
     </div>
@@ -366,7 +640,7 @@ target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
