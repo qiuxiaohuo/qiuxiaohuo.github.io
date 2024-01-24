@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="打破全能的幻觉，认识到自己的局限性，结果是痛苦的。 我？在一直不停地去认识自己。这过程中，也有取悦自己的意图，寻找种种的理论，解释自己的行为。或者说，用理论支持自己的力量。难免倾向于美化自己。 别人呢，也会把我推向编织好的结论中去，却不愿讲述他们所推论的依据。事实远比结论更加重要，无论结论是好是坏。 抛弃种种的理论，逐渐发展自己的语言。我发现，我的身上，有两种比食色还要冲动的本能：对理解的渴">
+  <meta name="description" content="极限的定义, 以及否定形式 关于序列 \(\{a_n\}\) 的极限命题为:  对任意的 \(\varepsilon &gt; 0\), 存在 \(N \in \mathbb{N}\), 当 \(n&gt;N\) 时, \(|a_n - a| &lt; \varepsilon\)  我们用含参数的陈述表示上述命题的后半段: \[ S(N, \varepsilon): n &gt;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="杂想">
-<meta property="og:url" content="http://example.com/2023/09/27/%E6%9D%82%E6%83%B3/index.html">
+<meta property="og:title" content="逻辑命题视角下的极限 连续与一致连续">
+<meta property="og:url" content="http://example.com/2024/01/24/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/index.html">
 <meta property="og:site_name" content="Qiu&#39;s 博客">
-<meta property="og:description" content="打破全能的幻觉，认识到自己的局限性，结果是痛苦的。 我？在一直不停地去认识自己。这过程中，也有取悦自己的意图，寻找种种的理论，解释自己的行为。或者说，用理论支持自己的力量。难免倾向于美化自己。 别人呢，也会把我推向编织好的结论中去，却不愿讲述他们所推论的依据。事实远比结论更加重要，无论结论是好是坏。 抛弃种种的理论，逐渐发展自己的语言。我发现，我的身上，有两种比食色还要冲动的本能：对理解的渴">
+<meta property="og:description" content="极限的定义, 以及否定形式 关于序列 \(\{a_n\}\) 的极限命题为:  对任意的 \(\varepsilon &gt; 0\), 存在 \(N \in \mathbb{N}\), 当 \(n&gt;N\) 时, \(|a_n - a| &lt; \varepsilon\)  我们用含参数的陈述表示上述命题的后半段: \[ S(N, \varepsilon): n &gt;">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-27T07:54:14.000Z">
-<meta property="article:modified_time" content="2023-09-27T07:58:23.279Z">
+<meta property="article:published_time" content="2024-01-24T14:21:51.000Z">
+<meta property="article:modified_time" content="2024-01-24T14:40:54.281Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2023/09/27/%E6%9D%82%E6%83%B3/">
+<link rel="canonical" href="http://example.com/2024/01/24/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>杂想 | Qiu's 博客</title>
+  <title>逻辑命题视角下的极限 连续与一致连续 | Qiu's 博客</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/27/%E6%9D%82%E6%83%B3/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/24/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          杂想
+          逻辑命题视角下的极限 连续与一致连续
         </h1>
 
         <div class="post-meta">
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-09-27 15:54:14 / 修改时间：15:58:23" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:14+08:00">2023-09-27</time>
+              <time title="创建时间：2024-01-24 22:21:51 / 修改时间：22:40:54" itemprop="dateCreated datePublished" datetime="2024-01-24T22:21:51+08:00">2024-01-24</time>
             </span>
 
           
@@ -188,20 +188,122 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>打破全能的幻觉，认识到自己的局限性，结果是痛苦的。</p>
-<p>我？在一直不停地去认识自己。这过程中，也有取悦自己的意图，寻找种种的理论，解释自己的行为。或者说，用理论支持自己的力量。难免倾向于美化自己。</p>
-<p>别人呢，也会把我推向编织好的结论中去，却不愿讲述他们所推论的依据。事实远比结论更加重要，无论结论是好是坏。</p>
-<p>抛弃种种的理论，逐渐发展自己的语言。我发现，我的身上，有两种比食色还要冲动的本能：对理解的渴望，以及难以抑制的怀疑倾向。前者让我为它营造出诸多幻象，后者则将我推向虚无的深渊。</p>
-<p>我无法编造出一种理论，说这两种冲动都可以是好的，只要我怎么怎么做。请不要再用理论，去卸掉我本来的生命的重负了！不要再留幻想，以为它们可以为我所
-“用”！不要再把它们与 “我”
-分离，因为它们就是我，我就是它们！任何分解的举措，都是对 “我”
-的消减。它们并不是我的归属，我的属性，我的可以去除的部分。就像是水，它们交融在其中，与我生命的其它力量，理性，情感，爱，恨，交揉错杂，难舍难分，共同组成
-“我”！</p>
-<p>“我”
-是无法被剖析的。“我”无法像机械一样被拆解，一个零件一个零件的分析。“我”是一个不可分割的整体，像一条江河，喧嚣着，裹挟着所有的力量，彻夜不息地奔腾着。一种机械的观念，以为掌握了局部就可以知晓全貌。不！不要这样去做，不要试图去用定义，用概念，用分析的手段，去限制生命，一种不断发展的力量。只需静静地站在它旁边，倾听它的喧响，感受它氤氲的水汽，望着它奔向远方。</p>
-<p>不要尝试去把握
-“我”，以为可以控制它的方向。生命永远在流动中。一切皆注定，而命定的结果，却无人能够破解。只要还在流动，就无法被预告结局怎样。</p>
-<p>流动吧！做一条奔腾不息的河，不舍昼夜地喧嚣，不执著于将要流向哪里。我们都只有一个归宿——大海。在此之前，就让我奉献出最虔敬的行动，谨以作为生命的赞歌！</p>
+        <h3 id="极限的定义-以及否定形式">极限的定义, 以及否定形式</h3>
+<p>关于序列 <span class="math inline">\(\{a_n\}\)</span>
+的极限命题为:</p>
+<blockquote>
+<p>对任意的 <span class="math inline">\(\varepsilon &gt; 0\)</span>,
+存在 <span class="math inline">\(N \in \mathbb{N}\)</span>, 当 <span
+class="math inline">\(n&gt;N\)</span> 时, <span
+class="math inline">\(|a_n - a| &lt; \varepsilon\)</span></p>
+</blockquote>
+<p>我们用<strong>含参数的陈述</strong>表示上述命题的后半段:</p>
+<p><span class="math display">\[
+S(N, \varepsilon): n &gt; N \Rightarrow |a_n - a| &lt; \varepsilon
+\]</span></p>
+<p>当给定 <span class="math inline">\((N, \varepsilon)\)</span> 时,
+就可以确定该命题的真伪.
+极限定义就是对上述含参数的陈述添加量词进行修饰:</p>
+<p><span class="math display">\[
+a_n \rightarrow a \Leftrightarrow \forall \varepsilon &gt; 0, \exists N
+\in \mathbb{N} \quad n &gt; N \Rightarrow |a_n - a| &lt; \varepsilon
+\]</span></p>
+<p>注意, <span class="math inline">\(\forall \varepsilon &gt;0\)</span>
+ 与 <span class="math inline">\(\exists N \in \mathbb{N}\)</span>
+不能交换顺序, 也即含量词陈述的命题, 量词的顺序不能随意改变, 例如,
+如果修改成</p>
+<p><span class="math display">\[
+\exists N \in \mathbb{N}, \forall \varepsilon &gt; 0 \quad n &gt; N
+\Rightarrow |a_n - a| &lt; \varepsilon
+\]</span></p>
+<p>那么只有常数序列才能存在极限, 这样的定义就是平凡的了.</p>
+<p>注意到, 含量词的命题可以等价为:</p>
+<ul>
+<li><p><span class="math inline">\(\forall x \in X \quad S(x)
+\Longleftrightarrow \bigwedge_{x \in X} S(x)\)</span>;</p></li>
+<li><p><span class="math inline">\(\exists x \in X \quad S(x)
+\Longleftrightarrow \bigvee_{x \in X} S(x)\)</span>.</p></li>
+</ul>
+<p>式中, <span class="math inline">\(\wedge\)</span> 表示命题关系“与”
+(AND), <span class="math inline">\(\vee\)</span> 表示命题关系“或”(OR).
+当否定含量词的命题时, 根据 de Morgan 定律: <span class="math display">\[
+(B~\cup~C)^{\prime} = B^{\prime}~\cap~C^{\prime}\\
+(B~\cap~C)^{\prime} = B^{\prime}~\cup~C^{\prime}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\sim(\forall x \in X \quad S(x))
+\Longleftrightarrow \bigvee_{x \in X}\sim S(x) \Longleftrightarrow
+\exists x \in X \quad \sim S(x)\)</span>;</p></li>
+<li><p><span class="math inline">\(\sim(\exists x \in X \quad S(x))
+\Longleftrightarrow \bigwedge_{x \in X} \sim S(x)\Longleftrightarrow
+\forall x \in X \quad \sim S(x)\)</span>.</p></li>
+</ul>
+<p>注意到, 含参数陈述命题的取值集合 <span
+class="math inline">\(X\)</span> 不会发生改变 (比如取该集合的补集).
+由此我们可以得到极限命题的否定形式:</p>
+<p><span class="math display">\[
+\exists \varepsilon &gt; 0, \forall N \in \mathbb{N} \quad n &gt; N
+\wedge |a_n - a| \geq \varepsilon
+\]</span></p>
+<p>该命题后半部分可以合并为:</p>
+<p><span class="math display">\[
+\exists \varepsilon &gt; 0, \forall N \in \mathbb{N} \quad |a_N - a|
+\geq \varepsilon
+\]</span></p>
+<h3 id="连续与一致连续">连续与一致连续</h3>
+<p>我们用逻辑语言定义一致连续: 给定函数 <span class="math inline">\(f: A
+\mapsto \mathbb{R}^m\)</span>, 定义域 <span class="math inline">\(A
+\subset \mathbb{R}^n\)</span> :</p>
+<p><span class="math display">\[
+\forall \varepsilon &gt; 0, \textcolor{red}{\exists \delta &gt; 0},
+\forall y \in A, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
+\|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>而函数 <span class="math inline">\(f\)</span> 在 <span
+class="math inline">\(A\)</span> 上连续的定义为</p>
+<p><span class="math display">\[
+\forall \varepsilon &gt; 0, \forall y \in A, \textcolor{red}{\exists
+\delta &gt; 0}, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
+\|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>第二个定义中, 存在量词变量 <span
+class="math inline">\(\delta\)</span> 的选择依赖于之前全称量词变量 <span
+class="math inline">\(y\)</span>,
+这一点改变使得第一个定义和第二个定义并不是等价的
+(虽然看起来只是命题叙述的顺序发生了变化). 事实上,
+第一个命题蕴含第二个命题:</p>
+<p><span class="math display">\[
+f~\text{一致连续} \Rightarrow f~\text{连续}
+\]</span></p>
+<p>证明上述问题是乏味的, 甚至像是在玩弄文字游戏, 我们不妨做一点别的事情,
+比如, 将定义连续的命题中的存在量词 <span class="math inline">\(\exists
+\delta &gt; 0\)</span> 继续后移:</p>
+<p><span class="math display">\[
+\forall \varepsilon &gt; 0, \forall y \in A, \forall x \in A,
+\textcolor{red}{\exists \delta &gt; 0} \quad \|x-y\|\leq\delta
+\Rightarrow \|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>该命题本身就构成了重言式, 也就是说, 该命题一直为 true. 证明过程如下:
+对任意给定的 <span class="math inline">\(\varepsilon, x, y\)</span>, 取
+<span class="math inline">\(\delta &gt; \|x-y\|\)</span>, 根据蕴含命题
+<span class="math inline">\(p \Rightarrow q\)</span> 的真值表, 若 <span
+class="math inline">\(p\)</span> 为 false, 则 <span
+class="math inline">\(p \Rightarrow q\)</span> 恒为 true, 无论 <span
+class="math inline">\(q\)</span> 怎样取值. 因此, <span
+class="math inline">\(\|x-y\|\leq\delta \Rightarrow \|f(x) - f(y)\| \leq
+\varepsilon\)</span> 恒为 true.</p>
+<p>假如我们将第三个定义称为”弱连续”, 那么, 根据上述论证,
+所有的函数都是”弱连续”的, 因此, “弱连续“
+就不能够将某一类函数与其它函数区分开. “弱连续“ 的定义是平凡的.</p>
+<p>现在, 如果我们将存在量词移到命题的最前端:</p>
+<p><span class="math display">\[
+\textcolor{red}{\exists \delta &gt; 0}, \forall \varepsilon &gt; 0,
+\forall y \in A, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
+\|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>并称满足这个定义的函数为”强一致收敛”函数, 可以看到,
+“强一致收敛“函数只能是常值函数, 因此也是一致收敛函数.综上,
+我们有上述关于连续性命题的强弱关系:</p>
 
     </div>
 
@@ -216,11 +318,11 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2023/09/27/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/" rel="next" title="Hexo + NexT + Github：搭建博客">
-      Hexo + NexT + Github：搭建博客 <i class="fa fa-chevron-right"></i>
+    <a href="/2024/01/22/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/" rel="prev" title="四阶单位张量的矩阵表示方法">
+      <i class="fa fa-chevron-left"></i> 四阶单位张量的矩阵表示方法
     </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -279,6 +381,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%81%E9%99%90%E7%9A%84%E5%AE%9A%E4%B9%89-%E4%BB%A5%E5%8F%8A%E5%90%A6%E5%AE%9A%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">极限的定义, 以及否定形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD"><span class="nav-number">2.</span> <span class="nav-text">连续与一致连续</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

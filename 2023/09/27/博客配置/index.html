@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="首先我们先理清一下这三者的关系：  Hexo 本身是自动生成博客网页的框架代码，它不需要我们自己编写网页（例如 .css，.js ），而是修改 _config.yml （以下我们称之为站点配置文件）文件提供的参量，自动生成静态网页，可以在本机浏览； NexT 是 Hexo 的主题插件（？我不知道这个是不是插件），本身依赖于 Hexo，提供额外的主题。它同样也提供 _config.">
+  <meta name="description" content="首先我们先理清一下这三者的关系：  Hexo 本身是自动生成博客网页的框架代码，它不需要我们自己编写网页（例如 .css，.js ），而是修改 _config.yml （以下我们称之为站点配置文件）文件提供的参量，自动生成静态网页，可以在本机浏览； NexT 是 Hexo 的主题插件，本身依赖于 Hexo，提供额外的主题。它同样也提供 _config.yml 文件（以下我们称之">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo + NexT + Github：搭建博客">
 <meta property="og:url" content="http://example.com/2023/09/27/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Qiu&#39;s 博客">
-<meta property="og:description" content="首先我们先理清一下这三者的关系：  Hexo 本身是自动生成博客网页的框架代码，它不需要我们自己编写网页（例如 .css，.js ），而是修改 _config.yml （以下我们称之为站点配置文件）文件提供的参量，自动生成静态网页，可以在本机浏览； NexT 是 Hexo 的主题插件（？我不知道这个是不是插件），本身依赖于 Hexo，提供额外的主题。它同样也提供 _config.">
+<meta property="og:description" content="首先我们先理清一下这三者的关系：  Hexo 本身是自动生成博客网页的框架代码，它不需要我们自己编写网页（例如 .css，.js ），而是修改 _config.yml （以下我们称之为站点配置文件）文件提供的参量，自动生成静态网页，可以在本机浏览； NexT 是 Hexo 的主题插件，本身依赖于 Hexo，提供额外的主题。它同样也提供 _config.yml 文件（以下我们称之">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-27T07:54:32.000Z">
-<meta property="article:modified_time" content="2023-09-27T10:16:21.808Z">
+<meta property="article:modified_time" content="2024-01-24T14:36:44.686Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta name="twitter:card" content="summary">
 
@@ -119,7 +119,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">6</span></a>
 
   </li>
   </ul>
@@ -172,10 +172,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-09-27 15:54:32 / 修改时间：18:16:21" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:32+08:00">2023-09-27</time>
+              <time title="创建时间：2023-09-27 15:54:32" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:32+08:00">2023-09-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-24 22:36:44" itemprop="dateModified" datetime="2024-01-24T22:36:44+08:00">2024-01-24</time>
+              </span>
 
           
 
@@ -196,49 +202,37 @@
 <code>_config.yml</code>
 （以下我们称之为<mark>站点配置文件</mark>）文件提供的参量，自动生成静态网页，可以在本机浏览；</li>
 <li><a target="_blank" rel="noopener" href="https://theme-next.js.org/">NexT</a> 是 Hexo
-的主题插件（？我不知道这个是不是插件），本身依赖于
-Hexo，提供额外的主题。它同样也提供 <code>_config.yml</code>
+的主题插件，本身依赖于 Hexo，提供额外的主题。它同样也提供
+<code>_config.yml</code>
 文件（以下我们称之为<mark>主题配置文件</mark>）供我们配置；</li>
 <li>使用 Github 将生成的静态网页推送到互联网当中。</li>
 </ul>
-<p>在这篇文档中，我不会去详细说明配置参数的具体含义（官方文档都有），而是提供一份简单明了的操作指南，以及配置过程中我遇到的
-Bug
-及解决方案。按照该文档的流程一步步走，就可以<strong>使用</strong>（而不是理解）Hexo
+<p>在这篇文档中，我不会去详细说明配置参数的具体含义（官方文档都有），而是提供一份简单明了的操作指南。按照该文档的流程一步步走，就可以使用Hexo
 + NexT + Github 写博客文档。</p>
 <h2 id="安装-hexo">安装 Hexo</h2>
 <p>Hexo 的官方配置文档在<a target="_blank" rel="noopener" href="https://hexo.io/docs/">这里</a>。</p>
-<p>首先是安装一些必备的工具：</p>
-<ul>
-<li>Node.js；</li>
-<li>Git。</li>
-</ul>
-<p>然后是使用 <code>npm</code> 安装 Hexo：</p>
+<p>首先安装一些必备的工具：<code>Node.js</code>；<code>Git</code>。</p>
+<p>然后使用 <code>npm</code> 安装 Hexo：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 <div class="note info">
-            <p>NPM 是随同 NodeJS一起安装的包管理工具。其它参数就不管了，按教程走吧。</p>
+            <p>NPM 是随同 NodeJS 一起安装的包管理工具。</p>
           </div>
 <h2 id="初始化-hexo">初始化 Hexo</h2>
 <p>我们现在需要在本机的某一文件夹下初始化 Hexo，例如想将博客文件放在
 <code>\Blog</code> 目录下，在该文件夹中打开命令行，运行如下命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>注意哈，这里的初始化并不是 “软件” 的初始化，运行上述命令之后，在
+<p>注意，这里的初始化并不是 “软件” 的初始化，运行上述命令之后，在
 <code>\Blog</code> 文件夹下会生成如下子目录结构</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
-<div class="note danger">
-            <p>删除该文件夹并不会卸载 Hexo，而是把你的博客文件全部删掉了！</p>
-          </div>
-<p>第一次使用 Hexo 命令时，可能会报如下错误：</p>
-<div class="note danger">
-            <p>emmm，不好意思，当时的警告信息没有截图</p>
-          </div>
-<p>错误是关于 PowerShell 不能信任 Hexo 脚本，并在界面中指向<a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">网址</a>。不用看它冗长的说明，直接把执行策略改成
+<p>第一次使用 Hexo 命令时，可能会报关于 PowerShell 不能信任 Hexo
+脚本的错误，并在界面中指向<a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">网址</a>。直接把执行策略改成
 <code>Bypass</code>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy -ExecutionPolicy Bypass</span><br></pre></td></tr></table></figure>
 <div class="note info">
-            <h4 id="关于-bypass-的说明">关于 Bypass 的说明</h4><ul><li><p>不阻止任何操作，并且没有任何警告或提示。</p></li><li><p>此执行策略适用于 PowerShell 脚本内置于较大应用程序的配置，或针对PowerShell 是具有自身安全模型的程序基础的配置。</p></li></ul><p>总之就是啥都能运行。</p>
+            <h4 id="关于-bypass-的说明">关于 Bypass 的说明</h4><ul><li><p>不阻止任何操作，并且没有任何警告或提示。</p></li><li><p>此执行策略适用于 PowerShell 脚本内置于较大应用程序的配置，或针对PowerShell 是具有自身安全模型的程序基础的配置。</p></li></ul>
           </div>
-<p>其中一些目录结构说明一下：</p>
+<p>其中一些目录结构是：</p>
 <ul>
 <li><code>_config.yml</code>
 ：站点配置文件，我们博客的一些基本设置（比如博客的名称，作者名称，站点
@@ -249,11 +243,11 @@ url 等）就是在这里配置的；</li>
 <p>新建文档的命令是 <code>new</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>可选参数 <code>[layout]</code>：默认是
-<code>post</code>，官方文档比比了一大堆我也没明白这个命令搞什么用的，就默认不管了；</li>
-<li>文档题目 <code>&lt;title&gt;</code>：不需要加后缀，默认生成
+<li>可选参数 <code>[layout]</code>：默认是 <code>post</code>；</li>
+<li>文档题目
+<code>&lt;title&gt;</code>：可以<strong>不添加后缀</strong>，默认生成
 <code>&lt;title&gt;.md</code>
-文档。如果题目中没有空格啥的，也可以不用加双引号。</li>
+文档。如果题目中没有空格，也可以不用加双引号。</li>
 </ul>
 <p>例如新建文档：<a
 target="_blank" rel="noopener" href="https://qiuxiaohuo.github.io/2023/09/20/mytest/">测试我的第一篇博客文档</a></p>
@@ -261,7 +255,7 @@ target="_blank" rel="noopener" href="https://qiuxiaohuo.github.io/2023/09/20/myt
 <p>这样就可以在 <code>\source</code> 目录下找到对应的
 <code>测试我的第一篇博客文档.md</code> 文档了。</p>
 <h2 id="生成网站文件">生成网站文件</h2>
-<p>首先先清楚一下原来的站点文件：</p>
+<p>首先先清理一下原来的站点文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
 <p>或者简写为</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></figure>
@@ -276,53 +270,22 @@ target="_blank" rel="noopener" href="https://qiuxiaohuo.github.io/2023/09/20/myt
 表示生成完静态站点之后直接推送到 Github 上去，它与如下命令是等价的：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy -g</span><br></pre></td></tr></table></figure>
 <p>上个命令意思是在 <code>deploy</code> 之前先
-<code>generate</code>（md，这不是一样的么）。</p>
-<p>如果想在本机中查看网页生成的效果，可以运行</p>
+<code>generate</code>。如果想在本机中查看网页生成的效果，可以运行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<h2 id="部署到-github">部署到 GitHub</h2>
-<p><em>这部分偷个懒，直接抄的这篇<a
-target="_blank" rel="noopener" href="https://hackmd.io/@Heidi-Liu/note-hexo-github#Step2-%E5%88%9D%E5%A7%8B%E5%8C%96-Hexo">博客</a>。</em></p>
-<h3 id="建立-github-專案">建立 GitHub 專案</h3>
-<p>在架設網誌之前，還必須準備一個存放網站的空間，例如架設主機，或是選擇現有的平台，例如
-GitHub Pages 或 Heroku 等，本篇以 GitHub 作為範例。</p>
-<p>接著可依照下列步驟在 GitHub 新增專案：</p>
-<h4 id="step1.-點選-new-新增一個-repository專案">Step1. 點選 New
-新增一個 Repository（專案）</h4>
-<h4
-id="step2.-將專案名稱命名為-username.github.iousername-記得改成自己的帳號名稱">Step2.
-將專案名稱命名為 <code>username.github.io</code>，username
-記得改成自己的帳號名稱</h4>
-<p>這樣就成功建立了一個網域：<code>username.github.io</code></p>
-<h3 id="將檔案發布到-github">將檔案發布到 GitHub</h3>
-<h4 id="step1.-安裝-git-相關套件">Step1. 安裝 Git 相關套件</h4>
-<p>回到 Hexo 資料夾，在終端機輸入下列指令安裝部署所需套件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<h4 id="step2.-修改站点配置文件的-deployment-設定">Step2.
-修改站点配置文件的 Deployment 設定</h4>
-<p>接著是修改 <code>_config.ym</code>l 設定檔中，有關 deploy
-的設定。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/qiuxiaohuo/qiuxiaohuo.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>type：選擇部屬模式，這裡填 git</li>
-<li>repo：GitHub repository 的連結，記得將 username
-修改成自己的帳號名稱</li>
-<li>branch：選擇分支</li>
-</ul>
-<h4 id="step3.-輸入部署指令">Step3. 輸入部署指令</h4>
-<p>使用下列指令即可部署檔案到網站上，第一次輸入可能會要求登入 GitHub
-帳號：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-<p>通常在完成每次修改後，會依序輸入 clean -&gt; generate -&gt; deploy
-三行指令，避免更新不完全：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo cl    // 清除之前建立的靜態檔案</span><br><span class="line">hexo g     // 建立靜態頁面</span><br><span class="line">hexo d     // 部署至 GitHub</span><br></pre></td></tr></table></figure>
-<p>或是合併第二、三行指令：<code>hexo g -d</code>
-即可在產生靜態頁面後立刻部署。</p>
-<p>這樣就完成部署網誌到 GitHub 了！可在個人頁面
-<code>https://username.github.io</code>
-確認是否有發布成功，預設畫面如下：</p>
 <h2 id="总结">总结</h2>
-<p>上面参杂了一些安装命令，在配置完成之后，我的工作流程如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> 博客文档 <span class="comment">// 1. 在 \source 目录中生成 `博客文档.md` 文件</span></span><br><span class="line">								 <span class="comment">// 2. 编写 `博客文档.md` 文档(可以不在 Hexo 生成的 .md 文件中编写，完成后将文档内容复制到该文件中)</span></span><br><span class="line">hexo cl          <span class="comment">// 3. 清除生成的静态文件</span></span><br><span class="line">hexo g           <span class="comment">// 4. 重新生成静态文件</span></span><br><span class="line">hexo s					 <span class="comment">// 5. 查看生成网页的效果，若不满意，则返回第 2 步</span></span><br><span class="line">hexo d           <span class="comment">// 6. 上传到 Github 去，博客的内容展示在互联网上</span></span><br></pre></td></tr></table></figure>
+<p>在配置完成之后，上传一篇博客文档的工作流程可以总结为：</p>
+<ol type="1">
+<li>在 目录中生成 <code>博客文档.md</code>
+文件：<code>hexo new &lt;博客文档名称&gt;</code>；</li>
+<li>编写 <code>博客文档.md</code> 文档 (可以不在 Hexo 生成的 .md
+文件中编写，完成后将文档内容复制到该文件中)；</li>
+<li>清除生成的静态文件：<code>hexo cl</code>；</li>
+<li>重新生成静态文件：<code>hexo g</code>；</li>
+<li>查看生成网页的效果，若不满意，则返回第 2
+步：<code>hexo s</code>；</li>
+<li>上传到
+Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
+</ol>
 
     </div>
 
@@ -403,11 +366,7 @@ id="step2.-將專案名稱命名為-username.github.iousername-記得改成自�
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-hexo"><span class="nav-number">1.</span> <span class="nav-text">安装 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96-hexo"><span class="nav-number">2.</span> <span class="nav-text">初始化 Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-bypass-%E7%9A%84%E8%AF%B4%E6%98%8E"><span class="nav-number">2.0.1.</span> <span class="nav-text">关于 Bypass 的说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-%E4%B8%8A%E4%BC%A0%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%8D%9A%E5%AE%A2%E6%96%87%E6%A1%A3"><span class="nav-number">3.</span> <span class="nav-text">Hexo 上传第一份博客文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%BD%91%E7%AB%99%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">生成网站文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2%E5%88%B0-github"><span class="nav-number">5.</span> <span class="nav-text">部署到 GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BB%BA%E7%AB%8B-github-%E5%B0%88%E6%A1%88"><span class="nav-number">5.1.</span> <span class="nav-text">建立 GitHub 專案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#step1.-%E9%BB%9E%E9%81%B8-new-%E6%96%B0%E5%A2%9E%E4%B8%80%E5%80%8B-repository%E5%B0%88%E6%A1%88"><span class="nav-number">5.1.1.</span> <span class="nav-text">Step1. 點選 New
-新增一個 Repository（專案）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step2.-%E5%B0%87%E5%B0%88%E6%A1%88%E5%90%8D%E7%A8%B1%E5%91%BD%E5%90%8D%E7%82%BA-username.github.iousername-%E8%A8%98%E5%BE%97%E6%94%B9%E6%88%90%E8%87%AA%E5%B7%B1%E7%9A%84%E5%B8%B3%E8%99%9F%E5%90%8D%E7%A8%B1"><span class="nav-number">5.1.2.</span> <span class="nav-text">Step2.
-將專案名稱命名為 username.github.io，username
-記得改成自己的帳號名稱</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B0%87%E6%AA%94%E6%A1%88%E7%99%BC%E5%B8%83%E5%88%B0-github"><span class="nav-number">5.2.</span> <span class="nav-text">將檔案發布到 GitHub</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#step1.-%E5%AE%89%E8%A3%9D-git-%E7%9B%B8%E9%97%9C%E5%A5%97%E4%BB%B6"><span class="nav-number">5.2.1.</span> <span class="nav-text">Step1. 安裝 Git 相關套件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step2.-%E4%BF%AE%E6%94%B9%E7%AB%99%E7%82%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84-deployment-%E8%A8%AD%E5%AE%9A"><span class="nav-number">5.2.2.</span> <span class="nav-text">Step2.
-修改站点配置文件的 Deployment 設定</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step3.-%E8%BC%B8%E5%85%A5%E9%83%A8%E7%BD%B2%E6%8C%87%E4%BB%A4"><span class="nav-number">5.2.3.</span> <span class="nav-text">Step3. 輸入部署指令</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-hexo"><span class="nav-number">1.</span> <span class="nav-text">安装 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96-hexo"><span class="nav-number">2.</span> <span class="nav-text">初始化 Hexo</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E-bypass-%E7%9A%84%E8%AF%B4%E6%98%8E"><span class="nav-number">2.0.1.</span> <span class="nav-text">关于 Bypass 的说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hexo-%E4%B8%8A%E4%BC%A0%E7%AC%AC%E4%B8%80%E4%BB%BD%E5%8D%9A%E5%AE%A2%E6%96%87%E6%A1%A3"><span class="nav-number">3.</span> <span class="nav-text">Hexo 上传第一份博客文档</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%BD%91%E7%AB%99%E6%96%87%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">生成网站文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">5.</span> <span class="nav-text">总结</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -421,7 +380,7 @@ id="step2.-將專案名稱命名為-username.github.iousername-記得改成自�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

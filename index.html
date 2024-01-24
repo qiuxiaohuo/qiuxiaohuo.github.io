@@ -115,7 +115,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">6</span></a>
 
   </li>
   </ul>
@@ -141,6 +141,180 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/24/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/01/24/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/" class="post-title-link" itemprop="url">逻辑命题视角下的极限 连续与一致连续</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-01-24 22:21:51 / 修改时间：22:40:54" itemprop="dateCreated datePublished" datetime="2024-01-24T22:21:51+08:00">2024-01-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="极限的定义-以及否定形式">极限的定义, 以及否定形式</h3>
+<p>关于序列 <span class="math inline">\(\{a_n\}\)</span>
+的极限命题为:</p>
+<blockquote>
+<p>对任意的 <span class="math inline">\(\varepsilon &gt; 0\)</span>,
+存在 <span class="math inline">\(N \in \mathbb{N}\)</span>, 当 <span
+class="math inline">\(n&gt;N\)</span> 时, <span
+class="math inline">\(|a_n - a| &lt; \varepsilon\)</span></p>
+</blockquote>
+<p>我们用<strong>含参数的陈述</strong>表示上述命题的后半段:</p>
+<p><span class="math display">\[
+S(N, \varepsilon): n &gt; N \Rightarrow |a_n - a| &lt; \varepsilon
+\]</span></p>
+<p>当给定 <span class="math inline">\((N, \varepsilon)\)</span> 时,
+就可以确定该命题的真伪.
+极限定义就是对上述含参数的陈述添加量词进行修饰:</p>
+<p><span class="math display">\[
+a_n \rightarrow a \Leftrightarrow \forall \varepsilon &gt; 0, \exists N
+\in \mathbb{N} \quad n &gt; N \Rightarrow |a_n - a| &lt; \varepsilon
+\]</span></p>
+<p>注意, <span class="math inline">\(\forall \varepsilon &gt;0\)</span>
+ 与 <span class="math inline">\(\exists N \in \mathbb{N}\)</span>
+不能交换顺序, 也即含量词陈述的命题, 量词的顺序不能随意改变, 例如,
+如果修改成</p>
+<p><span class="math display">\[
+\exists N \in \mathbb{N}, \forall \varepsilon &gt; 0 \quad n &gt; N
+\Rightarrow |a_n - a| &lt; \varepsilon
+\]</span></p>
+<p>那么只有常数序列才能存在极限, 这样的定义就是平凡的了.</p>
+<p>注意到, 含量词的命题可以等价为:</p>
+<ul>
+<li><p><span class="math inline">\(\forall x \in X \quad S(x)
+\Longleftrightarrow \bigwedge_{x \in X} S(x)\)</span>;</p></li>
+<li><p><span class="math inline">\(\exists x \in X \quad S(x)
+\Longleftrightarrow \bigvee_{x \in X} S(x)\)</span>.</p></li>
+</ul>
+<p>式中, <span class="math inline">\(\wedge\)</span> 表示命题关系“与”
+(AND), <span class="math inline">\(\vee\)</span> 表示命题关系“或”(OR).
+当否定含量词的命题时, 根据 de Morgan 定律: <span class="math display">\[
+(B~\cup~C)^{\prime} = B^{\prime}~\cap~C^{\prime}\\
+(B~\cap~C)^{\prime} = B^{\prime}~\cup~C^{\prime}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\sim(\forall x \in X \quad S(x))
+\Longleftrightarrow \bigvee_{x \in X}\sim S(x) \Longleftrightarrow
+\exists x \in X \quad \sim S(x)\)</span>;</p></li>
+<li><p><span class="math inline">\(\sim(\exists x \in X \quad S(x))
+\Longleftrightarrow \bigwedge_{x \in X} \sim S(x)\Longleftrightarrow
+\forall x \in X \quad \sim S(x)\)</span>.</p></li>
+</ul>
+<p>注意到, 含参数陈述命题的取值集合 <span
+class="math inline">\(X\)</span> 不会发生改变 (比如取该集合的补集).
+由此我们可以得到极限命题的否定形式:</p>
+<p><span class="math display">\[
+\exists \varepsilon &gt; 0, \forall N \in \mathbb{N} \quad n &gt; N
+\wedge |a_n - a| \geq \varepsilon
+\]</span></p>
+<p>该命题后半部分可以合并为:</p>
+<p><span class="math display">\[
+\exists \varepsilon &gt; 0, \forall N \in \mathbb{N} \quad |a_N - a|
+\geq \varepsilon
+\]</span></p>
+<h3 id="连续与一致连续">连续与一致连续</h3>
+<p>我们用逻辑语言定义一致连续: 给定函数 <span class="math inline">\(f: A
+\mapsto \mathbb{R}^m\)</span>, 定义域 <span class="math inline">\(A
+\subset \mathbb{R}^n\)</span> :</p>
+<p><span class="math display">\[
+\forall \varepsilon &gt; 0, \textcolor{red}{\exists \delta &gt; 0},
+\forall y \in A, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
+\|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>而函数 <span class="math inline">\(f\)</span> 在 <span
+class="math inline">\(A\)</span> 上连续的定义为</p>
+<p><span class="math display">\[
+\forall \varepsilon &gt; 0, \forall y \in A, \textcolor{red}{\exists
+\delta &gt; 0}, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
+\|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>第二个定义中, 存在量词变量 <span
+class="math inline">\(\delta\)</span> 的选择依赖于之前全称量词变量 <span
+class="math inline">\(y\)</span>,
+这一点改变使得第一个定义和第二个定义并不是等价的
+(虽然看起来只是命题叙述的顺序发生了变化). 事实上,
+第一个命题蕴含第二个命题:</p>
+<p><span class="math display">\[
+f~\text{一致连续} \Rightarrow f~\text{连续}
+\]</span></p>
+<p>证明上述问题是乏味的, 甚至像是在玩弄文字游戏, 我们不妨做一点别的事情,
+比如, 将定义连续的命题中的存在量词 <span class="math inline">\(\exists
+\delta &gt; 0\)</span> 继续后移:</p>
+<p><span class="math display">\[
+\forall \varepsilon &gt; 0, \forall y \in A, \forall x \in A,
+\textcolor{red}{\exists \delta &gt; 0} \quad \|x-y\|\leq\delta
+\Rightarrow \|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>该命题本身就构成了重言式, 也就是说, 该命题一直为 true. 证明过程如下:
+对任意给定的 <span class="math inline">\(\varepsilon, x, y\)</span>, 取
+<span class="math inline">\(\delta &gt; \|x-y\|\)</span>, 根据蕴含命题
+<span class="math inline">\(p \Rightarrow q\)</span> 的真值表, 若 <span
+class="math inline">\(p\)</span> 为 false, 则 <span
+class="math inline">\(p \Rightarrow q\)</span> 恒为 true, 无论 <span
+class="math inline">\(q\)</span> 怎样取值. 因此, <span
+class="math inline">\(\|x-y\|\leq\delta \Rightarrow \|f(x) - f(y)\| \leq
+\varepsilon\)</span> 恒为 true.</p>
+<p>假如我们将第三个定义称为”弱连续”, 那么, 根据上述论证,
+所有的函数都是”弱连续”的, 因此, “弱连续“
+就不能够将某一类函数与其它函数区分开. “弱连续“ 的定义是平凡的.</p>
+<p>现在, 如果我们将存在量词移到命题的最前端:</p>
+<p><span class="math display">\[
+\textcolor{red}{\exists \delta &gt; 0}, \forall \varepsilon &gt; 0,
+\forall y \in A, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
+\|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>并称满足这个定义的函数为”强一致收敛”函数, 可以看到,
+“强一致收敛“函数只能是常值函数, 因此也是一致收敛函数.综上,
+我们有上述关于连续性命题的强弱关系:</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -499,10 +673,16 @@ class="math inline">\(g\)</span> 并不一定是逐点相等的,
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2023-09-27 15:54:32 / 修改时间：18:16:21" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:32+08:00">2023-09-27</time>
+              <time title="创建时间：2023-09-27 15:54:32" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:32+08:00">2023-09-27</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-24 22:36:44" itemprop="dateModified" datetime="2024-01-24T22:36:44+08:00">2024-01-24</time>
+              </span>
 
           
 
@@ -523,49 +703,37 @@ class="math inline">\(g\)</span> 并不一定是逐点相等的,
 <code>_config.yml</code>
 （以下我们称之为<mark>站点配置文件</mark>）文件提供的参量，自动生成静态网页，可以在本机浏览；</li>
 <li><a target="_blank" rel="noopener" href="https://theme-next.js.org/">NexT</a> 是 Hexo
-的主题插件（？我不知道这个是不是插件），本身依赖于
-Hexo，提供额外的主题。它同样也提供 <code>_config.yml</code>
+的主题插件，本身依赖于 Hexo，提供额外的主题。它同样也提供
+<code>_config.yml</code>
 文件（以下我们称之为<mark>主题配置文件</mark>）供我们配置；</li>
 <li>使用 Github 将生成的静态网页推送到互联网当中。</li>
 </ul>
-<p>在这篇文档中，我不会去详细说明配置参数的具体含义（官方文档都有），而是提供一份简单明了的操作指南，以及配置过程中我遇到的
-Bug
-及解决方案。按照该文档的流程一步步走，就可以<strong>使用</strong>（而不是理解）Hexo
+<p>在这篇文档中，我不会去详细说明配置参数的具体含义（官方文档都有），而是提供一份简单明了的操作指南。按照该文档的流程一步步走，就可以使用Hexo
 + NexT + Github 写博客文档。</p>
 <h2 id="安装-hexo">安装 Hexo</h2>
 <p>Hexo 的官方配置文档在<a target="_blank" rel="noopener" href="https://hexo.io/docs/">这里</a>。</p>
-<p>首先是安装一些必备的工具：</p>
-<ul>
-<li>Node.js；</li>
-<li>Git。</li>
-</ul>
-<p>然后是使用 <code>npm</code> 安装 Hexo：</p>
+<p>首先安装一些必备的工具：<code>Node.js</code>；<code>Git</code>。</p>
+<p>然后使用 <code>npm</code> 安装 Hexo：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
 <div class="note info">
-            <p>NPM 是随同 NodeJS一起安装的包管理工具。其它参数就不管了，按教程走吧。</p>
+            <p>NPM 是随同 NodeJS 一起安装的包管理工具。</p>
           </div>
 <h2 id="初始化-hexo">初始化 Hexo</h2>
 <p>我们现在需要在本机的某一文件夹下初始化 Hexo，例如想将博客文件放在
 <code>\Blog</code> 目录下，在该文件夹中打开命令行，运行如下命令</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>注意哈，这里的初始化并不是 “软件” 的初始化，运行上述命令之后，在
+<p>注意，这里的初始化并不是 “软件” 的初始化，运行上述命令之后，在
 <code>\Blog</code> 文件夹下会生成如下子目录结构</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
-<div class="note danger">
-            <p>删除该文件夹并不会卸载 Hexo，而是把你的博客文件全部删掉了！</p>
-          </div>
-<p>第一次使用 Hexo 命令时，可能会报如下错误：</p>
-<div class="note danger">
-            <p>emmm，不好意思，当时的警告信息没有截图</p>
-          </div>
-<p>错误是关于 PowerShell 不能信任 Hexo 脚本，并在界面中指向<a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">网址</a>。不用看它冗长的说明，直接把执行策略改成
+<p>第一次使用 Hexo 命令时，可能会报关于 PowerShell 不能信任 Hexo
+脚本的错误，并在界面中指向<a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">网址</a>。直接把执行策略改成
 <code>Bypass</code>：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy -ExecutionPolicy Bypass</span><br></pre></td></tr></table></figure>
 <div class="note info">
-            <h4 id="关于-bypass-的说明">关于 Bypass 的说明</h4><ul><li><p>不阻止任何操作，并且没有任何警告或提示。</p></li><li><p>此执行策略适用于 PowerShell 脚本内置于较大应用程序的配置，或针对PowerShell 是具有自身安全模型的程序基础的配置。</p></li></ul><p>总之就是啥都能运行。</p>
+            <h4 id="关于-bypass-的说明">关于 Bypass 的说明</h4><ul><li><p>不阻止任何操作，并且没有任何警告或提示。</p></li><li><p>此执行策略适用于 PowerShell 脚本内置于较大应用程序的配置，或针对PowerShell 是具有自身安全模型的程序基础的配置。</p></li></ul>
           </div>
-<p>其中一些目录结构说明一下：</p>
+<p>其中一些目录结构是：</p>
 <ul>
 <li><code>_config.yml</code>
 ：站点配置文件，我们博客的一些基本设置（比如博客的名称，作者名称，站点
@@ -576,11 +744,11 @@ url 等）就是在这里配置的；</li>
 <p>新建文档的命令是 <code>new</code></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
 <ul>
-<li>可选参数 <code>[layout]</code>：默认是
-<code>post</code>，官方文档比比了一大堆我也没明白这个命令搞什么用的，就默认不管了；</li>
-<li>文档题目 <code>&lt;title&gt;</code>：不需要加后缀，默认生成
+<li>可选参数 <code>[layout]</code>：默认是 <code>post</code>；</li>
+<li>文档题目
+<code>&lt;title&gt;</code>：可以<strong>不添加后缀</strong>，默认生成
 <code>&lt;title&gt;.md</code>
-文档。如果题目中没有空格啥的，也可以不用加双引号。</li>
+文档。如果题目中没有空格，也可以不用加双引号。</li>
 </ul>
 <p>例如新建文档：<a
 target="_blank" rel="noopener" href="https://qiuxiaohuo.github.io/2023/09/20/mytest/">测试我的第一篇博客文档</a></p>
@@ -588,7 +756,7 @@ target="_blank" rel="noopener" href="https://qiuxiaohuo.github.io/2023/09/20/myt
 <p>这样就可以在 <code>\source</code> 目录下找到对应的
 <code>测试我的第一篇博客文档.md</code> 文档了。</p>
 <h2 id="生成网站文件">生成网站文件</h2>
-<p>首先先清楚一下原来的站点文件：</p>
+<p>首先先清理一下原来的站点文件：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
 <p>或者简写为</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></figure>
@@ -603,53 +771,22 @@ target="_blank" rel="noopener" href="https://qiuxiaohuo.github.io/2023/09/20/myt
 表示生成完静态站点之后直接推送到 Github 上去，它与如下命令是等价的：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy -g</span><br></pre></td></tr></table></figure>
 <p>上个命令意思是在 <code>deploy</code> 之前先
-<code>generate</code>（md，这不是一样的么）。</p>
-<p>如果想在本机中查看网页生成的效果，可以运行</p>
+<code>generate</code>。如果想在本机中查看网页生成的效果，可以运行</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<h2 id="部署到-github">部署到 GitHub</h2>
-<p><em>这部分偷个懒，直接抄的这篇<a
-target="_blank" rel="noopener" href="https://hackmd.io/@Heidi-Liu/note-hexo-github#Step2-%E5%88%9D%E5%A7%8B%E5%8C%96-Hexo">博客</a>。</em></p>
-<h3 id="建立-github-專案">建立 GitHub 專案</h3>
-<p>在架設網誌之前，還必須準備一個存放網站的空間，例如架設主機，或是選擇現有的平台，例如
-GitHub Pages 或 Heroku 等，本篇以 GitHub 作為範例。</p>
-<p>接著可依照下列步驟在 GitHub 新增專案：</p>
-<h4 id="step1.-點選-new-新增一個-repository專案">Step1. 點選 New
-新增一個 Repository（專案）</h4>
-<h4
-id="step2.-將專案名稱命名為-username.github.iousername-記得改成自己的帳號名稱">Step2.
-將專案名稱命名為 <code>username.github.io</code>，username
-記得改成自己的帳號名稱</h4>
-<p>這樣就成功建立了一個網域：<code>username.github.io</code></p>
-<h3 id="將檔案發布到-github">將檔案發布到 GitHub</h3>
-<h4 id="step1.-安裝-git-相關套件">Step1. 安裝 Git 相關套件</h4>
-<p>回到 Hexo 資料夾，在終端機輸入下列指令安裝部署所需套件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<h4 id="step2.-修改站点配置文件的-deployment-設定">Step2.
-修改站点配置文件的 Deployment 設定</h4>
-<p>接著是修改 <code>_config.ym</code>l 設定檔中，有關 deploy
-的設定。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Deployment</span></span><br><span class="line"><span class="comment">## Docs: https://hexo.io/docs/one-command-deployment</span></span><br><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">https://github.com/qiuxiaohuo/qiuxiaohuo.github.io</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">main</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>type：選擇部屬模式，這裡填 git</li>
-<li>repo：GitHub repository 的連結，記得將 username
-修改成自己的帳號名稱</li>
-<li>branch：選擇分支</li>
-</ul>
-<h4 id="step3.-輸入部署指令">Step3. 輸入部署指令</h4>
-<p>使用下列指令即可部署檔案到網站上，第一次輸入可能會要求登入 GitHub
-帳號：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
-<p>通常在完成每次修改後，會依序輸入 clean -&gt; generate -&gt; deploy
-三行指令，避免更新不完全：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo cl    // 清除之前建立的靜態檔案</span><br><span class="line">hexo g     // 建立靜態頁面</span><br><span class="line">hexo d     // 部署至 GitHub</span><br></pre></td></tr></table></figure>
-<p>或是合併第二、三行指令：<code>hexo g -d</code>
-即可在產生靜態頁面後立刻部署。</p>
-<p>這樣就完成部署網誌到 GitHub 了！可在個人頁面
-<code>https://username.github.io</code>
-確認是否有發布成功，預設畫面如下：</p>
 <h2 id="总结">总结</h2>
-<p>上面参杂了一些安装命令，在配置完成之后，我的工作流程如下：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">hexo <span class="keyword">new</span> 博客文档 <span class="comment">// 1. 在 \source 目录中生成 `博客文档.md` 文件</span></span><br><span class="line">								 <span class="comment">// 2. 编写 `博客文档.md` 文档(可以不在 Hexo 生成的 .md 文件中编写，完成后将文档内容复制到该文件中)</span></span><br><span class="line">hexo cl          <span class="comment">// 3. 清除生成的静态文件</span></span><br><span class="line">hexo g           <span class="comment">// 4. 重新生成静态文件</span></span><br><span class="line">hexo s					 <span class="comment">// 5. 查看生成网页的效果，若不满意，则返回第 2 步</span></span><br><span class="line">hexo d           <span class="comment">// 6. 上传到 Github 去，博客的内容展示在互联网上</span></span><br></pre></td></tr></table></figure>
+<p>在配置完成之后，上传一篇博客文档的工作流程可以总结为：</p>
+<ol type="1">
+<li>在 目录中生成 <code>博客文档.md</code>
+文件：<code>hexo new &lt;博客文档名称&gt;</code>；</li>
+<li>编写 <code>博客文档.md</code> 文档 (可以不在 Hexo 生成的 .md
+文件中编写，完成后将文档内容复制到该文件中)；</li>
+<li>清除生成的静态文件：<code>hexo cl</code>；</li>
+<li>重新生成静态文件：<code>hexo g</code>；</li>
+<li>查看生成网页的效果，若不满意，则返回第 2
+步：<code>hexo s</code>；</li>
+<li>上传到
+Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
+</ol>
 
       
     </div>
@@ -803,7 +940,7 @@ id="step2.-將專案名稱命名為-username.github.iousername-記得改成自�
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
