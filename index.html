@@ -115,7 +115,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">6</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a>
 
   </li>
   </ul>
@@ -145,6 +145,85 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/05/%E5%B7%A5%E4%BD%9C%E7%AB%99%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%96%B9%E6%A1%88/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/05/%E5%B7%A5%E4%BD%9C%E7%AB%99%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">工作站的数据存储方案</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-05 10:06:54 / 修改时间：10:30:34" itemprop="dateCreated datePublished" datetime="2024-04-05T10:06:54+08:00">2024-04-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>现在我的工作站数据分配空间如下 (省略了其它系统盘的存储空间数据)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">laptop@qxh-Precision-7920-Tower /repos&gt; <span class="built_in">df</span> -h</span><br><span class="line">文件系统        大小  已用  可用 已用% 挂载点</span><br><span class="line">/dev/sdb8       234G   42G  180G   19% /</span><br><span class="line">/dev/sdc3       916G   58G  813G    7% /home</span><br><span class="line">/dev/sda3       3.9T  705G  3.0T   19% /repos</span><br></pre></td></tr></table></figure>
+<p>大约 1T 的空间分配给 <code>/home</code> 路径,
+也就是用户目录下的存储空间. 此外, 我还将 4T 的移动硬盘空间分配在
+<code>/repos</code> 目录下, 目前是用来存放 svn git 以及 pt 做种资源.</p>
+<p>工作站目前有两个用户, 一个是在主机上使用的 <code>qxh</code>,
+另一个使用远程连接登录用的 <code>laptop</code>. 这两个用户对
+<code>/repos</code> 都有读写执行权限.</p>
+<p>我在自己的笔记本上使用用户 <code>laptop</code> 远程连接到工作站,
+在工作站上也会 checkout 仓库中的文件进行开发, 这样的话,
+我会在不同的用户中拉取同样的数据, 这样做会不会很冗余呢?</p>
+<p>或者, 我现在先不需要考虑存储空间优化的事情, 先这样做,
+等出现问题再来解决. 这样才能更好地理解解决问题的方案.</p>
+<p>所以, 我现在空间管理的方案是:</p>
+<ol type="1">
+<li>自己开发的代码存放在 <code>/repos/svn</code> 或者
+<code>/repos/git</code> 目录下,
+会使用不同的用户拉取同一仓库的内容进行开发.</li>
+<li>课题组的 svn 文件直接存放在 <code>/repos/gsvn</code> 目录下,
+用户直接可以在该目录下进行开发.</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/24/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -168,10 +247,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2024-01-24 22:21:51 / 修改时间：22:40:54" itemprop="dateCreated datePublished" datetime="2024-01-24T22:21:51+08:00">2024-01-24</time>
+              <time title="创建时间：2024-01-24 22:21:51" itemprop="dateCreated datePublished" datetime="2024-01-24T22:21:51+08:00">2024-01-24</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-01-28 09:07:37" itemprop="dateModified" datetime="2024-01-28T09:07:37+08:00">2024-01-28</time>
+              </span>
 
           
 
@@ -299,7 +384,10 @@ class="math inline">\(\|x-y\|\leq\delta \Rightarrow \|f(x) - f(y)\| \leq
 \]</span></p>
 <p>并称满足这个定义的函数为”强一致收敛”函数, 可以看到,
 “强一致收敛“函数只能是常值函数, 因此也是一致收敛函数.综上,
-我们有上述关于连续性命题的强弱关系:</p>
+我们有上述关于连续性命题的强弱关系: <span class="math display">\[
+f~\text{强一致连续} \Rightarrow f~\text{一致连续} \Rightarrow
+f~\text{连续} \Rightarrow f~\text{弱连续}
+\]</span></p>
 
       
     </div>
@@ -940,7 +1028,7 @@ Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
