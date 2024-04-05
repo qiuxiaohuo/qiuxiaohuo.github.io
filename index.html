@@ -115,7 +115,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
 
   </li>
   </ul>
@@ -141,6 +141,404 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/05/Vim%20%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/05/Vim%20%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">Vim 快捷指令</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-05 11:28:37 / 修改时间：12:37:00" itemprop="dateCreated datePublished" datetime="2024-04-05T11:28:37+08:00">2024-04-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="为什么会用-vim">为什么会用 Vim</h2>
+<p>因为 Vim 提供了一种不太一样的文本编辑器哲学.
+它认为代码主要的工作是修改代码, 所以提供了大量的键盘指令操作,
+方便使用者来修改 ta 们的代码.</p>
+<h2 id="vim-的四种模式">Vim 的四种模式</h2>
+<ul>
+<li>Normal mode: 普通模式, 移动光标或使用命令修改文本</li>
+<li>Visual mode: 浏览模式, 选择文本</li>
+<li>Insert mode: 插入模式, 编辑文本</li>
+<li>Command mode: 命令模式, 执行命令</li>
+</ul>
+<h3 id="插入模式">插入模式</h3>
+<table>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>i</code></td>
+<td>在光标后编辑</td>
+</tr>
+<tr class="even">
+<td><code>I</code></td>
+<td>在光标所在行<strong>起始</strong>编辑</td>
+</tr>
+<tr class="odd">
+<td><code>a</code></td>
+<td>在光标<strong>前</strong>编辑</td>
+</tr>
+<tr class="even">
+<td><code>A</code></td>
+<td>在光标所在行<strong>末尾</strong>编辑</td>
+</tr>
+<tr class="odd">
+<td><code>o</code></td>
+<td>在光标所在行<strong>下方</strong>增添新行并编辑</td>
+</tr>
+<tr class="even">
+<td><code>O</code></td>
+<td>在光标所在行<strong>上方</strong>增添新行并编辑</td>
+</tr>
+</tbody>
+</table>
+<h3 id="浏览模式">浏览模式</h3>
+<table>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>v</code></td>
+<td>从光标所在<strong>处</strong>开始,
+按<strong>字符</strong>选择文本</td>
+</tr>
+<tr class="even">
+<td><code>V</code></td>
+<td>从光标所在<strong>行</strong>开始,
+按<strong>行</strong>选择文本</td>
+</tr>
+<tr class="odd">
+<td><code>ctrl+v</code></td>
+<td>从光标所在<strong>列</strong>开始,
+按<strong>列</strong>选择文本</td>
+</tr>
+</tbody>
+</table>
+<h3 id="命令模式">命令模式</h3>
+<ul>
+<li><code>:q</code> 退出</li>
+<li><code>:w</code> 保存</li>
+<li><code>:wq</code> 保存并退出</li>
+<li><code>:e &#123;文件名&#125;</code> 打开文件并编辑</li>
+<li><code>:ls</code> 展示打开的缓存区</li>
+<li><code>:help &#123;命令&#125;</code> 打开帮助, 例如
+<ul>
+<li><code>:help :w</code> 打开关于命令 <code>:w</code> 的帮助</li>
+<li><code>:help w</code> 打开关于命令 <code>w</code> 的帮助</li>
+</ul></li>
+</ul>
+<h2 id="导航">导航</h2>
+<h3 id="移动屏幕">移动屏幕</h3>
+<table>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>zt</code></td>
+<td>移动屏幕, 使得光标在窗口顶端</td>
+</tr>
+<tr class="even">
+<td><code>zt</code></td>
+<td>移动屏幕, 使得光标在窗口顶端</td>
+</tr>
+<tr class="odd">
+<td><code>zz</code></td>
+<td>移动屏幕, 使得光标在窗口中部</td>
+</tr>
+<tr class="even">
+<td><code>zb</code></td>
+<td>移动屏幕, 使得光标在窗口底部</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>H</code></td>
+<td>移动光标至屏幕顶端</td>
+</tr>
+<tr class="even">
+<td><code>M</code></td>
+<td>移动光标至屏幕中部</td>
+</tr>
+<tr class="odd">
+<td><code>L</code></td>
+<td>移动光标至屏幕底部</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>gg</code></td>
+<td>移动光标至文件起始处</td>
+</tr>
+<tr class="even">
+<td><code>G</code></td>
+<td>移动光标至文件末尾处</td>
+</tr>
+</tbody>
+</table>
+<p><code>&#123;行号&#125;gg</code>, <code>&#123;行号&#125;G</code>, <code>:&#123;行号&#125;</code>
+移动光标至行{行号}</p>
+<h3 id="单词">单词</h3>
+<table>
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 93%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>w</code></td>
+<td>将光标移动到前一个单词的起始处</td>
+</tr>
+<tr class="even">
+<td><code>e</code></td>
+<td>将光标移动到当前单词的末尾处; <br>若已经在末尾,
+则移动到前一个单词的末尾处</td>
+</tr>
+<tr class="odd">
+<td><code>b</code></td>
+<td>将光标移动到后一个单词的起始处</td>
+</tr>
+<tr class="even">
+<td><code>ge</code></td>
+<td>将光标移动到后一个单词的末尾处</td>
+</tr>
+</tbody>
+</table>
+<h3 id="行">行</h3>
+<table>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>^</code></td>
+<td>将光标移动到所在行第一个字符处</td>
+</tr>
+<tr class="even">
+<td><code>0</code></td>
+<td>将光标移动到行首</td>
+</tr>
+<tr class="odd">
+<td><code>$</code></td>
+<td>将光标移动到行尾</td>
+</tr>
+</tbody>
+</table>
+<h3 id="搜索">搜索</h3>
+<table>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>f&#123;字符&#125;</code></td>
+<td>在当前行<strong>向前</strong>搜索并跳转至字符 char 处</td>
+</tr>
+<tr class="even">
+<td><code>F&#123;字符&#125;</code></td>
+<td>在当前行<strong>向后</strong>搜索并跳转至字符 char 处</td>
+</tr>
+<tr class="odd">
+<td><code>t&#123;字符&#125;</code></td>
+<td>在当前行<strong>向前</strong>搜索并跳转到字符 char 后</td>
+</tr>
+<tr class="even">
+<td><code>T&#123;字符&#125;</code></td>
+<td>在当前行<strong>向后</strong>搜索并跳转到字符 char 前</td>
+</tr>
+</tbody>
+</table>
+<p>使用 <code>,</code> / <code>;</code> 搜索 后/前 一个字符</p>
+<table>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>/&#123;正则表达式&#125;</code></td>
+<td>在文档中搜索{正则表达式}</td>
+</tr>
+</tbody>
+</table>
+<p>使用 <code>N</code> / <code>n</code> 搜索 后/前 一个{正则表达式}</p>
+<h2 id="编辑文档">编辑文档</h2>
+<h3 id="删除和替换">删除和替换</h3>
+<ul>
+<li><code>d&#123;导航命令&#125;</code> 删除 {导航命令}
+<ul>
+<li>e.g. <code>dw</code> 删除单词, <code>d$</code>
+删除光标处至行尾的内容, <br><code>d0</code> 删除光标处至行首的内容</li>
+</ul></li>
+<li><code>c&#123;导航命令&#125;</code> 替换 {导航命令}
+<ul>
+<li>e.g. <code>cw</code> 可以看作执行删除单词命令后再执行命令
+<code>i</code></li>
+</ul></li>
+<li><code>x</code> 删除字符 (等价于 <code>dl</code>)</li>
+<li><code>s</code> 替换字符 (等价于 <code>cl</code>)</li>
+</ul>
+<h3 id="复制和粘贴">复制和粘贴</h3>
+<table>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>y␣</code></td>
+<td>复制光标所在处字符</td>
+</tr>
+<tr class="even">
+<td><code>yy</code></td>
+<td>复制光标所在行</td>
+</tr>
+<tr class="odd">
+<td><code>yw</code></td>
+<td>复制光标所在单词</td>
+</tr>
+<tr class="even">
+<td><code>y$</code></td>
+<td>复制光标处至行尾的内容</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>p</code></td>
+<td>在光标后粘贴</td>
+</tr>
+<tr class="even">
+<td><code>P</code></td>
+<td>在光标前粘贴</td>
+</tr>
+</tbody>
+</table>
+<h3 id="撤销和重现">撤销和重现</h3>
+<table>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>u</code></td>
+<td>撤销上一次操作</td>
+</tr>
+<tr class="even">
+<td><code>Ctrl+r</code></td>
+<td>重现下一次操作</td>
+</tr>
+</tbody>
+</table>
+<h3 id="计数">计数</h3>
+<p>在此处仅举一些命令作为例子, 其它可类推</p>
+<ul>
+<li><code>3w</code> 向前移动 3 个单词</li>
+<li><code>5j</code> 向下移动 5 行</li>
+<li><code>7dw</code> 删除 7 个单词</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1028,7 +1426,7 @@ Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">7</span>
+          <span class="site-state-item-count">8</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
