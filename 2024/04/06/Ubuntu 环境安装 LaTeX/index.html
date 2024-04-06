@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Ubuntu 环境安装 LaTeX 如果想懒省事且有充足的安装空间的话，可以直接安装完全体版 texlive-full： 1sudo apt-get install texlive-full 这大概会占用 6 GB 的空间，但是好处是在未来写 tex 文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。 另外可以安装低配版的宏包，可是在 VSCode 编译时会出现如下错误： 1Re">
+  <meta name="description" content="如果想懒省事且有充足的安装空间的话，可以直接安装完全体版 texlive-full： 1sudo apt-get install texlive-full 这大概会占用 6 GB 的空间，但是好处是在未来写 tex 文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。 另外可以安装低配版的宏包，可是在 VSCode 编译时会出现如下错误： 1Recipe terminated wit">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Qiu&#39;s 博客">
+<meta property="og:title" content="Ubuntu 环境下安装 LaTeX">
 <meta property="og:url" content="http://example.com/2024/04/06/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/index.html">
 <meta property="og:site_name" content="Qiu&#39;s 博客">
-<meta property="og:description" content="Ubuntu 环境安装 LaTeX 如果想懒省事且有充足的安装空间的话，可以直接安装完全体版 texlive-full： 1sudo apt-get install texlive-full 这大概会占用 6 GB 的空间，但是好处是在未来写 tex 文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。 另外可以安装低配版的宏包，可是在 VSCode 编译时会出现如下错误： 1Re">
+<meta property="og:description" content="如果想懒省事且有充足的安装空间的话，可以直接安装完全体版 texlive-full： 1sudo apt-get install texlive-full 这大概会占用 6 GB 的空间，但是好处是在未来写 tex 文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。 另外可以安装低配版的宏包，可是在 VSCode 编译时会出现如下错误： 1Recipe terminated wit">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-06T02:43:05.811Z">
-<meta property="article:modified_time" content="2024-04-06T02:43:05.813Z">
+<meta property="article:published_time" content="2024-04-06T02:53:32.000Z">
+<meta property="article:modified_time" content="2024-04-06T02:53:12.090Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta name="twitter:card" content="summary">
 
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title> | Qiu's 博客</title>
+  <title>Ubuntu 环境下安装 LaTeX | Qiu's 博客</title>
   
 
 
@@ -119,7 +119,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">15</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
 
   </li>
   </ul>
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          Ubuntu 环境下安装 LaTeX
         </h1>
 
         <div class="post-meta">
@@ -172,8 +172,9 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
+              
 
-              <time title="创建时间：2024-04-06 10:43:05" itemprop="dateCreated datePublished" datetime="2024-04-06T10:43:05+08:00">2024-04-06</time>
+              <time title="创建时间：2024-04-06 10:53:32 / 修改时间：10:53:12" itemprop="dateCreated datePublished" datetime="2024-04-06T10:53:32+08:00">2024-04-06</time>
             </span>
 
           
@@ -187,8 +188,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="ubuntu-环境安装-latex">Ubuntu 环境安装 LaTeX</h1>
-<p>如果想懒省事且有充足的安装空间的话，可以直接安装完全体版
+        <p>如果想懒省事且有充足的安装空间的话，可以直接安装完全体版
 <code>texlive-full</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install texlive-full</span><br></pre></td></tr></table></figure>
 <p>这大概会占用 6 GB 的空间，但是好处是在未来写 <code>tex</code>
@@ -232,12 +232,12 @@ could reinstall the xetex package from a repository.</p>
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2024/04/06/Github%20%E5%85%8B%E9%9A%86%E5%A4%B1%E8%B4%A5/" rel="prev" title="Github 克隆失败">
-      <i class="fa fa-chevron-left"></i> Github 克隆失败
+    <a href="/2024/04/06/Markdown%20%E4%BD%BF%E7%94%A8%20html%20%E6%A0%87%E7%AD%BE/" rel="prev" title="Markdown 添加注记文本">
+      <i class="fa fa-chevron-left"></i> Markdown 添加注记文本
     </a></div>
       <div class="post-nav-item">
-    <a href="/2024/04/06/Markdown%20%E4%BD%BF%E7%94%A8%20html%20%E6%A0%87%E7%AD%BE/" rel="next" title="Markdown 添加注记文本">
-      Markdown 添加注记文本 <i class="fa fa-chevron-right"></i>
+    <a href="/2024/04/06/VSCode%20%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E4%B8%AD%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E6%97%B6%E9%97%B4/" rel="next" title="VSCode 使用 snippets 插入代码注释">
+      VSCode 使用 snippets 插入代码注释 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -297,7 +297,6 @@ could reinstall the xetex package from a repository.</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu-%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85-latex"><span class="nav-number">1.</span> <span class="nav-text">Ubuntu 环境安装 LaTeX</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -311,7 +310,7 @@ could reinstall the xetex package from a repository.</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
