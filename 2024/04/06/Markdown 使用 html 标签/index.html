@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="打破全能的幻觉，认识到自己的局限性，结果是痛苦的。 我？在一直不停地去认识自己。这过程中，也有取悦自己的意图，寻找种种的理论，解释自己的行为。或者说，用理论支持自己的力量。难免倾向于美化自己。 别人呢，也会把我推向编织好的结论中去，却不愿讲述他们所推论的依据。事实远比结论更加重要，无论结论是好是坏。 抛弃种种的理论，逐渐发展自己的语言。我发现，我的身上，有两种比食色还要冲动的本能：对理解的渴">
+  <meta name="description" content="在写文档的时候, 我有时会有这样的需求:  标记一段重要的文本； 这些文本可以归属为: 笔记 (note) , 警告 (warning) , 定义等等  我就很想要一个彩色的框框, 把这段文字给标注一下. 在 \(\LaTeX\)​​ 中, 一般是用命令 \mdframed 实现. 然而在 Markdown 的标准语法中, 并没有注记文本这一功能.  一些特殊的 Markdown">
 <meta property="og:type" content="article">
-<meta property="og:title" content="杂想">
-<meta property="og:url" content="http://example.com/2023/09/27/%E6%9D%82%E6%83%B3/index.html">
+<meta property="og:title" content="Markdown 添加注记文本">
+<meta property="og:url" content="http://example.com/2024/04/06/Markdown%20%E4%BD%BF%E7%94%A8%20html%20%E6%A0%87%E7%AD%BE/index.html">
 <meta property="og:site_name" content="Qiu&#39;s 博客">
-<meta property="og:description" content="打破全能的幻觉，认识到自己的局限性，结果是痛苦的。 我？在一直不停地去认识自己。这过程中，也有取悦自己的意图，寻找种种的理论，解释自己的行为。或者说，用理论支持自己的力量。难免倾向于美化自己。 别人呢，也会把我推向编织好的结论中去，却不愿讲述他们所推论的依据。事实远比结论更加重要，无论结论是好是坏。 抛弃种种的理论，逐渐发展自己的语言。我发现，我的身上，有两种比食色还要冲动的本能：对理解的渴">
+<meta property="og:description" content="在写文档的时候, 我有时会有这样的需求:  标记一段重要的文本； 这些文本可以归属为: 笔记 (note) , 警告 (warning) , 定义等等  我就很想要一个彩色的框框, 把这段文字给标注一下. 在 \(\LaTeX\)​​ 中, 一般是用命令 \mdframed 实现. 然而在 Markdown 的标准语法中, 并没有注记文本这一功能.  一些特殊的 Markdown">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-27T07:54:14.000Z">
-<meta property="article:modified_time" content="2023-09-27T07:58:23.279Z">
+<meta property="article:published_time" content="2024-04-06T02:46:32.000Z">
+<meta property="article:modified_time" content="2024-04-06T02:46:05.970Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2023/09/27/%E6%9D%82%E6%83%B3/">
+<link rel="canonical" href="http://example.com/2024/04/06/Markdown%20%E4%BD%BF%E7%94%A8%20html%20%E6%A0%87%E7%AD%BE/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>杂想 | Qiu's 博客</title>
+  <title>Markdown 添加注记文本 | Qiu's 博客</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/27/%E6%9D%82%E6%83%B3/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/06/Markdown%20%E4%BD%BF%E7%94%A8%20html%20%E6%A0%87%E7%AD%BE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          杂想
+          Markdown 添加注记文本
         </h1>
 
         <div class="post-meta">
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-09-27 15:54:14 / 修改时间：15:58:23" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:14+08:00">2023-09-27</time>
+              <time title="创建时间：2024-04-06 10:46:32 / 修改时间：10:46:05" itemprop="dateCreated datePublished" datetime="2024-04-06T10:46:32+08:00">2024-04-06</time>
             </span>
 
           
@@ -188,20 +188,96 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>打破全能的幻觉，认识到自己的局限性，结果是痛苦的。</p>
-<p>我？在一直不停地去认识自己。这过程中，也有取悦自己的意图，寻找种种的理论，解释自己的行为。或者说，用理论支持自己的力量。难免倾向于美化自己。</p>
-<p>别人呢，也会把我推向编织好的结论中去，却不愿讲述他们所推论的依据。事实远比结论更加重要，无论结论是好是坏。</p>
-<p>抛弃种种的理论，逐渐发展自己的语言。我发现，我的身上，有两种比食色还要冲动的本能：对理解的渴望，以及难以抑制的怀疑倾向。前者让我为它营造出诸多幻象，后者则将我推向虚无的深渊。</p>
-<p>我无法编造出一种理论，说这两种冲动都可以是好的，只要我怎么怎么做。请不要再用理论，去卸掉我本来的生命的重负了！不要再留幻想，以为它们可以为我所
-“用”！不要再把它们与 “我”
-分离，因为它们就是我，我就是它们！任何分解的举措，都是对 “我”
-的消减。它们并不是我的归属，我的属性，我的可以去除的部分。就像是水，它们交融在其中，与我生命的其它力量，理性，情感，爱，恨，交揉错杂，难舍难分，共同组成
-“我”！</p>
-<p>“我”
-是无法被剖析的。“我”无法像机械一样被拆解，一个零件一个零件的分析。“我”是一个不可分割的整体，像一条江河，喧嚣着，裹挟着所有的力量，彻夜不息地奔腾着。一种机械的观念，以为掌握了局部就可以知晓全貌。不！不要这样去做，不要试图去用定义，用概念，用分析的手段，去限制生命，一种不断发展的力量。只需静静地站在它旁边，倾听它的喧响，感受它氤氲的水汽，望着它奔向远方。</p>
-<p>不要尝试去把握
-“我”，以为可以控制它的方向。生命永远在流动中。一切皆注定，而命定的结果，却无人能够破解。只要还在流动，就无法被预告结局怎样。</p>
-<p>流动吧！做一条奔腾不息的河，不舍昼夜地喧嚣，不执著于将要流向哪里。我们都只有一个归宿——大海。在此之前，就让我奉献出最虔敬的行动，谨以作为生命的赞歌！</p>
+        <p>在写文档的时候, 我有时会有这样的需求:</p>
+<ul>
+<li>标记一段重要的文本；</li>
+<li>这些文本可以归属为: 笔记 (note) , 警告 (warning) , 定义等等</li>
+</ul>
+<p>我就很想要一个彩色的框框, 把这段文字给标注一下. 在 <span
+class="math inline">\(\LaTeX\)</span>​​ 中, 一般是用命令
+<code>\mdframed</code> 实现. 然而在 Markdown 的标准语法中,
+并没有注记文本这一功能.</p>
+<hr />
+<p>一些特殊的 Markdown 解析器可以做到, 比如在 Github Markdown
+解析器中插入下段标记:</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/github-admonition-20230928143727151.png"
+alt="image-20230928143727151" />
+<figcaption aria-hidden="true">image-20230928143727151</figcaption>
+</figure>
+<hr />
+<p>注记文本的功能也有人向 Typora 官方提出过, 不过 Typora
+认为这一功能并不是必要的, 反而还会破坏 Markdown 语法的简洁性. 在 Github
+上的 <a
+target="_blank" rel="noopener" href="https://github.com/typora/typora-issues/labels/markdown%20extension?page=2&amp;q=is%3Aopen+label%3A%22markdown+extension%22">issue</a>是这样说的:</p>
+<blockquote>
+<p>This seems too far way from most markdown engines. We want keep
+markdown in typora simple, no extra learning costs if one already knows
+how to write markdown. So, we are less likely to add syntax support for
+this</p>
+</blockquote>
+<p>一种替代的方法是是用 emoji <span class="github-emoji"
+data-alias="tada" style=""
+data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png?v8">🎉</span>.
+这个是 stackflow 上提供的权宜之计. 比如说, 我想写一段笔记:</p>
+<blockquote>
+<p><span class="github-emoji" data-alias="notebook" style=""
+data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d3.png?v8">📓</span>
+<strong>笔记</strong></p>
+<p>这是一段笔记.</p>
+</blockquote>
+<p>还可以吧, 要是引用框的颜色可以变变就更好了. 不然 Typora
+的文档总显得灰头土脸的, 放到 hexo 博客上的文章也是单一的白色.
+这时可以使用 html 标签 <code>&lt;div&gt; &lt;/div&gt;</code>
+来添加引用文本的背景色, 可是需要添加很长一段代码, 在 Typora
+中不太实用:</p>
+<div style="background-color:lightblue;padding:20px;">
+<h4>
+Warning
+</h4>
+<p>
+London is the capital city of England. It is the most populous city in
+the United Kingdom, with a metropolitan area of over 13 million
+inhabitants.
+</p>
+</div>
+<p>但是这个颜色吧… 综上, 还是使用 emoji 的方式, 在 Typora
+中表示段落文字的强调.</p>
+<hr />
+<p>在写 hexo 博客的时候, 可以使用 tag 插件实现这一功能,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% note [class] [no-icon] [summary] %&#125;</span><br><span class="line">Any content (support inline tags too).</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+<p>变量说明如下:</p>
+<ul>
+<li><code>[class]</code> : <em>Optional parameter.</em> Supported
+values: default | primary | success | info | warning | danger.</li>
+<li><code>[no-icon]</code> : <em>Optional parameter.</em> Disable icon
+in note.</li>
+<li><code>[summary]</code> : <em>Optional parameter.</em> Optional
+summary of the note.</li>
+</ul>
+<p>效果图为</p>
+<figure>
+<img
+src="C:\Users\qiutian\AppData\Roaming\Typora\typora-user-images\image-20240406093726500.png"
+alt="image-20240406093726500" />
+<figcaption aria-hidden="true">image-20240406093726500</figcaption>
+</figure>
+<h2 id="除此之外">除此之外</h2>
+<p>探索 Markdown 段落标记文字的时候, 发现它可以插入 html 标签,
+来实现一些之前没想到过的功能. 更多内容可以参考<a
+target="_blank" rel="noopener" href="https://support.typora.io/HTML/#comments">官方文档</a>, 以及 html
+<a target="_blank" rel="noopener" href="https://www.w3schools.com/html/default.asp">教学网站</a>.</p>
+<h3 id="键盘标签-kbd">键盘标签 <code>&lt;kbd&gt;</code></h3>
+<p>该标签可以插入在行内. 比如, 我想表示 VSCode 中「打开设置」快捷键:
+<kbd>Ctrl</kbd>+<kbd>,</kbd>.</p>
+<h3 id="总结标签-summary">总结标签 <code>&lt;summary&gt;</code></h3>
+<details>
+<summary>
+I have keys but no locks. I have space but no room. You can enter but
+can't leave. What am I?
+</summary>
+<pre><code> A keyboard. &lt;/details&gt;</code></pre>
 
     </div>
 
@@ -216,10 +292,13 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2023/09/27/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/" rel="next" title="Hexo + NexT + Github：搭建博客">
-      Hexo + NexT + Github：搭建博客 <i class="fa fa-chevron-right"></i>
+    <a href="/2024/04/06/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/" rel="prev" title="">
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/04/06/VSCode%20%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E4%B8%AD%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E6%97%B6%E9%97%B4/" rel="next" title="VSCode 使用 snippets 插入代码注释">
+      VSCode 使用 snippets 插入代码注释 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -279,6 +358,9 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link"><span class="nav-number">1.</span> <span class="nav-text">
+Warning
+</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%A4%E6%AD%A4%E4%B9%8B%E5%A4%96"><span class="nav-number"></span> <span class="nav-text">除此之外</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%94%AE%E7%9B%98%E6%A0%87%E7%AD%BE-kbd"><span class="nav-number"></span> <span class="nav-text">键盘标签 &lt;kbd&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93%E6%A0%87%E7%AD%BE-summary"><span class="nav-number"></span> <span class="nav-text">总结标签 &lt;summary&gt;</span></a></div>
       </div>
       <!--/noindex-->
 

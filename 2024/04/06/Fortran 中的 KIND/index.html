@@ -20,19 +20,19 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="打破全能的幻觉，认识到自己的局限性，结果是痛苦的。 我？在一直不停地去认识自己。这过程中，也有取悦自己的意图，寻找种种的理论，解释自己的行为。或者说，用理论支持自己的力量。难免倾向于美化自己。 别人呢，也会把我推向编织好的结论中去，却不愿讲述他们所推论的依据。事实远比结论更加重要，无论结论是好是坏。 抛弃种种的理论，逐渐发展自己的语言。我发现，我的身上，有两种比食色还要冲动的本能：对理解的渴">
+  <meta name="description" content="KIND 并不直接对应变量所占用的字节数，在不同的编译器与系统中可能有不同的对应关系，例如最常见的系统有： 123REAl(KIND&#x3D;4)  :: xs   ! 4 byte ieee floatREAl(KIND&#x3D;8)  :: xd   ! 8 byte ieee floatREAl(KIND&#x3D;16) :: xq   ! 16 byte ieee float 而有些编译器可能是： 123">
 <meta property="og:type" content="article">
-<meta property="og:title" content="杂想">
-<meta property="og:url" content="http://example.com/2023/09/27/%E6%9D%82%E6%83%B3/index.html">
+<meta property="og:title" content="Fortran 中的 KIND">
+<meta property="og:url" content="http://example.com/2024/04/06/Fortran%20%E4%B8%AD%E7%9A%84%20KIND/index.html">
 <meta property="og:site_name" content="Qiu&#39;s 博客">
-<meta property="og:description" content="打破全能的幻觉，认识到自己的局限性，结果是痛苦的。 我？在一直不停地去认识自己。这过程中，也有取悦自己的意图，寻找种种的理论，解释自己的行为。或者说，用理论支持自己的力量。难免倾向于美化自己。 别人呢，也会把我推向编织好的结论中去，却不愿讲述他们所推论的依据。事实远比结论更加重要，无论结论是好是坏。 抛弃种种的理论，逐渐发展自己的语言。我发现，我的身上，有两种比食色还要冲动的本能：对理解的渴">
+<meta property="og:description" content="KIND 并不直接对应变量所占用的字节数，在不同的编译器与系统中可能有不同的对应关系，例如最常见的系统有： 123REAl(KIND&#x3D;4)  :: xs   ! 4 byte ieee floatREAl(KIND&#x3D;8)  :: xd   ! 8 byte ieee floatREAl(KIND&#x3D;16) :: xq   ! 16 byte ieee float 而有些编译器可能是： 123">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-09-27T07:54:14.000Z">
-<meta property="article:modified_time" content="2023-09-27T07:58:23.279Z">
+<meta property="article:published_time" content="2024-04-06T01:54:32.000Z">
+<meta property="article:modified_time" content="2024-04-06T02:46:11.498Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://example.com/2023/09/27/%E6%9D%82%E6%83%B3/">
+<link rel="canonical" href="http://example.com/2024/04/06/Fortran%20%E4%B8%AD%E7%9A%84%20KIND/">
 
 
 <script id="page-configurations">
@@ -45,7 +45,7 @@
   };
 </script>
 
-  <title>杂想 | Qiu's 博客</title>
+  <title>Fortran 中的 KIND | Qiu's 博客</title>
   
 
 
@@ -150,7 +150,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/27/%E6%9D%82%E6%83%B3/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/06/Fortran%20%E4%B8%AD%E7%9A%84%20KIND/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -163,7 +163,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          杂想
+          Fortran 中的 KIND
         </h1>
 
         <div class="post-meta">
@@ -174,7 +174,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2023-09-27 15:54:14 / 修改时间：15:58:23" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:14+08:00">2023-09-27</time>
+              <time title="创建时间：2024-04-06 09:54:32 / 修改时间：10:46:11" itemprop="dateCreated datePublished" datetime="2024-04-06T09:54:32+08:00">2024-04-06</time>
             </span>
 
           
@@ -188,20 +188,37 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>打破全能的幻觉，认识到自己的局限性，结果是痛苦的。</p>
-<p>我？在一直不停地去认识自己。这过程中，也有取悦自己的意图，寻找种种的理论，解释自己的行为。或者说，用理论支持自己的力量。难免倾向于美化自己。</p>
-<p>别人呢，也会把我推向编织好的结论中去，却不愿讲述他们所推论的依据。事实远比结论更加重要，无论结论是好是坏。</p>
-<p>抛弃种种的理论，逐渐发展自己的语言。我发现，我的身上，有两种比食色还要冲动的本能：对理解的渴望，以及难以抑制的怀疑倾向。前者让我为它营造出诸多幻象，后者则将我推向虚无的深渊。</p>
-<p>我无法编造出一种理论，说这两种冲动都可以是好的，只要我怎么怎么做。请不要再用理论，去卸掉我本来的生命的重负了！不要再留幻想，以为它们可以为我所
-“用”！不要再把它们与 “我”
-分离，因为它们就是我，我就是它们！任何分解的举措，都是对 “我”
-的消减。它们并不是我的归属，我的属性，我的可以去除的部分。就像是水，它们交融在其中，与我生命的其它力量，理性，情感，爱，恨，交揉错杂，难舍难分，共同组成
-“我”！</p>
-<p>“我”
-是无法被剖析的。“我”无法像机械一样被拆解，一个零件一个零件的分析。“我”是一个不可分割的整体，像一条江河，喧嚣着，裹挟着所有的力量，彻夜不息地奔腾着。一种机械的观念，以为掌握了局部就可以知晓全貌。不！不要这样去做，不要试图去用定义，用概念，用分析的手段，去限制生命，一种不断发展的力量。只需静静地站在它旁边，倾听它的喧响，感受它氤氲的水汽，望着它奔向远方。</p>
-<p>不要尝试去把握
-“我”，以为可以控制它的方向。生命永远在流动中。一切皆注定，而命定的结果，却无人能够破解。只要还在流动，就无法被预告结局怎样。</p>
-<p>流动吧！做一条奔腾不息的河，不舍昼夜地喧嚣，不执著于将要流向哪里。我们都只有一个归宿——大海。在此之前，就让我奉献出最虔敬的行动，谨以作为生命的赞歌！</p>
+        <p><code>KIND</code>
+并不直接对应变量所占用的字节数，在不同的编译器与系统中可能有不同的对应关系，例如最常见的系统有：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">4</span>)  :: xs   <span class="comment">! 4 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">8</span>)  :: xd   <span class="comment">! 8 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">16</span>) :: xq   <span class="comment">! 16 byte ieee float</span></span><br></pre></td></tr></table></figure>
+<p>而有些编译器可能是：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">1</span>) :: XS   <span class="comment">! 4 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">2</span>) :: XD   <span class="comment">! 8 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">3</span>) :: XQ   <span class="comment">! 16 BYTE FLOAT</span></span><br></pre></td></tr></table></figure>
+<p>所以，为了提高代码的可移植性，一般不直接给 integer 或 real
+变量类型赋予确定的字节长度，而是使用内置函数<code>SELECTED_REAL_KIND</code>
+and <code>SELECTED_INT_KIND</code> 从当前编译器中获取 <code>KIND</code>
+的数值。例如，我想声明一个 15 位的 real 变量，首先调用内置函数：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br></pre></td></tr></table></figure>
+<p>然后在程序中声明变量：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">real</span>(dp) :: a, b, c</span><br><span class="line"><span class="keyword">real</span>(<span class="keyword">kind</span>=dp) :: a, b, c <span class="comment">! another equivalent statement</span></span><br><span class="line">a = <span class="number">1.0_dp</span></span><br><span class="line">b = <span class="number">3.5_dp</span></span><br><span class="line">c = <span class="number">1.34e8_dp</span></span><br></pre></td></tr></table></figure>
+<p>注意，这里的浮点数常数后面还加上了参量 <code>KIND</code>
+的后缀，每次写个数都这么搞似乎太麻烦了些，不知道不写是不是也<sub>行</sub>啊~~~？anyway，可以在
+module 中统一定义参量 <code>KIND</code> ，然后在其它程序中引用：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">!&gt; Numerical storage size parameters for real and integer values</span></span><br><span class="line"><span class="keyword">module</span> kind_parameter</span><br><span class="line">   <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">   <span class="keyword">public</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Single precision real numbers, 6 digits, range 10⁻³⁷ to 10³⁷-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: sp = <span class="built_in">selected_real_kind</span>(<span class="number">6</span>, <span class="number">37</span>)</span><br><span class="line">   <span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br><span class="line">   <span class="comment">!&gt; Quadruple precision real numbers, 33 digits, range 10⁻⁴⁹³¹ to 10⁴⁹³¹-1; 128 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: qp = <span class="built_in">selected_real_kind</span>(<span class="number">33</span>, <span class="number">4931</span>)</span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Char length for integers, range -2⁷ to 2⁷-1; 8 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i1 = <span class="built_in">selected_int_kind</span>(<span class="number">2</span>)</span><br><span class="line">   <span class="comment">!&gt; Short length for integers, range -2¹⁵ to 2¹⁵-1; 16 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i2 = <span class="built_in">selected_int_kind</span>(<span class="number">4</span>)</span><br><span class="line">   <span class="comment">!&gt; Length of default integers, range -2³¹ to 2³¹-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i4 = <span class="built_in">selected_int_kind</span>(<span class="number">9</span>)</span><br><span class="line">   <span class="comment">!&gt; Long length for integers, range -2⁶³ to 2⁶³-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i8 = <span class="built_in">selected_int_kind</span>(<span class="number">18</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> kind_parameter</span><br></pre></td></tr></table></figure>
+<p>如果不是跨系统使用自己的代码，直接在 Windows 环境下用
+<code>real(8)</code> 就省事多了。</p>
+<p>我似乎明白了为什么之前看到过别人的 Fortran 代码，连 0.0，1.0，…，9.0
+都要用变量名定义。我使用的编程语言主要是 MATLAB（如果 MATLAB
+可以被称为一门编程语言的话），对数据类型只关注整数，浮点数，字符这种大的类别的区分，对于这些数据占系统多少字节并不关心，但是
+Fortran 中的变量还可以体现占用字节的信息。</p>
+<p><strong>主要参考文档</strong></p>
+<p><a
+target="_blank" rel="noopener" href="https://web.archive.org/web/20200930090137/https://stevelionel.com/drfortran/2017/03/27/doctor-fortran-in-it-takes-all-kinds/">Doctor
+Fortran in “It Takes All KINDs”</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://stackoverflow.com/questions/838310/fortran-90-kind-parameter">Fortran
+90 kind parameter</a></p>
+<p>在看帖子时看到别人写的查询自己机器 <code>KIND</code> 变量并生成相应的
+Fortran 源码的代码，<code>kindfinder.f90</code></p>
 
     </div>
 
@@ -216,10 +233,13 @@
 
         
     <div class="post-nav">
-      <div class="post-nav-item"></div>
       <div class="post-nav-item">
-    <a href="/2023/09/27/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/" rel="next" title="Hexo + NexT + Github：搭建博客">
-      Hexo + NexT + Github：搭建博客 <i class="fa fa-chevron-right"></i>
+    <a href="/2024/04/05/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/" rel="prev" title="tmux 快捷键索引">
+      <i class="fa fa-chevron-left"></i> tmux 快捷键索引
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2024/04/06/Github%20%E5%85%8B%E9%9A%86%E5%A4%B1%E8%B4%A5/" rel="next" title="Github 克隆失败">
+      Github 克隆失败 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>

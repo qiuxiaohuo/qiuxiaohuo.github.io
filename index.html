@@ -115,7 +115,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">15</span></a>
 
   </li>
   </ul>
@@ -141,6 +141,722 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/06/VSCode%20%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E4%B8%AD%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E6%97%B6%E9%97%B4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/06/VSCode%20%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E4%B8%AD%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E6%97%B6%E9%97%B4/" class="post-title-link" itemprop="url">VSCode 使用 snippets 插入代码注释</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-06 11:54:32 / 修改时间：10:46:56" itemprop="dateCreated datePublished" datetime="2024-04-06T11:54:32+08:00">2024-04-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>突然发现用 snippets 写注释也非常好用啊，比如写 Fortran 的 function 或
+subroutine 的头部注释：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">! name      : symSchur2</span></span><br><span class="line"><span class="comment">! remark    : get Schur decomposition for 2x2 matrix</span></span><br><span class="line"><span class="comment">!</span></span><br><span class="line"><span class="comment">! version   : 1.0</span></span><br><span class="line"><span class="comment">! date      : 2023-09-06 13:34:25</span></span><br><span class="line"><span class="comment">! author    : Junsong Qiu</span></span><br><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> symSchur2(A,c,s)</span><br><span class="line">...</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> symSchur2</span><br></pre></td></tr></table></figure>
+<p>直接在 Fortran 对应的 snippets 设置文件
+<code>FortranFreeForm.json</code> 中加入如下片段：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;Head comments for subroutines&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">		<span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hc&quot;</span><span class="punctuation">,</span></span><br><span class="line">		<span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! name      : $1&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! remark    : $2&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! version   : 1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! date      : $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE  $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! author    : Junsong Qiu&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span></span><br><span class="line">		<span class="punctuation">]</span></span><br><span class="line">	<span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>其中，变量 <code>$1</code> <code>$2</code> 在插入 snippets
+时会自动要求你插入新的内容。时间部分可以用 VSCode 内置的变量添加。</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/06/Markdown%20%E4%BD%BF%E7%94%A8%20html%20%E6%A0%87%E7%AD%BE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/06/Markdown%20%E4%BD%BF%E7%94%A8%20html%20%E6%A0%87%E7%AD%BE/" class="post-title-link" itemprop="url">Markdown 添加注记文本</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-06 10:46:32 / 修改时间：10:46:05" itemprop="dateCreated datePublished" datetime="2024-04-06T10:46:32+08:00">2024-04-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在写文档的时候, 我有时会有这样的需求:</p>
+<ul>
+<li>标记一段重要的文本；</li>
+<li>这些文本可以归属为: 笔记 (note) , 警告 (warning) , 定义等等</li>
+</ul>
+<p>我就很想要一个彩色的框框, 把这段文字给标注一下. 在 <span
+class="math inline">\(\LaTeX\)</span>​​ 中, 一般是用命令
+<code>\mdframed</code> 实现. 然而在 Markdown 的标准语法中,
+并没有注记文本这一功能.</p>
+<hr />
+<p>一些特殊的 Markdown 解析器可以做到, 比如在 Github Markdown
+解析器中插入下段标记:</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/github-admonition-20230928143727151.png"
+alt="image-20230928143727151" />
+<figcaption aria-hidden="true">image-20230928143727151</figcaption>
+</figure>
+<hr />
+<p>注记文本的功能也有人向 Typora 官方提出过, 不过 Typora
+认为这一功能并不是必要的, 反而还会破坏 Markdown 语法的简洁性. 在 Github
+上的 <a
+target="_blank" rel="noopener" href="https://github.com/typora/typora-issues/labels/markdown%20extension?page=2&amp;q=is%3Aopen+label%3A%22markdown+extension%22">issue</a>是这样说的:</p>
+<blockquote>
+<p>This seems too far way from most markdown engines. We want keep
+markdown in typora simple, no extra learning costs if one already knows
+how to write markdown. So, we are less likely to add syntax support for
+this</p>
+</blockquote>
+<p>一种替代的方法是是用 emoji <span class="github-emoji"
+data-alias="tada" style=""
+data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png?v8">🎉</span>.
+这个是 stackflow 上提供的权宜之计. 比如说, 我想写一段笔记:</p>
+<blockquote>
+<p><span class="github-emoji" data-alias="notebook" style=""
+data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d3.png?v8">📓</span>
+<strong>笔记</strong></p>
+<p>这是一段笔记.</p>
+</blockquote>
+<p>还可以吧, 要是引用框的颜色可以变变就更好了. 不然 Typora
+的文档总显得灰头土脸的, 放到 hexo 博客上的文章也是单一的白色.
+这时可以使用 html 标签 <code>&lt;div&gt; &lt;/div&gt;</code>
+来添加引用文本的背景色, 可是需要添加很长一段代码, 在 Typora
+中不太实用:</p>
+<div style="background-color:lightblue;padding:20px;">
+<h4>
+Warning
+</h4>
+<p>
+London is the capital city of England. It is the most populous city in
+the United Kingdom, with a metropolitan area of over 13 million
+inhabitants.
+</p>
+</div>
+<p>但是这个颜色吧… 综上, 还是使用 emoji 的方式, 在 Typora
+中表示段落文字的强调.</p>
+<hr />
+<p>在写 hexo 博客的时候, 可以使用 tag 插件实现这一功能,</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% note [class] [no-icon] [summary] %&#125;</span><br><span class="line">Any content (support inline tags too).</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+<p>变量说明如下:</p>
+<ul>
+<li><code>[class]</code> : <em>Optional parameter.</em> Supported
+values: default | primary | success | info | warning | danger.</li>
+<li><code>[no-icon]</code> : <em>Optional parameter.</em> Disable icon
+in note.</li>
+<li><code>[summary]</code> : <em>Optional parameter.</em> Optional
+summary of the note.</li>
+</ul>
+<p>效果图为</p>
+<figure>
+<img
+src="C:\Users\qiutian\AppData\Roaming\Typora\typora-user-images\image-20240406093726500.png"
+alt="image-20240406093726500" />
+<figcaption aria-hidden="true">image-20240406093726500</figcaption>
+</figure>
+<h2 id="除此之外">除此之外</h2>
+<p>探索 Markdown 段落标记文字的时候, 发现它可以插入 html 标签,
+来实现一些之前没想到过的功能. 更多内容可以参考<a
+target="_blank" rel="noopener" href="https://support.typora.io/HTML/#comments">官方文档</a>, 以及 html
+<a target="_blank" rel="noopener" href="https://www.w3schools.com/html/default.asp">教学网站</a>.</p>
+<h3 id="键盘标签-kbd">键盘标签 <code>&lt;kbd&gt;</code></h3>
+<p>该标签可以插入在行内. 比如, 我想表示 VSCode 中「打开设置」快捷键:
+<kbd>Ctrl</kbd>+<kbd>,</kbd>.</p>
+<h3 id="总结标签-summary">总结标签 <code>&lt;summary&gt;</code></h3>
+<details>
+<summary>
+I have keys but no locks. I have space but no room. You can enter but
+can't leave. What am I?
+</summary>
+<pre><code> A keyboard. &lt;/details&gt;</code></pre>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/06/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/06/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-04-06 10:43:05" itemprop="dateCreated datePublished" datetime="2024-04-06T10:43:05+08:00">2024-04-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="ubuntu-环境安装-latex">Ubuntu 环境安装 LaTeX</h1>
+<p>如果想懒省事且有充足的安装空间的话，可以直接安装完全体版
+<code>texlive-full</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install texlive-full</span><br></pre></td></tr></table></figure>
+<p>这大概会占用 6 GB 的空间，但是好处是在未来写 <code>tex</code>
+文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。</p>
+<p>另外可以安装低配版的宏包，可是在 VSCode 编译时会出现如下错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Recipe terminated with fatal error: spawn xelatex ENOENT</span><br></pre></td></tr></table></figure>
+<p>查看网上的问题贴，这应该是因为找不到 <code>xelatex</code>
+的安装路径。但如果装的是低配版的 texlive，我根本就不知道 Ubuntu
+这货把它装在哪里了…</p>
+<p>安装完 <code>texlive-full</code> 之后还有问题：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I can&#x27;t find the format file `xelatex.fmt&#x27;!</span><br></pre></td></tr></table></figure>
+<p>stackflow 上有相关的<a
+target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/23164/i-cant-find-the-format-file-xelatex-fmt">帖子</a>，尝试最高赞的解决方案：</p>
+<blockquote>
+<p>try to run <code>sudo fmtutil-sys --all</code> which should create
+all missing format files.</p>
+</blockquote>
+<p>没有奏效。第二个解决方案是重新安装 <code>xetex</code></p>
+<blockquote>
+<p>If you installed TeX from the repositories of your Linux system, you
+could reinstall the xetex package from a repository.</p>
+<ul>
+<li>Redhat/Fedora: <code>sudo yum reinstall texlive-xetex</code></li>
+<li>Debian/Ubuntu:
+<code>sudo apt-get install --reinstall texlive-xetex</code></li>
+</ul>
+</blockquote>
+<p>It works!</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/06/Github%20%E5%85%8B%E9%9A%86%E5%A4%B1%E8%B4%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/06/Github%20%E5%85%8B%E9%9A%86%E5%A4%B1%E8%B4%A5/" class="post-title-link" itemprop="url">Github 克隆失败</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-06 10:30:32 / 修改时间：10:46:20" itemprop="dateCreated datePublished" datetime="2024-04-06T10:30:32+08:00">2024-04-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>使用 Github 克隆某一个库的时候，报错如下：</p>
+<blockquote>
+<p>git clone fatal unable to acces</p>
+</blockquote>
+<p>使用如下解决方案</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+<p>结果不行，后来浏览到一篇帖子，说是 Git
+端口和本机系统代理的端口不一致造成的。打开
+Clash，查看我的笔记本的代理端口为：7890。然后设置 Git 的端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+<p>注意，第二条是 <code>http://127.0.0.1:7890</code> ，不是
+<code>https://127.0.0.1:7890</code></p>
+<p>然后就糊里糊涂的解决问题了…</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/06/Fortran%20%E4%B8%AD%E7%9A%84%20KIND/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/06/Fortran%20%E4%B8%AD%E7%9A%84%20KIND/" class="post-title-link" itemprop="url">Fortran 中的 KIND</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-06 09:54:32 / 修改时间：10:46:11" itemprop="dateCreated datePublished" datetime="2024-04-06T09:54:32+08:00">2024-04-06</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p><code>KIND</code>
+并不直接对应变量所占用的字节数，在不同的编译器与系统中可能有不同的对应关系，例如最常见的系统有：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">4</span>)  :: xs   <span class="comment">! 4 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">8</span>)  :: xd   <span class="comment">! 8 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">16</span>) :: xq   <span class="comment">! 16 byte ieee float</span></span><br></pre></td></tr></table></figure>
+<p>而有些编译器可能是：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">1</span>) :: XS   <span class="comment">! 4 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">2</span>) :: XD   <span class="comment">! 8 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">3</span>) :: XQ   <span class="comment">! 16 BYTE FLOAT</span></span><br></pre></td></tr></table></figure>
+<p>所以，为了提高代码的可移植性，一般不直接给 integer 或 real
+变量类型赋予确定的字节长度，而是使用内置函数<code>SELECTED_REAL_KIND</code>
+and <code>SELECTED_INT_KIND</code> 从当前编译器中获取 <code>KIND</code>
+的数值。例如，我想声明一个 15 位的 real 变量，首先调用内置函数：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br></pre></td></tr></table></figure>
+<p>然后在程序中声明变量：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">real</span>(dp) :: a, b, c</span><br><span class="line"><span class="keyword">real</span>(<span class="keyword">kind</span>=dp) :: a, b, c <span class="comment">! another equivalent statement</span></span><br><span class="line">a = <span class="number">1.0_dp</span></span><br><span class="line">b = <span class="number">3.5_dp</span></span><br><span class="line">c = <span class="number">1.34e8_dp</span></span><br></pre></td></tr></table></figure>
+<p>注意，这里的浮点数常数后面还加上了参量 <code>KIND</code>
+的后缀，每次写个数都这么搞似乎太麻烦了些，不知道不写是不是也<sub>行</sub>啊~~~？anyway，可以在
+module 中统一定义参量 <code>KIND</code> ，然后在其它程序中引用：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">!&gt; Numerical storage size parameters for real and integer values</span></span><br><span class="line"><span class="keyword">module</span> kind_parameter</span><br><span class="line">   <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">   <span class="keyword">public</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Single precision real numbers, 6 digits, range 10⁻³⁷ to 10³⁷-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: sp = <span class="built_in">selected_real_kind</span>(<span class="number">6</span>, <span class="number">37</span>)</span><br><span class="line">   <span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br><span class="line">   <span class="comment">!&gt; Quadruple precision real numbers, 33 digits, range 10⁻⁴⁹³¹ to 10⁴⁹³¹-1; 128 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: qp = <span class="built_in">selected_real_kind</span>(<span class="number">33</span>, <span class="number">4931</span>)</span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Char length for integers, range -2⁷ to 2⁷-1; 8 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i1 = <span class="built_in">selected_int_kind</span>(<span class="number">2</span>)</span><br><span class="line">   <span class="comment">!&gt; Short length for integers, range -2¹⁵ to 2¹⁵-1; 16 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i2 = <span class="built_in">selected_int_kind</span>(<span class="number">4</span>)</span><br><span class="line">   <span class="comment">!&gt; Length of default integers, range -2³¹ to 2³¹-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i4 = <span class="built_in">selected_int_kind</span>(<span class="number">9</span>)</span><br><span class="line">   <span class="comment">!&gt; Long length for integers, range -2⁶³ to 2⁶³-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i8 = <span class="built_in">selected_int_kind</span>(<span class="number">18</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> kind_parameter</span><br></pre></td></tr></table></figure>
+<p>如果不是跨系统使用自己的代码，直接在 Windows 环境下用
+<code>real(8)</code> 就省事多了。</p>
+<p>我似乎明白了为什么之前看到过别人的 Fortran 代码，连 0.0，1.0，…，9.0
+都要用变量名定义。我使用的编程语言主要是 MATLAB（如果 MATLAB
+可以被称为一门编程语言的话），对数据类型只关注整数，浮点数，字符这种大的类别的区分，对于这些数据占系统多少字节并不关心，但是
+Fortran 中的变量还可以体现占用字节的信息。</p>
+<p><strong>主要参考文档</strong></p>
+<p><a
+target="_blank" rel="noopener" href="https://web.archive.org/web/20200930090137/https://stevelionel.com/drfortran/2017/03/27/doctor-fortran-in-it-takes-all-kinds/">Doctor
+Fortran in “It Takes All KINDs”</a></p>
+<p><a
+target="_blank" rel="noopener" href="https://stackoverflow.com/questions/838310/fortran-90-kind-parameter">Fortran
+90 kind parameter</a></p>
+<p>在看帖子时看到别人写的查询自己机器 <code>KIND</code> 变量并生成相应的
+Fortran 源码的代码，<code>kindfinder.f90</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/05/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/05/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/" class="post-title-link" itemprop="url">tmux 快捷键索引</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-05 15:05:03 / 修改时间：16:54:12" itemprop="dateCreated datePublished" datetime="2024-04-05T15:05:03+08:00">2024-04-05</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>tmux 之于命令窗口有点类似于浏览器之于网页, 可在 tmux
+命令环境中操纵多个命令行窗口.</p>
+<blockquote>
+<p>注: tmux 的快捷键操作一般需要先按下 <kbd>Ctrl</kbd> +<kbd>b</kbd>.
+文档中列出的快捷键清单默认没有写出这一组合键, 如不需要按下
+<kbd>Ctrl</kbd> +<kbd>b</kbd>, 会在按键操作中特别说明.</p>
+</blockquote>
+<h2 id="面板-pano-操作">面板 (pano) 操作</h2>
+<table>
+<colgroup>
+<col style="width: 45%" />
+<col style="width: 54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><kbd>%</kbd></td>
+<td>左右分裂当前面板</td>
+</tr>
+<tr class="even">
+<td><kbd>“</kbd></td>
+<td>上下分裂当前面板</td>
+</tr>
+<tr class="odd">
+<td><kbd>方向键</kbd></td>
+<td>导航面板</td>
+</tr>
+<tr class="even">
+<td><kbd>Ctrl</kbd>+<kbd>d</kbd> (不按 <code>c-b</code>)</td>
+<td>关闭当前面板</td>
+</tr>
+<tr class="odd">
+<td><kbd>z</kbd></td>
+<td>将 pano 放大为全屏, <br />再按一次缩小为原来的尺寸</td>
+</tr>
+<tr class="even">
+<td><kbd>Ctrl</kbd>+<kbd>方向键</kbd></td>
+<td>按照方向键方向调整 pano 尺寸</td>
+</tr>
+</tbody>
+</table>
+<h2 id="窗口-window-操作">窗口 (window) 操作</h2>
+<table>
+<colgroup>
+<col style="width: 59%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>按键</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><kbd>c</kbd></td>
+<td>创建新窗口</td>
+</tr>
+<tr class="even">
+<td><kbd>Ctrl</kbd>+<kbd>d</kbd> (不按 <code>c-b</code>)</td>
+<td>关闭当前窗口</td>
+</tr>
+<tr class="odd">
+<td><kbd>,</kbd></td>
+<td>重命名当前窗口</td>
+</tr>
+<tr class="even">
+<td><kbd>p</kbd></td>
+<td>打开前一个窗口</td>
+</tr>
+<tr class="odd">
+<td><kbd>n</kbd></td>
+<td>打开后一个窗口</td>
+</tr>
+<tr class="even">
+<td><kbd>num</kbd></td>
+<td>打开编号 <kbd>num</kbd> 窗口</td>
+</tr>
+</tbody>
+</table>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/05/%E5%B0%9D%E8%AF%95%E9%80%9A%E8%BF%87-linux-%E7%BB%88%E7%AB%AF%E8%8E%B7%E5%8F%96%E7%BD%91%E9%A1%B5%E4%BF%A1%E6%81%AF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/05/%E5%B0%9D%E8%AF%95%E9%80%9A%E8%BF%87-linux-%E7%BB%88%E7%AB%AF%E8%8E%B7%E5%8F%96%E7%BD%91%E9%A1%B5%E4%BF%A1%E6%81%AF/" class="post-title-link" itemprop="url">通过 linux 终端获取网页信息</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-04-05 13:48:27" itemprop="dateCreated datePublished" datetime="2024-04-05T13:48:27+08:00">2024-04-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-06 10:48:32" itemprop="dateModified" datetime="2024-04-06T10:48:32+08:00">2024-04-06</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在 PT 网站上下载了许多种子, 其中一些种子已经完成做种任务要求了,
+我想把这些用来做任务的种子从硬盘上删除, 但是完成任务的种子大概有 50 个,
+并且其中一些一直保持活跃的种子我想保留下来接着刷流量. 我想从 Linux
+终端中获取这些信息, 然后进行数据处理.</p>
+<h2 id="使用-curl-wget">使用 <code>curl</code>, <code>wget</code></h2>
+<p>这两个命令可以直接从网站上拉取信息, 或者下载文件,
+详细的操作方法可以使用 <code>man</code> 或者 <code>tldr</code>.</p>
+<p>我认为这两个命令似乎比较适合从网站上下载文件, 至于得到网页上的信息,
+还是有点麻烦.</p>
+<h2 id="使用命令行浏览器-lynx-w3m">使用命令行浏览器 <code>lynx</code>,
+<code>w3m</code></h2>
+<p><code>lynx</code> 卡在登录界面进不去, 但是 <code>w3m</code> 就可以,
+不知道为什么…</p>
+<p>放一下进入到种子界面的图片:</p>
+<figure>
+<img
+src="C:\Users\qiutian\AppData\Roaming\Typora\typora-user-images\image-20240405223123006.png"
+alt="image-20240405223123006" />
+<figcaption aria-hidden="true">image-20240405223123006</figcaption>
+</figure>
+<p>## 将网页信息导出到本地文件中</p>
+<p>目前使用命令 <code>w3m https://tjupt.org</code>, 进入到登录界面.
+输入用户名以及密码之后, 使用键盘导航到 H&amp;R 详情界面, 查看全部种子.
+<code>w3m</code> 提供命令 <kbd>S</kbd> 保存当前 buffer 中的所有内容.</p>
+<p>将种子所在的所有界面输出到本地文件 <code>buffer&lt;i&gt;.out</code>
+(例如 <code>buffer01.out</code>), 使用命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cat</span> buffer01.out buffer02.out &lt;...&gt; &gt; buffer.out</span><br></pre></td></tr></table></figure>
+<p>将所有 buffer 中的内容合并到同一个文件 <code>buffer.out</code> 当中.
+此时文件中开头结尾还含有网站的导航界面信息, 这是我们不需要的,
+使用如下命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">grep -E <span class="string">&#x27;^([0-9]+[-|:]|考核).*$&#x27;</span> buffer.out | <span class="built_in">head</span> -n10</span><br></pre></td></tr></table></figure>
+<p>将所有关键数据行集中在一起, 每个种子的数据占 3 行, 如下图所示:</p>
+<figure>
+<img
+src="C:\Users\qiutian\AppData\Roaming\Typora\typora-user-images\image-20240405222954896.png"
+alt="image-20240405222954896" />
+<figcaption aria-hidden="true">image-20240405222954896</figcaption>
+</figure>
+<p>我们希望知道的关键信息有</p>
+<ol type="1">
+<li>种子名称. 在方括号当中;</li>
+<li>种子 ID;</li>
+<li>种子大小;</li>
+<li>分享率. 分享率高的种子可以继续做种赚取上传量;</li>
+<li>活跃时间. 活跃时间越接近当前时间,
+说明种子可能被分享的几率就越大;</li>
+<li>是否正在做种. 只有考核完成的种子才能够被删除.</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -801,567 +1517,11 @@ f~\text{连续} \Rightarrow f~\text{弱连续}
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/22/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Qiu's 博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/01/22/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">四阶单位张量的矩阵表示方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-01-22 22:36:54 / 修改时间：22:38:39" itemprop="dateCreated datePublished" datetime="2024-01-22T22:36:54+08:00">2024-01-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>四阶单位张量可以表示为含有四个自由指标 Kronecker delta 记号的组合:
-<span class="math inline">\(\delta_{ij} \delta_{kl}\)</span>. 不过,
-与二阶单位张量不同的是, 改变指标的顺序,
-会得到三种不同的四阶单位张量:</p>
-<p><span class="math display">\[
-\delta_{ij} \delta_{kl} ={\mathcal{I}}_{ijkl} ={\mathcal{F}}_{iljk}
-={\mathcal{E}}_{ikjl}
-\]</span></p>
-<p>或者</p>
-<p><span class="math display">\[
-{\mathcal{I}}_{ijkl} =\delta_{ij} \delta_{kl} ,~~{\mathcal{E}}_{ijkl}
-=\delta_{ik} \delta_{jl} ,~~{\mathcal{F}}_{ijkl} =\delta_{il}
-\delta_{jk}
-\]</span></p>
-<p>对于任意四阶张量 <span class="math inline">\(\mathbb{L}\)</span>,
-在双点积(<span class="math inline">\(A:B:=A_{\cdot mn} B_{mn\cdot
-}\)</span>)作用下, 张量 <span class="math inline">\(\mathcal{E}\)</span>
-满足:</p>
-<p><span class="math display">\[
-\mathcal{E}:\mathbb{L}=\mathbb{L}:\mathcal{E}=\mathbb{L}
-\]</span></p>
-<p>若定义另一种双点积的方式为: <span class="math inline">\(A\cdot \cdot
-B:=A_{\cdot mn} B_{nm\cdot }\)</span>, 那么对于该点积的定义,
-保持四阶张量不变的单位张量是 <span
-class="math inline">\(\mathcal{F}\)</span>:</p>
-<p><span class="math display">\[
-\mathcal{F}\cdot \cdot \mathbb{L}=\mathbb{L}\cdot \cdot
-\mathcal{F}=\mathbb{L}
-\]</span></p>
-<p>除上述三种定义四阶单位张量的方式之外, 如果四阶张量具有次对称性(<span
-class="math inline">\(L_{ijkl} =L_{jikl} =L_{ijlk}\)</span>),
-还可以定义如下四阶张量:</p>
-<p><span class="math display">\[
-\mathcal{L}=\frac{1}{2}(\mathcal{F}+\mathcal{E})
-\]</span></p>
-<p>与具有次对称性的四阶张量张量作任意形式的双点积,
-都可以得到原来的四阶张量.</p>
-<p>具有次对称性的张量可以用 Voigt 记法表示成矩阵形式,
-四种四阶单位张量中, 只有 <span
-class="math inline">\(\mathcal{E}\)</span> 具有次对称性:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">% preallocate fourth order identity tensor</span><br><span class="line">L = zeros(6); </span><br><span class="line">F = zeros(6);</span><br><span class="line">E = zeros(6);</span><br><span class="line"></span><br><span class="line">% Voigt notation</span><br><span class="line">mapVToMat = &#123;[1,1],[2,2],[3,3],[2,3],[1,3],[1,2]&#125;;</span><br><span class="line"></span><br><span class="line">% E_&#123;ijkl&#125; = delta_&#123;ik&#125;*\delta_&#123;jl&#125;</span><br><span class="line">for irow = 1:6</span><br><span class="line">  i = mapVToMat&#123;irow&#125;(1);</span><br><span class="line">  j = mapVToMat&#123;irow&#125;(2);</span><br><span class="line">  for jcol = 1:6</span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(1);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(2);</span><br><span class="line"></span><br><span class="line">    E(irow,jcol) = d(i,k)*d(j,l);</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line">E</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">E = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     1     0     0</span><br><span class="line">     0     0     0     0     1     0</span><br><span class="line">     0     0     0     0     0     1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>可见 Voigt 记法下的四阶单位张量 <span
-class="math inline">\([\mathcal{E}]\)</span> 是单位矩阵,
-对任意具有次对称性的四阶张量 <span
-class="math inline">\(\mathbb{L}\)</span>, 也同样可以用 Voigt
-记法表示为矩阵形式 <span class="math inline">\([\mathbb{L}]\)</span>,
-在矩阵表示下, 有</p>
-<p><span class="math display">\[
-[\mathbb{L}][\mathcal{E}]=[\mathcal{E}][\mathbb{L}]=[\mathbb{L}]
-\]</span></p>
-<p>但是, 如果将其它的单位张量用 Voigt 记法表示为矩阵形式,
-由于缺乏次对称性, 单位张量的一些不为 0 的分量被"遗漏"了,
-得到的矩阵形式会缺少信息:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">% F_&#123;ijkl&#125; = delta_&#123;il&#125;*\delta_&#123;jk&#125;</span><br><span class="line">for irow = 1:6</span><br><span class="line">  i = mapVToMat&#123;irow&#125;(1);</span><br><span class="line">  j = mapVToMat&#123;irow&#125;(2);</span><br><span class="line">  for jcol = 1:6</span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(1);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(2);</span><br><span class="line"></span><br><span class="line">    F(irow,jcol) = d(i,l)*d(j,k);</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line">F</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">F = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">% L_&#123;ijkl&#125; = 1/2*delta_&#123;ik&#125;*\delta_&#123;jl&#125; + 1/2*delta_&#123;il&#125;*\delta_&#123;jk&#125;</span><br><span class="line">for irow = 1:6</span><br><span class="line">  i = mapVToMat&#123;irow&#125;(1);</span><br><span class="line">  j = mapVToMat&#123;irow&#125;(2);</span><br><span class="line">  for jcol = 1:6</span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(1);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(2);</span><br><span class="line"></span><br><span class="line">    L(irow,jcol) = 1/2*d(i,l)*d(j,k) + 1/2*d(i,k)*d(j,l);</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line">L</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">L = 6x6    </span><br><span class="line">    1.0000         0         0         0         0         0</span><br><span class="line">         0    1.0000         0         0         0         0</span><br><span class="line">         0         0    1.0000         0         0         0</span><br><span class="line">         0         0         0    0.5000         0         0</span><br><span class="line">         0         0         0         0    0.5000         0</span><br><span class="line">         0         0         0         0         0    0.5000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function dij = d(i,j)</span><br><span class="line">  dij = 0;</span><br><span class="line">  if i==j</span><br><span class="line">    dij = 1;</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/30/%E5%A6%82%E4%BD%95%E6%92%B0%E5%86%99%E8%AE%BE%E8%AE%A1%E6%97%A5%E5%BF%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Qiu's 博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/30/%E5%A6%82%E4%BD%95%E6%92%B0%E5%86%99%E8%AE%BE%E8%AE%A1%E6%97%A5%E5%BF%97/" class="post-title-link" itemprop="url">如何撰写设计日志</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-09-30 15:30:36 / 修改时间：15:33:29" itemprop="dateCreated datePublished" datetime="2023-09-30T15:30:36+08:00">2023-09-30</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>这段文字来自 MIT 公开课 <a
-target="_blank" rel="noopener" href="https://ocw.mit.edu/courses/1-050-solid-mechanics-fall-2004/pages/syllabus/">1.050</a>，我想我可以按照教授提供的方式尝试一下写设计日志。简要地翻译一下：</p>
-<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <p>这本日志被用来记录你的工作过程。它的内容呢，既不是被反复润色的展稿，也不是对出现在你脑海中的想法与字词完完全全的记录。它是一份关于你思维过程的「流水账」，足够详尽，可以使你在隔一段时间后，重建当时的推理，猜想与分析过程。请用墨水手写这份日志。如果你想法改变了，或者发现犯了个错误，不要擦掉重写，而是在你不想保留的内容上画条横线。</p>
-<p>将你的姓名，邮箱，还有手机号写在日志显眼的地方上，如果丢失的话，你就可以把它找回来。将前几页留白，一边进行记录，一边添加页码，一边添加目录。</p>
-<p>在设计的最后，使用一到两页纸总结你的工作——例如，一张标注尺寸的草图；解释哪些参数为什么那么重要；重述设计要求；关于重要约束的笔记。</p>
-<p>请记住：</p>
-<p><strong>过程和结果伯仲难分；手段和目的同等重要。</strong></p>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<p>设计是一场长跑，是点滴的步步推进，是对时间逐步的积分。</p>
-<p>而且这么做还挺酷的，想起电影《起风了》男主崛越二郎设计飞机的场景。致敬！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/27/%E5%87%BD%E6%95%B0%E8%8C%83%E6%95%B0-%E7%AD%89%E4%BB%B7%E7%B1%BB%E7%9A%84%E5%BC%95%E5%85%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Qiu's 博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/27/%E5%87%BD%E6%95%B0%E8%8C%83%E6%95%B0-%E7%AD%89%E4%BB%B7%E7%B1%BB%E7%9A%84%E5%BC%95%E5%85%A5/" class="post-title-link" itemprop="url">函数范数: 等价类的引入</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-09-27 15:55:54 / 修改时间：18:20:24" itemprop="dateCreated datePublished" datetime="2023-09-27T15:55:54+08:00">2023-09-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>定义某一空间 <span class="math inline">\(V\)</span> 上的范数,
-就是确定该空间上某一个非负实值映射 <span class="math inline">\(\| \cdot
-\|\)</span>, 且该映射满足如下条件:</p>
-<ol type="1">
-<li>对任意的 <span class="math inline">\(v \in V\)</span>, <span
-class="math inline">\(\| v \| \geq 0\)</span> 成立, 当且仅当 <span
-class="math inline">\(v = 0\)</span> 时 <span class="math inline">\(\| v
-\| = 0\)</span>;</li>
-<li>对任意的 <span class="math inline">\(c \in \mathbb{R}\)</span> 和
-<span class="math inline">\(v \in V\)</span>, <span
-class="math inline">\(\|cv\| = |c| \|v\|\)</span>;</li>
-<li>对任意的 <span class="math inline">\(u, v \in V\)</span>, 不等式
-<span class="math inline">\(\|u+v\| \leq \|u\| + \|v\|\)</span>
-成立.</li>
-</ol>
-<p>我现在想处理的是, 当空间的概念从有限维的向量空间,
-拓展到无穷维的函数空间上时, 条件 1 中 <span class="math inline">\(v =
-0\)</span> 的定义也需要加以推广, 以适应这个条件中 <span
-class="math inline">\(v=0\)</span> 与 <span class="math inline">\(\|v\|
-= 0\)</span> 的等价性. 我们以函数的 <span
-class="math inline">\(1-\)</span>范数 <span class="math display">\[
-\begin{equation}
-  \|\cdot\| = \int|\cdot| \mathrm{d} \Omega
-\end{equation}
-\]</span> 以及定义在 <span class="math inline">\(\Omega = [-1,
-1]\)</span> 上的两个函数 <span class="math inline">\(f(x)\)</span>,
-<span class="math inline">\(g(x)\)</span> <span class="math display">\[
-\begin{equation}
-  f(x) = \begin{cases}
-    1 \quad x \geq 0 \\
-    0 \quad x &lt; 0
-  \end{cases} \quad \quad
-  g(x) = \begin{cases}
-    1 \quad x &gt; 0 \\
-    0 \quad x \leq 0
-  \end{cases}
-\end{equation}
-\]</span> 为例. 函数 <span class="math inline">\(f-g\)</span> 的范数为
-<span class="math display">\[
-\begin{equation}
-  \|f-g\| = \int_{-1}^{1} |f-g| \mathrm{d}x = 0,
-\end{equation}
-\]</span> 根据范数成立的条件 1, 则应该有 <span
-class="math inline">\(f-g=0\)</span>, 或者等价的 <span
-class="math inline">\(f=g\)</span>. 可是, 函数 <span
-class="math inline">\(f(x)\)</span> 与 <span
-class="math inline">\(g(x)\)</span> 在 <span
-class="math inline">\(x=0\)</span> 处并不相等, 如果用数学味比较浓的表达,
-那就是</p>
-<div class="note success no-icon">
-            <p>函数 <span class="math inline">\(f(x)\)</span> 与 <spanclass="math inline">\(g(x)\)</span> 在区间 <spanclass="math inline">\([-1,1]\)</span> 上并不是<strong>逐点</strong>(pointwise) 相等的.</p>
-          </div>
-<p>为了调和这一概念上的矛盾, 我们有 2 个思路: 1) 修改范数的定义; 2)
-修改函数相等的定义.</p>
-<p>对于第 1 个思路, 我们可以验证, 如果函数的范数定义为 <span
-class="math display">\[
-\|\cdot\| = \max_{-1 \leq x \leq 1} |\cdot|,
-\]</span> 那么 <span class="math inline">\(\|f-g\|\)</span> 等价于 <span
-class="math inline">\(f\)</span>, <span class="math inline">\(g\)</span>
-逐点相等. 这实际是函数的 <span
-class="math inline">\(\infty-\)</span>范数.</p>
-<p>至于思路 2, 我们需要引入<strong>等价类</strong>的概念. 首先我们定义
-<span class="math inline">\(V\)</span> 的子空间 <span
-class="math inline">\(V^0\)</span> <span class="math display">\[
-\begin{equation}
-    V^0 = \{ v^0 \mid \| v^0 \|=0 \}.
-\end{equation}
-\]</span> 那么, 对任意 <span class="math inline">\(v \in V\)</span>,
-<strong><span class="math inline">\(v\)</span> 与所有其它的函数 <span
-class="math inline">\(v+v^0\)</span>, <span class="math inline">\(v^0
-\in V^0\)</span> 共同组成同一个等价类</strong>.</p>
-<p>这样, 我们重新定义相等 "<span class="math inline">\(=\)</span>"
-的概念为</p>
-<div class="note success no-icon">
-            <p><span class="math inline">\(f=g\)</span> <spanclass="math inline">\(\Leftrightarrow\)</span> <spanclass="math inline">\(f\)</span> 与 <spanclass="math inline">\(g\)</span> 属于同一个等价类, 即 <spanclass="math inline">\(f = g+v^0\)</span>, <spanclass="math inline">\(v^0 \in V^0\)</span>.</p>
-          </div>
-<p>在上述相等的意义下, <span class="math inline">\(f\)</span> 与 <span
-class="math inline">\(g\)</span> 并不一定是逐点相等的,
-但只相差一个范数为 0 的函数 <span class="math inline">\(v^0\)</span>.
-因此,</p>
-<div class="note success no-icon">
-            <p><span class="math inline">\(f=g\)</span> <spanclass="math inline">\(\Leftrightarrow\)</span> <spanclass="math inline">\(f = g+v^0\)</span>, <spanclass="math inline">\(v^0 \in V^0\)</span> <spanclass="math inline">\(\Leftrightarrow\)</span> <spanclass="math inline">\(\| f-g \| = 0\)</span>.</p>
-          </div>
-<p>这样我们就保证了范数定义中条件 1 的等价性.</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/27/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Qiu's 博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/27/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/" class="post-title-link" itemprop="url">Hexo + NexT + Github：搭建博客</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2023-09-27 15:54:32" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:32+08:00">2023-09-27</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-01-24 22:36:44" itemprop="dateModified" datetime="2024-01-24T22:36:44+08:00">2024-01-24</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>首先我们先理清一下这三者的关系：</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/">Hexo</a>
-本身是自动生成博客网页的<strong>框架</strong>代码，它不需要我们自己编写网页（例如
-<code>.css</code>，<code>.js</code> ），而是修改
-<code>_config.yml</code>
-（以下我们称之为<mark>站点配置文件</mark>）文件提供的参量，自动生成静态网页，可以在本机浏览；</li>
-<li><a target="_blank" rel="noopener" href="https://theme-next.js.org/">NexT</a> 是 Hexo
-的主题插件，本身依赖于 Hexo，提供额外的主题。它同样也提供
-<code>_config.yml</code>
-文件（以下我们称之为<mark>主题配置文件</mark>）供我们配置；</li>
-<li>使用 Github 将生成的静态网页推送到互联网当中。</li>
-</ul>
-<p>在这篇文档中，我不会去详细说明配置参数的具体含义（官方文档都有），而是提供一份简单明了的操作指南。按照该文档的流程一步步走，就可以使用Hexo
-+ NexT + Github 写博客文档。</p>
-<h2 id="安装-hexo">安装 Hexo</h2>
-<p>Hexo 的官方配置文档在<a target="_blank" rel="noopener" href="https://hexo.io/docs/">这里</a>。</p>
-<p>首先安装一些必备的工具：<code>Node.js</code>；<code>Git</code>。</p>
-<p>然后使用 <code>npm</code> 安装 Hexo：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo-cli</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>NPM 是随同 NodeJS 一起安装的包管理工具。</p>
-          </div>
-<h2 id="初始化-hexo">初始化 Hexo</h2>
-<p>我们现在需要在本机的某一文件夹下初始化 Hexo，例如想将博客文件放在
-<code>\Blog</code> 目录下，在该文件夹中打开命令行，运行如下命令</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>注意，这里的初始化并不是 “软件” 的初始化，运行上述命令之后，在
-<code>\Blog</code> 文件夹下会生成如下子目录结构</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
-<p>第一次使用 Hexo 命令时，可能会报关于 PowerShell 不能信任 Hexo
-脚本的错误，并在界面中指向<a
-target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">网址</a>。直接把执行策略改成
-<code>Bypass</code>：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy -ExecutionPolicy Bypass</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <h4 id="关于-bypass-的说明">关于 Bypass 的说明</h4><ul><li><p>不阻止任何操作，并且没有任何警告或提示。</p></li><li><p>此执行策略适用于 PowerShell 脚本内置于较大应用程序的配置，或针对PowerShell 是具有自身安全模型的程序基础的配置。</p></li></ul>
-          </div>
-<p>其中一些目录结构是：</p>
-<ul>
-<li><code>_config.yml</code>
-：站点配置文件，我们博客的一些基本设置（比如博客的名称，作者名称，站点
-url 等）就是在这里配置的；</li>
-<li><code>\source</code> ：我们博客的文档存放在该文件夹当中。</li>
-</ul>
-<h2 id="hexo-上传第一份博客文档">Hexo 上传第一份博客文档</h2>
-<p>新建文档的命令是 <code>new</code></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
-<ul>
-<li>可选参数 <code>[layout]</code>：默认是 <code>post</code>；</li>
-<li>文档题目
-<code>&lt;title&gt;</code>：可以<strong>不添加后缀</strong>，默认生成
-<code>&lt;title&gt;.md</code>
-文档。如果题目中没有空格，也可以不用加双引号。</li>
-</ul>
-<p>例如新建文档：<a
-target="_blank" rel="noopener" href="https://qiuxiaohuo.github.io/2023/09/20/mytest/">测试我的第一篇博客文档</a></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new 测试我的第一篇博客文档</span><br></pre></td></tr></table></figure>
-<p>这样就可以在 <code>\source</code> 目录下找到对应的
-<code>测试我的第一篇博客文档.md</code> 文档了。</p>
-<h2 id="生成网站文件">生成网站文件</h2>
-<p>首先先清理一下原来的站点文件：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br></pre></td></tr></table></figure>
-<p>或者简写为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo cl</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>其实不用每次都清理，但有时不清理会报错（比如更换了主题）。</p>
-          </div>
-<p>然后生成静态文档</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br></pre></td></tr></table></figure>
-<p>或简写为</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<p>后面还可以加一点组合命令，比如 <code>-d</code>
-表示生成完静态站点之后直接推送到 Github 上去，它与如下命令是等价的：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo deploy -g</span><br></pre></td></tr></table></figure>
-<p>上个命令意思是在 <code>deploy</code> 之前先
-<code>generate</code>。如果想在本机中查看网页生成的效果，可以运行</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<h2 id="总结">总结</h2>
-<p>在配置完成之后，上传一篇博客文档的工作流程可以总结为：</p>
-<ol type="1">
-<li>在 目录中生成 <code>博客文档.md</code>
-文件：<code>hexo new &lt;博客文档名称&gt;</code>；</li>
-<li>编写 <code>博客文档.md</code> 文档 (可以不在 Hexo 生成的 .md
-文件中编写，完成后将文档内容复制到该文件中)；</li>
-<li>清除生成的静态文件：<code>hexo cl</code>；</li>
-<li>重新生成静态文件：<code>hexo g</code>；</li>
-<li>查看生成网页的效果，若不满意，则返回第 2
-步：<code>hexo s</code>；</li>
-<li>上传到
-Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2023/09/27/%E6%9D%82%E6%83%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Qiu's 博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2023/09/27/%E6%9D%82%E6%83%B3/" class="post-title-link" itemprop="url">杂想</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2023-09-27 15:54:14 / 修改时间：15:58:23" itemprop="dateCreated datePublished" datetime="2023-09-27T15:54:14+08:00">2023-09-27</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>打破全能的幻觉，认识到自己的局限性，结果是痛苦的。</p>
-<p>我？在一直不停地去认识自己。这过程中，也有取悦自己的意图，寻找种种的理论，解释自己的行为。或者说，用理论支持自己的力量。难免倾向于美化自己。</p>
-<p>别人呢，也会把我推向编织好的结论中去，却不愿讲述他们所推论的依据。事实远比结论更加重要，无论结论是好是坏。</p>
-<p>抛弃种种的理论，逐渐发展自己的语言。我发现，我的身上，有两种比食色还要冲动的本能：对理解的渴望，以及难以抑制的怀疑倾向。前者让我为它营造出诸多幻象，后者则将我推向虚无的深渊。</p>
-<p>我无法编造出一种理论，说这两种冲动都可以是好的，只要我怎么怎么做。请不要再用理论，去卸掉我本来的生命的重负了！不要再留幻想，以为它们可以为我所
-“用”！不要再把它们与 “我”
-分离，因为它们就是我，我就是它们！任何分解的举措，都是对 “我”
-的消减。它们并不是我的归属，我的属性，我的可以去除的部分。就像是水，它们交融在其中，与我生命的其它力量，理性，情感，爱，恨，交揉错杂，难舍难分，共同组成
-“我”！</p>
-<p>“我”
-是无法被剖析的。“我”无法像机械一样被拆解，一个零件一个零件的分析。“我”是一个不可分割的整体，像一条江河，喧嚣着，裹挟着所有的力量，彻夜不息地奔腾着。一种机械的观念，以为掌握了局部就可以知晓全貌。不！不要这样去做，不要试图去用定义，用概念，用分析的手段，去限制生命，一种不断发展的力量。只需静静地站在它旁边，倾听它的喧响，感受它氤氲的水汽，望着它奔向远方。</p>
-<p>不要尝试去把握
-“我”，以为可以控制它的方向。生命永远在流动中。一切皆注定，而命定的结果，却无人能够破解。只要还在流动，就无法被预告结局怎样。</p>
-<p>流动吧！做一条奔腾不息的河，不舍昼夜地喧嚣，不执著于将要流向哪里。我们都只有一个归宿——大海。在此之前，就让我奉献出最虔敬的行动，谨以作为生命的赞歌！</p>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
 
 
 
@@ -1426,7 +1586,7 @@ Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
