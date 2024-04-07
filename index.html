@@ -115,7 +115,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">15</span></a>
 
   </li>
   </ul>
@@ -141,6 +141,120 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/07/%E9%85%8D%E7%BD%AE-Typora-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E7%BD%91%E7%BB%9C%E5%9B%BE%E5%BA%8A/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/07/%E9%85%8D%E7%BD%AE-Typora-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E7%BD%91%E7%BB%9C%E5%9B%BE%E5%BA%8A/" class="post-title-link" itemprop="url">配置 Typora 上传图片到网络图床</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-04-07 10:06:11 / 修改时间：10:12:06" itemprop="dateCreated datePublished" datetime="2024-04-07T10:06:11+08:00">2024-04-07</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如果在 markdown 文档插入本地路径中的图片，那么移动 markdown
+文档同时还必须考虑图片路径，否则图片总是无法正确显示。而配置网络中的图床，在
+markdown
+中只需要插入图片对应的网络链接即可，这在写网络博客很方便。图床一共需要配置三个位置：</p>
+<ul>
+<li>Github：设置图床仓库 <code>picgo-bed</code></li>
+<li>PicGo：配置图床</li>
+<li>Typora：偏好设置中图片选项选择使用 picgo-bed(app) 上传图片</li>
+</ul>
+<h2 id="github-设置">Github 设置</h2>
+<p>Github 设置公共仓库，同时生成一个 <a
+target="_blank" rel="noopener" href="https://github.com/settings/tokens">token</a> 用于 picgo
+操作仓库。注意生成时只需要勾选 repo 选项即可，如图所示</p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/image-20230908204919952.png" alt="choose-repo-only" style="zoom:50%;" /></p>
+<p>如果设置 token 有效时长为有限的，那么需要记住 token
+失效的时间，否则超出期限之后无法上传图片。</p>
+<h2 id="picgo-设置">PicGo 设置</h2>
+<p>我的设置如下，具体可参考 PicGo
+手册：https://picgo.github.io/PicGo-Doc/zh/guide/</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/image-20230908205208599.png"
+alt="image-20230908205208599" />
+<figcaption aria-hidden="true">image-20230908205208599</figcaption>
+</figure>
+<blockquote>
+<p><span class="github-emoji" data-alias="warning" style=""
+data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png?v8">⚠</span>
+注意修改 “设定分支名” 选项中默认值 maste 为 github 主分支名称
+“main”，</p>
+</blockquote>
+<p>为了增加上传图片的可读性，我还设置了如下功能</p>
+<ul>
+<li>上传图片前重命名</li>
+<li>对图片加上时间戳</li>
+</ul>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/%E6%B5%8B%E8%AF%95%20picgo%20%E6%94%B9%E5%90%8D%E5%AD%97%E5%8A%9F%E8%83%BD.png"
+alt="测试picgo改名字功能" />
+<figcaption aria-hidden="true">测试picgo改名字功能</figcaption>
+</figure>
+<p>这样上传到 github 中得到的就是改过名字的图片了，可读性会强很多</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/github%20%E6%98%BE%E7%A4%BA%E6%94%B9%E8%BF%87%E5%90%8D%E5%AD%97%E7%9A%84%E5%9B%BE%E7%89%87%E5%90%8D%E7%A7%B0.png"
+alt="github仓库截图" />
+<figcaption aria-hidden="true">github仓库截图</figcaption>
+</figure>
+<h2 id="typora-配置">Typora 配置</h2>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/Typora%20%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE.png"
+alt="typora 上传图片设置" />
+<figcaption aria-hidden="true">typora 上传图片设置</figcaption>
+</figure>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -1405,123 +1519,6 @@ f~\text{连续} \Rightarrow f~\text{弱连续}
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/01/22/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Qiu's 博客">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2024/01/22/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">四阶单位张量的矩阵表示方法</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2024-01-22 22:36:54 / 修改时间：22:38:39" itemprop="dateCreated datePublished" datetime="2024-01-22T22:36:54+08:00">2024-01-22</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>四阶单位张量可以表示为含有四个自由指标 Kronecker delta 记号的组合:
-<span class="math inline">\(\delta_{ij} \delta_{kl}\)</span>. 不过,
-与二阶单位张量不同的是, 改变指标的顺序,
-会得到三种不同的四阶单位张量:</p>
-<p><span class="math display">\[
-\delta_{ij} \delta_{kl} ={\mathcal{I}}_{ijkl} ={\mathcal{F}}_{iljk}
-={\mathcal{E}}_{ikjl}
-\]</span></p>
-<p>或者</p>
-<p><span class="math display">\[
-{\mathcal{I}}_{ijkl} =\delta_{ij} \delta_{kl} ,~~{\mathcal{E}}_{ijkl}
-=\delta_{ik} \delta_{jl} ,~~{\mathcal{F}}_{ijkl} =\delta_{il}
-\delta_{jk}
-\]</span></p>
-<p>对于任意四阶张量 <span class="math inline">\(\mathbb{L}\)</span>,
-在双点积(<span class="math inline">\(A:B:=A_{\cdot mn} B_{mn\cdot
-}\)</span>)作用下, 张量 <span class="math inline">\(\mathcal{E}\)</span>
-满足:</p>
-<p><span class="math display">\[
-\mathcal{E}:\mathbb{L}=\mathbb{L}:\mathcal{E}=\mathbb{L}
-\]</span></p>
-<p>若定义另一种双点积的方式为: <span class="math inline">\(A\cdot \cdot
-B:=A_{\cdot mn} B_{nm\cdot }\)</span>, 那么对于该点积的定义,
-保持四阶张量不变的单位张量是 <span
-class="math inline">\(\mathcal{F}\)</span>:</p>
-<p><span class="math display">\[
-\mathcal{F}\cdot \cdot \mathbb{L}=\mathbb{L}\cdot \cdot
-\mathcal{F}=\mathbb{L}
-\]</span></p>
-<p>除上述三种定义四阶单位张量的方式之外, 如果四阶张量具有次对称性(<span
-class="math inline">\(L_{ijkl} =L_{jikl} =L_{ijlk}\)</span>),
-还可以定义如下四阶张量:</p>
-<p><span class="math display">\[
-\mathcal{L}=\frac{1}{2}(\mathcal{F}+\mathcal{E})
-\]</span></p>
-<p>与具有次对称性的四阶张量张量作任意形式的双点积,
-都可以得到原来的四阶张量.</p>
-<p>具有次对称性的张量可以用 Voigt 记法表示成矩阵形式,
-四种四阶单位张量中, 只有 <span
-class="math inline">\(\mathcal{E}\)</span> 具有次对称性:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">% preallocate fourth order identity tensor</span><br><span class="line">L = zeros(6); </span><br><span class="line">F = zeros(6);</span><br><span class="line">E = zeros(6);</span><br><span class="line"></span><br><span class="line">% Voigt notation</span><br><span class="line">mapVToMat = &#123;[1,1],[2,2],[3,3],[2,3],[1,3],[1,2]&#125;;</span><br><span class="line"></span><br><span class="line">% E_&#123;ijkl&#125; = delta_&#123;ik&#125;*\delta_&#123;jl&#125;</span><br><span class="line">for irow = 1:6</span><br><span class="line">  i = mapVToMat&#123;irow&#125;(1);</span><br><span class="line">  j = mapVToMat&#123;irow&#125;(2);</span><br><span class="line">  for jcol = 1:6</span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(1);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(2);</span><br><span class="line"></span><br><span class="line">    E(irow,jcol) = d(i,k)*d(j,l);</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line">E</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">E = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     1     0     0</span><br><span class="line">     0     0     0     0     1     0</span><br><span class="line">     0     0     0     0     0     1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>可见 Voigt 记法下的四阶单位张量 <span
-class="math inline">\([\mathcal{E}]\)</span> 是单位矩阵,
-对任意具有次对称性的四阶张量 <span
-class="math inline">\(\mathbb{L}\)</span>, 也同样可以用 Voigt
-记法表示为矩阵形式 <span class="math inline">\([\mathbb{L}]\)</span>,
-在矩阵表示下, 有</p>
-<p><span class="math display">\[
-[\mathbb{L}][\mathcal{E}]=[\mathcal{E}][\mathbb{L}]=[\mathbb{L}]
-\]</span></p>
-<p>但是, 如果将其它的单位张量用 Voigt 记法表示为矩阵形式,
-由于缺乏次对称性, 单位张量的一些不为 0 的分量被"遗漏"了,
-得到的矩阵形式会缺少信息:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">% F_&#123;ijkl&#125; = delta_&#123;il&#125;*\delta_&#123;jk&#125;</span><br><span class="line">for irow = 1:6</span><br><span class="line">  i = mapVToMat&#123;irow&#125;(1);</span><br><span class="line">  j = mapVToMat&#123;irow&#125;(2);</span><br><span class="line">  for jcol = 1:6</span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(1);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(2);</span><br><span class="line"></span><br><span class="line">    F(irow,jcol) = d(i,l)*d(j,k);</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line">F</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">F = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">% L_&#123;ijkl&#125; = 1/2*delta_&#123;ik&#125;*\delta_&#123;jl&#125; + 1/2*delta_&#123;il&#125;*\delta_&#123;jk&#125;</span><br><span class="line">for irow = 1:6</span><br><span class="line">  i = mapVToMat&#123;irow&#125;(1);</span><br><span class="line">  j = mapVToMat&#123;irow&#125;(2);</span><br><span class="line">  for jcol = 1:6</span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(1);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(2);</span><br><span class="line"></span><br><span class="line">    L(irow,jcol) = 1/2*d(i,l)*d(j,k) + 1/2*d(i,k)*d(j,l);</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line">L</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">L = 6x6    </span><br><span class="line">    1.0000         0         0         0         0         0</span><br><span class="line">         0    1.0000         0         0         0         0</span><br><span class="line">         0         0    1.0000         0         0         0</span><br><span class="line">         0         0         0    0.5000         0         0</span><br><span class="line">         0         0         0         0    0.5000         0</span><br><span class="line">         0         0         0         0         0    0.5000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function dij = d(i,j)</span><br><span class="line">  dij = 0;</span><br><span class="line">  if i==j</span><br><span class="line">    dij = 1;</span><br><span class="line">  end</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1591,9 +1588,13 @@ class="math inline">\(\mathbb{L}\)</span>, 也同样可以用 Voigt
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
