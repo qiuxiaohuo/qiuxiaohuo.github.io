@@ -20,19 +20,23 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="如果想懒省事且有充足的安装空间的话，可以直接安装完全体版 texlive-full： 1sudo apt-get install texlive-full 这大概会占用 6 GB 的空间，但是好处是在未来写 tex 文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。 另外可以安装低配版的宏包，可是在 VSCode 编译时会出现如下错误： 1Recipe terminated wit">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu 环境下安装 LaTeX">
-<meta property="og:url" content="http://example.com/2024/04/06/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/index.html">
+  <meta name="description" content="结构几何设计域与加载形式 结构设计区域为 400mm×200mm×30mm，加载形式如图所示，两端为支撑（支撑不需要设计），中间区域为竖直方向的分布载荷，结构加载直至压溃。  结构承载能力评估方式 记结构总质量为 \(M\)，结构压溃时所承载的分布力为 \(F_{b}\)，结构承载能力 \(A\) 定义为 \[ A &#x3D; \frac{F_b}{M} \] 结构允许使用的材料 提供椴">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Qiu&#39;s 博客">
+<meta property="og:url" content="http://example.com/others/%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%E8%A6%81%E6%B1%82.html">
 <meta property="og:site_name" content="Qiu&#39;s 博客">
-<meta property="og:description" content="如果想懒省事且有充足的安装空间的话，可以直接安装完全体版 texlive-full： 1sudo apt-get install texlive-full 这大概会占用 6 GB 的空间，但是好处是在未来写 tex 文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。 另外可以安装低配版的宏包，可是在 VSCode 编译时会出现如下错误： 1Recipe terminated wit">
+<meta property="og:description" content="结构几何设计域与加载形式 结构设计区域为 400mm×200mm×30mm，加载形式如图所示，两端为支撑（支撑不需要设计），中间区域为竖直方向的分布载荷，结构加载直至压溃。  结构承载能力评估方式 记结构总质量为 \(M\)，结构压溃时所承载的分布力为 \(F_{b}\)，结构承载能力 \(A\) 定义为 \[ A &#x3D; \frac{F_b}{M} \] 结构允许使用的材料 提供椴">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-06T02:53:32.000Z">
-<meta property="article:modified_time" content="2024-04-06T02:53:12.090Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404082233420%E7%BB%93%E6%9E%84%E5%8A%A0%E8%BD%BD%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404082251156%E8%BD%BB%E6%9C%A8%E6%A3%92.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404082252448%E8%BD%BB%E6%9C%A8%E6%9D%BF%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
+<meta property="article:published_time" content="2024-04-08T15:05:59.245Z">
+<meta property="article:modified_time" content="2024-04-08T15:05:59.245Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404082233420%E7%BB%93%E6%9E%84%E5%8A%A0%E8%BD%BD%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
 
-<link rel="canonical" href="http://example.com/2024/04/06/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/">
+<link rel="canonical" href="http://example.com/others/%E7%BB%93%E6%9E%84%E8%AE%BE%E8%AE%A1%E8%A6%81%E6%B1%82">
 
 
 <script id="page-configurations">
@@ -40,12 +44,13 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : true,
+    isPost : false,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>Ubuntu 环境下安装 LaTeX | Qiu's 博客</title>
+  <title> | Qiu's 博客
+</title>
   
 
 
@@ -157,111 +162,80 @@
       <div class="main-inner">
         <div class="content-wrap">
           
+  
+  
 
-          <div class="content post posts-expand">
+          <div class="content page posts-expand">
             
 
     
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/06/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Qiu's 博客">
-    </span>
+    
+    
+    <div class="post-block" lang="zh-CN">
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          Ubuntu 环境下安装 LaTeX
-        </h1>
 
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
+<h1 class="post-title" itemprop="name headline">
+</h1>
 
-              <time title="创建时间：2024-04-06 10:53:32 / 修改时间：10:53:12" itemprop="dateCreated datePublished" datetime="2024-04-06T10:53:32+08:00">2024-04-06</time>
-            </span>
+<div class="post-meta">
+  
 
-          
+</div>
 
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
+</header>
 
       
-        <p>如果想懒省事且有充足的安装空间的话，可以直接安装完全体版
-<code>texlive-full</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install texlive-full</span><br></pre></td></tr></table></figure>
-<p>这大概会占用 6 GB 的空间，但是好处是在未来写 <code>tex</code>
-文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。</p>
-<p>另外可以安装低配版的宏包，可是在 VSCode 编译时会出现如下错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Recipe terminated with fatal error: spawn xelatex ENOENT</span><br></pre></td></tr></table></figure>
-<p>查看网上的问题贴，这应该是因为找不到 <code>xelatex</code>
-的安装路径。但如果装的是低配版的 texlive，我根本就不知道 Ubuntu
-这货把它装在哪里了…</p>
-<p>安装完 <code>texlive-full</code> 之后还有问题：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I can&#x27;t find the format file `xelatex.fmt&#x27;!</span><br></pre></td></tr></table></figure>
-<p>stackflow 上有相关的<a
-target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/23164/i-cant-find-the-format-file-xelatex-fmt">帖子</a>，尝试最高赞的解决方案：</p>
-<blockquote>
-<p>try to run <code>sudo fmtutil-sys --all</code> which should create
-all missing format files.</p>
-</blockquote>
-<p>没有奏效。第二个解决方案是重新安装 <code>xetex</code></p>
-<blockquote>
-<p>If you installed TeX from the repositories of your Linux system, you
-could reinstall the xetex package from a repository.</p>
+      
+      
+      <div class="post-body">
+          <h2 id="结构几何设计域与加载形式">结构几何设计域与加载形式</h2>
+<p>结构设计区域为
+400mm×200mm×30mm，加载形式如图所示，两端为支撑（支撑不需要设计），中间区域为竖直方向的分布载荷，结构加载直至压溃。</p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404082233420结构加载示意图.png" alt="image-20240408223327220" style="zoom: 50%;" /></p>
+<h2 id="结构承载能力评估方式">结构承载能力评估方式</h2>
+<p>记结构总质量为 <span
+class="math inline">\(M\)</span>，结构压溃时所承载的分布力为 <span
+class="math inline">\(F_{b}\)</span>，结构承载能力 <span
+class="math inline">\(A\)</span> 定义为 <span class="math display">\[
+A = \frac{F_b}{M}
+\]</span></p>
+<h2 id="结构允许使用的材料">结构允许使用的材料</h2>
+<p>提供椴木，桐木，轻木三种材料，这三种材料的密度与强度关系为 椴木 &gt;
+桐木 &gt; 轻木，以下列举了一些关于不同木材使用方式的资料：</p>
 <ul>
-<li>Redhat/Fedora: <code>sudo yum reinstall texlive-xetex</code></li>
-<li>Debian/Ubuntu:
-<code>sudo apt-get install --reinstall texlive-xetex</code></li>
+<li><a
+target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv6577016/">一架模型飞机会用到8种木材？航模小知识</a></li>
+<li><a
+target="_blank" rel="noopener" href="https://prepare-m.zhangyue.com/readbook/13044571/16.html">[典型航空模型的设计与制作最新章节](https://prepare-m.zhangyue.com/readbook/13044571/16.html)</a>（参考最前面一节）</li>
 </ul>
-</blockquote>
-<p>It works!</p>
+<p>各种材质的材料被加工成不同形状，比如说板材和木条，这些是我们结构模型的原材料：</p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404082251156轻木棒.png" alt="image-20240408225128036" style="zoom:33%;" /><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404082252448轻木板示意图.png" alt="image-20240408225205366" style="zoom:33%;" /></p>
+<p>结构中允许使用的材料为：</p>
+<ul>
+<li>2mm 椴木层板；</li>
+<li>2mm 桐木层板；</li>
+<li>2mm 轻木层板；</li>
+<li>4mm×4mm桐木条</li>
+</ul>
+<p>以及提供 502 和酒精胶作为粘接剂。</p>
+<h2 id="结构模型设计软件">结构模型设计软件</h2>
+<p>可以用 CATIA 和 SolidWorks 进行设计。群里提供了 CATIA
+机翼中段的模型文件（<code>CATIA模型文件/tutorial.CATPart</code>），可以用作参考。如果使用
+SolidWorks 设计模型，最好也浏览一下群里的教程
+<em>手把手教你CATIA绘制模型飞机</em>
+，了解一下层板与木条之间的组合结构该怎么设计。最终需要将设计的结构导出为二维
+<code>.dxf</code> 文件进行激光加工，然后组装测试。</p>
 
+      </div>
+      
+      
+      
     </div>
+    
 
     
     
     
-
-      <footer class="post-footer">
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2024/04/06/Markdown%20%E4%BD%BF%E7%94%A8%20html%20%E6%A0%87%E7%AD%BE/" rel="prev" title="Markdown 添加注记文本">
-      <i class="fa fa-chevron-left"></i> Markdown 添加注记文本
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2024/04/06/VSCode%20%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E4%B8%AD%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E6%97%B6%E9%97%B4/" rel="next" title="VSCode 使用 snippets 插入代码注释">
-      VSCode 使用 snippets 插入代码注释 <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
 
 
           </div>
@@ -312,6 +286,7 @@ could reinstall the xetex package from a repository.</p>
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%87%A0%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%9F%9F%E4%B8%8E%E5%8A%A0%E8%BD%BD%E5%BD%A2%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">结构几何设计域与加载形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E6%89%BF%E8%BD%BD%E8%83%BD%E5%8A%9B%E8%AF%84%E4%BC%B0%E6%96%B9%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">结构承载能力评估方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E5%85%81%E8%AE%B8%E4%BD%BF%E7%94%A8%E7%9A%84%E6%9D%90%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">结构允许使用的材料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%93%E6%9E%84%E6%A8%A1%E5%9E%8B%E8%AE%BE%E8%AE%A1%E8%BD%AF%E4%BB%B6"><span class="nav-number">4.</span> <span class="nav-text">结构模型设计软件</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
