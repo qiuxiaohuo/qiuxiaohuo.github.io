@@ -205,7 +205,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-09 18:19:30" itemprop="dateModified" datetime="2024-04-09T18:19:30+08:00">2024-04-09</time>
+      <time title="修改时间：2024-04-09 18:21:31" itemprop="dateModified" datetime="2024-04-09T18:21:31+08:00">2024-04-09</time>
     </span>
 
   
@@ -218,10 +218,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>hello world</p>
+          <p>在 Ubuntu 22.04 中安装 MATLAB 之后，使用命令行运行 MATLAB 报错：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">laptop@qxh-Precision-7920-Tower:~$ matlab</span><br><span class="line">matlab：未找到命令</span><br></pre></td></tr></table></figure>
+<p>这样每次运行 MATLAB，总是要到路径
+<code>/usr/local/MATLAB/R2024a/bin</code> 下运行 <code>matlab</code>
+脚本，并且再切换到原来的目录，很不方便。一种解决方案是使用
+<code>alias</code> 命令，定义一条短语替代长的字符串命令：</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2024/04/08/Linux-%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80-MATLAB-%E5%91%BD%E4%BB%A4%E8%A1%8C/">
+              <a class="btn" href="/2024/04/08/Linux-%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80-MATLAB-%E5%91%BD%E4%BB%A4%E8%A1%8C/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -376,9 +381,15 @@ CS</a> 介绍了 Git 的数据模型，方便理解 Git
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-07 10:06:11 / 修改时间：10:12:06" itemprop="dateCreated datePublished" datetime="2024-04-07T10:06:11+08:00">2024-04-07</time>
+      <time title="创建时间：2024-04-07 10:06:11" itemprop="dateCreated datePublished" datetime="2024-04-07T10:06:11+08:00">2024-04-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-09 18:25:14" itemprop="dateModified" datetime="2024-04-09T18:25:14+08:00">2024-04-09</time>
     </span>
 
   
@@ -395,59 +406,14 @@ CS</a> 介绍了 Git 的数据模型，方便理解 Git
 文档同时还必须考虑图片路径，否则图片总是无法正确显示。而配置网络中的图床，在
 markdown
 中只需要插入图片对应的网络链接即可，这在写网络博客很方便。图床一共需要配置三个位置：</p>
-<ul>
-<li>Github：设置图床仓库 <code>picgo-bed</code></li>
-<li>PicGo：配置图床</li>
-<li>Typora：偏好设置中图片选项选择使用 picgo-bed(app) 上传图片</li>
-</ul>
-<h2 id="github-设置">Github 设置</h2>
-<p>Github 设置公共仓库，同时生成一个 <a
-target="_blank" rel="noopener" href="https://github.com/settings/tokens">token</a> 用于 picgo
-操作仓库。注意生成时只需要勾选 repo 选项即可，如图所示</p>
-<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/image-20230908204919952.png" alt="choose-repo-only" style="zoom:50%;" /></p>
-<p>如果设置 token 有效时长为有限的，那么需要记住 token
-失效的时间，否则超出期限之后无法上传图片。</p>
-<h2 id="picgo-设置">PicGo 设置</h2>
-<p>我的设置如下，具体可参考 PicGo
-手册：https://picgo.github.io/PicGo-Doc/zh/guide/</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/image-20230908205208599.png"
-alt="image-20230908205208599" />
-<figcaption aria-hidden="true">image-20230908205208599</figcaption>
-</figure>
-<blockquote>
-<p><span class="github-emoji" data-alias="warning" style=""
-data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/26a0.png?v8">⚠</span>
-注意修改 “设定分支名” 选项中默认值 maste 为 github 主分支名称
-“main”，</p>
-</blockquote>
-<p>为了增加上传图片的可读性，我还设置了如下功能</p>
-<ul>
-<li>上传图片前重命名</li>
-<li>对图片加上时间戳</li>
-</ul>
-<figure>
-<img
-src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/%E6%B5%8B%E8%AF%95%20picgo%20%E6%94%B9%E5%90%8D%E5%AD%97%E5%8A%9F%E8%83%BD.png"
-alt="测试picgo改名字功能" />
-<figcaption aria-hidden="true">测试picgo改名字功能</figcaption>
-</figure>
-<p>这样上传到 github 中得到的就是改过名字的图片了，可读性会强很多</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/github%20%E6%98%BE%E7%A4%BA%E6%94%B9%E8%BF%87%E5%90%8D%E5%AD%97%E7%9A%84%E5%9B%BE%E7%89%87%E5%90%8D%E7%A7%B0.png"
-alt="github仓库截图" />
-<figcaption aria-hidden="true">github仓库截图</figcaption>
-</figure>
-<h2 id="typora-配置">Typora 配置</h2>
-<figure>
-<img
-src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/Typora%20%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E8%AE%BE%E7%BD%AE.png"
-alt="typora 上传图片设置" />
-<figcaption aria-hidden="true">typora 上传图片设置</figcaption>
-</figure>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/07/%E9%85%8D%E7%BD%AE-Typora-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E7%BD%91%E7%BB%9C%E5%9B%BE%E5%BA%8A/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -501,9 +467,15 @@ alt="typora 上传图片设置" />
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-06 11:54:32 / 修改时间：10:46:56" itemprop="dateCreated datePublished" datetime="2024-04-06T11:54:32+08:00">2024-04-06</time>
+      <time title="创建时间：2024-04-06 11:54:32" itemprop="dateCreated datePublished" datetime="2024-04-06T11:54:32+08:00">2024-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-09 18:21:54" itemprop="dateModified" datetime="2024-04-09T18:21:54+08:00">2024-04-09</time>
     </span>
 
   
@@ -519,12 +491,14 @@ alt="typora 上传图片设置" />
           <p>突然发现用 snippets 写注释也非常好用啊，比如写 Fortran 的 function 或
 subroutine 的头部注释：</p>
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">! name      : symSchur2</span></span><br><span class="line"><span class="comment">! remark    : get Schur decomposition for 2x2 matrix</span></span><br><span class="line"><span class="comment">!</span></span><br><span class="line"><span class="comment">! version   : 1.0</span></span><br><span class="line"><span class="comment">! date      : 2023-09-06 13:34:25</span></span><br><span class="line"><span class="comment">! author    : Junsong Qiu</span></span><br><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> symSchur2(A,c,s)</span><br><span class="line">...</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> symSchur2</span><br></pre></td></tr></table></figure>
-<p>直接在 Fortran 对应的 snippets 设置文件
-<code>FortranFreeForm.json</code> 中加入如下片段：</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">&quot;Head comments for subroutines&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">		<span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hc&quot;</span><span class="punctuation">,</span></span><br><span class="line">		<span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! name      : $1&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! remark    : $2&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! version   : 1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! date      : $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE  $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! author    : Junsong Qiu&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span></span><br><span class="line">		<span class="punctuation">]</span></span><br><span class="line">	<span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>其中，变量 <code>$1</code> <code>$2</code> 在插入 snippets
-时会自动要求你插入新的内容。时间部分可以用 VSCode 内置的变量添加。</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/06/VSCode%20%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E4%B8%AD%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E6%97%B6%E9%97%B4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -578,9 +552,15 @@ subroutine 的头部注释：</p>
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-06 10:53:32 / 修改时间：10:53:12" itemprop="dateCreated datePublished" datetime="2024-04-06T10:53:32+08:00">2024-04-06</time>
+      <time title="创建时间：2024-04-06 10:53:32" itemprop="dateCreated datePublished" datetime="2024-04-06T10:53:32+08:00">2024-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-09 18:26:33" itemprop="dateModified" datetime="2024-04-09T18:26:33+08:00">2024-04-09</time>
     </span>
 
   
@@ -597,32 +577,15 @@ subroutine 的头部注释：</p>
 <code>texlive-full</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install texlive-full</span><br></pre></td></tr></table></figure>
 <p>这大概会占用 6 GB 的空间，但是好处是在未来写 <code>tex</code>
-文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。</p>
-<p>另外可以安装低配版的宏包，可是在 VSCode 编译时会出现如下错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Recipe terminated with fatal error: spawn xelatex ENOENT</span><br></pre></td></tr></table></figure>
-<p>查看网上的问题贴，这应该是因为找不到 <code>xelatex</code>
-的安装路径。但如果装的是低配版的 texlive，我根本就不知道 Ubuntu
-这货把它装在哪里了…</p>
-<p>安装完 <code>texlive-full</code> 之后还有问题：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">I can&#x27;t find the format file `xelatex.fmt&#x27;!</span><br></pre></td></tr></table></figure>
-<p>stackflow 上有相关的<a
-target="_blank" rel="noopener" href="https://tex.stackexchange.com/questions/23164/i-cant-find-the-format-file-xelatex-fmt">帖子</a>，尝试最高赞的解决方案：</p>
-<blockquote>
-<p>try to run <code>sudo fmtutil-sys --all</code> which should create
-all missing format files.</p>
-</blockquote>
-<p>没有奏效。第二个解决方案是重新安装 <code>xetex</code></p>
-<blockquote>
-<p>If you installed TeX from the repositories of your Linux system, you
-could reinstall the xetex package from a repository.</p>
-<ul>
-<li>Redhat/Fedora: <code>sudo yum reinstall texlive-xetex</code></li>
-<li>Debian/Ubuntu:
-<code>sudo apt-get install --reinstall texlive-xetex</code></li>
-</ul>
-</blockquote>
-<p>It works!</p>
-
+文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/06/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -676,9 +639,15 @@ could reinstall the xetex package from a repository.</p>
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-06 10:46:32 / 修改时间：10:46:05" itemprop="dateCreated datePublished" datetime="2024-04-06T10:46:32+08:00">2024-04-06</time>
+      <time title="创建时间：2024-04-06 10:46:32" itemprop="dateCreated datePublished" datetime="2024-04-06T10:46:32+08:00">2024-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-09 18:22:57" itemprop="dateModified" datetime="2024-04-09T18:22:57+08:00">2024-04-09</time>
     </span>
 
   
@@ -697,91 +666,17 @@ could reinstall the xetex package from a repository.</p>
 <li>这些文本可以归属为: 笔记 (note) , 警告 (warning) , 定义等等</li>
 </ul>
 <p>我就很想要一个彩色的框框, 把这段文字给标注一下. 在 <span
-class="math inline">\(\LaTeX\)</span>​​ 中, 一般是用命令
+class="math inline">\(\LaTeX\)</span>​​​ 中, 一般是用命令
 <code>\mdframed</code> 实现. 然而在 Markdown 的标准语法中,
 并没有注记文本这一功能.</p>
-<hr />
-<p>一些特殊的 Markdown 解析器可以做到, 比如在 Github Markdown
-解析器中插入下段标记:</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/github-admonition-20230928143727151.png"
-alt="image-20230928143727151" />
-<figcaption aria-hidden="true">image-20230928143727151</figcaption>
-</figure>
-<hr />
-<p>注记文本的功能也有人向 Typora 官方提出过, 不过 Typora
-认为这一功能并不是必要的, 反而还会破坏 Markdown 语法的简洁性. 在 Github
-上的 <a
-target="_blank" rel="noopener" href="https://github.com/typora/typora-issues/labels/markdown%20extension?page=2&amp;q=is%3Aopen+label%3A%22markdown+extension%22">issue</a>是这样说的:</p>
-<blockquote>
-<p>This seems too far way from most markdown engines. We want keep
-markdown in typora simple, no extra learning costs if one already knows
-how to write markdown. So, we are less likely to add syntax support for
-this</p>
-</blockquote>
-<p>一种替代的方法是是用 emoji <span class="github-emoji"
-data-alias="tada" style=""
-data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png?v8">🎉</span>.
-这个是 stackflow 上提供的权宜之计. 比如说, 我想写一段笔记:</p>
-<blockquote>
-<p><span class="github-emoji" data-alias="notebook" style=""
-data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d3.png?v8">📓</span>
-<strong>笔记</strong></p>
-<p>这是一段笔记.</p>
-</blockquote>
-<p>还可以吧, 要是引用框的颜色可以变变就更好了. 不然 Typora
-的文档总显得灰头土脸的, 放到 hexo 博客上的文章也是单一的白色.
-这时可以使用 html 标签 <code>&lt;div&gt; &lt;/div&gt;</code>
-来添加引用文本的背景色, 可是需要添加很长一段代码, 在 Typora
-中不太实用:</p>
-<div style="background-color:lightblue;padding:20px;">
-<h4>
-Warning
-</h4>
-<p>
-London is the capital city of England. It is the most populous city in
-the United Kingdom, with a metropolitan area of over 13 million
-inhabitants.
-</p>
-</div>
-<p>但是这个颜色吧… 综上, 还是使用 emoji 的方式, 在 Typora
-中表示段落文字的强调.</p>
-<hr />
-<p>在写 hexo 博客的时候, 可以使用 tag 插件实现这一功能,</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% note [class] [no-icon] [summary] %&#125;</span><br><span class="line">Any content (support inline tags too).</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-<p>变量说明如下:</p>
-<ul>
-<li><code>[class]</code> : <em>Optional parameter.</em> Supported
-values: default | primary | success | info | warning | danger.</li>
-<li><code>[no-icon]</code> : <em>Optional parameter.</em> Disable icon
-in note.</li>
-<li><code>[summary]</code> : <em>Optional parameter.</em> Optional
-summary of the note.</li>
-</ul>
-<p>效果图为</p>
-<figure>
-<img
-src="C:\Users\qiutian\AppData\Roaming\Typora\typora-user-images\image-20240406093726500.png"
-alt="image-20240406093726500" />
-<figcaption aria-hidden="true">image-20240406093726500</figcaption>
-</figure>
-<h2 id="除此之外">除此之外</h2>
-<p>探索 Markdown 段落标记文字的时候, 发现它可以插入 html 标签,
-来实现一些之前没想到过的功能. 更多内容可以参考<a
-target="_blank" rel="noopener" href="https://support.typora.io/HTML/#comments">官方文档</a>, 以及 html
-<a target="_blank" rel="noopener" href="https://www.w3schools.com/html/default.asp">教学网站</a>.</p>
-<h3 id="键盘标签-kbd">键盘标签 <code>&lt;kbd&gt;</code></h3>
-<p>该标签可以插入在行内. 比如, 我想表示 VSCode 中「打开设置」快捷键:
-<kbd>Ctrl</kbd>+<kbd>,</kbd>.</p>
-<h3 id="总结标签-summary">总结标签 <code>&lt;summary&gt;</code></h3>
-<details>
-<summary>
-I have keys but no locks. I have space but no room. You can enter but
-can't leave. What am I?
-</summary>
-<pre><code> A keyboard. &lt;/details&gt;</code></pre>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/06/Markdown%20%E4%BD%BF%E7%94%A8%20html%20%E6%A0%87%E7%AD%BE/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -835,9 +730,15 @@ can't leave. What am I?
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-06 10:30:32 / 修改时间：10:46:20" itemprop="dateCreated datePublished" datetime="2024-04-06T10:30:32+08:00">2024-04-06</time>
+      <time title="创建时间：2024-04-06 10:30:32" itemprop="dateCreated datePublished" datetime="2024-04-06T10:30:32+08:00">2024-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-09 18:22:30" itemprop="dateModified" datetime="2024-04-09T18:22:30+08:00">2024-04-09</time>
     </span>
 
   
@@ -862,7 +763,6 @@ Clash，查看我的笔记本的代理端口为：7890。然后设置 Git 的端
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
 <p>注意，第二条是 <code>http://127.0.0.1:7890</code> ，不是
 <code>https://127.0.0.1:7890</code></p>
-<p>然后就糊里糊涂的解决问题了…</p>
 
       
     </div>
@@ -917,9 +817,15 @@ Clash，查看我的笔记本的代理端口为：7890。然后设置 Git 的端
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-06 09:54:32 / 修改时间：10:46:11" itemprop="dateCreated datePublished" datetime="2024-04-06T09:54:32+08:00">2024-04-06</time>
+      <time title="创建时间：2024-04-06 09:54:32" itemprop="dateCreated datePublished" datetime="2024-04-06T09:54:32+08:00">2024-04-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-09 18:22:43" itemprop="dateModified" datetime="2024-04-09T18:22:43+08:00">2024-04-09</time>
     </span>
 
   
@@ -936,34 +842,14 @@ Clash，查看我的笔记本的代理端口为：7890。然后设置 Git 的端
 并不直接对应变量所占用的字节数，在不同的编译器与系统中可能有不同的对应关系，例如最常见的系统有：</p>
 <figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">4</span>)  :: xs   <span class="comment">! 4 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">8</span>)  :: xd   <span class="comment">! 8 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">16</span>) :: xq   <span class="comment">! 16 byte ieee float</span></span><br></pre></td></tr></table></figure>
 <p>而有些编译器可能是：</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">1</span>) :: XS   <span class="comment">! 4 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">2</span>) :: XD   <span class="comment">! 8 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">3</span>) :: XQ   <span class="comment">! 16 BYTE FLOAT</span></span><br></pre></td></tr></table></figure>
-<p>所以，为了提高代码的可移植性，一般不直接给 integer 或 real
-变量类型赋予确定的字节长度，而是使用内置函数<code>SELECTED_REAL_KIND</code>
-and <code>SELECTED_INT_KIND</code> 从当前编译器中获取 <code>KIND</code>
-的数值。例如，我想声明一个 15 位的 real 变量，首先调用内置函数：</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br></pre></td></tr></table></figure>
-<p>然后在程序中声明变量：</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">real</span>(dp) :: a, b, c</span><br><span class="line"><span class="keyword">real</span>(<span class="keyword">kind</span>=dp) :: a, b, c <span class="comment">! another equivalent statement</span></span><br><span class="line">a = <span class="number">1.0_dp</span></span><br><span class="line">b = <span class="number">3.5_dp</span></span><br><span class="line">c = <span class="number">1.34e8_dp</span></span><br></pre></td></tr></table></figure>
-<p>注意，这里的浮点数常数后面还加上了参量 <code>KIND</code>
-的后缀，每次写个数都这么搞似乎太麻烦了些，不知道不写是不是也<sub>行</sub>啊~~~？anyway，可以在
-module 中统一定义参量 <code>KIND</code> ，然后在其它程序中引用：</p>
-<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">!&gt; Numerical storage size parameters for real and integer values</span></span><br><span class="line"><span class="keyword">module</span> kind_parameter</span><br><span class="line">   <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">   <span class="keyword">public</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Single precision real numbers, 6 digits, range 10⁻³⁷ to 10³⁷-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: sp = <span class="built_in">selected_real_kind</span>(<span class="number">6</span>, <span class="number">37</span>)</span><br><span class="line">   <span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br><span class="line">   <span class="comment">!&gt; Quadruple precision real numbers, 33 digits, range 10⁻⁴⁹³¹ to 10⁴⁹³¹-1; 128 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: qp = <span class="built_in">selected_real_kind</span>(<span class="number">33</span>, <span class="number">4931</span>)</span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Char length for integers, range -2⁷ to 2⁷-1; 8 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i1 = <span class="built_in">selected_int_kind</span>(<span class="number">2</span>)</span><br><span class="line">   <span class="comment">!&gt; Short length for integers, range -2¹⁵ to 2¹⁵-1; 16 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i2 = <span class="built_in">selected_int_kind</span>(<span class="number">4</span>)</span><br><span class="line">   <span class="comment">!&gt; Length of default integers, range -2³¹ to 2³¹-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i4 = <span class="built_in">selected_int_kind</span>(<span class="number">9</span>)</span><br><span class="line">   <span class="comment">!&gt; Long length for integers, range -2⁶³ to 2⁶³-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i8 = <span class="built_in">selected_int_kind</span>(<span class="number">18</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> kind_parameter</span><br></pre></td></tr></table></figure>
-<p>如果不是跨系统使用自己的代码，直接在 Windows 环境下用
-<code>real(8)</code> 就省事多了。</p>
-<p>我似乎明白了为什么之前看到过别人的 Fortran 代码，连 0.0，1.0，…，9.0
-都要用变量名定义。我使用的编程语言主要是 MATLAB（如果 MATLAB
-可以被称为一门编程语言的话），对数据类型只关注整数，浮点数，字符这种大的类别的区分，对于这些数据占系统多少字节并不关心，但是
-Fortran 中的变量还可以体现占用字节的信息。</p>
-<p><strong>主要参考文档</strong></p>
-<p><a
-target="_blank" rel="noopener" href="https://web.archive.org/web/20200930090137/https://stevelionel.com/drfortran/2017/03/27/doctor-fortran-in-it-takes-all-kinds/">Doctor
-Fortran in “It Takes All KINDs”</a></p>
-<p><a
-target="_blank" rel="noopener" href="https://stackoverflow.com/questions/838310/fortran-90-kind-parameter">Fortran
-90 kind parameter</a></p>
-<p>在看帖子时看到别人写的查询自己机器 <code>KIND</code> 变量并生成相应的
-Fortran 源码的代码，<code>kindfinder.f90</code></p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/06/Fortran%20%E4%B8%AD%E7%9A%84%20KIND/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1017,9 +903,15 @@ Fortran 源码的代码，<code>kindfinder.f90</code></p>
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-05 15:05:03 / 修改时间：16:54:12" itemprop="dateCreated datePublished" datetime="2024-04-05T15:05:03+08:00">2024-04-05</time>
+      <time title="创建时间：2024-04-05 15:05:03" itemprop="dateCreated datePublished" datetime="2024-04-05T15:05:03+08:00">2024-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-09 18:23:06" itemprop="dateModified" datetime="2024-04-09T18:23:06+08:00">2024-04-09</time>
     </span>
 
   
@@ -1033,91 +925,15 @@ Fortran 源码的代码，<code>kindfinder.f90</code></p>
     
     <div class="post-body" itemprop="articleBody">
           <p>tmux 之于命令窗口有点类似于浏览器之于网页, 可在 tmux
-命令环境中操纵多个命令行窗口.</p>
-<blockquote>
-<p>注: tmux 的快捷键操作一般需要先按下 <kbd>Ctrl</kbd> +<kbd>b</kbd>.
-文档中列出的快捷键清单默认没有写出这一组合键, 如不需要按下
-<kbd>Ctrl</kbd> +<kbd>b</kbd>, 会在按键操作中特别说明.</p>
-</blockquote>
-<h2 id="面板-pano-操作">面板 (pano) 操作</h2>
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 54%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><kbd>%</kbd></td>
-<td>左右分裂当前面板</td>
-</tr>
-<tr class="even">
-<td><kbd>“</kbd></td>
-<td>上下分裂当前面板</td>
-</tr>
-<tr class="odd">
-<td><kbd>方向键</kbd></td>
-<td>导航面板</td>
-</tr>
-<tr class="even">
-<td><kbd>Ctrl</kbd>+<kbd>d</kbd> (不按 <code>c-b</code>)</td>
-<td>关闭当前面板</td>
-</tr>
-<tr class="odd">
-<td><kbd>z</kbd></td>
-<td>将 pano 放大为全屏, <br />再按一次缩小为原来的尺寸</td>
-</tr>
-<tr class="even">
-<td><kbd>Ctrl</kbd>+<kbd>方向键</kbd></td>
-<td>按照方向键方向调整 pano 尺寸</td>
-</tr>
-</tbody>
-</table>
-<h2 id="窗口-window-操作">窗口 (window) 操作</h2>
-<table>
-<colgroup>
-<col style="width: 59%" />
-<col style="width: 40%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><kbd>c</kbd></td>
-<td>创建新窗口</td>
-</tr>
-<tr class="even">
-<td><kbd>Ctrl</kbd>+<kbd>d</kbd> (不按 <code>c-b</code>)</td>
-<td>关闭当前窗口</td>
-</tr>
-<tr class="odd">
-<td><kbd>,</kbd></td>
-<td>重命名当前窗口</td>
-</tr>
-<tr class="even">
-<td><kbd>p</kbd></td>
-<td>打开前一个窗口</td>
-</tr>
-<tr class="odd">
-<td><kbd>n</kbd></td>
-<td>打开后一个窗口</td>
-</tr>
-<tr class="even">
-<td><kbd>num</kbd></td>
-<td>打开编号 <kbd>num</kbd> 窗口</td>
-</tr>
-</tbody>
-</table>
-
+命令环境中操纵多个命令行窗口.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/05/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -1171,9 +987,15 @@ Fortran 源码的代码，<code>kindfinder.f90</code></p>
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-05 11:28:37 / 修改时间：12:37:00" itemprop="dateCreated datePublished" datetime="2024-04-05T11:28:37+08:00">2024-04-05</time>
+      <time title="创建时间：2024-04-05 11:28:37" itemprop="dateCreated datePublished" datetime="2024-04-05T11:28:37+08:00">2024-04-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-09 18:23:11" itemprop="dateModified" datetime="2024-04-09T18:23:11+08:00">2024-04-09</time>
     </span>
 
   
@@ -1189,344 +1011,15 @@ Fortran 源码的代码，<code>kindfinder.f90</code></p>
           <h2 id="为什么会用-vim">为什么会用 Vim</h2>
 <p>因为 Vim 提供了一种不太一样的文本编辑器哲学.
 它认为代码主要的工作是修改代码, 所以提供了大量的键盘指令操作,
-方便使用者来修改 ta 们的代码.</p>
-<h2 id="vim-的四种模式">Vim 的四种模式</h2>
-<ul>
-<li>Normal mode: 普通模式, 移动光标或使用命令修改文本</li>
-<li>Visual mode: 浏览模式, 选择文本</li>
-<li>Insert mode: 插入模式, 编辑文本</li>
-<li>Command mode: 命令模式, 执行命令</li>
-</ul>
-<h3 id="插入模式">插入模式</h3>
-<table>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>i</code></td>
-<td>在光标后编辑</td>
-</tr>
-<tr class="even">
-<td><code>I</code></td>
-<td>在光标所在行<strong>起始</strong>编辑</td>
-</tr>
-<tr class="odd">
-<td><code>a</code></td>
-<td>在光标<strong>前</strong>编辑</td>
-</tr>
-<tr class="even">
-<td><code>A</code></td>
-<td>在光标所在行<strong>末尾</strong>编辑</td>
-</tr>
-<tr class="odd">
-<td><code>o</code></td>
-<td>在光标所在行<strong>下方</strong>增添新行并编辑</td>
-</tr>
-<tr class="even">
-<td><code>O</code></td>
-<td>在光标所在行<strong>上方</strong>增添新行并编辑</td>
-</tr>
-</tbody>
-</table>
-<h3 id="浏览模式">浏览模式</h3>
-<table>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>v</code></td>
-<td>从光标所在<strong>处</strong>开始,
-按<strong>字符</strong>选择文本</td>
-</tr>
-<tr class="even">
-<td><code>V</code></td>
-<td>从光标所在<strong>行</strong>开始,
-按<strong>行</strong>选择文本</td>
-</tr>
-<tr class="odd">
-<td><code>ctrl+v</code></td>
-<td>从光标所在<strong>列</strong>开始,
-按<strong>列</strong>选择文本</td>
-</tr>
-</tbody>
-</table>
-<h3 id="命令模式">命令模式</h3>
-<ul>
-<li><code>:q</code> 退出</li>
-<li><code>:w</code> 保存</li>
-<li><code>:wq</code> 保存并退出</li>
-<li><code>:e &#123;文件名&#125;</code> 打开文件并编辑</li>
-<li><code>:ls</code> 展示打开的缓存区</li>
-<li><code>:help &#123;命令&#125;</code> 打开帮助, 例如
-<ul>
-<li><code>:help :w</code> 打开关于命令 <code>:w</code> 的帮助</li>
-<li><code>:help w</code> 打开关于命令 <code>w</code> 的帮助</li>
-</ul></li>
-</ul>
-<h2 id="导航">导航</h2>
-<h3 id="移动屏幕">移动屏幕</h3>
-<table>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>zt</code></td>
-<td>移动屏幕, 使得光标在窗口顶端</td>
-</tr>
-<tr class="even">
-<td><code>zt</code></td>
-<td>移动屏幕, 使得光标在窗口顶端</td>
-</tr>
-<tr class="odd">
-<td><code>zz</code></td>
-<td>移动屏幕, 使得光标在窗口中部</td>
-</tr>
-<tr class="even">
-<td><code>zb</code></td>
-<td>移动屏幕, 使得光标在窗口底部</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>H</code></td>
-<td>移动光标至屏幕顶端</td>
-</tr>
-<tr class="even">
-<td><code>M</code></td>
-<td>移动光标至屏幕中部</td>
-</tr>
-<tr class="odd">
-<td><code>L</code></td>
-<td>移动光标至屏幕底部</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>gg</code></td>
-<td>移动光标至文件起始处</td>
-</tr>
-<tr class="even">
-<td><code>G</code></td>
-<td>移动光标至文件末尾处</td>
-</tr>
-</tbody>
-</table>
-<p><code>&#123;行号&#125;gg</code>, <code>&#123;行号&#125;G</code>, <code>:&#123;行号&#125;</code>
-移动光标至行{行号}</p>
-<h3 id="单词">单词</h3>
-<table>
-<colgroup>
-<col style="width: 6%" />
-<col style="width: 93%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>w</code></td>
-<td>将光标移动到前一个单词的起始处</td>
-</tr>
-<tr class="even">
-<td><code>e</code></td>
-<td>将光标移动到当前单词的末尾处; <br>若已经在末尾,
-则移动到前一个单词的末尾处</td>
-</tr>
-<tr class="odd">
-<td><code>b</code></td>
-<td>将光标移动到后一个单词的起始处</td>
-</tr>
-<tr class="even">
-<td><code>ge</code></td>
-<td>将光标移动到后一个单词的末尾处</td>
-</tr>
-</tbody>
-</table>
-<h3 id="行">行</h3>
-<table>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>^</code></td>
-<td>将光标移动到所在行第一个字符处</td>
-</tr>
-<tr class="even">
-<td><code>0</code></td>
-<td>将光标移动到行首</td>
-</tr>
-<tr class="odd">
-<td><code>$</code></td>
-<td>将光标移动到行尾</td>
-</tr>
-</tbody>
-</table>
-<h3 id="搜索">搜索</h3>
-<table>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>f&#123;字符&#125;</code></td>
-<td>在当前行<strong>向前</strong>搜索并跳转至字符 char 处</td>
-</tr>
-<tr class="even">
-<td><code>F&#123;字符&#125;</code></td>
-<td>在当前行<strong>向后</strong>搜索并跳转至字符 char 处</td>
-</tr>
-<tr class="odd">
-<td><code>t&#123;字符&#125;</code></td>
-<td>在当前行<strong>向前</strong>搜索并跳转到字符 char 后</td>
-</tr>
-<tr class="even">
-<td><code>T&#123;字符&#125;</code></td>
-<td>在当前行<strong>向后</strong>搜索并跳转到字符 char 前</td>
-</tr>
-</tbody>
-</table>
-<p>使用 <code>,</code> / <code>;</code> 搜索 后/前 一个字符</p>
-<table>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>/&#123;正则表达式&#125;</code></td>
-<td>在文档中搜索{正则表达式}</td>
-</tr>
-</tbody>
-</table>
-<p>使用 <code>N</code> / <code>n</code> 搜索 后/前 一个{正则表达式}</p>
-<h2 id="编辑文档">编辑文档</h2>
-<h3 id="删除和替换">删除和替换</h3>
-<ul>
-<li><code>d&#123;导航命令&#125;</code> 删除 {导航命令}
-<ul>
-<li>e.g. <code>dw</code> 删除单词, <code>d$</code>
-删除光标处至行尾的内容, <br><code>d0</code> 删除光标处至行首的内容</li>
-</ul></li>
-<li><code>c&#123;导航命令&#125;</code> 替换 {导航命令}
-<ul>
-<li>e.g. <code>cw</code> 可以看作执行删除单词命令后再执行命令
-<code>i</code></li>
-</ul></li>
-<li><code>x</code> 删除字符 (等价于 <code>dl</code>)</li>
-<li><code>s</code> 替换字符 (等价于 <code>cl</code>)</li>
-</ul>
-<h3 id="复制和粘贴">复制和粘贴</h3>
-<table>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>y␣</code></td>
-<td>复制光标所在处字符</td>
-</tr>
-<tr class="even">
-<td><code>yy</code></td>
-<td>复制光标所在行</td>
-</tr>
-<tr class="odd">
-<td><code>yw</code></td>
-<td>复制光标所在单词</td>
-</tr>
-<tr class="even">
-<td><code>y$</code></td>
-<td>复制光标处至行尾的内容</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>p</code></td>
-<td>在光标后粘贴</td>
-</tr>
-<tr class="even">
-<td><code>P</code></td>
-<td>在光标前粘贴</td>
-</tr>
-</tbody>
-</table>
-<h3 id="撤销和重现">撤销和重现</h3>
-<table>
-<thead>
-<tr class="header">
-<th>按键</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><code>u</code></td>
-<td>撤销上一次操作</td>
-</tr>
-<tr class="even">
-<td><code>Ctrl+r</code></td>
-<td>重现下一次操作</td>
-</tr>
-</tbody>
-</table>
-<h3 id="计数">计数</h3>
-<p>在此处仅举一些命令作为例子, 其它可类推</p>
-<ul>
-<li><code>3w</code> 向前移动 3 个单词</li>
-<li><code>5j</code> 向下移动 5 行</li>
-<li><code>7dw</code> 删除 7 个单词</li>
-</ul>
-
+方便使用者来修改 ta 们的代码.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/05/Vim%20%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
