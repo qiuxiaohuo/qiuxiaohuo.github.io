@@ -205,7 +205,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-09 09:42:20" itemprop="dateModified" datetime="2024-04-09T09:42:20+08:00">2024-04-09</time>
+      <time title="修改时间：2024-04-09 18:19:30" itemprop="dateModified" datetime="2024-04-09T18:19:30+08:00">2024-04-09</time>
     </span>
 
   
@@ -218,43 +218,15 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>在 Ubuntu 22.04 中安装 MATLAB 之后，使用命令行运行 MATLAB 报错：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">laptop@qxh-Precision-7920-Tower:~$ matlab</span><br><span class="line">matlab：未找到命令</span><br></pre></td></tr></table></figure>
-<p>这样每次运行 MATLAB，总是要到路径
-<code>/usr/local/MATLAB/R2024a/bin</code> 下运行 <code>matlab</code>
-脚本，并且再切换到原来的目录，很不方便。一种解决方案是使用
-<code>alias</code> 命令，定义一条短语替代长的字符串命令：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Creates aliases -- words that are replaced by a <span class="built_in">command</span> string.</span><br><span class="line"> Aliases expire with the current shell session unless defined <span class="keyword">in</span> the shell<span class="string">&#x27;s configuration file, e.g. ~/.bashrc.</span></span><br></pre></td></tr></table></figure>
-<p>根据 MATLAB 在工作站的安装目录，我定义的 <code>alias</code> 为：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> matlab=<span class="string">&quot;/usr/local/MATLAB/R2024a/bin/matlab -nodesktop -nodisplay&quot;</span></span><br></pre></td></tr></table></figure>
-<p>命令中 <code>-nodesktop</code> <code>-nodisplay</code> 表示不运行
-MATLAB GUI 界面（不得不吐槽 MATLAB 在 Ubuntu 下的 GUI
-太丑了）。运行这一行命令之后，如果运行
-<code>alias</code>，就会发现我们定义的短语已经加载到当前的 bash
-当中了：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">laptop@qxh-Precision-7920-Tower:~$ <span class="built_in">alias</span></span><br><span class="line"><span class="built_in">alias</span> alert=<span class="string">&#x27;notify-send --urgency=low -i &quot;$([ $? = 0 ] &amp;&amp; echo terminal || echo error)&quot; &quot;$(history|tail -n1|sed -e &#x27;</span>\<span class="string">&#x27;&#x27;</span>s/^\s*[0-9]\+\s*//;s/[;&amp;|]\s*alert$//<span class="string">&#x27;\&#x27;</span><span class="string">&#x27;)&quot;&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> egrep=<span class="string">&#x27;egrep --color=auto&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> fgrep=<span class="string">&#x27;fgrep --color=auto&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> grep=<span class="string">&#x27;grep --color=auto&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> l=<span class="string">&#x27;ls -CF&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> la=<span class="string">&#x27;ls -A&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> ll=<span class="string">&#x27;ls -alF&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> <span class="built_in">ls</span>=<span class="string">&#x27;ls --color=auto&#x27;</span></span><br><span class="line"><span class="built_in">alias</span> matlab=<span class="string">&#x27;/usr/local/MATLAB/R2024a/bin/matlab -nodesktop -nodisplay&#x27;</span></span><br></pre></td></tr></table></figure>
-<p>此外还会看到许多我们并没有直接定义的
-<code>alias</code>，这是因为它们是在 bash 配置文件
-<code>~/.bashrc</code> 中预定义的，每次运行 bash
-时都会将这些命令加载进来，所以，如果希望下一次运行 bash 可以直接运行
-matlab，还需要将定义的 <code>alias</code> 加载到 <code>~/.bashrc</code>
-中。</p>
-<p>编辑完 bash 配置文件之后，运行 <code>source</code> 命令重新加载</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br></pre></td></tr></table></figure>
-<p>就可以了。</p>
-<p>此外，如果脚本配置文件中定义了如下语句：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> [ -f ~/.bash_aliases ]; <span class="keyword">then</span></span><br><span class="line">	. ~/.bash_aliases</span><br><span class="line"><span class="keyword">fi</span></span><br></pre></td></tr></table></figure>
-<p>那么可以在外部文件中 <code>.bash_aliases</code> 写入自定义的
-<code>aliases</code> 。</p>
-<blockquote>
-<p><strong>可能遇到的问题</strong></p>
-<p>执行 <code>source ~/.bashrc</code>如果报错如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.bashrc (line 6): &#x27;case&#x27; builtin not inside of switch block</span><br><span class="line">case $- in</span><br><span class="line">^</span><br><span class="line">from sourcing file .bashrc</span><br><span class="line">source: Error while reading file “.bashrc”</span><br></pre></td></tr></table></figure>
-<p>那么这可能是因为在 Fish 环境下执行的，退出 Fish 之后就可以了。参考 <a
-target="_blank" rel="noopener" href="https://askubuntu.com/questions/1390000/my-bashrc-has-a-typo-and-i-do-not-know-how-to-fix-it">my
-.bashrc has a typo and I do not know how to fix it</a>。</p>
-</blockquote>
-
+          <p>hello world</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/08/Linux-%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80-MATLAB-%E5%91%BD%E4%BB%A4%E8%A1%8C/">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -316,7 +288,7 @@ target="_blank" rel="noopener" href="https://askubuntu.com/questions/1390000/my-
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-08 22:15:44" itemprop="dateModified" datetime="2024-04-08T22:15:44+08:00">2024-04-08</time>
+      <time title="修改时间：2024-04-09 18:16:38" itemprop="dateModified" datetime="2024-04-09T18:16:38+08:00">2024-04-09</time>
     </span>
 
   
@@ -343,33 +315,14 @@ CS</a> 介绍了 Git 的数据模型，方便理解 Git
 <li><a target="_blank" rel="noopener" href="https://cbea.ms/git-commit/">Git commit</a> 介绍撰写 Commit
 信息的好的实践方案</li>
 </ul>
-<h2 id="git-commit-七准则">Git commit 七准则</h2>
-<p>这里引用 <a target="_blank" rel="noopener" href="https://cbea.ms/git-commit/">Git commit</a>
-里的文字：</p>
-<blockquote class="blockquote-center">
-            <i class="fa fa-quote-left"></i>
-            <ol type="1">
-<li><a target="_blank" rel="noopener" href="https://cbea.ms/git-commit/#separate">Separate subject from
-body with a blank line</a> 将主题与正文用空白行分隔</li>
-<li><a target="_blank" rel="noopener" href="https://cbea.ms/git-commit/#limit-50">Limit the subject
-line to 50 characters</a> 主题限制在 50 个字符之内</li>
-<li><a target="_blank" rel="noopener" href="https://cbea.ms/git-commit/#capitalize">Capitalize the
-subject line</a> 主题首字符大写</li>
-<li><a target="_blank" rel="noopener" href="https://cbea.ms/git-commit/#end">Do not end the subject
-line with a period</a> 主题结尾不要写句号</li>
-<li><a target="_blank" rel="noopener" href="https://cbea.ms/git-commit/#imperative">Use the imperative
-mood in the subject line</a> 主题使用祈使语气</li>
-<li><a target="_blank" rel="noopener" href="https://cbea.ms/git-commit/#wrap-72">Wrap the body at 72
-characters</a> 正文每一行不超过 72 个字符</li>
-<li><a target="_blank" rel="noopener" href="https://cbea.ms/git-commit/#why-not-how">Use the body to
-explain <em>what</em> and <em>why</em> vs. <em>how</em></a>
-使用正文说明是什么，为什么，怎么做</li>
-</ol>
-
-            <i class="fa fa-quote-right"></i>
-          </blockquote>
-<p>git 移动文件</p>
-
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2024/04/07/Git-%E7%9B%B8%E5%85%B3/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
