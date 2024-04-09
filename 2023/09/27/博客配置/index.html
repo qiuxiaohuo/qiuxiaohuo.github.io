@@ -19,15 +19,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="首先我们先理清一下这三者的关系：  Hexo 本身是自动生成博客网页的框架代码，它不需要我们自己编写网页（例如 .css，.js ），而是修改 _config.yml （以下我们称之为站点配置文件）文件提供的参量，自动生成静态网页，可以在本机浏览； NexT 是 Hexo 的主题插件，本身依赖于 Hexo，提供额外的主题。它同样也提供 _config.yml 文件（以下我们称之">
+    <meta name="description" content="首先我们先理清一下这三者的关系：  Hexo 本身是自动生成博客网页的框架代码，它不需要我们自己编写网页（例如 .css，.js ），而是修改 _config.yml 文件提供的参量，自动生成静态网页，可以在本机浏览； NexT 是 Hexo 的主题插件，本身依赖于 Hexo，提供额外的主题。它同样也提供 _config.yml 文件供我们配置； 使用 Github 将生成的静">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo + NexT + Github：搭建博客">
 <meta property="og:url" content="http://example.com/2023/09/27/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="Qiu&#39;s 博客">
-<meta property="og:description" content="首先我们先理清一下这三者的关系：  Hexo 本身是自动生成博客网页的框架代码，它不需要我们自己编写网页（例如 .css，.js ），而是修改 _config.yml （以下我们称之为站点配置文件）文件提供的参量，自动生成静态网页，可以在本机浏览； NexT 是 Hexo 的主题插件，本身依赖于 Hexo，提供额外的主题。它同样也提供 _config.yml 文件（以下我们称之">
+<meta property="og:description" content="首先我们先理清一下这三者的关系：  Hexo 本身是自动生成博客网页的框架代码，它不需要我们自己编写网页（例如 .css，.js ），而是修改 _config.yml 文件提供的参量，自动生成静态网页，可以在本机浏览； NexT 是 Hexo 的主题插件，本身依赖于 Hexo，提供额外的主题。它同样也提供 _config.yml 文件供我们配置； 使用 Github 将生成的静">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-27T07:54:32.000Z">
-<meta property="article:modified_time" content="2024-04-09T08:58:15.739Z">
+<meta property="article:modified_time" content="2024-04-09T15:42:12.263Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta property="article:tag" content="hexo">
 <meta name="twitter:card" content="summary">
@@ -112,7 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-hexo"><span class="nav-number">1.</span> <span class="nav-text">安装 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8D%9A%E5%AE%A2%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">2.</span> <span class="nav-text">初始化博客本地文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2"><span class="nav-number">3.</span> <span class="nav-text">配置博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BE%A7%E8%BE%B9%E6%A0%8F"><span class="nav-number">3.1.</span> <span class="nav-text">侧边栏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%92%B0%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">撰写博客的工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%96%87%E6%A1%A3"><span class="nav-number">4.1.</span> <span class="nav-text">新建博客文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%BD%91%E7%AB%99%E6%96%87%E4%BB%B6"><span class="nav-number">4.2.</span> <span class="nav-text">生成网站文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%89%E8%A3%85-hexo"><span class="nav-number">1.</span> <span class="nav-text">安装 Hexo</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8D%9A%E5%AE%A2%E6%9C%AC%E5%9C%B0%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="nav-number">2.</span> <span class="nav-text">初始化博客本地文件夹</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E5%8D%9A%E5%AE%A2"><span class="nav-number">3.</span> <span class="nav-text">配置博客</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%87%AA%E5%AE%9A%E4%B9%89%E8%8F%9C%E5%8D%95%E6%A0%8F%E5%86%85%E5%AE%B9"><span class="nav-number">3.1.</span> <span class="nav-text">自定义菜单栏内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AC%E5%BC%8F%E6%98%BE%E7%A4%BA"><span class="nav-number">3.2.</span> <span class="nav-text">公式显示</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%92%B0%E5%86%99%E5%8D%9A%E5%AE%A2%E7%9A%84%E5%B7%A5%E4%BD%9C%E6%B5%81%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">撰写博客的工作流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E5%8D%9A%E5%AE%A2%E6%96%87%E6%A1%A3"><span class="nav-number">4.1.</span> <span class="nav-text">新建博客文档</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E7%BD%91%E7%AB%99%E6%96%87%E4%BB%B6"><span class="nav-number">4.2.</span> <span class="nav-text">生成网站文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -212,7 +212,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-09 16:58:15" itemprop="dateModified" datetime="2024-04-09T16:58:15+08:00">2024-04-09</time>
+      <time title="修改时间：2024-04-09 23:42:12" itemprop="dateModified" datetime="2024-04-09T23:42:12+08:00">2024-04-09</time>
     </span>
 
   
@@ -230,15 +230,17 @@
 本身是自动生成博客网页的<strong>框架</strong>代码，它不需要我们自己编写网页（例如
 <code>.css</code>，<code>.js</code> ），而是修改
 <code>_config.yml</code>
-（以下我们称之为<mark>站点配置文件</mark>）文件提供的参量，自动生成静态网页，可以在本机浏览；</li>
+文件提供的参量，自动生成静态网页，可以在本机浏览；</li>
 <li><a target="_blank" rel="noopener" href="https://theme-next.js.org/">NexT</a> 是 Hexo
 的主题插件，本身依赖于 Hexo，提供额外的主题。它同样也提供
-<code>_config.yml</code>
-文件（以下我们称之为<mark>主题配置文件</mark>）供我们配置；</li>
-<li>使用 Github 将生成的静态网页推送到互联网当中。</li>
+<code>_config.yml</code> 文件供我们配置；</li>
+<li>使用 Github 将生成的静态网页推送到互联网当中。<span id="more"></span></li>
 </ul>
-<p>在这篇文档中，我不会去详细说明配置参数的具体含义（官方文档都有），而是提供一份简单明了的操作指南。按照该文档的流程一步步走，就可以使用Hexo
-+ NexT + Github 写博客文档。</p>
+<div class="note info"><p>新版本的 NexT 可以在博客根目录下配置 <code>_config.next.yml</code>
+文件，这可以避免在使用 Github 更新 NexT
+时与，本地的配置文件发生冲突，同时也不再用区别 Hexo 和 NexT
+名称相同的配置文件。</p>
+</div>
 <h2 id="安装-hexo">安装 Hexo</h2>
 <p>Hexo 的官方配置文档在<a target="_blank" rel="noopener" href="https://hexo.io/docs/">这里</a>。</p>
 <p>首先安装一些必备的工具：<code>Node.js</code>；<code>Git</code>。</p>
@@ -251,11 +253,39 @@
 <p>运行上述命令之后，在 <code>\Blog</code>
 文件夹下会生成如下子目录结构：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── _config.yml</span><br><span class="line">├── package.json</span><br><span class="line">├── scaffolds</span><br><span class="line">├── source</span><br><span class="line">|   ├── _drafts</span><br><span class="line">|   └── _posts</span><br><span class="line">└── themes</span><br></pre></td></tr></table></figure>
-<div class="note info">
-            <p>第一次使用 Hexo 命令时，可能会报关于 PowerShell 不能信任 Hexo脚本的错误，并在界面中指向<atarget="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">网址</a>。直接把执行策略改成<code>Bypass</code>：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy -ExecutionPolicy Bypass</span><br></pre></td></tr></table></figure>
-          </div>
+<div class="note info"><p>第一次使用 Hexo 命令时，可能会报关于 PowerShell 不能信任 Hexo
+脚本的错误，并在界面中指向<a
+target="_blank" rel="noopener" href="https://learn.microsoft.com/zh-cn/powershell/module/microsoft.powershell.core/about/about_execution_policies?view=powershell-7.3">网址</a>。直接把执行策略改成
+<code>Bypass</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Set-ExecutionPolicy -ExecutionPolicy Bypass</span><br></pre></td></tr></table></figure>
+</div>
 <h2 id="配置博客">配置博客</h2>
-<h3 id="侧边栏">侧边栏</h3>
+<p>详细的配置步骤可见 Hexo 和 NexT 官方文档，不过更推荐看 NexT <a
+target="_blank" rel="noopener" href="https://theme-next.js.org/docs/getting-started/">的文档</a>，因为
+NexT 的文档中既包含了 Hexo
+的配置，同时一直在更新当中。这里列举了一些在教程之外的配置。</p>
+<h3 id="自定义菜单栏内容">自定义菜单栏内容</h3>
+<p>NexT 提供的菜单栏内容如下：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="comment">#about: /about/ || fa fa-user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || fa fa-sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || fa fa-heartbeat</span></span><br></pre></td></tr></table></figure>
+<p>我希望加入额外的标签页，用来记录点滴日常，新建标签如下</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">nichijou:</span> <span class="string">/nichijou/</span> <span class="string">||</span> <span class="string">fa-regular</span> <span class="string">fa-sun</span></span><br></pre></td></tr></table></figure>
+<p>其中 <code>fa-regular fa-sun</code> 是来自 <a
+target="_blank" rel="noopener" href="https://fontawesome.com/">font awesome</a>
+的图标。这时我们还需要配置语言，使得 NexT 能够识别关键词，在
+<code>./theme/next/language</code> 目录下找到 <code>zh-CN.yml</code>，在
+<code>menu</code> 关键词下添加如下翻译词对：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># add user defined translation pair</span></span><br><span class="line"><span class="attr">nichijou:</span> <span class="string">日常</span></span><br></pre></td></tr></table></figure>
+<p>在修改完配置文件之后，我们还需要生成博客 page 页面对应的
+<code>.md</code> 文档，使用如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new page nichijou</span><br></pre></td></tr></table></figure>
+<p>之后会在 <code>./source</code> 目录下生成同名目录
+<code>nichijou/</code>，同时在该目录中生成 <code>index.md</code>
+文件。这样在点击博客菜单栏标题时，就会显示 <code>index.md</code>
+的内容。</p>
+<h3 id="公式显示">公式显示</h3>
+<p>按照默认设置，博客显示的公式是 LaTeX 代码。因此需要修改
+<code>_config.next.yml</code> 关于 <code>math</code> 部分的配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">math:</span></span><br><span class="line">  <span class="comment"># Default (false) will load mathjax / katex script on demand.</span></span><br><span class="line">  <span class="comment"># That is it only render those page which has `mathjax: true` in front-matter.</span></span><br><span class="line">  <span class="comment"># If you set it to true, it will load mathjax / katex script EVERY PAGE.</span></span><br><span class="line">  <span class="attr">every_page:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">mathjax:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">    <span class="comment"># Available values: none | ams | all</span></span><br><span class="line">    <span class="attr">tags:</span> <span class="string">none</span></span><br><span class="line"></span><br><span class="line">  <span class="attr">katex:</span></span><br><span class="line">    <span class="attr">enable:</span> <span class="literal">false</span></span><br><span class="line">    <span class="comment"># See: https://github.com/KaTeX/KaTeX/tree/master/contrib/copy-tex</span></span><br><span class="line">    <span class="attr">copy_tex:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 <h2 id="撰写博客的工作流程">撰写博客的工作流程</h2>
 <h3 id="新建博客文档">新建博客文档</h3>
 <p>新建文档的命令是 <code>new</code></p>
