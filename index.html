@@ -121,7 +121,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">17</span>
+          <span class="site-state-item-count">19</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -132,7 +132,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">13</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -160,6 +160,781 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/10/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95%E4%B8%8E%E5%A4%9A%E5%B0%BA%E5%BA%A6%E6%8E%A8%E5%AF%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Qiu's 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/10/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95%E4%B8%8E%E5%A4%9A%E5%B0%BA%E5%BA%A6%E6%8E%A8%E5%AF%BC/" class="post-title-link" itemprop="url">等效夹杂方法与多尺度推导</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-10 09:47:09 / 修改时间：15:27:49" itemprop="dateCreated datePublished" datetime="2024-04-10T09:47:09+08:00">2024-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="本征应变与本征应力"><strong>本征应变与本征应力</strong></h2>
+<p>将应变 <span class="math inline">\(\varepsilon\)</span> 分成弹性应变
+<span class="math inline">\(e\)</span> 与本征应变 <span
+class="math inline">\(\mu\)</span>(nonelastic strains, 比如热膨胀, 相变,
+塑性应变等)</p>
+<p><span class="math display">\[
+\varepsilon = e+\mu
+\]</span></p>
+<p>应变 <span class="math inline">\(\varepsilon\)</span> 满足协调方程
+<span class="math inline">\(\varepsilon_{ij} =
+\frac{1}{2}(u_{i,j}+u_{j,i})\)</span>.</p>
+<div class="note info"><p>本征应变可以是<strong>不协调的</strong>:</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404100950833mura1.png"
+alt="&lt;img alt=&quot;&quot; data-attachment-key=&quot;KKDL7LN6&quot; data-annotation=&quot;%7B%22attachmentURI%22%3A%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FF5ED5SHL%22%2C%22annotationKey%22%3A%2228EI2BQ4%22%2C%22color%22%3A%22%23ffd400%22%2C%22pageLabel%22%3A%2215%22%2C%22position%22%3A%7B%22pageIndex%22%3A14%2C%22rects%22%3A%5B%5B57.6%2C219.6%2C544.2%2C250.8%5D%5D%7D%2C%22citationItem%22%3A%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2215%22%7D%7D&quot; width=&quot;811&quot; height=&quot;52&quot; src=&quot;attachments/KKDL7LN6.png&quot; ztype=&quot;zimage&quot;&gt;" />
+<figcaption aria-hidden="true">&lt;img alt=""
+data-attachment-key="KKDL7LN6"
+data-annotation="%7B%22attachmentURI%22%3A%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FF5ED5SHL%22%2C%22annotationKey%22%3A%2228EI2BQ4%22%2C%22color%22%3A%22%23ffd400%22%2C%22pageLabel%22%3A%2215%22%2C%22position%22%3A%7B%22pageIndex%22%3A14%2C%22rects%22%3A%5B%5B57.6%2C219.6%2C544.2%2C250.8%5D%5D%7D%2C%22citationItem%22%3A%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2215%22%7D%7D"
+width="811" height="52" src="attachments/KKDL7LN6.png"
+ztype="zimage"&gt;</figcaption>
+</figure>
+<p><span class="citation"
+data-citation="%7B%22citationItems%22%3A%5B%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2215%22%7D%5D%2C%22properties%22%3A%7B%7D%7D"
+data-ztype="zcitation">(<span
+class="citation-item"><a href="zotero://select/library/items/DJK3L7F3">Mura,
+1987, p. 15</a></span>)</span></p>
+<p><img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404100950877mura2.png"
+alt="&lt;img alt=&quot;&quot; data-attachment-key=&quot;5BI2BIME&quot; data-annotation=&quot;%7B%22attachmentURI%22%3A%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FF5ED5SHL%22%2C%22annotationKey%22%3A%22GPCVRKJW%22%2C%22color%22%3A%22%23ffd400%22%2C%22pageLabel%22%3A%2221%22%2C%22position%22%3A%7B%22pageIndex%22%3A20%2C%22rects%22%3A%5B%5B62.4%2C674.4%2C549%2C732%5D%5D%7D%2C%22citationItem%22%3A%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2221%22%7D%7D&quot; width=&quot;811&quot; height=&quot;96&quot; src=&quot;attachments/5BI2BIME.png&quot; ztype=&quot;zimage&quot;&gt;" /><br />
+<span class="citation"
+data-citation="%7B%22citationItems%22%3A%5B%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2221%22%7D%5D%2C%22properties%22%3A%7B%7D%7D"
+data-ztype="zcitation">(<span
+class="citation-item"><a href="zotero://select/library/items/DJK3L7F3">Mura,
+1987, p. 21</a></span>)</span></p>
+<p>详细介绍可以看 Mura 第 7 章 dislocations.</p>
+</div>
+<p>本征应变在自由体中 (i.e., 没有体力项, 且没有边界面上的约束)
+中产生本征应力 <span class="math inline">\(\sigma\)</span>,
+满足平衡方程, 胡克定律, 以及边界条件:</p>
+<p><span class="math display">\[
+\nabla \cdot \sigma = 0,\quad \sigma = L:e, \quad \sigma \cdot n = 0
+\]</span></p>
+<p>将上式与应变分解式结合, 得到关于位移场 <span
+class="math inline">\(u_i\)</span> 的方程:</p>
+<p><span class="math display">\[
+L_{ijkl}~u_{k,lj} + \underbrace{(-L_{ijkl}~\mu_{kl,j})}_{:=X_i} = 0 \\
+L_{ijkl}~u_{k,l}~n_j = L_{ijkl}~\mu_{kl}~n_j
+\]</span></p>
+<p>通过上式, 可以将本征应变 <span class="math inline">\(\mu\)</span>
+在自由体中对位移场的扰动看作引入体力项 <span
+class="math inline">\(-L_{ijkl}~\mu_{kl,j}\)</span> 和面力项 <span
+class="math inline">\(L_{ijkl}~\mu_{kl}~n_j\)</span>.</p>
+<h2 id="green-函数">Green 函数</h2>
+<p>将微分方程写成抽象的算子形式:</p>
+<p><span class="math display">\[
+Lu = f
+\]</span></p>
+<p>当方程右端项为 Dirac 函数时, 微分方程的解 <span
+class="math inline">\(g(x)\)</span> 称为算子 <span
+class="math inline">\(L\)</span> 的 Green 函数:</p>
+<p><span class="math display">\[
+L g(x) = \delta(x)
+\]</span></p>
+<p>当微分方程右端项为 <span class="math inline">\(f\)</span> 时,
+此时微分方程的解可以表示为 Green 函数与 <span
+class="math inline">\(f\)</span> 的卷积:</p>
+<p><span class="math display">\[
+u(x) = g*f = \int_{-\infty}^{\infty} g(x-x^{\prime}) f(x^{\prime})
+\mathrm{d} x^{\prime}
+\]</span></p>
+<p>对于方程</p>
+<p><span class="math display">\[
+L_{ijkl}~u_{k,lj} = L_{ijkl}~\mu_{kl,j}
+\]</span></p>
+<p>我们希望能够找到该方程的 Green 函数 <span
+class="math inline">\(g_i(x)\)</span>, 使得方程的解可以表示为 Green
+函数与本征应变的卷积. 这需要借助于 Fourier 分析方法. 对方程进行 Fourier
+变换, 得到</p>
+<p><span class="math display">\[
+L_{ijkl}\xi_{l}\xi_{j}~\hat{u}_{k} = -i \xi_{j}L_{ijkl}~\hat{\mu}_{kl}
+\]</span></p>
+<p>记 <span class="math inline">\(K_{ik}(\xi) =
+L_{ijkl}\xi_{l}\xi_{j}\)</span>, <span class="math inline">\(X_i = -i
+\xi_{j}L_{ijkl}~\hat{\mu}_{kl}\)</span>, 就得到关于 <span
+class="math inline">\(\hat{u}_k\)</span> 的线性方程:</p>
+<p><span class="math display">\[
+K_{ik} \hat{u}_k = X_i
+\]</span></p>
+<p>例如, 当材料是各项同性时, 矩阵 <span class="math inline">\(K\)</span>
+可以写成</p>
+<p><span class="math display">\[
+K = (\lambda + \mu)\begin{pmatrix}
+\xi_1 \xi_1 &amp; \xi_1 \xi_2 &amp; \xi_1 \xi_3 \\
+\xi_2 \xi_1 &amp; \xi_2 \xi_2 &amp; \xi_2 \xi_3 \\
+\xi_3 \xi_1 &amp; \xi_3 \xi_2 &amp; \xi_3 \xi_3
+\end{pmatrix}
++
+\mu \xi^2 I, \quad \xi^2 = \xi_1^2 + \xi_2^2 + \xi_3^2
+\]</span></p>
+<p>将矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span> 的逆写成
+cofactor 矩阵的形式:</p>
+<p><span class="math display">\[
+K_{ik}^{-1}(\xi) = D^{-1}(\xi)N_{ik}(\xi)
+\]</span></p>
+<p>这样在应用 Fourier 逆变换, 就可以得到 <span
+class="math inline">\(u(x)\)</span>:</p>
+<p><span class="math display">\[
+u_{i}(x) = \mathscr{F}^{-1} [\hat{u}_{i}(\xi)]
+= \mathscr{F}^{-1}[D^{-1}(\xi)N_{ik}(\xi) X_k]\\
+=  -i
+\mathscr{F}^{-1}[L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)\xi_{j}~\hat{\mu}_{mn}]
+\]</span></p>
+<p>将 Fourier 变换的公式代入得到</p>
+<p><span class="math display">\[
+u_{i}(x) = -i \int L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)\xi_{j} e^{i\xi \cdot
+x} \mathrm{d} \xi
+\int \mu_{mn}(x^{\prime}) e^{-i\xi \cdot x^{\prime}} \mathrm{d}
+x^{\prime}\\
+= - \frac{\partial}{\partial x_j}\int L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)
+e^{i\xi \cdot x} \mathrm{d} \xi
+\int \mu_{mn}(x^{\prime}) e^{-i\xi \cdot x^{\prime}} \mathrm{d}
+x^{\prime}\\
+= - \int L_{kjmn} \left(\frac{\partial}{\partial x_j}\int
+D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
+\right)  \mu_{mn}(x^{\prime}) \mathrm{d} x^{\prime}
+\]</span></p>
+<p>Green 函数定义为</p>
+<p><span class="math display">\[
+G_{ik}(x-x^{\prime}) = \int D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot
+(x-x^{\prime})} \mathrm{d} \xi
+\]</span></p>
+<p>则 <span class="math inline">\(u_i\)</span> 可以记为</p>
+<p><span class="math display">\[
+u_{i}(x) = -\int L_{jkmn} G_{ij,k}(x-x^{\prime}) \mu_{mn}(x^{\prime})
+\mathrm{d} x^{\prime}
+\]</span></p>
+<p>对 Green 函数求二阶导数, 得到</p>
+<p><span class="math display">\[
+G_{ij,kl}(x-x^{\prime}) = -\int D^{-1}(\xi)N_{ij}(\xi) \xi_k \xi_l
+e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
+\]</span></p>
+<p>而前面得到 <span class="math inline">\(K_{ik}(\xi) =
+L_{ijkl}\xi_{l}\xi_{j}\)</span>, 方程两端乘 <span
+class="math inline">\(L_{jknl}\)</span>, 等式依旧成立, 得到</p>
+<p><span class="math display">\[
+L_{jknl}G_{ij,kl}(x-x^{\prime}) = -\int D^{-1}(\xi)N_{ij}(\xi) L_{jknl}
+\xi_k \xi_l e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi \\
+= -\int D^{-1}(\xi)K_{jn}(\xi)N_{ij}(\xi)  e^{i\xi \cdot (x-x^{\prime})}
+\mathrm{d} \xi = -\delta_{in}\int e^{i\xi \cdot (x-x^{\prime})}
+\mathrm{d} \xi
+= -\delta_{in} \delta(x-x^{\prime})
+\]</span></p>
+<p>整理一下指标, 得到</p>
+<p><span class="math display">\[
+L_{ijkl}G_{nk,lj}(x-x^{\prime}) + \delta_{in} \delta(x-x^{\prime}) = 0\\
+\]</span></p>
+<p>根据指标, 可以得到 Green 函数 <span
+class="math inline">\(G_{nk}(x-x^{\prime})\)</span> 的物理意义是:
+作用在点 <span class="math inline">\(x^{\prime}\)</span> 上, n
+方向的单位力所造成的 k 方向上的位移分量. 或者根据互易定理, 作用在点
+<span class="math inline">\(x^{\prime}\)</span> 上, k
+方向的单位力所造成的 n 方向上的位移分量(因为矩阵 K N 可以交换).</p>
+<h2 id="等效夹杂方法">等效夹杂方法</h2>
+<p>考虑如下场景: 一个无穷大的弹性体 D 当中嵌入一个椭球形状的夹杂 <span
+class="math inline">\(\Omega\)</span>, 如果夹杂的弹性模量 <span
+class="math inline">\(C^*_{ijkl}\)</span>*
+<em>与周围弹性体的弹性模量</em> *<span
+class="math inline">\(C_{ijkl}\)</span> 不同, 则称该夹杂为非均质夹杂.
+因为非均质夹杂的存在, 其附近的应力场会发生改变.
+考虑无穷远处的应变场强度为 <span
+class="math inline">\(\varepsilon^0\)</span>, 对应的应力场为 <span
+class="math inline">\(\sigma^0 = C : \varepsilon^0\)</span>,
+应变与应力场扰动量分别为 <span
+class="math inline">\(\varepsilon\)</span> 和 <span
+class="math inline">\(\sigma\)</span>, 因此真实的位移和应力为 <span
+class="math inline">\(u_i^0 + u_i\)</span> 和 <span
+class="math inline">\(\sigma^0 + \sigma\)</span>.</p>
+<p>应力扰动项 <span class="math inline">\(\sigma\)</span>
+满足应力平衡方程(不考虑外力),
+以及在无穷远处等于0(或者在有限区域表面等于0)</p>
+<p><span class="math display">\[
+\nabla \cdot \sigma = 0\\
+\sigma \cdot n = 0
+\]</span></p>
+<p>在夹杂内外满足本构方程:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \sigma^0+\sigma=L^* : \left(\varepsilon^0+\varepsilon-\mu\right)
+\quad \text { in } \Omega, \\
+&amp; \sigma^0+\sigma=L : \left(\varepsilon^0+\varepsilon\right) \quad
+\text { in } D-\Omega .
+\end{aligned}
+\]</span></p>
+<p>而 Eshelby 方法所解决的原始问题是: 考虑无穷大的弹性体,
+其中嵌入一个椭球夹杂, 该夹杂弹性模量与弹性体<strong>一致</strong>,
+然而夹杂内给定常数值的本征应变 <span class="math inline">\(\mu\)</span>,
+由此, Eshelby 问题所满足的本构方程为</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \sigma^0+\sigma=L :
+\left(\varepsilon^0+\varepsilon-\tilde{\mu}\right) \text { in } \Omega,
+\\
+&amp; \sigma^0+\sigma=L : \left(\varepsilon^0+\varepsilon\right) \text {
+in } D-\Omega .
+\end{aligned}
+\]</span></p>
+<p>若令这两类问题等价, 则充要条件是</p>
+<p><span class="math display">\[
+L^* : \left(\varepsilon^0+\varepsilon-\mu\right) = L :
+\left(\varepsilon^0+\varepsilon-\tilde{\mu}\right) \text { in } \Omega
+\tag{1}
+\]</span></p>
+<p>求解 Eshelby 本征应变问题可以得到等效本征应变 <span
+class="math inline">\(\tilde{\mu}\)</span> 与夹杂内外由夹杂引起的应变场
+<span class="math inline">\(\varepsilon\)</span> 之间的关系:</p>
+<p><span class="math display">\[
+\varepsilon = S:\tilde{\mu} \quad x \text{ in } \Omega,\\
+\varepsilon(x) = D(x):\tilde{\mu} \quad x \text{ in } D-\Omega,
+\]</span></p>
+<p>将这一关系代入到式 (1) 中, 给定远端应力 <span
+class="math inline">\(\varepsilon^0\)</span>, 以及夹杂上的本征应变 <span
+class="math inline">\(\mu\)</span>, 就可以得到关于等效本征应变 <span
+class="math inline">\(\tilde{\mu}\)</span> 所满足的方程:</p>
+<p><span class="math display">\[
+L^* : \left(\varepsilon^0+\varepsilon(\tilde{\mu})-\mu\right) = L :
+\left(\varepsilon^0+\varepsilon(\tilde{\mu})-\tilde{\mu}\right) \text {
+in } \Omega
+\]</span></p>
+<p>或者写成</p>
+<p><span class="math display">\[
+\delta L : \varepsilon(\tilde{\mu}) + L:\tilde{\mu} = -\delta L :
+\varepsilon^0 + L^{*} : \mu, \quad \delta L = L^{*} - L
+\]</span></p>
+<p>如果 Eshelby 问题已经解出, 那么就可以得到整个区域上的应变场 <span
+class="math inline">\(\varepsilon\)</span>.</p>
+<h2 id="多尺度方法中的-green-函数物理意义">多尺度方法中的 Green
+函数物理意义</h2>
+<p>多尺度的单胞问题中, 本构方程为:</p>
+<p><span class="math display">\[
+\sigma^{\xi}(x) = L^{\xi}(x):\left(\varepsilon^{\xi}(x) -
+\mu^{\xi}(x)\right)
+\]</span></p>
+<p>对位移变量进行渐近展开, 得到</p>
+<p><span class="math display">\[
+u^{\xi}(x) = u^{c}(x) + \xi u^{(1)}(x,y) + O(\xi^2)
+\]</span></p>
+<p>同样也可以得到应变,应力,本征应变的展开式. 通过应力平衡方程,
+以及解的存在唯一条件, 可以得到渐进展开式中不同阶次项之间的关系,
+最终可以整理为:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\varepsilon^{\xi}(x) &amp;= \varepsilon^f(x,y) + \xi
+\varepsilon^{(1)}(x,y) + O(\xi^2)\\
+\sigma^{\xi}(x) &amp;= \sigma^{f}(x,y) + \xi \sigma^{(1)}(x,y) +
+O(\xi^2)\\
+\mu^{\xi}(x) &amp;= \mu^f(x,y) + \xi \mu^{(1)}(x,y) + O(\xi^2)
+\end{aligned}
+\]</span></p>
+<p>其中, fina scale 上的变量之间的关系式为:</p>
+<p><span class="math display">\[
+\varepsilon^f = \underbrace{\nabla_x u^c}_{:=\varepsilon^c} + \nabla_y
+u^{(1)}\\
+\sigma^f = L(y) : \left( \varepsilon^f - \mu^f \right)
+\]</span></p>
+<p>在多尺度中, 表征单胞内更精细的位移场 <span
+class="math inline">\(u^{(1)}\)</span> 是通过如下方式进行构造的:</p>
+<p><span class="math display">\[
+u_i^{(1)}(x,y) = \varepsilon_{kl}^c(x) H_i^{kl}(y) + \int_{\Theta}
+\mu_{kl}^f(x,y^{\prime}) h_{i}^{kl}(y,y^{\prime}) \mathrm{d} y^{\prime}
+\]</span></p>
+<p>根据夹杂问题的推导过程, 由本征应变产生的位移为</p>
+<p><span class="math display">\[
+u_{i}(y) = -\int L_{jkmn} G_{j,k}^{i}(y-y^{\prime}) \mu_{mn}(y^{\prime})
+\mathrm{d} y^{\prime}
+\]</span></p>
+<p>如果将夹杂问题的 Green 函数记作</p>
+<p><span class="math display">\[
+h_{i}^{mn}(y,y^{\prime}) = L_{mnjk}(y^{\prime}) \frac{\partial}{\partial
+y_{k}^{\prime}}G_{j}^{i}(y-y^{\prime})
+\]</span></p>
+<p>所以, <span class="math inline">\(h_{i}^{mn}\)</span> 的含义是,
+作用在点 <span class="math inline">\(y\)</span> 处 i
+方向上的单位力所产生的应力场(?).</p>
+<h2 id="reduced-order-green-函数在-partition-上的积分">reduced order:
+Green 函数在 Partition 上的积分</h2>
+<p>多尺度在单胞上 fine-scale 应力满足平衡方程以及边界条件:</p>
+<p><span class="math display">\[
+\nabla_{y} \cdot \sigma^{f} = 0, \quad \sigma^{f} \cdot n \in -\#
+\]</span></p>
+<p>将渐进展开式, 本构方程, 以及关于 <span
+class="math inline">\(u_{i}^{(1)}\)</span>
+的表达式代入到平衡方程中得到</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) \left[ E_{kl}^{mn}(y) \varepsilon_{mn}^c(x) +
+\int_{\Theta} \mu_{mn}^f(x,y^{\prime}) h_{(k,y_l)}^{mn}(y,y^{\prime})
+\mathrm{d} y^{\prime} - \mu_{kl}^f(x,y) \right] \right\}_{,y_i} = 0
+\]</span></p>
+<p>线弹性部分的单胞方程为:</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) E_{kl}^{mn}(y) \right\}_{,y_i} = 0
+\]</span></p>
+<p>本征应变的单胞方程为</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) \left[ \int_{\Theta} \mu_{mn}^f(x,y^{\prime})
+h_{(k,y_l)}^{mn}(y,y^{\prime}) \mathrm{d} y^{\prime} - \mu_{kl}^f(x,y)
+\right] \right\}_{,y_i} = 0
+\]</span></p>
+<p>将单胞分成若干个 partition: <span class="math inline">\(\Theta^{(1)},
+\Theta^{(2)}, \ldots, \Theta^{(N)}\)</span>,并假设每一个 partition
+上的本征应变是相同的, 每个 partition 上的本征应变为 <span
+class="math inline">\(\mu_{mn}^{(1)}(x), \mu_{mn}^{(1)}(x), \ldots,
+\mu_{mn}^{(N)}(x)\)</span>, 这样得到本征应变在单胞上的分段常值分布:</p>
+<p><span class="math display">\[
+\mu_{mn}^{f}(x,y) = \mu_{mn}^{(\alpha)}(x) N^{(\alpha)}(y) \quad
+\text{(使用求和约定)}
+\]</span></p>
+<p>代入到本征应变单胞方程中, 得到</p>
+<p><span class="math display">\[
+\mu_{mn}^{(\alpha)}(x)\left\{ L_{ijkl}(y) \left[ \int_{\Theta}
+h_{(k,y_l)}^{mn}(y,y^{\prime}) N^{(\alpha)}(y^{\prime}) \mathrm{d}
+y^{\prime} - I_{kl}^{mn}N^{(\alpha)}(y) \right] \right\}_{,y_i} = 0
+\]</span></p>
+<p>上式是关于 <span
+class="math inline">\(\mu_{mn}^{(\alpha)}(x)\)</span> 的方程组,
+且方程组系数独立于方程变量. 这样, 如果方程组的解空间为 <span
+class="math inline">\(\mathbb{R}_N\)</span>, 也就是对任意 <span
+class="math inline">\(\mu_{mn}^{(\alpha)}(x) \in \mathbb{R}_N\)</span>,
+上述方程恒成立, 则必须要求方程组系数恒等于 0:</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) \left[ \int_{\Theta} h_{(k,y_l)}^{mn}(y,y^{\prime})
+N^{(\alpha)}(y^{\prime}) \mathrm{d} y^{\prime} -
+I_{kl}^{mn}N^{(\alpha)}(y) \right] \right\}_{,y_i} = 0, \quad \forall
+\alpha
+\]</span></p>
+<p>将 Green 函数在 partition 上的积分记作</p>
+<p><span class="math display">\[
+P_{kl}^{mn(\alpha)}(y) = \int_{\Theta^{(\alpha)}}
+h_{(k,y_l)}^{mn}(y,y^{\prime}) N^{(\alpha)}(y^{\prime}) \mathrm{d}
+y^{\prime}
+\]</span></p>
+<p>这样就得到关于张量 <span
+class="math inline">\(P_{kl}^{mn(\alpha)}\)</span> 的 <span
+class="math inline">\(N\)</span> 个方程:</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) \left[ P_{kl}^{mn(\alpha)}(y) -
+I_{kl}^{mn}N^{(\alpha)}(y) \right] \right\}_{,y_i} = 0, \text{in}~
+\Theta \quad \alpha=1,2, \ldots,N
+\]</span></p>
+<h2
+id="多尺度得到的单胞应变场与本征应变的关系">多尺度得到的单胞应变场与本征应变的关系</h2>
+<p>只考虑本征应变对 fine-scale 应变的影响, 我们有如下关系式:</p>
+<p><span class="math display">\[
+\varepsilon_{ij}^{f}(x,y) = \int_{\Theta} h_{(i,y_j)}^{kl}(y,y^{\prime})
+\mu_{kl}^{f}(x,y^{\prime}) \mathrm{d} y^{\prime}
+\]</span></p>
+<p>将 reduced order 分块均匀假设代入上式, 就得到</p>
+<p><span class="math display">\[
+\varepsilon_{ij}^{f}(x,y) = P_{ij}^{kl(\alpha)}(y)
+\mu_{kl}^{(\alpha)}(x)
+\]</span></p>
+<p>在每一个分块 <span class="math inline">\(\Theta^{(\alpha)}\)</span>
+上对 <span class="math inline">\(\varepsilon^f\)</span> 进行积分平均,
+得到 <span class="math display">\[
+\varepsilon_{ij}^{(\beta)}(x) = \langle P_{ij}^{kl(\alpha)}(y)
+\rangle_{\Theta^{(\beta)}} \mu_{kl}^{(\alpha)}(x)
+= P_{ij}^{kl(\beta \alpha)} \mu_{kl}^{(\alpha)}(x)
+\]</span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/10/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Qiu's 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/10/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/" class="post-title-link" itemprop="url">使用有限元方法求解单胞方程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-10 09:36:46 / 修改时间：09:45:02" itemprop="dateCreated datePublished" datetime="2024-04-10T09:36:46+08:00">2024-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="单胞方程的-statement">单胞方程的 statement</h2>
+<p>在三维情景, 线弹性条件下, 单胞方程的弱形式为:</p>
+<p><span class="math display">\[
+\int_{Y} L_{ijkl} \frac{\partial \chi_k^{(mn)}}{\partial y_l}
+\frac{\partial v_i}{\partial y_j} \mathrm{d} Y
+= \int_{Y} L_{ij(mn)} \frac{\partial v_i}{\partial y_j} \mathrm{d} Y.
+\]</span></p>
+<p>场变量 <span class="math inline">\(\chi_k^{(mn)}\)</span> (注意, 在
+Fish 书中对应为 <span class="math inline">\(-H_{i}^{mn}\)</span>)
+满足周期性边界条件, 也即</p>
+<p><span class="math display">\[
+\chi_k^{(mn)}(y) = \chi_k^{(mn)}(y + kl).
+\]</span></p>
+<p>然而, 上述周期性边界条件只是提供了边界节点的约束条件,
+还不能唯一确定解. Fish 书中提供两种定解的方式:</p>
+<p><span class="math display">\[
+(1) \quad \chi_k^{(mn)} = 0, \text{ on } \partial
+\Theta^{\mathrm{vert}};\\
+(2) \quad \int_{\Theta} \chi_k^{(mn)} \mathrm{d} \Theta = 0.
+\]</span></p>
+<p>在单胞方程中, <span class="math inline">\((mn)\)</span>
+是对称的自由指标, 使用 <span class="math inline">\(()\)</span> 标注指标
+<span class="math inline">\(mn\)</span>
+是因为该组指标表示单胞可能的变形模式 (对于三维问题共有 6 种模式,
+每一种模式给出一组偏微分方程). 引入本征应变 <span
+class="math inline">\(\varepsilon_{kl}^{(mn)}\)</span>, 使得</p>
+<p><span class="math display">\[
+L_{ij(mn)} = L_{ijkl} \varepsilon_{kl}^{(mn)}.
+\]</span></p>
+<p>式中, <span
+class="math inline">\(\varepsilon_{kl}^{(mn)}=\frac{1}{2}(\delta_{km}\delta_{ln}+\delta_{kn}\delta_{lm})\)</span>.</p>
+<p>求解出 <span class="math inline">\(\chi_{k}^{(mn)}\)</span> 后,
+可得到均质化的弹性模量为:</p>
+<p><span class="math display">\[
+L_{ij(mn)}^{\mathrm{hom}} = \frac{1}{|Y|} \int_{Y} L_{ij(mn)} -
+L_{ijkl}\frac{\partial \chi_{k}^{(mn)}}{\partial y_l} \mathrm{d} Y.
+\]</span></p>
+<h2 id="单胞方程的有限元列式">单胞方程的有限元列式</h2>
+<p>将单胞方程中的张量分量表示为矩阵形式:</p>
+<p><span class="math display">\[
+L_{ijkl}(y) \rightarrow [D](y), \quad
+\frac{\partial v_i}{\partial y_j} \rightarrow [B][v], \quad
+\frac{\partial \chi_k^{(mn)}}{\partial y_l} \rightarrow
+[B][\chi]^{(mn)}, \quad
+L_{ij(mn)}(y) \rightarrow [D](y) [\varepsilon]^{(mn)}.
+\]</span></p>
+<p>式中, <span class="math inline">\(mn =
+\{11,22,33,23,13,12\}\)</span>. 为方便表示向量分量, 我们使用 Voigt 映射
+<span class="math inline">\((\cdot)\)</span> 将二元组 <span
+class="math inline">\((mn)\)</span> 映射为一元有序数列 <span
+class="math inline">\(\{ 1,2,3,4,5,6 \}\)</span>. <span
+class="math inline">\([\varepsilon]^{(mn)}\)</span> 为 <span
+class="math inline">\(6\times 1\)</span> 向量, 对应 <span
+class="math inline">\((mn)\)</span> 分量为 1, 其它分量为 0. 例如, 当
+<span class="math inline">\(mn=11\)</span> 时,
+对应的有限元矩阵方程为:</p>
+<p><span class="math display">\[
+\int_{Y} [B]^{T} [D](y) [B] \mathrm{d} Y [\chi]^{(11)} = \int_{Y}
+[B]^{T}[D](y) [\varepsilon]^{(11)} \mathrm{d} Y.
+\]</span></p>
+<p>式中, <span class="math inline">\([\varepsilon]^{(11)} =
+[1,0,0,0,0,0]^{T}\)</span>. 记</p>
+<p><span class="math display">\[
+\int_{Y} [B]^{T} [D](y) [B] \mathrm{d} Y = [K], \quad
+\int_{Y} [B]^{T}[D](y) [\varepsilon]^{(11)} \mathrm{d} Y = [f]^{(11)},
+\]</span></p>
+<p>则有线性方程组</p>
+<p><span class="math display">\[
+[K][\chi]^{(11)} = [f]^{(11)},
+\]</span></p>
+<p>以及周期性边界条件对边界节点的约束方程</p>
+<p><span class="math display">\[
+[C_{\mathrm{per}}][\chi]^{(11)} = [0]
+\]</span></p>
+<p>和单位平均应变导致的位移边界条件</p>
+<p><span class="math display">\[
+[C_{\mathrm{disp}}]^{(11)}[\chi]^{(11)} = [g].
+\]</span></p>
+<p>注意, 约束矩阵 <span
+class="math inline">\([C_{\mathrm{per}}]\)</span> 与变形模式 <span
+class="math inline">\(mn\)</span> 无关.</p>
+<p>求解 6 组变形模式下的有限元方程, 得到 <span
+class="math inline">\([\chi]^{(mn)}\)</span> 后,
+再代入到均质化弹性张量方程中:</p>
+<p><span class="math display">\[
+[D^{\mathrm{hom}}] [\varepsilon]^{(mn)} = \frac{1}{|Y|} \int_{Y} [D](y)
+[\varepsilon]^{(mn)} - [D](y)[B][\chi]^{(mn)} \mathrm{d} Y.
+\]</span></p>
+<p>若记</p>
+<p><span class="math display">\[
+[\overline{D}] = \frac{1}{|Y|} \int_{Y} [D](y)\mathrm{d} Y, \quad
+[\sigma]^{(mn)} = \frac{1}{|Y|} \int_{Y} [D](y)[B] \mathrm{d}
+Y~[\chi]^{(mn)},
+\]</span></p>
+<p>则有</p>
+<p><span class="math display">\[
+[D^{\mathrm{hom}}] = [\overline{D}] - [\sigma^{(11)}, \sigma^{(22)},
+\sigma^{(33)}, \sigma^{(23)}, \sigma^{(13)}, \sigma^{(12)}].
+\]</span></p>
+<p>式中, <span class="math inline">\(\sigma^{(mn)}\)</span>
+是由有限元求解的位移场 <span
+class="math inline">\(\chi_k^{(mn)}\)</span> 计算得到应力场,
+再求体平均得到. 对于只有纤维和基体两相材料的单胞,
+如果它们的体积分数分别为 <span class="math inline">\(c_{f}\)</span> 和
+<span class="math inline">\(c_{m}\)</span>, 体平均材料矩阵 <span
+class="math inline">\([\overline{D}]\)</span> 等于</p>
+<p><span class="math display">\[
+[\overline{D}] = \frac{1}{|Y|} \int_{Y} [D](y)\mathrm{d} Y = c_f [D_f] +
+c_m [D_m].
+\]</span></p>
+<p>式中, <span class="math inline">\([D_f]\)</span> 和 <span
+class="math inline">\([D_m]\)</span>
+分别为纤维和基体材料的弹性模量矩阵.</p>
+<h2 id="单胞方程的求解">单胞方程的求解</h2>
+<p>使用有限元方法求解单胞方程需要解决如下问题:</p>
+<ol type="1">
+<li><strong>生成周期性边界的网格</strong>. 比如三维单胞问题, 左右, 前后,
+上下面的网格节点要<strong>完全一致</strong>,
+这样才能施加周期性边界条件</li>
+<li><strong>施加周期性边界条件</strong>. 周期性边界条件包含两部分:
+<ol type="1">
+<li>对面主从节点之间的约束关系</li>
+<li>用于施加单位平均应变和消除刚体位移的位移边界条件</li>
+</ol></li>
+<li><strong>有限元方程右端项的B矩阵</strong>.
+单胞变分方程的线性泛函项包含 B 矩阵,
+而常用有限元求解器没有与之对应的载荷边界条件</li>
+</ol>
+<h3 id="使用-gmsh-生成周期性网格">使用 Gmsh 生成周期性网格</h3>
+<p>Gmsh 带有命令 <code>Periodic</code>,
+可以将主面通过平移或旋转的方式与从面相关联,
+由此划分网格时可以保证面与面的节点分布完全相同.</p>
+<h3 id="施加周期性边界条件">施加周期性边界条件</h3>
+<p>主从节点信息在 Gmsh 网格 <code>.msh</code> 文件中通过关键词
+<code>$Periodic</code>进行标识:</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404072302633GmshPeriodic关键词解释.png"
+alt="GmshPeriodic关键词解释" />
+<figcaption aria-hidden="true">GmshPeriodic关键词解释</figcaption>
+</figure>
+<p>从 <code>.msh</code> 文件中获取关联节点以及所属 entity 的信息,
+就可以构造周期性边界条件的约束方程了. 在 ABAQUS 中, 一般是通过 equation
+关键词确定多个节点自由度之间的约束关系:</p>
+<p><span class="math display">\[
+A_1 u_i^1 + A_2 u_i^2 + \ldots + A_N u_i^N = 0.
+\]</span></p>
+<p>式中, <span class="math inline">\(u_i^n\)</span> 上标 <span
+class="math inline">\(n\)</span> 表示节点编号, 下标 <span
+class="math inline">\(i\)</span> 表示 <span
+class="math inline">\(x,y,z\)</span> 三方向自由度编号.
+约束方程的变量只能是节点自由度, 并且右端恒等于 0, 所以 equation
+只能添加节点自由度的齐次约束. 若希望添加非齐次的约束方程,
+那么就需要引入一个额外的<strong>参考节点</strong>,
+并在该节点处施加一个非零的位移条件.</p>
+<p>程序采用的方式可以避免设置额外的参考节点,
+平均应变条件则通过单胞上特殊节点的位移边界条件来施加,
+这可以通过以下推导得到. 以 <span class="math inline">\(x\)</span>
+方向为法线方向的两个相对面为例, 我们有</p>
+<p><span class="math display">\[
+u_i^{1+} - u_i^{1-} = \overline{\varepsilon}_{i1}, \quad
+\text{对任意面 1 上的主从节点对.}
+\]</span></p>
+<p>记单胞在 x 轴的顶点坐标 <span class="math inline">\((1,0,0)\)</span>
+处的位移为 <span class="math inline">\(u_i^{x}\)</span>, 原点处位移为
+<span class="math inline">\(u_i^o\)</span>, 于是有</p>
+<p><span class="math display">\[
+u_i^x - u_i^o = \overline{\varepsilon}_{i1}.
+\]</span></p>
+<p>所以,</p>
+<p><span class="math display">\[
+u_i^{1+} - u_i^{1-} = u_i^x - u_i^o, \quad
+\text{对任意面 1 上的主从节点对}.
+\]</span></p>
+<p>整理得到面 1 上的周期性边界条件等价为</p>
+<p><span class="math display">\[
+\begin{aligned}
+  u_i^{1+} - u_i^{1-} - u_i^x + u_i^o &amp;= 0, \quad \text{对任意面 1
+上的主从节点对}; \\
+  u_i^x - u_i^o &amp;= \overline{\varepsilon}_{i1}.
+\end{aligned}
+\]</span></p>
+<p>综合其它面的边界条件, 我们得到最终的约束方程</p>
+<p><span class="math display">\[
+\begin{aligned}
+  u_i^{k+} - u_i^{k-} - u_i^x + u_i^o &amp;= 0, \quad \text{对任意面 k
+上的主从节点对}; \\
+  u_i^x - u_i^o &amp;= \overline{\varepsilon}_{i1}; \\
+  u_i^y - u_i^o &amp;= \overline{\varepsilon}_{i2}; \\
+  u_i^z - u_i^o &amp;= \overline{\varepsilon}_{i3}.
+\end{aligned}
+\]</span></p>
+<p>第一组方程是关于节点自由度的齐次方程,
+且与施加在单胞的单位平均应变无关,
+所以在程序实现时可以不用特别考虑边界条件的具体形式;
+其它三组方程则通过在节点 <span class="math inline">\((0,0,0)\)</span>,
+<span class="math inline">\((1,0,0)\)</span>, <span
+class="math inline">\((0,1,0)\)</span>, <span
+class="math inline">\((0,0,1)\)</span> 处施加位移边界条件实现.</p>
+<p>在实现第一组约束方程时, 还需要注意剔除冗余的约束方程,
+这是因为我们使用 Lagrange 乘子法求解含约束的有限元方程,
+如果出现冗余的约束, 则会导致有限元最终得到的刚度矩阵奇异.
+我们将用一个二维平面上的四边形单元说明这一点. 如图所示,
+单元节点处的位移分别为 <span class="math inline">\(u_1\)</span>, <span
+class="math inline">\(u_2\)</span>, <span
+class="math inline">\(u_3\)</span>, <span
+class="math inline">\(u_4\)</span></p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404072344350冗余方程示意图.png" alt="image-20240407234453219" style="zoom:33%;" /></p>
+<p>沿 <span class="math inline">\(x\)</span> 方向的约束方程有</p>
+<p><span class="math display">\[
+u_4 - u_2 = u_3 - u_1,
+\]</span></p>
+<p>沿 <span class="math inline">\(y\)</span> 方向的约束方程为</p>
+<p><span class="math display">\[
+u_4 - u_3 = u_2 - u_1.
+\]</span></p>
+<p>但是, 这两个方程是等价的,
+因此如果遍历每组对面上每一个顶点,每一条边的节点, 就会出现过约束的问题.
+一种避免过约束的方式如图所示, 按顺序读取节点, 并设置约束方程,
+跳过图中虚线表示边线上的节点和空心圆圈表示的顶点处的节点,
+就可以保证按照周期性边界条件约束所有的节点,
+并且不存在冗余的约束方程.</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404072348418顺序读取主从节点避免冗余约束.png"
+alt="顺序读取主从节点避免冗余约束" />
+<figcaption aria-hidden="true">顺序读取主从节点避免冗余约束</figcaption>
+</figure>
+<h2 id="有限元求解结果分析">有限元求解结果分析</h2>
+<p>程序使用三种方式计算均质化材料矩阵:</p>
+<ol type="1">
+<li>求解线性位移边界条件下的单胞方程, 对计算结果进行体平均</li>
+<li>求解周期性边界条件约束下的单胞方程, 对计算结果进行体平均</li>
+<li>求解渐进展开得到的偏微分方程</li>
+</ol>
+<p><strong>Remarks:</strong></p>
+<ol type="1">
+<li><p>方式 1,2 又称为 RVE 方法, 即计算单胞在平均应变下的应力场,
+对体积积分得到平均应力, 再根据定义得到均质化的材料矩阵.</p></li>
+<li><p>方式 2 使用周期性边界条件, 是对相对面上的主从节点施加约束关系,
+再在角点处施加位移边界条件, 实现所谓的平均应变.</p></li>
+<li><p>线性位移条件得到的结果应该略大于周期性边界条件的结果.</p></li>
+<li><p>方式 3 求解新的偏微分方程, 固定单胞的角点等于去除宏观应变 <span
+class="math inline">\(\varepsilon^c\)</span> 引入的位移量, 求解得到的
+<span class="math inline">\(\chi\)</span>
+可以看作是对体积积分得到的材料矩阵进行<strong>修正</strong>:</p></li>
+</ol>
+<p><span class="math display">\[
+[D^{\mathrm{hom}}] = [\overline{D}] - [\sigma^{(11)}, \sigma^{(22)},
+\sigma^{(33)}, \sigma^{(23)}, \sigma^{(13)}, \sigma^{(12)}]
+\]</span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -845,176 +1620,6 @@ Clash，查看我的笔记本的代理端口为：7890。然后设置 Git 的端
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2024/04/06/Fortran%20%E4%B8%AD%E7%9A%84%20KIND/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/05/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Qiu's 博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Qiu's 博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/05/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/" class="post-title-link" itemprop="url">tmux 快捷键索引</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-04-05 15:05:03" itemprop="dateCreated datePublished" datetime="2024-04-05T15:05:03+08:00">2024-04-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-09 23:42:47" itemprop="dateModified" datetime="2024-04-09T23:42:47+08:00">2024-04-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>tmux 之于命令窗口有点类似于浏览器之于网页, 可在 tmux
-命令环境中操纵多个命令行窗口.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/04/05/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/05/Vim%20%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Qiu's 博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Qiu's 博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/05/Vim%20%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">Vim 快捷指令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-04-05 11:28:37" itemprop="dateCreated datePublished" datetime="2024-04-05T11:28:37+08:00">2024-04-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-09 18:23:11" itemprop="dateModified" datetime="2024-04-09T18:23:11+08:00">2024-04-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="为什么会用-vim">为什么会用 Vim</h2>
-<p>因为 Vim 提供了一种不太一样的文本编辑器哲学.
-它认为代码主要的工作是修改代码, 所以提供了大量的键盘指令操作,
-方便使用者来修改 ta 们的代码.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2024/04/05/Vim%20%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

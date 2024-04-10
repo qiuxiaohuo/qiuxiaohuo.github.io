@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="本征应变与本征应力 将应变 \(\varepsilon\) 分成弹性应变 \(e\) 与本征应变 \(\mu\)(nonelastic strains, 比如热膨胀, 相变, 塑性应变等) \[ \varepsilon &#x3D; e+\mu \] 应变 \(\varepsilon\) 满足协调方程 \(\varepsilon_{ij} &#x3D; \frac{1}{2}(u_{i,j}+u_{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="等效夹杂方法与多尺度推导">
+<meta property="og:url" content="http://example.com/2024/04/10/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95%E4%B8%8E%E5%A4%9A%E5%B0%BA%E5%BA%A6%E6%8E%A8%E5%AF%BC/index.html">
+<meta property="og:site_name" content="Qiu&#39;s 博客">
+<meta property="og:description" content="本征应变与本征应力 将应变 \(\varepsilon\) 分成弹性应变 \(e\) 与本征应变 \(\mu\)(nonelastic strains, 比如热膨胀, 相变, 塑性应变等) \[ \varepsilon &#x3D; e+\mu \] 应变 \(\varepsilon\) 满足协调方程 \(\varepsilon_{ij} &#x3D; \frac{1}{2}(u_{i,j}+u_{">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-10T01:47:09.000Z">
+<meta property="article:modified_time" content="2024-04-10T07:27:49.552Z">
+<meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="多尺度">
+<meta property="article:tag" content="Eshelby 问题">
+<meta property="article:tag" content="Green 函数">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2024/04/10/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95%E4%B8%8E%E5%A4%9A%E5%B0%BA%E5%BA%A6%E6%8E%A8%E5%AF%BC/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/04/10/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95%E4%B8%8E%E5%A4%9A%E5%B0%BA%E5%BA%A6%E6%8E%A8%E5%AF%BC/","path":"2024/04/10/等效夹杂方法与多尺度推导/","title":"等效夹杂方法与多尺度推导"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>等效夹杂方法与多尺度推导 | Qiu's 博客</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">Qiu's 博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-regular fa-sun fa-fw"></i>日常</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B"><span class="nav-number">1.</span> <span class="nav-text">本征应变与本征应力</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#green-%E5%87%BD%E6%95%B0"><span class="nav-number">2.</span> <span class="nav-text">Green 函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">等效夹杂方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%B0%BA%E5%BA%A6%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84-green-%E5%87%BD%E6%95%B0%E7%89%A9%E7%90%86%E6%84%8F%E4%B9%89"><span class="nav-number">4.</span> <span class="nav-text">多尺度方法中的 Green
+函数物理意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reduced-order-green-%E5%87%BD%E6%95%B0%E5%9C%A8-partition-%E4%B8%8A%E7%9A%84%E7%A7%AF%E5%88%86"><span class="nav-number">5.</span> <span class="nav-text">reduced order:
+Green 函数在 Partition 上的积分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%B0%BA%E5%BA%A6%E5%BE%97%E5%88%B0%E7%9A%84%E5%8D%95%E8%83%9E%E5%BA%94%E5%8F%98%E5%9C%BA%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">6.</span> <span class="nav-text">多尺度得到的单胞应变场与本征应变的关系</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qiu Xiaohuo"
+      src="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+  <p class="site-author-name" itemprop="name">Qiu Xiaohuo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">19</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qiuxiaohuo" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiuxiaohuo" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:qiuxiaohuo@gmail.com" title="E-Mail → mailto:qiuxiaohuo@gmail.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" class="cc-opacity" rel="noopener" target="_blank"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_sa.svg" alt="Creative Commons"></a>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/10/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95%E4%B8%8E%E5%A4%9A%E5%B0%BA%E5%BA%A6%E6%8E%A8%E5%AF%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="等效夹杂方法与多尺度推导 | Qiu's 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          等效夹杂方法与多尺度推导
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-10 09:47:09 / 修改时间：15:27:49" itemprop="dateCreated datePublished" datetime="2024-04-10T09:47:09+08:00">2024-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="本征应变与本征应力"><strong>本征应变与本征应力</strong></h2>
+<p>将应变 <span class="math inline">\(\varepsilon\)</span> 分成弹性应变
+<span class="math inline">\(e\)</span> 与本征应变 <span
+class="math inline">\(\mu\)</span>(nonelastic strains, 比如热膨胀, 相变,
+塑性应变等)</p>
+<p><span class="math display">\[
+\varepsilon = e+\mu
+\]</span></p>
+<p>应变 <span class="math inline">\(\varepsilon\)</span> 满足协调方程
+<span class="math inline">\(\varepsilon_{ij} =
+\frac{1}{2}(u_{i,j}+u_{j,i})\)</span>.</p>
+<div class="note info"><p>本征应变可以是<strong>不协调的</strong>:</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404100950833mura1.png"
+alt="&lt;img alt=&quot;&quot; data-attachment-key=&quot;KKDL7LN6&quot; data-annotation=&quot;%7B%22attachmentURI%22%3A%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FF5ED5SHL%22%2C%22annotationKey%22%3A%2228EI2BQ4%22%2C%22color%22%3A%22%23ffd400%22%2C%22pageLabel%22%3A%2215%22%2C%22position%22%3A%7B%22pageIndex%22%3A14%2C%22rects%22%3A%5B%5B57.6%2C219.6%2C544.2%2C250.8%5D%5D%7D%2C%22citationItem%22%3A%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2215%22%7D%7D&quot; width=&quot;811&quot; height=&quot;52&quot; src=&quot;attachments/KKDL7LN6.png&quot; ztype=&quot;zimage&quot;&gt;" />
+<figcaption aria-hidden="true">&lt;img alt=""
+data-attachment-key="KKDL7LN6"
+data-annotation="%7B%22attachmentURI%22%3A%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FF5ED5SHL%22%2C%22annotationKey%22%3A%2228EI2BQ4%22%2C%22color%22%3A%22%23ffd400%22%2C%22pageLabel%22%3A%2215%22%2C%22position%22%3A%7B%22pageIndex%22%3A14%2C%22rects%22%3A%5B%5B57.6%2C219.6%2C544.2%2C250.8%5D%5D%7D%2C%22citationItem%22%3A%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2215%22%7D%7D"
+width="811" height="52" src="attachments/KKDL7LN6.png"
+ztype="zimage"&gt;</figcaption>
+</figure>
+<p><span class="citation"
+data-citation="%7B%22citationItems%22%3A%5B%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2215%22%7D%5D%2C%22properties%22%3A%7B%7D%7D"
+data-ztype="zcitation">(<span
+class="citation-item"><a href="zotero://select/library/items/DJK3L7F3">Mura,
+1987, p. 15</a></span>)</span></p>
+<p><img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404100950877mura2.png"
+alt="&lt;img alt=&quot;&quot; data-attachment-key=&quot;5BI2BIME&quot; data-annotation=&quot;%7B%22attachmentURI%22%3A%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FF5ED5SHL%22%2C%22annotationKey%22%3A%22GPCVRKJW%22%2C%22color%22%3A%22%23ffd400%22%2C%22pageLabel%22%3A%2221%22%2C%22position%22%3A%7B%22pageIndex%22%3A20%2C%22rects%22%3A%5B%5B62.4%2C674.4%2C549%2C732%5D%5D%7D%2C%22citationItem%22%3A%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2221%22%7D%7D&quot; width=&quot;811&quot; height=&quot;96&quot; src=&quot;attachments/5BI2BIME.png&quot; ztype=&quot;zimage&quot;&gt;" /><br />
+<span class="citation"
+data-citation="%7B%22citationItems%22%3A%5B%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2221%22%7D%5D%2C%22properties%22%3A%7B%7D%7D"
+data-ztype="zcitation">(<span
+class="citation-item"><a href="zotero://select/library/items/DJK3L7F3">Mura,
+1987, p. 21</a></span>)</span></p>
+<p>详细介绍可以看 Mura 第 7 章 dislocations.</p>
+</div>
+<p>本征应变在自由体中 (i.e., 没有体力项, 且没有边界面上的约束)
+中产生本征应力 <span class="math inline">\(\sigma\)</span>,
+满足平衡方程, 胡克定律, 以及边界条件:</p>
+<p><span class="math display">\[
+\nabla \cdot \sigma = 0,\quad \sigma = L:e, \quad \sigma \cdot n = 0
+\]</span></p>
+<p>将上式与应变分解式结合, 得到关于位移场 <span
+class="math inline">\(u_i\)</span> 的方程:</p>
+<p><span class="math display">\[
+L_{ijkl}~u_{k,lj} + \underbrace{(-L_{ijkl}~\mu_{kl,j})}_{:=X_i} = 0 \\
+L_{ijkl}~u_{k,l}~n_j = L_{ijkl}~\mu_{kl}~n_j
+\]</span></p>
+<p>通过上式, 可以将本征应变 <span class="math inline">\(\mu\)</span>
+在自由体中对位移场的扰动看作引入体力项 <span
+class="math inline">\(-L_{ijkl}~\mu_{kl,j}\)</span> 和面力项 <span
+class="math inline">\(L_{ijkl}~\mu_{kl}~n_j\)</span>.</p>
+<h2 id="green-函数">Green 函数</h2>
+<p>将微分方程写成抽象的算子形式:</p>
+<p><span class="math display">\[
+Lu = f
+\]</span></p>
+<p>当方程右端项为 Dirac 函数时, 微分方程的解 <span
+class="math inline">\(g(x)\)</span> 称为算子 <span
+class="math inline">\(L\)</span> 的 Green 函数:</p>
+<p><span class="math display">\[
+L g(x) = \delta(x)
+\]</span></p>
+<p>当微分方程右端项为 <span class="math inline">\(f\)</span> 时,
+此时微分方程的解可以表示为 Green 函数与 <span
+class="math inline">\(f\)</span> 的卷积:</p>
+<p><span class="math display">\[
+u(x) = g*f = \int_{-\infty}^{\infty} g(x-x^{\prime}) f(x^{\prime})
+\mathrm{d} x^{\prime}
+\]</span></p>
+<p>对于方程</p>
+<p><span class="math display">\[
+L_{ijkl}~u_{k,lj} = L_{ijkl}~\mu_{kl,j}
+\]</span></p>
+<p>我们希望能够找到该方程的 Green 函数 <span
+class="math inline">\(g_i(x)\)</span>, 使得方程的解可以表示为 Green
+函数与本征应变的卷积. 这需要借助于 Fourier 分析方法. 对方程进行 Fourier
+变换, 得到</p>
+<p><span class="math display">\[
+L_{ijkl}\xi_{l}\xi_{j}~\hat{u}_{k} = -i \xi_{j}L_{ijkl}~\hat{\mu}_{kl}
+\]</span></p>
+<p>记 <span class="math inline">\(K_{ik}(\xi) =
+L_{ijkl}\xi_{l}\xi_{j}\)</span>, <span class="math inline">\(X_i = -i
+\xi_{j}L_{ijkl}~\hat{\mu}_{kl}\)</span>, 就得到关于 <span
+class="math inline">\(\hat{u}_k\)</span> 的线性方程:</p>
+<p><span class="math display">\[
+K_{ik} \hat{u}_k = X_i
+\]</span></p>
+<p>例如, 当材料是各项同性时, 矩阵 <span class="math inline">\(K\)</span>
+可以写成</p>
+<p><span class="math display">\[
+K = (\lambda + \mu)\begin{pmatrix}
+\xi_1 \xi_1 &amp; \xi_1 \xi_2 &amp; \xi_1 \xi_3 \\
+\xi_2 \xi_1 &amp; \xi_2 \xi_2 &amp; \xi_2 \xi_3 \\
+\xi_3 \xi_1 &amp; \xi_3 \xi_2 &amp; \xi_3 \xi_3
+\end{pmatrix}
++
+\mu \xi^2 I, \quad \xi^2 = \xi_1^2 + \xi_2^2 + \xi_3^2
+\]</span></p>
+<p>将矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span> 的逆写成
+cofactor 矩阵的形式:</p>
+<p><span class="math display">\[
+K_{ik}^{-1}(\xi) = D^{-1}(\xi)N_{ik}(\xi)
+\]</span></p>
+<p>这样在应用 Fourier 逆变换, 就可以得到 <span
+class="math inline">\(u(x)\)</span>:</p>
+<p><span class="math display">\[
+u_{i}(x) = \mathscr{F}^{-1} [\hat{u}_{i}(\xi)]
+= \mathscr{F}^{-1}[D^{-1}(\xi)N_{ik}(\xi) X_k]\\
+=  -i
+\mathscr{F}^{-1}[L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)\xi_{j}~\hat{\mu}_{mn}]
+\]</span></p>
+<p>将 Fourier 变换的公式代入得到</p>
+<p><span class="math display">\[
+u_{i}(x) = -i \int L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)\xi_{j} e^{i\xi \cdot
+x} \mathrm{d} \xi
+\int \mu_{mn}(x^{\prime}) e^{-i\xi \cdot x^{\prime}} \mathrm{d}
+x^{\prime}\\
+= - \frac{\partial}{\partial x_j}\int L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)
+e^{i\xi \cdot x} \mathrm{d} \xi
+\int \mu_{mn}(x^{\prime}) e^{-i\xi \cdot x^{\prime}} \mathrm{d}
+x^{\prime}\\
+= - \int L_{kjmn} \left(\frac{\partial}{\partial x_j}\int
+D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
+\right)  \mu_{mn}(x^{\prime}) \mathrm{d} x^{\prime}
+\]</span></p>
+<p>Green 函数定义为</p>
+<p><span class="math display">\[
+G_{ik}(x-x^{\prime}) = \int D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot
+(x-x^{\prime})} \mathrm{d} \xi
+\]</span></p>
+<p>则 <span class="math inline">\(u_i\)</span> 可以记为</p>
+<p><span class="math display">\[
+u_{i}(x) = -\int L_{jkmn} G_{ij,k}(x-x^{\prime}) \mu_{mn}(x^{\prime})
+\mathrm{d} x^{\prime}
+\]</span></p>
+<p>对 Green 函数求二阶导数, 得到</p>
+<p><span class="math display">\[
+G_{ij,kl}(x-x^{\prime}) = -\int D^{-1}(\xi)N_{ij}(\xi) \xi_k \xi_l
+e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
+\]</span></p>
+<p>而前面得到 <span class="math inline">\(K_{ik}(\xi) =
+L_{ijkl}\xi_{l}\xi_{j}\)</span>, 方程两端乘 <span
+class="math inline">\(L_{jknl}\)</span>, 等式依旧成立, 得到</p>
+<p><span class="math display">\[
+L_{jknl}G_{ij,kl}(x-x^{\prime}) = -\int D^{-1}(\xi)N_{ij}(\xi) L_{jknl}
+\xi_k \xi_l e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi \\
+= -\int D^{-1}(\xi)K_{jn}(\xi)N_{ij}(\xi)  e^{i\xi \cdot (x-x^{\prime})}
+\mathrm{d} \xi = -\delta_{in}\int e^{i\xi \cdot (x-x^{\prime})}
+\mathrm{d} \xi
+= -\delta_{in} \delta(x-x^{\prime})
+\]</span></p>
+<p>整理一下指标, 得到</p>
+<p><span class="math display">\[
+L_{ijkl}G_{nk,lj}(x-x^{\prime}) + \delta_{in} \delta(x-x^{\prime}) = 0\\
+\]</span></p>
+<p>根据指标, 可以得到 Green 函数 <span
+class="math inline">\(G_{nk}(x-x^{\prime})\)</span> 的物理意义是:
+作用在点 <span class="math inline">\(x^{\prime}\)</span> 上, n
+方向的单位力所造成的 k 方向上的位移分量. 或者根据互易定理, 作用在点
+<span class="math inline">\(x^{\prime}\)</span> 上, k
+方向的单位力所造成的 n 方向上的位移分量(因为矩阵 K N 可以交换).</p>
+<h2 id="等效夹杂方法">等效夹杂方法</h2>
+<p>考虑如下场景: 一个无穷大的弹性体 D 当中嵌入一个椭球形状的夹杂 <span
+class="math inline">\(\Omega\)</span>, 如果夹杂的弹性模量 <span
+class="math inline">\(C^*_{ijkl}\)</span>*
+<em>与周围弹性体的弹性模量</em> *<span
+class="math inline">\(C_{ijkl}\)</span> 不同, 则称该夹杂为非均质夹杂.
+因为非均质夹杂的存在, 其附近的应力场会发生改变.
+考虑无穷远处的应变场强度为 <span
+class="math inline">\(\varepsilon^0\)</span>, 对应的应力场为 <span
+class="math inline">\(\sigma^0 = C : \varepsilon^0\)</span>,
+应变与应力场扰动量分别为 <span
+class="math inline">\(\varepsilon\)</span> 和 <span
+class="math inline">\(\sigma\)</span>, 因此真实的位移和应力为 <span
+class="math inline">\(u_i^0 + u_i\)</span> 和 <span
+class="math inline">\(\sigma^0 + \sigma\)</span>.</p>
+<p>应力扰动项 <span class="math inline">\(\sigma\)</span>
+满足应力平衡方程(不考虑外力),
+以及在无穷远处等于0(或者在有限区域表面等于0)</p>
+<p><span class="math display">\[
+\nabla \cdot \sigma = 0\\
+\sigma \cdot n = 0
+\]</span></p>
+<p>在夹杂内外满足本构方程:</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \sigma^0+\sigma=L^* : \left(\varepsilon^0+\varepsilon-\mu\right)
+\quad \text { in } \Omega, \\
+&amp; \sigma^0+\sigma=L : \left(\varepsilon^0+\varepsilon\right) \quad
+\text { in } D-\Omega .
+\end{aligned}
+\]</span></p>
+<p>而 Eshelby 方法所解决的原始问题是: 考虑无穷大的弹性体,
+其中嵌入一个椭球夹杂, 该夹杂弹性模量与弹性体<strong>一致</strong>,
+然而夹杂内给定常数值的本征应变 <span class="math inline">\(\mu\)</span>,
+由此, Eshelby 问题所满足的本构方程为</p>
+<p><span class="math display">\[
+\begin{aligned}
+&amp; \sigma^0+\sigma=L :
+\left(\varepsilon^0+\varepsilon-\tilde{\mu}\right) \text { in } \Omega,
+\\
+&amp; \sigma^0+\sigma=L : \left(\varepsilon^0+\varepsilon\right) \text {
+in } D-\Omega .
+\end{aligned}
+\]</span></p>
+<p>若令这两类问题等价, 则充要条件是</p>
+<p><span class="math display">\[
+L^* : \left(\varepsilon^0+\varepsilon-\mu\right) = L :
+\left(\varepsilon^0+\varepsilon-\tilde{\mu}\right) \text { in } \Omega
+\tag{1}
+\]</span></p>
+<p>求解 Eshelby 本征应变问题可以得到等效本征应变 <span
+class="math inline">\(\tilde{\mu}\)</span> 与夹杂内外由夹杂引起的应变场
+<span class="math inline">\(\varepsilon\)</span> 之间的关系:</p>
+<p><span class="math display">\[
+\varepsilon = S:\tilde{\mu} \quad x \text{ in } \Omega,\\
+\varepsilon(x) = D(x):\tilde{\mu} \quad x \text{ in } D-\Omega,
+\]</span></p>
+<p>将这一关系代入到式 (1) 中, 给定远端应力 <span
+class="math inline">\(\varepsilon^0\)</span>, 以及夹杂上的本征应变 <span
+class="math inline">\(\mu\)</span>, 就可以得到关于等效本征应变 <span
+class="math inline">\(\tilde{\mu}\)</span> 所满足的方程:</p>
+<p><span class="math display">\[
+L^* : \left(\varepsilon^0+\varepsilon(\tilde{\mu})-\mu\right) = L :
+\left(\varepsilon^0+\varepsilon(\tilde{\mu})-\tilde{\mu}\right) \text {
+in } \Omega
+\]</span></p>
+<p>或者写成</p>
+<p><span class="math display">\[
+\delta L : \varepsilon(\tilde{\mu}) + L:\tilde{\mu} = -\delta L :
+\varepsilon^0 + L^{*} : \mu, \quad \delta L = L^{*} - L
+\]</span></p>
+<p>如果 Eshelby 问题已经解出, 那么就可以得到整个区域上的应变场 <span
+class="math inline">\(\varepsilon\)</span>.</p>
+<h2 id="多尺度方法中的-green-函数物理意义">多尺度方法中的 Green
+函数物理意义</h2>
+<p>多尺度的单胞问题中, 本构方程为:</p>
+<p><span class="math display">\[
+\sigma^{\xi}(x) = L^{\xi}(x):\left(\varepsilon^{\xi}(x) -
+\mu^{\xi}(x)\right)
+\]</span></p>
+<p>对位移变量进行渐近展开, 得到</p>
+<p><span class="math display">\[
+u^{\xi}(x) = u^{c}(x) + \xi u^{(1)}(x,y) + O(\xi^2)
+\]</span></p>
+<p>同样也可以得到应变,应力,本征应变的展开式. 通过应力平衡方程,
+以及解的存在唯一条件, 可以得到渐进展开式中不同阶次项之间的关系,
+最终可以整理为:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\varepsilon^{\xi}(x) &amp;= \varepsilon^f(x,y) + \xi
+\varepsilon^{(1)}(x,y) + O(\xi^2)\\
+\sigma^{\xi}(x) &amp;= \sigma^{f}(x,y) + \xi \sigma^{(1)}(x,y) +
+O(\xi^2)\\
+\mu^{\xi}(x) &amp;= \mu^f(x,y) + \xi \mu^{(1)}(x,y) + O(\xi^2)
+\end{aligned}
+\]</span></p>
+<p>其中, fina scale 上的变量之间的关系式为:</p>
+<p><span class="math display">\[
+\varepsilon^f = \underbrace{\nabla_x u^c}_{:=\varepsilon^c} + \nabla_y
+u^{(1)}\\
+\sigma^f = L(y) : \left( \varepsilon^f - \mu^f \right)
+\]</span></p>
+<p>在多尺度中, 表征单胞内更精细的位移场 <span
+class="math inline">\(u^{(1)}\)</span> 是通过如下方式进行构造的:</p>
+<p><span class="math display">\[
+u_i^{(1)}(x,y) = \varepsilon_{kl}^c(x) H_i^{kl}(y) + \int_{\Theta}
+\mu_{kl}^f(x,y^{\prime}) h_{i}^{kl}(y,y^{\prime}) \mathrm{d} y^{\prime}
+\]</span></p>
+<p>根据夹杂问题的推导过程, 由本征应变产生的位移为</p>
+<p><span class="math display">\[
+u_{i}(y) = -\int L_{jkmn} G_{j,k}^{i}(y-y^{\prime}) \mu_{mn}(y^{\prime})
+\mathrm{d} y^{\prime}
+\]</span></p>
+<p>如果将夹杂问题的 Green 函数记作</p>
+<p><span class="math display">\[
+h_{i}^{mn}(y,y^{\prime}) = L_{mnjk}(y^{\prime}) \frac{\partial}{\partial
+y_{k}^{\prime}}G_{j}^{i}(y-y^{\prime})
+\]</span></p>
+<p>所以, <span class="math inline">\(h_{i}^{mn}\)</span> 的含义是,
+作用在点 <span class="math inline">\(y\)</span> 处 i
+方向上的单位力所产生的应力场(?).</p>
+<h2 id="reduced-order-green-函数在-partition-上的积分">reduced order:
+Green 函数在 Partition 上的积分</h2>
+<p>多尺度在单胞上 fine-scale 应力满足平衡方程以及边界条件:</p>
+<p><span class="math display">\[
+\nabla_{y} \cdot \sigma^{f} = 0, \quad \sigma^{f} \cdot n \in -\#
+\]</span></p>
+<p>将渐进展开式, 本构方程, 以及关于 <span
+class="math inline">\(u_{i}^{(1)}\)</span>
+的表达式代入到平衡方程中得到</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) \left[ E_{kl}^{mn}(y) \varepsilon_{mn}^c(x) +
+\int_{\Theta} \mu_{mn}^f(x,y^{\prime}) h_{(k,y_l)}^{mn}(y,y^{\prime})
+\mathrm{d} y^{\prime} - \mu_{kl}^f(x,y) \right] \right\}_{,y_i} = 0
+\]</span></p>
+<p>线弹性部分的单胞方程为:</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) E_{kl}^{mn}(y) \right\}_{,y_i} = 0
+\]</span></p>
+<p>本征应变的单胞方程为</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) \left[ \int_{\Theta} \mu_{mn}^f(x,y^{\prime})
+h_{(k,y_l)}^{mn}(y,y^{\prime}) \mathrm{d} y^{\prime} - \mu_{kl}^f(x,y)
+\right] \right\}_{,y_i} = 0
+\]</span></p>
+<p>将单胞分成若干个 partition: <span class="math inline">\(\Theta^{(1)},
+\Theta^{(2)}, \ldots, \Theta^{(N)}\)</span>,并假设每一个 partition
+上的本征应变是相同的, 每个 partition 上的本征应变为 <span
+class="math inline">\(\mu_{mn}^{(1)}(x), \mu_{mn}^{(1)}(x), \ldots,
+\mu_{mn}^{(N)}(x)\)</span>, 这样得到本征应变在单胞上的分段常值分布:</p>
+<p><span class="math display">\[
+\mu_{mn}^{f}(x,y) = \mu_{mn}^{(\alpha)}(x) N^{(\alpha)}(y) \quad
+\text{(使用求和约定)}
+\]</span></p>
+<p>代入到本征应变单胞方程中, 得到</p>
+<p><span class="math display">\[
+\mu_{mn}^{(\alpha)}(x)\left\{ L_{ijkl}(y) \left[ \int_{\Theta}
+h_{(k,y_l)}^{mn}(y,y^{\prime}) N^{(\alpha)}(y^{\prime}) \mathrm{d}
+y^{\prime} - I_{kl}^{mn}N^{(\alpha)}(y) \right] \right\}_{,y_i} = 0
+\]</span></p>
+<p>上式是关于 <span
+class="math inline">\(\mu_{mn}^{(\alpha)}(x)\)</span> 的方程组,
+且方程组系数独立于方程变量. 这样, 如果方程组的解空间为 <span
+class="math inline">\(\mathbb{R}_N\)</span>, 也就是对任意 <span
+class="math inline">\(\mu_{mn}^{(\alpha)}(x) \in \mathbb{R}_N\)</span>,
+上述方程恒成立, 则必须要求方程组系数恒等于 0:</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) \left[ \int_{\Theta} h_{(k,y_l)}^{mn}(y,y^{\prime})
+N^{(\alpha)}(y^{\prime}) \mathrm{d} y^{\prime} -
+I_{kl}^{mn}N^{(\alpha)}(y) \right] \right\}_{,y_i} = 0, \quad \forall
+\alpha
+\]</span></p>
+<p>将 Green 函数在 partition 上的积分记作</p>
+<p><span class="math display">\[
+P_{kl}^{mn(\alpha)}(y) = \int_{\Theta^{(\alpha)}}
+h_{(k,y_l)}^{mn}(y,y^{\prime}) N^{(\alpha)}(y^{\prime}) \mathrm{d}
+y^{\prime}
+\]</span></p>
+<p>这样就得到关于张量 <span
+class="math inline">\(P_{kl}^{mn(\alpha)}\)</span> 的 <span
+class="math inline">\(N\)</span> 个方程:</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) \left[ P_{kl}^{mn(\alpha)}(y) -
+I_{kl}^{mn}N^{(\alpha)}(y) \right] \right\}_{,y_i} = 0, \text{in}~
+\Theta \quad \alpha=1,2, \ldots,N
+\]</span></p>
+<h2
+id="多尺度得到的单胞应变场与本征应变的关系">多尺度得到的单胞应变场与本征应变的关系</h2>
+<p>只考虑本征应变对 fine-scale 应变的影响, 我们有如下关系式:</p>
+<p><span class="math display">\[
+\varepsilon_{ij}^{f}(x,y) = \int_{\Theta} h_{(i,y_j)}^{kl}(y,y^{\prime})
+\mu_{kl}^{f}(x,y^{\prime}) \mathrm{d} y^{\prime}
+\]</span></p>
+<p>将 reduced order 分块均匀假设代入上式, 就得到</p>
+<p><span class="math display">\[
+\varepsilon_{ij}^{f}(x,y) = P_{ij}^{kl(\alpha)}(y)
+\mu_{kl}^{(\alpha)}(x)
+\]</span></p>
+<p>在每一个分块 <span class="math inline">\(\Theta^{(\alpha)}\)</span>
+上对 <span class="math inline">\(\varepsilon^f\)</span> 进行积分平均,
+得到 <span class="math display">\[
+\varepsilon_{ij}^{(\beta)}(x) = \langle P_{ij}^{kl(\alpha)}(y)
+\rangle_{\Theta^{(\beta)}} \mu_{kl}^{(\alpha)}(x)
+= P_{ij}^{kl(\beta \alpha)} \mu_{kl}^{(\alpha)}(x)
+\]</span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" rel="tag"># 多尺度</a>
+              <a href="/tags/Eshelby-%E9%97%AE%E9%A2%98/" rel="tag"># Eshelby 问题</a>
+              <a href="/tags/Green-%E5%87%BD%E6%95%B0/" rel="tag"># Green 函数</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/04/10/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/" rel="prev" title="使用有限元方法求解单胞方程">
+                  <i class="fa fa-angle-left"></i> 使用有限元方法求解单胞方程
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qiu Xiaohuo</span>
+  </div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
