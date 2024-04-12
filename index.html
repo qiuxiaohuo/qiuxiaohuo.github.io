@@ -121,7 +121,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">20</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -132,7 +132,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">16</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -160,6 +160,151 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/12/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Qiu's 博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | Qiu's 博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2024/04/12/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">创作文档管理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-12 21:49:33 / 修改时间：22:02:36" itemprop="dateCreated datePublished" datetime="2024-04-12T21:49:33+08:00">2024-04-12</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我过去的文档管理方式太过粗放，以至我感到自己似乎一直是在原地踏步。这是因为我在用多个平台（知乎，Hexo+NexT
+博客，Zotero 等），用多种方式（MATLAB 实时脚本，LaTeX，Markdown
+等）写文档，这些文档缺少一个「地图」索引，所以我的知识库相互是分割独立的，仿佛一盘散沙，没办法攒出某种结构出来。所以我希望建立一个文档管理的规则，按照这个规则，我可以系统地将所有创作的文档相互关联。</p>
+<p>我创作的文档类型有：</p>
+<ol type="1">
+<li><strong>Markdown（md） 文档</strong>
+用来写一些效率提升的奇技淫巧，记录软件的配置过程等等，还有专业相关的一些小问题，如果对排版要求不高的话，我也会用
+md 来写</li>
+<li><strong>LaTeX 文档</strong>
+写专业相关的文档，篇幅会很长，并且有大量公式</li>
+<li><strong>MATLAB 脚本</strong> MATLAB
+实时脚本本身也具有文档的功能，类似的还有 Mathematica 的
+Notebook。这些文档是用来计算某一类小问题。含有多个文件与函数的 matlab
+程序并不包含在内，这可以用 Github 管理</li>
+<li><strong>Zotero 文献整理</strong>
+主要和阅读的论文资料相关，该文档依赖于文献</li>
+</ol>
+<p>以上所有文档，都可以转换为 md 文档进行索引：</p>
+<ul>
+<li>LaTeX 可以使用 Pandoc 转换为 md 文档，转换的效率还是可以的</li>
+<li>MATLAB 实时脚本可以导出 md 文档</li>
+<li>Zotero 中的笔记也可以导出 md 文档</li>
+</ul>
+<p>，那么，如何定义 md 文档与源文档之间的关系呢？我们做出如下规定：</p>
+<ul>
+<li><strong>源文档必须进行版本控制，确定发行版本号</strong></li>
+<li><strong>md 文档需要标识源文档，但源文档不需要给出指向 md
+文档的标识</strong></li>
+<li><strong>所有内容上的修改必须在源文档中做出，然后通过版本控制系统上传修改，再将新版本的文档转化为
+md</strong></li>
+<li><strong>md 文档只能做出排版的修正</strong></li>
+</ul>
+<h2 id="md-文档标识规则">md 文档标识规则</h2>
+<p>在 md 文档中，使用 html 标签<code>&lt;!--注释内容--&gt;</code>
+进行注释，这样在静态网站上看不到该标签中的内容。标注内容的格式为：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--文档名称--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--文档仓库路径--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--文档版本号--&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="文档仓库和版本控制">文档仓库和版本控制</h2>
+<p>文档任务工作基本上都是线性的，不需要太多 branch
+工作，并且文档私密性较高，所以使用 SVN 进行版本控制。</p>
+<p>创建文档的仓库目录如下：</p>
+<ul>
+<li><code>LaTeXdocs/</code></li>
+<li><code>MATLAB/</code></li>
+<li><code>Mathematica/</code></li>
+</ul>
+<h2 id="zotero-文档管理">Zotero 文档管理</h2>
+<p>Zotero 的文档管理相对比较复杂，因为 Zotero
+本身就是一个文档集成器，可以方便地在原文献基础上进行注释与引用。但是我更希望
+Zotero
+是作为一个文献数据库，我可以方便地找到我的引用来源，但是我自己对知识的理解与创造则与文献库相区分。然而
+Zotero 的数据不太方便版本控制，因为 Zotero
+的数据集成方式是与软件绑定在一起的，你不需要控制文件在本地怎么存储。但是每一次操作，比如在文档中截个图，画个线，都会变更文件，所以
+Zotero 的数据库更新很快，更适合云同步。</p>
+<p>所以，如果整理的文献有值得放在个人文档库中的，那么就<strong>在文档的开头添加参考文献</strong>，不需要与
+Zotero 自带的笔记系统相关联。</p>
+<h2 id="总结">总结</h2>
+<p>我制定的文档管理规则为：</p>
+<ul>
+<li><strong>Markdown 文档</strong> 在 <code>Blog/source</code>
+下编辑，上传至网络博客</li>
+<li><strong>LaTeX 文档</strong> 创建 SVN 仓库
+<code>LaTeXdocs/</code>，发布文件版本号，并将 release 版本的文档使用
+Pandoc 整理为 md 文档，在 md 文档首部添加注释行说明转换 LaTeX
+文档的信息</li>
+<li><strong>Mathematica 文档</strong> 创建 SVN 仓库
+<code>Mathematica/</code>，发布文件版本号，并将 release
+版本的文档导出为为 md 文档，在 md 文档首部添加注释行说明
+Mathematica文档的信息</li>
+<li><strong>MATLAB 文档</strong> 创建 SVN 仓库
+<code>MATLAB/</code>，发布文件版本号，并将 release 版本的文档导出为为 md
+文档，在 md 文档首部添加注释行说明 MATLAB 文档的信息</li>
+<li><strong>Zotero 文档</strong> 使用坚果云进行同步，主要用 Zotero
+存放科研的参考源数据。在 Zotero
+中撰写关于文献的笔记。如果该笔记值得放到博客中，就导出为 md
+文档，并在文档开头指明参考文献</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -197,9 +342,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-10 17:36:10 / 修改时间：17:44:13" itemprop="dateCreated datePublished" datetime="2024-04-10T17:36:10+08:00">2024-04-10</time>
+      <time title="创建时间：2024-04-10 17:36:10" itemprop="dateCreated datePublished" datetime="2024-04-10T17:36:10+08:00">2024-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-12 17:40:43" itemprop="dateModified" datetime="2024-04-12T17:40:43+08:00">2024-04-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -295,7 +446,7 @@ class="math inline">\(\boldsymbol{\varepsilon}\)</span>,
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-04-10 09:47:09 / 修改时间：15:48:45" itemprop="dateCreated datePublished" datetime="2024-04-10T09:47:09+08:00">2024-04-10</time>
+      <time title="创建时间：2024-04-10 09:47:09 / 修改时间：17:44:08" itemprop="dateCreated datePublished" datetime="2024-04-10T09:47:09+08:00">2024-04-10</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -981,95 +1132,8 @@ class="math inline">\(\LaTeX\)</span>​​​ 中, 一般是用命令
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/06/Github%20%E5%85%8B%E9%9A%86%E5%A4%B1%E8%B4%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Qiu's 博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | Qiu's 博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/06/Github%20%E5%85%8B%E9%9A%86%E5%A4%B1%E8%B4%A5/" class="post-title-link" itemprop="url">Github 克隆失败</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-04-06 10:30:32" itemprop="dateCreated datePublished" datetime="2024-04-06T10:30:32+08:00">2024-04-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-09 18:22:30" itemprop="dateModified" datetime="2024-04-09T18:22:30+08:00">2024-04-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>使用 Github 克隆某一个库的时候，报错如下：</p>
-<blockquote>
-<p>git clone fatal unable to acces</p>
-</blockquote>
-<p>使用如下解决方案</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
-<p>结果不行，后来浏览到一篇帖子，说是 Git
-端口和本机系统代理的端口不一致造成的。打开
-Clash，查看我的笔记本的代理端口为：7890。然后设置 Git 的端口：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
-<p>注意，第二条是 <code>http://127.0.0.1:7890</code> ，不是
-<code>https://127.0.0.1:7890</code></p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
