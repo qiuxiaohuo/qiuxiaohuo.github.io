@@ -27,11 +27,12 @@
 <meta property="og:description" content="本征应变与本征应力 将应变 \(\varepsilon\) 分成弹性应变 \(e\) 与本征应变 \(\mu\)(nonelastic strains, 比如热膨胀, 相变, 塑性应变等) \[ \varepsilon &#x3D; e+\mu \] 应变 \(\varepsilon\) 满足协调方程 \(\varepsilon_{ij} &#x3D; \frac{1}{2}(u_{i,j}+u_{">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-04-10T01:47:09.000Z">
-<meta property="article:modified_time" content="2024-04-10T09:44:08.185Z">
+<meta property="article:modified_time" content="2024-04-14T05:21:42.142Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta property="article:tag" content="多尺度">
 <meta property="article:tag" content="Eshelby 问题">
 <meta property="article:tag" content="Green 函数">
+<meta property="article:tag" content="Fourier 变换">
 <meta name="twitter:card" content="summary">
 
 
@@ -142,7 +143,7 @@ Green 函数在 Partition 上的积分</span></a></li><li class="nav-item nav-le
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">20</span>
+        <span class="site-state-item-count">21</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -208,9 +209,15 @@ Green 函数在 Partition 上的积分</span></a></li><li class="nav-item nav-le
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-10 09:47:09 / 修改时间：17:44:08" itemprop="dateCreated datePublished" datetime="2024-04-10T09:47:09+08:00">2024-04-10</time>
+      <time title="创建时间：2024-04-10 09:47:09" itemprop="dateCreated datePublished" datetime="2024-04-10T09:47:09+08:00">2024-04-10</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-14 13:21:42" itemprop="dateModified" datetime="2024-04-14T13:21:42+08:00">2024-04-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -276,18 +283,19 @@ L_{ijkl}~u_{k,l}~n_j = L_{ijkl}~\mu_{kl}~n_j
 class="math inline">\(-L_{ijkl}~\mu_{kl,j}\)</span> 和面力项 <span
 class="math inline">\(L_{ijkl}~\mu_{kl}~n_j\)</span>.</p>
 <h2 id="green-函数">Green 函数</h2>
-<p>将微分方程写成抽象的算子形式:</p>
+<p>如果将微分方程写成抽象的算子形式:</p>
 <p><span class="math display">\[
 Lu = f
 \]</span></p>
-<p>当方程右端项为 Dirac 函数时, 微分方程的解 <span
+<p>那么当方程右端项（系统的数据输入项）为 Dirac 函数 <span
+class="math inline">\(\delta(x)\)</span> 时, 微分方程的解 <span
 class="math inline">\(g(x)\)</span> 称为算子 <span
 class="math inline">\(L\)</span> 的 Green 函数:</p>
 <p><span class="math display">\[
 L g(x) = \delta(x)
 \]</span></p>
-<p>当微分方程右端项为 <span class="math inline">\(f\)</span> 时,
-此时微分方程的解可以表示为 Green 函数与 <span
+<p>当微分方程右端项为一般的函数 <span class="math inline">\(f\)</span>
+时, 此时微分方程的解可以表示为 Green 函数与 <span
 class="math inline">\(f\)</span> 的卷积:</p>
 <p><span class="math display">\[
 u(x) = g*f = \int_{-\infty}^{\infty} g(x-x^{\prime}) f(x^{\prime})
@@ -304,14 +312,18 @@ class="math inline">\(g_i(x)\)</span>, 使得方程的解可以表示为 Green
 <p><span class="math display">\[
 L_{ijkl}\xi_{l}\xi_{j}~\hat{u}_{k} = -i \xi_{j}L_{ijkl}~\hat{\mu}_{kl}
 \]</span></p>
-<p>记 <span class="math inline">\(K_{ik}(\xi) =
-L_{ijkl}\xi_{l}\xi_{j}\)</span>, <span class="math inline">\(X_i = -i
+<p>记 <span class="math inline">\(K_{ik}(\xi) :=
+L_{ijkl}\xi_{l}\xi_{j}\)</span>, <span class="math inline">\(X_i := -i
 \xi_{j}L_{ijkl}~\hat{\mu}_{kl}\)</span>, 就得到关于 <span
 class="math inline">\(\hat{u}_k\)</span> 的线性方程:</p>
 <p><span class="math display">\[
 K_{ik} \hat{u}_k = X_i
 \]</span></p>
-<p>例如, 当材料是各项同性时, 矩阵 <span class="math inline">\(K\)</span>
+<p>如果 <span class="math inline">\(L_{ijkl}\)</span> 具有主对称性,
+也就是说, <span class="math inline">\(L_{(ij)[kl]} \equiv
+L_{[kl](ij)}\)</span>, 那么矩阵 <span
+class="math inline">\(K_{ik}(\xi)\)</span> 是对称矩阵. 例如,
+当材料是各项同性时, 矩阵 <span class="math inline">\(K\)</span>
 可以写成</p>
 <p><span class="math display">\[
 K = (\lambda + \mu)\begin{pmatrix}
@@ -322,12 +334,16 @@ K = (\lambda + \mu)\begin{pmatrix}
 +
 \mu \xi^2 I, \quad \xi^2 = \xi_1^2 + \xi_2^2 + \xi_3^2
 \]</span></p>
-<p>将矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span> 的逆写成
-cofactor 矩阵的形式:</p>
-<p><span class="math display">\[
+<p>若定义矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span> 的
+Adjugate 矩阵为 <span class="math inline">\(N_{ik}(\xi)\)</span>: <span
+class="math display">\[
+N_{ik}(\xi) := \mathrm{adj}(K_{ik}(\xi))
+\]</span> 那么, 矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span>
+的逆可以表示为 <span class="math display">\[
 K_{ik}^{-1}(\xi) = D^{-1}(\xi)N_{ik}(\xi)
 \]</span></p>
-<p>这样在应用 Fourier 逆变换, 就可以得到 <span
+<p>式中, <span class="math inline">\(D(\xi):=\det(K_{ik}(\xi))\)</span>.
+再应用 Fourier 逆变换, 就可以得到解 <span
 class="math inline">\(u(x)\)</span>:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -353,52 +369,107 @@ D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
 \right)  \mu_{mn}(x^{\prime}) \mathrm{d} x^{\prime}
 \end{align}
 \]</span></p>
-<p>Green 函数定义为</p>
+<p>定义 Green 函数为</p>
 <p><span class="math display">\[
-G_{ik}(x-x^{\prime}) = \int D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot
+G_{ik}(x-x^{\prime}) := \int D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot
 (x-x^{\prime})} \mathrm{d} \xi
 \]</span></p>
-<p>则 <span class="math inline">\(u_i\)</span> 可以记为</p>
+<p>则 <span class="math inline">\(u_i\)</span> 可以记作</p>
 <p><span class="math display">\[
-u_{i}(x) = -\int L_{jkmn} G_{ij,k}(x-x^{\prime}) \mu_{mn}(x^{\prime})
+u_{i}(x) = -\int L_{jkmn} G_{ik,j}(x-x^{\prime}) \mu_{mn}(x^{\prime})
 \mathrm{d} x^{\prime}
 \]</span></p>
-<p>对 Green 函数求二阶导数, 得到</p>
+<p>式中, Green 函数下标 <span
+class="math inline">\(\square_{,j}\)</span> 表示对变量 <span
+class="math inline">\(x_j\)</span> 求偏导（注意区别变量 <span
+class="math inline">\(x\)</span> 与 <span
+class="math inline">\(x^{\prime}\)</span>）. 对 Green 函数求二阶导数,
+得到</p>
 <p><span class="math display">\[
 G_{ij,kl}(x-x^{\prime}) = -\int D^{-1}(\xi)N_{ij}(\xi) \xi_k \xi_l
 e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
 \]</span></p>
-<p>而前面得到 <span class="math inline">\(K_{ik}(\xi) =
-L_{ijkl}\xi_{l}\xi_{j}\)</span>, 方程两端乘 <span
-class="math inline">\(L_{jknl}\)</span>, 等式依旧成立, 得到</p>
+<p>方程两端乘 <span class="math inline">\(L_{jknl}\)</span>,
+等式依旧成立, 得到</p>
 <p><span class="math display">\[
 \begin{align}
 L_{jknl}G_{ij,kl}(x-x^{\prime}) &amp;= -\int D^{-1}(\xi)N_{ij}(\xi)
-L_{jknl} \xi_k \xi_l e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi \\
+L_{jknl} \xi_k \xi_l e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
+\end{align}
+\]</span></p>
+<p>这样就凑出了之前的定义式 <span class="math inline">\(K_{ik}(\xi) :=
+L_{ijkl}\xi_{l}\xi_{j}\)</span>, 所以有 <span class="math display">\[
+\begin{align}
+L_{jknl}G_{ij,kl}(x-x^{\prime})
 &amp;= -\int D^{-1}(\xi)K_{jn}(\xi)N_{ij}(\xi)  e^{i\xi \cdot
 (x-x^{\prime})} \mathrm{d} \xi = -\delta_{in}\int e^{i\xi \cdot
 (x-x^{\prime})} \mathrm{d} \xi \\
 &amp;= -\delta_{in} \delta(x-x^{\prime})
 \end{align}
+\]</span> 整理一下指标, 得到 <span class="math display">\[
+L_{ijkl}G_{nk,lj}(x-x^{\prime}) + \delta_{in} \delta(x-x^{\prime}) = 0
+\tag{1}
 \]</span></p>
-<p>整理一下指标, 得到</p>
-<p><span class="math display">\[
-L_{ijkl}G_{nk,lj}(x-x^{\prime}) + \delta_{in} \delta(x-x^{\prime}) = 0\\
+<p>在阐述 Green 函数的物理意义之前,
+我们可以先观察一下上述方程自由指标的个数. 上述方程一共有两个自由指标
+<span class="math inline">\(i\)</span>, <span
+class="math inline">\(n\)</span>,
+同时该方程的形式与以位移为变量的控制方程非常相似: <span
+class="math display">\[
+L_{ijkl}u_{k,lj} + f_i = 0
+\]</span> 只是控制方程自由指标只有一个, <span
+class="math inline">\(i\)</span>, 我们将控制方程的自由指标展开: <span
+class="math display">\[
+\left\{
+\begin{aligned}
+L_{1jkl}u_{k,lj} + f_1 = 0\\
+L_{2jkl}u_{k,lj} + f_2 = 0\\
+L_{3jkl}u_{k,lj} + f_3 = 0
+\end{aligned}
+\right.
+\]</span> 如果固定指标 <span class="math inline">\(n=1\)</span>,
+那么控制方程 (1) 为 <span class="math display">\[
+\left\{
+\begin{aligned}
+L_{1jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{11} \delta(x-x^{\prime}) = 0\\
+L_{2jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{21} \delta(x-x^{\prime}) = 0\\
+L_{3jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{31} \delta(x-x^{\prime}) = 0
+\end{aligned}
+\right.
+\]</span> 因此该组控制方程的外力项为 <span class="math display">\[
+{f} = \begin{pmatrix}
+\delta(x-x^{\prime}) \\
+0 \\
+0
+\end{pmatrix}
 \]</span></p>
-<p>根据指标, 可以得到 Green 函数 <span
+<p>所以, 函数 <span class="math inline">\(f\)</span> 表示作用在点 <span
+class="math inline">\(x^{\prime}\)</span>, 方向为 <span
+class="math inline">\((1,0,0)\)</span> 的单位集中力. 函数 <span
+class="math inline">\(G_{1k}(x-x^\prime)\)</span> 表示在上述外力 <span
+class="math inline">\(f\)</span> 作用下系统的位移响应.</p>
+<p>综上, 可以得到 Green 函数 <span
 class="math inline">\(G_{nk}(x-x^{\prime})\)</span> 的物理意义是:
-作用在点 <span class="math inline">\(x^{\prime}\)</span> 上, n
-方向的单位力所造成的 k 方向上的位移分量. 或者根据互易定理, 作用在点
-<span class="math inline">\(x^{\prime}\)</span> 上, k
-方向的单位力所造成的 n 方向上的位移分量(因为矩阵 K N 可以交换).</p>
+作用在点 <span class="math inline">\(x^{\prime}\)</span> 上, <span
+class="math inline">\(n\)</span> 方向的单位集中力所造成的 <span
+class="math inline">\(k\)</span> 方向上的位移分量. 如果 <span
+class="math inline">\(L_{ijkl}\)</span> 具有主对称性, 那么矩阵 <span
+class="math inline">\(K\)</span> <span class="math inline">\(N\)</span>
+是对称矩阵, 所以 <span class="math display">\[
+G_{nk}(x-x^{\prime}) \equiv G_{kn}(x-x^{\prime})
+\]</span> 所以, <span
+class="math inline">\(G_{nk}(x-x^{\prime})\)</span> 同样也可以解释为:
+作用在点 <span class="math inline">\(x^{\prime}\)</span> 上, <span
+class="math inline">\(k\)</span> 方向的单位集中力所造成的 <span
+class="math inline">\(n\)</span> 方向上的位移分量.
+这恰好与互易原理的结论相同.</p>
 <h2 id="等效夹杂方法">等效夹杂方法</h2>
-<p>考虑如下场景: 一个无穷大的弹性体 D 当中嵌入一个椭球形状的夹杂 <span
+<p>考虑如下场景: 一个无穷大的弹性体 D 中嵌入一个椭球形状的夹杂 <span
 class="math inline">\(\Omega\)</span>, 如果夹杂的弹性模量 <span
-class="math inline">\(C^*_{ijkl}\)</span>*
-<em>与周围弹性体的弹性模量</em> *<span
-class="math inline">\(C_{ijkl}\)</span> 不同, 则称该夹杂为非均质夹杂.
-因为非均质夹杂的存在, 其附近的应力场会发生改变.
-考虑无穷远处的应变场强度为 <span
+class="math inline">\(C^*_{ijkl}\)</span><strong>与周围弹性体的弹性模量</strong><span
+class="math inline">\(C_{ijkl}\)</span> 不同,
+则称该夹杂为<strong>非均质夹杂</strong>. 因为非均质夹杂的存在,
+其附近的应力场会发生改变. 考虑无穷远处的应变场强度为 <span
 class="math inline">\(\varepsilon^0\)</span>, 对应的应力场为 <span
 class="math inline">\(\sigma^0 = C : \varepsilon^0\)</span>,
 应变与应力场扰动量分别为 <span
@@ -410,19 +481,21 @@ class="math inline">\(\sigma^0 + \sigma\)</span>.</p>
 满足应力平衡方程(不考虑外力),
 以及在无穷远处等于0(或者在有限区域表面等于0)</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
 \nabla \cdot \sigma = 0\\
 \sigma \cdot n = 0
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>在夹杂内外满足本构方程:</p>
 <p><span class="math display">\[
+\left\{
 \begin{aligned}
 &amp; \sigma^0+\sigma=L^* : \left(\varepsilon^0+\varepsilon-\mu\right)
 \quad \text { in } \Omega, \\
 &amp; \sigma^0+\sigma=L : \left(\varepsilon^0+\varepsilon\right) \quad
 \text { in } D-\Omega .
 \end{aligned}
+\right.
 \]</span></p>
 <p>而 Eshelby 方法所解决的原始问题是: 考虑无穷大的弹性体,
 其中嵌入一个椭球夹杂, 该夹杂弹性模量与弹性体<strong>一致</strong>,
@@ -612,6 +685,7 @@ id="多尺度得到的单胞应变场与本征应变的关系">多尺度得到�
               <a href="/tags/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" rel="tag"># 多尺度</a>
               <a href="/tags/Eshelby-%E9%97%AE%E9%A2%98/" rel="tag"># Eshelby 问题</a>
               <a href="/tags/Green-%E5%87%BD%E6%95%B0/" rel="tag"># Green 函数</a>
+              <a href="/tags/Fourier-%E5%8F%98%E6%8D%A2/" rel="tag"># Fourier 变换</a>
           </div>
 
         
