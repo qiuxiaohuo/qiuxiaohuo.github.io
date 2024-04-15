@@ -19,29 +19,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":false,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="考虑如下场景: 一个无穷大的弹性体 D 中嵌入一个椭球形状的夹杂 \(\Omega\), 如果夹杂的弹性模量 \(C^*_{ijkl}\)与周围弹性体的弹性模量\(C_{ijkl}\) 不同, 则称该夹杂为非均质夹杂. 因为非均质夹杂的存在, 其附近的应力场会发生改变. 考虑无穷远处的应变场强度为 \(\varepsilon^0\), 对应的应力场为 \(\sigma^0 &#x3D; C : \var">
+    <meta name="description" content="我在数学相关文档的编写中，对三种特殊的等号作如下释义： 恒等于 \(\equiv\) LaTeX 表达式：\equiv 用在分析语言当中，左侧为函数，右侧为常数，表示等号左侧的函数在定义域上的取值恒等于右侧的常数。例如  三角恒等式 \[ \cos^2 x + \sin^2 x \equiv 1 \]  定义 \(\triangleq\) LaTeX 表达式：\triangle">
 <meta property="og:type" content="article">
-<meta property="og:title" content="等效夹杂方法">
-<meta property="og:url" content="http://example.com/2024/04/15/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:title" content="数学文档中不同类型的等号释义">
+<meta property="og:url" content="http://example.com/2024/04/15/%E6%95%B0%E5%AD%A6%E6%96%87%E6%A1%A3%E4%B8%AD%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%AD%89%E5%8F%B7%E9%87%8A%E4%B9%89/index.html">
 <meta property="og:site_name" content="Qiu&#39;s 博客">
-<meta property="og:description" content="考虑如下场景: 一个无穷大的弹性体 D 中嵌入一个椭球形状的夹杂 \(\Omega\), 如果夹杂的弹性模量 \(C^*_{ijkl}\)与周围弹性体的弹性模量\(C_{ijkl}\) 不同, 则称该夹杂为非均质夹杂. 因为非均质夹杂的存在, 其附近的应力场会发生改变. 考虑无穷远处的应变场强度为 \(\varepsilon^0\), 对应的应力场为 \(\sigma^0 &#x3D; C : \var">
+<meta property="og:description" content="我在数学相关文档的编写中，对三种特殊的等号作如下释义： 恒等于 \(\equiv\) LaTeX 表达式：\equiv 用在分析语言当中，左侧为函数，右侧为常数，表示等号左侧的函数在定义域上的取值恒等于右侧的常数。例如  三角恒等式 \[ \cos^2 x + \sin^2 x \equiv 1 \]  定义 \(\triangleq\) LaTeX 表达式：\triangle">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-15T01:47:11.000Z">
-<meta property="article:modified_time" content="2024-04-15T02:43:04.114Z">
+<meta property="article:published_time" content="2024-04-15T07:06:08.000Z">
+<meta property="article:modified_time" content="2024-04-15T07:42:41.278Z">
 <meta property="article:author" content="Qiu Xiaohuo">
-<meta property="article:tag" content="Eshelby 问题">
-<meta property="article:tag" content="细观力学">
+<meta property="article:tag" content="逻辑命题">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://example.com/2024/04/15/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95/">
+<link rel="canonical" href="http://example.com/2024/04/15/%E6%95%B0%E5%AD%A6%E6%96%87%E6%A1%A3%E4%B8%AD%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%AD%89%E5%8F%B7%E9%87%8A%E4%B9%89/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/04/15/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95/","path":"2024/04/15/等效夹杂方法/","title":"等效夹杂方法"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2024/04/15/%E6%95%B0%E5%AD%A6%E6%96%87%E6%A1%A3%E4%B8%AD%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%AD%89%E5%8F%B7%E9%87%8A%E4%B9%89/","path":"2024/04/15/数学文档中不同类型的等号释义/","title":"数学文档中不同类型的等号释义"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>等效夹杂方法 | Qiu's 博客</title>
+<title>数学文档中不同类型的等号释义 | Qiu's 博客</title>
   
 
 
@@ -100,7 +99,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -113,6 +112,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%81%92%E7%AD%89%E4%BA%8E-equiv"><span class="nav-number">1.</span> <span class="nav-text">恒等于 \(\equiv\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89-triangleq"><span class="nav-number">2.</span> <span class="nav-text">定义 \(\triangleq\)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B5%8B%E5%80%BC"><span class="nav-number">3.</span> <span class="nav-text">赋值 \(:&#x3D;\)​</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E6%96%87%E6%A1%A3"><span class="nav-number">4.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -176,7 +176,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/15/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/15/%E6%95%B0%E5%AD%A6%E6%96%87%E6%A1%A3%E4%B8%AD%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%AD%89%E5%8F%B7%E9%87%8A%E4%B9%89/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -189,12 +189,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="等效夹杂方法 | Qiu's 博客">
+      <meta itemprop="name" content="数学文档中不同类型的等号释义 | Qiu's 博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          等效夹杂方法
+          数学文档中不同类型的等号释义
         </h1>
 
         <div class="post-meta-container">
@@ -206,7 +206,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-04-15 09:47:11 / 修改时间：10:43:04" itemprop="dateCreated datePublished" datetime="2024-04-15T09:47:11+08:00">2024-04-15</time>
+      <time title="创建时间：2024-04-15 15:06:08 / 修改时间：15:42:41" itemprop="dateCreated datePublished" datetime="2024-04-15T15:06:08+08:00">2024-04-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -214,7 +214,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
         </span>
     </span>
 
@@ -227,91 +227,62 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>考虑如下场景: 一个无穷大的弹性体 D 中嵌入一个椭球形状的夹杂 <span
-class="math inline">\(\Omega\)</span>, 如果夹杂的弹性模量 <span
-class="math inline">\(C^*_{ijkl}\)</span><strong>与周围弹性体的弹性模量</strong><span
-class="math inline">\(C_{ijkl}\)</span> 不同,
-则称该夹杂为<strong>非均质夹杂</strong>. 因为非均质夹杂的存在,
-其附近的应力场会发生改变. 考虑无穷远处的应变场强度为 <span
-class="math inline">\(\varepsilon^0\)</span>, 对应的应力场为 <span
-class="math inline">\(\sigma^0 = C : \varepsilon^0\)</span>,
-应变与应力场扰动量分别为 <span
-class="math inline">\(\varepsilon\)</span> 和 <span
-class="math inline">\(\sigma\)</span>, 因此真实的位移和应力为 <span
-class="math inline">\(u_i^0 + u_i\)</span> 和 <span
-class="math inline">\(\sigma^0 + \sigma\)</span>.<span id="more"></span></p>
-<p>应力扰动项 <span class="math inline">\(\sigma\)</span>
-满足应力平衡方程(不考虑外力),
-以及在无穷远处等于0(或者在有限区域表面等于0)</p>
-<p><span class="math display">\[
-\left\{
-\begin{aligned}
-\nabla \cdot \sigma = 0\\
-\sigma \cdot n = 0
-\end{aligned}
-\right.
+    <div class="post-body" itemprop="articleBody"><p>我在数学相关文档的编写中，对三种特殊的等号作如下释义：</p>
+<h2 id="恒等于-equiv">恒等于 <span
+class="math inline">\(\equiv\)</span></h2>
+<p>LaTeX 表达式：<code>\equiv</code></p>
+<p>用在分析语言当中，左侧为函数，右侧为常数，表示等号左侧的函数在定义域上的取值恒等于右侧的常数。例如</p>
+<blockquote>
+<p>三角恒等式 <span class="math display">\[
+\cos^2 x + \sin^2 x \equiv 1
 \]</span></p>
-<p>在夹杂内外满足本构方程:</p>
-<p><span class="math display">\[
-\left\{
-\begin{aligned}
-&amp; \sigma^0+\sigma=\textcolor{red}{L^* :
-\left(\varepsilon^0+\varepsilon-\mu\right)} \quad \text { in } \Omega,
-\\
-&amp; \sigma^0+\sigma=L : \left(\varepsilon^0+\varepsilon\right) \quad
-\text { in } D-\Omega .
-\end{aligned}
-\right.
-\tag{1}
+</blockquote>
+<h2 id="定义-triangleq">定义 <span
+class="math inline">\(\triangleq\)</span></h2>
+<p>LaTeX 表达式：<code>\triangleq</code></p>
+<p>定义新的符号，左右两侧表达式中会出现新的符号，并总能通过已定义的符号表示出来，例如</p>
+<blockquote>
+<p>已知物体质量 <span class="math inline">\(m\)</span>，加速度 <span
+class="math inline">\(a\)</span>，我们定义作用在物体上的力 <span
+class="math inline">\(F\)</span> 为 <span class="math display">\[
+F \triangleq ma
 \]</span></p>
-<p>而 Eshelby 方法所解决的原始问题是: 考虑无穷大的弹性体,
-其中嵌入一个椭球夹杂, 该夹杂弹性模量与弹性体<strong>一致</strong>,
-然而夹杂内给定常数值的本征应变 <span class="math inline">\(\mu\)</span>,
-由此, Eshelby 问题所满足的本构方程为</p>
-<p><span class="math display">\[
-\left\{
-\begin{aligned}
-&amp; \sigma^0+\sigma=\textcolor{red}{L :
-\left(\varepsilon^0+\varepsilon-\tilde{\mu}\right)} \text { in } \Omega,
-\\
-&amp; \sigma^0+\sigma=L : \left(\varepsilon^0+\varepsilon\right) \text {
-in } D-\Omega .
-\end{aligned}
-\right.
-\tag{2}
+</blockquote>
+<p>符号 <span class="math inline">\(\triangleq\)</span>
+是左右对称的，所以 <span class="math inline">\(\triangleq\)</span>
+左侧不一定总是为新定义的变量，例如</p>
+<blockquote>
+<p>材料中的应变 <span class="math inline">\(\varepsilon\)</span>
+是弹性应变 <span class="math inline">\(e\)</span> 与本征应变 <span
+class="math inline">\(\mu\)</span> 之和： <span class="math display">\[
+\varepsilon = e + \mu
 \]</span></p>
-<p>若令这两类问题等价, 则充要条件是方程组 (1) (2) <span
-class="math inline">\(\Omega\)</span> 内的方程右端项相等</p>
-<p><span class="math display">\[
-L^* : \left(\varepsilon^0+\varepsilon-\mu\right) = L :
-\left(\varepsilon^0+\varepsilon-\tilde{\mu}\right) \text { in } \Omega
-\tag{3}
-\]</span></p>
-<p>求解 Eshelby 本征应变问题可以得到等效本征应变 <span
-class="math inline">\(\tilde{\mu}\)</span> 与夹杂内外由夹杂引起的应变场
-<span class="math inline">\(\varepsilon\)</span> 之间的关系:</p>
-<p><span class="math display">\[
-\begin{align}
-  \varepsilon &amp;= S:\tilde{\mu} \quad x \text{ in } \Omega,\\
-  \varepsilon(x) &amp;= D(x):\tilde{\mu} \quad x \text{ in } D-\Omega,
-\end{align}
-\]</span></p>
-<p>将这一关系代入到式 (3) 中, 给定远端应力 <span
-class="math inline">\(\varepsilon^0\)</span>, 以及夹杂上的本征应变 <span
-class="math inline">\(\mu\)</span>, 就可以得到关于等效本征应变 <span
-class="math inline">\(\tilde{\mu}\)</span> 所满足的方程:</p>
-<p><span class="math display">\[
-L^* : \left(\varepsilon^0+\varepsilon(\tilde{\mu})-\mu\right) = L :
-\left(\varepsilon^0+\varepsilon(\tilde{\mu})-\tilde{\mu}\right) \text {
-in } \Omega
-\]</span></p>
-<p>或者写成</p>
-<p><span class="math display">\[
-\delta L : \varepsilon(\tilde{\mu}) + L:\tilde{\mu} = -\delta L :
-\varepsilon^0 + L^{*} : \mu, \quad \delta L = L^{*} - L
-\]</span></p>
-<p>如果 Eshelby 问题已经解出, 那么就可以得到整个区域上的应变场 <span
-class="math inline">\(\varepsilon\)</span>.</p>
+</blockquote>
+<h2 id="赋值">赋值 <span class="math inline">\(:=\)</span>​</h2>
+<p>LaTeX 表达式：<code>\coloneqq</code> （依赖宏包
+<code>mathtools</code>）</p>
+<p>在旧的文档中我用来定义变量，与 Computational Inelasticity
+中的符号一致。现在我用符号 <span class="math inline">\(:=\)</span>
+进行赋值，左侧为变量名。右侧为具体值，例如</p>
+<blockquote>
+<p>取测试函数（test function）为常数，也即 <span
+class="math inline">\(v_{i,j}(y) := v_{i,j}\)</span></p>
+</blockquote>
+<h2 id="参考文档">参考文档</h2>
+<p><a
+target="_blank" rel="noopener" href="https://math.stackexchange.com/questions/182101/appropriate-notation-equiv-versus">Appropriate
+Notation: ≡ versus :=</a> 给出了为什么我用 <span
+class="math inline">\(\triangleq\)</span> 取代 <span
+class="math inline">\(:=\)</span> 作为定义符号的原因</p>
+<p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Equals_sign">Equal sign</a>
+给出了等号的历史来源，以及所有可能见到的表示左右两端存在某种关系的符号，比如
+<span class="math inline">\(\approx\)</span>，<span
+class="math inline">\(\cong\)</span> ……</p>
+<p><a
+target="_blank" rel="noopener" href="https://math.stackexchange.com/questions/1058596/in-plain-language-whats-the-difference-between-two-things-that-are-equivalent">In
+plain language, what's the difference between two things that are
+'equivalent', 'equal', and 'identical'?</a> 给出了 <span
+class="math inline">\(\equiv\)</span> 在数论中的含义</p>
 
     </div>
 
@@ -321,22 +292,18 @@ class="math inline">\(\varepsilon\)</span>.</p>
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/Eshelby-%E9%97%AE%E9%A2%98/" rel="tag"># Eshelby 问题</a>
-              <a href="/tags/%E7%BB%86%E8%A7%82%E5%8A%9B%E5%AD%A6/" rel="tag"># 细观力学</a>
+              <a href="/tags/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98/" rel="tag"># 逻辑命题</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2024/04/15/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/" rel="prev" title="本征应变与本征应力">
-                  <i class="fa fa-angle-left"></i> 本征应变与本征应力
+                <a href="/2024/04/15/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/" rel="prev" title="多尺度 Reduced Order 推导">
+                  <i class="fa fa-angle-left"></i> 多尺度 Reduced Order 推导
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2024/04/15/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/" rel="next" title="弹性力学方程的 Green 函数">
-                  弹性力学方程的 Green 函数 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>

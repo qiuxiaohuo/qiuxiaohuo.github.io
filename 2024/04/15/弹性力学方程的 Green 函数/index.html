@@ -27,7 +27,7 @@
 <meta property="og:description" content="如果将微分方程写成抽象的算子形式: \[ L[u] + f &#x3D; 0 \text{ on } \Omega \] 特别的, 当函数 \(f\) 为 Dirac 函数 \(\delta\) 时, 微分方程的解 \(G\) 称为算子 \(L\) 的 Green 函数 (或者称为微分方程 \(L\) 的基本解): \[ L [G] + \delta &#x3D; 0 \]">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-04-15T01:50:09.000Z">
-<meta property="article:modified_time" content="2024-04-15T02:43:28.378Z">
+<meta property="article:modified_time" content="2024-04-15T07:04:08.881Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta property="article:tag" content="Green 函数">
 <meta property="article:tag" content="Fourier 变换">
@@ -128,7 +128,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">25</span>
+          <span class="site-state-item-count">26</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -207,7 +207,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-04-15 09:50:09 / 修改时间：10:43:28" itemprop="dateCreated datePublished" datetime="2024-04-15T09:50:09+08:00">2024-04-15</time>
+      <time title="创建时间：2024-04-15 09:50:09 / 修改时间：15:04:08" itemprop="dateCreated datePublished" datetime="2024-04-15T09:50:09+08:00">2024-04-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -261,9 +261,9 @@ class="math inline">\(G\)</span>, 使得方程的解可以表示为 Green
 L_{ijkl}\xi_{l}\xi_{j}~\hat{u}_{k} + i \xi_{j}L_{ijkl}~\hat{\mu}_{kl} =
 0
 \]</span></p>
-<p>记 <span class="math inline">\(K_{ik}(\xi) :=
-L_{ijkl}\xi_{l}\xi_{j}\)</span>, <span class="math inline">\(X_i := -i
-\xi_{j}L_{ijkl}~\hat{\mu}_{kl}\)</span>, 就得到关于 <span
+<p>记 <span class="math inline">\(K_{ik}(\xi) \triangleq
+L_{ijkl}\xi_{l}\xi_{j}\)</span>, <span class="math inline">\(X_i
+\triangleq -i \xi_{j}L_{ijkl}~\hat{\mu}_{kl}\)</span>, 就得到关于 <span
 class="math inline">\(\hat{u}_k\)</span> 的线性方程:</p>
 <p><span class="math display">\[
 K_{ik} \hat{u}_k = X_i
@@ -286,7 +286,7 @@ K = (\lambda + \mu)\begin{pmatrix}
 <p>若定义矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span> 的
 Adjugate 矩阵为 <span class="math inline">\(N_{ik}(\xi)\)</span>: <span
 class="math display">\[
-N_{ik}(\xi) := \mathrm{adj}(K_{ik}(\xi))
+N_{ik}(\xi) \triangleq \mathrm{adj}(K_{ik}(\xi))
 \]</span> 那么, 矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span>
 的逆可以表示为 <span class="math display">\[
 K_{ik}^{-1}(\xi) = D^{-1}(\xi)N_{ik}(\xi)
@@ -320,7 +320,8 @@ D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
 \]</span></p>
 <p>定义 Green 函数为</p>
 <p><span class="math display">\[
-G_{ik}(x) := \int D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot x} \mathrm{d} \xi
+G_{ik}(x) \triangleq \int D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot x}
+\mathrm{d} \xi
 \]</span></p>
 <p>则 <span class="math inline">\(u_i\)</span> 可以记作</p>
 <p><span class="math display">\[
