@@ -121,7 +121,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -132,7 +132,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">29</span>
+        <span class="site-state-item-count">31</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -169,7 +169,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/16/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%A2%9E%E9%87%8F%E6%AD%A5%E4%B8%8E%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/16/math/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -187,7 +187,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2024/04/16/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%A2%9E%E9%87%8F%E6%AD%A5%E4%B8%8E%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">非线性计算中的增量步与迭代方法</a>
+          <a href="/2024/04/16/math/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/" class="post-title-link" itemprop="url">常微分方程唯一性定理的证明</a>
         </h2>
 
         <div class="post-meta-container">
@@ -199,7 +199,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-04-16 14:59:32 / 修改时间：15:24:36" itemprop="dateCreated datePublished" datetime="2024-04-16T14:59:32+08:00">2024-04-16</time>
+      <time title="创建时间：2024-04-16 16:00:07 / 修改时间：16:11:15" itemprop="dateCreated datePublished" datetime="2024-04-16T16:00:07+08:00">2024-04-16</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -207,7 +207,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
         </span>
     </span>
 
@@ -221,16 +221,20 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p><strong>参考文献:</strong></p>
-<p><strong>M.A.Crisfield, Non-linear Finite Element Analysis of Solids
-and Structures.</strong></p>
-<h2 id="算例简述">算例简述</h2>
-<p>本算例是希望通过一个简单的一维系统，给出非线性计算过程中<strong>增量步</strong>的概念，这是线性与非线性有限元计算之间一个很大的区别。</p>
-<p>我们准备分析的系统如图所示</p>
-<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404160956053分析系统示意图.png" alt="分析系统示意图" style="zoom: 20%;" /></p>
+          <div class="note success no-icon"><p>对于如下常微分方程: <span class="math display">\[
+\left\{
+\begin{aligned}
+  &amp;\dot{x} = f(t,x)\\
+  &amp;x(0) = x_0
+\end{aligned}
+\right.
+\]</span> 如果 <span class="math inline">\(f(t,x)\)</span> 关于 <span
+class="math inline">\(x\)</span>​ <strong>Lipschitz 连续</strong>,
+那么方程的解唯一.</p>
+</div>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2024/04/16/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%A2%9E%E9%87%8F%E6%AD%A5%E4%B8%8E%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95/#more" rel="contents">
+              <a class="btn" href="/2024/04/16/math/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -884,7 +888,7 @@ target="_blank" rel="noopener" href="https://rbgeek.wordpress.com/2012/09/09/svn
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-13 15:02:37" itemprop="dateModified" datetime="2024-04-13T15:02:37+08:00">2024-04-13</time>
+      <time title="修改时间：2024-04-16 15:28:29" itemprop="dateModified" datetime="2024-04-16T15:28:29+08:00">2024-04-16</time>
     </span>
 
   
