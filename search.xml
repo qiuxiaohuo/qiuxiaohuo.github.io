@@ -1,6 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Fortran 中的 KIND</title>
+    <url>/Fortran%20%E4%B8%AD%E7%9A%84%20KIND/</url>
+    <content><![CDATA[<p><code>KIND</code>
+并不直接对应变量所占用的字节数，在不同的编译器与系统中可能有不同的对应关系，例如最常见的系统有：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">4</span>)  :: xs   <span class="comment">! 4 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">8</span>)  :: xd   <span class="comment">! 8 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">16</span>) :: xq   <span class="comment">! 16 byte ieee float</span></span><br></pre></td></tr></table></figure>
+<p>而有些编译器可能是：</p>
+<span id="more"></span>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">1</span>) :: XS   <span class="comment">! 4 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">2</span>) :: XD   <span class="comment">! 8 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">3</span>) :: XQ   <span class="comment">! 16 BYTE FLOAT</span></span><br></pre></td></tr></table></figure>
+<p>所以，为了提高代码的可移植性，一般不直接给 integer 或 real
+变量类型赋予确定的字节长度，而是使用内置函数<code>SELECTED_REAL_KIND</code>
+and <code>SELECTED_INT_KIND</code> 从当前编译器中获取 <code>KIND</code>
+的数值。例如，我想声明一个 15 位的 real 变量，首先调用内置函数：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br></pre></td></tr></table></figure>
+<p>然后在程序中声明变量：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span>(dp) :: a, b, c</span><br><span class="line"><span class="keyword">real</span>(<span class="keyword">kind</span>=dp) :: a, b, c <span class="comment">! another equivalent statement</span></span><br><span class="line">a = <span class="number">1.0_dp</span></span><br><span class="line">b = <span class="number">3.5_dp</span></span><br><span class="line">c = <span class="number">1.34e8_dp</span></span><br></pre></td></tr></table></figure>
+<p>注意，这里的浮点数常数后面还加上了参量 <code>KIND</code>
+的后缀，每次写个数都这么搞似乎太麻烦了些，不知道不写是不是也<sub>行</sub>啊~~~？anyway，可以在
+module 中统一定义参量 <code>KIND</code> ，然后在其它程序中引用：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">!&gt; Numerical storage size parameters for real and integer values</span></span><br><span class="line"><span class="keyword">module</span> kind_parameter</span><br><span class="line">   <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">   <span class="keyword">public</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Single precision real numbers, 6 digits, range 10⁻³⁷ to 10³⁷-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: sp = <span class="built_in">selected_real_kind</span>(<span class="number">6</span>, <span class="number">37</span>)</span><br><span class="line">   <span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br><span class="line">   <span class="comment">!&gt; Quadruple precision real numbers, 33 digits, range 10⁻⁴⁹³¹ to 10⁴⁹³¹-1; 128 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: qp = <span class="built_in">selected_real_kind</span>(<span class="number">33</span>, <span class="number">4931</span>)</span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Char length for integers, range -2⁷ to 2⁷-1; 8 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i1 = <span class="built_in">selected_int_kind</span>(<span class="number">2</span>)</span><br><span class="line">   <span class="comment">!&gt; Short length for integers, range -2¹⁵ to 2¹⁵-1; 16 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i2 = <span class="built_in">selected_int_kind</span>(<span class="number">4</span>)</span><br><span class="line">   <span class="comment">!&gt; Length of default integers, range -2³¹ to 2³¹-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i4 = <span class="built_in">selected_int_kind</span>(<span class="number">9</span>)</span><br><span class="line">   <span class="comment">!&gt; Long length for integers, range -2⁶³ to 2⁶³-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i8 = <span class="built_in">selected_int_kind</span>(<span class="number">18</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> kind_parameter</span><br></pre></td></tr></table></figure>
+<p>如果不是跨系统使用自己的代码，直接在 Windows 环境下用
+<code>real(8)</code> 就省事多了。</p>
+<p>我似乎明白了为什么之前看到过别人的 Fortran 代码，连 0.0，1.0，…，9.0
+都要用变量名定义。我使用的编程语言主要是 MATLAB（如果 MATLAB
+可以被称为一门编程语言的话），对数据类型只关注整数，浮点数，字符这种大的类别的区分，对于这些数据占系统多少字节并不关心，但是
+Fortran 中的变量还可以体现占用字节的信息。</p>
+<p><strong>主要参考文档</strong></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93ZWIuYXJjaGl2ZS5vcmcvd2ViLzIwMjAwOTMwMDkwMTM3L2h0dHBzOi8vc3RldmVsaW9uZWwuY29tL2RyZm9ydHJhbi8yMDE3LzAzLzI3L2RvY3Rvci1mb3J0cmFuLWluLWl0LXRha2VzLWFsbC1raW5kcy8=">Doctor
+Fortran in “It Takes All KINDs”<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvODM4MzEwL2ZvcnRyYW4tOTAta2luZC1wYXJhbWV0ZXI=">Fortran
+90 kind parameter<i class="fa fa-external-link-alt"></i></span></p>
+<p>在看帖子时看到别人写的查询自己机器 <code>KIND</code> 变量并生成相应的
+Fortran 源码的代码，<code>kindfinder.f90</code></p>
+]]></content>
+  </entry>
+  <entry>
     <title>Git 相关</title>
     <url>/Git-%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="git-阅读材料">Git 阅读材料</h2>
@@ -60,55 +95,6 @@ Clash，查看我的笔记本的代理端口为：7890。然后设置 Git 的端
       <tags>
         <tag>Git</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>Fortran 中的 KIND</title>
-    <url>/Fortran%20%E4%B8%AD%E7%9A%84%20KIND/</url>
-    <content><![CDATA[<p><code>KIND</code>
-并不直接对应变量所占用的字节数，在不同的编译器与系统中可能有不同的对应关系，例如最常见的系统有：</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">4</span>)  :: xs   <span class="comment">! 4 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">8</span>)  :: xd   <span class="comment">! 8 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">16</span>) :: xq   <span class="comment">! 16 byte ieee float</span></span><br></pre></td></tr></table></figure>
-<p>而有些编译器可能是：</p>
-<span id="more"></span>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">1</span>) :: XS   <span class="comment">! 4 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">2</span>) :: XD   <span class="comment">! 8 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">3</span>) :: XQ   <span class="comment">! 16 BYTE FLOAT</span></span><br></pre></td></tr></table></figure>
-<p>所以，为了提高代码的可移植性，一般不直接给 integer 或 real
-变量类型赋予确定的字节长度，而是使用内置函数<code>SELECTED_REAL_KIND</code>
-and <code>SELECTED_INT_KIND</code> 从当前编译器中获取 <code>KIND</code>
-的数值。例如，我想声明一个 15 位的 real 变量，首先调用内置函数：</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br></pre></td></tr></table></figure>
-<p>然后在程序中声明变量：</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span>(dp) :: a, b, c</span><br><span class="line"><span class="keyword">real</span>(<span class="keyword">kind</span>=dp) :: a, b, c <span class="comment">! another equivalent statement</span></span><br><span class="line">a = <span class="number">1.0_dp</span></span><br><span class="line">b = <span class="number">3.5_dp</span></span><br><span class="line">c = <span class="number">1.34e8_dp</span></span><br></pre></td></tr></table></figure>
-<p>注意，这里的浮点数常数后面还加上了参量 <code>KIND</code>
-的后缀，每次写个数都这么搞似乎太麻烦了些，不知道不写是不是也<sub>行</sub>啊~~~？anyway，可以在
-module 中统一定义参量 <code>KIND</code> ，然后在其它程序中引用：</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">!&gt; Numerical storage size parameters for real and integer values</span></span><br><span class="line"><span class="keyword">module</span> kind_parameter</span><br><span class="line">   <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">   <span class="keyword">public</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Single precision real numbers, 6 digits, range 10⁻³⁷ to 10³⁷-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: sp = <span class="built_in">selected_real_kind</span>(<span class="number">6</span>, <span class="number">37</span>)</span><br><span class="line">   <span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br><span class="line">   <span class="comment">!&gt; Quadruple precision real numbers, 33 digits, range 10⁻⁴⁹³¹ to 10⁴⁹³¹-1; 128 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: qp = <span class="built_in">selected_real_kind</span>(<span class="number">33</span>, <span class="number">4931</span>)</span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Char length for integers, range -2⁷ to 2⁷-1; 8 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i1 = <span class="built_in">selected_int_kind</span>(<span class="number">2</span>)</span><br><span class="line">   <span class="comment">!&gt; Short length for integers, range -2¹⁵ to 2¹⁵-1; 16 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i2 = <span class="built_in">selected_int_kind</span>(<span class="number">4</span>)</span><br><span class="line">   <span class="comment">!&gt; Length of default integers, range -2³¹ to 2³¹-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i4 = <span class="built_in">selected_int_kind</span>(<span class="number">9</span>)</span><br><span class="line">   <span class="comment">!&gt; Long length for integers, range -2⁶³ to 2⁶³-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i8 = <span class="built_in">selected_int_kind</span>(<span class="number">18</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> kind_parameter</span><br></pre></td></tr></table></figure>
-<p>如果不是跨系统使用自己的代码，直接在 Windows 环境下用
-<code>real(8)</code> 就省事多了。</p>
-<p>我似乎明白了为什么之前看到过别人的 Fortran 代码，连 0.0，1.0，…，9.0
-都要用变量名定义。我使用的编程语言主要是 MATLAB（如果 MATLAB
-可以被称为一门编程语言的话），对数据类型只关注整数，浮点数，字符这种大的类别的区分，对于这些数据占系统多少字节并不关心，但是
-Fortran 中的变量还可以体现占用字节的信息。</p>
-<p><strong>主要参考文档</strong></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93ZWIuYXJjaGl2ZS5vcmcvd2ViLzIwMjAwOTMwMDkwMTM3L2h0dHBzOi8vc3RldmVsaW9uZWwuY29tL2RyZm9ydHJhbi8yMDE3LzAzLzI3L2RvY3Rvci1mb3J0cmFuLWluLWl0LXRha2VzLWFsbC1raW5kcy8=">Doctor
-Fortran in “It Takes All KINDs”<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvODM4MzEwL2ZvcnRyYW4tOTAta2luZC1wYXJhbWV0ZXI=">Fortran
-90 kind parameter<i class="fa fa-external-link-alt"></i></span></p>
-<p>在看帖子时看到别人写的查询自己机器 <code>KIND</code> 变量并生成相应的
-Fortran 源码的代码，<code>kindfinder.f90</code></p>
-]]></content>
-  </entry>
-  <entry>
-    <title>VSCode 使用 snippets 插入代码注释</title>
-    <url>/VSCode%20%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E4%B8%AD%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E6%97%B6%E9%97%B4/</url>
-    <content><![CDATA[<p>突然发现用 snippets 写注释也非常好用啊，比如写 Fortran 的 function 或
-subroutine 的头部注释：</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">! name      : symSchur2</span></span><br><span class="line"><span class="comment">! remark    : get Schur decomposition for 2x2 matrix</span></span><br><span class="line"><span class="comment">!</span></span><br><span class="line"><span class="comment">! version   : 1.0</span></span><br><span class="line"><span class="comment">! date      : 2023-09-06 13:34:25</span></span><br><span class="line"><span class="comment">! author    : Junsong Qiu</span></span><br><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> symSchur2(A,c,s)</span><br><span class="line">...</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> symSchur2</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>直接在 Fortran 对应的 snippets 设置文件
-<code>FortranFreeForm.json</code> 中加入如下片段：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;Head comments for subroutines&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">		<span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hc&quot;</span><span class="punctuation">,</span></span><br><span class="line">		<span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! name      : $1&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! remark    : $2&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! version   : 1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! date      : $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE  $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! author    : Junsong Qiu&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span></span><br><span class="line">		<span class="punctuation">]</span></span><br><span class="line">	<span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>其中，变量 <code>$1</code> <code>$2</code> 在插入 snippets
-时会自动要求你插入新的内容。时间部分可以用 VSCode 内置的变量添加。</p>
-]]></content>
   </entry>
   <entry>
     <title>Markdown 添加注记文本</title>
@@ -550,6 +536,20 @@ can't leave. What am I?
 ]]></content>
   </entry>
   <entry>
+    <title>VSCode 使用 snippets 插入代码注释</title>
+    <url>/VSCode%20%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E4%B8%AD%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E6%97%B6%E9%97%B4/</url>
+    <content><![CDATA[<p>突然发现用 snippets 写注释也非常好用啊，比如写 Fortran 的 function 或
+subroutine 的头部注释：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">! name      : symSchur2</span></span><br><span class="line"><span class="comment">! remark    : get Schur decomposition for 2x2 matrix</span></span><br><span class="line"><span class="comment">!</span></span><br><span class="line"><span class="comment">! version   : 1.0</span></span><br><span class="line"><span class="comment">! date      : 2023-09-06 13:34:25</span></span><br><span class="line"><span class="comment">! author    : Junsong Qiu</span></span><br><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> symSchur2(A,c,s)</span><br><span class="line">...</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> symSchur2</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>直接在 Fortran 对应的 snippets 设置文件
+<code>FortranFreeForm.json</code> 中加入如下片段：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;Head comments for subroutines&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">		<span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hc&quot;</span><span class="punctuation">,</span></span><br><span class="line">		<span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! name      : $1&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! remark    : $2&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! version   : 1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! date      : $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE  $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! author    : Junsong Qiu&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span></span><br><span class="line">		<span class="punctuation">]</span></span><br><span class="line">	<span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>其中，变量 <code>$1</code> <code>$2</code> 在插入 snippets
+时会自动要求你插入新的内容。时间部分可以用 VSCode 内置的变量添加。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>创作文档管理</title>
     <url>/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<p>我过去的文档管理方式太过粗放，以至我感到自己似乎一直是在原地踏步。这是因为我在用多个平台（知乎，Hexo+NexT
@@ -631,18 +631,6 @@ md 文档，在 md 文档首部添加注释行说明 Mathematica文档的信息<
       <tags>
         <tag>文档管理</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>如何撰写设计日志</title>
-    <url>/%E5%A6%82%E4%BD%95%E6%92%B0%E5%86%99%E8%AE%BE%E8%AE%A1%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<p>这段文字来自 MIT 公开课 <span class="exturl" data-url="aHR0cHM6Ly9vY3cubWl0LmVkdS9jb3Vyc2VzLzEtMDUwLXNvbGlkLW1lY2hhbmljcy1mYWxsLTIwMDQvcGFnZXMvc3lsbGFidXMv">1.050<i class="fa fa-external-link-alt"></i></span>，我想我可以按照教授提供的方式尝试一下写设计日志。简要地翻译一下：<span id="more"></span></p>
-<blockquote><p>这本日志被用来记录你的工作过程。它的内容呢，既不是被反复润色的展稿，也不是对出现在你脑海中的想法与字词完完全全的记录。它是一份关于你思维过程的「流水账」，足够详尽，可以使你在隔一段时间后，重建当时的推理，猜想与分析过程。请用墨水手写这份日志。如果你想法改变了，或者发现犯了个错误，不要擦掉重写，而是在你不想保留的内容上画条横线。</p>
-<p>将你的姓名，邮箱，还有手机号写在日志显眼的地方上，如果丢失的话，你就可以把它找回来。将前几页留白，一边进行记录，一边添加页码，一边添加目录。</p>
-<p>在设计的最后，使用一到两页纸总结你的工作——例如，一张标注尺寸的草图；解释哪些参数为什么那么重要；重述设计要求；关于重要约束的笔记。</p>
-<p>请记住：</p>
-<p><strong>过程和结果伯仲难分；手段和目的同等重要。</strong></p>
-</blockquote>
-]]></content>
   </entry>
   <entry>
     <title>Hexo + NexT + Github：搭建博客</title>
@@ -771,6 +759,18 @@ Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
       <tags>
         <tag>hexo</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>如何撰写设计日志</title>
+    <url>/%E5%A6%82%E4%BD%95%E6%92%B0%E5%86%99%E8%AE%BE%E8%AE%A1%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<p>这段文字来自 MIT 公开课 <span class="exturl" data-url="aHR0cHM6Ly9vY3cubWl0LmVkdS9jb3Vyc2VzLzEtMDUwLXNvbGlkLW1lY2hhbmljcy1mYWxsLTIwMDQvcGFnZXMvc3lsbGFidXMv">1.050<i class="fa fa-external-link-alt"></i></span>，我想我可以按照教授提供的方式尝试一下写设计日志。简要地翻译一下：<span id="more"></span></p>
+<blockquote><p>这本日志被用来记录你的工作过程。它的内容呢，既不是被反复润色的展稿，也不是对出现在你脑海中的想法与字词完完全全的记录。它是一份关于你思维过程的「流水账」，足够详尽，可以使你在隔一段时间后，重建当时的推理，猜想与分析过程。请用墨水手写这份日志。如果你想法改变了，或者发现犯了个错误，不要擦掉重写，而是在你不想保留的内容上画条横线。</p>
+<p>将你的姓名，邮箱，还有手机号写在日志显眼的地方上，如果丢失的话，你就可以把它找回来。将前几页留白，一边进行记录，一边添加页码，一边添加目录。</p>
+<p>在设计的最后，使用一到两页纸总结你的工作——例如，一张标注尺寸的草图；解释哪些参数为什么那么重要；重述设计要求；关于重要约束的笔记。</p>
+<p>请记住：</p>
+<p><strong>过程和结果伯仲难分；手段和目的同等重要。</strong></p>
+</blockquote>
+]]></content>
   </entry>
   <entry>
     <title>工作站的数据存储方案</title>
@@ -1052,46 +1052,6 @@ matlab，还需要将定义的 <code>alias</code> 加载到 <code>~/.bashrc</cod
       </tags>
   </entry>
   <entry>
-    <title>Ubuntu 环境下安装 LaTeX</title>
-    <url>/Linux/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/</url>
-    <content><![CDATA[<p>如果想懒省事且有充足的安装空间的话，可以直接安装完全体版
-<code>texlive-full</code>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install texlive-full</span><br></pre></td></tr></table></figure>
-<p>这大概会占用 6 GB 的空间，但是好处是在未来写 <code>tex</code>
-文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。<span id="more"></span></p>
-<p>另外可以安装低配版的宏包，可是在 VSCode 编译时会出现如下错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Recipe terminated with fatal error: spawn xelatex ENOENT</span><br></pre></td></tr></table></figure>
-<p>查看网上的问题贴，这应该是因为找不到 <code>xelatex</code>
-的安装路径。但如果装的是低配版的 texlive，我根本就不知道 Ubuntu
-这货把它装在哪里了…</p>
-<p>安装完 <code>texlive-full</code> 之后还有问题：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">I can&#x27;t find the format file `xelatex.fmt&#x27;!</span><br></pre></td></tr></table></figure>
-<p>stackflow 上有相关的<span class="exturl" data-url="aHR0cHM6Ly90ZXguc3RhY2tleGNoYW5nZS5jb20vcXVlc3Rpb25zLzIzMTY0L2ktY2FudC1maW5kLXRoZS1mb3JtYXQtZmlsZS14ZWxhdGV4LWZtdA==">帖子<i class="fa fa-external-link-alt"></i></span>，尝试最高赞的解决方案：</p>
-<blockquote>
-<p>try to run <code>sudo fmtutil-sys --all</code> which should create
-all missing format files.</p>
-</blockquote>
-<p>没有奏效。第二个解决方案是重新安装 <code>xetex</code></p>
-<blockquote>
-<p>If you installed TeX from the repositories of your Linux system, you
-could reinstall the xetex package from a repository.</p>
-<ul>
-<li>Redhat/Fedora: <code>sudo yum reinstall texlive-xetex</code></li>
-<li>Debian/Ubuntu:
-<code>sudo apt-get install --reinstall texlive-xetex</code></li>
-</ul>
-</blockquote>
-<p>It works!</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>LaTeX</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>tmux 快捷键索引</title>
     <url>/Linux/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/</url>
     <content><![CDATA[<p>tmux 之于命令窗口有点类似于浏览器之于网页, 可在 tmux
@@ -1186,6 +1146,414 @@ could reinstall the xetex package from a repository.</p>
       <tags>
         <tag>Linux</tag>
         <tag>tmux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu 环境下安装 LaTeX</title>
+    <url>/Linux/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/</url>
+    <content><![CDATA[<p>如果想懒省事且有充足的安装空间的话，可以直接安装完全体版
+<code>texlive-full</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install texlive-full</span><br></pre></td></tr></table></figure>
+<p>这大概会占用 6 GB 的空间，但是好处是在未来写 <code>tex</code>
+文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。<span id="more"></span></p>
+<p>另外可以安装低配版的宏包，可是在 VSCode 编译时会出现如下错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Recipe terminated with fatal error: spawn xelatex ENOENT</span><br></pre></td></tr></table></figure>
+<p>查看网上的问题贴，这应该是因为找不到 <code>xelatex</code>
+的安装路径。但如果装的是低配版的 texlive，我根本就不知道 Ubuntu
+这货把它装在哪里了…</p>
+<p>安装完 <code>texlive-full</code> 之后还有问题：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">I can&#x27;t find the format file `xelatex.fmt&#x27;!</span><br></pre></td></tr></table></figure>
+<p>stackflow 上有相关的<span class="exturl" data-url="aHR0cHM6Ly90ZXguc3RhY2tleGNoYW5nZS5jb20vcXVlc3Rpb25zLzIzMTY0L2ktY2FudC1maW5kLXRoZS1mb3JtYXQtZmlsZS14ZWxhdGV4LWZtdA==">帖子<i class="fa fa-external-link-alt"></i></span>，尝试最高赞的解决方案：</p>
+<blockquote>
+<p>try to run <code>sudo fmtutil-sys --all</code> which should create
+all missing format files.</p>
+</blockquote>
+<p>没有奏效。第二个解决方案是重新安装 <code>xetex</code></p>
+<blockquote>
+<p>If you installed TeX from the repositories of your Linux system, you
+could reinstall the xetex package from a repository.</p>
+<ul>
+<li>Redhat/Fedora: <code>sudo yum reinstall texlive-xetex</code></li>
+<li>Debian/Ubuntu:
+<code>sudo apt-get install --reinstall texlive-xetex</code></li>
+</ul>
+</blockquote>
+<p>It works!</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>LaTeX</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>函数范数: 等价类的引入</title>
+    <url>/math/%E5%87%BD%E6%95%B0%E8%8C%83%E6%95%B0-%E7%AD%89%E4%BB%B7%E7%B1%BB%E7%9A%84%E5%BC%95%E5%85%A5/</url>
+    <content><![CDATA[<p>定义某一空间 <span class="math inline">\(V\)</span> 上的范数,
+就是确定该空间上某一个非负实值映射 <span class="math inline">\(\| \cdot
+\|\)</span>, 且该映射满足如下条件:</p>
+<ol type="1">
+<li>对任意的 <span class="math inline">\(v \in V\)</span>, <span
+class="math inline">\(\| v \| \geq 0\)</span> 成立, 当且仅当 <span
+class="math inline">\(v = 0\)</span> 时 <span class="math inline">\(\| v
+\| = 0\)</span>;</li>
+<li>对任意的 <span class="math inline">\(c \in \mathbb{R}\)</span> 和
+<span class="math inline">\(v \in V\)</span>, <span
+class="math inline">\(\|cv\| = |c| \|v\|\)</span>;</li>
+<li>对任意的 <span class="math inline">\(u, v \in V\)</span>, 不等式
+<span class="math inline">\(\|u+v\| \leq \|u\| + \|v\|\)</span>
+成立.</li>
+</ol>
+<p>我现在想处理的是, 当空间的概念从有限维的向量空间,
+拓展到无穷维的函数空间上时, 条件 1 中 <span class="math inline">\(v =
+0\)</span> 的定义也需要加以推广, 以适应这个条件中 <span
+class="math inline">\(v=0\)</span> 与 <span class="math inline">\(\|v\|
+= 0\)</span> 的等价性. <span id="more"></span>我们以函数的 <span
+class="math inline">\(1-\)</span>范数 <span class="math display">\[
+\begin{equation}
+  \|\cdot\| = \int|\cdot| \mathrm{d} \Omega
+\end{equation}
+\]</span> 以及定义在 <span class="math inline">\(\Omega = [-1,
+1]\)</span> 上的两个函数 <span class="math inline">\(f(x)\)</span>,
+<span class="math inline">\(g(x)\)</span> <span class="math display">\[
+\begin{equation}
+  f(x) = \begin{cases}
+    1 \quad x \geq 0 \\
+    0 \quad x &lt; 0
+  \end{cases} \quad \quad
+  g(x) = \begin{cases}
+    1 \quad x &gt; 0 \\
+    0 \quad x \leq 0
+  \end{cases}
+\end{equation}
+\]</span> 为例. 函数 <span class="math inline">\(f-g\)</span> 的范数为
+<span class="math display">\[
+\begin{equation}
+  \|f-g\| = \int_{-1}^{1} |f-g| \mathrm{d}x = 0,
+\end{equation}
+\]</span> 根据范数成立的条件 1, 则应该有 <span
+class="math inline">\(f-g=0\)</span>, 或者等价的 <span
+class="math inline">\(f=g\)</span>. 可是, 函数 <span
+class="math inline">\(f(x)\)</span> 与 <span
+class="math inline">\(g(x)\)</span> 在 <span
+class="math inline">\(x=0\)</span> 处并不相等, 如果用数学味比较浓的表达,
+那就是</p>
+<div class="note success no-icon"><p>函数 <span class="math inline">\(f(x)\)</span> 与 <span
+class="math inline">\(g(x)\)</span> 在区间 <span
+class="math inline">\([-1,1]\)</span> 上并不是<strong>逐点</strong>
+(pointwise) 相等的.</p>
+</div>
+<p>为了调和这一概念上的矛盾, 我们有 2 个思路: 1) 修改范数的定义; 2)
+修改函数相等的定义.</p>
+<p>对于第 1 个思路, 我们可以验证, 如果函数的范数定义为 <span
+class="math display">\[
+\|\cdot\| = \max_{-1 \leq x \leq 1} |\cdot|,
+\]</span> 那么 <span class="math inline">\(\|f-g\|\)</span> 等价于 <span
+class="math inline">\(f\)</span>, <span class="math inline">\(g\)</span>
+逐点相等. 这实际是函数的 <span
+class="math inline">\(\infty-\)</span>范数.</p>
+<p>至于思路 2, 我们需要引入<strong>等价类</strong>的概念. 首先我们定义
+<span class="math inline">\(V\)</span> 的子空间 <span
+class="math inline">\(V^0\)</span> <span class="math display">\[
+\begin{equation}
+    V^0 = \{ v^0 \mid \| v^0 \|=0 \}.
+\end{equation}
+\]</span> 那么, 对任意 <span class="math inline">\(v \in V\)</span>,
+<strong><span class="math inline">\(v\)</span> 与所有其它的函数 <span
+class="math inline">\(v+v^0\)</span>, <span class="math inline">\(v^0
+\in V^0\)</span> 共同组成同一个等价类</strong>.</p>
+<p>这样, 我们重新定义相等 "<span class="math inline">\(=\)</span>"
+的概念为</p>
+<div class="note success no-icon"><p><span class="math inline">\(f=g\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(f\)</span> 与 <span
+class="math inline">\(g\)</span> 属于同一个等价类, 即 <span
+class="math inline">\(f = g+v^0\)</span>, <span
+class="math inline">\(v^0 \in V^0\)</span>.</p>
+</div>
+<p>在上述相等的意义下, <span class="math inline">\(f\)</span> 与 <span
+class="math inline">\(g\)</span> 并不一定是逐点相等的,
+但只相差一个范数为 0 的函数 <span class="math inline">\(v^0\)</span>.
+因此,</p>
+<div class="note success no-icon"><p><span class="math inline">\(f=g\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(f = g+v^0\)</span>, <span
+class="math inline">\(v^0 \in V^0\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(\| f-g \| = 0\)</span>.</p>
+</div>
+<p>这样我们就保证了范数定义中条件 1 的等价性.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>泛函分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常微分方程唯一性定理的证明</title>
+    <url>/math/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/</url>
+    <content><![CDATA[<div class="note success no-icon"><p>对于如下常微分方程: <span class="math display">\[
+\left\{
+\begin{aligned}
+  &amp;\dot{x} = f(t,x)\\
+  &amp;x(0) = x_0
+\end{aligned}
+\right.
+\]</span> 如果 <span class="math inline">\(f(t,x)\)</span> 关于 <span
+class="math inline">\(x\)</span>​ <strong>Lipschitz 连续</strong>,
+那么方程的解唯一.</p>
+</div>
+<span id="more"></span>
+<p>Lipschitz 连续的必要性可以在方程证明中看到,
+所以我们在证明过程中再提出 Lipschitz 条件的具体形式.</p>
+<p>首先假设, 存在 <span class="math inline">\(x_1\)</span>, <span
+class="math inline">\(x_2\)</span>
+两个解满足命题中给出的微分方程和初值条件, 那么有 <span
+class="math display">\[
+\begin{aligned}
+  x_1(t) = x_0 + \int_0^t f(s,x_1(s)) \mathrm{d} s\\
+  x_2(t) = x_0 + \int_0^t f(s,x_2(s)) \mathrm{d} s
+\end{aligned}
+\]</span></p>
+<p>两式相减, 两端取绝对值得到</p>
+<p><span class="math display">\[
+\vert x_1(t) - x_2(t) \vert = \int_0^t \vert  f(s,x_1(s)) - f(s,x_2(s))
+\vert  \mathrm{d} s
+\]</span></p>
+<p>我们希望能得到对方程左端项的估计, 而 Lipschitz 条件要求, 对任意的
+<span class="math inline">\(x,y\in \mathbb{R}_n\)</span>:</p>
+<p><span class="math display">\[
+\vert f(t,x) -f(t,y)  \vert \leq L |x-y|
+\]</span></p>
+<p><span class="math inline">\(L\)</span> 是 Lipschitz 常数, 不依赖于
+<span class="math inline">\(x,y,t\)</span>. 这样我们就得到了关于 <span
+class="math inline">\(r(t) = |x_1(t) - x_2(t)|\)</span> 的积分不等式:
+<span class="math display">\[
+r(t) \leq L \int_{0}^{t} r(s) \mathrm{d} s
+\]</span></p>
+<p>上述不等式又称 Gronwall 不等式, 是对 <span
+class="math inline">\(r(t)\)</span> 最坏情况的指数估计. 如果我们有</p>
+<p><span class="math display">\[
+f(t) \leq C_0 + \int_0^t f(s) g(s) \mathrm{d} s, \quad C_0 \geq 0, f(t),
+g(t) \geq 0
+\]</span></p>
+<p>那么 <span class="math display">\[
+f(t) \leq C_0 e^{\int_0^t g(s) \mathrm{d} s}
+\]</span></p>
+<p>在我们的证明中, <span class="math inline">\(C_0 = 0\)</span>, 所以
+<span class="math display">\[
+0 \leq r(t) \leq 0
+\]</span></p>
+<p>这就得到 <span class="math inline">\(r(t) \equiv 0\)</span>, 所以
+<span class="math inline">\(x_1(t) \equiv x_2(t)\)</span>.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数学相关文档中不同类型的等号释义</title>
+    <url>/math/%E6%95%B0%E5%AD%A6%E6%96%87%E6%A1%A3%E4%B8%AD%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%AD%89%E5%8F%B7%E9%87%8A%E4%B9%89/</url>
+    <content><![CDATA[<p>我在数学相关文档的编写中，对三种特殊的等号作如下释义：</p>
+<h2 id="恒等于-equiv">恒等于 <span
+class="math inline">\(\equiv\)</span></h2>
+<p>LaTeX 表达式：<code>\equiv</code></p>
+<p>用在分析语言当中，左侧为函数，右侧为常数，表示等号左侧的函数在定义域上的取值恒等于右侧的常数。例如</p>
+<blockquote>
+<p>三角恒等式 <span class="math display">\[
+\cos^2 x + \sin^2 x \equiv 1
+\]</span></p>
+</blockquote>
+<span id="more"></span>
+<h2 id="定义-triangleq">定义 <span
+class="math inline">\(\triangleq\)</span></h2>
+<p>LaTeX 表达式：<code>\triangleq</code></p>
+<p>定义新的符号，左右两侧表达式中会出现新的符号，并总能通过已定义的符号表示出来，例如</p>
+<blockquote>
+<p>已知物体质量 <span class="math inline">\(m\)</span>，加速度 <span
+class="math inline">\(a\)</span>，我们定义作用在物体上的力 <span
+class="math inline">\(F\)</span> 为 <span class="math display">\[
+F \triangleq ma
+\]</span></p>
+</blockquote>
+<p>符号 <span class="math inline">\(\triangleq\)</span>
+是左右对称的，所以 <span class="math inline">\(\triangleq\)</span>
+左侧不一定总是为新定义的变量，例如</p>
+<blockquote>
+<p>材料中的应变 <span class="math inline">\(\varepsilon\)</span>
+是弹性应变 <span class="math inline">\(e\)</span> 与本征应变 <span
+class="math inline">\(\mu\)</span> 之和： <span class="math display">\[
+\varepsilon \triangleq e + \mu
+\]</span></p>
+</blockquote>
+<h2 id="赋值">赋值 <span class="math inline">\(:=\)</span>​</h2>
+<p>LaTeX 表达式：<code>\coloneqq</code> （依赖宏包
+<code>mathtools</code>）</p>
+<p>在旧的文档中我用来定义变量，与 Computational Inelasticity
+中的符号一致。现在我用符号 <span class="math inline">\(:=\)</span>
+进行赋值，左侧为变量名。右侧为具体值，例如</p>
+<blockquote>
+<p>取测试函数（test function）为常数，也即 <span
+class="math inline">\(v_{i,j}(y) := v_{i,j}\)</span></p>
+</blockquote>
+<h2 id="参考文档">参考文档</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9tYXRoLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy8xODIxMDEvYXBwcm9wcmlhdGUtbm90YXRpb24tZXF1aXYtdmVyc3Vz">Appropriate
+Notation: ≡ versus :=<i class="fa fa-external-link-alt"></i></span> 给出了为什么我用 <span
+class="math inline">\(\triangleq\)</span> 取代 <span
+class="math inline">\(:=\)</span> 作为定义符号的原因</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvRXF1YWxzX3NpZ24=">Equal sign<i class="fa fa-external-link-alt"></i></span>
+给出了等号的历史来源，以及所有可能见到的表示左右两端存在某种关系的符号，比如
+<span class="math inline">\(\approx\)</span>，<span
+class="math inline">\(\cong\)</span> ……</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9tYXRoLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy8xMDU4NTk2L2luLXBsYWluLWxhbmd1YWdlLXdoYXRzLXRoZS1kaWZmZXJlbmNlLWJldHdlZW4tdHdvLXRoaW5ncy10aGF0LWFyZS1lcXVpdmFsZW50">In
+plain language, what's the difference between two things that are
+'equivalent', 'equal', and 'identical'?<i class="fa fa-external-link-alt"></i></span> 给出了 <span
+class="math inline">\(\equiv\)</span> 在数论中的含义</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>逻辑命题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>逻辑命题视角下的极限 连续与一致连续</title>
+    <url>/math/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/</url>
+    <content><![CDATA[<h3 id="极限的定义-以及否定形式">极限的定义, 以及否定形式</h3>
+<p>关于序列 <span class="math inline">\(\{a_n\}\)</span>
+的极限命题为:</p>
+<blockquote>
+<p>对任意的 <span class="math inline">\(\varepsilon &gt; 0\)</span>,
+存在 <span class="math inline">\(N \in \mathbb{N}\)</span>, 当 <span
+class="math inline">\(n&gt;N\)</span> 时, <span
+class="math inline">\(|a_n - a| &lt; \varepsilon\)</span></p>
+</blockquote>
+<p>我们用<strong>含参数的陈述</strong>表示上述命题的后半段:</p>
+<p><span class="math display">\[
+S(N, \varepsilon): n &gt; N \Rightarrow |a_n - a| &lt; \varepsilon
+\]</span></p>
+<span id="more"></span>
+<p>当给定 <span class="math inline">\((N, \varepsilon)\)</span> 时,
+就可以确定该命题的真伪.
+极限定义就是对上述含参数的陈述添加量词进行修饰:</p>
+<p><span class="math display">\[
+a_n \rightarrow a \Leftrightarrow \forall \varepsilon &gt; 0, \exists N
+\in \mathbb{N} \quad n &gt; N \Rightarrow |a_n - a| &lt; \varepsilon
+\]</span></p>
+<p>注意, <span class="math inline">\(\forall \varepsilon &gt;0\)</span>
+ 与 <span class="math inline">\(\exists N \in \mathbb{N}\)</span>
+不能交换顺序, 也即含量词陈述的命题, 量词的顺序不能随意改变, 例如,
+如果修改成</p>
+<p><span class="math display">\[
+\exists N \in \mathbb{N}, \forall \varepsilon &gt; 0 \quad n &gt; N
+\Rightarrow |a_n - a| &lt; \varepsilon
+\]</span></p>
+<p>那么只有常数序列才能存在极限, 这样的定义就是平凡的了.</p>
+<p>注意到, 含量词的命题可以等价为:</p>
+<ul>
+<li><p><span class="math inline">\(\forall x \in X \quad S(x)
+\Longleftrightarrow \bigwedge_{x \in X} S(x)\)</span>;</p></li>
+<li><p><span class="math inline">\(\exists x \in X \quad S(x)
+\Longleftrightarrow \bigvee_{x \in X} S(x)\)</span>.</p></li>
+</ul>
+<p>式中, <span class="math inline">\(\wedge\)</span> 表示命题关系“与”
+(AND), <span class="math inline">\(\vee\)</span> 表示命题关系“或”(OR).
+当否定含量词的命题时, 根据 de Morgan 定律: <span class="math display">\[
+(B~\cup~C)^{\prime} = B^{\prime}~\cap~C^{\prime}\\
+(B~\cap~C)^{\prime} = B^{\prime}~\cup~C^{\prime}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\sim(\forall x \in X \quad S(x))
+\Longleftrightarrow \bigvee_{x \in X}\sim S(x) \Longleftrightarrow
+\exists x \in X \quad \sim S(x)\)</span>;</p></li>
+<li><p><span class="math inline">\(\sim(\exists x \in X \quad S(x))
+\Longleftrightarrow \bigwedge_{x \in X} \sim S(x)\Longleftrightarrow
+\forall x \in X \quad \sim S(x)\)</span>.</p></li>
+</ul>
+<p>注意到, 含参数陈述命题的取值集合 <span
+class="math inline">\(X\)</span> 不会发生改变 (比如取该集合的补集).
+由此我们可以得到极限命题的否定形式:</p>
+<p><span class="math display">\[
+\exists \varepsilon &gt; 0, \forall N \in \mathbb{N} \quad n &gt; N
+\wedge |a_n - a| \geq \varepsilon
+\]</span></p>
+<p>该命题后半部分可以合并为:</p>
+<p><span class="math display">\[
+\exists \varepsilon &gt; 0, \forall N \in \mathbb{N} \quad |a_N - a|
+\geq \varepsilon
+\]</span></p>
+<h3 id="连续与一致连续">连续与一致连续</h3>
+<p>我们用逻辑语言定义一致连续: 给定函数 <span class="math inline">\(f: A
+\mapsto \mathbb{R}^m\)</span>, 定义域 <span class="math inline">\(A
+\subset \mathbb{R}^n\)</span> :</p>
+<p><span class="math display">\[
+\forall \varepsilon &gt; 0, \textcolor{red}{\exists \delta &gt; 0},
+\forall y \in A, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
+\|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>而函数 <span class="math inline">\(f\)</span> 在 <span
+class="math inline">\(A\)</span> 上连续的定义为</p>
+<p><span class="math display">\[
+\forall \varepsilon &gt; 0, \forall y \in A, \textcolor{red}{\exists
+\delta &gt; 0}, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
+\|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>第二个定义中, 存在量词变量 <span
+class="math inline">\(\delta\)</span> 的选择依赖于之前全称量词变量 <span
+class="math inline">\(y\)</span>,
+这一点改变使得第一个定义和第二个定义并不是等价的
+(虽然看起来只是命题叙述的顺序发生了变化). 事实上,
+第一个命题蕴含第二个命题:</p>
+<p><span class="math display">\[
+f~\text{一致连续} \Rightarrow f~\text{连续}
+\]</span></p>
+<p>证明上述问题是乏味的, 甚至像是在玩弄文字游戏, 我们不妨做一点别的事情,
+比如, 将定义连续的命题中的存在量词 <span class="math inline">\(\exists
+\delta &gt; 0\)</span> 继续后移:</p>
+<p><span class="math display">\[
+\forall \varepsilon &gt; 0, \forall y \in A, \forall x \in A,
+\textcolor{red}{\exists \delta &gt; 0} \quad \|x-y\|\leq\delta
+\Rightarrow \|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>该命题本身就构成了重言式, 也就是说, 该命题一直为 true. 证明过程如下:
+对任意给定的 <span class="math inline">\(\varepsilon, x, y\)</span>, 取
+<span class="math inline">\(\delta &gt; \|x-y\|\)</span>, 根据蕴含命题
+<span class="math inline">\(p \Rightarrow q\)</span> 的真值表, 若 <span
+class="math inline">\(p\)</span> 为 false, 则 <span
+class="math inline">\(p \Rightarrow q\)</span> 恒为 true, 无论 <span
+class="math inline">\(q\)</span> 怎样取值. 因此, <span
+class="math inline">\(\|x-y\|\leq\delta \Rightarrow \|f(x) - f(y)\| \leq
+\varepsilon\)</span> 恒为 true.</p>
+<p>假如我们将第三个定义称为”弱连续”, 那么, 根据上述论证,
+所有的函数都是”弱连续”的, 因此, “弱连续“
+就不能够将某一类函数与其它函数区分开. “弱连续“ 的定义是平凡的.</p>
+<p>现在, 如果我们将存在量词移到命题的最前端:</p>
+<p><span class="math display">\[
+\textcolor{red}{\exists \delta &gt; 0}, \forall \varepsilon &gt; 0,
+\forall y \in A, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
+\|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>并称满足这个定义的函数为”强一致收敛”函数, 可以看到,
+“强一致收敛“函数只能是常值函数, 因此也是一致收敛函数.综上,
+我们有上述关于连续性命题的强弱关系: <span class="math display">\[
+f~\text{强一致连续} \Rightarrow f~\text{一致连续} \Rightarrow
+f~\text{连续} \Rightarrow f~\text{弱连续}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>逻辑命题</tag>
+        <tag>分析</tag>
       </tags>
   </entry>
   <entry>
@@ -1578,6 +1946,77 @@ class="math inline">\(\varepsilon^c\)</span> 引入的位移量, 求解得到的
       </tags>
   </entry>
   <entry>
+    <title>四阶单位张量的矩阵表示方法</title>
+    <url>/mechanics/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>四阶单位张量可以表示为含有四个自由指标 Kronecker delta 记号的组合:
+<span class="math inline">\(\delta_{ij} \delta_{kl}\)</span>. 不过,
+与二阶单位张量不同的是, 改变指标的顺序,
+会得到三种不同的四阶单位张量:</p>
+<p><span class="math display">\[
+\delta_{ij} \delta_{kl} ={\mathcal{I}}_{ijkl} ={\mathcal{F}}_{iljk}
+={\mathcal{E}}_{ikjl}
+\]</span></p>
+<span id="more"></span>
+<p>或者</p>
+<p><span class="math display">\[
+{\mathcal{I}}_{ijkl} =\delta_{ij} \delta_{kl} ,~~{\mathcal{E}}_{ijkl}
+=\delta_{ik} \delta_{jl} ,~~{\mathcal{F}}_{ijkl} =\delta_{il}
+\delta_{jk}
+\]</span></p>
+<p>对于任意四阶张量 <span class="math inline">\(\mathbb{L}\)</span>,
+在双点积(<span class="math inline">\(A:B:=A_{\cdot mn} B_{mn\cdot
+}\)</span>)作用下, 张量 <span class="math inline">\(\mathcal{E}\)</span>
+满足:</p>
+<p><span class="math display">\[
+\mathcal{E}:\mathbb{L}=\mathbb{L}:\mathcal{E}=\mathbb{L}
+\]</span></p>
+<p>若定义另一种双点积的方式为: <span class="math inline">\(A\cdot \cdot
+B:=A_{\cdot mn} B_{nm\cdot }\)</span>, 那么对于该点积的定义,
+保持四阶张量不变的单位张量是 <span
+class="math inline">\(\mathcal{F}\)</span>:</p>
+<p><span class="math display">\[
+\mathcal{F}\cdot \cdot \mathbb{L}=\mathbb{L}\cdot \cdot
+\mathcal{F}=\mathbb{L}
+\]</span></p>
+<p>除上述三种定义四阶单位张量的方式之外, 如果四阶张量具有次对称性(<span
+class="math inline">\(L_{ijkl} =L_{jikl} =L_{ijlk}\)</span>),
+还可以定义如下四阶张量:</p>
+<p><span class="math display">\[
+\mathcal{L}=\frac{1}{2}(\mathcal{F}+\mathcal{E})
+\]</span></p>
+<p>与具有次对称性的四阶张量张量作任意形式的双点积,
+都可以得到原来的四阶张量.</p>
+<p>具有次对称性的张量可以用 Voigt 记法表示成矩阵形式,
+四种四阶单位张量中, 只有 <span
+class="math inline">\(\mathcal{E}\)</span> 具有次对称性:</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% preallocate fourth order identity tensor</span></span><br><span class="line">L = <span class="built_in">zeros</span>(<span class="number">6</span>); </span><br><span class="line">F = <span class="built_in">zeros</span>(<span class="number">6</span>);</span><br><span class="line">E = <span class="built_in">zeros</span>(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% Voigt notation</span></span><br><span class="line">mapVToMat = &#123;[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">3</span>],[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">2</span>]&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">% E_&#123;ijkl&#125; = delta_&#123;ik&#125;*\delta_&#123;jl&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    E(irow,jcol) = d(<span class="built_in">i</span>,k)*d(<span class="built_in">j</span>,l);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">E</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">E = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     1     0     0</span><br><span class="line">     0     0     0     0     1     0</span><br><span class="line">     0     0     0     0     0     1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可见 Voigt 记法下的四阶单位张量 <span
+class="math inline">\([\mathcal{E}]\)</span> 是单位矩阵,
+对任意具有次对称性的四阶张量 <span
+class="math inline">\(\mathbb{L}\)</span>, 也同样可以用 Voigt
+记法表示为矩阵形式 <span class="math inline">\([\mathbb{L}]\)</span>,
+在矩阵表示下, 有</p>
+<p><span class="math display">\[
+[\mathbb{L}][\mathcal{E}]=[\mathcal{E}][\mathbb{L}]=[\mathbb{L}]
+\]</span></p>
+<p>但是, 如果将其它的单位张量用 Voigt 记法表示为矩阵形式,
+由于缺乏次对称性, 单位张量的一些不为 0 的分量被"遗漏"了,
+得到的矩阵形式会缺少信息:</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% F_&#123;ijkl&#125; = delta_&#123;il&#125;*\delta_&#123;jk&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    F(irow,jcol) = d(<span class="built_in">i</span>,l)*d(<span class="built_in">j</span>,k);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">F</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">F = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% L_&#123;ijkl&#125; = 1/2*delta_&#123;ik&#125;*\delta_&#123;jl&#125; + 1/2*delta_&#123;il&#125;*\delta_&#123;jk&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    L(irow,jcol) = <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,l)*d(<span class="built_in">j</span>,k) + <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,k)*d(<span class="built_in">j</span>,l);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">L = 6x6    </span><br><span class="line">    1.0000         0         0         0         0         0</span><br><span class="line">         0    1.0000         0         0         0         0</span><br><span class="line">         0         0    1.0000         0         0         0</span><br><span class="line">         0         0         0    0.5000         0         0</span><br><span class="line">         0         0         0         0    0.5000         0</span><br><span class="line">         0         0         0         0         0    0.5000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dij</span> = <span class="title">d</span><span class="params">(i,j)</span></span></span><br><span class="line">  dij = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">i</span>==<span class="built_in">j</span></span><br><span class="line">    dij = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>张量运算</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>多尺度 Reduced Order 推导</title>
     <url>/mechanics/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/</url>
     <content><![CDATA[<h2 id="reduced-order-中函数-h_ikl-与细观力学-green-函数的关联">Reduced
@@ -1740,277 +2179,6 @@ id="多尺度得到的单胞应变场与本征应变的关系">多尺度得到�
         <tag>多尺度</tag>
         <tag>Reduced Order</tag>
         <tag>Green 函数</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>四阶单位张量的矩阵表示方法</title>
-    <url>/mechanics/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>四阶单位张量可以表示为含有四个自由指标 Kronecker delta 记号的组合:
-<span class="math inline">\(\delta_{ij} \delta_{kl}\)</span>. 不过,
-与二阶单位张量不同的是, 改变指标的顺序,
-会得到三种不同的四阶单位张量:</p>
-<p><span class="math display">\[
-\delta_{ij} \delta_{kl} ={\mathcal{I}}_{ijkl} ={\mathcal{F}}_{iljk}
-={\mathcal{E}}_{ikjl}
-\]</span></p>
-<span id="more"></span>
-<p>或者</p>
-<p><span class="math display">\[
-{\mathcal{I}}_{ijkl} =\delta_{ij} \delta_{kl} ,~~{\mathcal{E}}_{ijkl}
-=\delta_{ik} \delta_{jl} ,~~{\mathcal{F}}_{ijkl} =\delta_{il}
-\delta_{jk}
-\]</span></p>
-<p>对于任意四阶张量 <span class="math inline">\(\mathbb{L}\)</span>,
-在双点积(<span class="math inline">\(A:B:=A_{\cdot mn} B_{mn\cdot
-}\)</span>)作用下, 张量 <span class="math inline">\(\mathcal{E}\)</span>
-满足:</p>
-<p><span class="math display">\[
-\mathcal{E}:\mathbb{L}=\mathbb{L}:\mathcal{E}=\mathbb{L}
-\]</span></p>
-<p>若定义另一种双点积的方式为: <span class="math inline">\(A\cdot \cdot
-B:=A_{\cdot mn} B_{nm\cdot }\)</span>, 那么对于该点积的定义,
-保持四阶张量不变的单位张量是 <span
-class="math inline">\(\mathcal{F}\)</span>:</p>
-<p><span class="math display">\[
-\mathcal{F}\cdot \cdot \mathbb{L}=\mathbb{L}\cdot \cdot
-\mathcal{F}=\mathbb{L}
-\]</span></p>
-<p>除上述三种定义四阶单位张量的方式之外, 如果四阶张量具有次对称性(<span
-class="math inline">\(L_{ijkl} =L_{jikl} =L_{ijlk}\)</span>),
-还可以定义如下四阶张量:</p>
-<p><span class="math display">\[
-\mathcal{L}=\frac{1}{2}(\mathcal{F}+\mathcal{E})
-\]</span></p>
-<p>与具有次对称性的四阶张量张量作任意形式的双点积,
-都可以得到原来的四阶张量.</p>
-<p>具有次对称性的张量可以用 Voigt 记法表示成矩阵形式,
-四种四阶单位张量中, 只有 <span
-class="math inline">\(\mathcal{E}\)</span> 具有次对称性:</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% preallocate fourth order identity tensor</span></span><br><span class="line">L = <span class="built_in">zeros</span>(<span class="number">6</span>); </span><br><span class="line">F = <span class="built_in">zeros</span>(<span class="number">6</span>);</span><br><span class="line">E = <span class="built_in">zeros</span>(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% Voigt notation</span></span><br><span class="line">mapVToMat = &#123;[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">3</span>],[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">2</span>]&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">% E_&#123;ijkl&#125; = delta_&#123;ik&#125;*\delta_&#123;jl&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    E(irow,jcol) = d(<span class="built_in">i</span>,k)*d(<span class="built_in">j</span>,l);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">E</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">E = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     1     0     0</span><br><span class="line">     0     0     0     0     1     0</span><br><span class="line">     0     0     0     0     0     1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>可见 Voigt 记法下的四阶单位张量 <span
-class="math inline">\([\mathcal{E}]\)</span> 是单位矩阵,
-对任意具有次对称性的四阶张量 <span
-class="math inline">\(\mathbb{L}\)</span>, 也同样可以用 Voigt
-记法表示为矩阵形式 <span class="math inline">\([\mathbb{L}]\)</span>,
-在矩阵表示下, 有</p>
-<p><span class="math display">\[
-[\mathbb{L}][\mathcal{E}]=[\mathcal{E}][\mathbb{L}]=[\mathbb{L}]
-\]</span></p>
-<p>但是, 如果将其它的单位张量用 Voigt 记法表示为矩阵形式,
-由于缺乏次对称性, 单位张量的一些不为 0 的分量被"遗漏"了,
-得到的矩阵形式会缺少信息:</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% F_&#123;ijkl&#125; = delta_&#123;il&#125;*\delta_&#123;jk&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    F(irow,jcol) = d(<span class="built_in">i</span>,l)*d(<span class="built_in">j</span>,k);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">F</span><br></pre></td></tr></table></figure>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">F = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% L_&#123;ijkl&#125; = 1/2*delta_&#123;ik&#125;*\delta_&#123;jl&#125; + 1/2*delta_&#123;il&#125;*\delta_&#123;jk&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    L(irow,jcol) = <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,l)*d(<span class="built_in">j</span>,k) + <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,k)*d(<span class="built_in">j</span>,l);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">L = 6x6    </span><br><span class="line">    1.0000         0         0         0         0         0</span><br><span class="line">         0    1.0000         0         0         0         0</span><br><span class="line">         0         0    1.0000         0         0         0</span><br><span class="line">         0         0         0    0.5000         0         0</span><br><span class="line">         0         0         0         0    0.5000         0</span><br><span class="line">         0         0         0         0         0    0.5000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dij</span> = <span class="title">d</span><span class="params">(i,j)</span></span></span><br><span class="line">  dij = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">i</span>==<span class="built_in">j</span></span><br><span class="line">    dij = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>力学</category>
-      </categories>
-      <tags>
-        <tag>张量运算</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>弹性力学方程的 Green 函数</title>
-    <url>/mechanics/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<p>如果将微分方程写成抽象的算子形式:</p>
-<p><span class="math display">\[
-L[u] + f = 0 \text{ on } \Omega
-\]</span></p>
-<p>特别的, 当函数 <span class="math inline">\(f\)</span> 为 Dirac 函数
-<span class="math inline">\(\delta\)</span> 时, 微分方程的解 <span
-class="math inline">\(G\)</span> 称为算子 <span
-class="math inline">\(L\)</span> 的 Green 函数 (或者称为微分方程 <span
-class="math inline">\(L\)</span> 的基本解): <span
-class="math display">\[
-L [G] + \delta = 0
-\]</span></p>
-<span id="more"></span>
-<p>当微分方程右端项为一般的函数 <span class="math inline">\(f\)</span>
-时, 此时微分方程的解 <span class="math inline">\(u\)</span> 可以表示为
-Green 函数 <span class="math inline">\(G\)</span> 与 <span
-class="math inline">\(f\)</span> 的卷积:</p>
-<p><span class="math display">\[
-u = G*f = \int_{-\infty}^{\infty} G(x-x^{\prime}) f(x^{\prime})
-\mathrm{d} x^{\prime}
-\]</span></p>
-<p>对于含本征应变的控制方程:</p>
-<p><span class="math display">\[
-L_{ijkl}~u_{k,lj} - L_{ijkl}~\mu_{kl,j} = 0
-\]</span></p>
-<p>我们希望能够找到该方程的 Green 函数 <span
-class="math inline">\(G\)</span>, 使得方程的解可以表示为 Green
-函数与本征应变的卷积. 这需要借助于 Fourier 分析方法. 对方程进行 Fourier
-变换, 得到</p>
-<p><span class="math display">\[
-L_{ijkl}\xi_{l}\xi_{j}~\hat{u}_{k} + i \xi_{j}L_{ijkl}~\hat{\mu}_{kl} =
-0
-\]</span></p>
-<p>记 <span class="math inline">\(K_{ik}(\xi) \triangleq
-L_{ijkl}\xi_{l}\xi_{j}\)</span>, <span class="math inline">\(X_i
-\triangleq -i \xi_{j}L_{ijkl}~\hat{\mu}_{kl}\)</span>, 就得到关于 <span
-class="math inline">\(\hat{u}_k\)</span> 的线性方程:</p>
-<p><span class="math display">\[
-K_{ik} \hat{u}_k = X_i
-\]</span></p>
-<p>如果 <span class="math inline">\(L_{ijkl}\)</span> 具有主对称性,
-也就是说, <span class="math inline">\(L_{(ij)[kl]} =
-L_{[kl](ij)}\)</span>, 那么矩阵 <span
-class="math inline">\(K_{ik}(\xi)\)</span> 是对称矩阵. 例如,
-当材料是各项同性时, 矩阵 <span class="math inline">\(K\)</span>
-可以写成</p>
-<p><span class="math display">\[
-K = (\lambda + \mu)\begin{pmatrix}
-\xi_1 \xi_1 &amp; \xi_1 \xi_2 &amp; \xi_1 \xi_3 \\
-\xi_2 \xi_1 &amp; \xi_2 \xi_2 &amp; \xi_2 \xi_3 \\
-\xi_3 \xi_1 &amp; \xi_3 \xi_2 &amp; \xi_3 \xi_3
-\end{pmatrix}
-+
-\mu \xi^2 I, \quad \xi^2 = \xi_1^2 + \xi_2^2 + \xi_3^2
-\]</span></p>
-<p>若定义矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span> 的
-Adjugate 矩阵为 <span class="math inline">\(N_{ik}(\xi)\)</span>: <span
-class="math display">\[
-N_{ik}(\xi) \triangleq \mathrm{adj}(K_{ik}(\xi))
-\]</span> 那么, 矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span>
-的逆可以表示为 <span class="math display">\[
-K_{ik}^{-1}(\xi) = D^{-1}(\xi)N_{ik}(\xi)
-\]</span></p>
-<p>式中, <span class="math inline">\(D(\xi):=\det(K_{ik}(\xi))\)</span>.
-再应用 Fourier 逆变换, 就可以得到解 <span
-class="math inline">\(u(x)\)</span>:</p>
-<p><span class="math display">\[
-\begin{align}
-u_{i}(x) &amp;= \mathscr{F}^{-1} [\hat{u}_{i}(\xi)]
-= \mathscr{F}^{-1}[D^{-1}(\xi)N_{ik}(\xi) X_k] \\
-&amp;=  -i
-\mathscr{F}^{-1}[L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)\xi_{j}~\hat{\mu}_{mn}]
-\end{align}
-\]</span></p>
-<p>将 Fourier 变换的公式代入得到</p>
-<p><span class="math display">\[
-\begin{align}
-u_{i}(x) &amp;= -i \int L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)\xi_{j} e^{i\xi
-\cdot x} \mathrm{d} \xi
-\int \mu_{mn}(x^{\prime}) e^{-i\xi \cdot x^{\prime}} \mathrm{d}
-x^{\prime}\\
-&amp;= - \frac{\partial}{\partial x_j}\int
-L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot x} \mathrm{d} \xi
-\int \mu_{mn}(x^{\prime}) e^{-i\xi \cdot x^{\prime}} \mathrm{d}
-x^{\prime}\\
-&amp;= - \int L_{kjmn} \left(\frac{\partial}{\partial x_j}\int
-D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
-\right)  \mu_{mn}(x^{\prime}) \mathrm{d} x^{\prime}
-\end{align}
-\]</span></p>
-<p>定义 Green 函数为</p>
-<p><span class="math display">\[
-G_{ik}(x) \triangleq \int D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot x}
-\mathrm{d} \xi
-\]</span></p>
-<p>则 <span class="math inline">\(u_i\)</span> 可以记作</p>
-<p><span class="math display">\[
-u_{i}(x) = -\int L_{jkmn} G_{ik,j}(x-x^{\prime}) \mu_{mn}(x^{\prime})
-\mathrm{d} x^{\prime}
-\]</span></p>
-<p>式中, Green 函数下标 <span
-class="math inline">\(\square_{,j}\)</span> 表示对变量 <span
-class="math inline">\(x_j\)</span> 求偏导 (注意区别变量 <span
-class="math inline">\(x\)</span> 与 <span
-class="math inline">\(x^{\prime}\)</span>). 或者将上式记为卷积的形式:
-<span class="math display">\[
-u_i = G_{ik} * \left( -L_{jkmn} \mu_{mn} \right)
-\]</span> 对 Green 函数求二阶导数, 得到 <span class="math display">\[
-G_{ij,kl}(x-x^{\prime}) = -\int D^{-1}(\xi)N_{ij}(\xi) \xi_k \xi_l
-e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
-\]</span></p>
-<p>方程两端乘 <span class="math inline">\(L_{jknl}\)</span>,
-等式依旧成立, 得到</p>
-<p><span class="math display">\[
-\begin{align}
-L_{jknl}G_{ij,kl}(x-x^{\prime}) &amp;= -\int D^{-1}(\xi)N_{ij}(\xi)
-L_{jknl} \xi_k \xi_l e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
-\end{align}
-\]</span></p>
-<p>这样就凑出了之前的定义式 <span class="math inline">\(K_{ik}(\xi) :=
-L_{ijkl}\xi_{l}\xi_{j}\)</span>, 所以有 <span class="math display">\[
-\begin{align}
-L_{jknl}G_{ij,kl}(x-x^{\prime})
-&amp;= -\int D^{-1}(\xi)K_{jn}(\xi)N_{ij}(\xi)  e^{i\xi \cdot
-(x-x^{\prime})} \mathrm{d} \xi = -\delta_{in}\int e^{i\xi \cdot
-(x-x^{\prime})} \mathrm{d} \xi \\
-&amp;= -\delta_{in} \delta(x-x^{\prime})
-\end{align}
-\]</span> 整理一下指标, 得到 <span class="math display">\[
-L_{ijkl}G_{nk,lj}(x-x^{\prime}) + \delta_{in} \delta(x-x^{\prime}) = 0
-\tag{1}
-\]</span></p>
-<p>在阐述 Green 函数的物理意义之前,
-我们可以先观察一下上述方程自由指标的个数. 上述方程一共有两个自由指标
-<span class="math inline">\(i\)</span>, <span
-class="math inline">\(n\)</span>,
-同时该方程的形式与以位移为变量的控制方程非常相似: <span
-class="math display">\[
-L_{ijkl}u_{k,lj} + f_i = 0
-\]</span> 只是控制方程自由指标只有一个, <span
-class="math inline">\(i\)</span>, 我们将控制方程的自由指标展开: <span
-class="math display">\[
-\left\{
-\begin{aligned}
-L_{1jkl}u_{k,lj} + f_1 = 0\\
-L_{2jkl}u_{k,lj} + f_2 = 0\\
-L_{3jkl}u_{k,lj} + f_3 = 0
-\end{aligned}
-\right.
-\]</span> 如果固定指标 <span class="math inline">\(n=1\)</span>,
-那么控制方程 (1) 为 <span class="math display">\[
-\left\{
-\begin{aligned}
-L_{1jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{11} \delta(x-x^{\prime}) = 0\\
-L_{2jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{21} \delta(x-x^{\prime}) = 0\\
-L_{3jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{31} \delta(x-x^{\prime}) = 0
-\end{aligned}
-\right.
-\]</span> 因此该组控制方程的外力项为 <span class="math display">\[
-{f} = \begin{pmatrix}
-\delta(x-x^{\prime}) \\
-0 \\
-0
-\end{pmatrix}
-\]</span></p>
-<p>所以, 函数 <span class="math inline">\(f\)</span> 表示作用在点 <span
-class="math inline">\(x^{\prime}\)</span>, 方向为 <span
-class="math inline">\((1,0,0)\)</span> 的单位集中力. 函数 <span
-class="math inline">\(G_{1k}(x-x^\prime)\)</span> 表示在上述外力 <span
-class="math inline">\(f\)</span> 作用下系统的位移响应.</p>
-<p>综上, 可以得到 Green 函数 <span
-class="math inline">\(G_{nk}(x-x^{\prime})\)</span> 的物理意义是:
-作用在点 <span class="math inline">\(x^{\prime}\)</span> 上, <span
-class="math inline">\(n\)</span> 方向的单位集中力所造成的点 <span
-class="math inline">\(x\)</span> 在 <span
-class="math inline">\(k\)</span> 方向上的位移分量. 如果 <span
-class="math inline">\(L_{ijkl}\)</span> 具有主对称性, 那么矩阵 <span
-class="math inline">\(K\)</span> <span class="math inline">\(N\)</span>
-是对称矩阵, 所以 <span class="math display">\[
-G_{nk} = G_{kn}
-\]</span> 所以, <span
-class="math inline">\(G_{nk}(x-x^{\prime})\)</span> 同样也可以解释为:
-作用在点 <span class="math inline">\(x^{\prime}\)</span> 上, <span
-class="math inline">\(k\)</span> 方向的单位集中力所造成的点 <span
-class="math inline">\(x\)</span> 在 <span
-class="math inline">\(n\)</span> 方向上的位移分量.
-这恰好与互易原理的结论相同.</p>
-]]></content>
-      <categories>
-        <category>力学</category>
-      </categories>
-      <tags>
-        <tag>Green 函数</tag>
-        <tag>弹性力学</tag>
-        <tag>Fourier 变换</tag>
       </tags>
   </entry>
   <entry>
@@ -2394,6 +2562,206 @@ class="math inline">\(\varepsilon\)</span>.</p>
       </tags>
   </entry>
   <entry>
+    <title>弹性力学方程的 Green 函数</title>
+    <url>/mechanics/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p>如果将微分方程写成抽象的算子形式:</p>
+<p><span class="math display">\[
+L[u] + f = 0 \text{ on } \Omega
+\]</span></p>
+<p>特别的, 当函数 <span class="math inline">\(f\)</span> 为 Dirac 函数
+<span class="math inline">\(\delta\)</span> 时, 微分方程的解 <span
+class="math inline">\(G\)</span> 称为算子 <span
+class="math inline">\(L\)</span> 的 Green 函数 (或者称为微分方程 <span
+class="math inline">\(L\)</span> 的基本解): <span
+class="math display">\[
+L [G] + \delta = 0
+\]</span></p>
+<span id="more"></span>
+<p>当微分方程右端项为一般的函数 <span class="math inline">\(f\)</span>
+时, 此时微分方程的解 <span class="math inline">\(u\)</span> 可以表示为
+Green 函数 <span class="math inline">\(G\)</span> 与 <span
+class="math inline">\(f\)</span> 的卷积:</p>
+<p><span class="math display">\[
+u = G*f = \int_{-\infty}^{\infty} G(x-x^{\prime}) f(x^{\prime})
+\mathrm{d} x^{\prime}
+\]</span></p>
+<p>对于含本征应变的控制方程:</p>
+<p><span class="math display">\[
+L_{ijkl}~u_{k,lj} - L_{ijkl}~\mu_{kl,j} = 0
+\]</span></p>
+<p>我们希望能够找到该方程的 Green 函数 <span
+class="math inline">\(G\)</span>, 使得方程的解可以表示为 Green
+函数与本征应变的卷积. 这需要借助于 Fourier 分析方法. 对方程进行 Fourier
+变换, 得到</p>
+<p><span class="math display">\[
+L_{ijkl}\xi_{l}\xi_{j}~\hat{u}_{k} + i \xi_{j}L_{ijkl}~\hat{\mu}_{kl} =
+0
+\]</span></p>
+<p>记 <span class="math inline">\(K_{ik}(\xi) \triangleq
+L_{ijkl}\xi_{l}\xi_{j}\)</span>, <span class="math inline">\(X_i
+\triangleq -i \xi_{j}L_{ijkl}~\hat{\mu}_{kl}\)</span>, 就得到关于 <span
+class="math inline">\(\hat{u}_k\)</span> 的线性方程:</p>
+<p><span class="math display">\[
+K_{ik} \hat{u}_k = X_i
+\]</span></p>
+<p>如果 <span class="math inline">\(L_{ijkl}\)</span> 具有主对称性,
+也就是说, <span class="math inline">\(L_{(ij)[kl]} =
+L_{[kl](ij)}\)</span>, 那么矩阵 <span
+class="math inline">\(K_{ik}(\xi)\)</span> 是对称矩阵. 例如,
+当材料是各项同性时, 矩阵 <span class="math inline">\(K\)</span>
+可以写成</p>
+<p><span class="math display">\[
+K = (\lambda + \mu)\begin{pmatrix}
+\xi_1 \xi_1 &amp; \xi_1 \xi_2 &amp; \xi_1 \xi_3 \\
+\xi_2 \xi_1 &amp; \xi_2 \xi_2 &amp; \xi_2 \xi_3 \\
+\xi_3 \xi_1 &amp; \xi_3 \xi_2 &amp; \xi_3 \xi_3
+\end{pmatrix}
++
+\mu \xi^2 I, \quad \xi^2 = \xi_1^2 + \xi_2^2 + \xi_3^2
+\]</span></p>
+<p>若定义矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span> 的
+Adjugate 矩阵为 <span class="math inline">\(N_{ik}(\xi)\)</span>: <span
+class="math display">\[
+N_{ik}(\xi) \triangleq \mathrm{adj}(K_{ik}(\xi))
+\]</span> 那么, 矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span>
+的逆可以表示为 <span class="math display">\[
+K_{ik}^{-1}(\xi) = D^{-1}(\xi)N_{ik}(\xi)
+\]</span></p>
+<p>式中, <span class="math inline">\(D(\xi):=\det(K_{ik}(\xi))\)</span>.
+再应用 Fourier 逆变换, 就可以得到解 <span
+class="math inline">\(u(x)\)</span>:</p>
+<p><span class="math display">\[
+\begin{align}
+u_{i}(x) &amp;= \mathscr{F}^{-1} [\hat{u}_{i}(\xi)]
+= \mathscr{F}^{-1}[D^{-1}(\xi)N_{ik}(\xi) X_k] \\
+&amp;=  -i
+\mathscr{F}^{-1}[L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)\xi_{j}~\hat{\mu}_{mn}]
+\end{align}
+\]</span></p>
+<p>将 Fourier 变换的公式代入得到</p>
+<p><span class="math display">\[
+\begin{align}
+u_{i}(x) &amp;= -i \int L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)\xi_{j} e^{i\xi
+\cdot x} \mathrm{d} \xi
+\int \mu_{mn}(x^{\prime}) e^{-i\xi \cdot x^{\prime}} \mathrm{d}
+x^{\prime}\\
+&amp;= - \frac{\partial}{\partial x_j}\int
+L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot x} \mathrm{d} \xi
+\int \mu_{mn}(x^{\prime}) e^{-i\xi \cdot x^{\prime}} \mathrm{d}
+x^{\prime}\\
+&amp;= - \int L_{kjmn} \left(\frac{\partial}{\partial x_j}\int
+D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
+\right)  \mu_{mn}(x^{\prime}) \mathrm{d} x^{\prime}
+\end{align}
+\]</span></p>
+<p>定义 Green 函数为</p>
+<p><span class="math display">\[
+G_{ik}(x) \triangleq \int D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot x}
+\mathrm{d} \xi
+\]</span></p>
+<p>则 <span class="math inline">\(u_i\)</span> 可以记作</p>
+<p><span class="math display">\[
+u_{i}(x) = -\int L_{jkmn} G_{ik,j}(x-x^{\prime}) \mu_{mn}(x^{\prime})
+\mathrm{d} x^{\prime}
+\]</span></p>
+<p>式中, Green 函数下标 <span
+class="math inline">\(\square_{,j}\)</span> 表示对变量 <span
+class="math inline">\(x_j\)</span> 求偏导 (注意区别变量 <span
+class="math inline">\(x\)</span> 与 <span
+class="math inline">\(x^{\prime}\)</span>). 或者将上式记为卷积的形式:
+<span class="math display">\[
+u_i = G_{ik} * \left( -L_{jkmn} \mu_{mn} \right)
+\]</span> 对 Green 函数求二阶导数, 得到 <span class="math display">\[
+G_{ij,kl}(x-x^{\prime}) = -\int D^{-1}(\xi)N_{ij}(\xi) \xi_k \xi_l
+e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
+\]</span></p>
+<p>方程两端乘 <span class="math inline">\(L_{jknl}\)</span>,
+等式依旧成立, 得到</p>
+<p><span class="math display">\[
+\begin{align}
+L_{jknl}G_{ij,kl}(x-x^{\prime}) &amp;= -\int D^{-1}(\xi)N_{ij}(\xi)
+L_{jknl} \xi_k \xi_l e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
+\end{align}
+\]</span></p>
+<p>这样就凑出了之前的定义式 <span class="math inline">\(K_{ik}(\xi) :=
+L_{ijkl}\xi_{l}\xi_{j}\)</span>, 所以有 <span class="math display">\[
+\begin{align}
+L_{jknl}G_{ij,kl}(x-x^{\prime})
+&amp;= -\int D^{-1}(\xi)K_{jn}(\xi)N_{ij}(\xi)  e^{i\xi \cdot
+(x-x^{\prime})} \mathrm{d} \xi = -\delta_{in}\int e^{i\xi \cdot
+(x-x^{\prime})} \mathrm{d} \xi \\
+&amp;= -\delta_{in} \delta(x-x^{\prime})
+\end{align}
+\]</span> 整理一下指标, 得到 <span class="math display">\[
+L_{ijkl}G_{nk,lj}(x-x^{\prime}) + \delta_{in} \delta(x-x^{\prime}) = 0
+\tag{1}
+\]</span></p>
+<p>在阐述 Green 函数的物理意义之前,
+我们可以先观察一下上述方程自由指标的个数. 上述方程一共有两个自由指标
+<span class="math inline">\(i\)</span>, <span
+class="math inline">\(n\)</span>,
+同时该方程的形式与以位移为变量的控制方程非常相似: <span
+class="math display">\[
+L_{ijkl}u_{k,lj} + f_i = 0
+\]</span> 只是控制方程自由指标只有一个, <span
+class="math inline">\(i\)</span>, 我们将控制方程的自由指标展开: <span
+class="math display">\[
+\left\{
+\begin{aligned}
+L_{1jkl}u_{k,lj} + f_1 = 0\\
+L_{2jkl}u_{k,lj} + f_2 = 0\\
+L_{3jkl}u_{k,lj} + f_3 = 0
+\end{aligned}
+\right.
+\]</span> 如果固定指标 <span class="math inline">\(n=1\)</span>,
+那么控制方程 (1) 为 <span class="math display">\[
+\left\{
+\begin{aligned}
+L_{1jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{11} \delta(x-x^{\prime}) = 0\\
+L_{2jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{21} \delta(x-x^{\prime}) = 0\\
+L_{3jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{31} \delta(x-x^{\prime}) = 0
+\end{aligned}
+\right.
+\]</span> 因此该组控制方程的外力项为 <span class="math display">\[
+{f} = \begin{pmatrix}
+\delta(x-x^{\prime}) \\
+0 \\
+0
+\end{pmatrix}
+\]</span></p>
+<p>所以, 函数 <span class="math inline">\(f\)</span> 表示作用在点 <span
+class="math inline">\(x^{\prime}\)</span>, 方向为 <span
+class="math inline">\((1,0,0)\)</span> 的单位集中力. 函数 <span
+class="math inline">\(G_{1k}(x-x^\prime)\)</span> 表示在上述外力 <span
+class="math inline">\(f\)</span> 作用下系统的位移响应.</p>
+<p>综上, 可以得到 Green 函数 <span
+class="math inline">\(G_{nk}(x-x^{\prime})\)</span> 的物理意义是:
+作用在点 <span class="math inline">\(x^{\prime}\)</span> 上, <span
+class="math inline">\(n\)</span> 方向的单位集中力所造成的点 <span
+class="math inline">\(x\)</span> 在 <span
+class="math inline">\(k\)</span> 方向上的位移分量. 如果 <span
+class="math inline">\(L_{ijkl}\)</span> 具有主对称性, 那么矩阵 <span
+class="math inline">\(K\)</span> <span class="math inline">\(N\)</span>
+是对称矩阵, 所以 <span class="math display">\[
+G_{nk} = G_{kn}
+\]</span> 所以, <span
+class="math inline">\(G_{nk}(x-x^{\prime})\)</span> 同样也可以解释为:
+作用在点 <span class="math inline">\(x^{\prime}\)</span> 上, <span
+class="math inline">\(k\)</span> 方向的单位集中力所造成的点 <span
+class="math inline">\(x\)</span> 在 <span
+class="math inline">\(n\)</span> 方向上的位移分量.
+这恰好与互易原理的结论相同.</p>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>Green 函数</tag>
+        <tag>弹性力学</tag>
+        <tag>Fourier 变换</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>非线性计算中的增量步与迭代方法</title>
     <url>/mechanics/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%A2%9E%E9%87%8F%E6%AD%A5%E4%B8%8E%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p><strong>参考文献:</strong></p>
@@ -2601,374 +2969,6 @@ w_{n+1}^{(i+1)} = w_{n+1}^{(i)} + \Delta w_{n+1}^{(i+1)}
       <tags>
         <tag>非线性有限元</tag>
         <tag>刚度矩阵</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>函数范数: 等价类的引入</title>
-    <url>/math/%E5%87%BD%E6%95%B0%E8%8C%83%E6%95%B0-%E7%AD%89%E4%BB%B7%E7%B1%BB%E7%9A%84%E5%BC%95%E5%85%A5/</url>
-    <content><![CDATA[<p>定义某一空间 <span class="math inline">\(V\)</span> 上的范数,
-就是确定该空间上某一个非负实值映射 <span class="math inline">\(\| \cdot
-\|\)</span>, 且该映射满足如下条件:</p>
-<ol type="1">
-<li>对任意的 <span class="math inline">\(v \in V\)</span>, <span
-class="math inline">\(\| v \| \geq 0\)</span> 成立, 当且仅当 <span
-class="math inline">\(v = 0\)</span> 时 <span class="math inline">\(\| v
-\| = 0\)</span>;</li>
-<li>对任意的 <span class="math inline">\(c \in \mathbb{R}\)</span> 和
-<span class="math inline">\(v \in V\)</span>, <span
-class="math inline">\(\|cv\| = |c| \|v\|\)</span>;</li>
-<li>对任意的 <span class="math inline">\(u, v \in V\)</span>, 不等式
-<span class="math inline">\(\|u+v\| \leq \|u\| + \|v\|\)</span>
-成立.</li>
-</ol>
-<p>我现在想处理的是, 当空间的概念从有限维的向量空间,
-拓展到无穷维的函数空间上时, 条件 1 中 <span class="math inline">\(v =
-0\)</span> 的定义也需要加以推广, 以适应这个条件中 <span
-class="math inline">\(v=0\)</span> 与 <span class="math inline">\(\|v\|
-= 0\)</span> 的等价性. <span id="more"></span>我们以函数的 <span
-class="math inline">\(1-\)</span>范数 <span class="math display">\[
-\begin{equation}
-  \|\cdot\| = \int|\cdot| \mathrm{d} \Omega
-\end{equation}
-\]</span> 以及定义在 <span class="math inline">\(\Omega = [-1,
-1]\)</span> 上的两个函数 <span class="math inline">\(f(x)\)</span>,
-<span class="math inline">\(g(x)\)</span> <span class="math display">\[
-\begin{equation}
-  f(x) = \begin{cases}
-    1 \quad x \geq 0 \\
-    0 \quad x &lt; 0
-  \end{cases} \quad \quad
-  g(x) = \begin{cases}
-    1 \quad x &gt; 0 \\
-    0 \quad x \leq 0
-  \end{cases}
-\end{equation}
-\]</span> 为例. 函数 <span class="math inline">\(f-g\)</span> 的范数为
-<span class="math display">\[
-\begin{equation}
-  \|f-g\| = \int_{-1}^{1} |f-g| \mathrm{d}x = 0,
-\end{equation}
-\]</span> 根据范数成立的条件 1, 则应该有 <span
-class="math inline">\(f-g=0\)</span>, 或者等价的 <span
-class="math inline">\(f=g\)</span>. 可是, 函数 <span
-class="math inline">\(f(x)\)</span> 与 <span
-class="math inline">\(g(x)\)</span> 在 <span
-class="math inline">\(x=0\)</span> 处并不相等, 如果用数学味比较浓的表达,
-那就是</p>
-<div class="note success no-icon"><p>函数 <span class="math inline">\(f(x)\)</span> 与 <span
-class="math inline">\(g(x)\)</span> 在区间 <span
-class="math inline">\([-1,1]\)</span> 上并不是<strong>逐点</strong>
-(pointwise) 相等的.</p>
-</div>
-<p>为了调和这一概念上的矛盾, 我们有 2 个思路: 1) 修改范数的定义; 2)
-修改函数相等的定义.</p>
-<p>对于第 1 个思路, 我们可以验证, 如果函数的范数定义为 <span
-class="math display">\[
-\|\cdot\| = \max_{-1 \leq x \leq 1} |\cdot|,
-\]</span> 那么 <span class="math inline">\(\|f-g\|\)</span> 等价于 <span
-class="math inline">\(f\)</span>, <span class="math inline">\(g\)</span>
-逐点相等. 这实际是函数的 <span
-class="math inline">\(\infty-\)</span>范数.</p>
-<p>至于思路 2, 我们需要引入<strong>等价类</strong>的概念. 首先我们定义
-<span class="math inline">\(V\)</span> 的子空间 <span
-class="math inline">\(V^0\)</span> <span class="math display">\[
-\begin{equation}
-    V^0 = \{ v^0 \mid \| v^0 \|=0 \}.
-\end{equation}
-\]</span> 那么, 对任意 <span class="math inline">\(v \in V\)</span>,
-<strong><span class="math inline">\(v\)</span> 与所有其它的函数 <span
-class="math inline">\(v+v^0\)</span>, <span class="math inline">\(v^0
-\in V^0\)</span> 共同组成同一个等价类</strong>.</p>
-<p>这样, 我们重新定义相等 "<span class="math inline">\(=\)</span>"
-的概念为</p>
-<div class="note success no-icon"><p><span class="math inline">\(f=g\)</span> <span
-class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(f\)</span> 与 <span
-class="math inline">\(g\)</span> 属于同一个等价类, 即 <span
-class="math inline">\(f = g+v^0\)</span>, <span
-class="math inline">\(v^0 \in V^0\)</span>.</p>
-</div>
-<p>在上述相等的意义下, <span class="math inline">\(f\)</span> 与 <span
-class="math inline">\(g\)</span> 并不一定是逐点相等的,
-但只相差一个范数为 0 的函数 <span class="math inline">\(v^0\)</span>.
-因此,</p>
-<div class="note success no-icon"><p><span class="math inline">\(f=g\)</span> <span
-class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(f = g+v^0\)</span>, <span
-class="math inline">\(v^0 \in V^0\)</span> <span
-class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(\| f-g \| = 0\)</span>.</p>
-</div>
-<p>这样我们就保证了范数定义中条件 1 的等价性.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>泛函分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常微分方程唯一性定理的证明</title>
-    <url>/math/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/</url>
-    <content><![CDATA[<div class="note success no-icon"><p>对于如下常微分方程: <span class="math display">\[
-\left\{
-\begin{aligned}
-  &amp;\dot{x} = f(t,x)\\
-  &amp;x(0) = x_0
-\end{aligned}
-\right.
-\]</span> 如果 <span class="math inline">\(f(t,x)\)</span> 关于 <span
-class="math inline">\(x\)</span>​ <strong>Lipschitz 连续</strong>,
-那么方程的解唯一.</p>
-</div>
-<span id="more"></span>
-<p>Lipschitz 连续的必要性可以在方程证明中看到,
-所以我们在证明过程中再提出 Lipschitz 条件的具体形式.</p>
-<p>首先假设, 存在 <span class="math inline">\(x_1\)</span>, <span
-class="math inline">\(x_2\)</span>
-两个解满足命题中给出的微分方程和初值条件, 那么有 <span
-class="math display">\[
-\begin{aligned}
-  x_1(t) = x_0 + \int_0^t f(s,x_1(s)) \mathrm{d} s\\
-  x_2(t) = x_0 + \int_0^t f(s,x_2(s)) \mathrm{d} s
-\end{aligned}
-\]</span></p>
-<p>两式相减, 两端取绝对值得到</p>
-<p><span class="math display">\[
-\vert x_1(t) - x_2(t) \vert = \int_0^t \vert  f(s,x_1(s)) - f(s,x_2(s))
-\vert  \mathrm{d} s
-\]</span></p>
-<p>我们希望能得到对方程左端项的估计, 而 Lipschitz 条件要求, 对任意的
-<span class="math inline">\(x,y\in \mathbb{R}_n\)</span>:</p>
-<p><span class="math display">\[
-\vert f(t,x) -f(t,y)  \vert \leq L |x-y|
-\]</span></p>
-<p><span class="math inline">\(L\)</span> 是 Lipschitz 常数, 不依赖于
-<span class="math inline">\(x,y,t\)</span>. 这样我们就得到了关于 <span
-class="math inline">\(r(t) = |x_1(t) - x_2(t)|\)</span> 的积分不等式:
-<span class="math display">\[
-r(t) \leq L \int_{0}^{t} r(s) \mathrm{d} s
-\]</span></p>
-<p>上述不等式又称 Gronwall 不等式, 是对 <span
-class="math inline">\(r(t)\)</span> 最坏情况的指数估计. 如果我们有</p>
-<p><span class="math display">\[
-f(t) \leq C_0 + \int_0^t f(s) g(s) \mathrm{d} s, \quad C_0 \geq 0, f(t),
-g(t) \geq 0
-\]</span></p>
-<p>那么 <span class="math display">\[
-f(t) \leq C_0 e^{\int_0^t g(s) \mathrm{d} s}
-\]</span></p>
-<p>在我们的证明中, <span class="math inline">\(C_0 = 0\)</span>, 所以
-<span class="math display">\[
-0 \leq r(t) \leq 0
-\]</span></p>
-<p>这就得到 <span class="math inline">\(r(t) \equiv 0\)</span>, 所以
-<span class="math inline">\(x_1(t) \equiv x_2(t)\)</span>.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数学相关文档中不同类型的等号释义</title>
-    <url>/math/%E6%95%B0%E5%AD%A6%E6%96%87%E6%A1%A3%E4%B8%AD%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%AD%89%E5%8F%B7%E9%87%8A%E4%B9%89/</url>
-    <content><![CDATA[<p>我在数学相关文档的编写中，对三种特殊的等号作如下释义：</p>
-<h2 id="恒等于-equiv">恒等于 <span
-class="math inline">\(\equiv\)</span></h2>
-<p>LaTeX 表达式：<code>\equiv</code></p>
-<p>用在分析语言当中，左侧为函数，右侧为常数，表示等号左侧的函数在定义域上的取值恒等于右侧的常数。例如</p>
-<blockquote>
-<p>三角恒等式 <span class="math display">\[
-\cos^2 x + \sin^2 x \equiv 1
-\]</span></p>
-</blockquote>
-<span id="more"></span>
-<h2 id="定义-triangleq">定义 <span
-class="math inline">\(\triangleq\)</span></h2>
-<p>LaTeX 表达式：<code>\triangleq</code></p>
-<p>定义新的符号，左右两侧表达式中会出现新的符号，并总能通过已定义的符号表示出来，例如</p>
-<blockquote>
-<p>已知物体质量 <span class="math inline">\(m\)</span>，加速度 <span
-class="math inline">\(a\)</span>，我们定义作用在物体上的力 <span
-class="math inline">\(F\)</span> 为 <span class="math display">\[
-F \triangleq ma
-\]</span></p>
-</blockquote>
-<p>符号 <span class="math inline">\(\triangleq\)</span>
-是左右对称的，所以 <span class="math inline">\(\triangleq\)</span>
-左侧不一定总是为新定义的变量，例如</p>
-<blockquote>
-<p>材料中的应变 <span class="math inline">\(\varepsilon\)</span>
-是弹性应变 <span class="math inline">\(e\)</span> 与本征应变 <span
-class="math inline">\(\mu\)</span> 之和： <span class="math display">\[
-\varepsilon \triangleq e + \mu
-\]</span></p>
-</blockquote>
-<h2 id="赋值">赋值 <span class="math inline">\(:=\)</span>​</h2>
-<p>LaTeX 表达式：<code>\coloneqq</code> （依赖宏包
-<code>mathtools</code>）</p>
-<p>在旧的文档中我用来定义变量，与 Computational Inelasticity
-中的符号一致。现在我用符号 <span class="math inline">\(:=\)</span>
-进行赋值，左侧为变量名。右侧为具体值，例如</p>
-<blockquote>
-<p>取测试函数（test function）为常数，也即 <span
-class="math inline">\(v_{i,j}(y) := v_{i,j}\)</span></p>
-</blockquote>
-<h2 id="参考文档">参考文档</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9tYXRoLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy8xODIxMDEvYXBwcm9wcmlhdGUtbm90YXRpb24tZXF1aXYtdmVyc3Vz">Appropriate
-Notation: ≡ versus :=<i class="fa fa-external-link-alt"></i></span> 给出了为什么我用 <span
-class="math inline">\(\triangleq\)</span> 取代 <span
-class="math inline">\(:=\)</span> 作为定义符号的原因</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvRXF1YWxzX3NpZ24=">Equal sign<i class="fa fa-external-link-alt"></i></span>
-给出了等号的历史来源，以及所有可能见到的表示左右两端存在某种关系的符号，比如
-<span class="math inline">\(\approx\)</span>，<span
-class="math inline">\(\cong\)</span> ……</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9tYXRoLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy8xMDU4NTk2L2luLXBsYWluLWxhbmd1YWdlLXdoYXRzLXRoZS1kaWZmZXJlbmNlLWJldHdlZW4tdHdvLXRoaW5ncy10aGF0LWFyZS1lcXVpdmFsZW50">In
-plain language, what's the difference between two things that are
-'equivalent', 'equal', and 'identical'?<i class="fa fa-external-link-alt"></i></span> 给出了 <span
-class="math inline">\(\equiv\)</span> 在数论中的含义</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>逻辑命题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>逻辑命题视角下的极限 连续与一致连续</title>
-    <url>/math/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/</url>
-    <content><![CDATA[<h3 id="极限的定义-以及否定形式">极限的定义, 以及否定形式</h3>
-<p>关于序列 <span class="math inline">\(\{a_n\}\)</span>
-的极限命题为:</p>
-<blockquote>
-<p>对任意的 <span class="math inline">\(\varepsilon &gt; 0\)</span>,
-存在 <span class="math inline">\(N \in \mathbb{N}\)</span>, 当 <span
-class="math inline">\(n&gt;N\)</span> 时, <span
-class="math inline">\(|a_n - a| &lt; \varepsilon\)</span></p>
-</blockquote>
-<p>我们用<strong>含参数的陈述</strong>表示上述命题的后半段:</p>
-<p><span class="math display">\[
-S(N, \varepsilon): n &gt; N \Rightarrow |a_n - a| &lt; \varepsilon
-\]</span></p>
-<span id="more"></span>
-<p>当给定 <span class="math inline">\((N, \varepsilon)\)</span> 时,
-就可以确定该命题的真伪.
-极限定义就是对上述含参数的陈述添加量词进行修饰:</p>
-<p><span class="math display">\[
-a_n \rightarrow a \Leftrightarrow \forall \varepsilon &gt; 0, \exists N
-\in \mathbb{N} \quad n &gt; N \Rightarrow |a_n - a| &lt; \varepsilon
-\]</span></p>
-<p>注意, <span class="math inline">\(\forall \varepsilon &gt;0\)</span>
- 与 <span class="math inline">\(\exists N \in \mathbb{N}\)</span>
-不能交换顺序, 也即含量词陈述的命题, 量词的顺序不能随意改变, 例如,
-如果修改成</p>
-<p><span class="math display">\[
-\exists N \in \mathbb{N}, \forall \varepsilon &gt; 0 \quad n &gt; N
-\Rightarrow |a_n - a| &lt; \varepsilon
-\]</span></p>
-<p>那么只有常数序列才能存在极限, 这样的定义就是平凡的了.</p>
-<p>注意到, 含量词的命题可以等价为:</p>
-<ul>
-<li><p><span class="math inline">\(\forall x \in X \quad S(x)
-\Longleftrightarrow \bigwedge_{x \in X} S(x)\)</span>;</p></li>
-<li><p><span class="math inline">\(\exists x \in X \quad S(x)
-\Longleftrightarrow \bigvee_{x \in X} S(x)\)</span>.</p></li>
-</ul>
-<p>式中, <span class="math inline">\(\wedge\)</span> 表示命题关系“与”
-(AND), <span class="math inline">\(\vee\)</span> 表示命题关系“或”(OR).
-当否定含量词的命题时, 根据 de Morgan 定律: <span class="math display">\[
-(B~\cup~C)^{\prime} = B^{\prime}~\cap~C^{\prime}\\
-(B~\cap~C)^{\prime} = B^{\prime}~\cup~C^{\prime}
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(\sim(\forall x \in X \quad S(x))
-\Longleftrightarrow \bigvee_{x \in X}\sim S(x) \Longleftrightarrow
-\exists x \in X \quad \sim S(x)\)</span>;</p></li>
-<li><p><span class="math inline">\(\sim(\exists x \in X \quad S(x))
-\Longleftrightarrow \bigwedge_{x \in X} \sim S(x)\Longleftrightarrow
-\forall x \in X \quad \sim S(x)\)</span>.</p></li>
-</ul>
-<p>注意到, 含参数陈述命题的取值集合 <span
-class="math inline">\(X\)</span> 不会发生改变 (比如取该集合的补集).
-由此我们可以得到极限命题的否定形式:</p>
-<p><span class="math display">\[
-\exists \varepsilon &gt; 0, \forall N \in \mathbb{N} \quad n &gt; N
-\wedge |a_n - a| \geq \varepsilon
-\]</span></p>
-<p>该命题后半部分可以合并为:</p>
-<p><span class="math display">\[
-\exists \varepsilon &gt; 0, \forall N \in \mathbb{N} \quad |a_N - a|
-\geq \varepsilon
-\]</span></p>
-<h3 id="连续与一致连续">连续与一致连续</h3>
-<p>我们用逻辑语言定义一致连续: 给定函数 <span class="math inline">\(f: A
-\mapsto \mathbb{R}^m\)</span>, 定义域 <span class="math inline">\(A
-\subset \mathbb{R}^n\)</span> :</p>
-<p><span class="math display">\[
-\forall \varepsilon &gt; 0, \textcolor{red}{\exists \delta &gt; 0},
-\forall y \in A, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
-\|f(x) - f(y)\| \leq \varepsilon
-\]</span></p>
-<p>而函数 <span class="math inline">\(f\)</span> 在 <span
-class="math inline">\(A\)</span> 上连续的定义为</p>
-<p><span class="math display">\[
-\forall \varepsilon &gt; 0, \forall y \in A, \textcolor{red}{\exists
-\delta &gt; 0}, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
-\|f(x) - f(y)\| \leq \varepsilon
-\]</span></p>
-<p>第二个定义中, 存在量词变量 <span
-class="math inline">\(\delta\)</span> 的选择依赖于之前全称量词变量 <span
-class="math inline">\(y\)</span>,
-这一点改变使得第一个定义和第二个定义并不是等价的
-(虽然看起来只是命题叙述的顺序发生了变化). 事实上,
-第一个命题蕴含第二个命题:</p>
-<p><span class="math display">\[
-f~\text{一致连续} \Rightarrow f~\text{连续}
-\]</span></p>
-<p>证明上述问题是乏味的, 甚至像是在玩弄文字游戏, 我们不妨做一点别的事情,
-比如, 将定义连续的命题中的存在量词 <span class="math inline">\(\exists
-\delta &gt; 0\)</span> 继续后移:</p>
-<p><span class="math display">\[
-\forall \varepsilon &gt; 0, \forall y \in A, \forall x \in A,
-\textcolor{red}{\exists \delta &gt; 0} \quad \|x-y\|\leq\delta
-\Rightarrow \|f(x) - f(y)\| \leq \varepsilon
-\]</span></p>
-<p>该命题本身就构成了重言式, 也就是说, 该命题一直为 true. 证明过程如下:
-对任意给定的 <span class="math inline">\(\varepsilon, x, y\)</span>, 取
-<span class="math inline">\(\delta &gt; \|x-y\|\)</span>, 根据蕴含命题
-<span class="math inline">\(p \Rightarrow q\)</span> 的真值表, 若 <span
-class="math inline">\(p\)</span> 为 false, 则 <span
-class="math inline">\(p \Rightarrow q\)</span> 恒为 true, 无论 <span
-class="math inline">\(q\)</span> 怎样取值. 因此, <span
-class="math inline">\(\|x-y\|\leq\delta \Rightarrow \|f(x) - f(y)\| \leq
-\varepsilon\)</span> 恒为 true.</p>
-<p>假如我们将第三个定义称为”弱连续”, 那么, 根据上述论证,
-所有的函数都是”弱连续”的, 因此, “弱连续“
-就不能够将某一类函数与其它函数区分开. “弱连续“ 的定义是平凡的.</p>
-<p>现在, 如果我们将存在量词移到命题的最前端:</p>
-<p><span class="math display">\[
-\textcolor{red}{\exists \delta &gt; 0}, \forall \varepsilon &gt; 0,
-\forall y \in A, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
-\|f(x) - f(y)\| \leq \varepsilon
-\]</span></p>
-<p>并称满足这个定义的函数为”强一致收敛”函数, 可以看到,
-“强一致收敛“函数只能是常值函数, 因此也是一致收敛函数.综上,
-我们有上述关于连续性命题的强弱关系: <span class="math display">\[
-f~\text{强一致连续} \Rightarrow f~\text{一致连续} \Rightarrow
-f~\text{连续} \Rightarrow f~\text{弱连续}
-\]</span></p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>逻辑命题</tag>
-        <tag>分析</tag>
       </tags>
   </entry>
 </search>
