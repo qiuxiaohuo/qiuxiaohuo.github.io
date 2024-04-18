@@ -1561,27 +1561,27 @@ class="math inline">\(\varepsilon^c\)</span> 引入的位移量, 求解得到的
   <entry>
     <title>四阶单位张量的矩阵表示方法</title>
     <url>/mechanics/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>四阶单位张量可以表示为含有四个自由指标 Kronecker delta 记号的组合:
+    <content><![CDATA[<h2 id="四阶张量的不同定义方式">四阶张量的不同定义方式</h2>
+<p>四阶单位张量可以表示为含有四个自由指标 Kronecker delta 记号的组合:
 <span class="math inline">\(\delta_{ij} \delta_{kl}\)</span>. 不过,
-与二阶单位张量不同的是, 改变指标的顺序,
-会得到三种不同的四阶单位张量:</p>
-<p><span class="math display">\[
-\delta_{ij} \delta_{kl} ={\mathcal{I}}_{ijkl} ={\mathcal{F}}_{iljk}
-={\mathcal{E}}_{ikjl}
+与二阶单位张量不同的是, 改变指标的顺序, 会得到三种不同的四阶单位张量:
+<span class="math display">\[
+\delta_{ij} \delta_{kl} \triangleq {\mathcal{I}}_{ijkl} \triangleq
+{\mathcal{F}}_{iljk} \triangleq{\mathcal{E}}_{ikjl}
 \]</span></p>
 <span id="more"></span>
 <p>或者</p>
 <p><span class="math display">\[
-{\mathcal{I}}_{ijkl} =\delta_{ij} \delta_{kl} ,~~{\mathcal{E}}_{ijkl}
-=\delta_{ik} \delta_{jl} ,~~{\mathcal{F}}_{ijkl} =\delta_{il}
-\delta_{jk}
+{\mathcal{I}}_{ijkl} \triangleq \delta_{ij} \delta_{kl} ,\quad
+{\mathcal{E}}_{ijkl} \triangleq \delta_{ik} \delta_{jl} ,\quad
+{\mathcal{F}}_{ijkl} \triangleq \delta_{il} \delta_{jk}
 \]</span></p>
 <p>对于任意四阶张量 <span class="math inline">\(\mathbb{L}\)</span>,
-在双点积(<span class="math inline">\(A:B:=A_{\cdot mn} B_{mn\cdot
-}\)</span>)作用下, 张量 <span class="math inline">\(\mathcal{E}\)</span>
-满足:</p>
+在双点积 (<span class="math inline">\(A:B:=A_{\cdot mn} B_{mn\cdot
+}\)</span>) 作用下, 张量 <span
+class="math inline">\(\mathcal{E}\)</span> 满足:</p>
 <p><span class="math display">\[
-\mathcal{E}:\mathbb{L}=\mathbb{L}:\mathcal{E}=\mathbb{L}
+\mathcal{E}:\mathbb{L}=\mathbb{L}:\mathcal{E}\equiv\mathbb{L}
 \]</span></p>
 <p>若定义另一种双点积的方式为: <span class="math inline">\(A\cdot \cdot
 B:=A_{\cdot mn} B_{nm\cdot }\)</span>, 那么对于该点积的定义,
@@ -1589,21 +1589,53 @@ B:=A_{\cdot mn} B_{nm\cdot }\)</span>, 那么对于该点积的定义,
 class="math inline">\(\mathcal{F}\)</span>:</p>
 <p><span class="math display">\[
 \mathcal{F}\cdot \cdot \mathbb{L}=\mathbb{L}\cdot \cdot
-\mathcal{F}=\mathbb{L}
+\mathcal{F}\equiv\mathbb{L}
 \]</span></p>
-<p>除上述三种定义四阶单位张量的方式之外, 如果四阶张量具有次对称性(<span
-class="math inline">\(L_{ijkl} =L_{jikl} =L_{ijlk}\)</span>),
-还可以定义如下四阶张量:</p>
+<p>除上述三种定义四阶单位张量的方式之外, 还可以定义如下四阶张量:</p>
 <p><span class="math display">\[
-\mathcal{L}=\frac{1}{2}(\mathcal{F}+\mathcal{E})
+\mathcal{L}_{ijkl}\triangleq\frac{1}{2}(\mathcal{F}_{ijkl}+\mathcal{E}_{ijkl})
+= \frac{1}{2}(\delta_{il} \delta_{jk}+\delta_{ik} \delta_{jl})
 \]</span></p>
-<p>与具有次对称性的四阶张量张量作任意形式的双点积,
-都可以得到原来的四阶张量.</p>
-<p>具有次对称性的张量可以用 Voigt 记法表示成矩阵形式,
-四种四阶单位张量中, 只有 <span
-class="math inline">\(\mathcal{E}\)</span> 具有次对称性:</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% preallocate fourth order identity tensor</span></span><br><span class="line">L = <span class="built_in">zeros</span>(<span class="number">6</span>); </span><br><span class="line">F = <span class="built_in">zeros</span>(<span class="number">6</span>);</span><br><span class="line">E = <span class="built_in">zeros</span>(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% Voigt notation</span></span><br><span class="line">mapVToMat = &#123;[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">3</span>],[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">2</span>]&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">% E_&#123;ijkl&#125; = delta_&#123;ik&#125;*\delta_&#123;jl&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    E(irow,jcol) = d(<span class="built_in">i</span>,k)*d(<span class="built_in">j</span>,l);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">E</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">E = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     1     0     0</span><br><span class="line">     0     0     0     0     1     0</span><br><span class="line">     0     0     0     0     0     1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>如果四阶张量的指标满足 <span class="math display">\[
+\square_{ijkl} = \square_{jikl} = \square_{ijlk}
+\]</span> 那么称张量 <span class="math inline">\(\square_{ijkl}\)</span>
+具有次对称性. 具有次对称性的单位张量为 <span
+class="math inline">\(\mathcal{L}_{ijkl}\)</span></p>
+<p>在力学中, 我们一般将四阶单位张量 <span
+class="math inline">\(\mathcal{F}_{ijkl}\)</span> 和 <span
+class="math inline">\(\mathcal{L}_{ijkl}\)</span> 分别记作 <span
+class="math display">\[
+\mathcal{F}_{ijkl} = \mathbf{I} \otimes \mathbf{I}, \quad
+\mathcal{L}_{ijkl} = \mathbb{I}
+\]</span></p>
+<h2 id="四阶单位张量的数值形式">四阶单位张量的数值形式</h2>
+<p>二阶张量 <span class="math inline">\(\mathbf{A}\)</span> 在 <span
+class="math inline">\(\mathbb{R}^3\)</span> 空间的基底下可以表示为矩阵
+<span class="math inline">\([A] \in \mathbb{R}^3 \times
+\mathbb{R}^3\)</span>. 如果张量 <span
+class="math inline">\(\mathbf{A}\)</span> 为对称张量, 那么矩阵 <span
+class="math inline">\([A]\)</span> 同样为对称矩阵, 因此只需要一个向量
+<span class="math inline">\(\mathrm{vec}~A \in \mathbb{R}^6\)</span>,
+就可以完全保存二阶对称张量 <span
+class="math inline">\(\mathbf{A}\)</span> 的信息. 我们定义 Voigt 映射
+<span class="math inline">\(\mathrm{Voigt}: \mathbb{R}^3 \times
+\mathbb{R}^3 \mapsto \mathbb{R}^6\)</span> <span class="math display">\[
+\begin{aligned}
+a^{\mathrm{V}} \triangleq \mathrm{Voigt}(A):
+&amp;a^{\mathrm{V}}(1) = [A](1,1), \quad
+a^{\mathrm{V}}(2) = [A](2,2), \quad
+a^{\mathrm{V}}(3) = [A](3,3), \quad\\
+&amp;a^{\mathrm{V}}(4) = [A](2,3), \quad
+a^{\mathrm{V}}(5) = [A](1,3), \quad
+a^{\mathrm{V}}(6) = [A](1,2) \quad\\
+\end{aligned}
+\]</span> 对于具有次对称性的四阶张量, 我们同样也可以使用 Voigt 映射,
+将该张量映射为一个 6x6 的矩阵. 特别的, 如果四阶张量还具有主对称性,
+那么使用 Voigt 映射之后的矩阵是对称矩阵.</p>
+<p>四种四阶单位张量中, 只有 <span
+class="math inline">\(\mathcal{E}\)</span> 具有次对称性,
+输出为矩阵形式为:</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">E = <span class="number">6</span>x6    </span><br><span class="line">     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>可见 Voigt 记法下的四阶单位张量 <span
 class="math inline">\([\mathcal{E}]\)</span> 是单位矩阵,
 对任意具有次对称性的四阶张量 <span
@@ -1616,9 +1648,9 @@ class="math inline">\(\mathbb{L}\)</span>, 也同样可以用 Voigt
 <p>但是, 如果将其它的单位张量用 Voigt 记法表示为矩阵形式,
 由于缺乏次对称性, 单位张量的一些不为 0 的分量被"遗漏"了,
 得到的矩阵形式会缺少信息:</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% F_&#123;ijkl&#125; = delta_&#123;il&#125;*\delta_&#123;jk&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    F(irow,jcol) = d(<span class="built_in">i</span>,l)*d(<span class="built_in">j</span>,k);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">F</span><br></pre></td></tr></table></figure>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">F = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% L_&#123;ijkl&#125; = 1/2*delta_&#123;ik&#125;*\delta_&#123;jl&#125; + 1/2*delta_&#123;il&#125;*\delta_&#123;jk&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    L(irow,jcol) = <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,l)*d(<span class="built_in">j</span>,k) + <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,k)*d(<span class="built_in">j</span>,l);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
+<p>在</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">% L_&#123;ijkl&#125; = 1/2*delta_&#123;ik&#125;*\delta_&#123;jl&#125; + 1/2*delta_&#123;il&#125;*\delta_&#123;jk&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    L(irow,jcol) = <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,l)*d(<span class="built_in">j</span>,k) + <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,k)*d(<span class="built_in">j</span>,l);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">L = 6x6    </span><br><span class="line">    1.0000         0         0         0         0         0</span><br><span class="line">         0    1.0000         0         0         0         0</span><br><span class="line">         0         0    1.0000         0         0         0</span><br><span class="line">         0         0         0    0.5000         0         0</span><br><span class="line">         0         0         0         0    0.5000         0</span><br><span class="line">         0         0         0         0         0    0.5000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dij</span> = <span class="title">d</span><span class="params">(i,j)</span></span></span><br><span class="line">  dij = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">i</span>==<span class="built_in">j</span></span><br><span class="line">    dij = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>

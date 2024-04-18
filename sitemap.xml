@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://qiuxiaohuo.github.io/mechanics/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/</loc>
+    
+    <lastmod>2024-04-18</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>http://qiuxiaohuo.github.io/nichijou/index.html</loc>
     
     <lastmod>2024-04-18</lastmod>
@@ -102,15 +111,6 @@
   
   <url>
     <loc>http://qiuxiaohuo.github.io/Linux/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/</loc>
-    
-    <lastmod>2024-04-15</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>http://qiuxiaohuo.github.io/mechanics/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/</loc>
     
     <lastmod>2024-04-15</lastmod>
     
