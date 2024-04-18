@@ -1,41 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Fortran 中的 KIND</title>
-    <url>/Fortran%20%E4%B8%AD%E7%9A%84%20KIND/</url>
-    <content><![CDATA[<p><code>KIND</code>
-并不直接对应变量所占用的字节数，在不同的编译器与系统中可能有不同的对应关系，例如最常见的系统有：</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">4</span>)  :: xs   <span class="comment">! 4 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">8</span>)  :: xd   <span class="comment">! 8 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">16</span>) :: xq   <span class="comment">! 16 byte ieee float</span></span><br></pre></td></tr></table></figure>
-<p>而有些编译器可能是：</p>
-<span id="more"></span>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">1</span>) :: XS   <span class="comment">! 4 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">2</span>) :: XD   <span class="comment">! 8 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">3</span>) :: XQ   <span class="comment">! 16 BYTE FLOAT</span></span><br></pre></td></tr></table></figure>
-<p>所以，为了提高代码的可移植性，一般不直接给 integer 或 real
-变量类型赋予确定的字节长度，而是使用内置函数<code>SELECTED_REAL_KIND</code>
-and <code>SELECTED_INT_KIND</code> 从当前编译器中获取 <code>KIND</code>
-的数值。例如，我想声明一个 15 位的 real 变量，首先调用内置函数：</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br></pre></td></tr></table></figure>
-<p>然后在程序中声明变量：</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span>(dp) :: a, b, c</span><br><span class="line"><span class="keyword">real</span>(<span class="keyword">kind</span>=dp) :: a, b, c <span class="comment">! another equivalent statement</span></span><br><span class="line">a = <span class="number">1.0_dp</span></span><br><span class="line">b = <span class="number">3.5_dp</span></span><br><span class="line">c = <span class="number">1.34e8_dp</span></span><br></pre></td></tr></table></figure>
-<p>注意，这里的浮点数常数后面还加上了参量 <code>KIND</code>
-的后缀，每次写个数都这么搞似乎太麻烦了些，不知道不写是不是也<sub>行</sub>啊~~~？anyway，可以在
-module 中统一定义参量 <code>KIND</code> ，然后在其它程序中引用：</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">!&gt; Numerical storage size parameters for real and integer values</span></span><br><span class="line"><span class="keyword">module</span> kind_parameter</span><br><span class="line">   <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">   <span class="keyword">public</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Single precision real numbers, 6 digits, range 10⁻³⁷ to 10³⁷-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: sp = <span class="built_in">selected_real_kind</span>(<span class="number">6</span>, <span class="number">37</span>)</span><br><span class="line">   <span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br><span class="line">   <span class="comment">!&gt; Quadruple precision real numbers, 33 digits, range 10⁻⁴⁹³¹ to 10⁴⁹³¹-1; 128 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: qp = <span class="built_in">selected_real_kind</span>(<span class="number">33</span>, <span class="number">4931</span>)</span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Char length for integers, range -2⁷ to 2⁷-1; 8 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i1 = <span class="built_in">selected_int_kind</span>(<span class="number">2</span>)</span><br><span class="line">   <span class="comment">!&gt; Short length for integers, range -2¹⁵ to 2¹⁵-1; 16 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i2 = <span class="built_in">selected_int_kind</span>(<span class="number">4</span>)</span><br><span class="line">   <span class="comment">!&gt; Length of default integers, range -2³¹ to 2³¹-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i4 = <span class="built_in">selected_int_kind</span>(<span class="number">9</span>)</span><br><span class="line">   <span class="comment">!&gt; Long length for integers, range -2⁶³ to 2⁶³-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i8 = <span class="built_in">selected_int_kind</span>(<span class="number">18</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> kind_parameter</span><br></pre></td></tr></table></figure>
-<p>如果不是跨系统使用自己的代码，直接在 Windows 环境下用
-<code>real(8)</code> 就省事多了。</p>
-<p>我似乎明白了为什么之前看到过别人的 Fortran 代码，连 0.0，1.0，…，9.0
-都要用变量名定义。我使用的编程语言主要是 MATLAB（如果 MATLAB
-可以被称为一门编程语言的话），对数据类型只关注整数，浮点数，字符这种大的类别的区分，对于这些数据占系统多少字节并不关心，但是
-Fortran 中的变量还可以体现占用字节的信息。</p>
-<p><strong>主要参考文档</strong></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly93ZWIuYXJjaGl2ZS5vcmcvd2ViLzIwMjAwOTMwMDkwMTM3L2h0dHBzOi8vc3RldmVsaW9uZWwuY29tL2RyZm9ydHJhbi8yMDE3LzAzLzI3L2RvY3Rvci1mb3J0cmFuLWluLWl0LXRha2VzLWFsbC1raW5kcy8=">Doctor
-Fortran in “It Takes All KINDs”<i class="fa fa-external-link-alt"></i></span></p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvODM4MzEwL2ZvcnRyYW4tOTAta2luZC1wYXJhbWV0ZXI=">Fortran
-90 kind parameter<i class="fa fa-external-link-alt"></i></span></p>
-<p>在看帖子时看到别人写的查询自己机器 <code>KIND</code> 变量并生成相应的
-Fortran 源码的代码，<code>kindfinder.f90</code></p>
-]]></content>
-  </entry>
-  <entry>
     <title>Git 相关</title>
     <url>/Git-%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="git-阅读材料">Git 阅读材料</h2>
@@ -97,6 +62,41 @@ Clash，查看我的笔记本的代理端口为：7890。然后设置 Git 的端
       </tags>
   </entry>
   <entry>
+    <title>Fortran 中的 KIND</title>
+    <url>/Fortran%20%E4%B8%AD%E7%9A%84%20KIND/</url>
+    <content><![CDATA[<p><code>KIND</code>
+并不直接对应变量所占用的字节数，在不同的编译器与系统中可能有不同的对应关系，例如最常见的系统有：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">4</span>)  :: xs   <span class="comment">! 4 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">8</span>)  :: xd   <span class="comment">! 8 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">16</span>) :: xq   <span class="comment">! 16 byte ieee float</span></span><br></pre></td></tr></table></figure>
+<p>而有些编译器可能是：</p>
+<span id="more"></span>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">1</span>) :: XS   <span class="comment">! 4 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">2</span>) :: XD   <span class="comment">! 8 BYTE FLOAT</span></span><br><span class="line"><span class="keyword">REAL</span>(<span class="keyword">KIND</span>=<span class="number">3</span>) :: XQ   <span class="comment">! 16 BYTE FLOAT</span></span><br></pre></td></tr></table></figure>
+<p>所以，为了提高代码的可移植性，一般不直接给 integer 或 real
+变量类型赋予确定的字节长度，而是使用内置函数<code>SELECTED_REAL_KIND</code>
+and <code>SELECTED_INT_KIND</code> 从当前编译器中获取 <code>KIND</code>
+的数值。例如，我想声明一个 15 位的 real 变量，首先调用内置函数：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line"><span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br></pre></td></tr></table></figure>
+<p>然后在程序中声明变量：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">real</span>(dp) :: a, b, c</span><br><span class="line"><span class="keyword">real</span>(<span class="keyword">kind</span>=dp) :: a, b, c <span class="comment">! another equivalent statement</span></span><br><span class="line">a = <span class="number">1.0_dp</span></span><br><span class="line">b = <span class="number">3.5_dp</span></span><br><span class="line">c = <span class="number">1.34e8_dp</span></span><br></pre></td></tr></table></figure>
+<p>注意，这里的浮点数常数后面还加上了参量 <code>KIND</code>
+的后缀，每次写个数都这么搞似乎太麻烦了些，不知道不写是不是也<sub>行</sub>啊~~~？anyway，可以在
+module 中统一定义参量 <code>KIND</code> ，然后在其它程序中引用：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">!&gt; Numerical storage size parameters for real and integer values</span></span><br><span class="line"><span class="keyword">module</span> kind_parameter</span><br><span class="line">   <span class="keyword">implicit</span> <span class="keyword">none</span></span><br><span class="line">   <span class="keyword">public</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Single precision real numbers, 6 digits, range 10⁻³⁷ to 10³⁷-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: sp = <span class="built_in">selected_real_kind</span>(<span class="number">6</span>, <span class="number">37</span>)</span><br><span class="line">   <span class="comment">!&gt; Double precision real numbers, 15 digits, range 10⁻³⁰⁷ to 10³⁰⁷-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: dp = <span class="built_in">selected_real_kind</span>(<span class="number">15</span>, <span class="number">307</span>)</span><br><span class="line">   <span class="comment">!&gt; Quadruple precision real numbers, 33 digits, range 10⁻⁴⁹³¹ to 10⁴⁹³¹-1; 128 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: qp = <span class="built_in">selected_real_kind</span>(<span class="number">33</span>, <span class="number">4931</span>)</span><br><span class="line"></span><br><span class="line">   <span class="comment">!&gt; Char length for integers, range -2⁷ to 2⁷-1; 8 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i1 = <span class="built_in">selected_int_kind</span>(<span class="number">2</span>)</span><br><span class="line">   <span class="comment">!&gt; Short length for integers, range -2¹⁵ to 2¹⁵-1; 16 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i2 = <span class="built_in">selected_int_kind</span>(<span class="number">4</span>)</span><br><span class="line">   <span class="comment">!&gt; Length of default integers, range -2³¹ to 2³¹-1; 32 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i4 = <span class="built_in">selected_int_kind</span>(<span class="number">9</span>)</span><br><span class="line">   <span class="comment">!&gt; Long length for integers, range -2⁶³ to 2⁶³-1; 64 bits</span></span><br><span class="line">   <span class="keyword">integer</span>, <span class="keyword">parameter</span> :: i8 = <span class="built_in">selected_int_kind</span>(<span class="number">18</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">end</span> <span class="keyword">module</span> kind_parameter</span><br></pre></td></tr></table></figure>
+<p>如果不是跨系统使用自己的代码，直接在 Windows 环境下用
+<code>real(8)</code> 就省事多了。</p>
+<p>我似乎明白了为什么之前看到过别人的 Fortran 代码，连 0.0，1.0，…，9.0
+都要用变量名定义。我使用的编程语言主要是 MATLAB（如果 MATLAB
+可以被称为一门编程语言的话），对数据类型只关注整数，浮点数，字符这种大的类别的区分，对于这些数据占系统多少字节并不关心，但是
+Fortran 中的变量还可以体现占用字节的信息。</p>
+<p><strong>主要参考文档</strong></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly93ZWIuYXJjaGl2ZS5vcmcvd2ViLzIwMjAwOTMwMDkwMTM3L2h0dHBzOi8vc3RldmVsaW9uZWwuY29tL2RyZm9ydHJhbi8yMDE3LzAzLzI3L2RvY3Rvci1mb3J0cmFuLWluLWl0LXRha2VzLWFsbC1raW5kcy8=">Doctor
+Fortran in “It Takes All KINDs”<i class="fa fa-external-link-alt"></i></span></p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9zdGFja292ZXJmbG93LmNvbS9xdWVzdGlvbnMvODM4MzEwL2ZvcnRyYW4tOTAta2luZC1wYXJhbWV0ZXI=">Fortran
+90 kind parameter<i class="fa fa-external-link-alt"></i></span></p>
+<p>在看帖子时看到别人写的查询自己机器 <code>KIND</code> 变量并生成相应的
+Fortran 源码的代码，<code>kindfinder.f90</code></p>
+]]></content>
+  </entry>
+  <entry>
     <title>VSCode 使用 snippets 插入代码注释</title>
     <url>/VSCode%20%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E4%B8%AD%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E6%97%B6%E9%97%B4/</url>
     <content><![CDATA[<p>突然发现用 snippets 写注释也非常好用啊，比如写 Fortran 的 function 或
@@ -108,6 +108,100 @@ subroutine 的头部注释：</p>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;Head comments for subroutines&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">		<span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hc&quot;</span><span class="punctuation">,</span></span><br><span class="line">		<span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! name      : $1&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! remark    : $2&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! version   : 1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! date      : $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE  $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! author    : Junsong Qiu&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span></span><br><span class="line">		<span class="punctuation">]</span></span><br><span class="line">	<span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>其中，变量 <code>$1</code> <code>$2</code> 在插入 snippets
 时会自动要求你插入新的内容。时间部分可以用 VSCode 内置的变量添加。</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Markdown 添加注记文本</title>
+    <url>/Markdown%20%E4%BD%BF%E7%94%A8%20html%20%E6%A0%87%E7%AD%BE/</url>
+    <content><![CDATA[<p>在写文档的时候, 我有时会有这样的需求:</p>
+<ul>
+<li>标记一段重要的文本；</li>
+<li>这些文本可以归属为: 笔记 (note) , 警告 (warning) , 定义等等</li>
+</ul>
+<p>我就很想要一个彩色的框框, 把这段文字给标注一下. 在 <span
+class="math inline">\(\LaTeX\)</span>​​​ 中, 一般是用命令
+<code>\mdframed</code> 实现. 然而在 Markdown 的标准语法中,
+并没有注记文本这一功能.</p>
+<span id="more"></span>
+<hr />
+<p>一些特殊的 Markdown 解析器可以做到, 比如在 Github Markdown
+解析器中插入下段标记:</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/github-admonition-20230928143727151.png"
+alt="image-20230928143727151" />
+<figcaption aria-hidden="true">image-20230928143727151</figcaption>
+</figure>
+<hr />
+<p>注记文本的功能也有人向 Typora 官方提出过, 不过 Typora
+认为这一功能并不是必要的, 反而还会破坏 Markdown 语法的简洁性. 在 Github
+上的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R5cG9yYS90eXBvcmEtaXNzdWVzL2xhYmVscy9tYXJrZG93biUyMGV4dGVuc2lvbj9wYWdlPTImcT1pcyUzQW9wZW4rbGFiZWwlM0ElMjJtYXJrZG93bitleHRlbnNpb24lMjI=">issue<i class="fa fa-external-link-alt"></i></span>是这样说的:</p>
+<blockquote>
+<p>This seems too far way from most markdown engines. We want keep
+markdown in typora simple, no extra learning costs if one already knows
+how to write markdown. So, we are less likely to add syntax support for
+this</p>
+</blockquote>
+<p>一种替代的方法是是用 emoji <span class="github-emoji"
+data-alias="tada" style=""
+data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png?v8">🎉</span>.
+这个是 stackflow 上提供的权宜之计. 比如说, 我想写一段笔记:</p>
+<blockquote>
+<p><span class="github-emoji" data-alias="notebook" style=""
+data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d3.png?v8">📓</span>
+<strong>笔记</strong></p>
+<p>这是一段笔记.</p>
+</blockquote>
+<p>还可以吧, 要是引用框的颜色可以变变就更好了. 不然 Typora
+的文档总显得灰头土脸的, 放到 hexo 博客上的文章也是单一的白色.
+这时可以使用 html 标签 <code>&lt;div&gt; &lt;/div&gt;</code>
+来添加引用文本的背景色, 可是需要添加很长一段代码, 在 Typora
+中不太实用:</p>
+<div style="background-color:lightblue;padding:20px;">
+<h4>
+Warning
+</h4>
+<p>
+London is the capital city of England. It is the most populous city in
+the United Kingdom, with a metropolitan area of over 13 million
+inhabitants.
+</p>
+</div>
+<p>但是这个颜色吧… 综上, 还是使用 emoji 的方式, 在 Typora
+中表示段落文字的强调.</p>
+<hr />
+<p>在写 hexo 博客的时候, 可以使用 tag 插件实现这一功能,</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% note [class] [no-icon] [summary] %&#125;</span><br><span class="line">Any content (support inline tags too).</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
+<p>变量说明如下:</p>
+<ul>
+<li><code>[class]</code> : <em>Optional parameter.</em> Supported
+values: default | primary | success | info | warning | danger.</li>
+<li><code>[no-icon]</code> : <em>Optional parameter.</em> Disable icon
+in note.</li>
+<li><code>[summary]</code> : <em>Optional parameter.</em> Optional
+summary of the note.</li>
+</ul>
+<p>效果图为</p>
+<figure>
+<img
+src="C:\Users\qiutian\AppData\Roaming\Typora\typora-user-images\image-20240406093726500.png"
+alt="image-20240406093726500" />
+<figcaption aria-hidden="true">image-20240406093726500</figcaption>
+</figure>
+<h2 id="除此之外">除此之外</h2>
+<p>探索 Markdown 段落标记文字的时候, 发现它可以插入 html 标签,
+来实现一些之前没想到过的功能. 更多内容可以参考<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0LnR5cG9yYS5pby9IVE1MLyNjb21tZW50cw==">官方文档<i class="fa fa-external-link-alt"></i></span>, 以及 html
+<span class="exturl" data-url="aHR0cHM6Ly93d3cudzNzY2hvb2xzLmNvbS9odG1sL2RlZmF1bHQuYXNw">教学网站<i class="fa fa-external-link-alt"></i></span>.</p>
+<h3 id="键盘标签-kbd">键盘标签 <code>&lt;kbd&gt;</code></h3>
+<p>该标签可以插入在行内. 比如, 我想表示 VSCode 中「打开设置」快捷键:
+<kbd>Ctrl</kbd>+<kbd>,</kbd>.</p>
+<h3 id="总结标签-summary">总结标签 <code>&lt;summary&gt;</code></h3>
+<details>
+<summary>
+I have keys but no locks. I have space but no room. You can enter but
+can't leave. What am I?
+</summary>
+<pre><code> A keyboard. &lt;/details&gt;</code></pre>
 ]]></content>
   </entry>
   <entry>
@@ -456,100 +550,6 @@ subroutine 的头部注释：</p>
 ]]></content>
   </entry>
   <entry>
-    <title>Markdown 添加注记文本</title>
-    <url>/Markdown%20%E4%BD%BF%E7%94%A8%20html%20%E6%A0%87%E7%AD%BE/</url>
-    <content><![CDATA[<p>在写文档的时候, 我有时会有这样的需求:</p>
-<ul>
-<li>标记一段重要的文本；</li>
-<li>这些文本可以归属为: 笔记 (note) , 警告 (warning) , 定义等等</li>
-</ul>
-<p>我就很想要一个彩色的框框, 把这段文字给标注一下. 在 <span
-class="math inline">\(\LaTeX\)</span>​​​ 中, 一般是用命令
-<code>\mdframed</code> 实现. 然而在 Markdown 的标准语法中,
-并没有注记文本这一功能.</p>
-<span id="more"></span>
-<hr />
-<p>一些特殊的 Markdown 解析器可以做到, 比如在 Github Markdown
-解析器中插入下段标记:</p>
-<figure>
-<img
-src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/github-admonition-20230928143727151.png"
-alt="image-20230928143727151" />
-<figcaption aria-hidden="true">image-20230928143727151</figcaption>
-</figure>
-<hr />
-<p>注记文本的功能也有人向 Typora 官方提出过, 不过 Typora
-认为这一功能并不是必要的, 反而还会破坏 Markdown 语法的简洁性. 在 Github
-上的 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3R5cG9yYS90eXBvcmEtaXNzdWVzL2xhYmVscy9tYXJrZG93biUyMGV4dGVuc2lvbj9wYWdlPTImcT1pcyUzQW9wZW4rbGFiZWwlM0ElMjJtYXJrZG93bitleHRlbnNpb24lMjI=">issue<i class="fa fa-external-link-alt"></i></span>是这样说的:</p>
-<blockquote>
-<p>This seems too far way from most markdown engines. We want keep
-markdown in typora simple, no extra learning costs if one already knows
-how to write markdown. So, we are less likely to add syntax support for
-this</p>
-</blockquote>
-<p>一种替代的方法是是用 emoji <span class="github-emoji"
-data-alias="tada" style=""
-data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f389.png?v8">🎉</span>.
-这个是 stackflow 上提供的权宜之计. 比如说, 我想写一段笔记:</p>
-<blockquote>
-<p><span class="github-emoji" data-alias="notebook" style=""
-data-fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/1f4d3.png?v8">📓</span>
-<strong>笔记</strong></p>
-<p>这是一段笔记.</p>
-</blockquote>
-<p>还可以吧, 要是引用框的颜色可以变变就更好了. 不然 Typora
-的文档总显得灰头土脸的, 放到 hexo 博客上的文章也是单一的白色.
-这时可以使用 html 标签 <code>&lt;div&gt; &lt;/div&gt;</code>
-来添加引用文本的背景色, 可是需要添加很长一段代码, 在 Typora
-中不太实用:</p>
-<div style="background-color:lightblue;padding:20px;">
-<h4>
-Warning
-</h4>
-<p>
-London is the capital city of England. It is the most populous city in
-the United Kingdom, with a metropolitan area of over 13 million
-inhabitants.
-</p>
-</div>
-<p>但是这个颜色吧… 综上, 还是使用 emoji 的方式, 在 Typora
-中表示段落文字的强调.</p>
-<hr />
-<p>在写 hexo 博客的时候, 可以使用 tag 插件实现这一功能,</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&#123;% note [class] [no-icon] [summary] %&#125;</span><br><span class="line">Any content (support inline tags too).</span><br><span class="line">&#123;% endnote %&#125;</span><br></pre></td></tr></table></figure>
-<p>变量说明如下:</p>
-<ul>
-<li><code>[class]</code> : <em>Optional parameter.</em> Supported
-values: default | primary | success | info | warning | danger.</li>
-<li><code>[no-icon]</code> : <em>Optional parameter.</em> Disable icon
-in note.</li>
-<li><code>[summary]</code> : <em>Optional parameter.</em> Optional
-summary of the note.</li>
-</ul>
-<p>效果图为</p>
-<figure>
-<img
-src="C:\Users\qiutian\AppData\Roaming\Typora\typora-user-images\image-20240406093726500.png"
-alt="image-20240406093726500" />
-<figcaption aria-hidden="true">image-20240406093726500</figcaption>
-</figure>
-<h2 id="除此之外">除此之外</h2>
-<p>探索 Markdown 段落标记文字的时候, 发现它可以插入 html 标签,
-来实现一些之前没想到过的功能. 更多内容可以参考<span class="exturl" data-url="aHR0cHM6Ly9zdXBwb3J0LnR5cG9yYS5pby9IVE1MLyNjb21tZW50cw==">官方文档<i class="fa fa-external-link-alt"></i></span>, 以及 html
-<span class="exturl" data-url="aHR0cHM6Ly93d3cudzNzY2hvb2xzLmNvbS9odG1sL2RlZmF1bHQuYXNw">教学网站<i class="fa fa-external-link-alt"></i></span>.</p>
-<h3 id="键盘标签-kbd">键盘标签 <code>&lt;kbd&gt;</code></h3>
-<p>该标签可以插入在行内. 比如, 我想表示 VSCode 中「打开设置」快捷键:
-<kbd>Ctrl</kbd>+<kbd>,</kbd>.</p>
-<h3 id="总结标签-summary">总结标签 <code>&lt;summary&gt;</code></h3>
-<details>
-<summary>
-I have keys but no locks. I have space but no room. You can enter but
-can't leave. What am I?
-</summary>
-<pre><code> A keyboard. &lt;/details&gt;</code></pre>
-]]></content>
-  </entry>
-  <entry>
     <title>创作文档管理</title>
     <url>/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<p>我过去的文档管理方式太过粗放，以至我感到自己似乎一直是在原地踏步。这是因为我在用多个平台（知乎，Hexo+NexT
@@ -633,6 +633,18 @@ md 文档，在 md 文档首部添加注释行说明 Mathematica文档的信息<
       </tags>
   </entry>
   <entry>
+    <title>如何撰写设计日志</title>
+    <url>/%E5%A6%82%E4%BD%95%E6%92%B0%E5%86%99%E8%AE%BE%E8%AE%A1%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<p>这段文字来自 MIT 公开课 <span class="exturl" data-url="aHR0cHM6Ly9vY3cubWl0LmVkdS9jb3Vyc2VzLzEtMDUwLXNvbGlkLW1lY2hhbmljcy1mYWxsLTIwMDQvcGFnZXMvc3lsbGFidXMv">1.050<i class="fa fa-external-link-alt"></i></span>，我想我可以按照教授提供的方式尝试一下写设计日志。简要地翻译一下：<span id="more"></span></p>
+<blockquote><p>这本日志被用来记录你的工作过程。它的内容呢，既不是被反复润色的展稿，也不是对出现在你脑海中的想法与字词完完全全的记录。它是一份关于你思维过程的「流水账」，足够详尽，可以使你在隔一段时间后，重建当时的推理，猜想与分析过程。请用墨水手写这份日志。如果你想法改变了，或者发现犯了个错误，不要擦掉重写，而是在你不想保留的内容上画条横线。</p>
+<p>将你的姓名，邮箱，还有手机号写在日志显眼的地方上，如果丢失的话，你就可以把它找回来。将前几页留白，一边进行记录，一边添加页码，一边添加目录。</p>
+<p>在设计的最后，使用一到两页纸总结你的工作——例如，一张标注尺寸的草图；解释哪些参数为什么那么重要；重述设计要求；关于重要约束的笔记。</p>
+<p>请记住：</p>
+<p><strong>过程和结果伯仲难分；手段和目的同等重要。</strong></p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
     <title>Hexo + NexT + Github：搭建博客</title>
     <url>/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<p>首先我们先理清一下这三者的关系：</p>
@@ -710,7 +722,8 @@ by-sa<i class="fa fa-external-link-alt"></i></span>，可以共享、修改、�
 <code>&lt;title&gt;.md</code>
 文档。如果题目中没有空格，也可以不用加双引号。</li>
 </ul>
-<p>例如新建文档：<span class="exturl" data-url="aHR0cHM6Ly9xaXV4aWFvaHVvLmdpdGh1Yi5pby8yMDIzLzA5LzIwL215dGVzdC8=">测试我的第一篇博客文档<i class="fa fa-external-link-alt"></i></span></p>
+<p>例如新建文档：<a
+href="https://qiuxiaohuo.github.io/2023/09/20/mytest/">测试我的第一篇博客文档</a></p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">hexo new 测试我的第一篇博客文档</span><br></pre></td></tr></table></figure>
 <p>这样就可以在 <code>\source</code> 目录下找到对应的
 <code>测试我的第一篇博客文档.md</code> 文档了。</p>
@@ -758,18 +771,6 @@ Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
       <tags>
         <tag>hexo</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>如何撰写设计日志</title>
-    <url>/%E5%A6%82%E4%BD%95%E6%92%B0%E5%86%99%E8%AE%BE%E8%AE%A1%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<p>这段文字来自 MIT 公开课 <span class="exturl" data-url="aHR0cHM6Ly9vY3cubWl0LmVkdS9jb3Vyc2VzLzEtMDUwLXNvbGlkLW1lY2hhbmljcy1mYWxsLTIwMDQvcGFnZXMvc3lsbGFidXMv">1.050<i class="fa fa-external-link-alt"></i></span>，我想我可以按照教授提供的方式尝试一下写设计日志。简要地翻译一下：<span id="more"></span></p>
-<blockquote><p>这本日志被用来记录你的工作过程。它的内容呢，既不是被反复润色的展稿，也不是对出现在你脑海中的想法与字词完完全全的记录。它是一份关于你思维过程的「流水账」，足够详尽，可以使你在隔一段时间后，重建当时的推理，猜想与分析过程。请用墨水手写这份日志。如果你想法改变了，或者发现犯了个错误，不要擦掉重写，而是在你不想保留的内容上画条横线。</p>
-<p>将你的姓名，邮箱，还有手机号写在日志显眼的地方上，如果丢失的话，你就可以把它找回来。将前几页留白，一边进行记录，一边添加页码，一边添加目录。</p>
-<p>在设计的最后，使用一到两页纸总结你的工作——例如，一张标注尺寸的草图；解释哪些参数为什么那么重要；重述设计要求；关于重要约束的笔记。</p>
-<p>请记住：</p>
-<p><strong>过程和结果伯仲难分；手段和目的同等重要。</strong></p>
-</blockquote>
-]]></content>
   </entry>
   <entry>
     <title>工作站的数据存储方案</title>
@@ -1577,77 +1578,6 @@ class="math inline">\(\varepsilon^c\)</span> 引入的位移量, 求解得到的
       </tags>
   </entry>
   <entry>
-    <title>四阶单位张量的矩阵表示方法</title>
-    <url>/mechanics/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>四阶单位张量可以表示为含有四个自由指标 Kronecker delta 记号的组合:
-<span class="math inline">\(\delta_{ij} \delta_{kl}\)</span>. 不过,
-与二阶单位张量不同的是, 改变指标的顺序,
-会得到三种不同的四阶单位张量:</p>
-<p><span class="math display">\[
-\delta_{ij} \delta_{kl} ={\mathcal{I}}_{ijkl} ={\mathcal{F}}_{iljk}
-={\mathcal{E}}_{ikjl}
-\]</span></p>
-<span id="more"></span>
-<p>或者</p>
-<p><span class="math display">\[
-{\mathcal{I}}_{ijkl} =\delta_{ij} \delta_{kl} ,~~{\mathcal{E}}_{ijkl}
-=\delta_{ik} \delta_{jl} ,~~{\mathcal{F}}_{ijkl} =\delta_{il}
-\delta_{jk}
-\]</span></p>
-<p>对于任意四阶张量 <span class="math inline">\(\mathbb{L}\)</span>,
-在双点积(<span class="math inline">\(A:B:=A_{\cdot mn} B_{mn\cdot
-}\)</span>)作用下, 张量 <span class="math inline">\(\mathcal{E}\)</span>
-满足:</p>
-<p><span class="math display">\[
-\mathcal{E}:\mathbb{L}=\mathbb{L}:\mathcal{E}=\mathbb{L}
-\]</span></p>
-<p>若定义另一种双点积的方式为: <span class="math inline">\(A\cdot \cdot
-B:=A_{\cdot mn} B_{nm\cdot }\)</span>, 那么对于该点积的定义,
-保持四阶张量不变的单位张量是 <span
-class="math inline">\(\mathcal{F}\)</span>:</p>
-<p><span class="math display">\[
-\mathcal{F}\cdot \cdot \mathbb{L}=\mathbb{L}\cdot \cdot
-\mathcal{F}=\mathbb{L}
-\]</span></p>
-<p>除上述三种定义四阶单位张量的方式之外, 如果四阶张量具有次对称性(<span
-class="math inline">\(L_{ijkl} =L_{jikl} =L_{ijlk}\)</span>),
-还可以定义如下四阶张量:</p>
-<p><span class="math display">\[
-\mathcal{L}=\frac{1}{2}(\mathcal{F}+\mathcal{E})
-\]</span></p>
-<p>与具有次对称性的四阶张量张量作任意形式的双点积,
-都可以得到原来的四阶张量.</p>
-<p>具有次对称性的张量可以用 Voigt 记法表示成矩阵形式,
-四种四阶单位张量中, 只有 <span
-class="math inline">\(\mathcal{E}\)</span> 具有次对称性:</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% preallocate fourth order identity tensor</span></span><br><span class="line">L = <span class="built_in">zeros</span>(<span class="number">6</span>); </span><br><span class="line">F = <span class="built_in">zeros</span>(<span class="number">6</span>);</span><br><span class="line">E = <span class="built_in">zeros</span>(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% Voigt notation</span></span><br><span class="line">mapVToMat = &#123;[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">3</span>],[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">2</span>]&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">% E_&#123;ijkl&#125; = delta_&#123;ik&#125;*\delta_&#123;jl&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    E(irow,jcol) = d(<span class="built_in">i</span>,k)*d(<span class="built_in">j</span>,l);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">E</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">E = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     1     0     0</span><br><span class="line">     0     0     0     0     1     0</span><br><span class="line">     0     0     0     0     0     1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>可见 Voigt 记法下的四阶单位张量 <span
-class="math inline">\([\mathcal{E}]\)</span> 是单位矩阵,
-对任意具有次对称性的四阶张量 <span
-class="math inline">\(\mathbb{L}\)</span>, 也同样可以用 Voigt
-记法表示为矩阵形式 <span class="math inline">\([\mathbb{L}]\)</span>,
-在矩阵表示下, 有</p>
-<p><span class="math display">\[
-[\mathbb{L}][\mathcal{E}]=[\mathcal{E}][\mathbb{L}]=[\mathbb{L}]
-\]</span></p>
-<p>但是, 如果将其它的单位张量用 Voigt 记法表示为矩阵形式,
-由于缺乏次对称性, 单位张量的一些不为 0 的分量被"遗漏"了,
-得到的矩阵形式会缺少信息:</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% F_&#123;ijkl&#125; = delta_&#123;il&#125;*\delta_&#123;jk&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    F(irow,jcol) = d(<span class="built_in">i</span>,l)*d(<span class="built_in">j</span>,k);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">F</span><br></pre></td></tr></table></figure>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">F = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% L_&#123;ijkl&#125; = 1/2*delta_&#123;ik&#125;*\delta_&#123;jl&#125; + 1/2*delta_&#123;il&#125;*\delta_&#123;jk&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    L(irow,jcol) = <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,l)*d(<span class="built_in">j</span>,k) + <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,k)*d(<span class="built_in">j</span>,l);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">L = 6x6    </span><br><span class="line">    1.0000         0         0         0         0         0</span><br><span class="line">         0    1.0000         0         0         0         0</span><br><span class="line">         0         0    1.0000         0         0         0</span><br><span class="line">         0         0         0    0.5000         0         0</span><br><span class="line">         0         0         0         0    0.5000         0</span><br><span class="line">         0         0         0         0         0    0.5000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dij</span> = <span class="title">d</span><span class="params">(i,j)</span></span></span><br><span class="line">  dij = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">i</span>==<span class="built_in">j</span></span><br><span class="line">    dij = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>力学</category>
-      </categories>
-      <tags>
-        <tag>张量运算</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>多尺度 Reduced Order 推导</title>
     <url>/mechanics/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/</url>
     <content><![CDATA[<h2 id="reduced-order-中函数-h_ikl-与细观力学-green-函数的关联">Reduced
@@ -1810,6 +1740,77 @@ id="多尺度得到的单胞应变场与本征应变的关系">多尺度得到�
         <tag>多尺度</tag>
         <tag>Reduced Order</tag>
         <tag>Green 函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>四阶单位张量的矩阵表示方法</title>
+    <url>/mechanics/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>四阶单位张量可以表示为含有四个自由指标 Kronecker delta 记号的组合:
+<span class="math inline">\(\delta_{ij} \delta_{kl}\)</span>. 不过,
+与二阶单位张量不同的是, 改变指标的顺序,
+会得到三种不同的四阶单位张量:</p>
+<p><span class="math display">\[
+\delta_{ij} \delta_{kl} ={\mathcal{I}}_{ijkl} ={\mathcal{F}}_{iljk}
+={\mathcal{E}}_{ikjl}
+\]</span></p>
+<span id="more"></span>
+<p>或者</p>
+<p><span class="math display">\[
+{\mathcal{I}}_{ijkl} =\delta_{ij} \delta_{kl} ,~~{\mathcal{E}}_{ijkl}
+=\delta_{ik} \delta_{jl} ,~~{\mathcal{F}}_{ijkl} =\delta_{il}
+\delta_{jk}
+\]</span></p>
+<p>对于任意四阶张量 <span class="math inline">\(\mathbb{L}\)</span>,
+在双点积(<span class="math inline">\(A:B:=A_{\cdot mn} B_{mn\cdot
+}\)</span>)作用下, 张量 <span class="math inline">\(\mathcal{E}\)</span>
+满足:</p>
+<p><span class="math display">\[
+\mathcal{E}:\mathbb{L}=\mathbb{L}:\mathcal{E}=\mathbb{L}
+\]</span></p>
+<p>若定义另一种双点积的方式为: <span class="math inline">\(A\cdot \cdot
+B:=A_{\cdot mn} B_{nm\cdot }\)</span>, 那么对于该点积的定义,
+保持四阶张量不变的单位张量是 <span
+class="math inline">\(\mathcal{F}\)</span>:</p>
+<p><span class="math display">\[
+\mathcal{F}\cdot \cdot \mathbb{L}=\mathbb{L}\cdot \cdot
+\mathcal{F}=\mathbb{L}
+\]</span></p>
+<p>除上述三种定义四阶单位张量的方式之外, 如果四阶张量具有次对称性(<span
+class="math inline">\(L_{ijkl} =L_{jikl} =L_{ijlk}\)</span>),
+还可以定义如下四阶张量:</p>
+<p><span class="math display">\[
+\mathcal{L}=\frac{1}{2}(\mathcal{F}+\mathcal{E})
+\]</span></p>
+<p>与具有次对称性的四阶张量张量作任意形式的双点积,
+都可以得到原来的四阶张量.</p>
+<p>具有次对称性的张量可以用 Voigt 记法表示成矩阵形式,
+四种四阶单位张量中, 只有 <span
+class="math inline">\(\mathcal{E}\)</span> 具有次对称性:</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% preallocate fourth order identity tensor</span></span><br><span class="line">L = <span class="built_in">zeros</span>(<span class="number">6</span>); </span><br><span class="line">F = <span class="built_in">zeros</span>(<span class="number">6</span>);</span><br><span class="line">E = <span class="built_in">zeros</span>(<span class="number">6</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">% Voigt notation</span></span><br><span class="line">mapVToMat = &#123;[<span class="number">1</span>,<span class="number">1</span>],[<span class="number">2</span>,<span class="number">2</span>],[<span class="number">3</span>,<span class="number">3</span>],[<span class="number">2</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">3</span>],[<span class="number">1</span>,<span class="number">2</span>]&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">% E_&#123;ijkl&#125; = delta_&#123;ik&#125;*\delta_&#123;jl&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    E(irow,jcol) = d(<span class="built_in">i</span>,k)*d(<span class="built_in">j</span>,l);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">E</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">E = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     1     0     0</span><br><span class="line">     0     0     0     0     1     0</span><br><span class="line">     0     0     0     0     0     1</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>可见 Voigt 记法下的四阶单位张量 <span
+class="math inline">\([\mathcal{E}]\)</span> 是单位矩阵,
+对任意具有次对称性的四阶张量 <span
+class="math inline">\(\mathbb{L}\)</span>, 也同样可以用 Voigt
+记法表示为矩阵形式 <span class="math inline">\([\mathbb{L}]\)</span>,
+在矩阵表示下, 有</p>
+<p><span class="math display">\[
+[\mathbb{L}][\mathcal{E}]=[\mathcal{E}][\mathbb{L}]=[\mathbb{L}]
+\]</span></p>
+<p>但是, 如果将其它的单位张量用 Voigt 记法表示为矩阵形式,
+由于缺乏次对称性, 单位张量的一些不为 0 的分量被"遗漏"了,
+得到的矩阵形式会缺少信息:</p>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% F_&#123;ijkl&#125; = delta_&#123;il&#125;*\delta_&#123;jk&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    F(irow,jcol) = d(<span class="built_in">i</span>,l)*d(<span class="built_in">j</span>,k);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">F</span><br></pre></td></tr></table></figure>
+<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">F = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="comment">% L_&#123;ijkl&#125; = 1/2*delta_&#123;ik&#125;*\delta_&#123;jl&#125; + 1/2*delta_&#123;il&#125;*\delta_&#123;jk&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    L(irow,jcol) = <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,l)*d(<span class="built_in">j</span>,k) + <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,k)*d(<span class="built_in">j</span>,l);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">L = 6x6    </span><br><span class="line">    1.0000         0         0         0         0         0</span><br><span class="line">         0    1.0000         0         0         0         0</span><br><span class="line">         0         0    1.0000         0         0         0</span><br><span class="line">         0         0         0    0.5000         0         0</span><br><span class="line">         0         0         0         0    0.5000         0</span><br><span class="line">         0         0         0         0         0    0.5000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dij</span> = <span class="title">d</span><span class="params">(i,j)</span></span></span><br><span class="line">  dij = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">i</span>==<span class="built_in">j</span></span><br><span class="line">    dij = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>张量运算</tag>
       </tags>
   </entry>
   <entry>
