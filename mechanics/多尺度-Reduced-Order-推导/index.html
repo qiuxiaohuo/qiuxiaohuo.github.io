@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="4IgN6N71kznUS9PIMp6itE5oUv0s3hzVzFzFOpC-4Ig">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Reduced Order 中函数 \(h_{i}^{kl}\) 与细观力学 Green 函数的关联 在多尺度的单胞问题中, 如果使用本征应变 \(\mu^{\xi}(x)\) 表征材料非弹性的影响, 那么本构方程为: \[ \sigma^{\xi}(x) &#x3D; L^{\xi}(x):\left(\varepsilon^{\xi}(x) - \mu^{\xi}(x)\right) \">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多尺度 Reduced Order 推导">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/mechanics/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/index.html">
+<meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="Reduced Order 中函数 \(h_{i}^{kl}\) 与细观力学 Green 函数的关联 在多尺度的单胞问题中, 如果使用本征应变 \(\mu^{\xi}(x)\) 表征材料非弹性的影响, 那么本构方程为: \[ \sigma^{\xi}(x) &#x3D; L^{\xi}(x):\left(\varepsilon^{\xi}(x) - \mu^{\xi}(x)\right) \">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-15T01:59:09.000Z">
+<meta property="article:modified_time" content="2024-04-15T09:19:39.877Z">
+<meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="多尺度">
+<meta property="article:tag" content="Reduced Order">
+<meta property="article:tag" content="Green 函数">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://qiuxiaohuo.github.io/mechanics/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/mechanics/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/","path":"mechanics/多尺度-Reduced-Order-推导/","title":"多尺度 Reduced Order 推导"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>多尺度 Reduced Order 推导 | 邱小伙的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">邱小伙的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#reduced-order-%E4%B8%AD%E5%87%BD%E6%95%B0-h_ikl-%E4%B8%8E%E7%BB%86%E8%A7%82%E5%8A%9B%E5%AD%A6-green-%E5%87%BD%E6%95%B0%E7%9A%84%E5%85%B3%E8%81%94"><span class="nav-number">1.</span> <span class="nav-text">Reduced
+Order 中函数 \(h_{i}^{kl}\) 与细观力学
+Green 函数的关联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reduced-order-green-%E5%87%BD%E6%95%B0%E5%9C%A8-partition-%E4%B8%8A%E7%9A%84%E7%A7%AF%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">Reduced Order:
+Green 函数在 Partition 上的积分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%B0%BA%E5%BA%A6%E5%BE%97%E5%88%B0%E7%9A%84%E5%8D%95%E8%83%9E%E5%BA%94%E5%8F%98%E5%9C%BA%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">3.</span> <span class="nav-text">多尺度得到的单胞应变场与本征应变的关系</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qiu Xiaohuo"
+      src="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+  <p class="site-author-name" itemprop="name">Qiu Xiaohuo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiuxiaohuo"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnFpdXhpYW9odW9AZ21haWwuY29t" title="E-Mail → mailto:qiuxiaohuo@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mechanics/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="多尺度 Reduced Order 推导 | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          多尺度 Reduced Order 推导
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-15 09:59:09 / 修改时间：17:19:39" itemprop="dateCreated datePublished" datetime="2024-04-15T09:59:09+08:00">2024-04-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="reduced-order-中函数-h_ikl-与细观力学-green-函数的关联">Reduced
+Order 中函数 <span class="math inline">\(h_{i}^{kl}\)</span> 与细观力学
+Green 函数的关联</h2>
+<p>在多尺度的单胞问题中, 如果使用本征应变 <span
+class="math inline">\(\mu^{\xi}(x)\)</span> 表征材料非弹性的影响,
+那么本构方程为:</p>
+<p><span class="math display">\[
+\sigma^{\xi}(x) = L^{\xi}(x):\left(\varepsilon^{\xi}(x) -
+\mu^{\xi}(x)\right)
+\]</span></p>
+<p>对位移变量进行渐近展开, 得到</p>
+<p><span class="math display">\[
+\text{ANSATZ}:u^{\xi}(x) = u^{c}(x) + \xi u^{(1)}(x,y) + O(\xi^2)
+\]</span></p>
+<span id="more"></span>
+<p>依照上述 ANSATZ, 同样也可以得到应变,应力,本征应变的渐进展开式: <span
+class="math display">\[
+\begin{aligned}
+\varepsilon^{\xi}(x) &amp;= \varepsilon^f(x,y) + \xi
+\varepsilon^{(1)}(x,y) + O(\xi^2)\\
+\sigma^{\xi}(x) &amp;= \sigma^{f}(x,y) + \xi \sigma^{(1)}(x,y) +
+O(\xi^2)\\
+\mu^{\xi}(x) &amp;= \mu^f(x,y) + \xi \mu^{(1)}(x,y) + O(\xi^2)
+\end{aligned}
+\]</span></p>
+<p>通过应力平衡方程, 以及解的存在唯一条件,
+可以得到渐进展开式中不同阶次项之间的关系. 其中, fine scale
+上的变量之间的关系式为:</p>
+<p><span class="math display">\[
+\varepsilon^f = \underbrace{\nabla_x u^c}_{\equiv \varepsilon^c} +
+\nabla_y u^{(1)}\\
+\sigma^f = \mathbb{L}(y) : \left( \varepsilon^f - \mu^f \right)
+\]</span></p>
+<p>在多尺度中, 单胞内精细的位移场 <span
+class="math inline">\(u^{(1)}\)</span> 是通过如下方式进行构造的:</p>
+<p><span class="math display">\[
+u_i^{(1)}(x,y) = \underbrace{\varepsilon_{kl}^c(x) H_i^{kl}(y) }_{(1)}
++ \underbrace{\int_{Y} \mu_{kl}^f(x,y^{\prime}) h_{i}^{kl}(y,y^{\prime})
+\mathrm{d} y^{\prime}}_{(2)}
+\]</span></p>
+<p>式中, 第 (1) 项只考虑线弹性材料非均质在单胞内部产生的位移场
+fluctuation; 第 (2) 项考虑单胞内非弹性的本征应变造成的位移场的扰动.</p>
+<p>式 (2) 的构造来源于细观力学 (Mura1987),
+由本征应变产生的位移可以写作本征应变与 Green 函数的卷积形式 <span
+class="math display">\[
+u_{i}(x) = -\int L_{mnkl} G_{in,m}(x-x^{\prime}) \mu_{kl}(x^{\prime})
+\mathrm{d} x^{\prime}
+\tag{3}
+\]</span></p>
+<p>观察式 (2) 与式 (3) 相同的部分, 可以得到</p>
+<p><span class="math display">\[
+h_{i}^{kl}(y,y^{\prime}) = -L_{mnkl} G_{in,m}(y-y^{\prime})
+\tag{4}
+\]</span></p>
+<div class="note info"><p>在细观力学推导 Green 函数过程中, 弹性模量 <span
+class="math inline">\(L_{mnkl}\)</span> 看作是常数, 并没有出现作为
+Fourier 变换后的函数 <span
+class="math inline">\(\hat{L}_{mnkl}\)</span>, 但是单胞问题中, <span
+class="math inline">\(L_{mnkl}\)</span> 是分段常数. 我不确定式 (4) 中
+<span class="math inline">\(L_{mnkl}\)</span> 是不是关于坐标 <span
+class="math inline">\(y\)</span> 或 <span
+class="math inline">\(y^{\prime}\)</span>​ 的函数.</p>
+</div>
+<h2 id="reduced-order-green-函数在-partition-上的积分">Reduced Order:
+Green 函数在 Partition 上的积分</h2>
+<p>在对非均质线弹性单胞问题渐进展开的推导中, 我们得到表征单胞上应变
+fluctuation 的张量场 <span class="math inline">\(E_{ij}^{kl}: Y \mapsto
+\mathcal{S}\)</span>, 现在我们将要推导表征分块 Partition
+上的本征应变的影响张量 <span class="math inline">\(P_{ij}^{kl}:
+Y^{(\alpha)} \mapsto \mathcal{S}\)</span>.</p>
+<p>多尺度在单胞上 fine-scale 应力满足平衡方程以及边界条件: <span
+class="math display">\[
+\nabla_{y} \cdot \sigma^{f} = 0, \quad \sigma^{f} \cdot n \in -\#
+\]</span></p>
+<p>将渐进展开式, 本构方程, 以及关于 <span
+class="math inline">\(u_{i}^{(1)}\)</span> 的表达式 (1), (2)
+代入到平衡方程中得到</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) \left[ E_{kl}^{mn}(y) \varepsilon_{mn}^c(x) +
+\int_{Y} \mu_{mn}^f(x,y^{\prime}) h_{(k,y_l)}^{mn}(y,y^{\prime})
+\mathrm{d} y^{\prime} - \mu_{kl}^f(x,y) \right] \right\}_{,y_j} = 0
+\]</span></p>
+<p>线弹性部分的单胞方程为:</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) E_{kl}^{mn}(y) \right\}_{,y_j} = 0
+\]</span></p>
+<p>本征应变的单胞方程为</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) \left[ \int_{Y} \mu_{mn}^f(x,y^{\prime})
+h_{(k,y_l)}^{mn}(y,y^{\prime}) \mathrm{d} y^{\prime} - \mu_{kl}^f(x,y)
+\right] \right\}_{,y_j} = 0
+\tag{5}
+\]</span></p>
+<p>将单胞分成若干个 partition: <span class="math inline">\(Y^{(1)},
+Y^{(2)}, \ldots, Y^{(N)}\)</span>,并假设每一个 partition
+上的本征应变是相同的, 每个 partition 上的本征应变为 <span
+class="math inline">\(\mu_{mn}^{(1)}(x), \mu_{mn}^{(1)}(x), \ldots,
+\mu_{mn}^{(N)}(x)\)</span>, 这样得到本征应变在单胞上的分段常值分布:</p>
+<p><span class="math display">\[
+\mu_{mn}^{f}(x,y) = \mu_{mn}^{(\alpha)}(x) \chi^{(\alpha)}(y) \quad
+\text{(使用求和约定)}
+\]</span></p>
+<p>代入到本征应变单胞方程 (5) 中, 得到</p>
+<p><span class="math display">\[
+\mu_{mn}^{(\alpha)}(x)\left\{ L_{ijkl}(y) \left[ \int_{Y}
+h_{(k,y_l)}^{mn}(y,y^{\prime}) \chi^{(\alpha)}(y^{\prime}) \mathrm{d}
+y^{\prime} - I_{kl}^{mn}\chi^{(\alpha)}(y) \right] \right\}_{,y_j} = 0
+\]</span></p>
+<p>上式是关于 <span
+class="math inline">\(\mu_{mn}^{(\alpha)}(x)\)</span> 的方程组,
+且方程组系数独立于方程变量. 这样, 如果方程组的解空间为 <span
+class="math inline">\(\mathbb{R}_N\)</span>, 也就是对任意 <span
+class="math inline">\(\mu_{mn}^{(\alpha)}(x) \in \mathbb{R}_N\)</span>,
+上述方程恒成立, 则必须要求方程组系数恒等于 0:</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) \left[ \int_{Y} h_{(k,y_l)}^{mn}(y,y^{\prime})
+\chi^{(\alpha)}(y^{\prime}) \mathrm{d} y^{\prime} -
+I_{kl}^{mn}\chi^{(\alpha)}(y) \right] \right\}_{,y_j} = 0, \quad  \alpha
+= 1,2,\ldots,N
+\]</span></p>
+<p>将 Green 函数在 partition 上的积分定义为</p>
+<p><span class="math display">\[
+P_{kl}^{mn(\alpha)}(y) = \int_{Y} h_{(k,y_l)}^{mn}(y,y^{\prime})
+\chi^{(\alpha)}(y^{\prime}) \mathrm{d} y^{\prime}
+\]</span></p>
+<p>这样就得到关于张量 <span
+class="math inline">\(P_{kl}^{mn(\alpha)}\)</span> 的 <span
+class="math inline">\(N\)</span> 个方程:</p>
+<p><span class="math display">\[
+\left\{ L_{ijkl}(y) \left[ P_{kl}^{mn(\alpha)}(y) -
+I_{kl}^{mn}\chi^{(\alpha)}(y) \right] \right\}_{,y_j} = 0, \text{in}~ Y
+\quad \alpha=1,2, \ldots,N
+\]</span></p>
+<h2
+id="多尺度得到的单胞应变场与本征应变的关系">多尺度得到的单胞应变场与本征应变的关系</h2>
+<p>只考虑本征应变对 fine-scale 应变的影响, 我们有如下关系式:</p>
+<p><span class="math display">\[
+\varepsilon_{ij}^{f}(x,y) = \int_{Y} h_{(i,y_j)}^{kl}(y,y^{\prime})
+\mu_{kl}^{f}(x,y^{\prime}) \mathrm{d} y^{\prime}
+\]</span></p>
+<p>将 reduced order 分块均匀假设代入上式, 就得到</p>
+<p><span class="math display">\[
+\varepsilon_{ij}^{f}(x,y) = P_{ij}^{kl(\alpha)}(y)
+\mu_{kl}^{(\alpha)}(x)
+\]</span></p>
+<p>在每一个分块 <span class="math inline">\(Y^{(\alpha)}\)</span> 上对
+<span class="math inline">\(\varepsilon^f\)</span> 进行积分平均, 得到
+<span class="math display">\[
+\varepsilon_{ij}^{(\beta)}(x) = \langle P_{ij}^{kl(\alpha)}(y)
+\rangle_{Y^{(\beta)}} \mu_{kl}^{(\alpha)}(x)
+= P_{ij}^{kl(\beta \alpha)} \mu_{kl}^{(\alpha)}(x)
+\]</span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" rel="tag"># 多尺度</a>
+              <a href="/tags/Reduced-Order/" rel="tag"># Reduced Order</a>
+              <a href="/tags/Green-%E5%87%BD%E6%95%B0/" rel="tag"># Green 函数</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mechanics/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/" rel="prev" title="弹性力学方程的 Green 函数">
+                  <i class="fa fa-angle-left"></i> 弹性力学方程的 Green 函数
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/math/%E6%95%B0%E5%AD%A6%E6%96%87%E6%A1%A3%E4%B8%AD%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%AD%89%E5%8F%B7%E9%87%8A%E4%B9%89/" rel="next" title="数学相关文档中不同类型的等号释义">
+                  数学相关文档中不同类型的等号释义 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qiu Xiaohuo</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

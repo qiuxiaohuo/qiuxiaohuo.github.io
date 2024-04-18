@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="4IgN6N71kznUS9PIMp6itE5oUv0s3hzVzFzFOpC-4Ig">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="在 Windows 环境下，因为有 Tortoise SVN 和 Visual SVN Server 的存在，SVN 的操作难度降低了不少。但在 Linux 环境下，为了让用户更好地了解 SVN 的工作原理，从而体验自立更生的快乐和自闭，SVN 的种种操作，从建仓到创建用户到配置网络到 checkout 到 commit 到 update，全都是用命令行实现的。虽然一些编译器集成了版本控">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux + apache2 配置 https 协议下的 SVN 仓库">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/Linux/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/index.html">
+<meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="在 Windows 环境下，因为有 Tortoise SVN 和 Visual SVN Server 的存在，SVN 的操作难度降低了不少。但在 Linux 环境下，为了让用户更好地了解 SVN 的工作原理，从而体验自立更生的快乐和自闭，SVN 的种种操作，从建仓到创建用户到配置网络到 checkout 到 commit 到 update，全都是用命令行实现的。虽然一些编译器集成了版本控">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-13T06:10:04.000Z">
+<meta property="article:modified_time" content="2024-04-15T09:17:47.943Z">
+<meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="svn">
+<meta property="article:tag" content="apache2">
+<meta property="article:tag" content="https">
+<meta property="article:tag" content="Linux">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://qiuxiaohuo.github.io/Linux/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/Linux/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/","path":"Linux/Linux-中配置局域网下的-SVN-仓库/","title":"Linux + apache2 配置 https 协议下的 SVN 仓库"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Linux + apache2 配置 https 协议下的 SVN 仓库 | 邱小伙的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">邱小伙的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-sitemap"><a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-apache2-%E7%94%A8%E6%88%B7-www-data"><span class="nav-number">1.</span> <span class="nav-text">创建 apache2 用户 www-data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-svn-%E4%BB%93%E5%BA%93"><span class="nav-number">2.</span> <span class="nav-text">创建 SVN 仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA-svn-%E7%94%A8%E6%88%B7"><span class="nav-number">3.</span> <span class="nav-text">创建 SVN 用户</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0-checkout-svn-%E4%BB%93%E5%BA%93"><span class="nav-number">4.</span> <span class="nav-text">本地 checkout SVN 仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-webdav-%E8%8E%B7%E5%8F%96-svn-%E4%BB%93%E5%BA%93"><span class="nav-number">5.</span> <span class="nav-text">使用 WebDAV 获取 SVN 仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE-https-%E5%8D%8F%E8%AE%AE"><span class="nav-number">6.</span> <span class="nav-text">配置 https 协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%98%B2%E7%81%AB%E5%A2%99%E5%85%81%E8%AE%B8-https"><span class="nav-number">7.</span> <span class="nav-text">防火墙允许 https</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qiu Xiaohuo"
+      src="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+  <p class="site-author-name" itemprop="name">Qiu Xiaohuo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">28</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiuxiaohuo"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnFpdXhpYW9odW9AZ21haWwuY29t" title="E-Mail → mailto:qiuxiaohuo@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/Linux/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Linux + apache2 配置 https 协议下的 SVN 仓库 | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux + apache2 配置 https 协议下的 SVN 仓库
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-13 14:10:04" itemprop="dateCreated datePublished" datetime="2024-04-13T14:10:04+08:00">2024-04-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-15 17:17:47" itemprop="dateModified" datetime="2024-04-15T17:17:47+08:00">2024-04-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>在 Windows 环境下，因为有 Tortoise SVN 和 Visual SVN Server
+的存在，SVN 的操作难度降低了不少。但在 Linux
+环境下，为了让用户更好地了解 SVN
+的工作原理，<del>从而体验自立更生的快乐和自闭，</del>SVN
+的种种操作，从建仓到创建用户到配置网络到 checkout 到 commit 到
+update，全都是用命令行实现的。虽然一些编译器集成了版本控制的功能，但是要建立
+SVN 仓库，据作者有限的知识，应该只能通过命令行创建。本文介绍的是如何在
+Linux 环境下使用 apache2 配置 https 协议下的 SVN 仓库。</p>
+<p>主要的参考文档是：<span class="exturl" data-url="aHR0cHM6Ly9oZWxwLnVidW50dS5jb20vY29tbXVuaXR5L1N1YnZlcnNpb24=">Subversion<i class="fa fa-external-link-alt"></i></span> 和 <span class="exturl" data-url="aHR0cHM6Ly9yYmdlZWsud29yZHByZXNzLmNvbS8yMDEyLzA5LzA5L3N2bi1zZXJ2ZXItb24tdWJ1bnR1LXdpdGgtaHR0cHMtYWNjZXNzLw==">ssl
+配置<i class="fa fa-external-link-alt"></i></span> <span id="more"></span></p>
+<h2 id="创建-apache2-用户-www-data">创建 apache2 用户 www-data</h2>
+<p>apache2
+是与网络相关的服务器，如果我们希望能在同一局域网下的不同设备操作同一个
+SVN 仓库，就必须要配置它。首先我们需要创建一个与 SVN 相关的 group，和
+apache2 的用户：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加组 subversion</span></span><br><span class="line">$ sudo addgroup subversion</span><br><span class="line"><span class="comment"># 在组 subversion 中添加用户 www-data (apache2 用户) 和 laptop</span></span><br><span class="line">$ sudo adduser www-data subversion</span><br><span class="line">$ sudo adduser laptop subversion</span><br></pre></td></tr></table></figure>
+<p>创建的 <code>group</code> 以及所属用户可以查看
+<code>/etc/group</code> 文件获知：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="built_in">cat</span> /etc/group | grep subversion</span><br><span class="line">subversion<span class="github-emoji" alias="x" style="" fallback-src="https://github.githubassets.com/images/icons/emoji/unicode/274c.png?v8">&#x274c;</span>1002:laptop,www-data</span><br></pre></td></tr></table></figure>
+<h2 id="创建-svn-仓库">创建 SVN 仓库</h2>
+<p>如果我们希望在 <code>/repos/svn</code> 创建一个关于 MATLAB
+脚本的仓库，我们可以运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo svnadmin create /repos/svn/MATLAB</span><br></pre></td></tr></table></figure>
+<p>塔嗒！一个 SVN
+仓库就创建好了，是不是很简单？我们先接着往下做吧。因为我们是用
+<code>sudo</code> 命令创建的仓库，所以该仓库所属用户为
+<code>root</code>，如果我们想要读写执行该文档中的数据，每次都要通过
+<code>sudo</code> 来操作，否则会遇到 <code>permission denied</code>
+错误。我们将文件夹的用户修改为 <code>www-data</code>，组修改为
+<code>subversion</code>：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chown</span> -R www:data /repos/svn/MATLAB</span><br></pre></td></tr></table></figure>
+<p>命令中的选项 <code>-R</code>
+表示递归修改指定目录下的所有子文件夹以及文件所属用户和组。修改完之后，我们还需要修改
+SVN 仓库的权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> -R g+rws /repos/svn/MATLAB</span><br></pre></td></tr></table></figure>
+<p>命令表示，对文件夹 <code>MATLAB</code>
+所属的用户<code>g</code>递归<code>-R</code>添加<code>+</code>读写执行<code>rws</code>权限。</p>
+<h2 id="创建-svn-用户">创建 SVN 用户</h2>
+<p>SVN 用户名以及密码存放在 <code>/etc/subversion/passwd</code>
+文件中，第一次创建用户时使用命令 <code>htpasswd -c</code> ：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo htpasswd -c /etc/subversion/passwd laptop</span><br></pre></td></tr></table></figure>
+<p>运行该命令之后，会要求输入用户密码并确认，输入的密码会加密保存在
+<code>passwd</code> 中。</p>
+<div class="note warning"><p><code>-c</code> 会覆盖原来的 <code>passwd</code> 文件！</p>
+</div>
+<p>如果继续添加用户，则运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo htpasswd /etc/subversion/passwd another_laptop</span><br></pre></td></tr></table></figure>
+<p>或者重置原用户的密码：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo htpasswd /etc/subversion/passwd laptop</span><br></pre></td></tr></table></figure>
+<h2 id="本地-checkout-svn-仓库">本地 checkout SVN 仓库</h2>
+<p>现在，如果只需要在本地操作 SVN 的话，那么就可以通过
+<code>file:///</code> 获取：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 注意，命令中有三个反斜杠！</span></span><br><span class="line">svn co file:///repos/svn/MATLAB MATLAB</span><br><span class="line"><span class="comment"># 或者使用 localhost，此时命令有两个反斜杠</span></span><br><span class="line">svn co file://localhost/repos/svn/MATLAB myproject</span><br></pre></td></tr></table></figure>
+<div class="note info"><p>checkout 本地的 SVN 仓库不需要用户名和密码。</p>
+</div>
+<h2 id="使用-webdav-获取-svn-仓库">使用 WebDAV 获取 SVN 仓库</h2>
+<p>许多教程中要求安装的是libapache2-svn，但是对于新版本 Ubuntu
+系统，安装 <span class="exturl" data-url="aHR0cHM6Ly9sYXVuY2hwYWQubmV0L3VidW50dS9iaW9uaWMvK3BhY2thZ2UvbGliYXBhY2hlMi1tb2Qtc3Zu">libapache2-mod-svn<i class="fa fa-external-link-alt"></i></span>
+。</p>
+<p>我们首先配置文件
+<code>/etc/apache2/mods-available/dav_svn.conf</code>，其用途是配置
+apache2 和 subversion 关联：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;Location /svn&gt;</span><br><span class="line">   DAV svn</span><br><span class="line">   SVNParentPath /repos/svn</span><br><span class="line">   SVNListParentPath On</span><br><span class="line">   AuthType Basic</span><br><span class="line">   AuthName <span class="string">&quot;Subversion Repository&quot;</span></span><br><span class="line">   AuthUserFile /etc/subversion/passwd</span><br><span class="line">   Require valid-user</span><br><span class="line">&lt;/Location&gt;</span><br></pre></td></tr></table></figure>
+<p>一些对于该文件的注释：</p>
+<ul>
+<li><code>Location</code> 中的路径 <code>/svn</code> 表示在 checkout SVN
+仓库时，URL 的链接目录。该目录可以不等同于 SVN
+仓库在服务器本地的存储路径。具体来说，如果按照如上配置文件，那么
+checkout 的 SVN 路径应该是
+<code>http://&lt;ip&gt;/svn/&lt;reposName&gt;</code>，不是<del><code>http://&lt;ip&gt;/repos/svn/&lt;reposName&gt;</code></del></li>
+<li><code>SVNParentPath</code> 写入 SVN 仓库的上一级目录</li>
+</ul>
+<p>配置完成之后，需要重启 apache2：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure>
+<p>此时就可以使用 <code>http</code> 协议拉取 SVN 仓库了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co http://hostname/svn/MATLAB --username laptop</span><br></pre></td></tr></table></figure>
+<h2 id="配置-https-协议">配置 https 协议</h2>
+<p>http
+协议客户端与服务器之间的通讯是明文的，为了对通讯进行加密，我们使用 https
+协议，其中多出的「s」表示 ssl。</p>
+<p>首先我们需要打开 apache2 关于 ssl 的模块：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod ssl</span><br></pre></td></tr></table></figure>
+<p>然后我们需要生成自签名证书与密钥。创建目录
+<code>/etc/apache2/ssl</code> ，运行命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo openssl req -new -x509 -days 365 -nodes -out /etc/apache2/ssl/apache.pem -keyout /etc/apache2/ssl/apache.key</span><br></pre></td></tr></table></figure>
+<p>这时在目录 <code>/etc/apache2/ssl</code> 目录下会生成证书
+<code>apache.pem</code> 和密钥 <code>apache.key</code>
+两个文件。我们需要修改文件
+<code>/etc/apache2/sites-available/default-ssl</code>
+中自签名证书和密钥的路径为刚刚生成的两个文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">SSLCertificateFile /etc/apache2/ssl/apache.pem</span><br><span class="line">SSLCertificateKeyFile /etc/apache2/ssl/apache.key</span><br></pre></td></tr></table></figure>
+<p>在之后我们还要修改 <code>/etc/apache2/ports.conf</code> 文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">Listen 80</span><br><span class="line"></span><br><span class="line">&lt;IfModule ssl_module&gt;</span><br><span class="line">        NameVirtualHost *:443</span><br><span class="line">        Listen 443</span><br><span class="line">&lt;/IfModule&gt;</span><br><span class="line"></span><br><span class="line">&lt;IfModule mod_gnutls.c&gt;</span><br><span class="line">        NameVirtualHost *:443</span><br><span class="line">        Listen 443</span><br><span class="line">&lt;/IfModule&gt;</span><br></pre></td></tr></table></figure>
+<p>配置完这些文件之后，我们需要开启 apache2 虚拟主机 ssl（英文是：Enable
+an apache2 virtual host on Debian-based OSes.）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2ensite default-ssl</span><br></pre></td></tr></table></figure>
+<p>以及重启 apache2：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /etc/init.d/apache2 restart</span><br></pre></td></tr></table></figure>
+<p>这时，如果一切顺利的话，我们就可以通过 https 访问 SVN 仓库了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">svn co https://hostname/svn/MATLAB</span><br></pre></td></tr></table></figure>
+<h2 id="防火墙允许-https">防火墙允许 https</h2>
+<p>此时，我们在同一局域网下的客户端，因为服务器防火墙的阻拦，还是不可以
+checkout SVN repos，这时需要在服务器中运行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow https</span><br></pre></td></tr></table></figure>
+<p>就能够允许客户端通过 https 协议访问 SVN 了。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/svn/" rel="tag"># svn</a>
+              <a href="/tags/apache2/" rel="tag"># apache2</a>
+              <a href="/tags/https/" rel="tag"># https</a>
+              <a href="/tags/Linux/" rel="tag"># Linux</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/" rel="prev" title="创作文档管理">
+                  <i class="fa fa-angle-left"></i> 创作文档管理
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/mechanics/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/" rel="next" title="本征应变与本征应力">
+                  本征应变与本征应力 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qiu Xiaohuo</span>
+  </div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

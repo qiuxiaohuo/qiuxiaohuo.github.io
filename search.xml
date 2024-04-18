@@ -2,7 +2,7 @@
 <search>
   <entry>
     <title>Fortran 中的 KIND</title>
-    <url>/2024/04/06/Fortran%20%E4%B8%AD%E7%9A%84%20KIND/</url>
+    <url>/Fortran%20%E4%B8%AD%E7%9A%84%20KIND/</url>
     <content><![CDATA[<p><code>KIND</code>
 并不直接对应变量所占用的字节数，在不同的编译器与系统中可能有不同的对应关系，例如最常见的系统有：</p>
 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">4</span>)  :: xs   <span class="comment">! 4 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">8</span>)  :: xd   <span class="comment">! 8 byte ieee float</span></span><br><span class="line"><span class="keyword">REAl</span>(<span class="keyword">KIND</span>=<span class="number">16</span>) :: xq   <span class="comment">! 16 byte ieee float</span></span><br></pre></td></tr></table></figure>
@@ -37,7 +37,7 @@ Fortran 源码的代码，<code>kindfinder.f90</code></p>
   </entry>
   <entry>
     <title>Git 相关</title>
-    <url>/2024/04/07/Git-%E7%9B%B8%E5%85%B3/</url>
+    <url>/Git-%E7%9B%B8%E5%85%B3/</url>
     <content><![CDATA[<h2 id="git-阅读材料">Git 阅读材料</h2>
 <ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3Yy">Pro Git<i class="fa fa-external-link-alt"></i></span>
@@ -98,7 +98,7 @@ Clash，查看我的笔记本的代理端口为：7890。然后设置 Git 的端
   </entry>
   <entry>
     <title>VSCode 使用 snippets 插入代码注释</title>
-    <url>/2024/04/06/VSCode%20%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E4%B8%AD%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E6%97%B6%E9%97%B4/</url>
+    <url>/VSCode%20%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E4%B8%AD%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E6%97%B6%E9%97%B4/</url>
     <content><![CDATA[<p>突然发现用 snippets 写注释也非常好用啊，比如写 Fortran 的 function 或
 subroutine 的头部注释：</p>
 <figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">! name      : symSchur2</span></span><br><span class="line"><span class="comment">! remark    : get Schur decomposition for 2x2 matrix</span></span><br><span class="line"><span class="comment">!</span></span><br><span class="line"><span class="comment">! version   : 1.0</span></span><br><span class="line"><span class="comment">! date      : 2023-09-06 13:34:25</span></span><br><span class="line"><span class="comment">! author    : Junsong Qiu</span></span><br><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> symSchur2(A,c,s)</span><br><span class="line">...</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> symSchur2</span><br></pre></td></tr></table></figure>
@@ -112,7 +112,7 @@ subroutine 的头部注释：</p>
   </entry>
   <entry>
     <title>Vim 快捷指令</title>
-    <url>/2024/04/05/Vim%20%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/</url>
+    <url>/Vim%20%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="为什么会用-vim">为什么会用 Vim</h2>
 <p>因为 Vim 提供了一种不太一样的文本编辑器哲学.
 它认为代码主要的工作是修改代码, 所以提供了大量的键盘指令操作,
@@ -457,7 +457,7 @@ subroutine 的头部注释：</p>
   </entry>
   <entry>
     <title>Markdown 添加注记文本</title>
-    <url>/2024/04/06/Markdown%20%E4%BD%BF%E7%94%A8%20html%20%E6%A0%87%E7%AD%BE/</url>
+    <url>/Markdown%20%E4%BD%BF%E7%94%A8%20html%20%E6%A0%87%E7%AD%BE/</url>
     <content><![CDATA[<p>在写文档的时候, 我有时会有这样的需求:</p>
 <ul>
 <li>标记一段重要的文本；</li>
@@ -551,7 +551,7 @@ can't leave. What am I?
   </entry>
   <entry>
     <title>创作文档管理</title>
-    <url>/2024/04/12/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/</url>
+    <url>/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<p>我过去的文档管理方式太过粗放，以至我感到自己似乎一直是在原地踏步。这是因为我在用多个平台（知乎，Hexo+NexT
 博客，Zotero 等），用多种方式（MATLAB 实时脚本，LaTeX，Markdown
 等）写文档，这些文档缺少一个「地图」索引，所以我的知识库相互是分割独立的，仿佛一盘散沙，没办法攒出某种结构出来。所以我希望建立一个文档管理的规则，按照这个规则，我可以系统地将所有创作的文档相互关联。<span id="more"></span></p>
@@ -634,7 +634,7 @@ md 文档，在 md 文档首部添加注释行说明 Mathematica文档的信息<
   </entry>
   <entry>
     <title>Hexo + NexT + Github：搭建博客</title>
-    <url>/2023/09/27/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/</url>
+    <url>/%E5%8D%9A%E5%AE%A2%E9%85%8D%E7%BD%AE/</url>
     <content><![CDATA[<p>首先我们先理清一下这三者的关系：</p>
 <ul>
 <li><span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlvL3poLWNuLw==">Hexo<i class="fa fa-external-link-alt"></i></span>
@@ -761,7 +761,7 @@ Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
   </entry>
   <entry>
     <title>如何撰写设计日志</title>
-    <url>/2023/09/30/%E5%A6%82%E4%BD%95%E6%92%B0%E5%86%99%E8%AE%BE%E8%AE%A1%E6%97%A5%E5%BF%97/</url>
+    <url>/%E5%A6%82%E4%BD%95%E6%92%B0%E5%86%99%E8%AE%BE%E8%AE%A1%E6%97%A5%E5%BF%97/</url>
     <content><![CDATA[<p>这段文字来自 MIT 公开课 <span class="exturl" data-url="aHR0cHM6Ly9vY3cubWl0LmVkdS9jb3Vyc2VzLzEtMDUwLXNvbGlkLW1lY2hhbmljcy1mYWxsLTIwMDQvcGFnZXMvc3lsbGFidXMv">1.050<i class="fa fa-external-link-alt"></i></span>，我想我可以按照教授提供的方式尝试一下写设计日志。简要地翻译一下：<span id="more"></span></p>
 <blockquote><p>这本日志被用来记录你的工作过程。它的内容呢，既不是被反复润色的展稿，也不是对出现在你脑海中的想法与字词完完全全的记录。它是一份关于你思维过程的「流水账」，足够详尽，可以使你在隔一段时间后，重建当时的推理，猜想与分析过程。请用墨水手写这份日志。如果你想法改变了，或者发现犯了个错误，不要擦掉重写，而是在你不想保留的内容上画条横线。</p>
 <p>将你的姓名，邮箱，还有手机号写在日志显眼的地方上，如果丢失的话，你就可以把它找回来。将前几页留白，一边进行记录，一边添加页码，一边添加目录。</p>
@@ -773,7 +773,7 @@ Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
   </entry>
   <entry>
     <title>工作站的数据存储方案</title>
-    <url>/2024/04/05/%E5%B7%A5%E4%BD%9C%E7%AB%99%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%96%B9%E6%A1%88/</url>
+    <url>/%E5%B7%A5%E4%BD%9C%E7%AB%99%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<p>现在我的工作站数据分配空间如下 (省略了其它系统盘的存储空间数据)</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">laptop@qxh-Precision-7920-Tower /repos&gt; <span class="built_in">df</span> -h</span><br><span class="line">文件系统        大小  已用  可用 已用% 挂载点</span><br><span class="line">/dev/sdb8       234G   42G  180G   19% /</span><br><span class="line">/dev/sdc3       916G   58G  813G    7% /home</span><br><span class="line">/dev/sda3       3.9T  705G  3.0T   19% /repos</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
@@ -800,7 +800,7 @@ Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
   </entry>
   <entry>
     <title>杂想</title>
-    <url>/2023/09/27/%E6%9D%82%E6%83%B3/</url>
+    <url>/%E6%9D%82%E6%83%B3/</url>
     <content><![CDATA[<p>打破全能的幻觉，认识到自己的局限性，结果是痛苦的。</p>
 <p>我？在一直不停地去认识自己。这过程中，也有取悦自己的意图，寻找种种的理论，解释自己的行为。或者说，用理论支持自己的力量。难免倾向于美化自己。</p>
 <p>别人呢，也会把我推向编织好的结论中去，却不愿讲述他们所推论的依据。事实远比结论更加重要，无论结论是好是坏。<span id="more"></span></p>
@@ -819,7 +819,7 @@ Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
   </entry>
   <entry>
     <title>配置 Typora 上传图片到网络图床</title>
-    <url>/2024/04/07/%E9%85%8D%E7%BD%AE-Typora-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E7%BD%91%E7%BB%9C%E5%9B%BE%E5%BA%8A/</url>
+    <url>/%E9%85%8D%E7%BD%AE-Typora-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E7%BD%91%E7%BB%9C%E5%9B%BE%E5%BA%8A/</url>
     <content><![CDATA[<p>如果在 markdown 文档插入本地路径中的图片，那么移动 markdown
 文档同时还必须考虑图片路径，否则图片总是无法正确显示。而配置网络中的图床，在
 markdown
@@ -884,7 +884,7 @@ alt="typora 上传图片设置" />
   </entry>
   <entry>
     <title>Linux + apache2 配置 https 协议下的 SVN 仓库</title>
-    <url>/2024/04/13/Linux/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/</url>
+    <url>/Linux/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/</url>
     <content><![CDATA[<p>在 Windows 环境下，因为有 Tortoise SVN 和 Visual SVN Server
 的存在，SVN 的操作难度降低了不少。但在 Linux
 环境下，为了让用户更好地了解 SVN
@@ -1003,7 +1003,7 @@ checkout SVN repos，这时需要在服务器中运行如下命令：</p>
   </entry>
   <entry>
     <title>Linux 环境下快速打开 MATLAB 命令行</title>
-    <url>/2024/04/08/Linux/Linux-%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80-MATLAB-%E5%91%BD%E4%BB%A4%E8%A1%8C/</url>
+    <url>/Linux/Linux-%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80-MATLAB-%E5%91%BD%E4%BB%A4%E8%A1%8C/</url>
     <content><![CDATA[<p>在 Ubuntu 22.04 中安装 MATLAB 之后，使用命令行运行 MATLAB 报错：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">laptop@qxh-Precision-7920-Tower:~$ matlab</span><br><span class="line">matlab：未找到命令</span><br></pre></td></tr></table></figure>
 <p>这样每次运行 MATLAB，总是要到路径
@@ -1052,7 +1052,7 @@ matlab，还需要将定义的 <code>alias</code> 加载到 <code>~/.bashrc</cod
   </entry>
   <entry>
     <title>Ubuntu 环境下安装 LaTeX</title>
-    <url>/2024/04/06/Linux/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/</url>
+    <url>/Linux/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/</url>
     <content><![CDATA[<p>如果想懒省事且有充足的安装空间的话，可以直接安装完全体版
 <code>texlive-full</code>：</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install texlive-full</span><br></pre></td></tr></table></figure>
@@ -1092,7 +1092,7 @@ could reinstall the xetex package from a repository.</p>
   </entry>
   <entry>
     <title>tmux 快捷键索引</title>
-    <url>/2024/04/05/Linux/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/</url>
+    <url>/Linux/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/</url>
     <content><![CDATA[<p>tmux 之于命令窗口有点类似于浏览器之于网页, 可在 tmux
 命令环境中操纵多个命令行窗口.<span id="more"></span></p>
 <blockquote>
@@ -1189,7 +1189,7 @@ could reinstall the xetex package from a repository.</p>
   </entry>
   <entry>
     <title>两点张量变形梯度</title>
-    <url>/2023/04/16/mechanics/%E4%B8%A4%E7%82%B9%E5%BC%A0%E9%87%8F%E5%8F%98%E5%BD%A2%E6%A2%AF%E5%BA%A6/</url>
+    <url>/mechanics/%E4%B8%A4%E7%82%B9%E5%BC%A0%E9%87%8F%E5%8F%98%E5%BD%A2%E6%A2%AF%E5%BA%A6/</url>
     <content><![CDATA[<p>首先，连续体在初始时刻 <span class="math inline">\(t_0\)</span>
 所占空间定义为参考构型 <span
 class="math inline">\(\Omega_0\)</span>。在时刻 <span
@@ -1315,7 +1315,7 @@ class="math inline">\(\boldsymbol{i}\)</span>
   </entry>
   <entry>
     <title>使用有限元方法求解单胞方程</title>
-    <url>/2024/04/10/mechanics/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/</url>
+    <url>/mechanics/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="单胞方程的-statement">单胞方程的 statement</h2>
 <p>在三维情景, 线弹性条件下, 单胞方程的弱形式为:</p>
 <p><span class="math display">\[
@@ -1578,7 +1578,7 @@ class="math inline">\(\varepsilon^c\)</span> 引入的位移量, 求解得到的
   </entry>
   <entry>
     <title>四阶单位张量的矩阵表示方法</title>
-    <url>/2024/01/22/mechanics/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/</url>
+    <url>/mechanics/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>四阶单位张量可以表示为含有四个自由指标 Kronecker delta 记号的组合:
 <span class="math inline">\(\delta_{ij} \delta_{kl}\)</span>. 不过,
 与二阶单位张量不同的是, 改变指标的顺序,
@@ -1649,7 +1649,7 @@ class="math inline">\(\mathbb{L}\)</span>, 也同样可以用 Voigt
   </entry>
   <entry>
     <title>多尺度 Reduced Order 推导</title>
-    <url>/2024/04/15/mechanics/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/</url>
+    <url>/mechanics/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/</url>
     <content><![CDATA[<h2 id="reduced-order-中函数-h_ikl-与细观力学-green-函数的关联">Reduced
 Order 中函数 <span class="math inline">\(h_{i}^{kl}\)</span> 与细观力学
 Green 函数的关联</h2>
@@ -1814,7 +1814,7 @@ id="多尺度得到的单胞应变场与本征应变的关系">多尺度得到�
   </entry>
   <entry>
     <title>弹性力学方程的 Green 函数</title>
-    <url>/2024/04/15/mechanics/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/</url>
+    <url>/mechanics/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<p>如果将微分方程写成抽象的算子形式:</p>
 <p><span class="math display">\[
 L[u] + f = 0 \text{ on } \Omega
@@ -2014,7 +2014,7 @@ class="math inline">\(n\)</span> 方向上的位移分量.
   </entry>
   <entry>
     <title>推导非线性本构时用到的张量运算</title>
-    <url>/2024/04/10/mechanics/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/</url>
+    <url>/mechanics/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/</url>
     <content><![CDATA[<h2 id="二阶张量-deviatoric-分解">二阶张量 deviatoric 分解</h2>
 <p>对于二阶张量 <span
 class="math inline">\(\boldsymbol{\varepsilon}\)</span>,
@@ -2242,7 +2242,7 @@ class="math inline">\(\boldsymbol{n}_{\boldsymbol{\sigma}}\)</span>
   </entry>
   <entry>
     <title>本征应变与本征应力</title>
-    <url>/2024/04/15/mechanics/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/</url>
+    <url>/mechanics/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/</url>
     <content><![CDATA[<p>将应变 <span class="math inline">\(\varepsilon\)</span> 分成弹性应变
 <span class="math inline">\(e\)</span> 与本征应变 <span
 class="math inline">\(\mu\)</span>(nonelastic strains, 比如热膨胀, 相变,
@@ -2297,7 +2297,7 @@ class="math inline">\(L_{ijkl}~\mu_{kl}~n_j\)</span>.</p>
   </entry>
   <entry>
     <title>等效夹杂方法</title>
-    <url>/2024/04/15/mechanics/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95/</url>
+    <url>/mechanics/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p>考虑如下场景: 一个无穷大的弹性体 D 中嵌入一个椭球形状的夹杂 <span
 class="math inline">\(\Omega\)</span>, 如果夹杂的弹性模量 <span
 class="math inline">\(C^*_{ijkl}\)</span><strong>与周围弹性体的弹性模量</strong><span
@@ -2394,7 +2394,7 @@ class="math inline">\(\varepsilon\)</span>.</p>
   </entry>
   <entry>
     <title>非线性计算中的增量步与迭代方法</title>
-    <url>/2023/04/16/mechanics/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%A2%9E%E9%87%8F%E6%AD%A5%E4%B8%8E%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95/</url>
+    <url>/mechanics/%E9%9D%9E%E7%BA%BF%E6%80%A7%E8%AE%A1%E7%AE%97%E4%B8%AD%E7%9A%84%E5%A2%9E%E9%87%8F%E6%AD%A5%E4%B8%8E%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<p><strong>参考文献:</strong></p>
 <p><strong>M.A.Crisfield, Non-linear Finite Element Analysis of Solids
 and Structures.</strong></p>
@@ -2604,7 +2604,7 @@ w_{n+1}^{(i+1)} = w_{n+1}^{(i)} + \Delta w_{n+1}^{(i+1)}
   </entry>
   <entry>
     <title>函数范数: 等价类的引入</title>
-    <url>/2023/09/27/math/%E5%87%BD%E6%95%B0%E8%8C%83%E6%95%B0-%E7%AD%89%E4%BB%B7%E7%B1%BB%E7%9A%84%E5%BC%95%E5%85%A5/</url>
+    <url>/math/%E5%87%BD%E6%95%B0%E8%8C%83%E6%95%B0-%E7%AD%89%E4%BB%B7%E7%B1%BB%E7%9A%84%E5%BC%95%E5%85%A5/</url>
     <content><![CDATA[<p>定义某一空间 <span class="math inline">\(V\)</span> 上的范数,
 就是确定该空间上某一个非负实值映射 <span class="math inline">\(\| \cdot
 \|\)</span>, 且该映射满足如下条件:</p>
@@ -2709,7 +2709,7 @@ class="math inline">\(\| f-g \| = 0\)</span>.</p>
   </entry>
   <entry>
     <title>常微分方程唯一性定理的证明</title>
-    <url>/2024/04/16/math/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/</url>
+    <url>/math/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/</url>
     <content><![CDATA[<div class="note success no-icon"><p>对于如下常微分方程: <span class="math display">\[
 \left\{
 \begin{aligned}
@@ -2774,7 +2774,7 @@ f(t) \leq C_0 e^{\int_0^t g(s) \mathrm{d} s}
   </entry>
   <entry>
     <title>数学相关文档中不同类型的等号释义</title>
-    <url>/2024/04/15/math/%E6%95%B0%E5%AD%A6%E6%96%87%E6%A1%A3%E4%B8%AD%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%AD%89%E5%8F%B7%E9%87%8A%E4%B9%89/</url>
+    <url>/math/%E6%95%B0%E5%AD%A6%E6%96%87%E6%A1%A3%E4%B8%AD%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%AD%89%E5%8F%B7%E9%87%8A%E4%B9%89/</url>
     <content><![CDATA[<p>我在数学相关文档的编写中，对三种特殊的等号作如下释义：</p>
 <h2 id="恒等于-equiv">恒等于 <span
 class="math inline">\(\equiv\)</span></h2>
@@ -2840,7 +2840,7 @@ class="math inline">\(\equiv\)</span> 在数论中的含义</p>
   </entry>
   <entry>
     <title>逻辑命题视角下的极限 连续与一致连续</title>
-    <url>/2024/01/24/math/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/</url>
+    <url>/math/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/</url>
     <content><![CDATA[<h3 id="极限的定义-以及否定形式">极限的定义, 以及否定形式</h3>
 <p>关于序列 <span class="math inline">\(\{a_n\}\)</span>
 的极限命题为:</p>
