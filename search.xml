@@ -191,6 +191,20 @@ can't leave. What am I?
 ]]></content>
   </entry>
   <entry>
+    <title>VSCode 使用 snippets 插入代码注释</title>
+    <url>/VSCode%20%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E4%B8%AD%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E6%97%B6%E9%97%B4/</url>
+    <content><![CDATA[<p>突然发现用 snippets 写注释也非常好用啊，比如写 Fortran 的 function 或
+subroutine 的头部注释：</p>
+<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">! name      : symSchur2</span></span><br><span class="line"><span class="comment">! remark    : get Schur decomposition for 2x2 matrix</span></span><br><span class="line"><span class="comment">!</span></span><br><span class="line"><span class="comment">! version   : 1.0</span></span><br><span class="line"><span class="comment">! date      : 2023-09-06 13:34:25</span></span><br><span class="line"><span class="comment">! author    : Junsong Qiu</span></span><br><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> symSchur2(A,c,s)</span><br><span class="line">...</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> symSchur2</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<p>直接在 Fortran 对应的 snippets 设置文件
+<code>FortranFreeForm.json</code> 中加入如下片段：</p>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;Head comments for subroutines&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">		<span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hc&quot;</span><span class="punctuation">,</span></span><br><span class="line">		<span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! name      : $1&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! remark    : $2&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! version   : 1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! date      : $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE  $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! author    : Junsong Qiu&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span></span><br><span class="line">		<span class="punctuation">]</span></span><br><span class="line">	<span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>其中，变量 <code>$1</code> <code>$2</code> 在插入 snippets
+时会自动要求你插入新的内容。时间部分可以用 VSCode 内置的变量添加。</p>
+]]></content>
+  </entry>
+  <entry>
     <title>Vim 快捷指令</title>
     <url>/Vim%20%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/</url>
     <content><![CDATA[<h2 id="为什么会用-vim">为什么会用 Vim</h2>
@@ -536,20 +550,6 @@ can't leave. What am I?
 ]]></content>
   </entry>
   <entry>
-    <title>VSCode 使用 snippets 插入代码注释</title>
-    <url>/VSCode%20%E5%9C%A8%E4%BB%A3%E7%A0%81%E6%B3%A8%E9%87%8A%E4%B8%AD%E8%87%AA%E5%8A%A8%E6%8F%92%E5%85%A5%E6%97%B6%E9%97%B4/</url>
-    <content><![CDATA[<p>突然发现用 snippets 写注释也非常好用啊，比如写 Fortran 的 function 或
-subroutine 的头部注释：</p>
-<figure class="highlight fortran"><table><tr><td class="code"><pre><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="comment">! name      : symSchur2</span></span><br><span class="line"><span class="comment">! remark    : get Schur decomposition for 2x2 matrix</span></span><br><span class="line"><span class="comment">!</span></span><br><span class="line"><span class="comment">! version   : 1.0</span></span><br><span class="line"><span class="comment">! date      : 2023-09-06 13:34:25</span></span><br><span class="line"><span class="comment">! author    : Junsong Qiu</span></span><br><span class="line"><span class="comment">!-----------------------------------------------------------------------------</span></span><br><span class="line"><span class="function"><span class="keyword">subroutine</span></span> symSchur2(A,c,s)</span><br><span class="line">...</span><br><span class="line"><span class="keyword">end</span> <span class="function"><span class="keyword">subroutine</span></span> symSchur2</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<p>直接在 Fortran 对应的 snippets 设置文件
-<code>FortranFreeForm.json</code> 中加入如下片段：</p>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="attr">&quot;Head comments for subroutines&quot;</span><span class="punctuation">:</span><span class="punctuation">&#123;</span></span><br><span class="line">		<span class="attr">&quot;prefix&quot;</span><span class="punctuation">:</span> <span class="string">&quot;hc&quot;</span><span class="punctuation">,</span></span><br><span class="line">		<span class="attr">&quot;body&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! name      : $1&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! remark    : $2&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! version   : 1.0&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! date      : $CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE  $CURRENT_HOUR:$CURRENT_MINUTE:$CURRENT_SECOND&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;! author    : Junsong Qiu&quot;</span><span class="punctuation">,</span></span><br><span class="line">			<span class="string">&quot;!-----------------------------------------------------------------------------&quot;</span></span><br><span class="line">		<span class="punctuation">]</span></span><br><span class="line">	<span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>其中，变量 <code>$1</code> <code>$2</code> 在插入 snippets
-时会自动要求你插入新的内容。时间部分可以用 VSCode 内置的变量添加。</p>
-]]></content>
-  </entry>
-  <entry>
     <title>创作文档管理</title>
     <url>/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/</url>
     <content><![CDATA[<p>我过去的文档管理方式太过粗放，以至我感到自己似乎一直是在原地踏步。这是因为我在用多个平台（知乎，Hexo+NexT
@@ -761,18 +761,6 @@ Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
       </tags>
   </entry>
   <entry>
-    <title>如何撰写设计日志</title>
-    <url>/%E5%A6%82%E4%BD%95%E6%92%B0%E5%86%99%E8%AE%BE%E8%AE%A1%E6%97%A5%E5%BF%97/</url>
-    <content><![CDATA[<p>这段文字来自 MIT 公开课 <span class="exturl" data-url="aHR0cHM6Ly9vY3cubWl0LmVkdS9jb3Vyc2VzLzEtMDUwLXNvbGlkLW1lY2hhbmljcy1mYWxsLTIwMDQvcGFnZXMvc3lsbGFidXMv">1.050<i class="fa fa-external-link-alt"></i></span>，我想我可以按照教授提供的方式尝试一下写设计日志。简要地翻译一下：<span id="more"></span></p>
-<blockquote><p>这本日志被用来记录你的工作过程。它的内容呢，既不是被反复润色的展稿，也不是对出现在你脑海中的想法与字词完完全全的记录。它是一份关于你思维过程的「流水账」，足够详尽，可以使你在隔一段时间后，重建当时的推理，猜想与分析过程。请用墨水手写这份日志。如果你想法改变了，或者发现犯了个错误，不要擦掉重写，而是在你不想保留的内容上画条横线。</p>
-<p>将你的姓名，邮箱，还有手机号写在日志显眼的地方上，如果丢失的话，你就可以把它找回来。将前几页留白，一边进行记录，一边添加页码，一边添加目录。</p>
-<p>在设计的最后，使用一到两页纸总结你的工作——例如，一张标注尺寸的草图；解释哪些参数为什么那么重要；重述设计要求；关于重要约束的笔记。</p>
-<p>请记住：</p>
-<p><strong>过程和结果伯仲难分；手段和目的同等重要。</strong></p>
-</blockquote>
-]]></content>
-  </entry>
-  <entry>
     <title>工作站的数据存储方案</title>
     <url>/%E5%B7%A5%E4%BD%9C%E7%AB%99%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%96%B9%E6%A1%88/</url>
     <content><![CDATA[<p>现在我的工作站数据分配空间如下 (省略了其它系统盘的存储空间数据)</p>
@@ -816,6 +804,18 @@ Github，博客的内容最终展示在互联网上：<code>hexo d</code></li>
 <p>不要尝试去把握
 「我」，以为可以控制它的方向。生命永远在流动中。一切皆注定，而命定的结果，却无人能够破解。只要还在流动，就无法被预告结局怎样。</p>
 <p>流动吧！做一条奔腾不息的河，不舍昼夜地喧嚣，不执著于将要流向哪里。我们都只有一个归宿——大海。在此之前，就让我奉献出最虔敬的行动，谨以作为生命的赞歌！</p>
+]]></content>
+  </entry>
+  <entry>
+    <title>如何撰写设计日志</title>
+    <url>/%E5%A6%82%E4%BD%95%E6%92%B0%E5%86%99%E8%AE%BE%E8%AE%A1%E6%97%A5%E5%BF%97/</url>
+    <content><![CDATA[<p>这段文字来自 MIT 公开课 <span class="exturl" data-url="aHR0cHM6Ly9vY3cubWl0LmVkdS9jb3Vyc2VzLzEtMDUwLXNvbGlkLW1lY2hhbmljcy1mYWxsLTIwMDQvcGFnZXMvc3lsbGFidXMv">1.050<i class="fa fa-external-link-alt"></i></span>，我想我可以按照教授提供的方式尝试一下写设计日志。简要地翻译一下：<span id="more"></span></p>
+<blockquote><p>这本日志被用来记录你的工作过程。它的内容呢，既不是被反复润色的展稿，也不是对出现在你脑海中的想法与字词完完全全的记录。它是一份关于你思维过程的「流水账」，足够详尽，可以使你在隔一段时间后，重建当时的推理，猜想与分析过程。请用墨水手写这份日志。如果你想法改变了，或者发现犯了个错误，不要擦掉重写，而是在你不想保留的内容上画条横线。</p>
+<p>将你的姓名，邮箱，还有手机号写在日志显眼的地方上，如果丢失的话，你就可以把它找回来。将前几页留白，一边进行记录，一边添加页码，一边添加目录。</p>
+<p>在设计的最后，使用一到两页纸总结你的工作——例如，一张标注尺寸的草图；解释哪些参数为什么那么重要；重述设计要求；关于重要约束的笔记。</p>
+<p>请记住：</p>
+<p><strong>过程和结果伯仲难分；手段和目的同等重要。</strong></p>
+</blockquote>
 ]]></content>
   </entry>
   <entry>
@@ -1052,6 +1052,46 @@ matlab，还需要将定义的 <code>alias</code> 加载到 <code>~/.bashrc</cod
       </tags>
   </entry>
   <entry>
+    <title>Ubuntu 环境下安装 LaTeX</title>
+    <url>/Linux/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/</url>
+    <content><![CDATA[<p>如果想懒省事且有充足的安装空间的话，可以直接安装完全体版
+<code>texlive-full</code>：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install texlive-full</span><br></pre></td></tr></table></figure>
+<p>这大概会占用 6 GB 的空间，但是好处是在未来写 <code>tex</code>
+文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。<span id="more"></span></p>
+<p>另外可以安装低配版的宏包，可是在 VSCode 编译时会出现如下错误：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Recipe terminated with fatal error: spawn xelatex ENOENT</span><br></pre></td></tr></table></figure>
+<p>查看网上的问题贴，这应该是因为找不到 <code>xelatex</code>
+的安装路径。但如果装的是低配版的 texlive，我根本就不知道 Ubuntu
+这货把它装在哪里了…</p>
+<p>安装完 <code>texlive-full</code> 之后还有问题：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">I can&#x27;t find the format file `xelatex.fmt&#x27;!</span><br></pre></td></tr></table></figure>
+<p>stackflow 上有相关的<span class="exturl" data-url="aHR0cHM6Ly90ZXguc3RhY2tleGNoYW5nZS5jb20vcXVlc3Rpb25zLzIzMTY0L2ktY2FudC1maW5kLXRoZS1mb3JtYXQtZmlsZS14ZWxhdGV4LWZtdA==">帖子<i class="fa fa-external-link-alt"></i></span>，尝试最高赞的解决方案：</p>
+<blockquote>
+<p>try to run <code>sudo fmtutil-sys --all</code> which should create
+all missing format files.</p>
+</blockquote>
+<p>没有奏效。第二个解决方案是重新安装 <code>xetex</code></p>
+<blockquote>
+<p>If you installed TeX from the repositories of your Linux system, you
+could reinstall the xetex package from a repository.</p>
+<ul>
+<li>Redhat/Fedora: <code>sudo yum reinstall texlive-xetex</code></li>
+<li>Debian/Ubuntu:
+<code>sudo apt-get install --reinstall texlive-xetex</code></li>
+</ul>
+</blockquote>
+<p>It works!</p>
+]]></content>
+      <categories>
+        <category>Linux</category>
+      </categories>
+      <tags>
+        <tag>Linux</tag>
+        <tag>LaTeX</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>tmux 快捷键索引</title>
     <url>/Linux/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/</url>
     <content><![CDATA[<p>tmux 之于命令窗口有点类似于浏览器之于网页, 可在 tmux
@@ -1146,414 +1186,6 @@ matlab，还需要将定义的 <code>alias</code> 加载到 <code>~/.bashrc</cod
       <tags>
         <tag>Linux</tag>
         <tag>tmux</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Ubuntu 环境下安装 LaTeX</title>
-    <url>/Linux/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/</url>
-    <content><![CDATA[<p>如果想懒省事且有充足的安装空间的话，可以直接安装完全体版
-<code>texlive-full</code>：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo apt-get install texlive-full</span><br></pre></td></tr></table></figure>
-<p>这大概会占用 6 GB 的空间，但是好处是在未来写 <code>tex</code>
-文档时，不会加载了奇奇怪怪的宏包之后编译出现 bug。<span id="more"></span></p>
-<p>另外可以安装低配版的宏包，可是在 VSCode 编译时会出现如下错误：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Recipe terminated with fatal error: spawn xelatex ENOENT</span><br></pre></td></tr></table></figure>
-<p>查看网上的问题贴，这应该是因为找不到 <code>xelatex</code>
-的安装路径。但如果装的是低配版的 texlive，我根本就不知道 Ubuntu
-这货把它装在哪里了…</p>
-<p>安装完 <code>texlive-full</code> 之后还有问题：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">I can&#x27;t find the format file `xelatex.fmt&#x27;!</span><br></pre></td></tr></table></figure>
-<p>stackflow 上有相关的<span class="exturl" data-url="aHR0cHM6Ly90ZXguc3RhY2tleGNoYW5nZS5jb20vcXVlc3Rpb25zLzIzMTY0L2ktY2FudC1maW5kLXRoZS1mb3JtYXQtZmlsZS14ZWxhdGV4LWZtdA==">帖子<i class="fa fa-external-link-alt"></i></span>，尝试最高赞的解决方案：</p>
-<blockquote>
-<p>try to run <code>sudo fmtutil-sys --all</code> which should create
-all missing format files.</p>
-</blockquote>
-<p>没有奏效。第二个解决方案是重新安装 <code>xetex</code></p>
-<blockquote>
-<p>If you installed TeX from the repositories of your Linux system, you
-could reinstall the xetex package from a repository.</p>
-<ul>
-<li>Redhat/Fedora: <code>sudo yum reinstall texlive-xetex</code></li>
-<li>Debian/Ubuntu:
-<code>sudo apt-get install --reinstall texlive-xetex</code></li>
-</ul>
-</blockquote>
-<p>It works!</p>
-]]></content>
-      <categories>
-        <category>Linux</category>
-      </categories>
-      <tags>
-        <tag>Linux</tag>
-        <tag>LaTeX</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>函数范数: 等价类的引入</title>
-    <url>/math/%E5%87%BD%E6%95%B0%E8%8C%83%E6%95%B0-%E7%AD%89%E4%BB%B7%E7%B1%BB%E7%9A%84%E5%BC%95%E5%85%A5/</url>
-    <content><![CDATA[<p>定义某一空间 <span class="math inline">\(V\)</span> 上的范数,
-就是确定该空间上某一个非负实值映射 <span class="math inline">\(\| \cdot
-\|\)</span>, 且该映射满足如下条件:</p>
-<ol type="1">
-<li>对任意的 <span class="math inline">\(v \in V\)</span>, <span
-class="math inline">\(\| v \| \geq 0\)</span> 成立, 当且仅当 <span
-class="math inline">\(v = 0\)</span> 时 <span class="math inline">\(\| v
-\| = 0\)</span>;</li>
-<li>对任意的 <span class="math inline">\(c \in \mathbb{R}\)</span> 和
-<span class="math inline">\(v \in V\)</span>, <span
-class="math inline">\(\|cv\| = |c| \|v\|\)</span>;</li>
-<li>对任意的 <span class="math inline">\(u, v \in V\)</span>, 不等式
-<span class="math inline">\(\|u+v\| \leq \|u\| + \|v\|\)</span>
-成立.</li>
-</ol>
-<p>我现在想处理的是, 当空间的概念从有限维的向量空间,
-拓展到无穷维的函数空间上时, 条件 1 中 <span class="math inline">\(v =
-0\)</span> 的定义也需要加以推广, 以适应这个条件中 <span
-class="math inline">\(v=0\)</span> 与 <span class="math inline">\(\|v\|
-= 0\)</span> 的等价性. <span id="more"></span>我们以函数的 <span
-class="math inline">\(1-\)</span>范数 <span class="math display">\[
-\begin{equation}
-  \|\cdot\| = \int|\cdot| \mathrm{d} \Omega
-\end{equation}
-\]</span> 以及定义在 <span class="math inline">\(\Omega = [-1,
-1]\)</span> 上的两个函数 <span class="math inline">\(f(x)\)</span>,
-<span class="math inline">\(g(x)\)</span> <span class="math display">\[
-\begin{equation}
-  f(x) = \begin{cases}
-    1 \quad x \geq 0 \\
-    0 \quad x &lt; 0
-  \end{cases} \quad \quad
-  g(x) = \begin{cases}
-    1 \quad x &gt; 0 \\
-    0 \quad x \leq 0
-  \end{cases}
-\end{equation}
-\]</span> 为例. 函数 <span class="math inline">\(f-g\)</span> 的范数为
-<span class="math display">\[
-\begin{equation}
-  \|f-g\| = \int_{-1}^{1} |f-g| \mathrm{d}x = 0,
-\end{equation}
-\]</span> 根据范数成立的条件 1, 则应该有 <span
-class="math inline">\(f-g=0\)</span>, 或者等价的 <span
-class="math inline">\(f=g\)</span>. 可是, 函数 <span
-class="math inline">\(f(x)\)</span> 与 <span
-class="math inline">\(g(x)\)</span> 在 <span
-class="math inline">\(x=0\)</span> 处并不相等, 如果用数学味比较浓的表达,
-那就是</p>
-<div class="note success no-icon"><p>函数 <span class="math inline">\(f(x)\)</span> 与 <span
-class="math inline">\(g(x)\)</span> 在区间 <span
-class="math inline">\([-1,1]\)</span> 上并不是<strong>逐点</strong>
-(pointwise) 相等的.</p>
-</div>
-<p>为了调和这一概念上的矛盾, 我们有 2 个思路: 1) 修改范数的定义; 2)
-修改函数相等的定义.</p>
-<p>对于第 1 个思路, 我们可以验证, 如果函数的范数定义为 <span
-class="math display">\[
-\|\cdot\| = \max_{-1 \leq x \leq 1} |\cdot|,
-\]</span> 那么 <span class="math inline">\(\|f-g\|\)</span> 等价于 <span
-class="math inline">\(f\)</span>, <span class="math inline">\(g\)</span>
-逐点相等. 这实际是函数的 <span
-class="math inline">\(\infty-\)</span>范数.</p>
-<p>至于思路 2, 我们需要引入<strong>等价类</strong>的概念. 首先我们定义
-<span class="math inline">\(V\)</span> 的子空间 <span
-class="math inline">\(V^0\)</span> <span class="math display">\[
-\begin{equation}
-    V^0 = \{ v^0 \mid \| v^0 \|=0 \}.
-\end{equation}
-\]</span> 那么, 对任意 <span class="math inline">\(v \in V\)</span>,
-<strong><span class="math inline">\(v\)</span> 与所有其它的函数 <span
-class="math inline">\(v+v^0\)</span>, <span class="math inline">\(v^0
-\in V^0\)</span> 共同组成同一个等价类</strong>.</p>
-<p>这样, 我们重新定义相等 "<span class="math inline">\(=\)</span>"
-的概念为</p>
-<div class="note success no-icon"><p><span class="math inline">\(f=g\)</span> <span
-class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(f\)</span> 与 <span
-class="math inline">\(g\)</span> 属于同一个等价类, 即 <span
-class="math inline">\(f = g+v^0\)</span>, <span
-class="math inline">\(v^0 \in V^0\)</span>.</p>
-</div>
-<p>在上述相等的意义下, <span class="math inline">\(f\)</span> 与 <span
-class="math inline">\(g\)</span> 并不一定是逐点相等的,
-但只相差一个范数为 0 的函数 <span class="math inline">\(v^0\)</span>.
-因此,</p>
-<div class="note success no-icon"><p><span class="math inline">\(f=g\)</span> <span
-class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(f = g+v^0\)</span>, <span
-class="math inline">\(v^0 \in V^0\)</span> <span
-class="math inline">\(\Leftrightarrow\)</span> <span
-class="math inline">\(\| f-g \| = 0\)</span>.</p>
-</div>
-<p>这样我们就保证了范数定义中条件 1 的等价性.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>泛函分析</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>常微分方程唯一性定理的证明</title>
-    <url>/math/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/</url>
-    <content><![CDATA[<div class="note success no-icon"><p>对于如下常微分方程: <span class="math display">\[
-\left\{
-\begin{aligned}
-  &amp;\dot{x} = f(t,x)\\
-  &amp;x(0) = x_0
-\end{aligned}
-\right.
-\]</span> 如果 <span class="math inline">\(f(t,x)\)</span> 关于 <span
-class="math inline">\(x\)</span>​ <strong>Lipschitz 连续</strong>,
-那么方程的解唯一.</p>
-</div>
-<span id="more"></span>
-<p>Lipschitz 连续的必要性可以在方程证明中看到,
-所以我们在证明过程中再提出 Lipschitz 条件的具体形式.</p>
-<p>首先假设, 存在 <span class="math inline">\(x_1\)</span>, <span
-class="math inline">\(x_2\)</span>
-两个解满足命题中给出的微分方程和初值条件, 那么有 <span
-class="math display">\[
-\begin{aligned}
-  x_1(t) = x_0 + \int_0^t f(s,x_1(s)) \mathrm{d} s\\
-  x_2(t) = x_0 + \int_0^t f(s,x_2(s)) \mathrm{d} s
-\end{aligned}
-\]</span></p>
-<p>两式相减, 两端取绝对值得到</p>
-<p><span class="math display">\[
-\vert x_1(t) - x_2(t) \vert = \int_0^t \vert  f(s,x_1(s)) - f(s,x_2(s))
-\vert  \mathrm{d} s
-\]</span></p>
-<p>我们希望能得到对方程左端项的估计, 而 Lipschitz 条件要求, 对任意的
-<span class="math inline">\(x,y\in \mathbb{R}_n\)</span>:</p>
-<p><span class="math display">\[
-\vert f(t,x) -f(t,y)  \vert \leq L |x-y|
-\]</span></p>
-<p><span class="math inline">\(L\)</span> 是 Lipschitz 常数, 不依赖于
-<span class="math inline">\(x,y,t\)</span>. 这样我们就得到了关于 <span
-class="math inline">\(r(t) = |x_1(t) - x_2(t)|\)</span> 的积分不等式:
-<span class="math display">\[
-r(t) \leq L \int_{0}^{t} r(s) \mathrm{d} s
-\]</span></p>
-<p>上述不等式又称 Gronwall 不等式, 是对 <span
-class="math inline">\(r(t)\)</span> 最坏情况的指数估计. 如果我们有</p>
-<p><span class="math display">\[
-f(t) \leq C_0 + \int_0^t f(s) g(s) \mathrm{d} s, \quad C_0 \geq 0, f(t),
-g(t) \geq 0
-\]</span></p>
-<p>那么 <span class="math display">\[
-f(t) \leq C_0 e^{\int_0^t g(s) \mathrm{d} s}
-\]</span></p>
-<p>在我们的证明中, <span class="math inline">\(C_0 = 0\)</span>, 所以
-<span class="math display">\[
-0 \leq r(t) \leq 0
-\]</span></p>
-<p>这就得到 <span class="math inline">\(r(t) \equiv 0\)</span>, 所以
-<span class="math inline">\(x_1(t) \equiv x_2(t)\)</span>.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>常微分方程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>数学相关文档中不同类型的等号释义</title>
-    <url>/math/%E6%95%B0%E5%AD%A6%E6%96%87%E6%A1%A3%E4%B8%AD%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%AD%89%E5%8F%B7%E9%87%8A%E4%B9%89/</url>
-    <content><![CDATA[<p>我在数学相关文档的编写中，对三种特殊的等号作如下释义：</p>
-<h2 id="恒等于-equiv">恒等于 <span
-class="math inline">\(\equiv\)</span></h2>
-<p>LaTeX 表达式：<code>\equiv</code></p>
-<p>用在分析语言当中，左侧为函数，右侧为常数，表示等号左侧的函数在定义域上的取值恒等于右侧的常数。例如</p>
-<blockquote>
-<p>三角恒等式 <span class="math display">\[
-\cos^2 x + \sin^2 x \equiv 1
-\]</span></p>
-</blockquote>
-<span id="more"></span>
-<h2 id="定义-triangleq">定义 <span
-class="math inline">\(\triangleq\)</span></h2>
-<p>LaTeX 表达式：<code>\triangleq</code></p>
-<p>定义新的符号，左右两侧表达式中会出现新的符号，并总能通过已定义的符号表示出来，例如</p>
-<blockquote>
-<p>已知物体质量 <span class="math inline">\(m\)</span>，加速度 <span
-class="math inline">\(a\)</span>，我们定义作用在物体上的力 <span
-class="math inline">\(F\)</span> 为 <span class="math display">\[
-F \triangleq ma
-\]</span></p>
-</blockquote>
-<p>符号 <span class="math inline">\(\triangleq\)</span>
-是左右对称的，所以 <span class="math inline">\(\triangleq\)</span>
-左侧不一定总是为新定义的变量，例如</p>
-<blockquote>
-<p>材料中的应变 <span class="math inline">\(\varepsilon\)</span>
-是弹性应变 <span class="math inline">\(e\)</span> 与本征应变 <span
-class="math inline">\(\mu\)</span> 之和： <span class="math display">\[
-\varepsilon \triangleq e + \mu
-\]</span></p>
-</blockquote>
-<h2 id="赋值">赋值 <span class="math inline">\(:=\)</span>​</h2>
-<p>LaTeX 表达式：<code>\coloneqq</code> （依赖宏包
-<code>mathtools</code>）</p>
-<p>在旧的文档中我用来定义变量，与 Computational Inelasticity
-中的符号一致。现在我用符号 <span class="math inline">\(:=\)</span>
-进行赋值，左侧为变量名。右侧为具体值，例如</p>
-<blockquote>
-<p>取测试函数（test function）为常数，也即 <span
-class="math inline">\(v_{i,j}(y) := v_{i,j}\)</span></p>
-</blockquote>
-<h2 id="参考文档">参考文档</h2>
-<p><span class="exturl" data-url="aHR0cHM6Ly9tYXRoLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy8xODIxMDEvYXBwcm9wcmlhdGUtbm90YXRpb24tZXF1aXYtdmVyc3Vz">Appropriate
-Notation: ≡ versus :=<i class="fa fa-external-link-alt"></i></span> 给出了为什么我用 <span
-class="math inline">\(\triangleq\)</span> 取代 <span
-class="math inline">\(:=\)</span> 作为定义符号的原因</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvRXF1YWxzX3NpZ24=">Equal sign<i class="fa fa-external-link-alt"></i></span>
-给出了等号的历史来源，以及所有可能见到的表示左右两端存在某种关系的符号，比如
-<span class="math inline">\(\approx\)</span>，<span
-class="math inline">\(\cong\)</span> ……</p>
-<p><span class="exturl" data-url="aHR0cHM6Ly9tYXRoLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy8xMDU4NTk2L2luLXBsYWluLWxhbmd1YWdlLXdoYXRzLXRoZS1kaWZmZXJlbmNlLWJldHdlZW4tdHdvLXRoaW5ncy10aGF0LWFyZS1lcXVpdmFsZW50">In
-plain language, what's the difference between two things that are
-'equivalent', 'equal', and 'identical'?<i class="fa fa-external-link-alt"></i></span> 给出了 <span
-class="math inline">\(\equiv\)</span> 在数论中的含义</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>逻辑命题</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>逻辑命题视角下的极限 连续与一致连续</title>
-    <url>/math/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/</url>
-    <content><![CDATA[<h3 id="极限的定义-以及否定形式">极限的定义, 以及否定形式</h3>
-<p>关于序列 <span class="math inline">\(\{a_n\}\)</span>
-的极限命题为:</p>
-<blockquote>
-<p>对任意的 <span class="math inline">\(\varepsilon &gt; 0\)</span>,
-存在 <span class="math inline">\(N \in \mathbb{N}\)</span>, 当 <span
-class="math inline">\(n&gt;N\)</span> 时, <span
-class="math inline">\(|a_n - a| &lt; \varepsilon\)</span></p>
-</blockquote>
-<p>我们用<strong>含参数的陈述</strong>表示上述命题的后半段:</p>
-<p><span class="math display">\[
-S(N, \varepsilon): n &gt; N \Rightarrow |a_n - a| &lt; \varepsilon
-\]</span></p>
-<span id="more"></span>
-<p>当给定 <span class="math inline">\((N, \varepsilon)\)</span> 时,
-就可以确定该命题的真伪.
-极限定义就是对上述含参数的陈述添加量词进行修饰:</p>
-<p><span class="math display">\[
-a_n \rightarrow a \Leftrightarrow \forall \varepsilon &gt; 0, \exists N
-\in \mathbb{N} \quad n &gt; N \Rightarrow |a_n - a| &lt; \varepsilon
-\]</span></p>
-<p>注意, <span class="math inline">\(\forall \varepsilon &gt;0\)</span>
- 与 <span class="math inline">\(\exists N \in \mathbb{N}\)</span>
-不能交换顺序, 也即含量词陈述的命题, 量词的顺序不能随意改变, 例如,
-如果修改成</p>
-<p><span class="math display">\[
-\exists N \in \mathbb{N}, \forall \varepsilon &gt; 0 \quad n &gt; N
-\Rightarrow |a_n - a| &lt; \varepsilon
-\]</span></p>
-<p>那么只有常数序列才能存在极限, 这样的定义就是平凡的了.</p>
-<p>注意到, 含量词的命题可以等价为:</p>
-<ul>
-<li><p><span class="math inline">\(\forall x \in X \quad S(x)
-\Longleftrightarrow \bigwedge_{x \in X} S(x)\)</span>;</p></li>
-<li><p><span class="math inline">\(\exists x \in X \quad S(x)
-\Longleftrightarrow \bigvee_{x \in X} S(x)\)</span>.</p></li>
-</ul>
-<p>式中, <span class="math inline">\(\wedge\)</span> 表示命题关系“与”
-(AND), <span class="math inline">\(\vee\)</span> 表示命题关系“或”(OR).
-当否定含量词的命题时, 根据 de Morgan 定律: <span class="math display">\[
-(B~\cup~C)^{\prime} = B^{\prime}~\cap~C^{\prime}\\
-(B~\cap~C)^{\prime} = B^{\prime}~\cup~C^{\prime}
-\]</span></p>
-<ul>
-<li><p><span class="math inline">\(\sim(\forall x \in X \quad S(x))
-\Longleftrightarrow \bigvee_{x \in X}\sim S(x) \Longleftrightarrow
-\exists x \in X \quad \sim S(x)\)</span>;</p></li>
-<li><p><span class="math inline">\(\sim(\exists x \in X \quad S(x))
-\Longleftrightarrow \bigwedge_{x \in X} \sim S(x)\Longleftrightarrow
-\forall x \in X \quad \sim S(x)\)</span>.</p></li>
-</ul>
-<p>注意到, 含参数陈述命题的取值集合 <span
-class="math inline">\(X\)</span> 不会发生改变 (比如取该集合的补集).
-由此我们可以得到极限命题的否定形式:</p>
-<p><span class="math display">\[
-\exists \varepsilon &gt; 0, \forall N \in \mathbb{N} \quad n &gt; N
-\wedge |a_n - a| \geq \varepsilon
-\]</span></p>
-<p>该命题后半部分可以合并为:</p>
-<p><span class="math display">\[
-\exists \varepsilon &gt; 0, \forall N \in \mathbb{N} \quad |a_N - a|
-\geq \varepsilon
-\]</span></p>
-<h3 id="连续与一致连续">连续与一致连续</h3>
-<p>我们用逻辑语言定义一致连续: 给定函数 <span class="math inline">\(f: A
-\mapsto \mathbb{R}^m\)</span>, 定义域 <span class="math inline">\(A
-\subset \mathbb{R}^n\)</span> :</p>
-<p><span class="math display">\[
-\forall \varepsilon &gt; 0, \textcolor{red}{\exists \delta &gt; 0},
-\forall y \in A, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
-\|f(x) - f(y)\| \leq \varepsilon
-\]</span></p>
-<p>而函数 <span class="math inline">\(f\)</span> 在 <span
-class="math inline">\(A\)</span> 上连续的定义为</p>
-<p><span class="math display">\[
-\forall \varepsilon &gt; 0, \forall y \in A, \textcolor{red}{\exists
-\delta &gt; 0}, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
-\|f(x) - f(y)\| \leq \varepsilon
-\]</span></p>
-<p>第二个定义中, 存在量词变量 <span
-class="math inline">\(\delta\)</span> 的选择依赖于之前全称量词变量 <span
-class="math inline">\(y\)</span>,
-这一点改变使得第一个定义和第二个定义并不是等价的
-(虽然看起来只是命题叙述的顺序发生了变化). 事实上,
-第一个命题蕴含第二个命题:</p>
-<p><span class="math display">\[
-f~\text{一致连续} \Rightarrow f~\text{连续}
-\]</span></p>
-<p>证明上述问题是乏味的, 甚至像是在玩弄文字游戏, 我们不妨做一点别的事情,
-比如, 将定义连续的命题中的存在量词 <span class="math inline">\(\exists
-\delta &gt; 0\)</span> 继续后移:</p>
-<p><span class="math display">\[
-\forall \varepsilon &gt; 0, \forall y \in A, \forall x \in A,
-\textcolor{red}{\exists \delta &gt; 0} \quad \|x-y\|\leq\delta
-\Rightarrow \|f(x) - f(y)\| \leq \varepsilon
-\]</span></p>
-<p>该命题本身就构成了重言式, 也就是说, 该命题一直为 true. 证明过程如下:
-对任意给定的 <span class="math inline">\(\varepsilon, x, y\)</span>, 取
-<span class="math inline">\(\delta &gt; \|x-y\|\)</span>, 根据蕴含命题
-<span class="math inline">\(p \Rightarrow q\)</span> 的真值表, 若 <span
-class="math inline">\(p\)</span> 为 false, 则 <span
-class="math inline">\(p \Rightarrow q\)</span> 恒为 true, 无论 <span
-class="math inline">\(q\)</span> 怎样取值. 因此, <span
-class="math inline">\(\|x-y\|\leq\delta \Rightarrow \|f(x) - f(y)\| \leq
-\varepsilon\)</span> 恒为 true.</p>
-<p>假如我们将第三个定义称为”弱连续”, 那么, 根据上述论证,
-所有的函数都是”弱连续”的, 因此, “弱连续“
-就不能够将某一类函数与其它函数区分开. “弱连续“ 的定义是平凡的.</p>
-<p>现在, 如果我们将存在量词移到命题的最前端:</p>
-<p><span class="math display">\[
-\textcolor{red}{\exists \delta &gt; 0}, \forall \varepsilon &gt; 0,
-\forall y \in A, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
-\|f(x) - f(y)\| \leq \varepsilon
-\]</span></p>
-<p>并称满足这个定义的函数为”强一致收敛”函数, 可以看到,
-“强一致收敛“函数只能是常值函数, 因此也是一致收敛函数.综上,
-我们有上述关于连续性命题的强弱关系: <span class="math display">\[
-f~\text{强一致连续} \Rightarrow f~\text{一致连续} \Rightarrow
-f~\text{连续} \Rightarrow f~\text{弱连续}
-\]</span></p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>逻辑命题</tag>
-        <tag>分析</tag>
       </tags>
   </entry>
   <entry>
@@ -2410,158 +2042,6 @@ class="math inline">\(\boldsymbol{n}_{\boldsymbol{\sigma}}\)</span>
       </tags>
   </entry>
   <entry>
-    <title>本征应变与本征应力</title>
-    <url>/mechanics/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/</url>
-    <content><![CDATA[<p>将应变 <span class="math inline">\(\varepsilon\)</span> 分成弹性应变
-<span class="math inline">\(e\)</span> 与本征应变 <span
-class="math inline">\(\mu\)</span>(nonelastic strains, 比如热膨胀, 相变,
-塑性应变等)</p>
-<p><span class="math display">\[
-\varepsilon = e+\mu
-\]</span></p>
-<p>应变 <span class="math inline">\(\varepsilon\)</span> 满足协调方程
-<span class="math inline">\(\varepsilon_{ij} =
-\frac{1}{2}(u_{i,j}+u_{j,i})\)</span>.<span id="more"></span></p>
-<div class="note info"><p>本征应变可以是<strong>不协调的</strong>:</p>
-<p><img
-src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404100950833mura1.png" /></p>
-<p><span class="citation"
-data-citation="%7B%22citationItems%22%3A%5B%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2215%22%7D%5D%2C%22properties%22%3A%7B%7D%7D"
-data-ztype="zcitation">(<span
-class="citation-item"><span class="exturl" data-url="em90ZXJvOi8vc2VsZWN0L2xpYnJhcnkvaXRlbXMvREpLM0w3RjM=">Mura,
-1987, p. 15<i class="fa fa-external-link-alt"></i></span></span>)</span></p>
-<p><img
-src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404100950877mura2.png" />
-<span class="citation"
-data-citation="%7B%22citationItems%22%3A%5B%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2221%22%7D%5D%2C%22properties%22%3A%7B%7D%7D"
-data-ztype="zcitation">(<span
-class="citation-item"><span class="exturl" data-url="em90ZXJvOi8vc2VsZWN0L2xpYnJhcnkvaXRlbXMvREpLM0w3RjM=">Mura,
-1987, p. 21<i class="fa fa-external-link-alt"></i></span></span>)</span></p>
-<p>详细介绍可以看 Mura 第 7 章 dislocations.</p>
-</div>
-<p>本征应变在自由体中 (i.e., 没有体力项, 且没有边界面上的约束)
-中产生本征应力 <span class="math inline">\(\sigma\)</span>,
-满足平衡方程, 胡克定律, 以及边界条件:</p>
-<p><span class="math display">\[
-\nabla \cdot \sigma = 0,\quad \sigma = L:e, \quad \sigma \cdot n = 0
-\]</span></p>
-<p>将上式与应变分解式结合, 得到关于位移场 <span
-class="math inline">\(u_i\)</span> 的方程:</p>
-<p><span class="math display">\[
-L_{ijkl}~u_{k,lj} + \underbrace{(-L_{ijkl}~\mu_{kl,j})}_{:=X_i} = 0 \\
-L_{ijkl}~u_{k,l}~n_j = L_{ijkl}~\mu_{kl}~n_j
-\]</span></p>
-<p>通过上式, 可以将本征应变 <span class="math inline">\(\mu\)</span>
-在自由体中对位移场的扰动看作引入体力项 <span
-class="math inline">\(-L_{ijkl}~\mu_{kl,j}\)</span> 和面力项 <span
-class="math inline">\(L_{ijkl}~\mu_{kl}~n_j\)</span>.</p>
-]]></content>
-      <categories>
-        <category>力学</category>
-      </categories>
-      <tags>
-        <tag>Eshelby 问题</tag>
-        <tag>细观力学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>等效夹杂方法</title>
-    <url>/mechanics/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<p>考虑如下场景: 一个无穷大的弹性体 D 中嵌入一个椭球形状的夹杂 <span
-class="math inline">\(\Omega\)</span>, 如果夹杂的弹性模量 <span
-class="math inline">\(C^*_{ijkl}\)</span><strong>与周围弹性体的弹性模量</strong><span
-class="math inline">\(C_{ijkl}\)</span> 不同,
-则称该夹杂为<strong>非均质夹杂</strong>. 因为非均质夹杂的存在,
-其附近的应力场会发生改变. 考虑无穷远处的应变场强度为 <span
-class="math inline">\(\varepsilon^0\)</span>, 对应的应力场为 <span
-class="math inline">\(\sigma^0 = C : \varepsilon^0\)</span>,
-应变与应力场扰动量分别为 <span
-class="math inline">\(\varepsilon\)</span> 和 <span
-class="math inline">\(\sigma\)</span>, 因此真实的位移和应力为 <span
-class="math inline">\(u_i^0 + u_i\)</span> 和 <span
-class="math inline">\(\sigma^0 + \sigma\)</span>.<span id="more"></span></p>
-<p>应力扰动项 <span class="math inline">\(\sigma\)</span>
-满足应力平衡方程(不考虑外力),
-以及在无穷远处等于0(或者在有限区域表面等于0)</p>
-<p><span class="math display">\[
-\left\{
-\begin{aligned}
-\nabla \cdot \sigma = 0\\
-\sigma \cdot n = 0
-\end{aligned}
-\right.
-\]</span></p>
-<p>在夹杂内外满足本构方程:</p>
-<p><span class="math display">\[
-\left\{
-\begin{aligned}
-&amp; \sigma^0+\sigma=\textcolor{red}{L^* :
-\left(\varepsilon^0+\varepsilon-\mu\right)} \quad \text { in } \Omega,
-\\
-&amp; \sigma^0+\sigma=L : \left(\varepsilon^0+\varepsilon\right) \quad
-\text { in } D-\Omega .
-\end{aligned}
-\right.
-\tag{1}
-\]</span></p>
-<p>而 Eshelby 方法所解决的原始问题是: 考虑无穷大的弹性体,
-其中嵌入一个椭球夹杂, 该夹杂弹性模量与弹性体<strong>一致</strong>,
-然而夹杂内给定常数值的本征应变 <span class="math inline">\(\mu\)</span>,
-由此, Eshelby 问题所满足的本构方程为</p>
-<p><span class="math display">\[
-\left\{
-\begin{aligned}
-&amp; \sigma^0+\sigma=\textcolor{red}{L :
-\left(\varepsilon^0+\varepsilon-\tilde{\mu}\right)} \text { in } \Omega,
-\\
-&amp; \sigma^0+\sigma=L : \left(\varepsilon^0+\varepsilon\right) \text {
-in } D-\Omega .
-\end{aligned}
-\right.
-\tag{2}
-\]</span></p>
-<p>若令这两类问题等价, 则充要条件是方程组 (1) (2) <span
-class="math inline">\(\Omega\)</span> 内的方程右端项相等</p>
-<p><span class="math display">\[
-L^* : \left(\varepsilon^0+\varepsilon-\mu\right) = L :
-\left(\varepsilon^0+\varepsilon-\tilde{\mu}\right) \text { in } \Omega
-\tag{3}
-\]</span></p>
-<p>求解 Eshelby 本征应变问题可以得到等效本征应变 <span
-class="math inline">\(\tilde{\mu}\)</span> 与夹杂内外由夹杂引起的应变场
-<span class="math inline">\(\varepsilon\)</span> 之间的关系:</p>
-<p><span class="math display">\[
-\begin{align}
-  \varepsilon &amp;= S:\tilde{\mu} \quad x \text{ in } \Omega,\\
-  \varepsilon(x) &amp;= D(x):\tilde{\mu} \quad x \text{ in } D-\Omega,
-\end{align}
-\]</span></p>
-<p>将这一关系代入到式 (3) 中, 给定远端应力 <span
-class="math inline">\(\varepsilon^0\)</span>, 以及夹杂上的本征应变 <span
-class="math inline">\(\mu\)</span>, 就可以得到关于等效本征应变 <span
-class="math inline">\(\tilde{\mu}\)</span> 所满足的方程:</p>
-<p><span class="math display">\[
-L^* : \left(\varepsilon^0+\varepsilon(\tilde{\mu})-\mu\right) = L :
-\left(\varepsilon^0+\varepsilon(\tilde{\mu})-\tilde{\mu}\right) \text {
-in } \Omega
-\]</span></p>
-<p>或者写成</p>
-<p><span class="math display">\[
-\delta L : \varepsilon(\tilde{\mu}) + L:\tilde{\mu} = -\delta L :
-\varepsilon^0 + L^{*} : \mu, \quad \delta L = L^{*} - L
-\]</span></p>
-<p>如果 Eshelby 问题已经解出, 那么就可以得到整个区域上的应变场 <span
-class="math inline">\(\varepsilon\)</span>.</p>
-]]></content>
-      <categories>
-        <category>力学</category>
-      </categories>
-      <tags>
-        <tag>Eshelby 问题</tag>
-        <tag>细观力学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>弹性力学方程的 Green 函数</title>
     <url>/mechanics/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/</url>
     <content><![CDATA[<p>如果将微分方程写成抽象的算子形式:</p>
@@ -2759,6 +2239,158 @@ class="math inline">\(n\)</span> 方向上的位移分量.
         <tag>Green 函数</tag>
         <tag>弹性力学</tag>
         <tag>Fourier 变换</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>本征应变与本征应力</title>
+    <url>/mechanics/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/</url>
+    <content><![CDATA[<p>将应变 <span class="math inline">\(\varepsilon\)</span> 分成弹性应变
+<span class="math inline">\(e\)</span> 与本征应变 <span
+class="math inline">\(\mu\)</span>(nonelastic strains, 比如热膨胀, 相变,
+塑性应变等)</p>
+<p><span class="math display">\[
+\varepsilon = e+\mu
+\]</span></p>
+<p>应变 <span class="math inline">\(\varepsilon\)</span> 满足协调方程
+<span class="math inline">\(\varepsilon_{ij} =
+\frac{1}{2}(u_{i,j}+u_{j,i})\)</span>.<span id="more"></span></p>
+<div class="note info"><p>本征应变可以是<strong>不协调的</strong>:</p>
+<p><img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404100950833mura1.png" /></p>
+<p><span class="citation"
+data-citation="%7B%22citationItems%22%3A%5B%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2215%22%7D%5D%2C%22properties%22%3A%7B%7D%7D"
+data-ztype="zcitation">(<span
+class="citation-item"><span class="exturl" data-url="em90ZXJvOi8vc2VsZWN0L2xpYnJhcnkvaXRlbXMvREpLM0w3RjM=">Mura,
+1987, p. 15<i class="fa fa-external-link-alt"></i></span></span>)</span></p>
+<p><img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404100950877mura2.png" />
+<span class="citation"
+data-citation="%7B%22citationItems%22%3A%5B%7B%22uris%22%3A%5B%22http%3A%2F%2Fzotero.org%2Fusers%2F11864068%2Fitems%2FDJK3L7F3%22%5D%2C%22locator%22%3A%2221%22%7D%5D%2C%22properties%22%3A%7B%7D%7D"
+data-ztype="zcitation">(<span
+class="citation-item"><span class="exturl" data-url="em90ZXJvOi8vc2VsZWN0L2xpYnJhcnkvaXRlbXMvREpLM0w3RjM=">Mura,
+1987, p. 21<i class="fa fa-external-link-alt"></i></span></span>)</span></p>
+<p>详细介绍可以看 Mura 第 7 章 dislocations.</p>
+</div>
+<p>本征应变在自由体中 (i.e., 没有体力项, 且没有边界面上的约束)
+中产生本征应力 <span class="math inline">\(\sigma\)</span>,
+满足平衡方程, 胡克定律, 以及边界条件:</p>
+<p><span class="math display">\[
+\nabla \cdot \sigma = 0,\quad \sigma = L:e, \quad \sigma \cdot n = 0
+\]</span></p>
+<p>将上式与应变分解式结合, 得到关于位移场 <span
+class="math inline">\(u_i\)</span> 的方程:</p>
+<p><span class="math display">\[
+L_{ijkl}~u_{k,lj} + \underbrace{(-L_{ijkl}~\mu_{kl,j})}_{:=X_i} = 0 \\
+L_{ijkl}~u_{k,l}~n_j = L_{ijkl}~\mu_{kl}~n_j
+\]</span></p>
+<p>通过上式, 可以将本征应变 <span class="math inline">\(\mu\)</span>
+在自由体中对位移场的扰动看作引入体力项 <span
+class="math inline">\(-L_{ijkl}~\mu_{kl,j}\)</span> 和面力项 <span
+class="math inline">\(L_{ijkl}~\mu_{kl}~n_j\)</span>.</p>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>Eshelby 问题</tag>
+        <tag>细观力学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>等效夹杂方法</title>
+    <url>/mechanics/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<p>考虑如下场景: 一个无穷大的弹性体 D 中嵌入一个椭球形状的夹杂 <span
+class="math inline">\(\Omega\)</span>, 如果夹杂的弹性模量 <span
+class="math inline">\(C^*_{ijkl}\)</span><strong>与周围弹性体的弹性模量</strong><span
+class="math inline">\(C_{ijkl}\)</span> 不同,
+则称该夹杂为<strong>非均质夹杂</strong>. 因为非均质夹杂的存在,
+其附近的应力场会发生改变. 考虑无穷远处的应变场强度为 <span
+class="math inline">\(\varepsilon^0\)</span>, 对应的应力场为 <span
+class="math inline">\(\sigma^0 = C : \varepsilon^0\)</span>,
+应变与应力场扰动量分别为 <span
+class="math inline">\(\varepsilon\)</span> 和 <span
+class="math inline">\(\sigma\)</span>, 因此真实的位移和应力为 <span
+class="math inline">\(u_i^0 + u_i\)</span> 和 <span
+class="math inline">\(\sigma^0 + \sigma\)</span>.<span id="more"></span></p>
+<p>应力扰动项 <span class="math inline">\(\sigma\)</span>
+满足应力平衡方程(不考虑外力),
+以及在无穷远处等于0(或者在有限区域表面等于0)</p>
+<p><span class="math display">\[
+\left\{
+\begin{aligned}
+\nabla \cdot \sigma = 0\\
+\sigma \cdot n = 0
+\end{aligned}
+\right.
+\]</span></p>
+<p>在夹杂内外满足本构方程:</p>
+<p><span class="math display">\[
+\left\{
+\begin{aligned}
+&amp; \sigma^0+\sigma=\textcolor{red}{L^* :
+\left(\varepsilon^0+\varepsilon-\mu\right)} \quad \text { in } \Omega,
+\\
+&amp; \sigma^0+\sigma=L : \left(\varepsilon^0+\varepsilon\right) \quad
+\text { in } D-\Omega .
+\end{aligned}
+\right.
+\tag{1}
+\]</span></p>
+<p>而 Eshelby 方法所解决的原始问题是: 考虑无穷大的弹性体,
+其中嵌入一个椭球夹杂, 该夹杂弹性模量与弹性体<strong>一致</strong>,
+然而夹杂内给定常数值的本征应变 <span class="math inline">\(\mu\)</span>,
+由此, Eshelby 问题所满足的本构方程为</p>
+<p><span class="math display">\[
+\left\{
+\begin{aligned}
+&amp; \sigma^0+\sigma=\textcolor{red}{L :
+\left(\varepsilon^0+\varepsilon-\tilde{\mu}\right)} \text { in } \Omega,
+\\
+&amp; \sigma^0+\sigma=L : \left(\varepsilon^0+\varepsilon\right) \text {
+in } D-\Omega .
+\end{aligned}
+\right.
+\tag{2}
+\]</span></p>
+<p>若令这两类问题等价, 则充要条件是方程组 (1) (2) <span
+class="math inline">\(\Omega\)</span> 内的方程右端项相等</p>
+<p><span class="math display">\[
+L^* : \left(\varepsilon^0+\varepsilon-\mu\right) = L :
+\left(\varepsilon^0+\varepsilon-\tilde{\mu}\right) \text { in } \Omega
+\tag{3}
+\]</span></p>
+<p>求解 Eshelby 本征应变问题可以得到等效本征应变 <span
+class="math inline">\(\tilde{\mu}\)</span> 与夹杂内外由夹杂引起的应变场
+<span class="math inline">\(\varepsilon\)</span> 之间的关系:</p>
+<p><span class="math display">\[
+\begin{align}
+  \varepsilon &amp;= S:\tilde{\mu} \quad x \text{ in } \Omega,\\
+  \varepsilon(x) &amp;= D(x):\tilde{\mu} \quad x \text{ in } D-\Omega,
+\end{align}
+\]</span></p>
+<p>将这一关系代入到式 (3) 中, 给定远端应力 <span
+class="math inline">\(\varepsilon^0\)</span>, 以及夹杂上的本征应变 <span
+class="math inline">\(\mu\)</span>, 就可以得到关于等效本征应变 <span
+class="math inline">\(\tilde{\mu}\)</span> 所满足的方程:</p>
+<p><span class="math display">\[
+L^* : \left(\varepsilon^0+\varepsilon(\tilde{\mu})-\mu\right) = L :
+\left(\varepsilon^0+\varepsilon(\tilde{\mu})-\tilde{\mu}\right) \text {
+in } \Omega
+\]</span></p>
+<p>或者写成</p>
+<p><span class="math display">\[
+\delta L : \varepsilon(\tilde{\mu}) + L:\tilde{\mu} = -\delta L :
+\varepsilon^0 + L^{*} : \mu, \quad \delta L = L^{*} - L
+\]</span></p>
+<p>如果 Eshelby 问题已经解出, 那么就可以得到整个区域上的应变场 <span
+class="math inline">\(\varepsilon\)</span>.</p>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>Eshelby 问题</tag>
+        <tag>细观力学</tag>
       </tags>
   </entry>
   <entry>
@@ -2969,6 +2601,374 @@ w_{n+1}^{(i+1)} = w_{n+1}^{(i)} + \Delta w_{n+1}^{(i+1)}
       <tags>
         <tag>非线性有限元</tag>
         <tag>刚度矩阵</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>函数范数: 等价类的引入</title>
+    <url>/math/%E5%87%BD%E6%95%B0%E8%8C%83%E6%95%B0-%E7%AD%89%E4%BB%B7%E7%B1%BB%E7%9A%84%E5%BC%95%E5%85%A5/</url>
+    <content><![CDATA[<p>定义某一空间 <span class="math inline">\(V\)</span> 上的范数,
+就是确定该空间上某一个非负实值映射 <span class="math inline">\(\| \cdot
+\|\)</span>, 且该映射满足如下条件:</p>
+<ol type="1">
+<li>对任意的 <span class="math inline">\(v \in V\)</span>, <span
+class="math inline">\(\| v \| \geq 0\)</span> 成立, 当且仅当 <span
+class="math inline">\(v = 0\)</span> 时 <span class="math inline">\(\| v
+\| = 0\)</span>;</li>
+<li>对任意的 <span class="math inline">\(c \in \mathbb{R}\)</span> 和
+<span class="math inline">\(v \in V\)</span>, <span
+class="math inline">\(\|cv\| = |c| \|v\|\)</span>;</li>
+<li>对任意的 <span class="math inline">\(u, v \in V\)</span>, 不等式
+<span class="math inline">\(\|u+v\| \leq \|u\| + \|v\|\)</span>
+成立.</li>
+</ol>
+<p>我现在想处理的是, 当空间的概念从有限维的向量空间,
+拓展到无穷维的函数空间上时, 条件 1 中 <span class="math inline">\(v =
+0\)</span> 的定义也需要加以推广, 以适应这个条件中 <span
+class="math inline">\(v=0\)</span> 与 <span class="math inline">\(\|v\|
+= 0\)</span> 的等价性. <span id="more"></span>我们以函数的 <span
+class="math inline">\(1-\)</span>范数 <span class="math display">\[
+\begin{equation}
+  \|\cdot\| = \int|\cdot| \mathrm{d} \Omega
+\end{equation}
+\]</span> 以及定义在 <span class="math inline">\(\Omega = [-1,
+1]\)</span> 上的两个函数 <span class="math inline">\(f(x)\)</span>,
+<span class="math inline">\(g(x)\)</span> <span class="math display">\[
+\begin{equation}
+  f(x) = \begin{cases}
+    1 \quad x \geq 0 \\
+    0 \quad x &lt; 0
+  \end{cases} \quad \quad
+  g(x) = \begin{cases}
+    1 \quad x &gt; 0 \\
+    0 \quad x \leq 0
+  \end{cases}
+\end{equation}
+\]</span> 为例. 函数 <span class="math inline">\(f-g\)</span> 的范数为
+<span class="math display">\[
+\begin{equation}
+  \|f-g\| = \int_{-1}^{1} |f-g| \mathrm{d}x = 0,
+\end{equation}
+\]</span> 根据范数成立的条件 1, 则应该有 <span
+class="math inline">\(f-g=0\)</span>, 或者等价的 <span
+class="math inline">\(f=g\)</span>. 可是, 函数 <span
+class="math inline">\(f(x)\)</span> 与 <span
+class="math inline">\(g(x)\)</span> 在 <span
+class="math inline">\(x=0\)</span> 处并不相等, 如果用数学味比较浓的表达,
+那就是</p>
+<div class="note success no-icon"><p>函数 <span class="math inline">\(f(x)\)</span> 与 <span
+class="math inline">\(g(x)\)</span> 在区间 <span
+class="math inline">\([-1,1]\)</span> 上并不是<strong>逐点</strong>
+(pointwise) 相等的.</p>
+</div>
+<p>为了调和这一概念上的矛盾, 我们有 2 个思路: 1) 修改范数的定义; 2)
+修改函数相等的定义.</p>
+<p>对于第 1 个思路, 我们可以验证, 如果函数的范数定义为 <span
+class="math display">\[
+\|\cdot\| = \max_{-1 \leq x \leq 1} |\cdot|,
+\]</span> 那么 <span class="math inline">\(\|f-g\|\)</span> 等价于 <span
+class="math inline">\(f\)</span>, <span class="math inline">\(g\)</span>
+逐点相等. 这实际是函数的 <span
+class="math inline">\(\infty-\)</span>范数.</p>
+<p>至于思路 2, 我们需要引入<strong>等价类</strong>的概念. 首先我们定义
+<span class="math inline">\(V\)</span> 的子空间 <span
+class="math inline">\(V^0\)</span> <span class="math display">\[
+\begin{equation}
+    V^0 = \{ v^0 \mid \| v^0 \|=0 \}.
+\end{equation}
+\]</span> 那么, 对任意 <span class="math inline">\(v \in V\)</span>,
+<strong><span class="math inline">\(v\)</span> 与所有其它的函数 <span
+class="math inline">\(v+v^0\)</span>, <span class="math inline">\(v^0
+\in V^0\)</span> 共同组成同一个等价类</strong>.</p>
+<p>这样, 我们重新定义相等 "<span class="math inline">\(=\)</span>"
+的概念为</p>
+<div class="note success no-icon"><p><span class="math inline">\(f=g\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(f\)</span> 与 <span
+class="math inline">\(g\)</span> 属于同一个等价类, 即 <span
+class="math inline">\(f = g+v^0\)</span>, <span
+class="math inline">\(v^0 \in V^0\)</span>.</p>
+</div>
+<p>在上述相等的意义下, <span class="math inline">\(f\)</span> 与 <span
+class="math inline">\(g\)</span> 并不一定是逐点相等的,
+但只相差一个范数为 0 的函数 <span class="math inline">\(v^0\)</span>.
+因此,</p>
+<div class="note success no-icon"><p><span class="math inline">\(f=g\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(f = g+v^0\)</span>, <span
+class="math inline">\(v^0 \in V^0\)</span> <span
+class="math inline">\(\Leftrightarrow\)</span> <span
+class="math inline">\(\| f-g \| = 0\)</span>.</p>
+</div>
+<p>这样我们就保证了范数定义中条件 1 的等价性.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>泛函分析</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>常微分方程唯一性定理的证明</title>
+    <url>/math/%E5%B8%B8%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%94%AF%E4%B8%80%E6%80%A7%E5%AE%9A%E7%90%86%E7%9A%84%E8%AF%81%E6%98%8E/</url>
+    <content><![CDATA[<div class="note success no-icon"><p>对于如下常微分方程: <span class="math display">\[
+\left\{
+\begin{aligned}
+  &amp;\dot{x} = f(t,x)\\
+  &amp;x(0) = x_0
+\end{aligned}
+\right.
+\]</span> 如果 <span class="math inline">\(f(t,x)\)</span> 关于 <span
+class="math inline">\(x\)</span>​ <strong>Lipschitz 连续</strong>,
+那么方程的解唯一.</p>
+</div>
+<span id="more"></span>
+<p>Lipschitz 连续的必要性可以在方程证明中看到,
+所以我们在证明过程中再提出 Lipschitz 条件的具体形式.</p>
+<p>首先假设, 存在 <span class="math inline">\(x_1\)</span>, <span
+class="math inline">\(x_2\)</span>
+两个解满足命题中给出的微分方程和初值条件, 那么有 <span
+class="math display">\[
+\begin{aligned}
+  x_1(t) = x_0 + \int_0^t f(s,x_1(s)) \mathrm{d} s\\
+  x_2(t) = x_0 + \int_0^t f(s,x_2(s)) \mathrm{d} s
+\end{aligned}
+\]</span></p>
+<p>两式相减, 两端取绝对值得到</p>
+<p><span class="math display">\[
+\vert x_1(t) - x_2(t) \vert = \int_0^t \vert  f(s,x_1(s)) - f(s,x_2(s))
+\vert  \mathrm{d} s
+\]</span></p>
+<p>我们希望能得到对方程左端项的估计, 而 Lipschitz 条件要求, 对任意的
+<span class="math inline">\(x,y\in \mathbb{R}_n\)</span>:</p>
+<p><span class="math display">\[
+\vert f(t,x) -f(t,y)  \vert \leq L |x-y|
+\]</span></p>
+<p><span class="math inline">\(L\)</span> 是 Lipschitz 常数, 不依赖于
+<span class="math inline">\(x,y,t\)</span>. 这样我们就得到了关于 <span
+class="math inline">\(r(t) = |x_1(t) - x_2(t)|\)</span> 的积分不等式:
+<span class="math display">\[
+r(t) \leq L \int_{0}^{t} r(s) \mathrm{d} s
+\]</span></p>
+<p>上述不等式又称 Gronwall 不等式, 是对 <span
+class="math inline">\(r(t)\)</span> 最坏情况的指数估计. 如果我们有</p>
+<p><span class="math display">\[
+f(t) \leq C_0 + \int_0^t f(s) g(s) \mathrm{d} s, \quad C_0 \geq 0, f(t),
+g(t) \geq 0
+\]</span></p>
+<p>那么 <span class="math display">\[
+f(t) \leq C_0 e^{\int_0^t g(s) \mathrm{d} s}
+\]</span></p>
+<p>在我们的证明中, <span class="math inline">\(C_0 = 0\)</span>, 所以
+<span class="math display">\[
+0 \leq r(t) \leq 0
+\]</span></p>
+<p>这就得到 <span class="math inline">\(r(t) \equiv 0\)</span>, 所以
+<span class="math inline">\(x_1(t) \equiv x_2(t)\)</span>.</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>常微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>逻辑命题视角下的极限 连续与一致连续</title>
+    <url>/math/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/</url>
+    <content><![CDATA[<h3 id="极限的定义-以及否定形式">极限的定义, 以及否定形式</h3>
+<p>关于序列 <span class="math inline">\(\{a_n\}\)</span>
+的极限命题为:</p>
+<blockquote>
+<p>对任意的 <span class="math inline">\(\varepsilon &gt; 0\)</span>,
+存在 <span class="math inline">\(N \in \mathbb{N}\)</span>, 当 <span
+class="math inline">\(n&gt;N\)</span> 时, <span
+class="math inline">\(|a_n - a| &lt; \varepsilon\)</span></p>
+</blockquote>
+<p>我们用<strong>含参数的陈述</strong>表示上述命题的后半段:</p>
+<p><span class="math display">\[
+S(N, \varepsilon): n &gt; N \Rightarrow |a_n - a| &lt; \varepsilon
+\]</span></p>
+<span id="more"></span>
+<p>当给定 <span class="math inline">\((N, \varepsilon)\)</span> 时,
+就可以确定该命题的真伪.
+极限定义就是对上述含参数的陈述添加量词进行修饰:</p>
+<p><span class="math display">\[
+a_n \rightarrow a \Leftrightarrow \forall \varepsilon &gt; 0, \exists N
+\in \mathbb{N} \quad n &gt; N \Rightarrow |a_n - a| &lt; \varepsilon
+\]</span></p>
+<p>注意, <span class="math inline">\(\forall \varepsilon &gt;0\)</span>
+ 与 <span class="math inline">\(\exists N \in \mathbb{N}\)</span>
+不能交换顺序, 也即含量词陈述的命题, 量词的顺序不能随意改变, 例如,
+如果修改成</p>
+<p><span class="math display">\[
+\exists N \in \mathbb{N}, \forall \varepsilon &gt; 0 \quad n &gt; N
+\Rightarrow |a_n - a| &lt; \varepsilon
+\]</span></p>
+<p>那么只有常数序列才能存在极限, 这样的定义就是平凡的了.</p>
+<p>注意到, 含量词的命题可以等价为:</p>
+<ul>
+<li><p><span class="math inline">\(\forall x \in X \quad S(x)
+\Longleftrightarrow \bigwedge_{x \in X} S(x)\)</span>;</p></li>
+<li><p><span class="math inline">\(\exists x \in X \quad S(x)
+\Longleftrightarrow \bigvee_{x \in X} S(x)\)</span>.</p></li>
+</ul>
+<p>式中, <span class="math inline">\(\wedge\)</span> 表示命题关系“与”
+(AND), <span class="math inline">\(\vee\)</span> 表示命题关系“或”(OR).
+当否定含量词的命题时, 根据 de Morgan 定律: <span class="math display">\[
+(B~\cup~C)^{\prime} = B^{\prime}~\cap~C^{\prime}\\
+(B~\cap~C)^{\prime} = B^{\prime}~\cup~C^{\prime}
+\]</span></p>
+<ul>
+<li><p><span class="math inline">\(\sim(\forall x \in X \quad S(x))
+\Longleftrightarrow \bigvee_{x \in X}\sim S(x) \Longleftrightarrow
+\exists x \in X \quad \sim S(x)\)</span>;</p></li>
+<li><p><span class="math inline">\(\sim(\exists x \in X \quad S(x))
+\Longleftrightarrow \bigwedge_{x \in X} \sim S(x)\Longleftrightarrow
+\forall x \in X \quad \sim S(x)\)</span>.</p></li>
+</ul>
+<p>注意到, 含参数陈述命题的取值集合 <span
+class="math inline">\(X\)</span> 不会发生改变 (比如取该集合的补集).
+由此我们可以得到极限命题的否定形式:</p>
+<p><span class="math display">\[
+\exists \varepsilon &gt; 0, \forall N \in \mathbb{N} \quad n &gt; N
+\wedge |a_n - a| \geq \varepsilon
+\]</span></p>
+<p>该命题后半部分可以合并为:</p>
+<p><span class="math display">\[
+\exists \varepsilon &gt; 0, \forall N \in \mathbb{N} \quad |a_N - a|
+\geq \varepsilon
+\]</span></p>
+<h3 id="连续与一致连续">连续与一致连续</h3>
+<p>我们用逻辑语言定义一致连续: 给定函数 <span class="math inline">\(f: A
+\mapsto \mathbb{R}^m\)</span>, 定义域 <span class="math inline">\(A
+\subset \mathbb{R}^n\)</span> :</p>
+<p><span class="math display">\[
+\forall \varepsilon &gt; 0, \textcolor{red}{\exists \delta &gt; 0},
+\forall y \in A, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
+\|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>而函数 <span class="math inline">\(f\)</span> 在 <span
+class="math inline">\(A\)</span> 上连续的定义为</p>
+<p><span class="math display">\[
+\forall \varepsilon &gt; 0, \forall y \in A, \textcolor{red}{\exists
+\delta &gt; 0}, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
+\|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>第二个定义中, 存在量词变量 <span
+class="math inline">\(\delta\)</span> 的选择依赖于之前全称量词变量 <span
+class="math inline">\(y\)</span>,
+这一点改变使得第一个定义和第二个定义并不是等价的
+(虽然看起来只是命题叙述的顺序发生了变化). 事实上,
+第一个命题蕴含第二个命题:</p>
+<p><span class="math display">\[
+f~\text{一致连续} \Rightarrow f~\text{连续}
+\]</span></p>
+<p>证明上述问题是乏味的, 甚至像是在玩弄文字游戏, 我们不妨做一点别的事情,
+比如, 将定义连续的命题中的存在量词 <span class="math inline">\(\exists
+\delta &gt; 0\)</span> 继续后移:</p>
+<p><span class="math display">\[
+\forall \varepsilon &gt; 0, \forall y \in A, \forall x \in A,
+\textcolor{red}{\exists \delta &gt; 0} \quad \|x-y\|\leq\delta
+\Rightarrow \|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>该命题本身就构成了重言式, 也就是说, 该命题一直为 true. 证明过程如下:
+对任意给定的 <span class="math inline">\(\varepsilon, x, y\)</span>, 取
+<span class="math inline">\(\delta &gt; \|x-y\|\)</span>, 根据蕴含命题
+<span class="math inline">\(p \Rightarrow q\)</span> 的真值表, 若 <span
+class="math inline">\(p\)</span> 为 false, 则 <span
+class="math inline">\(p \Rightarrow q\)</span> 恒为 true, 无论 <span
+class="math inline">\(q\)</span> 怎样取值. 因此, <span
+class="math inline">\(\|x-y\|\leq\delta \Rightarrow \|f(x) - f(y)\| \leq
+\varepsilon\)</span> 恒为 true.</p>
+<p>假如我们将第三个定义称为”弱连续”, 那么, 根据上述论证,
+所有的函数都是”弱连续”的, 因此, “弱连续“
+就不能够将某一类函数与其它函数区分开. “弱连续“ 的定义是平凡的.</p>
+<p>现在, 如果我们将存在量词移到命题的最前端:</p>
+<p><span class="math display">\[
+\textcolor{red}{\exists \delta &gt; 0}, \forall \varepsilon &gt; 0,
+\forall y \in A, \forall x \in A \quad \|x-y\|\leq\delta \Rightarrow
+\|f(x) - f(y)\| \leq \varepsilon
+\]</span></p>
+<p>并称满足这个定义的函数为”强一致收敛”函数, 可以看到,
+“强一致收敛“函数只能是常值函数, 因此也是一致收敛函数.综上,
+我们有上述关于连续性命题的强弱关系: <span class="math display">\[
+f~\text{强一致连续} \Rightarrow f~\text{一致连续} \Rightarrow
+f~\text{连续} \Rightarrow f~\text{弱连续}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>分析</tag>
+        <tag>逻辑命题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>数学相关文档中不同类型的等号释义</title>
+    <url>/math/%E6%95%B0%E5%AD%A6%E6%96%87%E6%A1%A3%E4%B8%AD%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E7%AD%89%E5%8F%B7%E9%87%8A%E4%B9%89/</url>
+    <content><![CDATA[<p>我在数学相关文档的编写中，对三种特殊的等号作如下释义：</p>
+<h2 id="恒等于-equiv">恒等于 <span
+class="math inline">\(\equiv\)</span></h2>
+<p>LaTeX 表达式：<code>\equiv</code></p>
+<p>用在分析语言当中，左侧为函数，右侧为常数，表示等号左侧的函数在定义域上的取值恒等于右侧的常数。例如</p>
+<blockquote>
+<p>三角恒等式 <span class="math display">\[
+\cos^2 x + \sin^2 x \equiv 1
+\]</span></p>
+</blockquote>
+<span id="more"></span>
+<h2 id="定义-triangleq">定义 <span
+class="math inline">\(\triangleq\)</span></h2>
+<p>LaTeX 表达式：<code>\triangleq</code></p>
+<p>定义新的符号，左右两侧表达式中会出现新的符号，并总能通过已定义的符号表示出来，例如</p>
+<blockquote>
+<p>已知物体质量 <span class="math inline">\(m\)</span>，加速度 <span
+class="math inline">\(a\)</span>，我们定义作用在物体上的力 <span
+class="math inline">\(F\)</span> 为 <span class="math display">\[
+F \triangleq ma
+\]</span></p>
+</blockquote>
+<p>符号 <span class="math inline">\(\triangleq\)</span>
+是左右对称的，所以 <span class="math inline">\(\triangleq\)</span>
+左侧不一定总是为新定义的变量，例如</p>
+<blockquote>
+<p>材料中的应变 <span class="math inline">\(\varepsilon\)</span>
+是弹性应变 <span class="math inline">\(e\)</span> 与本征应变 <span
+class="math inline">\(\mu\)</span> 之和： <span class="math display">\[
+\varepsilon \triangleq e + \mu
+\]</span></p>
+</blockquote>
+<h2 id="赋值">赋值 <span class="math inline">\(:=\)</span>​</h2>
+<p>LaTeX 表达式：<code>\coloneqq</code> （依赖宏包
+<code>mathtools</code>）</p>
+<p>在旧的文档中我用来定义变量，与 Computational Inelasticity
+中的符号一致。现在我用符号 <span class="math inline">\(:=\)</span>
+进行赋值，左侧为变量名。右侧为具体值，例如</p>
+<blockquote>
+<p>取测试函数（test function）为常数，也即 <span
+class="math inline">\(v_{i,j}(y) := v_{i,j}\)</span></p>
+</blockquote>
+<h2 id="参考文档">参考文档</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly9tYXRoLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy8xODIxMDEvYXBwcm9wcmlhdGUtbm90YXRpb24tZXF1aXYtdmVyc3Vz">Appropriate
+Notation: ≡ versus :=<i class="fa fa-external-link-alt"></i></span> 给出了为什么我用 <span
+class="math inline">\(\triangleq\)</span> 取代 <span
+class="math inline">\(:=\)</span> 作为定义符号的原因</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvRXF1YWxzX3NpZ24=">Equal sign<i class="fa fa-external-link-alt"></i></span>
+给出了等号的历史来源，以及所有可能见到的表示左右两端存在某种关系的符号，比如
+<span class="math inline">\(\approx\)</span>，<span
+class="math inline">\(\cong\)</span> ……</p>
+<p><span class="exturl" data-url="aHR0cHM6Ly9tYXRoLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy8xMDU4NTk2L2luLXBsYWluLWxhbmd1YWdlLXdoYXRzLXRoZS1kaWZmZXJlbmNlLWJldHdlZW4tdHdvLXRoaW5ncy10aGF0LWFyZS1lcXVpdmFsZW50">In
+plain language, what's the difference between two things that are
+'equivalent', 'equal', and 'identical'?<i class="fa fa-external-link-alt"></i></span> 给出了 <span
+class="math inline">\(\equiv\)</span> 在数论中的含义</p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>逻辑命题</tag>
       </tags>
   </entry>
 </search>
