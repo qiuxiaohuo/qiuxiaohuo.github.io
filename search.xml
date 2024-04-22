@@ -3244,4 +3244,360 @@ class="math display">\[
         <tag>张量运算</tag>
       </tags>
   </entry>
+  <entry>
+    <title>双相单胞问题 E P 张量的封闭解</title>
+    <url>/mechanics/%E5%8F%8C%E7%9B%B8%E5%8D%95%E8%83%9E%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E6%9E%90%E6%B1%82%E8%A7%A3/</url>
+    <content><![CDATA[<p>参考文献：Fish,Practical multiscaling, chapter 4.3.5</p>
+<p>给定单胞各个相的弹性模量 <span
+class="math inline">\(\mathbb{L}^{(\alpha)},
+\alpha=1,2,\ldots,N\)</span>，以及均质化之后的模量 <span
+class="math inline">\(\mathbb{L}^c\)</span>，式（4.119a）和式（4.119b）给出关于
+<span class="math inline">\(N\)</span> 个未知量 <span
+class="math inline">\(E_{mn}^{kl(\alpha)}\)</span> 的 2
+个方程，式（4.119c）和式（4.119d）给出关于 <span
+class="math inline">\(N^2\)</span> 个未知量 <span
+class="math inline">\(P_{mn}^{kl(\alpha\beta)}\)</span> 的 <span
+class="math inline">\(2N\)</span> 个方程，<span
+class="math inline">\(N\)</span> 为 Partition 的个数。当 <span
+class="math inline">\(N=2\)</span>
+时，也即单胞只分成两个分块，从方程的未知量个数来看，是可以得到封闭解的。</p>
+<h2 id="e-张量的封闭解">E 张量的封闭解</h2>
+<p>式（4.119a）和式（4.119b）展开后得到 <span class="math display">\[
+\begin{aligned}
+c^{(1)}\mathbb{L}^{(1)}:&amp;\mathbb{E}^{(1)} +
+c^{(2)}\mathbb{L}^{(2)}:\mathbb{E}^{(2)} = \mathbb{L}^c\\
+c^{(1)}&amp;\mathbb{E}^{(1)} + c^{(2)}\mathbb{E}^{(2)} = \mathbb{I}
+\end{aligned}
+\]</span> 第 2 式乘 <span
+class="math inline">\(\mathbb{L}^{(2)}\)</span> 再与 1 式相减得到 <span
+class="math display">\[
+c^{(1)}(\mathbb{L}^{(1)}-\mathbb{L}^{(2)}):\mathbb{E}^{(1)}  =
+\mathbb{L}^c - \mathbb{L}^{(2)}
+\]</span> 所以 <span class="math inline">\(\mathbb{E}^{(1)}\)</span>
+可以通过分块的弹性模量以及体积分数表示为 <span class="math display">\[
+\mathbb{E}^{(1)} =
+\frac{1}{c^{(1)}}(\mathbb{L}^{(1)}-\mathbb{L}^{(2)})^{-1} (\mathbb{L}^c
+- \mathbb{L}^{(2)})
+\]</span> 由于指标是对称的，所以有 <span class="math display">\[
+\mathbb{E}^{(2)} =
+\frac{1}{c^{(2)}}(\mathbb{L}^{(2)}-\mathbb{L}^{(1)})^{-1} (\mathbb{L}^c
+- \mathbb{L}^{(1)})
+\]</span> 至此，我们解析得到了 <span
+class="math inline">\(\mathbb{E}^{(1)}\)</span>，<span
+class="math inline">\(\mathbb{E}^{(2)}\)</span> 的表达式： <span
+class="math display">\[
+\left\{
+\begin{aligned}
+\mathbb{E}^{(1)} =
+\frac{1}{c^{(1)}}(\mathbb{L}^{(1)}-\mathbb{L}^{(2)})^{-1} (\mathbb{L}^c
+- \mathbb{L}^{(2)})\\
+\mathbb{E}^{(2)} =
+\frac{1}{c^{(2)}}(\mathbb{L}^{(2)}-\mathbb{L}^{(1)})^{-1} (\mathbb{L}^c
+- \mathbb{L}^{(1)})
+\end{aligned}
+\right.
+\tag{1}
+\]</span></p>
+<h2 id="p-张量的封闭解">P 张量的封闭解</h2>
+<p>展开式（4.119c）和式（4.119d）的自由指标得到如下 4 个方程： <span
+class="math display">\[
+\begin{aligned}
+\mathbb{P}^{(11)} + \mathbb{P}^{(12)} = \mathbb{I} - \mathbb{E}^{(1)}\\
+\mathbb{P}^{(11)}:\mathbb{M}^{(1)} + \mathbb{P}^{(12)}:\mathbb{M}^{(2)}
+= 0\\
+\\
+\mathbb{P}^{(21)} + \mathbb{P}^{(22)} = \mathbb{I} - \mathbb{E}^{(2)}\\
+\mathbb{P}^{(21)}:\mathbb{M}^{(1)} + \mathbb{P}^{(22)}:\mathbb{M}^{(2)}
+= 0
+\end{aligned}
+\]</span> 1 式左右两端乘 <span
+class="math inline">\(\mathbb{M}^{(2)}\)</span>，再与 2 式相减得到 <span
+class="math display">\[
+\mathbb{P}^{(11)}:(\mathbb{M}^{(2)} - \mathbb{M}^{(1)})
+= (\mathbb{I} - \mathbb{E}^{(1)}):\mathbb{M}^{(2)}
+\]</span> 所以 <span class="math display">\[
+\mathbb{P}^{(11)}
+= (\mathbb{I} - \mathbb{E}^{(1)}):\mathbb{M}^{(2)}:(\mathbb{M}^{(2)} -
+\mathbb{M}^{(1)})^{-1}
+\]</span> 又因为 <span class="math display">\[
+\mathbb{M}^{(2)}:(\mathbb{M}^{(2)} - \mathbb{M}^{(1)})^{-1}
+= (\mathbb{L}^{(1)} - \mathbb{L}^{(2)})^{-1}:\mathbb{L}^{(1)}
+\]</span> 所以有 <span class="math display">\[
+\mathbb{P}^{(11)}
+= (\mathbb{I} - \mathbb{E}^{(1)}):(\mathbb{L}^{(1)} -
+\mathbb{L}^{(2)})^{-1}:\mathbb{L}^{(1)}
+\]</span> 类似的，我们可以求解出 <span
+class="math inline">\(\mathbb{P}^{(12)}\)</span>： <span
+class="math display">\[
+\mathbb{P}^{(12)}
+= (\mathbb{I} - \mathbb{E}^{(1)}):(\mathbb{L}^{(2)} -
+\mathbb{L}^{(1)})^{-1}:\mathbb{L}^{(2)}
+\]</span> 交换对称指标之后，我们同样也可以得到 <span
+class="math inline">\(\mathbb{P}^{(21)}\)</span>，<span
+class="math inline">\(\mathbb{P}^{(22)}\)</span> 的封闭表达式： <span
+class="math display">\[
+\left\{
+\begin{aligned}
+\mathbb{P}^{(11)}
+= (\mathbb{I} - \mathbb{E}^{(1)}):(\mathbb{L}^{(1)} -
+\mathbb{L}^{(2)})^{-1}:\mathbb{L}^{(1)}\\
+\mathbb{P}^{(12)}
+= (\mathbb{I} - \mathbb{E}^{(1)}):(\mathbb{L}^{(2)} -
+\mathbb{L}^{(1)})^{-1}:\mathbb{L}^{(2)}\\
+\mathbb{P}^{(22)}
+= (\mathbb{I} - \mathbb{E}^{(2)}):(\mathbb{L}^{(2)} -
+\mathbb{L}^{(1)})^{-1}:\mathbb{L}^{(2)}\\
+\mathbb{P}^{(21)}
+= (\mathbb{I} - \mathbb{E}^{(2)}):(\mathbb{L}^{(1)} -
+\mathbb{L}^{(2)})^{-1}:\mathbb{L}^{(1)}
+\end{aligned}
+\right.
+\tag{2}
+\]</span></p>
+<h2 id="数值实现">数值实现</h2>
+<p>这里我们将把张量形式的方程组转换为可用于数值计算的 Voigt
+形式。我们以求解（2）为例。将 1 式左右两端进行 Voigt 变换得到： <span
+class="math display">\[
+[:][\mathbb{P}^{(11)}]
+= [:]([\mathbb{I}] - [\mathbb{E}^{(1)}])~
+[:][(\mathbb{L}^{(1)} - \mathbb{L}^{(2)})^{-1}]~
+[:][\mathbb{L}^{(1)}]
+\]</span> 而中间四阶张量逆的矩阵表示为 <span class="math display">\[
+[(\mathbb{L}^{(1)} - \mathbb{L}^{(2)})^{-1}]
+= [:]^{-1} [\mathbb{L}^{(1)} - \mathbb{L}^{(2)}]^{-1} [\mathbb{I}]^{-1}
+\]</span> 代入得到 <span class="math display">\[
+[:][\mathbb{P}^{(11)}]
+= ([:][\mathbb{I}] - [:][\mathbb{E}^{(1)}])~
+[\mathbb{L}^{(1)} - \mathbb{L}^{(2)}]^{-1}~
+[\mathbb{L}^{(1)}]
+\]</span></p>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>多尺度</tag>
+        <tag>张量运算</tag>
+        <tag>解析方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>单胞问题张量 E P 的解析关系</title>
+    <url>/mechanics/%E5%8D%95%E8%83%9E%E9%97%AE%E9%A2%98%E5%BC%A0%E9%87%8F%20E%20P%20%E7%9A%84%E8%A7%A3%E6%9E%90%E5%85%B3%E7%B3%BB/</url>
+    <content><![CDATA[<p>参考文献：Fish,Practical multiscaling, chapter 4.3.5</p>
+<h2
+id="示性函数在单胞分块上的积分运算">示性函数在单胞分块上的积分运算</h2>
+<p>Reduced order 假设分块上的物理量是常值，为描述分块常值函数，我们定义
+Partition <span class="math inline">\(Y^\alpha\)</span> 上的示性函数
+<span
+class="math inline">\(\chi^{(\alpha)}(y):Y\mapsto\mathbb{R}\)</span> ：
+<span class="math display">\[
+\chi^{(\alpha)}(y) \triangleq \begin{cases}
+1, \quad y \in Y^{(\alpha)}\\
+0, \quad y \notin Y^{(\alpha)}\\
+\end{cases}
+\]</span> 示性函数在单胞 <span class="math inline">\(Y\)</span>
+上的积分等于分块 <span class="math inline">\(Y^{(\alpha)}\)</span>
+的度量： <span class="math display">\[
+|Y^{(\alpha)}| \triangleq \int_{Y} \chi^{(\alpha)}(y) \mathrm{d} y
+\equiv \int_{Y^{(\alpha)}} \mathrm{d} y
+\]</span> 我们有如下结论： <span class="math display">\[
+\int_{Y} \chi^{(\alpha)}(y) \chi^{(\beta)}(y) ~\mathrm{d}y
+= \begin{cases}
+|Y^{(\alpha)}|, \quad \alpha = \beta \\
+0, \quad \quad \quad \alpha \neq \beta
+\end{cases}
+\]</span> 因此，对于两个分块常值的函数 <span
+class="math inline">\(f(y)=\chi^{(\alpha)}(y)f^{(\alpha)}\)</span>，<span
+class="math inline">\(g(y)=\chi^{(\alpha)}(y)g^{(\alpha)}\)</span>，它们的乘积在单胞上的积分为
+<span class="math display">\[
+\begin{aligned}
+\int_{Y} f(y)g(y) ~\mathrm{d}y
+&amp;= \int_{Y} \sum_{\alpha} \left( \chi^{(\alpha)}(y)f^{(\alpha)}
+\right)
+\sum_{\beta} \left( \chi^{(\beta)}(y)g^{(\beta)} \right) ~\mathrm{d}y \\
+&amp;= \sum_{\alpha} f^{(\alpha)}g^{(\alpha)} \int_{Y}
+\chi^{(\alpha)}(y) ~\mathrm{d}y
+= \sum_{\alpha} |Y^{(\alpha)}| f^{(\alpha)}g^{(\alpha)}
+\end{aligned}
+\]</span></p>
+<h2 id="张量-mathbbealpha-mathbblalpha-的关系">张量 <span
+class="math inline">\(\mathbb{E}^{(\alpha)}\)</span> <span
+class="math inline">\(\mathbb{L}^{(\alpha)}\)</span> 的关系</h2>
+<p>单胞的弹性模量 <span class="math inline">\(L_{ijkl}(y)\)</span>
+可以表示为： <span class="math display">\[
+L_{ijkl}(y) = \sum_{\alpha} \chi^{(\alpha)}(y)L_{ijkl}^{(\alpha)}
+\tag{1}
+\]</span> 式中，<span class="math inline">\(L_{ijkl}^{(\alpha)}\)</span>
+表示分块 <span class="math inline">\(Y^{(\alpha)}\)</span>
+上的材料弹性模量，我们假设它总是均匀的，也即 <span
+class="math inline">\(L_{ijkl}^{(\alpha)} \equiv
+\mathrm{const}\)</span>。</p>
+<p>宏观尺度的弹性张量 <span class="math inline">\(L_{ijkl}^c\)</span>
+定义为： <span class="math display">\[
+L_{ijkl}^c \triangleq \frac{1}{|Y|}\int_{Y} L_{ijmn}(y) E_{mn}^{kl}(y)
+\mathrm{d} y
+\]</span> 将式（1）代入得到 <span class="math display">\[
+L_{ijkl}^c = \frac{1}{|Y|} \sum_{\alpha} L_{ijmn}^{(\alpha)} \int_{Y}
+\chi^{(\alpha)}(y) E_{mn}^{kl}(y) ~\mathrm{d}y
+\tag{2}
+\]</span> 定义分块上的应变影响张量 <span
+class="math inline">\(E_{mn}^{kl(\alpha)}\)</span> 为 <span
+class="math display">\[
+E_{mn}^{kl(\alpha)}
+\triangleq \frac{1}{|Y^{(\alpha)}|}\int_{Y} \chi^{(\alpha)}(y)
+E_{mn}^{kl}(y) ~\mathrm{d} y
+\]</span> 以及分块 <span class="math inline">\(\alpha\)</span>
+所占的体积分数 <span class="math inline">\(c^{(\alpha)}\)</span>： <span
+class="math display">\[
+c^{(\alpha)} \triangleq \frac{|Y^{(\alpha)}|}{|Y|}
+\]</span> 那么，式（2）就可以表示为 <span class="math display">\[
+L_{ijkl}^c = \sum_{\alpha}
+c^{(\alpha)}L_{ijmn}^{(\alpha)}E_{mn}^{kl(\alpha)}
+\tag{4.119a}
+\]</span> 上式对任意的四阶张量 <span
+class="math inline">\(L_{ijmn}^{(\alpha)}\)</span>
+均成立，特别的，我们选取 <span class="math display">\[
+L_{ijmn}^{(\alpha)} = I_{ij}^{mn},\quad 对任意分块 \alpha
+\]</span> 式中，$I_{ij}^{kl} $ 为四阶单位张量。那么，式（3）有 <span
+class="math display">\[
+\sum_{\alpha}c^{(\alpha)}E_{ij}^{kl(\alpha)} = I_{ij}^{kl}
+\tag{4.119b}
+\]</span> ## 张量 <span
+class="math inline">\(\mathbb{E}^{(\alpha)}\)</span> <span
+class="math inline">\(\mathbb{P}^{(\alpha \beta)}\)</span>​ 的关系</p>
+<p>Fish 的证明是从式（4.41）出发： <span class="math display">\[
+\varepsilon_{i j}^{(\beta)}(x)
+-\sum_{\alpha} P_{i j}^{k l(\beta \alpha)} \mu_{k l}^{(\alpha)}(x)
+=E_{i j}^{k l(\beta)} \varepsilon_{k l}^c(x)
+\tag{4.41}
+\]</span> 并选取特别情景下的 <span class="math inline">\(\mu_{k
+l}^{(\alpha)}(x)\)</span>，使得==分块上的应变与应力均相等（？！）==：
+<span class="math display">\[
+\begin{aligned}
+&amp; \sigma_{i j}^{(\alpha)}:=\sigma_{i j}^c;  \alpha=1,2 \ldots N  \\
+&amp; \varepsilon_{i j}^c=:\varepsilon_{i j}^{(\alpha)}=M_{i j k
+l}^{(\alpha)} \sigma_{k l}^c+\mu_{i j}^{(\alpha)} ; \alpha=1,2 \ldots N
+\\
+&amp; \mu_{i j}^{(\alpha)}=\mu_{i j}^c-\left[M_{i j k l}^{(\alpha)}-M_{i
+j k l}^c\right] \sigma_{k l}^c
+\end{aligned}
+\]</span> 然后将上式代入到式（4.41）中，得到 <span
+class="math display">\[
+\left[E_{i j}^{k l(\beta)}+\sum_{\alpha} P_{i j}^{k l(\beta
+\alpha)}-I_{i j k l}\right] \varepsilon_{k l}^c
+=\sum_{\alpha} P_{i j}^{k l(\beta \alpha)} M_{k l m n}^{(\alpha)}
+\sigma_{m n}^c
+\]</span> 再根据宏观应力应变的任意性，就得到 <span
+class="math display">\[
+\sum_{\beta} P_{kl}^{mn(\alpha\beta)}
++ E_{kl}^{mn(\alpha)}
+- I_{kl}^{mn}
+= 0, \quad \alpha=1,2,\ldots,N
+\tag{4.119c}
+\]</span> 和 <span class="math display">\[
+\sum_{\beta} P_{ij}^{mn(\alpha\beta)} M_{mnkl}^{(\beta)}
+= 0, \quad \alpha=1,2,\ldots,N
+\tag{4.119d}
+\]</span></p>
+<hr />
+<p>这里给出另一种推导 P E
+张量之间关系的方法，不需要对本征应变做出奇怪的假设。张量场 <span
+class="math inline">\(E_{ij}^{kl}\)</span> 与 <span
+class="math inline">\(P_{ij}^{kl}\)</span> 分别满足如下微分方程:</p>
+<p><span class="math display">\[
+\begin{aligned}
+\left\{ L_{ijkl}(y) E_{kl}^{mn} \right\}_{,y_j} &amp;= 0, \text{in}~ Y
+\\
+\left\{ L_{ijkl}(y) \left[ P_{kl}^{mn(\alpha)}(y) -
+I_{kl}^{mn}\chi^{(\alpha)}(y) \right] \right\}_{,y_j} &amp;= 0,
+\text{in}~ Y \quad \alpha=1,2, \ldots,N
+\end{aligned}
+\]</span> 我们将上述方程写成弱形式, 对任意满足周期性边界条件的函数 <span
+class="math inline">\(v_i\)</span>, 有 <span class="math display">\[
+\int_{Y} L_{ijkl}(y) E_{kl}^{mn}(y) v_{i,j}(y) ~\mathrm{d}y = 0
+\tag{3}
+\]</span> 以及 <span class="math display">\[
+\int_{Y} L_{ijkl}(y) \left[ P_{kl}^{mn(\alpha)}(y) -
+I_{kl}^{mn}\chi^{(\alpha)}(y) \right] v_{i,j}(y) ~\mathrm{d}y
+= 0, \text{in}~ Y \quad \alpha=1,2, \ldots,N
+\tag{4}
+\]</span> 对式（4）Partition 求和, 得到 <span class="math display">\[
+\int_{Y} L_{ijkl}(y) \left[
+\sum_{\alpha}\left( P_{kl}^{mn(\alpha)}(y) \right) - I_{kl}^{mn}
+\right] v_{i,j}(y) ~\mathrm{d}y
+= 0
+\tag{5}
+\]</span> 式（3）与式（5）相加得到 <span class="math display">\[
+\int_{Y} L_{ijkl}(y) \left[
+\sum_{\alpha}\left( P_{kl}^{mn(\alpha)}(y) \right)
++ E_{kl}^{mn}(y) - I_{kl}^{mn}
+\right] v_{i,j}(y) ~\mathrm{d}y
+= 0
+\tag{6}
+\]</span> 如果选取 test function <span
+class="math inline">\(v_i\)</span>​​ 使得每一个 Partition
+上的应变都是均匀的, 也即 <span class="math display">\[
+v_{i,j}(y) = \sum_{\alpha}\chi^{(\alpha)}(y)v_{i,j}^{(\alpha)}
+\]</span> 那么应力分布也是分块均匀的： <span class="math display">\[
+\sigma_{kl}(y) = L_{ijkl}(y) v_{i,j}(y) =
+\sum_{\alpha}\chi^{(\alpha)}(y) L_{ijkl}^{(\alpha)} v_{i,j}^{(\alpha)} =
+\sum_{\alpha}\chi^{(\alpha)}(y) \sigma_{kl}^{(\alpha)}
+\]</span> 再代入式（1），那么式（6）就可以写为 <span
+class="math display">\[
+\sum_{\beta}\sigma_{kl}^{(\beta)}\int_{Y} \chi^{(\beta)}(y) \left[
+\sum_{\alpha}\left( P_{kl}^{mn(\alpha)}(y) \right)
++ E_{kl}^{mn}(y) - I_{kl}^{mn}
+\right] ~\mathrm{d}y = 0
+\tag{7}
+\]</span> 如果我们定义 <span class="math display">\[
+P_{kl}^{mn(\beta \alpha)} \triangleq \frac{1}{|Y^{(\beta)}|}\int_{Y}
+\chi^{(\beta)}(y) P_{kl}^{mn(\alpha)}(y) ~\mathrm{d}y
+\]</span> 那么有 <span class="math display">\[
+\begin{aligned}
+\int_{Y} \chi^{(\beta)}(y)
+\sum_{\alpha}\left( P_{kl}^{mn(\alpha)}(y) \right) ~\mathrm{d}y
+&amp;= |Y^{(\beta)}|\sum_{\alpha} P_{kl}^{mn(\beta\alpha)}, \\
+\int_{Y} \chi^{(\beta)}(y)
+E_{kl}^{mn}(y) ~\mathrm{d}y
+&amp;= |Y^{(\beta)}| E_{kl}^{mn(\beta)}, \\
+\int_{Y} \chi^{(\beta)}(y)
+I_{kl}^{mn} ~\mathrm{d}y
+&amp;= |Y^{(\beta)}|I_{kl}^{mn}
+\end{aligned}
+\]</span> 将上式代入到式（7）当中，就会得到关于 <span
+class="math inline">\(\sigma_{kl}^{(\beta)}\)</span> 的方程： <span
+class="math display">\[
+\sum_{\beta}\sigma_{kl}^{(\beta)} |Y^{(\beta)}| \left(
+\sum_{\alpha} P_{kl}^{mn(\beta\alpha)}
++ E_{kl}^{mn(\beta)}
+- I_{kl}^{mn}
+\right) = 0
+\]</span> 又因为 <span
+class="math inline">\(\sigma_{kl}^{(\beta)}\)</span>
+可以任意选取大小，所以上式关于 <span
+class="math inline">\(\sigma_{kl}^{(\beta)}\)</span> 的系数都必须等于
+0： <span class="math display">\[
+\sum_{\alpha} P_{kl}^{mn(\beta\alpha)}
++ E_{kl}^{mn(\beta)}
+- I_{kl}^{mn}
+= 0, \quad \beta=1,2,\ldots,N
+\tag{4.119c}
+\]</span> 如果选取 test function <span
+class="math inline">\(v_{i,j}\)</span>
+为常应变，那么还可以得到如下结论： <span class="math display">\[
+\sum_{\alpha} c^{(\alpha)}
+\mathbb{L}^{(\alpha)}:(\mathbb{P}^{(\alpha\beta)} - \mathbb{I}) = 0,
+\quad \beta=1,2,\ldots,N
+\]</span></p>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>多尺度</tag>
+        <tag>张量运算</tag>
+        <tag>解析方法</tag>
+      </tags>
+  </entry>
 </search>
