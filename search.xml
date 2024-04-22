@@ -1299,41 +1299,47 @@ class="math inline">\(\boldsymbol{i}\)</span>
     <title>使用有限元方法求解单胞方程</title>
     <url>/mechanics/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="单胞方程的-statement">单胞方程的 statement</h2>
-<p>在三维情景, 线弹性条件下, 单胞方程的弱形式为:</p>
-<p><span class="math display">\[
-\int_{Y} L_{ijkl} \frac{\partial \chi_k^{(mn)}}{\partial y_l}
+<p>在三维情景, 线弹性条件下, 单胞方程的弱形式为: <span
+class="math display">\[
+\int_{Y} L_{ijkl} \frac{\partial H_k^{(mn)}}{\partial y_l}
 \frac{\partial v_i}{\partial y_j} \mathrm{d} Y
-= \int_{Y} L_{ij(mn)} \frac{\partial v_i}{\partial y_j} \mathrm{d} Y.
+= -\int_{Y} L_{ij(mn)} \frac{\partial v_i}{\partial y_j} \mathrm{d} Y.
+\tag{1}
 \]</span></p>
-<p>场变量 <span class="math inline">\(\chi_k^{(mn)}\)</span> (注意, 在
-Fish 书中对应为 <span class="math inline">\(-H_{i}^{mn}\)</span>)
+<p>场变量 <span class="math inline">\(H_k^{(mn)}\)</span>
 满足周期性边界条件, <span id="more"></span>也即</p>
 <p><span class="math display">\[
-\chi_k^{(mn)}(y) = \chi_k^{(mn)}(y + kl).
+H_k^{(mn)}(y) = H_k^{(mn)}(y + kl).
 \]</span></p>
 <p>然而, 上述周期性边界条件只是提供了边界节点的约束条件,
 还不能唯一确定解. Fish 书中提供两种定解的方式:</p>
 <p><span class="math display">\[
-(1) \quad \chi_k^{(mn)} = 0, \text{ on } \partial
+(1) \quad H_k^{(mn)} := 0, \text{ on } \partial
 \Theta^{\mathrm{vert}};\\
-(2) \quad \int_{\Theta} \chi_k^{(mn)} \mathrm{d} \Theta = 0.
+(2) \quad \int_{\Theta} H_k^{(mn)} \mathrm{d} \Theta := 0.
 \]</span></p>
-<p>在单胞方程中, <span class="math inline">\((mn)\)</span>
+<div class="note info"><p>在单胞方程中, <span class="math inline">\((mn)\)</span>
 是对称的自由指标, 使用 <span class="math inline">\(()\)</span> 标注指标
 <span class="math inline">\(mn\)</span>
 是因为该组指标表示单胞可能的变形模式 (对于三维问题共有 6 种模式,
-每一种模式给出一组偏微分方程). 引入本征应变 <span
-class="math inline">\(\varepsilon_{kl}^{(mn)}\)</span>, 使得</p>
-<p><span class="math display">\[
-L_{ij(mn)} = L_{ijkl} \varepsilon_{kl}^{(mn)}.
+每一种模式确定一组偏微分方程), 而不是一般意义下的 Euclidean
+空间中的坐标分量.</p>
+</div>
+<p>求解出 <span class="math inline">\(H_{k}^{(mn)}\)</span> 后,
+可得到均质化的弹性模量为: <span class="math display">\[
+L_{ij(mn)}^{\mathrm{hom}} = \frac{1}{|Y|} \int_{Y} L_{ij(mn)} +
+L_{ijkl}H_{k,l}^{(mn)} \mathrm{d} Y.
+\tag{2}
 \]</span></p>
-<p>式中, <span
-class="math inline">\(\varepsilon_{kl}^{(mn)}=\frac{1}{2}(\delta_{km}\delta_{ln}+\delta_{kn}\delta_{lm})\)</span>.</p>
-<p>求解出 <span class="math inline">\(\chi_{k}^{(mn)}\)</span> 后,
-可得到均质化的弹性模量为:</p>
-<p><span class="math display">\[
-L_{ij(mn)}^{\mathrm{hom}} = \frac{1}{|Y|} \int_{Y} L_{ij(mn)} -
-L_{ijkl}\frac{\partial \chi_{k}^{(mn)}}{\partial y_l} \mathrm{d} Y.
+<p>式中，<span class="math inline">\(H_{k,l}^{(mn)} = \frac{\partial
+H_{k}^{(mn)}}{\partial y_l}\)</span>​ 。如果记 <span
+class="math display">\[
+E_{kl}^{(mn)} \triangleq I_{kl}^{(mn)} + H_{k,l}^{(mn)}
+\]</span> 式中, <span
+class="math inline">\(I_{kl}^{(mn)}=\frac{1}{2}(\delta_{km}\delta_{ln}+\delta_{kn}\delta_{lm})\)</span>.
+式（2）可以表示为 <span class="math display">\[
+L_{ij(mn)}^{\mathrm{hom}} = \frac{1}{|Y|} \int_{Y} L_{ijkl}E_{kl}^{(mn)}
+\mathrm{d} Y.
 \]</span></p>
 <h2 id="单胞方程的有限元列式">单胞方程的有限元列式</h2>
 <p>将单胞方程中的张量分量表示为矩阵形式:</p>
@@ -1566,30 +1572,25 @@ class="math inline">\(\varepsilon^c\)</span> 引入的位移量, 求解得到的
 <span class="math inline">\(\delta_{ij} \delta_{kl}\)</span>. 不过,
 与二阶单位张量不同的是, 改变指标的顺序, 会得到三种不同的四阶单位张量:
 <span class="math display">\[
-\delta_{ij} \delta_{kl} \triangleq {\mathcal{I}}_{ijkl} \triangleq
-{\mathcal{F}}_{iljk} \triangleq{\mathcal{E}}_{ikjl}
+\delta_{ij} \delta_{kl} \triangleq {\mathcal{F}}_{iljk}
+\triangleq{\mathcal{E}}_{ikjl} \triangleq {\mathcal{I}}_{ijkl}
 \]</span></p>
-<span id="more"></span>
 <p>或者</p>
 <p><span class="math display">\[
 {\mathcal{I}}_{ijkl} \triangleq \delta_{ij} \delta_{kl} ,\quad
 {\mathcal{E}}_{ijkl} \triangleq \delta_{ik} \delta_{jl} ,\quad
 {\mathcal{F}}_{ijkl} \triangleq \delta_{il} \delta_{jk}
+\tag{1}
 \]</span></p>
+<span id="more"></span>
 <p>对于任意四阶张量 <span class="math inline">\(\mathbb{L}\)</span>,
 在双点积 (<span class="math inline">\(A:B:=A_{\cdot mn} B_{mn\cdot
 }\)</span>) 作用下, 张量 <span
 class="math inline">\(\mathcal{E}\)</span> 满足:</p>
 <p><span class="math display">\[
-\mathcal{E}:\mathbb{L}=\mathbb{L}:\mathcal{E}\equiv\mathbb{L}
-\]</span></p>
-<p>若定义另一种双点积的方式为: <span class="math inline">\(A\cdot \cdot
-B:=A_{\cdot mn} B_{nm\cdot }\)</span>, 那么对于该点积的定义,
-保持四阶张量不变的单位张量是 <span
-class="math inline">\(\mathcal{F}\)</span>:</p>
-<p><span class="math display">\[
-\mathcal{F}\cdot \cdot \mathbb{L}=\mathbb{L}\cdot \cdot
-\mathcal{F}\equiv\mathbb{L}
+\mathcal{E}:\mathbb{L}=\delta_{ik} \delta_{jl} L_{klmn} = L_{ijmn},
+\quad
+\mathbb{L}:\mathcal{E}= L_{ijkl} \delta_{km} \delta_{ln}= L_{ijmn}
 \]</span></p>
 <p>除上述三种定义四阶单位张量的方式之外, 还可以定义如下四阶张量:</p>
 <p><span class="math display">\[
@@ -1602,13 +1603,13 @@ class="math inline">\(\mathcal{F}\)</span>:</p>
 具有次对称性. 具有次对称性的单位张量为 <span
 class="math inline">\(\mathcal{L}_{ijkl}\)</span></p>
 <p>在力学中, 我们一般将四阶单位张量 <span
-class="math inline">\(\mathcal{F}_{ijkl}\)</span> 和 <span
+class="math inline">\(\mathcal{I}_{ijkl}\)</span> 和 <span
 class="math inline">\(\mathcal{L}_{ijkl}\)</span> 分别记作 <span
 class="math display">\[
-\mathcal{F}_{ijkl} = \mathbf{I} \otimes \mathbf{I}, \quad
-\mathcal{L}_{ijkl} = \mathbb{I}
+\mathcal{I}_{ijkl} \triangleq \mathbf{I} \otimes \mathbf{I}, \quad
+\mathcal{L}_{ijkl} \triangleq \mathbb{I}
 \]</span></p>
-<h2 id="四阶单位张量的数值形式">四阶单位张量的数值形式</h2>
+<h2 id="voigt-映射">Voigt 映射</h2>
 <p>二阶张量 <span class="math inline">\(\mathbf{A}\)</span> 在 <span
 class="math inline">\(\mathbb{R}^3\)</span> 空间的基底下可以表示为矩阵
 <span class="math inline">\([A] \in \mathbb{R}^3 \times
@@ -1622,37 +1623,149 @@ class="math inline">\(\mathbf{A}\)</span> 的信息. 我们定义 Voigt 映射
 \mathbb{R}^3 \mapsto \mathbb{R}^6\)</span> <span class="math display">\[
 \begin{aligned}
 a^{\mathrm{V}} \triangleq \mathrm{Voigt}(A):
-&amp;a^{\mathrm{V}}(1) = [A](1,1), \quad
-a^{\mathrm{V}}(2) = [A](2,2), \quad
-a^{\mathrm{V}}(3) = [A](3,3), \quad\\
-&amp;a^{\mathrm{V}}(4) = [A](2,3), \quad
-a^{\mathrm{V}}(5) = [A](1,3), \quad
-a^{\mathrm{V}}(6) = [A](1,2) \quad\\
+&amp;a^{\mathrm{V}}_{1} = A_{11}, \quad
+a^{\mathrm{V}}_{2} = A_{22}, \quad
+a^{\mathrm{V}}_{3} = A_{33}, \quad \\
+&amp;a^{\mathrm{V}}_{4} = A_{23}, \quad
+a^{\mathrm{V}}_{5} = A_{13}, \quad
+a^{\mathrm{V}}_{6} = A_{12}  \quad \\
 \end{aligned}
-\]</span> 对于具有次对称性的四阶张量, 我们同样也可以使用 Voigt 映射,
-将该张量映射为一个 6x6 的矩阵. 特别的, 如果四阶张量还具有主对称性,
-那么使用 Voigt 映射之后的矩阵是对称矩阵.</p>
-<p>四种四阶单位张量中, 只有 <span
-class="math inline">\(\mathcal{E}\)</span> 具有次对称性,
-输出为矩阵形式为:</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">E = <span class="number">6</span>x6    </span><br><span class="line">     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span>     <span class="number">0</span></span><br><span class="line">     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">0</span>     <span class="number">1</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>可见 Voigt 记法下的四阶单位张量 <span
-class="math inline">\([\mathcal{E}]\)</span> 是单位矩阵,
-对任意具有次对称性的四阶张量 <span
-class="math inline">\(\mathbb{L}\)</span>, 也同样可以用 Voigt
-记法表示为矩阵形式 <span class="math inline">\([\mathbb{L}]\)</span>,
-在矩阵表示下, 有</p>
-<p><span class="math display">\[
-[\mathbb{L}][\mathcal{E}]=[\mathcal{E}][\mathbb{L}]=[\mathbb{L}]
+\]</span> 对于四阶张量, Voigt 映射会将该张量映射为一个 6x6 的矩阵.
+如果该张量具有<strong>次对称性</strong>, 那么在 Voigt 映射下,
+<strong>不会丢失掉该张量任何一个分量的信息</strong>. 特别的,
+如果四阶张量还具有<strong>主对称性</strong>, 那么使用 Voigt
+映射之后得到的矩阵是<strong>对称矩阵.</strong></p>
+<h2 id="四阶单位张量的-voigt-矩阵形式">四阶单位张量的 Voigt
+矩阵形式</h2>
+<p>将式 (1) 定义的三种单位张量写成 Voigt 矩阵形式为 <span
+class="math display">\[
+[\mathcal{I}] = \begin{pmatrix}
+      1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+      \end{pmatrix}, \quad
+[\mathcal{E}] = \begin{pmatrix}
+      1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
+      \end{pmatrix}, \quad
+[\mathcal{F}] = \begin{pmatrix}
+      1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+    \end{pmatrix}.
 \]</span></p>
-<p>但是, 如果将其它的单位张量用 Voigt 记法表示为矩阵形式,
-由于缺乏次对称性, 单位张量的一些不为 0 的分量被"遗漏"了,
-得到的矩阵形式会缺少信息:</p>
-<figure class="highlight text"><table><tr><td class="code"><pre><span class="line">F = 6x6    </span><br><span class="line">     1     0     0     0     0     0</span><br><span class="line">     0     1     0     0     0     0</span><br><span class="line">     0     0     1     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line">     0     0     0     0     0     0</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>在</p>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">% L_&#123;ijkl&#125; = 1/2*delta_&#123;ik&#125;*\delta_&#123;jl&#125; + 1/2*delta_&#123;il&#125;*\delta_&#123;jk&#125;</span></span><br><span class="line"><span class="keyword">for</span> irow = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">  <span class="built_in">i</span> = mapVToMat&#123;irow&#125;(<span class="number">1</span>);</span><br><span class="line">  <span class="built_in">j</span> = mapVToMat&#123;irow&#125;(<span class="number">2</span>);</span><br><span class="line">  <span class="keyword">for</span> jcol = <span class="number">1</span>:<span class="number">6</span></span><br><span class="line">    k = mapVToMat&#123;jcol&#125;(<span class="number">1</span>);</span><br><span class="line">    l = mapVToMat&#123;jcol&#125;(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    L(irow,jcol) = <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,l)*d(<span class="built_in">j</span>,k) + <span class="number">1</span>/<span class="number">2</span>*d(<span class="built_in">i</span>,k)*d(<span class="built_in">j</span>,l);</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">L</span><br></pre></td></tr></table></figure>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">L = 6x6    </span><br><span class="line">    1.0000         0         0         0         0         0</span><br><span class="line">         0    1.0000         0         0         0         0</span><br><span class="line">         0         0    1.0000         0         0         0</span><br><span class="line">         0         0         0    0.5000         0         0</span><br><span class="line">         0         0         0         0    0.5000         0</span><br><span class="line">         0         0         0         0         0    0.5000</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">dij</span> = <span class="title">d</span><span class="params">(i,j)</span></span></span><br><span class="line">  dij = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">if</span> <span class="built_in">i</span>==<span class="built_in">j</span></span><br><span class="line">    dij = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>以及单位张量 <span class="math inline">\(\mathcal{L}_{ijkl}\)</span>
+<span class="math display">\[
+[\mathcal{L}] = \begin{pmatrix}
+    1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+    0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; \frac{1}{2} &amp; 0 &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{2} &amp; 0 \\
+    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{2}
+    \end{pmatrix}
+\]</span> 计算单位张量的 MATLAB 脚本见 <a href=""></a></p>
+<h2 id="voigt-映射下的张量运算">Voigt 映射下的张量运算</h2>
+<p>我们现在关心的是, 在 Voigt 映射下,
+张量点积运算将会转变为怎样的矩阵运算? 在下文的例子中, 如果不特别说明,
+我们默认四阶张量具有次对称性, 二阶张量具有对称性.</p>
+<h3 id="张量的双点积运算">张量的双点积运算</h3>
+<p>给定四阶张量 <span class="math inline">\(\mathbb{L}\)</span>,
+二阶张量 <span class="math inline">\(\epsilon\)</span>,
+双点积得到另一个二阶张量 <span class="math inline">\(\sigma\)</span> :
+<span class="math display">\[
+\sigma_{ij} = \mathbb{L} : \epsilon = L_{ijkl} \epsilon_{kl}
+\]</span> 并且通过 Voigt 映射, 我们得到对应的矩阵和向量形式: <span
+class="math display">\[
+\mathrm{Voigt}(\mathbb{L}) = [L], \quad
+\mathrm{Voigt}(\epsilon) = [\epsilon], \quad
+\mathrm{Voigt}(\sigma) = [\sigma]
+\]</span> 我们考虑张量分量 <span
+class="math inline">\(\sigma_{11}\)</span>, 也是 Voigt 形式下向量 <span
+class="math inline">\([\sigma]\)</span> 的第一个分量 <span
+class="math inline">\([\sigma]_{1}\)</span> <span
+class="math display">\[
+\begin{aligned}
+\sigma_{11} &amp;= [\sigma]_{1} = L_{11kl} \epsilon_{kl} \\
+&amp;= L_{1111} \epsilon_{11} + L_{1122} \epsilon_{22} + L_{1133}
+\epsilon_{33} \\
+&amp;+ L_{1123} \epsilon_{23} + L_{1113} \epsilon_{13} + L_{1112}
+\epsilon_{12} \\
+&amp;+ L_{1132} \epsilon_{32} + L_{1131} \epsilon_{31} + L_{1121}
+\epsilon_{21}
+\end{aligned}
+\]</span> 由于张量的对称性, 我们有 <span class="math display">\[
+L_{1123} \epsilon_{23} = L_{1132} \epsilon_{32}, \quad
+L_{1113} \epsilon_{13} = L_{1131} \epsilon_{31}, \quad
+L_{1112} \epsilon_{12} = L_{1121} \epsilon_{21}
+\]</span> 所以 <span class="math display">\[
+\begin{aligned}
+{[}\sigma{]}_{1} &amp;= L_{1111} \epsilon_{11} + L_{1122} \epsilon_{22}
++ L_{1133} \epsilon_{33}
++ 2L_{1123} \epsilon_{23} + 2L_{1113} \epsilon_{13} + 2L_{1112}
+\epsilon_{12} \\
+&amp;= [L]_{11} [\epsilon]_{1}  + [L]_{12} [\epsilon]_{2}  + [L]_{13}
+[\epsilon]_{3}
++ 2[L]_{14} [\epsilon]_{4} + 2[L]_{15} [\epsilon]_{5} + 2[L]_{16}
+[\epsilon]_{6}
+\end{aligned}
+\]</span> 因此在使用 Voigt 记法时, 四阶张量与二阶张量之间的双点积,
+如果写成矩阵形式的话, <span class="math display">\[
+[\sigma] \neq [L] [\epsilon]
+\]</span> 而是 <span class="math display">\[
+[\sigma] = [L] [:] [\epsilon]
+\]</span> <span class="math inline">\([:]\)</span>​ 定义为 6x6 常数矩阵:
+<span class="math display">\[
+[:] := \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2
+\end{pmatrix}
+\]</span> 在本文中使用四阶和二阶张量的双点积举例,
+同样也可以推广到四阶与四阶张量之间, 二阶与二阶张量之间的双点积运算.
+例如, 二阶张量之间的点积写成矩阵形式为: <span class="math display">\[
+\sigma : \epsilon = [\sigma][:][\epsilon]
+\]</span></p>
+<p>以及四阶张量之间的双点积运算: <span class="math display">\[
+\mathbb{L} : \mathbb{I} = [L] [:] [I]
+\]</span></p>
+<h3 id="张量的单点积运算">张量的单点积运算</h3>
+<p>张量的单点积运算很难用 Voigt 记法写成规范的矩阵运算,
+因此在这里只给出分量之间的关系. 给定两个二阶张量 <span
+class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>
+, 单点积运算得到另一个二阶张量 <span class="math inline">\(C\)</span>:
+<span class="math display">\[
+C_{ik} = A \cdot B = A_{ij} B_{jk}
+\]</span> 我们考虑张量分量 <span class="math inline">\(C_{11}\)</span>,
+也是 <span class="math inline">\([C]_1\)</span> : <span
+class="math display">\[
+C_{11} = A_{1j} B_{j1} = A_{11} B_{11} + A_{12} B_{21} + A_{13} B_{31}
+\]</span> 再根据张量的对称性, 我们得到 <span class="math display">\[
+\begin{aligned}[]
+[C]_{1} = [A]_1 [B]_1 + [A]_5 [B]_5 + [A]_6 [B]_6\\
+[C]_{2} = [A]_2 [B]_2 + [A]_4 [B]_4 + [A]_6 [B]_6\\
+[C]_{3} = [A]_3 [B]_3 + [A]_4 [B]_4 + [A]_5 [B]_5
+\end{aligned}
+\]</span> 以及 <span class="math display">\[
+\begin{aligned}[]
+[C]_{4} = [A]_6 [B]_5 + [A]_2 [B]_4 + [A]_4 [B]_3\\
+[C]_{5} = [A]_1 [B]_5 + [A]_6 [B]_4 + [A]_5 [B]_3\\
+[C]_{6} = [A]_1 [B]_6 + [A]_6 [B]_2 + [A]_5 [B]_4
+\end{aligned}
+\]</span></p>
 ]]></content>
       <categories>
         <category>力学</category>
@@ -1914,7 +2027,7 @@ class="math display">\[
     0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
     0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
     \end{pmatrix}, \quad
-    [\mathbb{I}] = \begin{pmatrix}
+[\mathbb{I}] = \begin{pmatrix}
     1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
     0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
     0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
@@ -1981,7 +2094,8 @@ class="math inline">\(\mathbb{L}\)</span> 写成类似于二阶张量 deviatoric
 {\boldsymbol{\varepsilon}}^\mathrm{dev},
   \end{gathered}
 \]</span> 所以如果使用式 (1) 的表示方法, 对应变的 deviatoric
-分解作双点积运算, 可以得到更紧凑的结果: <span class="math display">\[
+分解作双点积运算, 交叉项等于 0, 由此得到更紧凑的结果: <span
+class="math display">\[
 \begin{aligned}
     \mathbb{L}:({\boldsymbol{\varepsilon}}^\mathrm{vol} +
 {\boldsymbol{\varepsilon}}^\mathrm{dev})
@@ -2530,7 +2644,7 @@ class="math inline">\(K_{n}\)</span> 为</p>
 <p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404161048401增量步计算结果.png" alt="增量步计算结果" style="zoom:50%;" /></p>
 <p>多个增量步累积计算的结果为</p>
 <p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404161051373增量步方法结果.png" alt="增量步方法结果" style="zoom: 50%;" /></p>
-<p>需要指出的是，直接使用显式增量步方法得到的结果，<strong>系统内力与外载并不是平衡的</strong>。例如在第一个增量步时，外载增量
+<p>需要指出的是，只使用显式增量步方法得到的结果，<strong>系统内力与外载并不是平衡的</strong>。例如在第一个增量步时，外载增量
 <span class="math inline">\(\Delta W_1 = -7\)</span>，对应位移增量为
 <span class="math inline">\(\Delta w_1\)</span> 为</p>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">dw = <span class="number">-2.0896</span></span><br></pre></td></tr></table></figure>
@@ -2540,7 +2654,7 @@ class="math inline">\(K_{n}\)</span> 为</p>
 -7=f^{\mathrm{ext}} \neq f^{\mathrm{int}} = -6.4908
 \]</span></p>
 <h3 id="迭代法求解">迭代法求解</h3>
-<p>我们已经看到，上文中的直接增量步计算，系统内外力并不是平衡的。系统内外力的差值可以定义为如下残差函数
+<p>我们已经看到，如果只使用显式增量步计算，系统内外力并不是平衡的。系统内外力的差值可以定义为如下残差函数
 <span class="math inline">\(g(w)\)</span> ：</p>
 <p><span class="math display">\[
 g(w) \triangleq \frac{EA}{L^3 }\left(z^2 w+\frac{3}{2}zw^2
@@ -2569,23 +2683,23 @@ g( w_{n+1}^{(i)}), \quad
 w_{n+1}^{(i+1)} = w_{n+1}^{(i)} + \Delta w_{n+1}^{(i+1)}
 \tag{8}
 \]</span></p>
-<p>我们可以通过如下公式衡量迭代算法的收敛速度： <span
-class="math display">\[
+<p>我们可以通过如下公式衡量迭代算法的收敛速度。如果方程在前后两次迭代步的残差满足
+<span class="math display">\[
 \frac{|g( w_{n+1}^{(i+1)})|}{|g( w_{n+1}^{(i)})|^M} \approx \text{Const}
 \]</span> 那么该迭代算法收敛速度是 <span
 class="math inline">\(M\)</span>
 阶的。也就是说，每次迭代的残差与前一次迭代的 <span
 class="math inline">\(M\)</span>
-次方在量级上保持一致，例如本问题中收敛残差比值打印出的结果为</p>
+次方在量级上保持一致。例如在本问题中，收敛残差比值打印出的结果为</p>
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">The error convergence of e_&#123;<span class="built_in">i</span>+<span class="number">1</span>&#125;/e_&#123;<span class="built_in">i</span>&#125;^<span class="number">2</span> is <span class="number">0.009203</span></span><br><span class="line">The error convergence of e_&#123;<span class="built_in">i</span>+<span class="number">1</span>&#125;/e_&#123;<span class="built_in">i</span>&#125;^<span class="number">2</span> is <span class="number">0.030338</span></span><br><span class="line">The error convergence of e_&#123;<span class="built_in">i</span>+<span class="number">1</span>&#125;/e_&#123;<span class="built_in">i</span>&#125;^<span class="number">2</span> is <span class="number">0.064449</span></span><br><span class="line">The error convergence of e_&#123;<span class="built_in">i</span>+<span class="number">1</span>&#125;/e_&#123;<span class="built_in">i</span>&#125;^<span class="number">2</span> is <span class="number">0.066711</span></span><br><span class="line">The error convergence of e_&#123;<span class="built_in">i</span>+<span class="number">1</span>&#125;/e_&#123;<span class="built_in">i</span>&#125;^<span class="number">2</span> is <span class="number">0.099625</span></span><br><span class="line">The error convergence of e_&#123;<span class="built_in">i</span>+<span class="number">1</span>&#125;/e_&#123;<span class="built_in">i</span>&#125;^<span class="number">2</span> is <span class="number">0.099167</span></span><br><span class="line">The error convergence of e_&#123;<span class="built_in">i</span>+<span class="number">1</span>&#125;/e_&#123;<span class="built_in">i</span>&#125;^<span class="number">2</span> is <span class="number">73.914835</span></span><br></pre></td></tr></table></figure>
 <p>所以算法（8）是平方收敛的（最后一步是因为达到了计算机浮点数精度）。这个算法的收敛速度是很快的，例如我们的初值的残差是
-<code>E-01</code> 量级的，计算机浮点数精度为
-<code>E-16</code>，对于平方收敛算法，只需要迭代 <span
+<code>E-01</code> 量级的，而计算机浮点数精度为
+<code>E-16</code>。那么对于平方收敛算法，只需要迭代 <span
 class="math display">\[
 \left( \left( \left( \left( \square^{-1} \right)^2 \right)^2 \right)^2
 \right)^2 = \square^{-16}
 \]</span> <strong>4</strong>
-次就可以收敛到浮点数的精度！然而需要指出的是，算法（8）的每一次迭代过程中，都需要重新计算
+次就可以收敛到浮点数的精度！但是，需要指出的是，算法（8）的每一次迭代过程中，都需要重新计算
 <span class="math inline">\(\left( \left.
 \frac{\mathrm{d}g}{\mathrm{d}w} \right|_{w_{n+1}^{(i)}}
 \right)^{-1}\)</span>​，所以才能达到
@@ -2607,6 +2721,12 @@ w_{n+1}^{(i+1)} = w_{n+1}^{(i)} + \Delta w_{n+1}^{(i+1)}
 <p>最终，我们给出在使用增量步，并对每一个增量步的结果进行 Newton
 迭代，使得内力等于外载后得到的数值计算结果：</p>
 <p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404161503122最终数值结果.png" alt="sln_inc_iter" style="zoom: 67%;" /></p>
+<p>从上图可以看到，如果我们在非线性计算中</p>
+<ul>
+<li>减小增量步的步长；</li>
+<li>在每一个增量步进行迭代，使得残差小于某一个阈值</li>
+</ul>
+<p>那么就能够得到相当不错的结果。</p>
 ]]></content>
       <categories>
         <category>力学</category>
