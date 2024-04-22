@@ -1299,6 +1299,8 @@ class="math inline">\(\boldsymbol{i}\)</span>
     <title>使用有限元方法求解单胞方程</title>
     <url>/mechanics/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="单胞方程的-statement">单胞方程的 statement</h2>
+<h3 id="单胞方程张量场-e_klmn-求解">单胞方程张量场 <span
+class="math inline">\(E_{kl}^{(mn)}\)</span> 求解</h3>
 <p>在三维情景, 线弹性条件下, 单胞方程的弱形式为: <span
 class="math display">\[
 \int_{Y} L_{ijkl} \frac{\partial H_k^{(mn)}}{\partial y_l}
@@ -1341,13 +1343,25 @@ class="math inline">\(I_{kl}^{(mn)}=\frac{1}{2}(\delta_{km}\delta_{ln}+\delta_{k
 L_{ij(mn)}^{\mathrm{hom}} = \frac{1}{|Y|} \int_{Y} L_{ijkl}E_{kl}^{(mn)}
 \mathrm{d} Y.
 \]</span></p>
+<h3 id="reduced-order-单胞方程张量场-p_klmn-求解">Reduced Order
+单胞方程张量场 <span class="math inline">\(P_{kl}^{mn}\)</span>
+求解</h3>
+<p>降阶多尺度的单胞方程弱形式为 <span class="math display">\[
+\int_{Y} L_{ijkl}(y)  P_{kl}^{mn(\alpha)}(y) v_{i,j}(y) ~\mathrm{d}y
+= \int_{Y} L_{ijmn}(y) \chi^{(\alpha)}(y) v_{i,j}(y) ~\mathrm{d}y
+\quad \alpha=1,2, \ldots,N
+\tag{3}
+\]</span></p>
+<p>方程（1）（3）的区别在于右端项的积分区域，以及正负号。式（3）右端对
+partition
+求和，可以得到式（1）的右端项（相差一个负号）。方程（3）的边界条件与（1）相同。</p>
 <h2 id="单胞方程的有限元列式">单胞方程的有限元列式</h2>
 <p>将单胞方程中的张量分量表示为矩阵形式:</p>
 <p><span class="math display">\[
 L_{ijkl}(y) \rightarrow [D](y), \quad
 \frac{\partial v_i}{\partial y_j} \rightarrow [B][v], \quad
-\frac{\partial \chi_k^{(mn)}}{\partial y_l} \rightarrow
-[B][\chi]^{(mn)}, \quad
+\frac{\partial H_k^{(mn)}}{\partial y_l} \rightarrow [B][u]^{(mn)},
+\quad
 L_{ij(mn)}(y) \rightarrow [D](y) [\varepsilon]^{(mn)}.
 \]</span></p>
 <p>式中, <span class="math inline">\(mn =
@@ -1361,7 +1375,7 @@ class="math inline">\((mn)\)</span> 分量为 1, 其它分量为 0. 例如, 当
 <span class="math inline">\(mn=11\)</span> 时,
 对应的有限元矩阵方程为:</p>
 <p><span class="math display">\[
-\int_{Y} [B]^{T} [D](y) [B] \mathrm{d} Y [\chi]^{(11)} = \int_{Y}
+\int_{Y} [B]^{T} [D](y) [B] \mathrm{d} Y [u]^{(11)} = \int_{Y}
 [B]^{T}[D](y) [\varepsilon]^{(11)} \mathrm{d} Y.
 \]</span></p>
 <p>式中, <span class="math inline">\([\varepsilon]^{(11)} =
@@ -1372,31 +1386,31 @@ class="math inline">\((mn)\)</span> 分量为 1, 其它分量为 0. 例如, 当
 \]</span></p>
 <p>则有线性方程组</p>
 <p><span class="math display">\[
-[K][\chi]^{(11)} = [f]^{(11)},
+[K][u]^{(11)} = [f]^{(11)},
 \]</span></p>
 <p>以及周期性边界条件对边界节点的约束方程</p>
 <p><span class="math display">\[
-[C_{\mathrm{per}}][\chi]^{(11)} = [0]
+[C_{\mathrm{per}}][u]^{(11)} = [0]
 \]</span></p>
 <p>和单位平均应变导致的位移边界条件</p>
 <p><span class="math display">\[
-[C_{\mathrm{disp}}]^{(11)}[\chi]^{(11)} = [g].
+[C_{\mathrm{disp}}]^{(11)}[u]^{(11)} = [g].
 \]</span></p>
 <p>注意, 约束矩阵 <span
 class="math inline">\([C_{\mathrm{per}}]\)</span> 与变形模式 <span
 class="math inline">\(mn\)</span> 无关.</p>
 <p>求解 6 组变形模式下的有限元方程, 得到 <span
-class="math inline">\([\chi]^{(mn)}\)</span> 后,
+class="math inline">\([u]^{(mn)}\)</span> 后,
 再代入到均质化弹性张量方程中:</p>
 <p><span class="math display">\[
 [D^{\mathrm{hom}}] [\varepsilon]^{(mn)} = \frac{1}{|Y|} \int_{Y} [D](y)
-[\varepsilon]^{(mn)} - [D](y)[B][\chi]^{(mn)} \mathrm{d} Y.
+[\varepsilon]^{(mn)} - [D](y)[B][u]^{(mn)} \mathrm{d} Y.
 \]</span></p>
 <p>若记</p>
 <p><span class="math display">\[
 [\overline{D}] = \frac{1}{|Y|} \int_{Y} [D](y)\mathrm{d} Y, \quad
 [\sigma]^{(mn)} = \frac{1}{|Y|} \int_{Y} [D](y)[B] \mathrm{d}
-Y~[\chi]^{(mn)},
+Y~[u]^{(mn)},
 \]</span></p>
 <p>则有</p>
 <p><span class="math display">\[
@@ -1404,9 +1418,8 @@ Y~[\chi]^{(mn)},
 \sigma^{(33)}, \sigma^{(23)}, \sigma^{(13)}, \sigma^{(12)}].
 \]</span></p>
 <p>式中, <span class="math inline">\(\sigma^{(mn)}\)</span>
-是由有限元求解的位移场 <span
-class="math inline">\(\chi_k^{(mn)}\)</span> 计算得到应力场,
-再求体平均得到. 对于只有纤维和基体两相材料的单胞,
+是由有限元求解的位移场 <span class="math inline">\(u^{(mn)}\)</span>
+计算得到应力场, 再求体平均得到. 对于只有纤维和基体两相材料的单胞,
 如果它们的体积分数分别为 <span class="math inline">\(c_{f}\)</span> 和
 <span class="math inline">\(c_{m}\)</span>, 体平均材料矩阵 <span
 class="math inline">\([\overline{D}]\)</span> 等于</p>
@@ -1539,8 +1552,7 @@ alt="顺序读取主从节点避免冗余约束" />
 <li>求解周期性边界条件约束下的单胞方程, 对计算结果进行体平均</li>
 <li>求解渐进展开得到的偏微分方程</li>
 </ol>
-<p><strong>Remarks:</strong></p>
-<ol type="1">
+<div class="note info"><ol type="1">
 <li><p>方式 1,2 又称为 RVE 方法, 即计算单胞在平均应变下的应力场,
 对体积积分得到平均应力, 再根据定义得到均质化的材料矩阵.</p></li>
 <li><p>方式 2 使用周期性边界条件, 是对相对面上的主从节点施加约束关系,
@@ -1555,6 +1567,7 @@ class="math inline">\(\varepsilon^c\)</span> 引入的位移量, 求解得到的
 [D^{\mathrm{hom}}] = [\overline{D}] - [\sigma^{(11)}, \sigma^{(22)},
 \sigma^{(33)}, \sigma^{(23)}, \sigma^{(13)}, \sigma^{(12)}]
 \]</span></p>
+</div>
 ]]></content>
       <categories>
         <category>力学</category>
@@ -1565,9 +1578,9 @@ class="math inline">\(\varepsilon^c\)</span> 引入的位移量, 求解得到的
       </tags>
   </entry>
   <entry>
-    <title>四阶单位张量的矩阵表示方法</title>
+    <title>四阶单位张量的 Voigt 表示方法</title>
     <url>/mechanics/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="四阶张量的不同定义方式">四阶张量的不同定义方式</h2>
+    <content><![CDATA[<h2 id="四阶单位张量的不同定义方式">四阶单位张量的不同定义方式</h2>
 <p>四阶单位张量可以表示为含有四个自由指标 Kronecker delta 记号的组合:
 <span class="math inline">\(\delta_{ij} \delta_{kl}\)</span>. 不过,
 与二阶单位张量不同的是, 改变指标的顺序, 会得到三种不同的四阶单位张量:
@@ -1609,32 +1622,6 @@ class="math display">\[
 \mathcal{I}_{ijkl} \triangleq \mathbf{I} \otimes \mathbf{I}, \quad
 \mathcal{L}_{ijkl} \triangleq \mathbb{I}
 \]</span></p>
-<h2 id="voigt-映射">Voigt 映射</h2>
-<p>二阶张量 <span class="math inline">\(\mathbf{A}\)</span> 在 <span
-class="math inline">\(\mathbb{R}^3\)</span> 空间的基底下可以表示为矩阵
-<span class="math inline">\([A] \in \mathbb{R}^3 \times
-\mathbb{R}^3\)</span>. 如果张量 <span
-class="math inline">\(\mathbf{A}\)</span> 为对称张量, 那么矩阵 <span
-class="math inline">\([A]\)</span> 同样为对称矩阵, 因此只需要一个向量
-<span class="math inline">\(\mathrm{vec}~A \in \mathbb{R}^6\)</span>,
-就可以完全保存二阶对称张量 <span
-class="math inline">\(\mathbf{A}\)</span> 的信息. 我们定义 Voigt 映射
-<span class="math inline">\(\mathrm{Voigt}: \mathbb{R}^3 \times
-\mathbb{R}^3 \mapsto \mathbb{R}^6\)</span> <span class="math display">\[
-\begin{aligned}
-a^{\mathrm{V}} \triangleq \mathrm{Voigt}(A):
-&amp;a^{\mathrm{V}}_{1} = A_{11}, \quad
-a^{\mathrm{V}}_{2} = A_{22}, \quad
-a^{\mathrm{V}}_{3} = A_{33}, \quad \\
-&amp;a^{\mathrm{V}}_{4} = A_{23}, \quad
-a^{\mathrm{V}}_{5} = A_{13}, \quad
-a^{\mathrm{V}}_{6} = A_{12}  \quad \\
-\end{aligned}
-\]</span> 对于四阶张量, Voigt 映射会将该张量映射为一个 6x6 的矩阵.
-如果该张量具有<strong>次对称性</strong>, 那么在 Voigt 映射下,
-<strong>不会丢失掉该张量任何一个分量的信息</strong>. 特别的,
-如果四阶张量还具有<strong>主对称性</strong>, 那么使用 Voigt
-映射之后得到的矩阵是<strong>对称矩阵.</strong></p>
 <h2 id="四阶单位张量的-voigt-矩阵形式">四阶单位张量的 Voigt
 矩阵形式</h2>
 <p>将式 (1) 定义的三种单位张量写成 Voigt 矩阵形式为 <span
@@ -1674,98 +1661,7 @@ class="math display">\[
     0 &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{2} &amp; 0 \\
     0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{2}
     \end{pmatrix}
-\]</span> 计算单位张量的 MATLAB 脚本见 <a href=""></a></p>
-<h2 id="voigt-映射下的张量运算">Voigt 映射下的张量运算</h2>
-<p>我们现在关心的是, 在 Voigt 映射下,
-张量点积运算将会转变为怎样的矩阵运算? 在下文的例子中, 如果不特别说明,
-我们默认四阶张量具有次对称性, 二阶张量具有对称性.</p>
-<h3 id="张量的双点积运算">张量的双点积运算</h3>
-<p>给定四阶张量 <span class="math inline">\(\mathbb{L}\)</span>,
-二阶张量 <span class="math inline">\(\epsilon\)</span>,
-双点积得到另一个二阶张量 <span class="math inline">\(\sigma\)</span> :
-<span class="math display">\[
-\sigma_{ij} = \mathbb{L} : \epsilon = L_{ijkl} \epsilon_{kl}
-\]</span> 并且通过 Voigt 映射, 我们得到对应的矩阵和向量形式: <span
-class="math display">\[
-\mathrm{Voigt}(\mathbb{L}) = [L], \quad
-\mathrm{Voigt}(\epsilon) = [\epsilon], \quad
-\mathrm{Voigt}(\sigma) = [\sigma]
-\]</span> 我们考虑张量分量 <span
-class="math inline">\(\sigma_{11}\)</span>, 也是 Voigt 形式下向量 <span
-class="math inline">\([\sigma]\)</span> 的第一个分量 <span
-class="math inline">\([\sigma]_{1}\)</span> <span
-class="math display">\[
-\begin{aligned}
-\sigma_{11} &amp;= [\sigma]_{1} = L_{11kl} \epsilon_{kl} \\
-&amp;= L_{1111} \epsilon_{11} + L_{1122} \epsilon_{22} + L_{1133}
-\epsilon_{33} \\
-&amp;+ L_{1123} \epsilon_{23} + L_{1113} \epsilon_{13} + L_{1112}
-\epsilon_{12} \\
-&amp;+ L_{1132} \epsilon_{32} + L_{1131} \epsilon_{31} + L_{1121}
-\epsilon_{21}
-\end{aligned}
-\]</span> 由于张量的对称性, 我们有 <span class="math display">\[
-L_{1123} \epsilon_{23} = L_{1132} \epsilon_{32}, \quad
-L_{1113} \epsilon_{13} = L_{1131} \epsilon_{31}, \quad
-L_{1112} \epsilon_{12} = L_{1121} \epsilon_{21}
-\]</span> 所以 <span class="math display">\[
-\begin{aligned}
-{[}\sigma{]}_{1} &amp;= L_{1111} \epsilon_{11} + L_{1122} \epsilon_{22}
-+ L_{1133} \epsilon_{33}
-+ 2L_{1123} \epsilon_{23} + 2L_{1113} \epsilon_{13} + 2L_{1112}
-\epsilon_{12} \\
-&amp;= [L]_{11} [\epsilon]_{1}  + [L]_{12} [\epsilon]_{2}  + [L]_{13}
-[\epsilon]_{3}
-+ 2[L]_{14} [\epsilon]_{4} + 2[L]_{15} [\epsilon]_{5} + 2[L]_{16}
-[\epsilon]_{6}
-\end{aligned}
-\]</span> 因此在使用 Voigt 记法时, 四阶张量与二阶张量之间的双点积,
-如果写成矩阵形式的话, <span class="math display">\[
-[\sigma] \neq [L] [\epsilon]
-\]</span> 而是 <span class="math display">\[
-[\sigma] = [L] [:] [\epsilon]
-\]</span> <span class="math inline">\([:]\)</span>​ 定义为 6x6 常数矩阵:
-<span class="math display">\[
-[:] := \begin{pmatrix}
-1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 \\
-0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2
-\end{pmatrix}
-\]</span> 在本文中使用四阶和二阶张量的双点积举例,
-同样也可以推广到四阶与四阶张量之间, 二阶与二阶张量之间的双点积运算.
-例如, 二阶张量之间的点积写成矩阵形式为: <span class="math display">\[
-\sigma : \epsilon = [\sigma][:][\epsilon]
-\]</span></p>
-<p>以及四阶张量之间的双点积运算: <span class="math display">\[
-\mathbb{L} : \mathbb{I} = [L] [:] [I]
-\]</span></p>
-<h3 id="张量的单点积运算">张量的单点积运算</h3>
-<p>张量的单点积运算很难用 Voigt 记法写成规范的矩阵运算,
-因此在这里只给出分量之间的关系. 给定两个二阶张量 <span
-class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>
-, 单点积运算得到另一个二阶张量 <span class="math inline">\(C\)</span>:
-<span class="math display">\[
-C_{ik} = A \cdot B = A_{ij} B_{jk}
-\]</span> 我们考虑张量分量 <span class="math inline">\(C_{11}\)</span>,
-也是 <span class="math inline">\([C]_1\)</span> : <span
-class="math display">\[
-C_{11} = A_{1j} B_{j1} = A_{11} B_{11} + A_{12} B_{21} + A_{13} B_{31}
-\]</span> 再根据张量的对称性, 我们得到 <span class="math display">\[
-\begin{aligned}[]
-[C]_{1} = [A]_1 [B]_1 + [A]_5 [B]_5 + [A]_6 [B]_6\\
-[C]_{2} = [A]_2 [B]_2 + [A]_4 [B]_4 + [A]_6 [B]_6\\
-[C]_{3} = [A]_3 [B]_3 + [A]_4 [B]_4 + [A]_5 [B]_5
-\end{aligned}
-\]</span> 以及 <span class="math display">\[
-\begin{aligned}[]
-[C]_{4} = [A]_6 [B]_5 + [A]_2 [B]_4 + [A]_4 [B]_3\\
-[C]_{5} = [A]_1 [B]_5 + [A]_6 [B]_4 + [A]_5 [B]_3\\
-[C]_{6} = [A]_1 [B]_6 + [A]_6 [B]_2 + [A]_5 [B]_4
-\end{aligned}
-\]</span></p>
+\]</span> 计算单位张量的 MATLAB 脚本见 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8vZm91cnRoLW9yZGVyLWlkZW50aXR5LXRlbnNvcg==">Github<i class="fa fa-external-link-alt"></i></span></p>
 ]]></content>
       <categories>
         <category>力学</category>
@@ -3102,6 +2998,248 @@ class="math inline">\(\equiv\)</span> 在数论中的含义</p>
       </categories>
       <tags>
         <tag>逻辑命题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Voigt 表示方法</title>
+    <url>/mechanics/Voigt-%E8%A1%A8%E7%A4%BA%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="voigt-映射">Voigt 映射</h2>
+<p>二阶张量 <span class="math inline">\(\mathbf{A}\)</span> 在 <span
+class="math inline">\(\mathbb{R}^3\)</span> 空间的基底下可以表示为矩阵
+<span class="math inline">\(\{A_{ij}\} \in \mathbb{R}^3 \times
+\mathbb{R}^3\)</span>. 如果张量 <span
+class="math inline">\(\mathbf{A}\)</span> 为对称张量, 那么矩阵 <span
+class="math inline">\(\{A_{ij}\}\)</span> 同样为对称矩阵,
+因此只需要一个向量 <span class="math inline">\(\mathrm{vec}~A \in
+\mathbb{R}^6\)</span>, 就可以完全保存二阶对称张量 <span
+class="math inline">\(\mathbf{A}\)</span> 的信息. 我们定义 Voigt 映射
+<span class="math inline">\([\cdot]: \mathbb{R}^3 \times \mathbb{R}^3
+\mapsto \mathbb{R}^6\)</span> <span class="math display">\[
+\begin{aligned}[]
+[A]: ~
+&amp;[A]_{1} = A_{11}, \quad
+[A]_{2} = A_{22}, \quad
+[A]_{3} = A_{33}, \quad \\
+&amp;[A]_{4} = A_{23}, \quad
+[A]_{5} = A_{13}, \quad
+[A]_{6} = A_{12}  \quad \\
+\end{aligned}
+\]</span> 对于四阶张量, Voigt 映射会将该张量映射为一个 6x6 的矩阵.
+如果该张量具有<strong>次对称性</strong>, 那么在 Voigt 映射下,
+<strong>不会丢失掉该张量任何一个分量的信息</strong>. 特别的,
+如果四阶张量还具有<strong>主对称性</strong>, 那么使用 Voigt
+映射之后得到的矩阵是<strong>对称矩阵.</strong></p>
+<div class="note primary"><h4 id="举例子">举例子</h4>
+<p>对于各向同性材料, 四阶弹性模量张量 <span
+class="math inline">\(L_{ijkl}\)</span> 可以用 Lame 系数表示为 <span
+class="math display">\[
+L_{ijkl} = \lambda \delta_{ij} \delta_{kl}
+                       + \mu \delta_{ik} \delta_{jl}
+                       + \mu \delta_{il} \delta_{jk},
+\]</span> 式中的 Kronecker 记号可以用 Voigt 映射为矩阵 <span
+class="math display">\[
+[\delta_{ij}\delta_{kl}] = \begin{pmatrix}
+      1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+      \end{pmatrix}, \quad
+[\delta_{ik}\delta_{jl}] = \begin{pmatrix}
+      1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
+      \end{pmatrix}, \quad
+[\delta_{il}\delta_{jl}] = \begin{pmatrix}
+      1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+    \end{pmatrix}.
+\]</span></p>
+<p>所以 <span class="math inline">\(L_{ijkl}\)</span> 写成 <span
+class="math display">\[
+\begin{aligned}[]
+[{L}_{ijkl}] &amp;= \lambda \begin{pmatrix}
+      1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+      \end{pmatrix}
++ \mu \begin{pmatrix}
+      1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
+      \end{pmatrix}
++ \mu \begin{pmatrix}
+      1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
+    \end{pmatrix}  \\
+&amp;= \begin{pmatrix}
+      \lambda+2\mu &amp; \lambda &amp; \lambda &amp; 0 &amp; 0 &amp; 0
+\\
+      \lambda &amp; \lambda+2\mu &amp; \lambda &amp; 0 &amp; 0 &amp; 0
+\\
+      \lambda &amp; \lambda &amp; \lambda+2\mu &amp; 0 &amp; 0 &amp; 0
+\\
+      0 &amp; 0 &amp; 0 &amp; \mu &amp; 0 &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; \mu &amp; 0 \\
+      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \mu
+    \end{pmatrix}
+\end{aligned}
+\]</span></p>
+</div>
+<h2 id="voigt-映射下的张量运算">Voigt 映射下的张量运算</h2>
+<p>我们现在关心的是, 在 Voigt 映射下, 张量运算将会转变为怎样的矩阵运算?
+在下文的例子中, 如果不特别说明, 我们默认四阶张量具有次对称性,
+二阶张量具有对称性.</p>
+<h3 id="张量的线性组合">张量的线性组合</h3>
+<p>Voigt 映射是线性的，因此，对任意张量 <span class="math display">\[
+[\lambda A + \mu B] = \lambda [A] + \mu [B]
+\]</span></p>
+<h3 id="张量的双点积运算">张量的双点积运算</h3>
+<p>给定四阶张量 <span class="math inline">\(\mathbb{L}\)</span>,
+二阶张量 <span class="math inline">\(\epsilon\)</span>,
+双点积得到另一个二阶张量 <span class="math inline">\(\sigma\)</span> :
+<span class="math display">\[
+\sigma_{ij} = \mathbb{L} : \epsilon = L_{ijkl} \epsilon_{kl}
+\]</span> 我们考虑张量分量 <span
+class="math inline">\(\sigma_{11}\)</span>, 也是 Voigt 形式下向量 <span
+class="math inline">\([\sigma]\)</span> 的第一个分量 <span
+class="math inline">\([\sigma]_{1}\)</span> <span
+class="math display">\[
+\begin{aligned}
+\sigma_{11} &amp;= [\sigma]_{1} = L_{11kl} \epsilon_{kl} \\
+&amp;= L_{1111} \epsilon_{11} + L_{1122} \epsilon_{22} + L_{1133}
+\epsilon_{33} \\
+&amp;+ L_{1123} \epsilon_{23} + L_{1113} \epsilon_{13} + L_{1112}
+\epsilon_{12} \\
+&amp;+ L_{1132} \epsilon_{32} + L_{1131} \epsilon_{31} + L_{1121}
+\epsilon_{21}
+\end{aligned}
+\]</span> 由于张量的对称性, 我们有 <span class="math display">\[
+L_{1123} \epsilon_{23} = L_{1132} \epsilon_{32}, \quad
+L_{1113} \epsilon_{13} = L_{1131} \epsilon_{31}, \quad
+L_{1112} \epsilon_{12} = L_{1121} \epsilon_{21}
+\]</span> 所以 <span class="math display">\[
+\begin{aligned}[]
+[\sigma]_{1} &amp;= L_{1111} \epsilon_{11} + L_{1122} \epsilon_{22} +
+L_{1133} \epsilon_{33}
++ 2L_{1123} \epsilon_{23} + 2L_{1113} \epsilon_{13} + 2L_{1112}
+\epsilon_{12} \\
+&amp;= [\mathbb{L}]_{11} [\epsilon]_{1}  + [\mathbb{L}]_{12}
+[\epsilon]_{2}  + [\mathbb{L}]_{13} [\epsilon]_{3}
++ 2[\mathbb{L}]_{14} [\epsilon]_{4} + 2[\mathbb{L}]_{15} [\epsilon]_{5}
++ 2[\mathbb{L}]_{16} [\epsilon]_{6}
+\end{aligned}
+\]</span> 因此在使用 Voigt 记法时, 四阶张量与二阶张量之间的双点积,
+如果写成矩阵形式的话, 并不是 <span class="math display">\[
+[\sigma] \neq [\mathbb{L}] [\epsilon],
+\]</span> 而是 <span class="math display">\[
+[\sigma] = [\mathbb{L}] [:] [\epsilon]
+\]</span> 式中, <span class="math inline">\([:]\)</span>​ 定义为 6x6
+常数矩阵: <span class="math display">\[
+[:] := \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2
+\end{pmatrix}
+\]</span> 在本文中使用四阶和二阶张量的双点积举例,
+同样也可以推广到四阶与四阶张量之间, 二阶与二阶张量之间的双点积运算.
+例如, 二阶张量之间的点积写成矩阵形式为: <span class="math display">\[
+\sigma : \epsilon = [\sigma][:][\epsilon]
+\]</span></p>
+<p>以及四阶张量之间的双点积运算: <span class="math display">\[
+\mathbb{L} : \mathbb{I} = [\mathbb{L}] [:] [\mathbb{I}]
+\]</span></p>
+<div class="note primary"><h4 id="四阶单位张量的矩阵形式">四阶单位张量的矩阵形式</h4>
+<p>对任意的四阶张量, 有 <span class="math display">\[
+\mathbb{L} : \mathbb{I} = \mathbb{L}
+\]</span> 两边作 Voigt 变换得到 <span class="math display">\[
+[\mathbb{L}] [:] [\mathbb{I}] = [\mathbb{I}]
+\]</span> 我们选取某个 <span class="math inline">\(\mathbb{L}\)</span>,
+使得它在 Voigt 映射为 6x6 单位矩阵 <span
+class="math inline">\([I]\)</span>​ <span class="math display">\[
+[\mathbb{L}] := [I]
+\]</span> 所以 <span class="math display">\[
+[:] [\mathbb{I}] = [I]
+\]</span> 也即 <span class="math display">\[
+[\mathbb{I}] = [:]^{-1} = \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0.5
+\end{pmatrix}
+\]</span></p>
+</div>
+<h3 id="四阶张量求逆">四阶张量求逆</h3>
+<p>如果四阶张量 <span class="math inline">\(\mathbb{L}\)</span> <span
+class="math inline">\(\mathbb{M}\)</span> 满足 <span
+class="math display">\[
+\mathbb{L} : \mathbb{M} = \mathbb{M} : \mathbb{L} = \mathbb{I}, \quad
+\text{or} \quad
+L_{ijkl} M_{klmn} = I_{ijmn}
+\]</span> 那么称张量 <span class="math inline">\(\mathbb{M}\)</span>
+为张量 <span class="math inline">\(\mathbb{L}\)</span> 的逆: <span
+class="math display">\[
+\mathbb{L}^{-1} \triangleq \mathbb{M}
+\]</span> 在 Voigt 映射下, 有 <span class="math display">\[
+[\mathbb{L}] [:] [\mathbb{M}] = [\mathbb{M}] [:] [\mathbb{L}] =
+[\mathbb{I}]
+\]</span> 所以 <span class="math display">\[
+[\mathbb{M}] = [:]^{-1} [\mathbb{L}]^{-1} [\mathbb{I}] = ([:]
+[\mathbb{L}] [:])^{-1}
+\]</span></p>
+<h3 id="张量的单点积运算">张量的单点积运算</h3>
+<p>张量的单点积运算很难用 Voigt 记法写成规范的矩阵运算,
+因此在这里只给出分量之间的关系. 给定两个二阶张量 <span
+class="math inline">\(A\)</span>, <span class="math inline">\(B\)</span>
+, 单点积运算得到另一个二阶张量 <span class="math inline">\(C\)</span>:
+<span class="math display">\[
+C_{ik} = A \cdot B = A_{ij} B_{jk}
+\]</span> 我们考虑张量分量 <span class="math inline">\(C_{11}\)</span>,
+也是 <span class="math inline">\([C]_1\)</span> : <span
+class="math display">\[
+C_{11} = A_{1j} B_{j1} = A_{11} B_{11} + A_{12} B_{21} + A_{13} B_{31}
+\]</span> 再根据张量的对称性, 我们得到 <span class="math display">\[
+\begin{aligned}[]
+[C]_{1} = [A]_1 [B]_1 + [A]_5 [B]_5 + [A]_6 [B]_6\\
+[C]_{2} = [A]_2 [B]_2 + [A]_4 [B]_4 + [A]_6 [B]_6\\
+[C]_{3} = [A]_3 [B]_3 + [A]_4 [B]_4 + [A]_5 [B]_5
+\end{aligned}
+\]</span> 以及 <span class="math display">\[
+\begin{aligned}[]
+[C]_{4} = [A]_6 [B]_5 + [A]_2 [B]_4 + [A]_4 [B]_3\\
+[C]_{5} = [A]_1 [B]_5 + [A]_6 [B]_4 + [A]_5 [B]_3\\
+[C]_{6} = [A]_1 [B]_6 + [A]_6 [B]_2 + [A]_5 [B]_4
+\end{aligned}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>张量运算</tag>
       </tags>
   </entry>
 </search>
