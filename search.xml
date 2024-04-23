@@ -530,6 +530,10 @@ Clash，查看我的笔记本的代理端口为：7890。然后设置 Git 的端
 <h2 id="git-相关命令">Git 相关命令</h2>
 <p><code>git init</code> 初始化 git 仓库。在当前目录下会生成一个
 <code>.git/</code> 目录</p>
+<p><code>git branch &lt;newbranch&gt;</code> 创建一个新的分支（但 head
+指针仍然指向旧分支）</p>
+<p><code>git checkout &lt;branchname&gt;</code> 将 head
+指针移到某一个分支上</p>
 ]]></content>
       <tags>
         <tag>Git</tag>
