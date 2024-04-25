@@ -20,23 +20,30 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="邱小伙的博客">
-<meta property="og:url" content="http://qiuxiaohuo.github.io/categories/Linux/index.html">
+    <meta name="description" content="四面体单元 单元节点编号方式为：  已知节点坐标 \([n_0~n_1~n_2~n_3]^T\)，可以得到向量 \[ u &#x3D; n_1 - n_0, \quad v &#x3D; n_2 - n_0, \quad w &#x3D; n_3 - n_0 \] 四面体的体积为 \[ V_{\mathrm{tet}} &#x3D; \frac{1}{6}(u \times v) \cdot w \] 体积平均 \[">
+<meta property="og:type" content="website">
+<meta property="og:title" content="有限元相关">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/femDocs/%E6%9C%89%E9%99%90%E5%85%83%E7%9B%B8%E5%85%B3.html">
 <meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="四面体单元 单元节点编号方式为：  已知节点坐标 \([n_0~n_1~n_2~n_3]^T\)，可以得到向量 \[ u &#x3D; n_1 - n_0, \quad v &#x3D; n_2 - n_0, \quad w &#x3D; n_3 - n_0 \] 四面体的体积为 \[ V_{\mathrm{tet}} &#x3D; \frac{1}{6}(u \times v) \cdot w \] 体积平均 \[">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404172115914%E5%9B%9B%E9%9D%A2%E4%BD%93%E5%8D%95%E5%85%83%E7%BC%96%E5%8F%B7%E6%96%B9%E5%BC%8F.png">
+<meta property="article:published_time" content="2024-04-24T09:32:23.300Z">
+<meta property="article:modified_time" content="2024-04-24T09:32:23.300Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404172115914%E5%9B%9B%E9%9D%A2%E4%BD%93%E5%8D%95%E5%85%83%E7%BC%96%E5%8F%B7%E6%96%B9%E5%BC%8F.png">
 
 
-<link rel="canonical" href="http://qiuxiaohuo.github.io/categories/Linux/">
+<link rel="canonical" href="http://qiuxiaohuo.github.io/femDocs/%E6%9C%89%E9%99%90%E5%85%83%E7%9B%B8%E5%85%B3">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"categories/Linux/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/femDocs/%E6%9C%89%E9%99%90%E5%85%83%E7%9B%B8%E5%85%B3.html","path":"femDocs/有限元相关.html","title":"有限元相关"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>分类: Linux | 邱小伙的博客</title>
+<title>有限元相关 | 邱小伙的博客
+</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -125,7 +132,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -138,6 +145,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E9%9D%A2%E4%BD%93%E5%8D%95%E5%85%83"><span class="nav-number">1.</span> <span class="nav-text">四面体单元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8D%95%E6%8B%89%E4%BC%B8%E6%B5%8B%E8%AF%95"><span class="nav-number">2.</span> <span class="nav-text">简单拉伸测试</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9D%90%E6%96%99%E5%8F%82%E6%95%B0"><span class="nav-number">2.1.</span> <span class="nav-text">材料参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">边界条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8A%A0%E8%BD%BD%E6%9D%A1%E4%BB%B6"><span class="nav-number">2.3.</span> <span class="nav-text">加载条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#step-1-distributed-pressure"><span class="nav-number">2.3.1.</span> <span class="nav-text">Step 1: distributed pressure</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#step-2-hydrostatic-pressure-loading"><span class="nav-number">2.3.2.</span> <span class="nav-text">Step 2: Hydrostatic
+pressure loading</span></a></li></ol></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -190,110 +199,103 @@
 
     </div>
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner page posts-expand">
 
 
-  
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">Linux
-          <small>分类</small>
-        </h1>
-      </div>
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">有限元相关
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
 
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
+      
+      <div class="post-body">
+          <h2 id="四面体单元">四面体单元</h2>
+<p>单元节点编号方式为：</p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404172115914四面体单元编号方式.png" alt="image-20240417211540841" style="zoom:50%;" /></p>
+<p>已知节点坐标 <span
+class="math inline">\([n_0~n_1~n_2~n_3]^T\)</span>，可以得到向量 <span
+class="math display">\[
+u = n_1 - n_0, \quad v = n_2 - n_0, \quad w = n_3 - n_0
+\]</span> 四面体的体积为 <span class="math display">\[
+V_{\mathrm{tet}} = \frac{1}{6}(u \times v) \cdot w
+\]</span></p>
+<p>体积平均 <span class="math display">\[
+\frac{1}{|Y|}\int_{Y} f(y) ~\mathrm{d}y = \frac{1}{|Y|}\sum_i f(y_i)
+|V(i)|
+\]</span></p>
+<h2 id="简单拉伸测试">简单拉伸测试</h2>
+<p>测试实体单元，测试的算例为</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404222140025ver3delem-model.png"
+alt="img" />
+<figcaption aria-hidden="true">img</figcaption>
+</figure>
+<h3 id="材料参数">材料参数</h3>
+<p>Linear elastic, Young's modulus = 30 × 106, Poisson's ratio =
+0.3.</p>
+<h3 id="边界条件">边界条件</h3>
+<p><span class="math display">\[
+u_x^A=u_y^A=u_z^A=0, u_y^B=0, u_z^D=0, u_x^E=0
+\]</span></p>
+<h3 id="加载条件">加载条件</h3>
+<p>一共进行两种加载方式：</p>
+<h4 id="step-1-distributed-pressure">Step 1: distributed pressure</h4>
+<p>A distributed pressure of 1000/area is applied on each face, and
+equivalent concentrated forces for shear loading, defined such that all
+three shear stresses are of magnitude -1000 .</p>
+<blockquote>
+<p>Response: <span class="math display">\[
+\sigma_{x x}=\sigma_{y y}=\sigma_{z z}=\sigma_{x y}=\sigma_{x
+z}=\sigma_{y z}=-1000 \text { at every integration point. }
+\]</span></p>
+<p>Strains <span class="math display">\[
+\varepsilon_{x x}=\varepsilon_{y y}=\varepsilon_{z z}=-1.3333 \times
+10^{-5}, \gamma_{x y}=\gamma_{y z}=\gamma_{x z}=-8.6667 \times 10^{-5} .
+\]</span></p>
+<p>Displacements <span class="math display">\[
+u_x=x \varepsilon_{x x}+y \gamma_{x y}, \quad u_y=y \varepsilon_{y y}+z
+\gamma_{y z}, \quad u_z=z \varepsilon_{z z}+x \gamma_{x z} .
+\]</span></p>
+<p>For lower-order elements the test description is complete. For
+higher-order elements another step definition is included.</p>
+</blockquote>
+<h4 id="step-2-hydrostatic-pressure-loading">Step 2: Hydrostatic
+pressure loading</h4>
+<blockquote>
+<p>Hydrostatic pressure loading is applied to the four vertical faces,
+varying from 0 at top to 1000 /area at bottom, in addition to the Step 1
+loads. Response: Stresses <span class="math display">\[
+\sigma_{x x}=\sigma_{y y}=-1000(2-z), \sigma_{z z}=-1000, \sigma_{x
+y}=\sigma_{x z}=\sigma_{y z}=-1000 .
+\]</span></p>
+<p>Strains <span class="math display">\[
+\begin{aligned}
+&amp; \varepsilon_{x x}=\varepsilon_{y y}=3.333 \times 10^{-5}(0.7
+z-1.1), \varepsilon_{z z}=3.333 \times 10^{-5}(0.2-0.6 z), \\
+&amp; \gamma_{x y}=\gamma_{x z}=\gamma_{y z}=-8.66667 \times 10^{-5} .
+\end{aligned}
+\]</span></p>
+</blockquote>
+
+      </div>
+      
+      
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-04-13T14:10:04+08:00"
-              content="2024-04-13">
-          04-13
-        </time>
-      </div>
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/Linux/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/" itemprop="url">
-            <span itemprop="name">Linux + apache2 配置 https 协议下的 SVN 仓库</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-04-08T19:36:46+08:00"
-              content="2024-04-08">
-          04-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/Linux/Linux-%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80-MATLAB-%E5%91%BD%E4%BB%A4%E8%A1%8C/" itemprop="url">
-            <span itemprop="name">Linux 环境下快速打开 MATLAB 命令行</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-04-06T10:53:32+08:00"
-              content="2024-04-06">
-          04-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/Linux/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/" itemprop="url">
-            <span itemprop="name">Ubuntu 环境下安装 LaTeX</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-04-05T15:05:03+08:00"
-              content="2024-04-05">
-          04-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/Linux/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/" itemprop="url">
-            <span itemprop="name">tmux 快捷键索引</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-    </div>
-  </div>
-  
-  
-  
 
 </div>
   </main>

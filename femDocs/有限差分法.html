@@ -20,23 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
+    <meta name="description" content="任何一个连续映射都可以由一系列的离散近似序列逼近.  之前给出了两个连续映射: \(f \mapsto u\), 它们分别是:  从原始的微分方程导出, \(|| u ||_2 \leq C|| f ||_0\); 从变分形式导出, \(|| u ||_1 \leq \sigma^{-1}|| f ||_{-1}\).  对第一个形式, 我们用有限差分代替其中的导数项, 由">
+<meta property="og:type" content="website">
 <meta property="og:title" content="邱小伙的博客">
-<meta property="og:url" content="http://qiuxiaohuo.github.io/categories/Linux/index.html">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/femDocs/%E6%9C%89%E9%99%90%E5%B7%AE%E5%88%86%E6%B3%95.html">
 <meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="任何一个连续映射都可以由一系列的离散近似序列逼近.  之前给出了两个连续映射: \(f \mapsto u\), 它们分别是:  从原始的微分方程导出, \(|| u ||_2 \leq C|| f ||_0\); 从变分形式导出, \(|| u ||_1 \leq \sigma^{-1}|| f ||_{-1}\).  对第一个形式, 我们用有限差分代替其中的导数项, 由">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-24T02:22:15.342Z">
+<meta property="article:modified_time" content="2024-04-12T06:30:28.186Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qiuxiaohuo.github.io/categories/Linux/">
+<link rel="canonical" href="http://qiuxiaohuo.github.io/femDocs/%E6%9C%89%E9%99%90%E5%B7%AE%E5%88%86%E6%B3%95">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"categories/Linux/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/femDocs/%E6%9C%89%E9%99%90%E5%B7%AE%E5%88%86%E6%B3%95.html","path":"femDocs/有限差分法.html","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>分类: Linux | 邱小伙的博客</title>
+<title> | 邱小伙的博客
+</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -190,110 +195,211 @@
 
     </div>
 
-    <div class="main-inner category posts-collapse">
+    <div class="main-inner page posts-expand">
 
 
-  
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">Linux
-          <small>分类</small>
-        </h1>
-      </div>
+    
+    
+    
+    <div class="post-block" lang="zh-CN"><header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">
+</h1>
+
+<div class="post-meta-container">
+</div>
+
+</header>
 
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
+      
+      <div class="post-body">
+          <blockquote>
+<p>任何一个连续映射都可以由一系列的离散近似序列逼近.</p>
+</blockquote>
+<p>之前给出了两个连续映射: <span class="math inline">\(f \mapsto
+u\)</span>, 它们分别是:</p>
+<ul>
+<li>从原始的微分方程导出, <span class="math inline">\(|| u ||_2 \leq C||
+f ||_0\)</span>;</li>
+<li>从变分形式导出, <span class="math inline">\(|| u ||_1 \leq
+\sigma^{-1}|| f ||_{-1}\)</span>.</li>
+</ul>
+<p>对第一个形式, 我们用有限差分代替其中的导数项, 由此得到有限的离散系统
+<span class="math inline">\(L^{h} U^{h} = f^{h}\)</span>,
+接下来我们要确定两件事情:</p>
+<p>继续分析一维问题 <span class="math inline">\(-(pu^{\prime})^{\prime}
++ qu = f\)</span>, 将区间 <span class="math inline">\([0,\pi]\)</span>
+按照步长 <span class="math inline">\(h = \pi/N\)</span> 进行离散得到点
+<span class="math inline">\(x_i\)</span>, <span class="math inline">\(i
+= 0,1,\ldots,N\)</span>. 函数 <span class="math inline">\(u(x)\)</span>
+的导数用有限差分代替: <span class="math display">\[
+\begin{equation}
+  u^{\prime}(x) \rightarrow \frac{u(x+h/2)-u(x-h/2)}{h} = \Delta^{h}u
+\end{equation}
+\]</span> 将 <span class="math inline">\((1)\)</span>
+带入到原方程左端项当中: <span class="math display">\[
+\begin{equation}
+  -(pu^{\prime})^{\prime} + qu \rightarrow -\Delta^{h}(p\Delta^{h}u) +
+qu
+\end{equation}
+\]</span> 我们现在要求方程 <span class="math display">\[
+\begin{equation}
+  -\Delta^{h}(p\Delta^{h}u) + qu = f
+\end{equation}
+\]</span> 在划分的差分网格节点上成立. 记 <span
+class="math inline">\(f(x_i) = f_i\)</span>, <span
+class="math inline">\(u(x_i) = U_{i}^{h}\)</span>, 将 <span
+class="math inline">\(x = x_i\)</span> 代入方程中, 得到一组关于未知量
+<span class="math inline">\(U_{i}^{h}\)</span>, <span
+class="math inline">\(i = 0,1,\ldots,N\)</span> 的方程: <span
+class="math display">\[
+\begin{equation}
+  \frac{1}{h^2} \left[
+    -p(x_i + h/2) \left(U_{i+1}^{h} - U_{i}^{h} \right)
+    -p(x_i - h/2) \left(U_{i}^{h} - U_{i-1}^{h} \right)
+  \right]
+  +q U_{i}^{h} = f_{i}
+\end{equation}
+\]</span> 接下来我们要将边界条件 <span class="math inline">\(u(0) =
+0\)</span>, <span class="math inline">\(u^{\prime}(\pi) = 0\)</span>
+转换成关于离散未知量的方程. 左端的边界条件可以使 <span
+class="math inline">\(U_{0}^{h} = 0\)</span>.
+右端则有两种不同的处理方法: 单侧的差分方程 <span class="math display">\[
+\begin{equation}
+  \frac{U_{N}^{h} - U_{N-1}^{h}}{h} = 0
+\end{equation}
+\]</span> 或者是中心差分 <span class="math display">\[
+\begin{equation}
+  \frac{U_{N+1}^{h} - U_{N-1}^{h}}{2h} = 0
+\end{equation}
+\]</span> 若使用式 <span class="math inline">\((5)\)</span>, 则方程组
+<span class="math inline">\((4)\)</span> 中, <span
+class="math inline">\(i\)</span> 的取值范围为 <span
+class="math inline">\(1,2,\ldots,N-1\)</span>, 再加上 2 个边界条件, 共
+<span class="math inline">\(N+1\)</span> 个方程, 对应求解 <span
+class="math inline">\(U_{0}^{h}, U_{1}^{h}, \ldots, U_{N}^{h}\)</span>
+共 <span class="math inline">\(N+1\)</span> 个未知量. 若使用式 <span
+class="math inline">\((6)\)</span>, 则 <span
+class="math inline">\(i\)</span> 的取值范围为 <span
+class="math inline">\(1,2,\ldots,N\)</span>, 加上 2 个边界条件, 共 <span
+class="math inline">\(N+2\)</span> 个方程, 对应求解 <span
+class="math inline">\(U_{0}^{h}, U_{1}^{h}, \ldots, U_{N+1}^{h}\)</span>
+共 <span class="math inline">\(N+2\)</span> 个未知量.</p>
+<p>最终得到矩阵形式的差分方程为: (此处省略边界上单侧的差分方程) <span
+class="math display">\[
+\begin{equation}
+  L^h U^h = \frac{1}{h^2} \begin{pmatrix}
+     2 &amp; -1 &amp;  0 &amp; \cdot \\
+    -1 &amp;  2 &amp; \cdot &amp; 0 \\
+     0 &amp;  \cdot &amp; 2 &amp; -1 \\
+     \cdot &amp; 0 &amp; -2 &amp; 2 \\
+  \end{pmatrix}
+  \begin{pmatrix}
+    U_1 \\ \cdot \\ \cdot \\ U_N
+  \end{pmatrix}
+  = \begin{pmatrix}
+    f_1 \\ \cdot \\ \cdot \\ f_N
+  \end{pmatrix}
+\end{equation}
+\]</span></p>
+<p>误差分析 &gt; 这是我最难理解的一块,
+因为我有时候分不清楚什么时候是用的离散点上的差分形式,
+什么时候又改成了全局上的解析形式. 这种离散又解析的误差分析,
+让我很是头疼. 差分的算法, 其实很容易理解, 也容易实现,
+基本是技术上的东西. 而计算数学的精髓, 就在于解析式的误差分析,
+他搭建起一座神奇的桥梁, 将解析与离散相联系, 这就是误差分析. 所以,
+来吧!</p>
+<p>我们上面得到的是离散的线性方程, 为了进行误差分析,
+我们接着回到在代入网格节点之前的解析算子 <span
+class="math inline">\(\Delta^h\)</span> 上 <span class="math display">\[
+\begin{equation}
+  \Delta^{h}u = \frac{u(x+h/2)-u(x-h/2)}{h}
+\end{equation}
+\]</span></p>
+<p>如果 <span class="math inline">\(u\)</span> 满足 <span
+class="math inline">\(Lu = f\)</span>, 那么 <span
+class="math display">\[
+\begin{equation}
+  L^h u - Lu = -\Delta^h(p \Delta^h u) + qu - f = \tau^h
+\end{equation}
+\]</span> 使用 Taylor 展开, 可以得到 <span class="math display">\[
+\begin{equation}
+  \tau^h = -\frac{h^2}{24}[(p u^{\prime})^{\prime \prime \prime} +
+(pu^{\prime \prime \prime})^{\prime}] + O(h^4)
+\end{equation}
+\]</span> (可以用 Mathematica 去尝试得到结果)</p>
+<p>为了分析误差, 我们想知道 <span class="math inline">\(U^h\)</span> 与
+<span class="math inline">\(U\)</span> 之间的"差别", 其中, <span
+class="math inline">\(U\)</span> 是方程解析解在网格节点上的取值向量.
+但这个是很难分析的, 因为 <span class="math inline">\(U^h\)</span>
+是网格节点上的离散值(即前述线性方程组的解), 而 <span
+class="math inline">\(U\)</span> 我们得到的是解析的形式.
+怎样把这两个家伙联系在一起呢?</p>
+<p>如果求解这个方程呢? <span class="math display">\[
+\begin{equation}
+  -\Delta(p \Delta v) + qv = -\frac{h^2}{24}[(p u^{\prime})^{\prime
+\prime \prime} + (pu^{\prime \prime \prime})^{\prime}]
+\end{equation}
+\]</span> 那么 <span class="math display">\[
+\begin{equation}
+  L^h u - Lu - Lv = \tau^h + \frac{h^2}{24}[(p u^{\prime})^{\prime
+\prime \prime} + (pu^{\prime \prime \prime})^{\prime}] = O(h^4)
+\end{equation}
+\]</span> 也就是说 <span class="math display">\[
+\begin{equation}
+  L^h u = L(u+v) + O(h^4)
+\end{equation}
+\]</span> 不妨记 <span class="math inline">\(v=h^2e_2(x)\)</span>,
+我们接下来还要确定 <span class="math inline">\(e_2(x)\)</span>
+的边界条件, 也是通过展开式来确定. 不妨边界条件我们也用算子的形式来表达.
+<span class="math inline">\(C_0 u = u(0) = 0\)</span>, <span
+class="math inline">\(C_1 u = u^{\prime}(\pi) = 0\)</span>.
+差分代替之后的边界条件为 <span class="math inline">\(C_0^h u =
+u(0)\)</span>, <span class="math inline">\(C_1^h u = \frac{u(\pi+h) -
+u(\pi-h)}{2h}\)</span>.</p>
+<p>那么, 本质边界条件 <span class="math display">\[
+\begin{equation}
+  C_0^h u - C_0 u = 0
+\end{equation}
+\]</span> 自然边界条件 <span class="math display">\[
+\begin{equation}
+  C_1^h u - C_1 u = \frac{u(\pi+h) - u(\pi-h)}{2h} - u^{\prime}(\pi)
+  = \frac{h^2}{6}u^{\prime \prime \prime}(\pi) + O(h^4)
+\end{equation}
+\]</span> 因此, 取 <span class="math inline">\(e_2(x)\)</span>
+的边界条件为 <span class="math display">\[
+\begin{equation}
+  e_2(0) = 0,\quad e_2^{\prime}(\pi) = \frac{1}{6}u^{\prime \prime
+\prime}(\pi)
+\end{equation}
+\]</span> 则得到 <span class="math display">\[
+\begin{equation}
+  L^h u - L(u+h^2 e_2) = O(h^4), \quad C^h u - C(u+h^2 e_2) = O(h^4)
+\end{equation}
+\]</span> 微分方程和边界条件的截断误差都是 <span
+class="math inline">\(O(h^4)\)</span></p>
+<p>由此我们可以得到 <span class="math display">\[
+\begin{equation}
+  L^h u = L(u+h^2 e_2+h^4 e_4 + \cdots)
+\end{equation}
+\]</span></p>
+<p>好吧, 我还是没有将离散的情况与连续的情况联系到一起, 也没有和 Strang
+的书上的推导联系在一起(书上的式(16) 的<span
+class="math inline">\(U^h\)</span>我还是没搞明白是什么).
+我只是得到了一个算子关系式.</p>
+<p>考虑展开式在离散点的取值, 看看它和 <span
+class="math inline">\(U_i\)</span> 有什么关系</p>
+
+      </div>
+      
+      
+      
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-04-13T14:10:04+08:00"
-              content="2024-04-13">
-          04-13
-        </time>
-      </div>
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/Linux/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/" itemprop="url">
-            <span itemprop="name">Linux + apache2 配置 https 协议下的 SVN 仓库</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-04-08T19:36:46+08:00"
-              content="2024-04-08">
-          04-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/Linux/Linux-%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80-MATLAB-%E5%91%BD%E4%BB%A4%E8%A1%8C/" itemprop="url">
-            <span itemprop="name">Linux 环境下快速打开 MATLAB 命令行</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-04-06T10:53:32+08:00"
-              content="2024-04-06">
-          04-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/Linux/Ubuntu%20%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%20LaTeX/" itemprop="url">
-            <span itemprop="name">Ubuntu 环境下安装 LaTeX</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-04-05T15:05:03+08:00"
-              content="2024-04-05">
-          04-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/Linux/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/" itemprop="url">
-            <span itemprop="name">tmux 快捷键索引</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-    </div>
-  </div>
-  
-  
-  
 
 </div>
   </main>
