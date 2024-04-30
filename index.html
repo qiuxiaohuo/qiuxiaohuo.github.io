@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">30</span>
+          <span class="site-state-item-count">31</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -163,7 +163,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-count">33</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -191,6 +191,148 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mechanics/%E4%BD%BF%E7%94%A8-Hill-%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%A8%AA%E8%A7%82%E5%90%84%E5%90%91%E5%90%8C%E6%80%A7%E7%9A%84%E6%9D%90%E6%96%99%E7%9F%A9%E9%98%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mechanics/%E4%BD%BF%E7%94%A8-Hill-%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%A8%AA%E8%A7%82%E5%90%84%E5%90%91%E5%90%8C%E6%80%A7%E7%9A%84%E6%9D%90%E6%96%99%E7%9F%A9%E9%98%B5/" class="post-title-link" itemprop="url">使用 Hill 参数表示横观各向同性的材料矩阵</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-04-30 09:29:37 / 修改时间：09:30:33" itemprop="dateCreated datePublished" datetime="2024-04-30T09:29:37+08:00">2024-04-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>参考文献：Micromechanics of Composite Materials，George J.
+Dvorak，section 2.3</p>
+<p>Hill（1964）给出一种横观各向同性材料更紧凑的表达方式： <span
+class="math display">\[
+\left[\begin{array}{l}
+\sigma_{11} \\
+\sigma_{22} \\
+\sigma_{33} \\
+\sigma_{23} \\
+\sigma_{31} \\
+\sigma_{12}
+\end{array}\right]=\left[\begin{array}{cccccc}
+n &amp; l &amp; l &amp; 0 &amp; 0 &amp; 0 \\
+l &amp; k+m &amp; k-m &amp; 0 &amp; 0 &amp; 0 \\
+l &amp; k-m &amp; k+m &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; m &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; p &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; p
+\end{array}\right]\left[\begin{array}{c}
+\varepsilon_{11} \\
+\varepsilon_{22} \\
+\varepsilon_{33} \\
+2 \varepsilon_{23} \\
+2 \varepsilon_{31} \\
+2 \varepsilon_{12}
+\end{array}\right]
+\]</span> 式中 1 方向为纤维主方向，参数 <span
+class="math inline">\(k,l,n,m,p\)</span>
+与横观各向同性的工程常数之间的对应关系为 <span class="math display">\[
+\left.
+\begin{aligned}
+k=\left[ 2\frac{1-v_{23}}{E_{22}} - 4 \frac{v_{12}^2}{E_{11}}
+\right]^{-1} \quad
+l=2 k v_{12} \\
+n=E_{11}+4 k v_{12}^2 = E_{11} + \frac{l^2}{k} \quad
+m=G_{23} \quad
+p=G_{21}
+\end{aligned}
+\right\}
+\]</span></p>
+<p><span class="math display">\[
+\left.
+\begin{aligned}
+E_{11} = n - l^2/k \quad
+v_{12} = l/2 k \quad
+v_{21} = E_{22} v_{12} / E_{11} \\
+E_{22} = E_{33} = \frac{4 m\left(k n-l^2\right)}{n(k+m)-l^2} \quad
+v_{23} = v_{32}=\frac{n(k-m)-l^2}{n(k+m)-l^2}
+\end{aligned}
+\right\}
+\]</span></p>
+<p>为验证上述公式，我们不妨代入各向同性的材料参数，那么该公式最终应退化为各向同性的材料矩阵：
+<span class="math display">\[
+k = \frac{E}{2(1+\nu)(1-2\nu)} = \lambda + \mu, \quad
+l = \frac{\nu E}{(1+\nu)(1-2\nu)} = \lambda, \quad
+n = \frac{\mu(3\lambda + 2\mu)}{\lambda + \mu} +
+\frac{\lambda^2}{\lambda+\mu} = \lambda + 2\mu
+\]</span> 以及 <span class="math display">\[
+m = p = \mu
+\]</span> 值得指出的是，使用 Hill
+参数表示横观各向同性材料刚度矩阵，关系式 <span class="math display">\[
+\frac{C_{33} - C_{32}}{2} = C_{44}
+\]</span>
+更方便直接看出。这也是横观各向同性材料与一般的正交各向异性材料之间的差别</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -228,9 +370,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-22 18:16:55 / 修改时间：18:13:52" itemprop="dateCreated datePublished" datetime="2024-04-22T18:16:55+08:00">2024-04-22</time>
+      <time title="创建时间：2024-04-22 18:16:55" itemprop="dateCreated datePublished" datetime="2024-04-22T18:16:55+08:00">2024-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-27 17:12:49" itemprop="dateModified" datetime="2024-04-27T17:12:49+08:00">2024-04-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -839,9 +987,15 @@ class="math inline">\(\mu^{\xi}(x)\)</span> 表征材料非弹性的影响,
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-15 09:50:09 / 修改时间：15:04:08" itemprop="dateCreated datePublished" datetime="2024-04-15T09:50:09+08:00">2024-04-15</time>
+      <time title="创建时间：2024-04-15 09:50:09" itemprop="dateCreated datePublished" datetime="2024-04-15T09:50:09+08:00">2024-04-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-29 15:12:01" itemprop="dateModified" datetime="2024-04-29T15:12:01+08:00">2024-04-29</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1323,7 +1477,7 @@ Linux 环境下使用 apache2 配置 https 协议下的 SVN 仓库。</p>
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-22 16:30:58" itemprop="dateModified" datetime="2024-04-22T16:30:58+08:00">2024-04-22</time>
+      <time title="修改时间：2024-04-30 10:30:48" itemprop="dateModified" datetime="2024-04-30T10:30:48+08:00">2024-04-30</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1654,92 +1808,6 @@ CS<i class="fa fa-external-link-alt"></i></span> 介绍了 Git 的数据模型�
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Git-%E7%9B%B8%E5%85%B3/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/%E9%85%8D%E7%BD%AE-Typora-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E7%BD%91%E7%BB%9C%E5%9B%BE%E5%BA%8A/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/%E9%85%8D%E7%BD%AE-Typora-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E7%BD%91%E7%BB%9C%E5%9B%BE%E5%BA%8A/" class="post-title-link" itemprop="url">配置 Typora 上传图片到网络图床</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-04-07 10:06:11" itemprop="dateCreated datePublished" datetime="2024-04-07T10:06:11+08:00">2024-04-07</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-09 18:25:14" itemprop="dateModified" datetime="2024-04-09T18:25:14+08:00">2024-04-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>如果在 markdown 文档插入本地路径中的图片，那么移动 markdown
-文档同时还必须考虑图片路径，否则图片总是无法正确显示。而配置网络中的图床，在
-markdown
-中只需要插入图片对应的网络链接即可，这在写网络博客很方便。图床一共需要配置三个位置：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/%E9%85%8D%E7%BD%AE-Typora-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E7%BD%91%E7%BB%9C%E5%9B%BE%E5%BA%8A/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

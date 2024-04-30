@@ -2313,7 +2313,7 @@ class="math display">\[
 [:][\mathbb{L}^{(1)}]
 \]</span> 而中间四阶张量逆的矩阵表示为 <span class="math display">\[
 [(\mathbb{L}^{(1)} - \mathbb{L}^{(2)})^{-1}]
-= [:]^{-1} [\mathbb{L}^{(1)} - \mathbb{L}^{(2)}]^{-1} [\mathbb{I}]^{-1}
+= [:]^{-1} [\mathbb{L}^{(1)} - \mathbb{L}^{(2)}]^{-1} [:]^{-1}
 \]</span> 代入得到 <span class="math display">\[
 [:][\mathbb{P}^{(11)}]
 = ([:][\mathbb{I}] - [:][\mathbb{E}^{(1)}])~
@@ -2709,8 +2709,8 @@ N_{ik}(\xi) \triangleq \mathrm{adj}(K_{ik}(\xi))
 的逆可以表示为 <span class="math display">\[
 K_{ik}^{-1}(\xi) = D^{-1}(\xi)N_{ik}(\xi)
 \]</span></p>
-<p>式中, <span class="math inline">\(D(\xi):=\det(K_{ik}(\xi))\)</span>.
-再应用 Fourier 逆变换, 就可以得到解 <span
+<p>式中, <span class="math inline">\(D(\xi) \triangleq
+\det(K_{ik}(\xi))\)</span>. 再应用 Fourier 逆变换, 就可以得到解 <span
 class="math inline">\(u(x)\)</span>:</p>
 <p><span class="math display">\[
 \begin{align}
@@ -3134,13 +3134,18 @@ id="各向同性弹性张量的不同表示方法">各向同性弹性张量的�
 <p>对于各向同性材料, 四阶弹性模量张量 <span
 class="math inline">\(L_{ijkl}\)</span> 可以用 Lame 系数表示为 <span
 class="math display">\[
-L_{ijkl} := \lambda \delta_{ij} \delta_{kl}
+L_{ijkl} \triangleq \lambda \delta_{ij} \delta_{kl}
                        + \mu \delta_{ik} \delta_{jl}
                        + \mu \delta_{il} \delta_{jk},
 \]</span> 将上式写成张量形式 <span
 class="math inline">\(\mathbb{L}\)</span> 为 <span
 class="math display">\[
-\mathbb{L}:= \lambda \mathbf{I}\otimes \mathbf{I}+ 2\mu \mathbb{I}.
+\mathbb{L} = \lambda \mathbf{I}\otimes \mathbf{I}+ 2\mu \mathbb{I}.
+\]</span> 同样的, 我们也可以将 柔度张量写为 <span
+class="math display">\[
+\mathbb{M} = -\frac{\lambda}{2\mu(3\lambda + 2\mu)}
+\mathbf{I}\otimes\mathbf{I}
++ \frac{1}{2\mu} \mathbb{I}
 \]</span> 也可以用常数 <span class="math inline">\(K\)</span> 与 <span
 class="math inline">\(\mu\)</span>, 将 <span
 class="math inline">\(\mathbb{L}\)</span> 写成类似于二阶张量 deviatoric
@@ -3603,6 +3608,82 @@ class="math inline">\(\varepsilon\)</span>.</p>
       <tags>
         <tag>Eshelby 问题</tag>
         <tag>细观力学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>使用 Hill 参数表示横观各向同性的材料矩阵</title>
+    <url>/mechanics/%E4%BD%BF%E7%94%A8-Hill-%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%A8%AA%E8%A7%82%E5%90%84%E5%90%91%E5%90%8C%E6%80%A7%E7%9A%84%E6%9D%90%E6%96%99%E7%9F%A9%E9%98%B5/</url>
+    <content><![CDATA[<p>参考文献：Micromechanics of Composite Materials，George J.
+Dvorak，section 2.3</p>
+<p>Hill（1964）给出一种横观各向同性材料更紧凑的表达方式： <span
+class="math display">\[
+\left[\begin{array}{l}
+\sigma_{11} \\
+\sigma_{22} \\
+\sigma_{33} \\
+\sigma_{23} \\
+\sigma_{31} \\
+\sigma_{12}
+\end{array}\right]=\left[\begin{array}{cccccc}
+n &amp; l &amp; l &amp; 0 &amp; 0 &amp; 0 \\
+l &amp; k+m &amp; k-m &amp; 0 &amp; 0 &amp; 0 \\
+l &amp; k-m &amp; k+m &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; m &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; p &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; p
+\end{array}\right]\left[\begin{array}{c}
+\varepsilon_{11} \\
+\varepsilon_{22} \\
+\varepsilon_{33} \\
+2 \varepsilon_{23} \\
+2 \varepsilon_{31} \\
+2 \varepsilon_{12}
+\end{array}\right]
+\]</span> 式中 1 方向为纤维主方向，参数 <span
+class="math inline">\(k,l,n,m,p\)</span>
+与横观各向同性的工程常数之间的对应关系为 <span class="math display">\[
+\left.
+\begin{aligned}
+k=\left[ 2\frac{1-v_{23}}{E_{22}} - 4 \frac{v_{12}^2}{E_{11}}
+\right]^{-1} \quad
+l=2 k v_{12} \\
+n=E_{11}+4 k v_{12}^2 = E_{11} + \frac{l^2}{k} \quad
+m=G_{23} \quad
+p=G_{21}
+\end{aligned}
+\right\}
+\]</span></p>
+<p><span class="math display">\[
+\left.
+\begin{aligned}
+E_{11} = n - l^2/k \quad
+v_{12} = l/2 k \quad
+v_{21} = E_{22} v_{12} / E_{11} \\
+E_{22} = E_{33} = \frac{4 m\left(k n-l^2\right)}{n(k+m)-l^2} \quad
+v_{23} = v_{32}=\frac{n(k-m)-l^2}{n(k+m)-l^2}
+\end{aligned}
+\right\}
+\]</span></p>
+<p>为验证上述公式，我们不妨代入各向同性的材料参数，那么该公式最终应退化为各向同性的材料矩阵：
+<span class="math display">\[
+k = \frac{E}{2(1+\nu)(1-2\nu)} = \lambda + \mu, \quad
+l = \frac{\nu E}{(1+\nu)(1-2\nu)} = \lambda, \quad
+n = \frac{\mu(3\lambda + 2\mu)}{\lambda + \mu} +
+\frac{\lambda^2}{\lambda+\mu} = \lambda + 2\mu
+\]</span> 以及 <span class="math display">\[
+m = p = \mu
+\]</span> 值得指出的是，使用 Hill
+参数表示横观各向同性材料刚度矩阵，关系式 <span class="math display">\[
+\frac{C_{33} - C_{32}}{2} = C_{44}
+\]</span>
+更方便直接看出。这也是横观各向同性材料与一般的正交各向异性材料之间的差别</p>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>弹性力学</tag>
+        <tag>横观各向同性</tag>
       </tags>
   </entry>
 </search>

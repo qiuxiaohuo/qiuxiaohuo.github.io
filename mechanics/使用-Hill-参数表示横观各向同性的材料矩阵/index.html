@@ -20,23 +20,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
-<meta property="og:title" content="邱小伙的博客">
-<meta property="og:url" content="http://qiuxiaohuo.github.io/tags/Green-%E5%87%BD%E6%95%B0/index.html">
+    <meta name="description" content="参考文献：Micromechanics of Composite Materials，George J. Dvorak，section 2.3 Hill（1964）给出一种横观各向同性材料更紧凑的表达方式： \[ \left[\begin{array}{l} \sigma_{11} \\ \sigma_{22} \\ \sigma_{33} \\ \sigma_{23} \\ \s">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 Hill 参数表示横观各向同性的材料矩阵">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/mechanics/%E4%BD%BF%E7%94%A8-Hill-%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%A8%AA%E8%A7%82%E5%90%84%E5%90%91%E5%90%8C%E6%80%A7%E7%9A%84%E6%9D%90%E6%96%99%E7%9F%A9%E9%98%B5/index.html">
 <meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="参考文献：Micromechanics of Composite Materials，George J. Dvorak，section 2.3 Hill（1964）给出一种横观各向同性材料更紧凑的表达方式： \[ \left[\begin{array}{l} \sigma_{11} \\ \sigma_{22} \\ \sigma_{33} \\ \sigma_{23} \\ \s">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-30T01:29:37.000Z">
+<meta property="article:modified_time" content="2024-04-30T01:30:33.756Z">
 <meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="弹性力学">
+<meta property="article:tag" content="横观各向同性">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qiuxiaohuo.github.io/tags/Green-%E5%87%BD%E6%95%B0/">
+<link rel="canonical" href="http://qiuxiaohuo.github.io/mechanics/%E4%BD%BF%E7%94%A8-Hill-%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%A8%AA%E8%A7%82%E5%90%84%E5%90%91%E5%90%8C%E6%80%A7%E7%9A%84%E6%9D%90%E6%96%99%E7%9F%A9%E9%98%B5/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/Green-函数/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/mechanics/%E4%BD%BF%E7%94%A8-Hill-%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%A8%AA%E8%A7%82%E5%90%84%E5%90%91%E5%90%8C%E6%80%A7%E7%9A%84%E6%9D%90%E6%96%99%E7%9F%A9%E9%98%B5/","path":"mechanics/使用-Hill-参数表示横观各向同性的材料矩阵/","title":"使用 Hill 参数表示横观各向同性的材料矩阵"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: Green 函数 | 邱小伙的博客</title>
+<title>使用 Hill 参数表示横观各向同性的材料矩阵 | 邱小伙的博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -190,70 +196,171 @@
 
     </div>
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">Green 函数
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mechanics/%E4%BD%BF%E7%94%A8-Hill-%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%A8%AA%E8%A7%82%E5%90%84%E5%90%91%E5%90%8C%E6%80%A7%E7%9A%84%E6%9D%90%E6%96%99%E7%9F%A9%E9%98%B5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="使用 Hill 参数表示横观各向同性的材料矩阵 | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          使用 Hill 参数表示横观各向同性的材料矩阵
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
+
+      <time title="创建时间：2024-04-30 09:29:37 / 修改时间：09:30:33" itemprop="dateCreated datePublished" datetime="2024-04-30T09:29:37+08:00">2024-04-30</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>参考文献：Micromechanics of Composite Materials，George J.
+Dvorak，section 2.3</p>
+<p>Hill（1964）给出一种横观各向同性材料更紧凑的表达方式： <span
+class="math display">\[
+\left[\begin{array}{l}
+\sigma_{11} \\
+\sigma_{22} \\
+\sigma_{33} \\
+\sigma_{23} \\
+\sigma_{31} \\
+\sigma_{12}
+\end{array}\right]=\left[\begin{array}{cccccc}
+n &amp; l &amp; l &amp; 0 &amp; 0 &amp; 0 \\
+l &amp; k+m &amp; k-m &amp; 0 &amp; 0 &amp; 0 \\
+l &amp; k-m &amp; k+m &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; m &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; p &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; p
+\end{array}\right]\left[\begin{array}{c}
+\varepsilon_{11} \\
+\varepsilon_{22} \\
+\varepsilon_{33} \\
+2 \varepsilon_{23} \\
+2 \varepsilon_{31} \\
+2 \varepsilon_{12}
+\end{array}\right]
+\]</span> 式中 1 方向为纤维主方向，参数 <span
+class="math inline">\(k,l,n,m,p\)</span>
+与横观各向同性的工程常数之间的对应关系为 <span class="math display">\[
+\left.
+\begin{aligned}
+k=\left[ 2\frac{1-v_{23}}{E_{22}} - 4 \frac{v_{12}^2}{E_{11}}
+\right]^{-1} \quad
+l=2 k v_{12} \\
+n=E_{11}+4 k v_{12}^2 = E_{11} + \frac{l^2}{k} \quad
+m=G_{23} \quad
+p=G_{21}
+\end{aligned}
+\right\}
+\]</span></p>
+<p><span class="math display">\[
+\left.
+\begin{aligned}
+E_{11} = n - l^2/k \quad
+v_{12} = l/2 k \quad
+v_{21} = E_{22} v_{12} / E_{11} \\
+E_{22} = E_{33} = \frac{4 m\left(k n-l^2\right)}{n(k+m)-l^2} \quad
+v_{23} = v_{32}=\frac{n(k-m)-l^2}{n(k+m)-l^2}
+\end{aligned}
+\right\}
+\]</span></p>
+<p>为验证上述公式，我们不妨代入各向同性的材料参数，那么该公式最终应退化为各向同性的材料矩阵：
+<span class="math display">\[
+k = \frac{E}{2(1+\nu)(1-2\nu)} = \lambda + \mu, \quad
+l = \frac{\nu E}{(1+\nu)(1-2\nu)} = \lambda, \quad
+n = \frac{\mu(3\lambda + 2\mu)}{\lambda + \mu} +
+\frac{\lambda^2}{\lambda+\mu} = \lambda + 2\mu
+\]</span> 以及 <span class="math display">\[
+m = p = \mu
+\]</span> 值得指出的是，使用 Hill
+参数表示横观各向同性材料刚度矩阵，关系式 <span class="math display">\[
+\frac{C_{33} - C_{32}}{2} = C_{44}
+\]</span>
+更方便直接看出。这也是横观各向同性材料与一般的正交各向异性材料之间的差别</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-04-15T09:59:09+08:00"
-              content="2024-04-15">
-          04-15
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/mechanics/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/" itemprop="url">
-            <span itemprop="name">多尺度 Reduced Order 推导</span>
-          </a>
-      </div>
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6/" rel="tag"># 弹性力学</a>
+              <a href="/tags/%E6%A8%AA%E8%A7%82%E5%90%84%E5%90%91%E5%90%8C%E6%80%A7/" rel="tag"># 横观各向同性</a>
+          </div>
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mechanics/%E5%8F%8C%E7%9B%B8%E5%8D%95%E8%83%9E%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E6%9E%90%E6%B1%82%E8%A7%A3/" rel="prev" title="双相单胞问题 E P 张量的封闭解">
+                  <i class="fa fa-angle-left"></i> 双相单胞问题 E P 张量的封闭解
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-04-15T09:50:09+08:00"
-              content="2024-04-15">
-          04-15
-        </time>
-      </div>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/mechanics/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/" itemprop="url">
-            <span itemprop="name">弹性力学方程的 Green 函数</span>
-          </a>
-      </div>
 
-      
-    </header>
-  </article>
 
-    </div>
-  </div>
-  
-  
-  
+
 
 </div>
   </main>
