@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">32</span>
+          <span class="site-state-item-count">33</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -200,6 +200,127 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mechanics/%E5%9D%87%E8%B4%A8%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%AD%E7%9A%84-Hashin-Shtrikman-%E4%B8%8A%E4%B8%8B%E7%95%8C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mechanics/%E5%9D%87%E8%B4%A8%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%AD%E7%9A%84-Hashin-Shtrikman-%E4%B8%8A%E4%B8%8B%E7%95%8C/" class="post-title-link" itemprop="url">均质化理论中的 Hashin-Shtrikman 上下界</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-02 20:00:00 / 修改时间：20:01:01" itemprop="dateCreated datePublished" datetime="2024-05-02T20:00:00+08:00">2024-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>参考文献: HASHIN Z, SHTRIKMAN S. A variational approach to the theory
+of the elastic behaviour of multiphase materials[J/OL]. Journal of the
+Mechanics and Physics of Solids, 1963, 11(2): 127-140. DOI:<span class="exturl" data-url="aHR0cHM6Ly9kb2kub3JnLzEwLjEwMTYvMDAyMi01MDk2KDYzKTkwMDYwLTc=">10.1016/0022-5096(63)90060-7<i class="fa fa-external-link-alt"></i></span>.</p>
+<div class="note info"><p>本文主要是重述论文中的推导过程, 因而公式编号保持与原论文一致.</p>
+</div>
+<h2 id="hashin-shtrikman-变分原理">Hashin-Shtrikman 变分原理</h2>
+<p>Hashin-Shtrikman 变分原理考虑两个单胞 <span
+class="math inline">\(Y\)</span> 和 <span
+class="math inline">\(\widetilde Y\)</span>,
+两个单胞选用同样的位移边界条件. 单胞 <span
+class="math inline">\(Y\)</span> 材料为各向同性, 模量为 <span
+class="math inline">\(L_{ijkl}^{0}\)</span>,
+在位移边界条件下单胞内的应变 <span
+class="math inline">\(\varepsilon_{ij}^{0}\)</span> 为常数. 单胞 <span
+class="math inline">\(Y\)</span> 上的应力为: <span
+class="math display">\[
+\sigma_{ij}^0 = L_{ijkl}^0 \varepsilon_{kl}^0
+\]</span> 单胞 <span class="math inline">\(\widetilde Y\)</span>
+由非均质材料构成, 其模量为 <span
+class="math inline">\(L_{ijkl}(y):\tilde Y \mapsto
+\mathbb{S}^4\)</span>. 在与单胞 <span class="math inline">\(Y\)</span>
+相同的位移边界条件作用下, 单胞 <span class="math inline">\(\widetilde
+Y\)</span> 上的应变与应力是空间坐标的函数, 记为 <span
+class="math inline">\(\varepsilon_{ij}(y):\tilde Y \mapsto
+\mathbb{S}^2\)</span> 和 <span
+class="math inline">\(\sigma_{ij}(y):\tilde Y \mapsto
+\mathbb{S}^2\)</span>. 定义单胞 <span class="math inline">\(Y\)</span>
+与 <span class="math inline">\(\widetilde Y\)</span> 之间模量的差值
+<span class="math inline">\(\delta L_{ijkl}\)</span> 为 <span
+class="math display">\[
+\delta L_{ijkl} \triangleq L_{ijkl} - L_{ijkl}^{0}
+\]</span> 以及极化应力 <span class="math inline">\(p_{ij}\)</span>​ <span
+class="math display">\[
+p_{ij}(y) \triangleq \sigma_{ij} - L_{ijkl}^0\varepsilon_{kl} = \delta
+L_{ijkl}~\varepsilon_{kl}
+\]</span>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/mechanics/%E5%9D%87%E8%B4%A8%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%AD%E7%9A%84-Hashin-Shtrikman-%E4%B8%8A%E4%B8%8B%E7%95%8C/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mechanics/Fourier-%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90-Hashin-Shtrikman-%E5%8F%98%E5%88%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -218,7 +339,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/mechanics/Fourier-%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90-Hashin-Shtrikman-%E5%8F%98%E5%88%86/" class="post-title-link" itemprop="url">Fourier-方法分析-Hashin-Shtrikman-变分原理</a>
+          <a href="/mechanics/Fourier-%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90-Hashin-Shtrikman-%E5%8F%98%E5%88%86/" class="post-title-link" itemprop="url">Fourier 方法分析 Hashin-Shtrikman 变分原理</a>
         </h2>
 
         <div class="post-meta-container">
@@ -230,7 +351,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-05-02 14:43:55 / 修改时间：14:44:28" itemprop="dateCreated datePublished" datetime="2024-05-02T14:43:55+08:00">2024-05-02</time>
+      <time title="创建时间：2024-05-02 14:43:55 / 修改时间：19:59:55" itemprop="dateCreated datePublished" datetime="2024-05-02T14:43:55+08:00">2024-05-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1711,105 +1832,8 @@ class="math display">\[
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/Linux/Linux-%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80-MATLAB-%E5%91%BD%E4%BB%A4%E8%A1%8C/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Linux/Linux-%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80-MATLAB-%E5%91%BD%E4%BB%A4%E8%A1%8C/" class="post-title-link" itemprop="url">Linux 环境下快速打开 MATLAB 命令行</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-04-08 19:36:46" itemprop="dateCreated datePublished" datetime="2024-04-08T19:36:46+08:00">2024-04-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-15 17:17:31" itemprop="dateModified" datetime="2024-04-15T17:17:31+08:00">2024-04-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在 Ubuntu 22.04 中安装 MATLAB 之后，使用命令行运行 MATLAB 报错：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">laptop@qxh-Precision-7920-Tower:~$ matlab</span><br><span class="line">matlab：未找到命令</span><br></pre></td></tr></table></figure>
-<p>这样每次运行 MATLAB，总是要到路径
-<code>/usr/local/MATLAB/R2024a/bin</code> 下运行 <code>matlab</code>
-脚本，并且再切换到原来的目录，很不方便。一种解决方案是使用
-<code>alias</code> 命令，定义一条短语替代长的字符串命令：</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Linux/Linux-%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80-MATLAB-%E5%91%BD%E4%BB%A4%E8%A1%8C/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 </div>
