@@ -3641,7 +3641,8 @@ l &amp; k-m &amp; k+m &amp; 0 &amp; 0 &amp; 0 \\
 \end{array}\right]
 \]</span> 式中 1 方向为纤维主方向，参数 <span
 class="math inline">\(k,l,n,m,p\)</span>
-与横观各向同性的工程常数之间的对应关系为 <span class="math display">\[
+与横观各向同性的工程常数之间的对应关系为<span id="more"></span> <span
+class="math display">\[
 \left.
 \begin{aligned}
 k=\left[ 2\frac{1-v_{23}}{E_{22}} - 4 \frac{v_{12}^2}{E_{11}}
@@ -3684,6 +3685,264 @@ m = p = \mu
       <tags>
         <tag>弹性力学</tag>
         <tag>横观各向同性</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Fourier-方法分析-Hashin-Shtrikman-变分原理</title>
+    <url>/mechanics/Fourier-%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90-Hashin-Shtrikman-%E5%8F%98%E5%88%86/</url>
+    <content><![CDATA[<p>Hashin-Shtrikman 变分原理中给出的泛函表达式为 <span
+class="math display">\[
+U^p (p_{ij}, \widetilde\varepsilon_{ij})
+= \underbrace{\frac{1}{2}\int \bar\sigma_{ij}
+\bar\varepsilon_{ij}\mathrm{d} y}_{\triangleq \bar U}
++ \underbrace{\frac{1}{2} \int p_{ij}(y) \widetilde\varepsilon_{ij}(y)
+\mathrm{d} y}_{\triangleq \widetilde U}
+- \frac{1}{2} \int \left( p_{ij}(y)~\delta L_{ijkl}^{-1}(y)~p_{kl}(y) -
+2p_{ij}(y) \bar\varepsilon_{ij}\right)  \mathrm{d} y
+\]</span> <span id="more"></span>对二阶张量进行 dev 分解 <span
+class="math display">\[
+\begin{aligned}
+p_{ij} &amp;= p \delta_{ij} + f_{ij} \\
+\bar\varepsilon_{ij} &amp;= \bar\varepsilon \delta_{ij} + \bar e_{ij}
+\end{aligned}
+\]</span> 代入到泛函表达式当中 <span class="math display">\[
+U^p = \bar U + \widetilde U - \frac{1}{2} \int
+\left(\frac{p^2}{K-K^0} + \frac{f_{ij} f_{ij}}{2(G-G^0)}
+-6 p \bar\varepsilon-2 f_{i j} \bar e_{i j}\right) \mathrm{d} y
+\]</span> 我们希望得到使用极化应力表示的 <span
+class="math inline">\(\widetilde U\)</span> 项表达式, 但是 <span
+class="math inline">\(\widetilde U\)</span>
+项考量的是极化应力与应变扰动量之间的相互作用, 所以包含未知量 <span
+class="math inline">\(\widetilde \varepsilon_{ij}\)</span>​. 幸运的是,
+我们考察的 <span class="math inline">\(\widetilde U\)</span> 是能量项,
+而根据 Fourier 分析中的 Parseval 公式,
+在相空间中的能量内积等于物理空间中的能量内积: <span
+class="math display">\[
+\widetilde U = \frac{1}{2} \int p_{ij}(y) \widetilde \varepsilon_{ij}(y)
+~\mathrm{d} y
+\equiv \frac{1}{2} \int \widehat p_{ij}(\xi)
+\widehat{\widetilde{u}}_{i,j}^{*}(\xi) ~\mathrm{d} \xi
+\tag{0}
+\]</span> 并且, 在 Fourier 变换下, 可以找到应变与极化应力的代数表达式.
+式 (0) 中, <span class="math inline">\(\widehat{p}_{ij}\)</span>, <span
+class="math inline">\(\widehat{\widetilde{u}}_{i,j}\)</span> 表示场变量
+<span class="math inline">\(p_{ij}\)</span>, <span
+class="math inline">\(\widetilde{u}_{i,j}\)</span> 的 Fourier 变换,
+<span class="math inline">\(\square^{*}\)</span>​ 表示共轭复数, 三维的
+Fourier 变换定义为</p>
+<p><span class="math display">\[
+\mathscr{F}[f(y)](\xi) \triangleq \left( \frac{1}{2 \pi} \right)^{3/2}
+\int_{\mathbb{R}^3} f(y) e^{-i \xi \cdot y} \mathrm{d} y
+\]</span></p>
+<p>我们现在希望找到相空间中 <span
+class="math inline">\(\widehat{p}_{ij}\)</span>, <span
+class="math inline">\(\widehat{\widetilde{u}}_{i,j}\)</span> 之间的关系,
+不过首先给出单胞上所满足的微分方程的 statement. 单胞上的控制方程为 <span
+class="math display">\[
+\left( L_{ijkl}^{0} \widetilde \varepsilon_{kl} + \widetilde p_{ij}
+\right)_{,j} = 0
+\tag{1}
+\]</span> 以及小变形的几何方程 <span class="math display">\[
+\widetilde \varepsilon_{kl} = \frac{1}{2} (\widetilde{u}_{k,l} +
+\widetilde{u}_{l,k})
+\tag{2}
+\]</span> 和齐次位移边界条件: <span class="math display">\[
+\widetilde{u}_k(\partial Y) = 0
+\tag{3}
+\]</span> 方程 (1) 中的 <span
+class="math inline">\(\widetilde{p}_{ij}\)</span> 表征极化应力的扰动,
+定义为 <span class="math display">\[
+\widetilde{p}_{ij} \triangleq p_{ij} - \bar{p}_{ij}
+\tag{4}
+\]</span> 接下来, 对控制方程 (1) 几何方程 (2) 作 Fourier 变换得到 <span
+class="math display">\[
+i\xi_j \left( L_{ijkl}^{0} \widehat{ \widetilde{\varepsilon} }_{kl}   +
+\widehat{ \widetilde{p} }_{ij} \right) = 0
+\]</span> 和 <span class="math display">\[
+\widehat{\widetilde{\varepsilon} }_{kl} = \frac{1}{2} i(\xi_l
+\widehat{\widetilde{u}}_{k} + \xi_k \widehat{\widetilde{u}}_{l})
+\]</span> 将各向同性材料的弹性模量 <span class="math display">\[
+L_{ijkl}^{0} = \lambda^0 \delta_{ij} \delta_{kl} + \mu^{0} \delta_{ik}
+\delta_{jl} + \mu^{0} \delta_{il} \delta_{jk}
+\]</span> 和应变的 Fourier 表达式代入到控制方程的 Fourier 变换式中,
+得到关于 <span class="math inline">\(\widehat{\widetilde{u}}_j\)</span>
+的代数方程: <span class="math display">\[
+(\lambda^0 + \mu^0) \xi_i \xi_k \widehat{\widetilde{u}}_k + \mu^0 \xi^2
+\widehat{\widetilde{u}}_i
+= i \xi_j \widehat{\widetilde{p}}_{ij}
+\]</span> 式中, <span class="math inline">\(\xi^2 = \xi_{kk}\)</span>.
+上述方程左端的系数矩阵为 <span class="math display">\[
+A \triangleq \mu^0 \xi^{T} \xi ~\mathbf{I} + (\lambda^0 + \mu^0)\xi
+\xi^{T}
+= \mu^0 \xi^2 \mathbf{I}
++ (\lambda^0 + \mu^0)
+\begin{pmatrix}
+\xi_1 \xi_1 &amp; \xi_1 \xi_2 &amp; \xi_1 \xi_3 \\
+\xi_2 \xi_1 &amp; \xi_2 \xi_2 &amp; \xi_2 \xi_3 \\
+\xi_3 \xi_1 &amp; \xi_3 \xi_2 &amp; \xi_3 \xi_3
+\end{pmatrix}
+\]</span> 式中, <span class="math inline">\(\mathbf{I}\)</span> 为 3
+阶单位矩阵. 对于形式为 <span class="math inline">\(I + \alpha
+vv^T\)</span> 的矩阵, 其逆矩阵的形式为 <span class="math inline">\(I +
+\beta vv^T\)</span>, 矩阵 <span class="math inline">\(A\)</span>
+的逆求解得到 <span class="math display">\[
+A^{-1} = \frac{1}{\mu^0} \frac{1}{\xi^2} \mathbf{I}
+- \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)}
+\frac{1}{(\xi^2)^2} \xi \xi^{T}
+\]</span> 所以, <span
+class="math inline">\(\widehat{\widetilde{u}}_{i}\)</span>
+可以被显式地用 <span
+class="math inline">\(\widehat{\widetilde{p}}_{ij}\)</span> 表示为 <span
+class="math display">\[
+\widehat{\widetilde{u}}_{i} = i \frac{1}{\mu^0} \frac{\xi_k}{\xi^2}
+\widehat{\widetilde{p}}_{ik}
+- i\frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{\xi_i
+\xi_k \xi_l}{(\xi^2)^2} \widehat{\widetilde{p}}_{kl}
+\]</span> 根据 Fourier 对导函数的变换规则, 只需要对上式两边乘 <span
+class="math inline">\(i \xi_j\)</span>, 就可以得到关于 <span
+class="math inline">\(\widehat{\widetilde{u}}_{i,j}\)</span> 的 Fourier
+变换 <span class="math display">\[
+\widehat{\widetilde{u}}_{i,j} = i \xi_j \widehat{\widetilde{u}}_{i}
+= - \frac{1}{\mu^0} \frac{\xi_j\xi_k}{\xi^2}
+\widehat{\widetilde{p}}_{ik}
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{\xi_i \xi_j
+\xi_k \xi_l}{(\xi^2)^2} \widehat{\widetilde{p}}_{kl}
+\]</span></p>
+<p>代入到式 (0) 中得到 <span class="math display">\[
+\widetilde U
+= \frac{1}{2} \int \widehat{\widetilde{p}}_{ij}
+\widehat{\widetilde{u}}_{i,j}^{*} ~\mathrm{d} \xi
+= \frac{1}{2} \int \left(
+- \frac{1}{\mu^0} \frac{\xi_j\xi_k}{\xi^2} \widehat{\widetilde{p}}_{ij}
+\widehat{\widetilde{p}}_{ik}^{*}
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{\xi_i \xi_j
+\xi_k \xi_l}{(\xi^2)^2} \widehat{\widetilde{p}}_{ij}
+\widehat{\widetilde{p}}_{kl}^{*}
+\right)~\mathrm{d} \xi
+\tag{5}
+\]</span> 如果我们假设极化应力是各向同性函数, 也就是说, 极化应力场 <span
+class="math inline">\(p_{ij}(y)\)</span> 可以通过函数 <span
+class="math inline">\(P_{ij}(r): \mathbb{R} \mapsto
+\mathbb{S}^2\)</span> 表示: <span class="math display">\[
+\widetilde p_{ij}(y) \equiv \widetilde P_{ij}(|y|)
+\]</span> 如果函数在物理空间中是各向同性函数,
+那么在相空间中也是各向同性函数 <span class="math display">\[
+\widehat{\widetilde{p}}_{ij}(\xi) \equiv
+\widehat{\widetilde{P}}_{ij}(|\xi|)
+\]</span> 代入到式 (5) 中, 得到用各向同性函数 <span
+class="math inline">\(P_{ij}(r)\)</span> 表示的积分 <span
+class="math display">\[
+2 \widetilde U
+= \int \left(
+- \frac{1}{\mu^0} \frac{\xi_j\xi_k}{\xi^2}
+\widehat{\widetilde{P}}_{ij}(|\xi|)
+\widehat{\widetilde{P}}_{ik}^{*}(|\xi|)
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{\xi_i \xi_j
+\xi_k \xi_l}{(\xi^2)^2} \widehat{\widetilde{P}}_{ij}(|\xi|)
+\widehat{\widetilde{P}}_{kl}^{*}(|\xi|)
+\right)~\mathrm{d} \xi
+\tag{6}
+\]</span> 如果将式 (6) 转换到球坐标系下进行积分 <span
+class="math display">\[
+\xi_1 = r \sin\theta \cos\phi, \quad
+\xi_2 = r \sin\theta \sin\phi, \quad
+\xi_3 = r \cos\theta , \quad
+\mathrm{d} \xi_1 ~\mathrm{d} \xi_2 ~\mathrm{d} \xi_3
+= r^2 \sin \theta ~\mathrm{d} r ~\mathrm{d} \theta ~\mathrm{d} \phi
+\]</span> 就可以在积分项中消去关于 <span
+class="math inline">\(\xi_i\)</span> 的有理分式, 得到只关于径向微分
+<span class="math inline">\(\mathrm{d} r\)</span> 的积分式 <span
+class="math display">\[
+2 \widetilde U
+=  - \frac{1}{\mu^0} \frac{4\pi}{3} \int_{0}^{\infty}
+\widehat{\widetilde{P}}_{ij}(r) \widehat{\widetilde{P}}_{ij}^{*}(r) r^2
+\mathrm{d} r
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{4\pi}{15}
+\int_{0}^{\infty} \left( \widehat{\widetilde{P}}_{mm}(r)
+\widehat{\widetilde{P}}_{kk}^{*}(r)
++ 2\widehat{\widetilde{P}}_{ij}(r) \widehat{\widetilde{P}}_{ij}^{*}(r)
+\right) r^2 \mathrm{d} r
+\tag{7}
+\]</span> 式 (7) 已经和最终的结果很接近了!
+只要我们能够确定式中的径向积分, 这可以通过 Parseval
+等式与物理空间中的能量积分关联为 <span class="math display">\[
+\int_{0}^{\infty} \widehat{\widetilde{P}}_{ij}(r)
+\widehat{\widetilde{P}}_{ij}^{*}(r) r^2 \mathrm{d} r
+= \frac{1}{4\pi} \int_{Y} \widetilde{p}_{ij}(y) \widetilde{p}_{ij}(y)
+~\mathrm{d}y, \quad
+\int_{0}^{\infty} \widehat{\widetilde{P}}_{mm}(r)
+\widehat{\widetilde{P}}_{kk}^{*}(r) r^2 \mathrm{d} r
+= \frac{9}{4\pi} \int_{Y} \widetilde{p}(y) \widetilde{p}(y) ~\mathrm{d}y
+\tag{a}
+\]</span> 将式 (4) 代入上式左端项当中, 就得到使用 <span
+class="math inline">\(p_{ij}\)</span> 表示的积分表达式: <span
+class="math display">\[
+\int_{Y} \widetilde{p}_{ij}(y) \widetilde{p}_{ij}(y) ~\mathrm{d}y
+= \int_{Y}  p_{ij}(y) p_{ij}(y)~\mathrm{d}y
+- 2 \bar{p}_{ij} \int_{Y} p_{ij}(y)  ~\mathrm{d}y
++ \bar{p}_{ij}\bar{p}_{ij}
+= \int_{Y}  p_{ij}(y) p_{ij}(y)~\mathrm{d}y
+- \bar{p}_{ij}\bar{p}_{ij}
+\]</span></p>
+<p>以及 <span class="math display">\[
+\int_{Y} \widetilde{p}(y) \widetilde{p}(y) ~\mathrm{d}y
+= \int_{Y}  p(y) p(y)~\mathrm{d}y - \bar{p}^2
+\]</span> 将分块常值的极化应力表达式 <span class="math display">\[
+p_{ij} := \sum_{\alpha}^{N} p_{ij}^{\alpha} \chi^{\alpha}
+\]</span> 以及极化应力的 dev 分解代入式中得到 <span
+class="math display">\[
+\begin{gathered}
+\int_{Y} \widetilde{p}_{ij}(y) \widetilde{p}_{ij}(y) ~\mathrm{d}y
+= \underbrace{\left( \sum_{\alpha} c^{\alpha} f_{ij}^{\alpha}
+f_{ij}^{\alpha} - \bar{f}_{ij}\bar{f}_{ij} \right)}_{\triangleq
+\clubsuit}
++ 3\underbrace{\left(\sum_{\alpha} c^{\alpha} (p^{\alpha})^2 - \bar{p}^2
+\right)}_{\triangleq \spadesuit}
+= \clubsuit + 3\spadesuit \\
+\int_{Y} \widetilde{p}(y) \widetilde{p}(y) ~\mathrm{d}y =
+\left(\sum_{\alpha} c^{\alpha} (p^{\alpha})^2 - \bar{p}^2 \right) =
+\spadesuit
+\end{gathered}\tag{b}
+\]</span> 最终, 我们代入到式 (7) 中, 得到 <span class="math display">\[
+\begin{aligned}
+2 \widetilde U
+&amp;\stackrel{(a)}{=} - \frac{1}{3\mu^0}
+\int_{Y} \widetilde{p}_{ij}(y) \widetilde{p}_{ij}(y) ~\mathrm{d}y
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{2}{15}
+\int_{Y} \widetilde{p}_{ij}(y) \widetilde{p}_{ij}(y) ~\mathrm{d}y
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{3}{5}
+\int_{Y} \widetilde{p}(y) \widetilde{p}(y) ~\mathrm{d}y \\
+&amp;\stackrel{(b)}{=} - \frac{1}{3\mu^0} ( \clubsuit + 3\spadesuit )
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{2}{15} (
+\clubsuit + 3\spadesuit )
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{3}{5}
+\spadesuit \\
+&amp;= \left(-\frac{1}{3\mu^0} + \frac{\lambda^0 + \mu^0}{\mu^0
+(\lambda^0 + 2\mu^0)} \frac{2}{15} \right)\clubsuit
++ \left(-\frac{1}{\mu^0} + \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 +
+2\mu^0)}\right)\spadesuit \\
+&amp;= \frac{-3\lambda^0 -8\mu^0}{15\mu^0 (\lambda^0 + 2\mu^0)}
+\clubsuit
++ \frac{-1}{\lambda^0 + 2\mu^0}\spadesuit
+\end{aligned}
+\]</span> 如果将 <span class="math display">\[
+\lambda^0 = K^0 - \frac{2}{3}\mu^0
+\]</span> 代入, 就可以得到 <span class="math display">\[
+2 \widetilde U
+= \frac{-3 K^0 - 6\mu^0}{5\mu^0 (3 K^0 + 4\mu^0)} \left( \sum_{\alpha}
+c^{\alpha} f_{ij}^{\alpha} f_{ij}^{\alpha} - \bar{f}_{ij}\bar{f}_{ij}
+\right)
++ \frac{-3}{3 K^0 + 4\mu^0} \left(\sum_{\alpha} c^{\alpha}
+(p^{\alpha})^2 - \bar{p}^2 \right)
+\tag{$\bigstar$}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>Fourier 变换</tag>
+        <tag>变分原理</tag>
       </tags>
   </entry>
 </search>

@@ -1,5 +1,6 @@
-http://qiuxiaohuo.github.io/mechanics/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/
+http://qiuxiaohuo.github.io/mechanics/Fourier-%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90-Hashin-Shtrikman-%E5%8F%98%E5%88%86/
 http://qiuxiaohuo.github.io/mechanics/%E4%BD%BF%E7%94%A8-Hill-%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%A8%AA%E8%A7%82%E5%90%84%E5%90%91%E5%90%8C%E6%80%A7%E7%9A%84%E6%9D%90%E6%96%99%E7%9F%A9%E9%98%B5/
+http://qiuxiaohuo.github.io/mechanics/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/
 http://qiuxiaohuo.github.io/mechanics/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/
 http://qiuxiaohuo.github.io/nichijou/index.html
 http://qiuxiaohuo.github.io/mechanics/%E5%8F%8C%E7%9B%B8%E5%8D%95%E8%83%9E%E9%97%AE%E9%A2%98%E7%9A%84%E8%A7%A3%E6%9E%90%E6%B1%82%E8%A7%A3/
@@ -70,6 +71,7 @@ http://qiuxiaohuo.github.io/tags/%E7%BB%86%E8%A7%82%E5%8A%9B%E5%AD%A6/
 http://qiuxiaohuo.github.io/tags/%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%89%E9%99%90%E5%85%83/
 http://qiuxiaohuo.github.io/tags/%E5%88%9A%E5%BA%A6%E7%9F%A9%E9%98%B5/
 http://qiuxiaohuo.github.io/tags/%E6%A8%AA%E8%A7%82%E5%90%84%E5%90%91%E5%90%8C%E6%80%A7/
+http://qiuxiaohuo.github.io/tags/%E5%8F%98%E5%88%86%E5%8E%9F%E7%90%86/
 http://qiuxiaohuo.github.io/categories/Linux/
 http://qiuxiaohuo.github.io/categories/%E6%95%B0%E5%AD%A6/
 http://qiuxiaohuo.github.io/categories/%E5%8A%9B%E5%AD%A6/
