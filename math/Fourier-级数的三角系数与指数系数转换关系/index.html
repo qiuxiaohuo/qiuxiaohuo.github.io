@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="对于 \([0,1]\) 上的周期函数 \(f(x)\), 并延拓到整个 \(\mathbb{R}\) 上, \(f(x)\)​ 的 Fourier 级数表示为 \[ f(x) \sim \frac{a_0}{2} + \sum_{k&#x3D;1}^{\infty} a_k \cos 2k\pi x + \sum_{k&#x3D;1}^{\infty} b_k \sin 2k\pi x \tag{1} \]">
+    <meta name="description" content="对于 \([0,1]\) 上的周期函数 \(f(x)\), 并延拓到整个 \(\mathbb{R}\) 上, \(f(x)\)​ 的 Fourier 级数表示为 \[ f(x) \sim \frac{a_0}{2} + \sum_{k&#x3D;1}^{\infty} a_k \cos 2\pi k x + \sum_{k&#x3D;1}^{\infty} b_k \sin 2\pi k x \tag{1}">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fourier 级数的三角系数与指数系数转换关系">
 <meta property="og:url" content="http://qiuxiaohuo.github.io/math/Fourier-%E7%BA%A7%E6%95%B0%E7%9A%84%E4%B8%89%E8%A7%92%E7%B3%BB%E6%95%B0%E4%B8%8E%E6%8C%87%E6%95%B0%E7%B3%BB%E6%95%B0%E8%BD%AC%E6%8D%A2%E5%85%B3%E7%B3%BB/index.html">
 <meta property="og:site_name" content="邱小伙的博客">
-<meta property="og:description" content="对于 \([0,1]\) 上的周期函数 \(f(x)\), 并延拓到整个 \(\mathbb{R}\) 上, \(f(x)\)​ 的 Fourier 级数表示为 \[ f(x) \sim \frac{a_0}{2} + \sum_{k&#x3D;1}^{\infty} a_k \cos 2k\pi x + \sum_{k&#x3D;1}^{\infty} b_k \sin 2k\pi x \tag{1} \]">
+<meta property="og:description" content="对于 \([0,1]\) 上的周期函数 \(f(x)\), 并延拓到整个 \(\mathbb{R}\) 上, \(f(x)\)​ 的 Fourier 级数表示为 \[ f(x) \sim \frac{a_0}{2} + \sum_{k&#x3D;1}^{\infty} a_k \cos 2\pi k x + \sum_{k&#x3D;1}^{\infty} b_k \sin 2\pi k x \tag{1}">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-04T01:00:07.000Z">
-<meta property="article:modified_time" content="2024-05-04T02:42:07.055Z">
+<meta property="article:modified_time" content="2024-05-04T05:16:11.209Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta property="article:tag" content="Fourier 分析">
 <meta name="twitter:card" content="summary">
@@ -143,7 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#remark"><span class="nav-number">1.</span> <span class="nav-text">Remark</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#remark"><span class="nav-number">1.</span> <span class="nav-text">Remark</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%89%E8%A7%92%E5%87%BD%E6%95%B0%E5%9F%BA%E4%B8%8E%E6%8C%87%E6%95%B0%E5%87%BD%E6%95%B0%E5%9F%BA%E7%9A%84%E6%AD%A3%E4%BA%A4%E6%80%A7%E8%AF%81%E6%98%8E"><span class="nav-number"></span> <span class="nav-text">三角函数基与指数函数基的正交性证明</span></a></div>
         </div>
         <!--/noindex-->
 
@@ -237,7 +237,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-05-04 09:00:07 / 修改时间：10:42:07" itemprop="dateCreated datePublished" datetime="2024-05-04T09:00:07+08:00">2024-05-04</time>
+      <time title="创建时间：2024-05-04 09:00:07 / 修改时间：13:16:11" itemprop="dateCreated datePublished" datetime="2024-05-04T09:00:07+08:00">2024-05-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -270,65 +270,176 @@ class="math inline">\(f(x)\)</span>, 并延拓到整个 <span
 class="math inline">\(\mathbb{R}\)</span> 上, <span
 class="math inline">\(f(x)\)</span>​ 的 Fourier 级数表示为 <span
 class="math display">\[
-f(x) \sim \frac{a_0}{2} + \sum_{k=1}^{\infty} a_k \cos 2k\pi x
-+ \sum_{k=1}^{\infty} b_k \sin 2k\pi x
+f(x) \sim \frac{a_0}{2} + \sum_{k=1}^{\infty} a_k \cos 2\pi k x
++ \sum_{k=1}^{\infty} b_k \sin 2\pi k x
 \tag{1}
-\]</span> 根据三角函数的正交性: <span class="math display">\[
-\int_{0}^{1} \cos 2k \pi x \cos 2m\pi x ~\mathrm{d} x
+\]</span> 根据三角函数基的正交性 (正交性在文末证明): <span
+class="math display">\[
+\int_{0}^{1} \cos 2\pi k x \cos 2\pi m x ~\mathrm{d} x
 = \begin{cases}
 0,           \quad &amp;k \neq m \\
 \frac{1}{2}, \quad &amp;k = m \\
 \end{cases}
-\]</span> 可以确定由式 (1) 表示的 Fourier 级数系数为 <span
-class="math display">\[
+\]</span> ( 三角函数基虽然正交, 但不是规范正交的! ) 可以确定由式 (1)
+表示的 Fourier 级数系数为 <span class="math display">\[
 \begin{aligned}
-a_k &amp;= 2 \int_{0}^{1} f(x) \cos 2k\pi x ~\mathrm{d}x, \quad
+a_k &amp;:= 2 \int_{0}^{1} f(x) \cos 2\pi k x ~\mathrm{d}x, \quad
 k=0,1,2,\ldots\\
-b_k &amp;= 2 \int_{0}^{1} f(x) \sin 2k\pi x ~\mathrm{d}x, \quad
+b_k &amp;:= 2 \int_{0}^{1} f(x) \sin 2\pi k x ~\mathrm{d}x, \quad
 k=1,2,\ldots
 \end{aligned}
 \tag{2}
-\]</span> <div class="note info no-icon"><h5 id="remark">Remark</h5>
-<p>式 (1) 中常数项含分数是因为, 如果我们将 Fourier 级数表示为 <span
+\]</span> 如果我们选用指数函数基底表示 <span
+class="math inline">\(f(x)\)</span>: <span class="math display">\[
+f(x) \sim \sum_{k=-\infty}^{\infty} c_k e^{i 2\pi k x},
+\tag{3}
+\]</span> 那么根据指数函数基底的规范正交性, 可以得到 <span
 class="math display">\[
-f(x) \sim a_0^{\prime} + \sum_{k=1}^{\infty} a_k \cos 2k\pi x
-+ \sum_{k=1}^{\infty} b_k \sin 2k\pi x,
-\tag{1*}
-\]</span> 那么 <span class="math display">\[
+c_k := \langle f(x), e^{i 2\pi k x} \rangle = \int_{0}^{1} f(x) e^{-i
+2\pi k x} ~\mathrm{d}x
+\tag{4}
+\]</span> 接下来, 我们希望得到 (1) (3) Fourier 级数表示系数之间的关系,
+我们将式 (4) 积分项中的 <span class="math inline">\(e^{-i2\pi k
+x}\)</span> 展开得到 <span class="math display">\[
+\begin{aligned}
+c_k
+=  \int_{0}^{1} f(x) \cos{2\pi k x} ~\mathrm{d}x
+- i\int_{0}^{1} f(x) \sin{2\pi k x} ~\mathrm{d}x \\
+c_{-k}
+=  \int_{0}^{1} f(x) \cos{2\pi k x} ~\mathrm{d}x
++ i\int_{0}^{1} f(x) \sin{2\pi k x} ~\mathrm{d}x
+\end{aligned}
+\]</span> 再根据 (2) 式给出的 <span class="math inline">\(a_k\)</span>,
+<span class="math inline">\(b_k\)</span> 表达式可以得到 <span
+class="math display">\[
+\begin{gathered}
+a_k= c_k + c_{-k}, \quad b_k = i(c_k - c_{-k}), \quad k=1,2,\ldots \\
+a_0 = c_0
+\end{gathered}
+\]</span></p>
+<div class="note info no-icon"><h5 id="remark">Remark</h5>
+<ol type="1">
+<li>式 (1) 中常数项含分数是因为, 如果我们将 Fourier 级数表示为</li>
+</ol>
+<p><span class="math display">\[
+f(x) \sim a_0^{\prime} + \sum_{k=1}^{\infty} a_k \cos 2\pi k x
++ \sum_{k=1}^{\infty} b_k \sin 2\pi k x,
+\tag{1$^\prime$}
+\]</span></p>
+<p>那么 <span class="math display">\[
 a_{0}^{\prime} = \int_{0}^{1} f(x) ~\mathrm{d}x,
 \]</span> 而公式 (2) 中 <span class="math inline">\(a_0\)</span> <span
 class="math display">\[
 a_0 = 2\int_{0}^{1} f(x) ~\mathrm{d}x = 2a_{0}^{\prime}
 \]</span></p>
-</div></p>
-<p>三角函数基 <span class="math inline">\(\{ \cos 2\pi kx \}\)</span>,
-<span class="math inline">\(\{ \sin 2\pi kx
+<ol start="2" type="1">
+<li>对于周期为 <span class="math inline">\(L\)</span> 的函数 <span
+class="math inline">\(f(x)\)</span>, 其 Fourier 级数的表达式为</li>
+</ol>
+<p><span class="math display">\[
+f(x) \sim \frac{a_0}{2} + \sum_{k=1}^{\infty} a_k \cos \frac{2\pi}{L} k
+x
++ \sum_{k=1}^{\infty} b_k \sin \frac{2k\pi}{L} x
+\tag{1$&#39;&#39;$}
+\]</span></p>
+<p>或者 <span class="math display">\[
+f(x) \sim \sum_{k=-\infty}^{\infty} c_k e^{i \frac{2\pi}{L} k x},
+\tag{3$&#39;&#39;$}
+\]</span> 同样也可以用三角函数基 <span class="math inline">\(\{ \cos
+\frac{2\pi}{L} k x \}\)</span>, <span class="math inline">\(\{ \sin
+\frac{2\pi}{L} k x \}\)</span> 和指数函数基 <span
+class="math inline">\(\{ e^{i \frac{2\pi}{L} k x} \}\)</span> 的内积得到
+Fourier 系数的表达式为 <span class="math display">\[
+\begin{aligned}
+a_k &amp;:= \frac{2}{L} \int_{0}^{L} f(x) \cos \frac{2\pi}{L} k x
+~\mathrm{d}x, \quad k=0,1,2,\ldots\\
+b_k &amp;:= \frac{2}{L} \int_{0}^{L} f(x) \sin \frac{2\pi}{L} k x
+~\mathrm{d}x, \quad k=1,2,\ldots
+\end{aligned}
+\tag{2$&#39;&#39;$}
+\]</span> 和 <span class="math display">\[
+c_k := \frac{1}{L} \int_{0}^{L} f(x) e^{-i \frac{2\pi}{L} k x}
+~\mathrm{d}x
+\tag{4$&#39;&#39;$}
+\]</span> 另一个思路是积分变换, 我们以指数函数基为例. 对于周期为 <span
+class="math inline">\(L\)</span> 的函数 <span
+class="math inline">\(f(x)\)</span>, 函数 <span
+class="math inline">\(F(y) := f(Ly)\)</span> 的周期为 <span
+class="math inline">\(1\)</span> , 根据式 (3) <span
+class="math display">\[
+F(y) \sim \sum_{k=-\infty}^{\infty} c_k e^{i 2\pi k y}
+\]</span> 以及系数 <span class="math inline">\(c_k\)</span> 为 <span
+class="math display">\[
+c_k := \int_{0}^{1} F(y) e^{-i 2\pi k y} ~\mathrm{d}y
+= \int_{0}^{1} f(Ly) e^{-i 2\pi k y} ~\mathrm{d}y
+\]</span> 作变量替换 <span class="math inline">\(x == Ly\)</span>, 也即
+<span class="math inline">\(y==\frac{x}{L}\)</span>, 所以 <span
+class="math display">\[
+f(x) \sim \sum_{k=-\infty}^{\infty} c_k e^{i \frac{2\pi}{L} k x}
+\]</span> 其 Fourier 系数为 <span class="math display">\[
+c_k := \int_{0}^{L} F(y) e^{-i 2\pi k \frac{x}{L}}
+\frac{1}{L}~\mathrm{d}x
+= \frac{1}{L} \int_{0}^{L} F(y) e^{-i \frac{2\pi}{L} k x} ~\mathrm{d}x
+\]</span></p>
+</div>
+<h2
+id="三角函数基与指数函数基的正交性证明">三角函数基与指数函数基的正交性证明</h2>
+<p>首先, 周期为 <span class="math inline">\(L\)</span> 的函数 <span
+class="math inline">\(f(x),g(x): \mathbb{R} \mapsto \mathbb{C}\)</span>
+的内积定义为 <span class="math display">\[
+\langle f(x), g(x) \rangle \triangleq \frac{1}{L} \int_0^{L} f(x)
+\overline{g(x)} ~\mathrm{d}x
+\tag{$\star$}
+\]</span> 注意到这种内积的定义并不是唯一的, 但是, 按照 (<span
+class="math inline">\(\star\)</span>) 的定义, 指数函数基 <span
+class="math inline">\(\{ e^{i \frac{2\pi}{L} kx} \}\)</span>
+总是规范正交基: <span class="math display">\[
+\langle e^{i \frac{2\pi}{L} k x}, e^{i \frac{2\pi}{L} m x} \rangle
+= \frac{1}{L} \int_{0}^{L} e^{i \frac{2\pi}{L} k x} e^{-i \frac{2\pi}{L}
+m x} ~\mathrm{d}x
+=\begin{cases}
+\frac{L}{i2\pi(k-m)} \left( e^{i \frac{2\pi}{L} (k-m)} -1 \right) \equiv
+0, \quad &amp;k \neq m \\
+1, &amp;k = m
+\end{cases}
+\]</span> 三角函数基 <span class="math inline">\(\{ \cos \frac{2\pi}{L}
+kx \}\)</span>, <span class="math inline">\(\{ \sin \frac{2\pi}{L} kx
 \}\)</span>的正交性的证明可以通过积化和差公式: <span
 class="math display">\[
 \begin{aligned}
-\cos 2k \pi x \cos 2m\pi x &amp;= \frac{1}{2} \left( \cos 2\pi(k-m)x +
-\cos 2\pi(k+m)x \right) \\
-\sin 2k \pi x \sin 2m\pi x &amp;= \frac{1}{2} \left( \cos 2\pi(k-m)x -
-\cos 2\pi(k+m)x \right) \\
-\sin 2k \pi x \cos 2m\pi x &amp;= \frac{1}{2} \left( \sin 2\pi(k+m)x +
-\sin 2\pi(k-m)x \right) \\
+\cos \frac{2\pi}{L} k x \cos 2m\pi x &amp;= \frac{1}{2} \left( \cos
+\frac{2\pi}{L} (k-m) x + \cos \frac{2\pi}{L} (k+m) x \right) \\
+\sin \frac{2\pi}{L} k x \sin 2m\pi x &amp;= \frac{1}{2} \left( \cos
+\frac{2\pi}{L} (k-m) x - \cos \frac{2\pi}{L} (k+m) x \right)
 \end{aligned}
-\]</span> 因此, 对任意的 <span class="math inline">\(k\)</span>, <span
-class="math inline">\(m\)</span>, <span class="math display">\[
-\int_{0}^{1}\sin 2k \pi x \cos 2m\pi x ~\mathrm{d}x \equiv 0
+\]</span> 当 <span class="math inline">\(k\neq m\)</span> 时,
+上式右侧积分总等于 0, 所以 <span class="math display">\[
+\begin{aligned}
+\langle \cos{\frac{2\pi}{L} k x}, \cos{\frac{2\pi}{L} m x} \rangle
+&amp;= 0, \quad k\neq m\\
+\langle \sin{\frac{2\pi}{L} k x}, \sin{\frac{2\pi}{L} m x} \rangle
+&amp;= 0, \quad k\neq m
+\end{aligned}
 \]</span> 只有当 <span class="math inline">\(k=m\)</span> 时, <span
 class="math display">\[
-\int_{0}^{1} \cos 2k \pi x \cos 2m\pi x ~\mathrm{d}x
-= \int_{0}^{1} \sin 2k \pi x \sin 2m\pi x ~\mathrm{d}x
-= \frac{1}{2}
-\]</span> 指数函数基 <span class="math inline">\(\{ e^{i2\pi kx}
-\}\)</span> 的正交性更加容易获得: <span class="math display">\[
-\int_{0}^{1} e^{i2\pi k x} e^{i2\pi m x} ~\mathrm{d}x
-=\begin{cases}
-\frac{1}{i2\pi(k+m)} \left( e^{i2\pi (k+m)} -1 \right) \equiv 0, \quad
-&amp;k \neq m \\
-1, &amp;k = m
-\end{cases}
+\begin{aligned}
+\langle \cos{\frac{2\pi}{L} k x}, \cos{\frac{2\pi}{L} k x} \rangle
+= \frac{1}{L} \int_{0}^{L} \cos^2 \frac{2\pi}{L} k x ~\mathrm{d}x =
+\frac{1}{2}, \quad
+\langle \sin{\frac{2\pi}{L} k x}, \sin{\frac{2\pi}{L} k x} \rangle
+= \frac{1}{L} \int_{0}^{L} \sin^2 \frac{2\pi}{L} k x ~\mathrm{d}x =
+\frac{1}{2}
+\end{aligned}
+\]</span> 三角函数基 <span class="math inline">\(\{ \cos \frac{2\pi}{L}
+kx \}\)</span>, <span class="math inline">\(\{ \sin \frac{2\pi}{L} kx
+\}\)</span>之间总是正交的, 这是因为 <span class="math display">\[
+\sin \frac{2\pi}{L} k x \cos \frac{2\pi}{L} m x = \frac{1}{2} \left(
+\sin \frac{2\pi}{L}(k+m)x + \sin \frac{2\pi}{L}(k-m)x \right)
+\]</span> 因此, 对任意的 <span class="math inline">\(k\)</span>, <span
+class="math inline">\(m\)</span>, <span class="math display">\[
+\langle \sin{\frac{2\pi}{L} k x}, \cos{\frac{2\pi}{L} m x} \rangle
+= \frac{1}{L} \int_{0}^{L}\sin \frac{2\pi}{L} k x \cos \frac{2\pi}{L} m
+x ~\mathrm{d}x \equiv 0
 \]</span></p>
 
     </div>
