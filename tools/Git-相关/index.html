@@ -20,28 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="我过去的文档管理方式太过粗放，以至我感到自己似乎一直是在原地踏步。这是因为我在用多个平台（知乎，Hexo+NexT 博客，Zotero 等），用多种方式（MATLAB 实时脚本，LaTeX，Markdown 等）写文档，这些文档缺少一个「地图」索引，所以我的知识库相互是分割独立的，仿佛一盘散沙，没办法攒出某种结构出来。所以我希望建立一个文档管理的规则，按照这个规则，我可以系统地将所有创作的文档">
+    <meta name="description" content="Git 阅读材料  Pro Git 看到所有的网站都推荐阅读这一本书，当作手册来查； Missing CS 介绍了 Git 的数据模型，方便理解 Git 不那么友好的指令操作，很惊讶作者可以把 Git 讲得那么清楚；  btw，该网站同样推荐了许多 Git 的阅读材料，比如下一条：  Git commit 介绍撰写 Commit 信息的好的实践方案">
 <meta property="og:type" content="article">
-<meta property="og:title" content="创作文档管理">
-<meta property="og:url" content="http://qiuxiaohuo.github.io/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:title" content="Git 相关">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/tools/Git-%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="邱小伙的博客">
-<meta property="og:description" content="我过去的文档管理方式太过粗放，以至我感到自己似乎一直是在原地踏步。这是因为我在用多个平台（知乎，Hexo+NexT 博客，Zotero 等），用多种方式（MATLAB 实时脚本，LaTeX，Markdown 等）写文档，这些文档缺少一个「地图」索引，所以我的知识库相互是分割独立的，仿佛一盘散沙，没办法攒出某种结构出来。所以我希望建立一个文档管理的规则，按照这个规则，我可以系统地将所有创作的文档">
+<meta property="og:description" content="Git 阅读材料  Pro Git 看到所有的网站都推荐阅读这一本书，当作手册来查； Missing CS 介绍了 Git 的数据模型，方便理解 Git 不那么友好的指令操作，很惊讶作者可以把 Git 讲得那么清楚；  btw，该网站同样推荐了许多 Git 的阅读材料，比如下一条：  Git commit 介绍撰写 Commit 信息的好的实践方案">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-12T13:49:33.000Z">
-<meta property="article:modified_time" content="2024-04-16T07:28:29.451Z">
+<meta property="article:published_time" content="2024-04-07T13:30:37.000Z">
+<meta property="article:modified_time" content="2024-04-22T13:36:35.340Z">
 <meta property="article:author" content="Qiu Xiaohuo">
-<meta property="article:tag" content="文档管理">
+<meta property="article:tag" content="Git">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qiuxiaohuo.github.io/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/">
+<link rel="canonical" href="http://qiuxiaohuo.github.io/tools/Git-%E7%9B%B8%E5%85%B3/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/","path":"创作文档管理/","title":"创作文档管理"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/tools/Git-%E7%9B%B8%E5%85%B3/","path":"tools/Git-相关/","title":"Git 相关"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>创作文档管理 | 邱小伙的博客</title>
+<title>Git 相关 | 邱小伙的博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -143,7 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#md-%E6%96%87%E6%A1%A3%E6%A0%87%E8%AF%86%E8%A7%84%E5%88%99"><span class="nav-number">1.</span> <span class="nav-text">md 文档标识规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E4%BB%93%E5%BA%93%E5%92%8C%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="nav-number">2.</span> <span class="nav-text">文档仓库和版本控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zotero-%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">Zotero 文档管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#git-%E9%98%85%E8%AF%BB%E6%9D%90%E6%96%99"><span class="nav-number">1.</span> <span class="nav-text">Git 阅读材料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-commit-%E4%B8%83%E5%87%86%E5%88%99"><span class="nav-number">2.</span> <span class="nav-text">Git commit 七准则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#github-clone-%E5%A4%B1%E8%B4%A5"><span class="nav-number">3.</span> <span class="nav-text">Github clone 失败</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#git-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-number">4.</span> <span class="nav-text">Git 相关命令</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -169,7 +169,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -207,7 +207,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/tools/Git-%E7%9B%B8%E5%85%B3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -220,12 +220,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="创作文档管理 | 邱小伙的博客">
+      <meta itemprop="name" content="Git 相关 | 邱小伙的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          创作文档管理
+          Git 相关
         </h1>
 
         <div class="post-meta-container">
@@ -236,14 +236,14 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2024-04-12 21:49:33" itemprop="dateCreated datePublished" datetime="2024-04-12T21:49:33+08:00">2024-04-12</time>
+      <time title="创建时间：2024-04-07 21:30:37" itemprop="dateCreated datePublished" datetime="2024-04-07T21:30:37+08:00">2024-04-07</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-16 15:28:29" itemprop="dateModified" datetime="2024-04-16T15:28:29+08:00">2024-04-16</time>
+      <time title="修改时间：2024-04-22 21:36:35" itemprop="dateModified" datetime="2024-04-22T21:36:35+08:00">2024-04-22</time>
     </span>
 
   
@@ -262,81 +262,63 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>我过去的文档管理方式太过粗放，以至我感到自己似乎一直是在原地踏步。这是因为我在用多个平台（知乎，Hexo+NexT
-博客，Zotero 等），用多种方式（MATLAB 实时脚本，LaTeX，Markdown
-等）写文档，这些文档缺少一个「地图」索引，所以我的知识库相互是分割独立的，仿佛一盘散沙，没办法攒出某种结构出来。所以我希望建立一个文档管理的规则，按照这个规则，我可以系统地将所有创作的文档相互关联。<span id="more"></span></p>
-<p>我创作的文档类型有：</p>
+    <div class="post-body" itemprop="articleBody"><h2 id="git-阅读材料">Git 阅读材料</h2>
+<ul>
+<li><span class="exturl" data-url="aHR0cHM6Ly9naXQtc2NtLmNvbS9ib29rL2VuL3Yy">Pro Git<i class="fa fa-external-link-alt"></i></span>
+看到所有的网站都推荐阅读这一本书，当作手册来查；</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9taXNzaW5nLmNzYWlsLm1pdC5lZHUvMjAyMC92ZXJzaW9uLWNvbnRyb2wv">Missing
+CS<i class="fa fa-external-link-alt"></i></span> 介绍了 Git 的数据模型，方便理解 Git
+不那么友好的指令操作，很惊讶作者可以把 Git 讲得那么清楚；
+<ul>
+<li>btw，该网站同样推荐了许多 Git 的阅读材料，比如下一条：</li>
+</ul></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jYmVhLm1zL2dpdC1jb21taXQv">Git commit<i class="fa fa-external-link-alt"></i></span> 介绍撰写 Commit
+信息的好的实践方案</li>
+</ul>
+<span id="more"></span>
+<h2 id="git-commit-七准则">Git commit 七准则</h2>
+<p>这里引用 <span class="exturl" data-url="aHR0cHM6Ly9jYmVhLm1zL2dpdC1jb21taXQv">Git commit<i class="fa fa-external-link-alt"></i></span>
+里的文字：</p>
+<blockquote class="blockquote-center">
 <ol type="1">
-<li><strong>Markdown（md） 文档</strong>
-用来写一些效率提升的奇技淫巧，记录软件的配置过程等等，还有专业相关的一些小问题，如果对排版要求不高的话，我也会用
-md 来写</li>
-<li><strong>LaTeX 文档</strong>
-写专业相关的文档，篇幅会很长，并且有大量公式</li>
-<li><strong>MATLAB 脚本</strong> MATLAB
-实时脚本本身也具有文档的功能，类似的还有 Mathematica 的
-Notebook。这些文档是用来计算某一类小问题。含有多个文件与函数的 matlab
-程序并不包含在内，这可以用 Github 管理</li>
-<li><strong>Zotero 文献整理</strong>
-主要和阅读的论文资料相关，该文档依赖于文献</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jYmVhLm1zL2dpdC1jb21taXQvI3NlcGFyYXRl">Separate subject from
+body with a blank line<i class="fa fa-external-link-alt"></i></span> 将主题与正文用空白行分隔</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jYmVhLm1zL2dpdC1jb21taXQvI2xpbWl0LTUw">Limit the subject
+line to 50 characters<i class="fa fa-external-link-alt"></i></span> 主题限制在 50 个字符之内</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jYmVhLm1zL2dpdC1jb21taXQvI2NhcGl0YWxpemU=">Capitalize the
+subject line<i class="fa fa-external-link-alt"></i></span> 主题首字符大写</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jYmVhLm1zL2dpdC1jb21taXQvI2VuZA==">Do not end the subject
+line with a period<i class="fa fa-external-link-alt"></i></span> 主题结尾不要写句号</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jYmVhLm1zL2dpdC1jb21taXQvI2ltcGVyYXRpdmU=">Use the imperative
+mood in the subject line<i class="fa fa-external-link-alt"></i></span> 主题使用祈使语气</li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9jYmVhLm1zL2dpdC1jb21taXQvI3dyYXAtNzI=">Wrap the body at 72
+characters<i class="fa fa-external-link-alt"></i></span> 正文每一行不超过 72 个字符</li>
+<li><a target="_blank" rel="noopener" href="https://cbea.ms/git-commit/#why-not-how">Use the body to
+explain <em>what</em> and <em>why</em> vs. <em>how</em></a>
+使用正文说明是什么，为什么，怎么做</li>
 </ol>
-<p>以上所有文档，都可以转换为 md 文档进行索引：</p>
-<ul>
-<li>LaTeX 可以使用 Pandoc 转换为 md 文档，转换的效率还是可以的</li>
-<li>MATLAB 实时脚本可以导出 md 文档</li>
-<li>Zotero 中的笔记也可以导出 md 文档</li>
-</ul>
-<p>，那么，如何定义 md 文档与源文档之间的关系呢？我们做出如下规定：</p>
-<ul>
-<li><strong>源文档必须进行版本控制，确定发行版本号</strong></li>
-<li><strong>md 文档需要标识源文档，但源文档不需要给出指向 md
-文档的标识</strong></li>
-<li><strong>对于 LaTeX
-文档，所有内容上的修改应在源文档中做出，然后通过版本控制系统上传修改，再将新版本的文档转化为
-md</strong></li>
-</ul>
-<h2 id="md-文档标识规则">md 文档标识规则</h2>
-<p>在 md 文档中，使用 html 标签<code>&lt;!--注释内容--&gt;</code>
-进行注释，这样在静态网站上看不到该标签中的内容。标注内容的格式为：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--文档名称--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--文档仓库路径--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--文档版本号--&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="文档仓库和版本控制">文档仓库和版本控制</h2>
-<p>文档任务工作基本上都是线性的，不需要太多 branch
-工作，并且文档私密性较高，所以使用 SVN 进行版本控制。</p>
-<p>创建文档的仓库目录如下：</p>
-<ul>
-<li><code>LaTeXdocs/</code></li>
-<li><code>MATLAB/</code></li>
-<li><code>Mathematica/</code></li>
-</ul>
-<h2 id="zotero-文档管理">Zotero 文档管理</h2>
-<p>Zotero 的文档管理相对比较复杂，因为 Zotero
-本身就是一个文档集成器，可以方便地在原文献基础上进行注释与引用。但是我更希望
-Zotero
-是作为一个文献数据库，我可以方便地找到我的引用来源，但是我自己对知识的理解与创造则与文献库相区分。然而
-Zotero 的数据不太方便版本控制，因为 Zotero
-的数据集成方式是与软件绑定在一起的，你不需要控制文件在本地怎么存储。但是每一次操作，比如在文档中截个图，画个线，都会变更文件，所以
-Zotero 的数据库更新很快，更适合云同步。</p>
-<p>所以，如果整理的文献有值得放在个人文档库中的，那么就<strong>在文档的开头添加参考文献</strong>，不需要与
-Zotero 自带的笔记系统相关联。</p>
-<h2 id="总结">总结</h2>
-<p>我制定的文档管理规则为：</p>
-<ul>
-<li><strong>Markdown 文档</strong> 在 <code>Blog/source</code>
-下编辑，上传至网络博客</li>
-<li><strong>LaTeX 文档</strong> 创建 SVN 仓库
-<code>LaTeXdocs/</code>，发布文件版本号，并将 release 版本的文档使用
-Pandoc 整理为 md 文档，在 md 文档首部添加注释行说明转换 LaTeX
-文档的信息</li>
-<li><strong>Mathematica 文档</strong> 创建 SVN 仓库
-<code>Mathematica/</code>，发布文件版本号，并将 release 版本的文档导出为
-md 文档，在 md 文档首部添加注释行说明 Mathematica文档的信息</li>
-<li><strong>MATLAB 文档</strong> 创建 SVN 仓库
-<code>MATLAB/</code>，发布文件版本号，并将 release 版本的文档导出为 md
-文档，在 md 文档首部添加注释行说明 MATLAB 文档的信息</li>
-<li><strong>Zotero 文档</strong> 使用坚果云进行同步，主要用 Zotero
-存放科研的参考源数据。在 Zotero
-中撰写关于文献的笔记。如果该笔记值得放到博客中，就导出为 md
-文档，并在文档开头指明参考文献</li>
-</ul>
+
+</blockquote>
+<h2 id="github-clone-失败">Github clone 失败</h2>
+<p>使用 Github 克隆某一个库的时候，报错如下：</p>
+<blockquote>
+<p>git clone fatal unable to acces</p>
+</blockquote>
+<p>使用如下解决方案</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global --<span class="built_in">unset</span> http.proxy</span><br><span class="line">git config --global --<span class="built_in">unset</span> https.proxy</span><br></pre></td></tr></table></figure>
+<p>结果不行，后来浏览到一篇帖子，说是 Git
+端口和本机系统代理的端口不一致造成的。打开
+Clash，查看我的笔记本的代理端口为：7890。然后设置 Git 的端口：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global http.proxy http://127.0.0.1:7890</span><br><span class="line">git config --global https.proxy http://127.0.0.1:7890</span><br></pre></td></tr></table></figure>
+<p>注意，第二条是 <code>http://127.0.0.1:7890</code> ，不是
+<code>https://127.0.0.1:7890</code></p>
+<h2 id="git-相关命令">Git 相关命令</h2>
+<p><code>git init</code> 初始化 git 仓库。在当前目录下会生成一个
+<code>.git/</code> 目录</p>
+<p><code>git branch &lt;newbranch&gt;</code> 创建一个新的分支（但 head
+指针仍然指向旧分支）</p>
+<p><code>git checkout &lt;branchname&gt;</code> 将 head
+指针移到某一个分支上</p>
 
     </div>
 
@@ -346,20 +328,20 @@ md 文档，在 md 文档首部添加注释行说明 Mathematica文档的信息<
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/" rel="tag"># 文档管理</a>
+              <a href="/tags/Git/" rel="tag"># Git</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/mechanics/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/" rel="prev" title="推导非线性本构时用到的张量运算">
-                  <i class="fa fa-angle-left"></i> 推导非线性本构时用到的张量运算
+                <a href="/tools/%E9%85%8D%E7%BD%AE-Typora-%E4%B8%8A%E4%BC%A0%E5%9B%BE%E7%89%87%E5%88%B0%E7%BD%91%E7%BB%9C%E5%9B%BE%E5%BA%8A/" rel="prev" title="配置 Typora 上传图片到网络图床">
+                  <i class="fa fa-angle-left"></i> 配置 Typora 上传图片到网络图床
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/Linux/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/" rel="next" title="Linux + apache2 配置 https 协议下的 SVN 仓库">
-                  Linux + apache2 配置 https 协议下的 SVN 仓库 <i class="fa fa-angle-right"></i>
+                <a href="/Linux/Linux-%E7%8E%AF%E5%A2%83%E4%B8%8B%E5%BF%AB%E9%80%9F%E6%89%93%E5%BC%80-MATLAB-%E5%91%BD%E4%BB%A4%E8%A1%8C/" rel="next" title="Linux 环境下快速打开 MATLAB 命令行">
+                  Linux 环境下快速打开 MATLAB 命令行 <i class="fa fa-angle-right"></i>
                 </a>
             </div>
           </div>

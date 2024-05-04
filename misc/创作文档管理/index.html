@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="4IgN6N71kznUS9PIMp6itE5oUv0s3hzVzFzFOpC-4Ig">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="我过去的文档管理方式太过粗放，以至我感到自己似乎一直是在原地踏步。这是因为我在用多个平台（知乎，Hexo+NexT 博客，Zotero 等），用多种方式（MATLAB 实时脚本，LaTeX，Markdown 等）写文档，这些文档缺少一个「地图」索引，所以我的知识库相互是分割独立的，仿佛一盘散沙，没办法攒出某种结构出来。所以我希望建立一个文档管理的规则，按照这个规则，我可以系统地将所有创作的文档">
+<meta property="og:type" content="article">
+<meta property="og:title" content="创作文档管理">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/misc/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/index.html">
+<meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="我过去的文档管理方式太过粗放，以至我感到自己似乎一直是在原地踏步。这是因为我在用多个平台（知乎，Hexo+NexT 博客，Zotero 等），用多种方式（MATLAB 实时脚本，LaTeX，Markdown 等）写文档，这些文档缺少一个「地图」索引，所以我的知识库相互是分割独立的，仿佛一盘散沙，没办法攒出某种结构出来。所以我希望建立一个文档管理的规则，按照这个规则，我可以系统地将所有创作的文档">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-04-12T13:49:33.000Z">
+<meta property="article:modified_time" content="2024-04-16T07:28:29.451Z">
+<meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="文档管理">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://qiuxiaohuo.github.io/misc/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/misc/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/","path":"misc/创作文档管理/","title":"创作文档管理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>创作文档管理 | 邱小伙的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">邱小伙的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#md-%E6%96%87%E6%A1%A3%E6%A0%87%E8%AF%86%E8%A7%84%E5%88%99"><span class="nav-number">1.</span> <span class="nav-text">md 文档标识规则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%87%E6%A1%A3%E4%BB%93%E5%BA%93%E5%92%8C%E7%89%88%E6%9C%AC%E6%8E%A7%E5%88%B6"><span class="nav-number">2.</span> <span class="nav-text">文档仓库和版本控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#zotero-%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">Zotero 文档管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">4.</span> <span class="nav-text">总结</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qiu Xiaohuo"
+      src="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+  <p class="site-author-name" itemprop="name">Qiu Xiaohuo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">35</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiuxiaohuo"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnFpdXhpYW9odW9AZ21haWwuY29t" title="E-Mail → mailto:qiuxiaohuo@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/misc/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="创作文档管理 | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          创作文档管理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-12 21:49:33" itemprop="dateCreated datePublished" datetime="2024-04-12T21:49:33+08:00">2024-04-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-16 15:28:29" itemprop="dateModified" datetime="2024-04-16T15:28:29+08:00">2024-04-16</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>我过去的文档管理方式太过粗放，以至我感到自己似乎一直是在原地踏步。这是因为我在用多个平台（知乎，Hexo+NexT
+博客，Zotero 等），用多种方式（MATLAB 实时脚本，LaTeX，Markdown
+等）写文档，这些文档缺少一个「地图」索引，所以我的知识库相互是分割独立的，仿佛一盘散沙，没办法攒出某种结构出来。所以我希望建立一个文档管理的规则，按照这个规则，我可以系统地将所有创作的文档相互关联。<span id="more"></span></p>
+<p>我创作的文档类型有：</p>
+<ol type="1">
+<li><strong>Markdown（md） 文档</strong>
+用来写一些效率提升的奇技淫巧，记录软件的配置过程等等，还有专业相关的一些小问题，如果对排版要求不高的话，我也会用
+md 来写</li>
+<li><strong>LaTeX 文档</strong>
+写专业相关的文档，篇幅会很长，并且有大量公式</li>
+<li><strong>MATLAB 脚本</strong> MATLAB
+实时脚本本身也具有文档的功能，类似的还有 Mathematica 的
+Notebook。这些文档是用来计算某一类小问题。含有多个文件与函数的 matlab
+程序并不包含在内，这可以用 Github 管理</li>
+<li><strong>Zotero 文献整理</strong>
+主要和阅读的论文资料相关，该文档依赖于文献</li>
+</ol>
+<p>以上所有文档，都可以转换为 md 文档进行索引：</p>
+<ul>
+<li>LaTeX 可以使用 Pandoc 转换为 md 文档，转换的效率还是可以的</li>
+<li>MATLAB 实时脚本可以导出 md 文档</li>
+<li>Zotero 中的笔记也可以导出 md 文档</li>
+</ul>
+<p>，那么，如何定义 md 文档与源文档之间的关系呢？我们做出如下规定：</p>
+<ul>
+<li><strong>源文档必须进行版本控制，确定发行版本号</strong></li>
+<li><strong>md 文档需要标识源文档，但源文档不需要给出指向 md
+文档的标识</strong></li>
+<li><strong>对于 LaTeX
+文档，所有内容上的修改应在源文档中做出，然后通过版本控制系统上传修改，再将新版本的文档转化为
+md</strong></li>
+</ul>
+<h2 id="md-文档标识规则">md 文档标识规则</h2>
+<p>在 md 文档中，使用 html 标签<code>&lt;!--注释内容--&gt;</code>
+进行注释，这样在静态网站上看不到该标签中的内容。标注内容的格式为：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--文档名称--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--文档仓库路径--&gt;</span></span><br><span class="line"><span class="comment">&lt;!--文档版本号--&gt;</span></span><br></pre></td></tr></table></figure>
+<h2 id="文档仓库和版本控制">文档仓库和版本控制</h2>
+<p>文档任务工作基本上都是线性的，不需要太多 branch
+工作，并且文档私密性较高，所以使用 SVN 进行版本控制。</p>
+<p>创建文档的仓库目录如下：</p>
+<ul>
+<li><code>LaTeXdocs/</code></li>
+<li><code>MATLAB/</code></li>
+<li><code>Mathematica/</code></li>
+</ul>
+<h2 id="zotero-文档管理">Zotero 文档管理</h2>
+<p>Zotero 的文档管理相对比较复杂，因为 Zotero
+本身就是一个文档集成器，可以方便地在原文献基础上进行注释与引用。但是我更希望
+Zotero
+是作为一个文献数据库，我可以方便地找到我的引用来源，但是我自己对知识的理解与创造则与文献库相区分。然而
+Zotero 的数据不太方便版本控制，因为 Zotero
+的数据集成方式是与软件绑定在一起的，你不需要控制文件在本地怎么存储。但是每一次操作，比如在文档中截个图，画个线，都会变更文件，所以
+Zotero 的数据库更新很快，更适合云同步。</p>
+<p>所以，如果整理的文献有值得放在个人文档库中的，那么就<strong>在文档的开头添加参考文献</strong>，不需要与
+Zotero 自带的笔记系统相关联。</p>
+<h2 id="总结">总结</h2>
+<p>我制定的文档管理规则为：</p>
+<ul>
+<li><strong>Markdown 文档</strong> 在 <code>Blog/source</code>
+下编辑，上传至网络博客</li>
+<li><strong>LaTeX 文档</strong> 创建 SVN 仓库
+<code>LaTeXdocs/</code>，发布文件版本号，并将 release 版本的文档使用
+Pandoc 整理为 md 文档，在 md 文档首部添加注释行说明转换 LaTeX
+文档的信息</li>
+<li><strong>Mathematica 文档</strong> 创建 SVN 仓库
+<code>Mathematica/</code>，发布文件版本号，并将 release 版本的文档导出为
+md 文档，在 md 文档首部添加注释行说明 Mathematica文档的信息</li>
+<li><strong>MATLAB 文档</strong> 创建 SVN 仓库
+<code>MATLAB/</code>，发布文件版本号，并将 release 版本的文档导出为 md
+文档，在 md 文档首部添加注释行说明 MATLAB 文档的信息</li>
+<li><strong>Zotero 文档</strong> 使用坚果云进行同步，主要用 Zotero
+存放科研的参考源数据。在 Zotero
+中撰写关于文献的笔记。如果该笔记值得放到博客中，就导出为 md
+文档，并在文档开头指明参考文献</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/" rel="tag"># 文档管理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mechanics/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/" rel="prev" title="推导非线性本构时用到的张量运算">
+                  <i class="fa fa-angle-left"></i> 推导非线性本构时用到的张量运算
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/Linux/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/" rel="next" title="Linux + apache2 配置 https 协议下的 SVN 仓库">
+                  Linux + apache2 配置 https 协议下的 SVN 仓库 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qiu Xiaohuo</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

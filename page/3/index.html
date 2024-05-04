@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">33</span>
+          <span class="site-state-item-count">34</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -163,7 +163,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">34</span>
+        <span class="site-state-item-count">35</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -191,6 +191,126 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mechanics/%E4%B8%A4%E7%82%B9%E5%BC%A0%E9%87%8F%E5%8F%98%E5%BD%A2%E6%A2%AF%E5%BA%A6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mechanics/%E4%B8%A4%E7%82%B9%E5%BC%A0%E9%87%8F%E5%8F%98%E5%BD%A2%E6%A2%AF%E5%BA%A6/" class="post-title-link" itemprop="url">两点张量变形梯度</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-04-16 16:48:11" itemprop="dateCreated datePublished" datetime="2023-04-16T16:48:11+08:00">2023-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-04-16 16:51:15" itemprop="dateModified" datetime="2024-04-16T16:51:15+08:00">2024-04-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>首先，连续体在初始时刻 <span class="math inline">\(t_0\)</span>
+所占空间定义为参考构型 <span
+class="math inline">\(\Omega_0\)</span>。在时刻 <span
+class="math inline">\(t\)</span>，连续体从参考构型变形到当前构型<span
+class="math inline">\(\Omega\)</span>。<span
+class="math inline">\(\Omega_0\)</span> 与 <span
+class="math inline">\(\Omega\)</span> 均为三维欧几里得向量空间 <span
+class="math inline">\(E^3\)</span> 的子集。参考构型中点 <span
+class="math inline">\(\boldsymbol{X}\)</span> 运动到当前构型点 <span
+class="math inline">\(\boldsymbol{x}\)</span>，我们定义函数 <span
+class="math inline">\(\chi(\boldsymbol{X},t): E^3\times\mathbb{R}
+\mapsto E^3\)</span> 来描述连续体的运动: <span class="math display">\[
+\boldsymbol{x} \triangleq \chi(\boldsymbol{X},t) =
+\chi_{t}(\boldsymbol{X})
+\]</span> 固定时刻 <span class="math inline">\(t\)</span>，对上式变量
+<span class="math inline">\(\boldsymbol{X}\)</span> 微分，可得到微元
+<span class="math inline">\(\mathrm{d}\boldsymbol{x}\)</span> 与 <span
+class="math inline">\(\mathrm{d}\boldsymbol{X}\)</span> 之间的关系：
+<span class="math display">\[
+\mathrm{d} \boldsymbol{x} =
+\frac{\partial{\chi}_t}{\partial{\boldsymbol{X}}} \cdot
+\mathrm{d}\boldsymbol{X} =
+\boldsymbol{F} \cdot \mathrm{d} \boldsymbol{X}
+\]</span> 式中，变形梯度 <span
+class="math inline">\(\boldsymbol{F}\)</span> 定义为 <span
+class="math display">\[
+\boldsymbol{F} \triangleq
+\frac{\partial{\chi}_t}{\partial{\boldsymbol{X}}}
+\]</span>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/mechanics/%E4%B8%A4%E7%82%B9%E5%BC%A0%E9%87%8F%E5%8F%98%E5%BD%A2%E6%A2%AF%E5%BA%A6/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
