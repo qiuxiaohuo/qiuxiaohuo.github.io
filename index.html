@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">34</span>
+          <span class="site-state-item-count">35</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -200,6 +200,329 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/Fourier-%E7%BA%A7%E6%95%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%A7%E8%B4%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/math/Fourier-%E7%BA%A7%E6%95%B0%E7%9A%84%E4%B8%80%E4%BA%9B%E6%80%A7%E8%B4%A8/" class="post-title-link" itemprop="url">Fourier 级数的一些性质</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-04 15:00:07" itemprop="dateCreated datePublished" datetime="2024-05-04T15:00:07+08:00">2024-05-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-05-05 10:58:56" itemprop="dateModified" datetime="2024-05-05T10:58:56+08:00">2024-05-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>对于 <span class="math inline">\([0,1]\)</span> 上的周期函数 <span
+class="math inline">\(f(x):\mathbb{R} \mapsto \mathbb{C}\)</span>,
+其内积定义为 <span class="math display">\[
+\langle f(x), g(x) \rangle \triangleq \frac{1}{L} \int_0^{L} f(x)
+\overline{g(x)} ~\mathrm{d}x
+\tag{$\star$}
+\]</span> <span class="math inline">\(f(x)\)</span>​ 的 Fourier
+级数表示为 <span class="math display">\[
+f(x) \sim \sum_{k=-\infty}^{\infty} c_k e^{i 2\pi k x},
+\tag{1}
+\]</span> 其系数 <span class="math inline">\(c_k\)</span> 为: <span
+class="math display">\[
+c_k = \langle f(x), e^{i 2\pi k x} \rangle = \int_{0}^{1} f(x) e^{-i
+2\pi k x} ~\mathrm{d}x
+\tag{2}
+\]</span> ## Parseval 等式</p>
+<p>根据式 (1) (2) 我们可以得到关系 <span class="math inline">\(f(x) \sim
+\{ c_k \}\)</span>, 而 Parseval 等式给出 <span
+class="math inline">\(f(x)\)</span> 和 <span class="math inline">\(\{
+c_k \}\)</span> 在所属空间的 (能量) 范数等价性: <span
+class="math display">\[
+\int_{0}^{1} |f(x)|^2 ~\mathrm{d}x = \sum_{k=-\infty}^{\infty} |c_k|^2
+\tag{$\bigstar$}
+\]</span> 相比 “形式地” 给出的证明, 我更愿意通过计算去解释式 (<span
+class="math inline">\(\bigstar\)</span>) 的内涵. 首先, 我们声明,
+对任意有限和 <span class="math display">\[
+S_N(x) \triangleq \sum_{k=0}^{N} \left( A_k \cos 2\pi k x + B_k \sin
+2\pi k x \right),
+\tag{3}
+\]</span> <strong>Fourier 系数是使得在均值平方意义下 <span
+class="math inline">\(S_N(x)\)</span> 对 <span
+class="math inline">\(f(x)\)</span> 的最佳估计</strong>. 换句话说, 误差
+<span class="math display">\[
+E(A_k,B_k) \triangleq \int_0^1 \left( f(x)
+- \sum_{k=0}^{N} \left( A_k \cos 2\pi k x + B_k \sin 2\pi k x \right)
+\right)^2 \mathrm{d}x
+\]</span> 在 <span class="math inline">\(A_k := a_k\)</span>, <span
+class="math inline">\(B_k := b_k\)</span> 时取最小值. 例如, 上式对 <span
+class="math inline">\(A_k\)</span> 求偏导数得到 <span
+class="math display">\[
+\begin{aligned}
+\frac{\partial E}{ \partial A_k}
+&amp;= -2\int_0^1 \left( f(x)
+- \sum_{k=0}^{N} \left( A_k \cos 2\pi k x + B_k \sin 2\pi k x \right)
+\right) \cos 2\pi k x \mathrm{d}x\\
+&amp;= -2\int_0^1 f(x) \cos 2\pi k x ~\mathrm{d}x + A_k
+\end{aligned}
+\]</span> 令上式等于 0, 也即取极值 (对于正定二次型 <span
+class="math inline">\(E\)</span> , 极值点也是最小值点) 条件得到 <span
+class="math display">\[
+A_k = 2\int_0^1 f(x) \cos 2\pi k x ~\mathrm{d}x = a_k
+\]</span> 同样也可以得到 <span class="math display">\[
+B_k = 2\int_0^1 f(x) \sin 2\pi k x ~\mathrm{d}x = b_k
+\]</span> 如果将 Fourier 级数展开解释为 <span
+class="math inline">\(f(x)\)</span> 在正交基上的投影,
+那么上面的一切似乎都是顺理成章的. <span
+class="math inline">\(f(x)\)</span> 在子空间中的投影点,
+也是该子空间中距离 <span class="math inline">\(f(x)\)</span> 最近的点.
+如果给出 <span class="math inline">\(f(x)\)</span>
+所属空间中的一族规范正交基 <span class="math inline">\(\{ c_k
+\}\)</span>, 那么 <span class="math inline">\(f(x)\)</span> 在该空间中的
+“长度”, 就等于 <span class="math inline">\(f(x)\)</span> 在 <span
+class="math inline">\(\{ c_k \}\)</span> 表示下 “坐标” 的平方和,
+这也就是 Parseval 等式 (<span class="math inline">\(\bigstar\)</span>).
+我们甚至还可以通过这一概念的类比, 直接得到 Bessel 不等式,
+也即函数在有限个正交基上的投影长度总是小于原来的长度: <span
+class="math display">\[
+\int_{0}^{1} |f(x)|^2 ~\mathrm{d}x \geq \sum_{k\in K} |c_k|^2, \quad K
+\subseteq \mathbb{Z}
+\]</span> 这一切与有限维空间中如此相似的性质, 放到无穷维空间中仍然适用,
+是因为<strong>使得我们内积的定义方式 (<span
+class="math inline">\(\star\)</span>​) 有意义的函数所属的空间是 Hilbert
+空间</strong>. Hilbert 空间, 即使是无穷维的,
+也不会丢失掉类似于有限维空间中的长度, 角度和内积性质.</p>
+<h2 id="fourier-级数的收敛性">Fourier 级数的收敛性</h2>
+<p>定义函数 <span class="math inline">\(f\)</span> 的 Fourier
+级数的部分和 <span class="math display">\[
+S_N[f](x) \triangleq \sum_{|k| \leq N} c_k e^{i 2\pi kx},
+\]</span> 那么, 在什么意义下, 当 <span class="math inline">\(N
+\rightarrow \infty\)</span> 时, <span
+class="math inline">\(S_N[f]\)</span> 收敛到 <span
+class="math inline">\(f\)</span> 呢? 根据 Parseval 等式, 我们知道 <span
+class="math display">\[
+\int_{0}^{1} |f(x) - S_N[f](x)|^2 ~\mathrm{d}x = \sum_{|k| &gt; N}
+|c_k|^2
+\]</span> 当 <span class="math inline">\(N \rightarrow \infty\)</span>
+时, 根据上式, 函数 <span class="math inline">\(S_N[f]\)</span> 在 <span
+class="math inline">\(L_2\)</span> 范数意义下收敛到 <span
+class="math inline">\(f\)</span>. 进一步的, 我们还可以给出使得 <span
+class="math inline">\(S_N[f]\)</span> 在逐点意义下收敛到 <span
+class="math inline">\(f\)</span> 的定理:</p>
+<div class="note success no-icon"><p>对于 <span class="math inline">\(f \in L_2(\mathbb{R})\)</span>, 当
+<span class="math inline">\(N \rightarrow \infty\)</span> 时, 有 <span
+class="math display">\[
+S_{N}[f] \rightarrow f, \quad a.e.
+\tag{$\spadesuit$}
+\]</span></p>
+</div>
+<p>注意到, 我们给出的 <span class="math inline">\(S_N[f]\)</span>
+收敛性是 <strong>almost everywhere</strong> 上的, 如果我们得到点 <span
+class="math inline">\(x\)</span> 处的 Fourier
+级数不总是收敛到对应的函数值 <span class="math inline">\(f(x)\)</span>,
+这并不与式 (<span class="math inline">\(\spadesuit\)</span>) 矛盾.
+接下来我们将举例说明, 函数 <span class="math inline">\(f\)</span>
+满足定理 <span class="math inline">\(\spadesuit\)</span> 条件,
+但在某些点 <span class="math inline">\(x\)</span> 处其 Fourier
+级数并不收敛到 <span class="math inline">\(f(x)\)</span>.</p>
+<div class="note primary no-icon"><h5 id="例-gibbs-现象">例: Gibbs 现象</h5>
+<p>给定在 <span class="math inline">\((0, 2\pi)\)</span> 上的周期函数
+<span class="math inline">\(f(x):\mathbb{R} \mapsto \mathbb{R}\)</span>
+<span class="math display">\[
+f(x) = \frac{\pi - x}{2}, x\in (0, 2\pi)
+\]</span> 其 Fourier 级数展开式为 <span class="math display">\[
+f(x) \sim \frac{1}{1} \sin x + \frac{1}{2} \sin 2x + \cdots +
+\frac{1}{n} \sin nx + \cdots
+\]</span> 定义函数 <span class="math inline">\(f\)</span> 的部分和 <span
+class="math inline">\(S_N(x):\mathbb{R} \mapsto \mathbb{R}\)</span>
+<span class="math display">\[
+S_N(x) \triangleq \sum_{k=1}^{N} \frac{1}{k} \sin kx
+\]</span> 那么根据定理 <span class="math inline">\(\spadesuit\)</span>,
+当 <span class="math inline">\(N\rightarrow \infty\)</span> 时, <span
+class="math inline">\(S_N \rightarrow f, a.e.\)</span>
+但接下来我们将证明, <strong>当 <span class="math inline">\(N\rightarrow
+\infty\)</span> 时, 在区间 <span class="math inline">\((0,
+\frac{\pi}{N})\)</span> 上函数 <span
+class="math inline">\(S_{N}\)</span> 的最大值并不收敛到 <span
+class="math inline">\(f\)</span> 的最大值, 也即 <span
+class="math inline">\(\frac{\pi}{2}\)</span>​.</strong></p>
+<p>首先, 函数 <span class="math inline">\(S_N\)</span>
+的导函数是可以得到一个紧凑的表达式的: <span class="math display">\[
+S_N^{\prime}(x) = \frac{\sin \left(\frac{Nx}{2}\right) }{\sin
+\left(\frac{x}{2}\right) }
+\cos \left( \frac{N+1}{2}x \right)
+\]</span> 由此可以得到, 当 <span class="math inline">\(x =
+\frac{\pi}{N+1}\)</span> 时, 函数 <span
+class="math inline">\(S_N\)</span> 在 <span class="math inline">\((0,
+\frac{\pi}{N})\)</span> 取到最大值, 所以 <span class="math display">\[
+\max_{x\in(0,\frac{\pi}{N})} S_N(x) = S_N(\frac{\pi}{N+1})
+= \sum_{k=1}^{N} \frac{1}{k} \sin \frac{k\pi}{N+1}
+\]</span> 如果记 <span class="math display">\[
+\frac{k\pi}{N+1} \doteq t_k, \quad
+\frac{\pi}{N+1}  \doteq \Delta t
+\]</span> 那么 <span class="math display">\[
+\max_{x\in(0,\frac{\pi}{N})} S_N(x)
+= \sum_{k=1}^{N} \frac{\sin t_k}{t_k} \Delta t
+\]</span> 当 <span class="math inline">\(N \rightarrow \infty\)</span>
+时, 上式趋近于积分 <span class="math display">\[
+\max_{x\in(0,\frac{\pi}{N})} S_N(x) \rightarrow \int_{0}^{\pi}
+\frac{\sin t}{t} ~\mathrm{d}t
+\approx 1.85194
+\]</span> 这与函数 <span class="math inline">\(f\)</span>
+最大值的相对误差为 <span class="math display">\[
+\mathrm{error} = \frac{|\int_{0}^{\pi} \frac{\sin t}{t} -
+\frac{\pi}{2}|}{\frac{\pi}{2}}
+\approx 0.17898
+\]</span> 将 <span class="math inline">\(N=3,4,5,10,20\)</span>
+的部分和函数 <span class="math inline">\(S_N\)</span> 绘图,
+如下图所示</p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202405051052718Gibbs.png" alt="image-20240505105212544" style="zoom:80%;" /></p>
+</div>
+<h2 id="riemann-lebesgue-引理">Riemann-Lebesgue 引理</h2>
+<p>接下来, 我们希望建立起一个对 <span class="math inline">\(c_k\)</span>
+与 <span class="math inline">\(f\)</span> 光滑性联系的印象: <span
+class="math inline">\(f\)</span> 越光滑, <span
+class="math inline">\(c_k\)</span> 收敛到 0 的速度就越快.</p>
+<p>首先, 我们可以通过定义得到关于 <span
+class="math inline">\(c_k\)</span> 最粗糙的估计: <span
+class="math display">\[
+|c_k| \leq \int_{0}^{1} |f(x)| ~\mathrm{d}x, \quad \forall k \in
+\mathbb{Z}
+\]</span> 接下来将要说明的是, <strong>当 <span class="math inline">\(|k|
+\rightarrow \infty\)</span> 时, <span class="math inline">\(c_k
+\rightarrow 0\)</span></strong>. 这一结论由 Riemann-Lebesgue
+引理给出:</p>
+<div class="note success no-icon"><p>若 <span class="math inline">\(f\)</span> 在 <span
+class="math inline">\((0,1)\)</span> 上可积, 那么当 <span
+class="math inline">\(|k| \rightarrow \infty\)</span> 时, <span
+class="math display">\[
+c_k \rightarrow 0.
+\]</span></p>
+</div>
+<p>我们可以通过构造如下列式来证明这一引理. 若 <span
+class="math inline">\(f(x)\)</span> 偏移 <span
+class="math inline">\(x_0\)</span>, 对应的 Fourier 级数系数 <span
+class="math inline">\(c_k^{\prime}\)</span> 为: <span
+class="math display">\[
+c_k^{\prime} = \int_{0}^{1} f(x+x_0) e^{-i 2\pi kx} ~\mathrm{d}x
+\stackrel{y\doteq x+x_0}{=} \int_{0}^{1} f(y) e^{-i 2\pi k (y-x_0)}
+~\mathrm{d}x
+= e^{i 2\pi k x_0} c_k
+\]</span></p>
+<p>若 <span class="math inline">\(x_0 := \frac{1}{2k}\)</span>, 那么
+<span class="math inline">\(c_k^{\prime} = -c_k\)</span>, 所以 <span
+class="math display">\[
+c_k = \frac{c_k - c_k^{\prime}}{2}
+= \frac{1}{2} \int_{0}^{1} \left( f(x)-f(x+\frac{1}{2k}) \right) e^{-i
+2\pi kx} ~\mathrm{d}x
+\tag{$\clubsuit$}
+\]</span> 由上式可以看到, 如果函数 <span
+class="math inline">\(f\)</span> 连续, 那么当 <span
+class="math inline">\(|k| \rightarrow \infty\)</span> 时, <span
+class="math inline">\(c_k \rightarrow 0\)</span>. 对于一般的可积函数
+<span class="math inline">\(f\)</span>, 给定 <span
+class="math inline">\(\varepsilon &gt; 0\)</span>,
+总可以确定某一个连续函数 <span class="math inline">\(g\)</span>, 使得
+<span class="math display">\[
+\int_{0}^{1} |f(x) - g(x)| ~\mathrm{d}x &lt; \frac{\varepsilon}{2}
+\]</span> 以及某一个 <span class="math inline">\(N\)</span>, 使得当
+<span class="math inline">\(|k| &gt; N\)</span> 时, <span
+class="math inline">\(c_k(g) &lt; \frac{\varepsilon}{2}\)</span>,
+由此我们得到 <span class="math display">\[
+|c_k(f)| \leq |c_k(f) - c_k(g)| + |c_k(g)|
+\leq \int_{0}^{1} |f(x) - g(x)| ~\mathrm{d}x + \frac{\varepsilon}{2}
+\leq \varepsilon
+\]</span> 这就证明了 Riemann-Lebesgue 引理.</p>
+<p>再然后, 我们希望在知道函数 <span class="math inline">\(f\)</span>
+光滑性的信息之后, 能够对 <span class="math inline">\(c_k\)</span> 收敛到
+0 的速度有一个估计. 如果函数 <span class="math inline">\(f \in
+C^1(\mathbb{R})\)</span>, 那么通过下面简单的计算可以得到系数 <span
+class="math inline">\(c_k\)</span> 的收敛速度为 <span
+class="math inline">\(\mathcal{O}(\frac{1}{|k|})\)</span> : <span
+class="math display">\[
+\begin{aligned}
+c_k &amp;= \int_{0}^{1} f(x) e^{-i 2\pi k x} ~\mathrm{d}x
+= \frac{1}{-i 2\pi k} \int_{0}^{1} f(x) ~\mathrm{d}e^{-i 2\pi k x} \\
+&amp;= \frac{1}{i 2\pi k} \int_{0}^{1} e^{-i 2\pi k x} ~\mathrm{d}f(x)
++ \left. \frac{1}{-i 2\pi k} f(x) e^{-i 2\pi k x}\right\vert_{0}^{1} \\
+&amp;= \frac{1}{i 2\pi k} \left( \int_{0}^{1} e^{-i 2\pi k x} f&#39;(x)
+~\mathrm{d}x + ( f(0) - f(1) )
+\right) \sim \mathcal{O}(\frac{1}{|k|})
+\end{aligned}
+\]</span> 如果函数 <span class="math inline">\(f\)</span> 是 Lipschitz
+连续的, 也即 <span class="math display">\[
+|f(x) - f(y)| \leq \mathrm{Lip}(f) |x-y|, \quad \forall x,y \in
+\mathbb{R}
+\]</span> 那么代入式 (<span class="math inline">\(\clubsuit\)</span>)
+中得到 <span class="math display">\[
+|c_k| \leq \frac{\mathrm{Lip}(f)}{4 |k|}
+\]</span></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/Fourier-%E7%BA%A7%E6%95%B0%E7%9A%84%E4%B8%89%E8%A7%92%E7%B3%BB%E6%95%B0%E4%B8%8E%E6%8C%87%E6%95%B0%E7%B3%BB%E6%95%B0%E8%BD%AC%E6%8D%A2%E5%85%B3%E7%B3%BB/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -230,7 +553,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-05-04 09:00:07 / 修改时间：13:16:11" itemprop="dateCreated datePublished" datetime="2024-05-04T09:00:07+08:00">2024-05-04</time>
+      <time title="创建时间：2024-05-04 09:00:07 / 修改时间：23:14:47" itemprop="dateCreated datePublished" datetime="2024-05-04T09:00:07+08:00">2024-05-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -270,9 +593,9 @@ class="math display">\[
 \]</span> ( 三角函数基虽然正交, 但不是规范正交的! ) 可以确定由式 (1)
 表示的 Fourier 级数系数为 <span class="math display">\[
 \begin{aligned}
-a_k &amp;:= 2 \int_{0}^{1} f(x) \cos 2\pi k x ~\mathrm{d}x, \quad
+a_k &amp;= 2 \int_{0}^{1} f(x) \cos 2\pi k x ~\mathrm{d}x, \quad
 k=0,1,2,\ldots\\
-b_k &amp;:= 2 \int_{0}^{1} f(x) \sin 2\pi k x ~\mathrm{d}x, \quad
+b_k &amp;= 2 \int_{0}^{1} f(x) \sin 2\pi k x ~\mathrm{d}x, \quad
 k=1,2,\ldots
 \end{aligned}
 \tag{2}
@@ -282,7 +605,7 @@ f(x) \sim \sum_{k=-\infty}^{\infty} c_k e^{i 2\pi k x},
 \tag{3}
 \]</span> 那么根据指数函数基底的规范正交性, 可以得到 <span
 class="math display">\[
-c_k := \langle f(x), e^{i 2\pi k x} \rangle = \int_{0}^{1} f(x) e^{-i
+c_k = \langle f(x), e^{i 2\pi k x} \rangle = \int_{0}^{1} f(x) e^{-i
 2\pi k x} ~\mathrm{d}x
 \tag{4}
 \]</span> 接下来, 我们希望得到 (1) (3) Fourier 级数表示系数之间的关系,
@@ -304,7 +627,9 @@ a_k= c_k + c_{-k}, \quad b_k = i(c_k - c_{-k}), \quad k=1,2,\ldots \\
 a_0 = c_0
 \end{gathered}
 \]</span></p>
-<div class="note info no-icon"><h5 id="remark">Remark</h5>
+<p>此外, 我们还可以看到 <span class="math display">\[
+c_{-k} = \overline{c}_{k}
+\]</span> <div class="note info no-icon"><h5 id="remark">Remark</h5>
 <ol type="1">
 <li>式 (1) 中常数项含分数是因为, 如果我们将 Fourier 级数表示为</li>
 </ol>
@@ -338,14 +663,14 @@ f(x) \sim \sum_{k=-\infty}^{\infty} c_k e^{i \frac{2\pi}{L} k x},
 class="math inline">\(\{ e^{i \frac{2\pi}{L} k x} \}\)</span> 的内积得到
 Fourier 系数的表达式为 <span class="math display">\[
 \begin{aligned}
-a_k &amp;:= \frac{2}{L} \int_{0}^{L} f(x) \cos \frac{2\pi}{L} k x
+a_k &amp;= \frac{2}{L} \int_{0}^{L} f(x) \cos \frac{2\pi}{L} k x
 ~\mathrm{d}x, \quad k=0,1,2,\ldots\\
-b_k &amp;:= \frac{2}{L} \int_{0}^{L} f(x) \sin \frac{2\pi}{L} k x
+b_k &amp;= \frac{2}{L} \int_{0}^{L} f(x) \sin \frac{2\pi}{L} k x
 ~\mathrm{d}x, \quad k=1,2,\ldots
 \end{aligned}
 \tag{2$&#39;&#39;$}
 \]</span> 和 <span class="math display">\[
-c_k := \frac{1}{L} \int_{0}^{L} f(x) e^{-i \frac{2\pi}{L} k x}
+c_k = \frac{1}{L} \int_{0}^{L} f(x) e^{-i \frac{2\pi}{L} k x}
 ~\mathrm{d}x
 \tag{4$&#39;&#39;$}
 \]</span> 另一个思路是积分变换, 我们以指数函数基为例. 对于周期为 <span
@@ -357,18 +682,18 @@ class="math display">\[
 F(y) \sim \sum_{k=-\infty}^{\infty} c_k e^{i 2\pi k y}
 \]</span> 以及系数 <span class="math inline">\(c_k\)</span> 为 <span
 class="math display">\[
-c_k := \int_{0}^{1} F(y) e^{-i 2\pi k y} ~\mathrm{d}y
+c_k = \int_{0}^{1} F(y) e^{-i 2\pi k y} ~\mathrm{d}y
 = \int_{0}^{1} f(Ly) e^{-i 2\pi k y} ~\mathrm{d}y
 \]</span> 作变量替换 <span class="math inline">\(x == Ly\)</span>, 也即
 <span class="math inline">\(y==\frac{x}{L}\)</span>, 所以 <span
 class="math display">\[
 f(x) \sim \sum_{k=-\infty}^{\infty} c_k e^{i \frac{2\pi}{L} k x}
 \]</span> 其 Fourier 系数为 <span class="math display">\[
-c_k := \int_{0}^{L} F(y) e^{-i 2\pi k \frac{x}{L}}
+c_k = \int_{0}^{L} F(y) e^{-i 2\pi k \frac{x}{L}}
 \frac{1}{L}~\mathrm{d}x
 = \frac{1}{L} \int_{0}^{L} F(y) e^{-i \frac{2\pi}{L} k x} ~\mathrm{d}x
 \]</span></p>
-</div>
+</div></p>
 <h2
 id="三角函数基与指数函数基的正交性证明">三角函数基与指数函数基的正交性证明</h2>
 <p>首先, 周期为 <span class="math inline">\(L\)</span> 的函数 <span
@@ -377,8 +702,8 @@ class="math inline">\(f(x),g(x): \mathbb{R} \mapsto \mathbb{C}\)</span>
 \langle f(x), g(x) \rangle \triangleq \frac{1}{L} \int_0^{L} f(x)
 \overline{g(x)} ~\mathrm{d}x
 \tag{$\star$}
-\]</span> 注意到这种内积的定义并不是唯一的, 但是, 按照 (<span
-class="math inline">\(\star\)</span>) 的定义, 指数函数基 <span
+\]</span> 注意到这种内积的定义<strong>并不是唯一的</strong>, 但是, 按照
+(<span class="math inline">\(\star\)</span>) 的定义, 指数函数基 <span
 class="math inline">\(\{ e^{i \frac{2\pi}{L} kx} \}\)</span>
 总是规范正交基: <span class="math display">\[
 \langle e^{i \frac{2\pi}{L} k x}, e^{i \frac{2\pi}{L} m x} \rangle
@@ -1021,9 +1346,15 @@ class="math inline">\(\chi^{(\alpha)}(y):Y\mapsto\mathbb{R}\)</span> ：
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-22 16:14:55 / 修改时间：18:08:54" itemprop="dateCreated datePublished" datetime="2024-04-22T16:14:55+08:00">2024-04-22</time>
+      <time title="创建时间：2024-04-22 16:14:55" itemprop="dateCreated datePublished" datetime="2024-04-22T16:14:55+08:00">2024-04-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-05-05 10:16:04" itemprop="dateModified" datetime="2024-05-05T10:16:04+08:00">2024-05-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1859,108 +2190,6 @@ Linux 环境下使用 apache2 配置 https 协议下的 SVN 仓库。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/misc/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mechanics/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/mechanics/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/" class="post-title-link" itemprop="url">推导非线性本构时用到的张量运算</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-04-10 17:36:10" itemprop="dateCreated datePublished" datetime="2024-04-10T17:36:10+08:00">2024-04-10</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-30 10:30:48" itemprop="dateModified" datetime="2024-04-30T10:30:48+08:00">2024-04-30</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="二阶张量-deviatoric-分解">二阶张量 deviatoric 分解</h2>
-<p>对于二阶张量 <span
-class="math inline">\(\boldsymbol{\varepsilon}\)</span>,
-总可以做如下分解: <span class="math display">\[
-\boldsymbol{\varepsilon}= \underbrace{\frac{1}{3} \mathrm{tr}
-\left[\boldsymbol{\varepsilon}\right] \mathbf{I}}
-  _{:= {\boldsymbol{\varepsilon}}^\mathrm{vol}}
-  + \underbrace{\boldsymbol{\varepsilon}- \frac{1}{3} \mathrm{tr}
-\left[\boldsymbol{\varepsilon}\right] \mathbf{I}}
-    _{:= {\boldsymbol{\varepsilon}}^\mathrm{dev}},
-\]</span> deviatoric 分解的性质为:
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/mechanics/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
