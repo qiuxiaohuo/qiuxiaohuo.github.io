@@ -4875,4 +4875,185 @@ class="math inline">\(\varepsilon\)</span>.</p>
         <tag>细观力学</tag>
       </tags>
   </entry>
+  <entry>
+    <title>FFT 方法求解单胞问题</title>
+    <url>/mechs/FFT-%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E5%8D%95%E8%83%9E%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p>参考文献：MOULINEC H, SUQUET P. A numerical method for computing the
+overall response of nonlinear composites with complex
+microstructure[J/OL]. Computer Methods in Applied Mechanics and
+Engineering, 1998, 157(1-2): 69-94. DOI:<span class="exturl" data-url="aHR0cHM6Ly9kb2kub3JnLzEwLjEwMTYvUzAwNDUtNzgyNSg5NykwMDIxOC0x">10.1016/S0045-7825(97)00218-1<i class="fa fa-external-link-alt"></i></span>.</p>
+<h2 id="力学列式">力学列式</h2>
+<p>对于非均质线弹性材料，其模量为 <span
+class="math inline">\(\mathbb{L}:Y \mapsto
+\mathbb{S}^4\)</span>，单胞上的应变与应力为 <span
+class="math inline">\(\varepsilon, \sigma:Y \mapsto
+\mathbb{S}^2\)</span>，在单胞上满足无体力的平衡方程： <span
+class="math display">\[
+\nabla \cdot \sigma = 0
+\tag{1}
+\]</span> 以及线弹性本构方程 <span class="math display">\[
+\sigma = \mathbb{L} : \varepsilon
+\tag{2}
+\]</span> 引入一个参考均质模量 <span class="math inline">\(\mathbb{L}^0
+\in \mathbb{S}^2\)</span>，并定义 <span class="math display">\[
+\delta \mathbb{L} \triangleq \mathbb{L}- \mathbb{L}^0
+\]</span> 以及极化应力 <span class="math inline">\(p:Y \mapsto
+\mathbb{S}^2\)</span> <span class="math display">\[
+p \triangleq \delta \mathbb{L}:\varepsilon
+\]</span> <span id="more"></span>代入本构方程（2）中得到 <span
+class="math display">\[
+\sigma = p + \mathbb{L}^{0}:\varepsilon
+\]</span> 为了定解上述方程，我们将应变 <span
+class="math inline">\(\varepsilon(x)\)</span> 分解为远场处的常值应变
+<span class="math inline">\(\varepsilon_0 \in \mathbb{S}^2\)</span>
+和满足周期性边界条件的应变扰动 <span
+class="math inline">\(\tilde{\varepsilon}:\Omega \mapsto
+\mathbb{S}^2\)</span> ： <span class="math display">\[
+\varepsilon \triangleq \tilde{\varepsilon} + \varepsilon^0
+\]</span> 由此得到 <span class="math display">\[
+\sigma = p + \mathbb{L}^{0}:\tilde{\varepsilon} +
+\mathbb{L}^{0}:\varepsilon^{0}
+\]</span> 再代入到平衡方程（1）中得到 <span class="math display">\[
+\nabla \cdot  \left( \mathbb{L}^{0}:\tilde{\varepsilon} \right) + \nabla
+\cdot p = 0
+\]</span> 写成关于位移 <span class="math inline">\(u:Y \mapsto
+\mathbb{R}^3\)</span> 的分量形式 <span class="math display">\[
+L_{ijkl}^0 \tilde{u}_{k,lj} + p_{ij,j} = 0
+\tag{3}
+\]</span> 若求得偏微分方程的基本解 <span class="math display">\[
+L_{ijkl}^0 G_{nk,lj}(x-x^{\prime}) + \delta_{in} \delta(x-x^{\prime}) =
+0
+\]</span> 那么位移场可以表示为基本解和极化应力的卷积形式。对式（3）进行
+Fourier 变换得到 <span class="math display">\[
+\xi_j\xi_l L_{ijkl}^{0}~ \hat{\tilde u}_{k}(\xi) = i\xi_j~
+\hat{p}_{ij}(\xi)
+\tag{4}
+\]</span> 这里用到的 Fourier 变换定义为 <span class="math display">\[
+\mathscr{F}[f(x)](\xi) = \hat{f}(\xi) \triangleq
+\int_{\mathbb{R}^3} f(x) e^{-i \xi \cdot x} \mathrm{d}x
+\]</span> 以及相应的 Fourier 逆变换 <span class="math display">\[
+\mathscr{F}^{-1}[f(\xi)](x) = \check{f}(\xi) \triangleq
+\frac{1}{(2\pi)^3}\int_{\mathbb{R}^3} f(\xi) e^{i \xi \cdot x}
+\mathrm{d}\xi
+\]</span> 定义关于代数方程（4）的系数矩阵以及其它相关量 <span
+class="math display">\[
+K_{ik} \triangleq \xi_j\xi_l L_{ijkl}, \quad
+N_{ik} \triangleq \mathrm{adj}(K_{ik}), \quad
+D \triangleq \det(K_{ik})
+\]</span> 由此方程（4）的解可以表示为 <span class="math display">\[
+\hat{\tilde u}_{k}=  i\xi_j~ D^{-1} N_{ki} \hat{p}_{ij}
+\]</span></p>
+<p>为了接下来可以得到具有对称性的算子，我们利用 <span
+class="math inline">\(\hat{p}_{ij}\)</span> 的对称性将上式写为 <span
+class="math display">\[
+\hat{\tilde u}_{k} =  \frac{i}{2}~ D^{-1}
+\left( \xi_j N_{ki} + \xi_i N_{kj} \right)
+\hat{p}_{ij}
+\]</span> 所以应变扰动 <span
+class="math inline">\(\tilde{\varepsilon}\)</span> 的 Fourier 变换为
+<span class="math display">\[
+\hat{\tilde\varepsilon}_{ij} = \frac{i}{2} (\xi_i \hat{\tilde u}_{j} +
+\xi_j \hat{\tilde u}_{i})
+= - \frac{1}{4} D^{-1}
+\left( \xi_l N_{ik} + \xi_k N_{il} + \xi_l N_{jk} + \xi_k N_{jl} \right)
+\hat{p}_{kl}
+\tag{5}
+\]</span>
+因此我们通过上式将极化应力与应变扰动相关联。为了写成更简洁的形式，定义
+<span class="math inline">\(\hat{\Gamma}_{ijkl}\)</span> 为 <span
+class="math display">\[
+\hat{\Gamma}_{ijkl} \triangleq \frac{1}{4} D^{-1}
+\left( \xi_l N_{ik} + \xi_k N_{il} + \xi_l N_{jk} + \xi_k N_{jl} \right)
+\]</span> 所以式（5）可以写成如下更加紧凑的形式： <span
+class="math display">\[
+\hat{\tilde\varepsilon}_{ij}
+= - \hat{\Gamma}_{ijkl} \hat{p}_{kl}
+\]</span> 或者写成卷积的形式： <span class="math display">\[
+\tilde\varepsilon_{ij}
+= - \Gamma_{ijkl} * p_{kl}
+\]</span> 最终我们得到关于应变 <span
+class="math inline">\(\varepsilon\)</span> 的积分方程： <span
+class="math display">\[
+\varepsilon_{ij} = \varepsilon_{ij}^{0} - \Gamma_{ijkl} * (\delta
+L_{klmn} \varepsilon_{mn})
+\]</span></p>
+<p>若参考材料为各项同性，其 Lame 系数和剪切模量分别为 <span
+class="math inline">\(\lambda^0\)</span> 和 <span
+class="math inline">\(\mu^0\)</span>，那么可以显式地写出相空间中 <span
+class="math inline">\(\hat{\Gamma}_{ijkl}^0\)</span>： <span
+class="math display">\[
+\hat{\Gamma}_{ijkl}^{0}
+=\frac{1}{4 \mu^0|\xi|^2}
+\left(\delta_{ik} \xi_j \xi_l + \delta_{il} \xi_j \xi_k
++\delta_{jk} \xi_i \xi_l + \delta_{jl} \xi_i \xi_k \right)
+-\frac{\lambda^0+\mu^0}{\mu^0\left(\lambda^0+2 \mu^0\right)}
+\frac{\xi_i \xi_j \xi_k \xi_l}{|\xi|^4} .
+\]</span></p>
+<h2 id="算法">算法</h2>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 80%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">初始化</td>
+<td><span class="math inline">\(\varepsilon^{(0)}(x) = \varepsilon^0,
+\quad \sigma^{(0)}(x) = \mathbb{L}(x):\varepsilon^{(0)}(x), \quad
+\forall x \in Y\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">第 <span
+class="math inline">\(i+1\)</span> 次迭代</td>
+<td>已知 <span class="math inline">\(\varepsilon^{(i)}\)</span> 与 <span
+class="math inline">\(\sigma^{(i)}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">(a)</td>
+<td><span class="math inline">\(p^{(i)}(x) = \sigma^{(i)}(x) -
+\mathbb{L}_0 : \varepsilon^{(i)}(x)\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">(b)</td>
+<td><span class="math inline">\(\hat{p}^{(i)} =
+\mathscr{F}[p^{(i)}]\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">(c)</td>
+<td>收敛性测试，<span class="math inline">\(e^{(i)} &lt;
+\mathrm{Tol}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">(d)</td>
+<td><span class="math inline">\(\hat{\varepsilon}^{(i+1)}(\xi) =
+-\hat{\Gamma}^{0}(\xi):\hat{p}^{(i)}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: right;">(e)</td>
+<td><span class="math inline">\(\varepsilon^{(i+1)}(\xi) =
+\mathscr{F}^{-1}[\hat{\varepsilon}^{(i+1)}(\xi)]\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">(f)</td>
+<td><span class="math inline">\(\sigma^{(i+1)} =
+\mathbb{L}(x):\varepsilon^{(i+1)}(x)\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>当得到的应力场 <span class="math inline">\(\sigma^{(i+1)}\)</span>
+满足平衡方程时算法收敛，因此检验算法收敛性的误差公式为 <span
+class="math display">\[
+e^{(i)} = \frac{\left( \langle \| \nabla \cdot \sigma^{(i)} \|^2 \rangle
+\right)^{\frac{1}{2}}}
+{\langle \| \sigma^{(i)} \| \rangle}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>多尺度</tag>
+        <tag>FFT</tag>
+      </tags>
+  </entry>
 </search>
