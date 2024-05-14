@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="4IgN6N71kznUS9PIMp6itE5oUv0s3hzVzFzFOpC-4Ig">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Hashin-Shtrikman 变分原理中给出的泛函表达式为 \[ U^p (p_{ij}, \widetilde\varepsilon_{ij}) &#x3D; \underbrace{\frac{1}{2}\int \bar\sigma_{ij} \bar\varepsilon_{ij}\mathrm{d} y}_{\triangleq \bar U} + \underbrace{\frac{">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Fourier 方法分析 Hashin-Shtrikman 变分原理">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/mech/Fourier-%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90-Hashin-Shtrikman-%E5%8F%98%E5%88%86/index.html">
+<meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="Hashin-Shtrikman 变分原理中给出的泛函表达式为 \[ U^p (p_{ij}, \widetilde\varepsilon_{ij}) &#x3D; \underbrace{\frac{1}{2}\int \bar\sigma_{ij} \bar\varepsilon_{ij}\mathrm{d} y}_{\triangleq \bar U} + \underbrace{\frac{">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-05-02T06:43:55.000Z">
+<meta property="article:modified_time" content="2024-05-04T14:48:32.642Z">
+<meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="Fourier 变换">
+<meta property="article:tag" content="变分原理">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://qiuxiaohuo.github.io/mech/Fourier-%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90-Hashin-Shtrikman-%E5%8F%98%E5%88%86/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/mech/Fourier-%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90-Hashin-Shtrikman-%E5%8F%98%E5%88%86/","path":"mech/Fourier-方法分析-Hashin-Shtrikman-变分/","title":"Fourier 方法分析 Hashin-Shtrikman 变分原理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Fourier 方法分析 Hashin-Shtrikman 变分原理 | 邱小伙的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">邱小伙的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qiu Xiaohuo"
+      src="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+  <p class="site-author-name" itemprop="name">Qiu Xiaohuo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">37</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">38</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiuxiaohuo"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnFpdXhpYW9odW9AZ21haWwuY29t" title="E-Mail → mailto:qiuxiaohuo@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/Fourier-%E6%96%B9%E6%B3%95%E5%88%86%E6%9E%90-Hashin-Shtrikman-%E5%8F%98%E5%88%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Fourier 方法分析 Hashin-Shtrikman 变分原理 | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Fourier 方法分析 Hashin-Shtrikman 变分原理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-02 14:43:55" itemprop="dateCreated datePublished" datetime="2024-05-02T14:43:55+08:00">2024-05-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-05-04 22:48:32" itemprop="dateModified" datetime="2024-05-04T22:48:32+08:00">2024-05-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Hashin-Shtrikman 变分原理中给出的泛函表达式为 <span
+class="math display">\[
+U^p (p_{ij}, \widetilde\varepsilon_{ij})
+= \underbrace{\frac{1}{2}\int \bar\sigma_{ij}
+\bar\varepsilon_{ij}\mathrm{d} y}_{\triangleq \bar U}
++ \underbrace{\frac{1}{2} \int p_{ij}(y) \widetilde\varepsilon_{ij}(y)
+\mathrm{d} y}_{\triangleq \widetilde U}
+- \frac{1}{2} \int \left( p_{ij}(y)~\delta L_{ijkl}^{-1}(y)~p_{kl}(y) -
+2p_{ij}(y) \bar\varepsilon_{ij}\right)  \mathrm{d} y
+\]</span> <span id="more"></span>对二阶张量进行 dev 分解 <span
+class="math display">\[
+\begin{aligned}
+p_{ij} &amp;= p \delta_{ij} + f_{ij} \\
+\bar\varepsilon_{ij} &amp;= \bar\varepsilon \delta_{ij} + \bar e_{ij}
+\end{aligned}
+\]</span> 代入到泛函表达式当中 <span class="math display">\[
+U^p = \bar U + \widetilde U - \frac{1}{2} \int
+\left(\frac{p^2}{K-K^0} + \frac{f_{ij} f_{ij}}{2(G-G^0)}
+-6 p \bar\varepsilon-2 f_{i j} \bar e_{i j}\right) \mathrm{d} y
+\]</span> 我们希望得到使用极化应力表示的 <span
+class="math inline">\(\widetilde U\)</span> 项表达式, 但是 <span
+class="math inline">\(\widetilde U\)</span>
+项考量的是极化应力与应变扰动量之间的相互作用, 所以包含未知量 <span
+class="math inline">\(\widetilde \varepsilon_{ij}\)</span>​. 幸运的是,
+我们考察的 <span class="math inline">\(\widetilde U\)</span> 是能量项,
+而根据 Fourier 分析中的 Parseval 公式,
+在相空间中的能量内积等于物理空间中的能量内积: <span
+class="math display">\[
+\widetilde U = \frac{1}{2} \int p_{ij}(y) \widetilde \varepsilon_{ij}(y)
+~\mathrm{d} y
+\equiv \frac{1}{2} \int \widehat p_{ij}(\xi)
+\widehat{\widetilde{u}}_{i,j}^{*}(\xi) ~\mathrm{d} \xi
+\tag{0}
+\]</span> 并且, 在 Fourier 变换下, 可以找到应变与极化应力的代数表达式.
+式 (0) 中, <span class="math inline">\(\widehat{p}_{ij}\)</span>, <span
+class="math inline">\(\widehat{\widetilde{u}}_{i,j}\)</span> 表示场变量
+<span class="math inline">\(p_{ij}\)</span>, <span
+class="math inline">\(\widetilde{u}_{i,j}\)</span> 的 Fourier 变换,
+<span class="math inline">\(\square^{*}\)</span>​ 表示共轭复数, 三维的
+Fourier 变换定义为</p>
+<p><span class="math display">\[
+\mathscr{F}[f(y)](\xi) \triangleq \left( \frac{1}{2 \pi} \right)^{3/2}
+\int_{\mathbb{R}^3} f(y) e^{-i \xi \cdot y} \mathrm{d} y
+\]</span></p>
+<p>我们现在希望找到相空间中 <span
+class="math inline">\(\widehat{p}_{ij}\)</span>, <span
+class="math inline">\(\widehat{\widetilde{u}}_{i,j}\)</span> 之间的关系,
+不过首先给出单胞上所满足的微分方程的 statement. 单胞上的控制方程为 <span
+class="math display">\[
+\left( L_{ijkl}^{0} \widetilde \varepsilon_{kl} + \widetilde p_{ij}
+\right)_{,j} = 0
+\tag{1}
+\]</span> 以及小变形的几何方程 <span class="math display">\[
+\widetilde \varepsilon_{kl} = \frac{1}{2} (\widetilde{u}_{k,l} +
+\widetilde{u}_{l,k})
+\tag{2}
+\]</span> 和齐次位移边界条件: <span class="math display">\[
+\widetilde{u}_k(\partial Y) = 0
+\tag{3}
+\]</span> 方程 (1) 中的 <span
+class="math inline">\(\widetilde{p}_{ij}\)</span> 表征极化应力的扰动,
+定义为 <span class="math display">\[
+\widetilde{p}_{ij} \triangleq p_{ij} - \bar{p}_{ij}
+\tag{4}
+\]</span> 接下来, 对控制方程 (1) 几何方程 (2) 作 Fourier 变换得到 <span
+class="math display">\[
+i\xi_j \left( L_{ijkl}^{0} \widehat{ \widetilde{\varepsilon} }_{kl}   +
+\widehat{ \widetilde{p} }_{ij} \right) = 0
+\]</span> 和 <span class="math display">\[
+\widehat{\widetilde{\varepsilon} }_{kl} = \frac{1}{2} i(\xi_l
+\widehat{\widetilde{u}}_{k} + \xi_k \widehat{\widetilde{u}}_{l})
+\]</span> 将各向同性材料的弹性模量 <span class="math display">\[
+L_{ijkl}^{0} = \lambda^0 \delta_{ij} \delta_{kl} + \mu^{0} \delta_{ik}
+\delta_{jl} + \mu^{0} \delta_{il} \delta_{jk}
+\]</span> 和应变的 Fourier 表达式代入到控制方程的 Fourier 变换式中,
+得到关于 <span class="math inline">\(\widehat{\widetilde{u}}_j\)</span>
+的代数方程: <span class="math display">\[
+(\lambda^0 + \mu^0) \xi_i \xi_k \widehat{\widetilde{u}}_k + \mu^0 \xi^2
+\widehat{\widetilde{u}}_i
+= i \xi_j \widehat{\widetilde{p}}_{ij}
+\]</span> 式中, <span class="math inline">\(\xi^2 = \xi_{kk}\)</span>.
+上述方程左端的系数矩阵为 <span class="math display">\[
+A \triangleq \mu^0 \xi^{T} \xi ~\mathbf{I} + (\lambda^0 + \mu^0)\xi
+\xi^{T}
+= \mu^0 \xi^2 \mathbf{I}
++ (\lambda^0 + \mu^0)
+\begin{pmatrix}
+\xi_1 \xi_1 &amp; \xi_1 \xi_2 &amp; \xi_1 \xi_3 \\
+\xi_2 \xi_1 &amp; \xi_2 \xi_2 &amp; \xi_2 \xi_3 \\
+\xi_3 \xi_1 &amp; \xi_3 \xi_2 &amp; \xi_3 \xi_3
+\end{pmatrix}
+\]</span> 式中, <span class="math inline">\(\mathbf{I}\)</span> 为 3
+阶单位矩阵. 对于形式为 <span class="math inline">\(I + \alpha
+vv^T\)</span> 的矩阵, 其逆矩阵的形式为 <span class="math inline">\(I +
+\beta vv^T\)</span>, 矩阵 <span class="math inline">\(A\)</span>
+的逆求解得到 <span class="math display">\[
+A^{-1} = \frac{1}{\mu^0} \frac{1}{\xi^2} \mathbf{I}
+- \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)}
+\frac{1}{(\xi^2)^2} \xi \xi^{T}
+\]</span> 所以, <span
+class="math inline">\(\widehat{\widetilde{u}}_{i}\)</span>
+可以被显式地用 <span
+class="math inline">\(\widehat{\widetilde{p}}_{ij}\)</span> 表示为 <span
+class="math display">\[
+\widehat{\widetilde{u}}_{i} = i \frac{1}{\mu^0} \frac{\xi_k}{\xi^2}
+\widehat{\widetilde{p}}_{ik}
+- i\frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{\xi_i
+\xi_k \xi_l}{(\xi^2)^2} \widehat{\widetilde{p}}_{kl}
+\]</span> 根据 Fourier 对导函数的变换规则, 只需要对上式两边乘 <span
+class="math inline">\(i \xi_j\)</span>, 就可以得到关于 <span
+class="math inline">\(\widehat{\widetilde{u}}_{i,j}\)</span> 的 Fourier
+变换 <span class="math display">\[
+\widehat{\widetilde{u}}_{i,j} = i \xi_j \widehat{\widetilde{u}}_{i}
+= - \frac{1}{\mu^0} \frac{\xi_j\xi_k}{\xi^2}
+\widehat{\widetilde{p}}_{ik}
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{\xi_i \xi_j
+\xi_k \xi_l}{(\xi^2)^2} \widehat{\widetilde{p}}_{kl}
+\]</span></p>
+<p>代入到式 (0) 中得到 <span class="math display">\[
+\widetilde U
+= \frac{1}{2} \int \widehat{\widetilde{p}}_{ij}
+\widehat{\widetilde{u}}_{i,j}^{*} ~\mathrm{d} \xi
+= \frac{1}{2} \int \left(
+- \frac{1}{\mu^0} \frac{\xi_j\xi_k}{\xi^2} \widehat{\widetilde{p}}_{ij}
+\widehat{\widetilde{p}}_{ik}^{*}
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{\xi_i \xi_j
+\xi_k \xi_l}{(\xi^2)^2} \widehat{\widetilde{p}}_{ij}
+\widehat{\widetilde{p}}_{kl}^{*}
+\right)~\mathrm{d} \xi
+\tag{5}
+\]</span> 如果我们假设极化应力是各向同性函数, 也就是说, 极化应力场 <span
+class="math inline">\(p_{ij}(y)\)</span> 可以通过函数 <span
+class="math inline">\(P_{ij}(r): \mathbb{R} \mapsto
+\mathbb{S}^2\)</span> 表示: <span class="math display">\[
+\widetilde p_{ij}(y) \equiv \widetilde P_{ij}(|y|)
+\]</span> 如果函数在物理空间中是各向同性函数,
+那么在相空间中也是各向同性函数 <span class="math display">\[
+\widehat{\widetilde{p}}_{ij}(\xi) \equiv
+\widehat{\widetilde{P}}_{ij}(|\xi|)
+\]</span> 代入到式 (5) 中, 得到用各向同性函数 <span
+class="math inline">\(P_{ij}(r)\)</span> 表示的积分 <span
+class="math display">\[
+2 \widetilde U
+= \int \left(
+- \frac{1}{\mu^0} \frac{\xi_j\xi_k}{\xi^2}
+\widehat{\widetilde{P}}_{ij}(|\xi|)
+\widehat{\widetilde{P}}_{ik}^{*}(|\xi|)
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{\xi_i \xi_j
+\xi_k \xi_l}{(\xi^2)^2} \widehat{\widetilde{P}}_{ij}(|\xi|)
+\widehat{\widetilde{P}}_{kl}^{*}(|\xi|)
+\right)~\mathrm{d} \xi
+\tag{6}
+\]</span> 如果将式 (6) 转换到球坐标系下进行积分 <span
+class="math display">\[
+\xi_1 = r \sin\theta \cos\phi, \quad
+\xi_2 = r \sin\theta \sin\phi, \quad
+\xi_3 = r \cos\theta , \quad
+\mathrm{d} \xi_1 ~\mathrm{d} \xi_2 ~\mathrm{d} \xi_3
+= r^2 \sin \theta ~\mathrm{d} r ~\mathrm{d} \theta ~\mathrm{d} \phi
+\]</span> 就可以在积分项中消去关于 <span
+class="math inline">\(\xi_i\)</span> 的有理分式, 得到只关于径向微分
+<span class="math inline">\(\mathrm{d} r\)</span> 的积分式 <span
+class="math display">\[
+2 \widetilde U
+=  - \frac{1}{\mu^0} \frac{4\pi}{3} \int_{0}^{\infty}
+\widehat{\widetilde{P}}_{ij}(r) \widehat{\widetilde{P}}_{ij}^{*}(r) r^2
+\mathrm{d} r
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{4\pi}{15}
+\int_{0}^{\infty} \left( \widehat{\widetilde{P}}_{mm}(r)
+\widehat{\widetilde{P}}_{kk}^{*}(r)
++ 2\widehat{\widetilde{P}}_{ij}(r) \widehat{\widetilde{P}}_{ij}^{*}(r)
+\right) r^2 \mathrm{d} r
+\tag{7}
+\]</span> 式 (7) 已经和最终的结果很接近了!
+只要我们能够确定式中的径向积分, 这可以通过 Parseval
+等式与物理空间中的能量积分关联为 <span class="math display">\[
+\int_{0}^{\infty} \widehat{\widetilde{P}}_{ij}(r)
+\widehat{\widetilde{P}}_{ij}^{*}(r) r^2 \mathrm{d} r
+= \frac{1}{4\pi} \int_{Y} \widetilde{p}_{ij}(y) \widetilde{p}_{ij}(y)
+~\mathrm{d}y, \quad
+\int_{0}^{\infty} \widehat{\widetilde{P}}_{mm}(r)
+\widehat{\widetilde{P}}_{kk}^{*}(r) r^2 \mathrm{d} r
+= \frac{9}{4\pi} \int_{Y} \widetilde{p}(y) \widetilde{p}(y) ~\mathrm{d}y
+\tag{a}
+\]</span> 将式 (4) 代入上式左端项当中, 就得到使用 <span
+class="math inline">\(p_{ij}\)</span> 表示的积分表达式: <span
+class="math display">\[
+\int_{Y} \widetilde{p}_{ij}(y) \widetilde{p}_{ij}(y) ~\mathrm{d}y
+= \int_{Y}  p_{ij}(y) p_{ij}(y)~\mathrm{d}y
+- 2 \bar{p}_{ij} \int_{Y} p_{ij}(y)  ~\mathrm{d}y
++ \bar{p}_{ij}\bar{p}_{ij}
+= \int_{Y}  p_{ij}(y) p_{ij}(y)~\mathrm{d}y
+- \bar{p}_{ij}\bar{p}_{ij}
+\]</span></p>
+<p>以及 <span class="math display">\[
+\int_{Y} \widetilde{p}(y) \widetilde{p}(y) ~\mathrm{d}y
+= \int_{Y}  p(y) p(y)~\mathrm{d}y - \bar{p}^2
+\]</span> 将分块常值的极化应力表达式 <span class="math display">\[
+p_{ij} := \sum_{\alpha}^{N} p_{ij}^{\alpha} \chi^{\alpha}
+\]</span> 以及极化应力的 dev 分解代入式中得到 <span
+class="math display">\[
+\begin{gathered}
+\int_{Y} \widetilde{p}_{ij}(y) \widetilde{p}_{ij}(y) ~\mathrm{d}y
+= \underbrace{\left( \sum_{\alpha} c^{\alpha} f_{ij}^{\alpha}
+f_{ij}^{\alpha} - \bar{f}_{ij}\bar{f}_{ij} \right)}_{\triangleq
+\clubsuit}
++ 3\underbrace{\left(\sum_{\alpha} c^{\alpha} (p^{\alpha})^2 - \bar{p}^2
+\right)}_{\triangleq \spadesuit}
+= \clubsuit + 3\spadesuit \\
+\int_{Y} \widetilde{p}(y) \widetilde{p}(y) ~\mathrm{d}y =
+\left(\sum_{\alpha} c^{\alpha} (p^{\alpha})^2 - \bar{p}^2 \right) =
+\spadesuit
+\end{gathered}\tag{b}
+\]</span> 最终, 我们代入到式 (7) 中, 得到 <span class="math display">\[
+\begin{aligned}
+2 \widetilde U
+&amp;\stackrel{(a)}{=} - \frac{1}{3\mu^0}
+\int_{Y} \widetilde{p}_{ij}(y) \widetilde{p}_{ij}(y) ~\mathrm{d}y
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{2}{15}
+\int_{Y} \widetilde{p}_{ij}(y) \widetilde{p}_{ij}(y) ~\mathrm{d}y
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{3}{5}
+\int_{Y} \widetilde{p}(y) \widetilde{p}(y) ~\mathrm{d}y \\
+&amp;\stackrel{(b)}{=} - \frac{1}{3\mu^0} ( \clubsuit + 3\spadesuit )
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{2}{15} (
+\clubsuit + 3\spadesuit )
++ \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 + 2\mu^0)} \frac{3}{5}
+\spadesuit \\
+&amp;= \left(-\frac{1}{3\mu^0} + \frac{\lambda^0 + \mu^0}{\mu^0
+(\lambda^0 + 2\mu^0)} \frac{2}{15} \right)\clubsuit
++ \left(-\frac{1}{\mu^0} + \frac{\lambda^0 + \mu^0}{\mu^0 (\lambda^0 +
+2\mu^0)}\right)\spadesuit \\
+&amp;= \frac{-3\lambda^0 -8\mu^0}{15\mu^0 (\lambda^0 + 2\mu^0)}
+\clubsuit
++ \frac{-1}{\lambda^0 + 2\mu^0}\spadesuit
+\end{aligned}
+\]</span> 如果将 <span class="math display">\[
+\lambda^0 = K^0 - \frac{2}{3}\mu^0
+\]</span> 代入, 就可以得到 <span class="math display">\[
+2 \widetilde U
+= \frac{-3 K^0 - 6\mu^0}{5\mu^0 (3 K^0 + 4\mu^0)} \left( \sum_{\alpha}
+c^{\alpha} f_{ij}^{\alpha} f_{ij}^{\alpha} - \bar{f}_{ij}\bar{f}_{ij}
+\right)
++ \frac{-3}{3 K^0 + 4\mu^0} \left(\sum_{\alpha} c^{\alpha}
+(p^{\alpha})^2 - \bar{p}^2 \right)
+\tag{$\bigstar$}
+\]</span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Fourier-%E5%8F%98%E6%8D%A2/" rel="tag"># Fourier 变换</a>
+              <a href="/tags/%E5%8F%98%E5%88%86%E5%8E%9F%E7%90%86/" rel="tag"># 变分原理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mech/%E4%BD%BF%E7%94%A8-Hill-%E5%8F%82%E6%95%B0%E8%A1%A8%E7%A4%BA%E6%A8%AA%E8%A7%82%E5%90%84%E5%90%91%E5%90%8C%E6%80%A7%E7%9A%84%E6%9D%90%E6%96%99%E7%9F%A9%E9%98%B5/" rel="prev" title="使用 Hill 参数表示横观各向同性的材料矩阵">
+                  <i class="fa fa-angle-left"></i> 使用 Hill 参数表示横观各向同性的材料矩阵
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/mech/%E5%9D%87%E8%B4%A8%E5%8C%96%E7%90%86%E8%AE%BA%E4%B8%AD%E7%9A%84-Hashin-Shtrikman-%E4%B8%8A%E4%B8%8B%E7%95%8C/" rel="next" title="均质化理论中的 Hashin-Shtrikman 上下界">
+                  均质化理论中的 Hashin-Shtrikman 上下界 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qiu Xiaohuo</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
