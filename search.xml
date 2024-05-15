@@ -5181,7 +5181,7 @@ c_j = \frac{1}{n}  f_k w^{-jk}
       </categories>
       <tags>
         <tag>Fourier 变换</tag>
-        <tag>数值fang&#39;fa</tag>
+        <tag>数值方法</tag>
       </tags>
   </entry>
   <entry>
@@ -5546,7 +5546,7 @@ F^{-1}(f \circ g) &amp;= \left[ (F)^{-1}f \right]*\left[ (F)^{-1}f
       </categories>
       <tags>
         <tag>Fourier 变换</tag>
-        <tag>数值fang&#39;fa</tag>
+        <tag>数值方法</tag>
       </tags>
   </entry>
 </search>
