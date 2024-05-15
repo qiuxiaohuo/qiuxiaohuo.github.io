@@ -5074,15 +5074,15 @@ class="math inline">\(f_0, f_1, \dots,f_{n-1}\)</span>, 那么,
 是否存在一个映射关系 <span class="math inline">\(F: \mathbb{R}^n \mapsto
 \mathbb{R}^n\)</span>, 得到对应的 Fourier 级数系数 <span
 class="math inline">\(c_0, c_1, \dots,c_{n-1}\)</span> 呢? 这就是离散的
-Fourier 变换.</p>
+Fourier 变换. <span id="more"></span></p>
 <div class="note primary no-icon"><h5 id="例-离散的-fourier-变换">例: 离散的 Fourier 变换</h5>
 <p>已知函数 <span class="math inline">\(f\)</span> 在点 <span
 class="math inline">\(0, \pi/2, \pi, 3\pi/2\)</span> 上取值分别为 <span
 class="math inline">\(1,2,3,4\)</span>, 如果使用 Fourier 级数的前 4
-项和近似函数 <span class="math inline">\(f\)</span>: <span
+项和作为函数 <span class="math inline">\(f\)</span> 的近似: <span
 class="math display">\[
 \tilde f(x) \triangleq c_0 + c_1 e^{ix} + c_2 e^{i2x} + c_3 e^{i3x}
-\]</span> 并令近似函数 <span class="math inline">\(\tilde f\)</span>
+\]</span> 并令函数 <span class="math inline">\(\tilde f\)</span>
 在对应点处与函数 <span class="math inline">\(f\)</span> 取值相同,
 那么就得到关于系数 <span class="math inline">\(c_k, k=1,2,3,4\)</span>
 的四个方程: <span class="math display">\[
@@ -5200,7 +5200,7 @@ class="math inline">\(f \circ g: \mathbb{R}^n \times \mathbb{R}^n
 0,1,\ldots,n-1
 \]</span> 我在这篇文章中希望说明的是, 向量的 乘积/卷积 运算,
 总是可以通过 卷积/乘积 运算得到同样的结果.
-将这两种运算联系到一起的就是<strong>离散卷积定理</strong>.</p>
+将这两种运算联系到一起的就是<strong>离散卷积定理</strong>.<span id="more"></span></p>
 <div class="note info no-icon"><h5 id="注">注:</h5>
 <p>按照上述定义, 计算卷积时会出现指标为负数的情况, 例如,
 计算卷积的第一个分量时: <span class="math display">\[
@@ -5533,9 +5533,12 @@ F \Lambda_c g =  F^{-1}(f \circ g)
 \]</span> 综合上述讨论,
 我们可以将离散卷积定理总结为如下对称且优美的形式: <span
 class="math display">\[
-(F)^{-1}(f*g) = n \left[ (F)^{-1}f \right] \circ \left[ (F)^{-1}g
+\begin{aligned}
+(F)^{-1}(f*g) &amp;= n \left[ (F)^{-1}f \right] \circ \left[ (F)^{-1}g
 \right] \\
-\left[ (F)^{-1}f \right]*\left[ (F)^{-1}f \right] = F^{-1}(f \circ g)
+F^{-1}(f \circ g) &amp;= \left[ (F)^{-1}f \right]*\left[ (F)^{-1}f
+\right]
+\end{aligned}
 \]</span></p>
 ]]></content>
       <categories>
