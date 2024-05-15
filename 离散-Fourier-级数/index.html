@@ -20,30 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="如果将微分方程写成抽象的算子形式: \[ L[u] + f &#x3D; 0 \text{ on } \Omega \] 特别的, 当函数 \(f\) 为 Dirac 函数 \(\delta\) 时, 微分方程的解 \(G\) 称为算子 \(L\) 的 Green 函数 (或者称为微分方程 \(L\) 的基本解): \[ L [G] + \delta &#x3D; 0 \]">
+    <meta name="description" content="连续的Fourier 级数将 \(L_2([0,2 \pi])\) 空间中函数 \(f\) 与 \(l_2\) 空间中的 Fourier 系数 \(c_k\) 关联起来: \[ f(x) &#x3D; \sum_{k \in \mathbb{Z}} c_k e^{i kx}, \quad c_k  &#x3D; \frac{1}{2 \pi} \int_{0}^{2 \pi} f(x) e^{-i kx} \">
 <meta property="og:type" content="article">
-<meta property="og:title" content="弹性力学方程的 Green 函数">
-<meta property="og:url" content="http://qiuxiaohuo.github.io/mech/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/index.html">
+<meta property="og:title" content="离散 Fourier 级数">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/%E7%A6%BB%E6%95%A3-Fourier-%E7%BA%A7%E6%95%B0/index.html">
 <meta property="og:site_name" content="邱小伙的博客">
-<meta property="og:description" content="如果将微分方程写成抽象的算子形式: \[ L[u] + f &#x3D; 0 \text{ on } \Omega \] 特别的, 当函数 \(f\) 为 Dirac 函数 \(\delta\) 时, 微分方程的解 \(G\) 称为算子 \(L\) 的 Green 函数 (或者称为微分方程 \(L\) 的基本解): \[ L [G] + \delta &#x3D; 0 \]">
+<meta property="og:description" content="连续的Fourier 级数将 \(L_2([0,2 \pi])\) 空间中函数 \(f\) 与 \(l_2\) 空间中的 Fourier 系数 \(c_k\) 关联起来: \[ f(x) &#x3D; \sum_{k \in \mathbb{Z}} c_k e^{i kx}, \quad c_k  &#x3D; \frac{1}{2 \pi} \int_{0}^{2 \pi} f(x) e^{-i kx} \">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-15T01:50:09.000Z">
-<meta property="article:modified_time" content="2024-04-29T07:12:01.144Z">
+<meta property="article:published_time" content="2024-05-15T07:03:06.000Z">
+<meta property="article:modified_time" content="2024-05-15T07:03:06.111Z">
 <meta property="article:author" content="Qiu Xiaohuo">
-<meta property="article:tag" content="弹性力学">
-<meta property="article:tag" content="Green 函数">
-<meta property="article:tag" content="Fourier 变换">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qiuxiaohuo.github.io/mech/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/">
+<link rel="canonical" href="http://qiuxiaohuo.github.io/%E7%A6%BB%E6%95%A3-Fourier-%E7%BA%A7%E6%95%B0/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/mech/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/","path":"mech/弹性力学方程的 Green 函数/","title":"弹性力学方程的 Green 函数"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/%E7%A6%BB%E6%95%A3-Fourier-%E7%BA%A7%E6%95%B0/","path":"离散-Fourier-级数/","title":"离散 Fourier 级数"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>弹性力学方程的 Green 函数 | 邱小伙的博客</title>
+<title>离散 Fourier 级数 | 邱小伙的博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -132,7 +129,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -145,6 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B-%E7%A6%BB%E6%95%A3%E7%9A%84-fourier-%E5%8F%98%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">例: 离散的 Fourier 变换</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -208,7 +206,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/%E7%A6%BB%E6%95%A3-Fourier-%E7%BA%A7%E6%95%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -221,12 +219,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="弹性力学方程的 Green 函数 | 邱小伙的博客">
+      <meta itemprop="name" content="离散 Fourier 级数 | 邱小伙的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          弹性力学方程的 Green 函数
+          离散 Fourier 级数
         </h1>
 
         <div class="post-meta-container">
@@ -237,23 +235,7 @@
       </span>
       <span class="post-meta-item-text">发表于</span>
 
-      <time title="创建时间：2024-04-15 09:50:09" itemprop="dateCreated datePublished" datetime="2024-04-15T09:50:09+08:00">2024-04-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-29 15:12:01" itemprop="dateModified" datetime="2024-04-29T15:12:01+08:00">2024-04-29</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
-        </span>
+      <time title="创建时间：2024-05-15 15:03:06" itemprop="dateCreated datePublished" datetime="2024-05-15T15:03:06+08:00">2024-05-15</time>
     </span>
 
   
@@ -272,193 +254,122 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>如果将微分方程写成抽象的算子形式:</p>
-<p><span class="math display">\[
-L[u] + f = 0 \text{ on } \Omega
-\]</span></p>
-<p>特别的, 当函数 <span class="math inline">\(f\)</span> 为 Dirac 函数
-<span class="math inline">\(\delta\)</span> 时, 微分方程的解 <span
-class="math inline">\(G\)</span> 称为算子 <span
-class="math inline">\(L\)</span> 的 Green 函数 (或者称为微分方程 <span
-class="math inline">\(L\)</span> 的基本解): <span
+    <div class="post-body" itemprop="articleBody"><p>连续的Fourier 级数将 <span class="math inline">\(L_2([0,2
+\pi])\)</span> 空间中函数 <span class="math inline">\(f\)</span> 与
+<span class="math inline">\(l_2\)</span> 空间中的 Fourier 系数 <span
+class="math inline">\(c_k\)</span> 关联起来: <span
 class="math display">\[
-L [G] + \delta = 0
+f(x) = \sum_{k \in \mathbb{Z}} c_k e^{i kx}, \quad
+c_k  = \frac{1}{2 \pi} \int_{0}^{2 \pi} f(x) e^{-i kx} \mathrm{d} x
 \]</span></p>
-<span id="more"></span>
-<p>当微分方程右端项为一般的函数 <span class="math inline">\(f\)</span>
-时, 此时微分方程的解 <span class="math inline">\(u\)</span> 可以表示为
-Green 函数 <span class="math inline">\(G\)</span> 与 <span
-class="math inline">\(f\)</span> 的卷积:</p>
-<p><span class="math display">\[
-u = G*f = \int_{-\infty}^{\infty} G(x-x^{\prime}) f(x^{\prime})
-\mathrm{d} x^{\prime}
-\]</span></p>
-<p>对于含本征应变的控制方程:</p>
-<p><span class="math display">\[
-L_{ijkl}~u_{k,lj} - L_{ijkl}~\mu_{kl,j} = 0
-\]</span></p>
-<p>我们希望能够找到该方程的 Green 函数 <span
-class="math inline">\(G\)</span>, 使得方程的解可以表示为 Green
-函数与本征应变的卷积. 这需要借助于 Fourier 分析方法. 对方程进行 Fourier
-变换, 得到</p>
-<p><span class="math display">\[
-L_{ijkl}\xi_{l}\xi_{j}~\hat{u}_{k} + i \xi_{j}L_{ijkl}~\hat{\mu}_{kl} =
-0
-\]</span></p>
-<p>记 <span class="math inline">\(K_{ik}(\xi) \triangleq
-L_{ijkl}\xi_{l}\xi_{j}\)</span>, <span class="math inline">\(X_i
-\triangleq -i \xi_{j}L_{ijkl}~\hat{\mu}_{kl}\)</span>, 就得到关于 <span
-class="math inline">\(\hat{u}_k\)</span> 的线性方程:</p>
-<p><span class="math display">\[
-K_{ik} \hat{u}_k = X_i
-\]</span></p>
-<p>如果 <span class="math inline">\(L_{ijkl}\)</span> 具有主对称性,
-也就是说, <span class="math inline">\(L_{(ij)[kl]} =
-L_{[kl](ij)}\)</span>, 那么矩阵 <span
-class="math inline">\(K_{ik}(\xi)\)</span> 是对称矩阵. 例如,
-当材料是各项同性时, 矩阵 <span class="math inline">\(K\)</span>
-可以写成</p>
-<p><span class="math display">\[
-K = (\lambda + \mu)\begin{pmatrix}
-\xi_1 \xi_1 &amp; \xi_1 \xi_2 &amp; \xi_1 \xi_3 \\
-\xi_2 \xi_1 &amp; \xi_2 \xi_2 &amp; \xi_2 \xi_3 \\
-\xi_3 \xi_1 &amp; \xi_3 \xi_2 &amp; \xi_3 \xi_3
-\end{pmatrix}
-+
-\mu \xi^2 I, \quad \xi^2 = \xi_1^2 + \xi_2^2 + \xi_3^2
-\]</span></p>
-<p>若定义矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span> 的
-Adjugate 矩阵为 <span class="math inline">\(N_{ik}(\xi)\)</span>: <span
+<p>对于离散情景, 如果已知函数 <span class="math inline">\(f\)</span> 在
+<span class="math inline">\([0, 2\pi]\)</span> 上 <span
+class="math inline">\(n\)</span> 个点处的取值 <span
+class="math inline">\(f_0, f_1, \dots,f_{n-1}\)</span>, 那么,
+是否存在一个映射关系 <span class="math inline">\(F: \mathbb{R}^n \mapsto
+\mathbb{R}^n\)</span>, 得到对应的 Fourier 级数系数 <span
+class="math inline">\(c_0, c_1, \dots,c_{n-1}\)</span> 呢? 这就是离散的
+Fourier 变换.</p>
+<div class="note primary no-icon"><h5 id="例-离散的-fourier-变换">例: 离散的 Fourier 变换</h5>
+<p>已知函数 <span class="math inline">\(f\)</span> 在点 <span
+class="math inline">\(0, \pi/2, \pi, 3\pi/2\)</span> 上取值分别为 <span
+class="math inline">\(1,2,3,4\)</span>, 如果使用 Fourier 级数的前 4
+项和近似函数 <span class="math inline">\(f\)</span>: <span
 class="math display">\[
-N_{ik}(\xi) \triangleq \mathrm{adj}(K_{ik}(\xi))
-\]</span> 那么, 矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span>
-的逆可以表示为 <span class="math display">\[
-K_{ik}^{-1}(\xi) = D^{-1}(\xi)N_{ik}(\xi)
-\]</span></p>
-<p>式中, <span class="math inline">\(D(\xi) \triangleq
-\det(K_{ik}(\xi))\)</span>. 再应用 Fourier 逆变换, 就可以得到解 <span
-class="math inline">\(u(x)\)</span>:</p>
-<p><span class="math display">\[
-\begin{align}
-u_{i}(x) &amp;= \mathscr{F}^{-1} [\hat{u}_{i}(\xi)]
-= \mathscr{F}^{-1}[D^{-1}(\xi)N_{ik}(\xi) X_k] \\
-&amp;=  -i
-\mathscr{F}^{-1}[L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)\xi_{j}~\hat{\mu}_{mn}]
-\end{align}
-\]</span></p>
-<p>将 Fourier 变换的公式代入得到</p>
-<p><span class="math display">\[
-\begin{align}
-u_{i}(x) &amp;= -i \int L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)\xi_{j} e^{i\xi
-\cdot x} \mathrm{d} \xi
-\int \mu_{mn}(x^{\prime}) e^{-i\xi \cdot x^{\prime}} \mathrm{d}
-x^{\prime}\\
-&amp;= - \frac{\partial}{\partial x_j}\int
-L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot x} \mathrm{d} \xi
-\int \mu_{mn}(x^{\prime}) e^{-i\xi \cdot x^{\prime}} \mathrm{d}
-x^{\prime}\\
-&amp;= - \int L_{kjmn} \left(\frac{\partial}{\partial x_j}\int
-D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
-\right)  \mu_{mn}(x^{\prime}) \mathrm{d} x^{\prime}
-\end{align}
-\]</span></p>
-<p>定义 Green 函数为</p>
-<p><span class="math display">\[
-G_{ik}(x) \triangleq \int D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot x}
-\mathrm{d} \xi
-\]</span></p>
-<p>则 <span class="math inline">\(u_i\)</span> 可以记作</p>
-<p><span class="math display">\[
-u_{i}(x) = -\int L_{jkmn} G_{ik,j}(x-x^{\prime}) \mu_{mn}(x^{\prime})
-\mathrm{d} x^{\prime}
-\]</span></p>
-<p>式中, Green 函数下标 <span
-class="math inline">\(\square_{,j}\)</span> 表示对变量 <span
-class="math inline">\(x_j\)</span> 求偏导 (注意区别变量 <span
-class="math inline">\(x\)</span> 与 <span
-class="math inline">\(x^{\prime}\)</span>). 或者将上式记为卷积的形式:
+\tilde f(x) \triangleq c_0 + c_1 e^{ix} + c_2 e^{i2x} + c_3 e^{i3x}
+\]</span> 并令近似函数 <span class="math inline">\(\tilde f\)</span>
+在对应点处与函数 <span class="math inline">\(f\)</span> 取值相同,
+那么就得到关于系数 <span class="math inline">\(c_k, k=1,2,3,4\)</span>
+的四个方程: <span class="math display">\[
+\begin{aligned}
+c_0+c_1+c_2+c_3=2 \\
+c_0+i c_1-c_2-i c_3=4 \\
+c_0-c_1+c_2-c_3=6 \\
+c_0-i c_1-c_2+i c_3=8
+\end{aligned}
+\]</span> 求解上述方程, 得到 <span class="math display">\[
+c_0 = 5, \quad
+c_1 = -1+i, \quad
+c_2 = -1, \quad
+c_3 = -1-i
+\]</span> 注意到 <span class="math inline">\(c_0 = \mathrm{avg}~ f_i =
+\left( \sum_{i=0}^{3} f_i \right) / 4\)</span>, 这恰好与连续 Fourier
+级数计算常数项系数的公式 <span class="math display">\[
+c_0 = \frac{1}{L} \int_{0}^{L} f(x) ~\mathrm{d}x
+\]</span> 相仿!</p>
+</div>
+<p>因为 Fourier 变换是<strong>线性</strong>的, 对于 <span
+class="math inline">\(\mathbb{R}^n \mapsto \mathbb{R}^n\)</span>
+上的线性映射, 总可以找到一个 <span class="math inline">\(n \times
+n\)</span> 的矩阵来表示. 我们约定在区间 <span
+class="math inline">\([0,2\pi]\)</span> 上均匀分布的点集 <span
+class="math inline">\(x_k = 2\pi k/n\)</span> 处采集函数 <span
+class="math inline">\(f\)</span> 的数值 <span class="math inline">\(f_0,
+f_1, \dots, f_{n-1}\)</span>. 为方便表示之后得到的矩阵 <span
+class="math inline">\(F\)</span>, 定义如下复数 <span
+class="math inline">\(w\)</span>: <span class="math display">\[
+w \triangleq e^{i 2 \pi/n}
+\]</span> 注意到 <span class="math inline">\(w^n = 1\)</span>, 是 <span
+class="math inline">\(1\)</span> 的一个 <span
+class="math inline">\(n\)</span> 次根. 近似函数取为 Fourier 级数的前
+<span class="math inline">\(n\)</span> 项和 <span
+class="math display">\[
+\tilde f(x) = \sum_{k=0}^{n-1} c_k e^{i k x},
+\]</span> 令 <span class="math inline">\(\tilde f(x_k) = f_k,~
+k=0,1,\dots,n-1\)</span>, 就得到关于系数 <span
+class="math inline">\(c_k\)</span> 的 <span
+class="math inline">\(n\)</span> 个方程: <span class="math display">\[
+\begin{aligned}
+  c_0 + c_1 + \cdots + c_k + \cdots + c_{n-1} = f_0, \\
+  c_0 + c_1 w + \cdots + c_k w^k + \cdots + c_{n-1} w^{n-1} = f_0, \\
+  c_0 + c_1 w^2 + \cdots + c_k w^{2k} + \cdots + c_{n-1} w^{2(n-1)} =
+f_0, \\
+  \cdots
+\end{aligned}
+\]</span> 定义离散 Fourier 变换矩阵 <span
+class="math inline">\(F\)</span> <span class="math display">\[
+F_{jk} \triangleq w^{jk},\quad j,k=0,1,2,\ldots,n-1
+\]</span> (注意矩阵的下标是<strong>从 0 开始索引</strong>的),
+这样就可以得到方程 <span class="math display">\[
+F_{jk} c_k = f_j,\quad j=0,1,2,\ldots,n-1
+\]</span> <div class="note success no-icon"><p>Fourier 变换矩阵最重要的性质是, 如果我们记 <span
+class="math inline">\(\overline{w} \triangleq e^{-i 2\pi/n}\)</span>,
+以及 <span class="math inline">\(\overline F_{jk} \triangleq \overline
+w^{jk}\)</span>, 那么矩阵 <span class="math inline">\(F\)</span>
+的逆可以通过矩阵 <span class="math inline">\(\overline F\)</span> 表示为
 <span class="math display">\[
-u_i = G_{ik} * \left( -L_{jkmn} \mu_{mn} \right)
-\]</span> 对 Green 函数求二阶导数, 得到 <span class="math display">\[
-G_{ij,kl}(x-x^{\prime}) = -\int D^{-1}(\xi)N_{ij}(\xi) \xi_k \xi_l
-e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
-\]</span></p>
-<p>方程两端乘 <span class="math inline">\(L_{jknl}\)</span>,
-等式依旧成立, 得到</p>
-<p><span class="math display">\[
-\begin{align}
-L_{jknl}G_{ij,kl}(x-x^{\prime}) &amp;= -\int D^{-1}(\xi)N_{ij}(\xi)
-L_{jknl} \xi_k \xi_l e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
-\end{align}
-\]</span></p>
-<p>这样就凑出了之前的定义式 <span class="math inline">\(K_{ik}(\xi) :=
-L_{ijkl}\xi_{l}\xi_{j}\)</span>, 所以有 <span class="math display">\[
-\begin{align}
-L_{jknl}G_{ij,kl}(x-x^{\prime})
-&amp;= -\int D^{-1}(\xi)K_{jn}(\xi)N_{ij}(\xi)  e^{i\xi \cdot
-(x-x^{\prime})} \mathrm{d} \xi = -\delta_{in}\int e^{i\xi \cdot
-(x-x^{\prime})} \mathrm{d} \xi \\
-&amp;= -\delta_{in} \delta(x-x^{\prime})
-\end{align}
-\]</span> 整理一下指标, 得到 <span class="math display">\[
-L_{ijkl}G_{nk,lj}(x-x^{\prime}) + \delta_{in} \delta(x-x^{\prime}) = 0
+(F)^{-1} = \frac{1}{n} \overline F, \quad \text{或者} \quad
+F \overline F = \overline F F = nI
 \tag{1}
-\]</span></p>
-<p>在阐述 Green 函数的物理意义之前,
-我们可以先观察一下上述方程自由指标的个数. 上述方程一共有两个自由指标
-<span class="math inline">\(i\)</span>, <span
-class="math inline">\(n\)</span>,
-同时该方程的形式与以位移为变量的控制方程非常相似: <span
-class="math display">\[
-L_{ijkl}u_{k,lj} + f_i = 0
-\]</span> 只是控制方程自由指标只有一个, <span
-class="math inline">\(i\)</span>, 我们将控制方程的自由指标展开: <span
-class="math display">\[
-\left\{
+\]</span> 证明过程也很整洁, 矩阵的乘法通过分量可以表示为等比数列之和:
+<span class="math display">\[
 \begin{aligned}
-L_{1jkl}u_{k,lj} + f_1 = 0\\
-L_{2jkl}u_{k,lj} + f_2 = 0\\
-L_{3jkl}u_{k,lj} + f_3 = 0
+  (F \overline F)_{jl} &amp;= F_{jk} \overline F_{kl} = e^{i 2\pi jk/n}
+e^{-i 2\pi kl/n}
+  = \sum_{k=0}^{n-1} \left( e^{i 2\pi (j-l)/n} \right)^k \\
+  &amp;= \begin{cases}
+    \dfrac{1 - r^n}{1 - r},\quad j \neq l \\
+    n,\quad j=l
+  \end{cases}
 \end{aligned}
-\right.
-\]</span> 如果固定指标 <span class="math inline">\(n=1\)</span>,
-那么控制方程 (1) 为 <span class="math display">\[
-\left\{
-\begin{aligned}
-L_{1jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{11} \delta(x-x^{\prime}) = 0\\
-L_{2jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{21} \delta(x-x^{\prime}) = 0\\
-L_{3jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{31} \delta(x-x^{\prime}) = 0
-\end{aligned}
-\right.
-\]</span> 因此该组控制方程的外力项为 <span class="math display">\[
-{f} = \begin{pmatrix}
-\delta(x-x^{\prime}) \\
-0 \\
-0
-\end{pmatrix}
+\]</span> 式中, <span class="math inline">\(r \triangleq e^{i 2\pi
+(j-l)/n}\)</span>, 而当 <span class="math inline">\(j \neq l\)</span>
+时, <span class="math inline">\(r^n\)</span> 恒等于 0: <span
+class="math display">\[
+r^n = e^{i 2\pi (j-l)} \equiv 1,\quad j \neq l
+\]</span> 由此得到式 (1) 中的结论.</p>
+</div></p>
+<p>根据式 (1) 中的结论, 物理空间中的数据点 <span
+class="math inline">\(\{f_k\}\)</span> 与相空间中的数据点 <span
+class="math inline">\(\{c_k\}\)</span> 之间的关联为 <span
+class="math display">\[
+F_{jk} c_k = f_j, \quad
+\frac{1}{n} \overline F_{jk} f_k = c_j
 \]</span></p>
-<p>所以, 函数 <span class="math inline">\(f\)</span> 表示作用在点 <span
-class="math inline">\(x^{\prime}\)</span>, 方向为 <span
-class="math inline">\((1,0,0)\)</span> 的单位集中力. 函数 <span
-class="math inline">\(G_{1k}(x-x^\prime)\)</span> 表示在上述外力 <span
-class="math inline">\(f\)</span> 作用下系统的位移响应.</p>
-<p>综上, 可以得到 Green 函数 <span
-class="math inline">\(G_{nk}(x-x^{\prime})\)</span> 的物理意义是:
-作用在点 <span class="math inline">\(x^{\prime}\)</span> 上, <span
-class="math inline">\(n\)</span> 方向的单位集中力所造成的点 <span
-class="math inline">\(x\)</span> 在 <span
-class="math inline">\(k\)</span> 方向上的位移分量. 如果 <span
-class="math inline">\(L_{ijkl}\)</span> 具有主对称性, 那么矩阵 <span
-class="math inline">\(K\)</span> <span class="math inline">\(N\)</span>
-是对称矩阵, 所以 <span class="math display">\[
-G_{nk} = G_{kn}
-\]</span> 所以, <span
-class="math inline">\(G_{nk}(x-x^{\prime})\)</span> 同样也可以解释为:
-作用在点 <span class="math inline">\(x^{\prime}\)</span> 上, <span
-class="math inline">\(k\)</span> 方向的单位集中力所造成的点 <span
-class="math inline">\(x\)</span> 在 <span
-class="math inline">\(n\)</span> 方向上的位移分量.
-这恰好与互易原理的结论相同.</p>
+<p>或者写成 <span class="math display">\[
+f_j = c_k w^{jk}, \quad
+c_j = \frac{1}{n}  f_k w^{-jk}
+\]</span></p>
 
     </div>
 
@@ -467,24 +378,16 @@ class="math inline">\(n\)</span> 方向上的位移分量.
     
 
     <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6/" rel="tag"># 弹性力学</a>
-              <a href="/tags/Green-%E5%87%BD%E6%95%B0/" rel="tag"># Green 函数</a>
-              <a href="/tags/Fourier-%E5%8F%98%E6%8D%A2/" rel="tag"># Fourier 变换</a>
-          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/mech/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95/" rel="prev" title="等效夹杂方法">
-                  <i class="fa fa-angle-left"></i> 等效夹杂方法
+                <a href="/%E7%A6%BB%E6%95%A3%E5%8D%B7%E7%A7%AF%E5%AE%9A%E7%90%86/" rel="prev" title="离散卷积定理">
+                  <i class="fa fa-angle-left"></i> 离散卷积定理
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/mech/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/" rel="next" title="多尺度 Reduced Order 推导">
-                  多尺度 Reduced Order 推导 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
