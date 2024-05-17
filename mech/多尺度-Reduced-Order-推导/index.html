@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="Reduced Order 中函数 \(h_{i}^{kl}\) 与细观力学 Green 函数的关联 在多尺度的单胞问题中, 如果使用本征应变 \(\mu^{\xi}(x)\) 表征材料非弹性的影响, 那么本构方程为: \[ \sigma^{\xi}(x) &#x3D; L^{\xi}(x):\left(\varepsilon^{\xi}(x) - \mu^{\xi}(x)\right) \">
+    <meta name="description" content="1. Reduced Order 中函数 \(h_{i}^{kl}\) 与细观力学 Green 函数的关联 在多尺度的单胞问题中, 如果使用本征应变 \(\mu^{\xi}(x)\) 表征材料非弹性的影响, 那么本构方程为: \[ \sigma^{\xi}(x) &#x3D; L^{\xi}(x):\left(\varepsilon^{\xi}(x) - \mu^{\xi}(x)\right)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="多尺度 Reduced Order 推导">
 <meta property="og:url" content="http://qiuxiaohuo.github.io/mech/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/index.html">
 <meta property="og:site_name" content="邱小伙的博客">
-<meta property="og:description" content="Reduced Order 中函数 \(h_{i}^{kl}\) 与细观力学 Green 函数的关联 在多尺度的单胞问题中, 如果使用本征应变 \(\mu^{\xi}(x)\) 表征材料非弹性的影响, 那么本构方程为: \[ \sigma^{\xi}(x) &#x3D; L^{\xi}(x):\left(\varepsilon^{\xi}(x) - \mu^{\xi}(x)\right) \">
+<meta property="og:description" content="1. Reduced Order 中函数 \(h_{i}^{kl}\) 与细观力学 Green 函数的关联 在多尺度的单胞问题中, 如果使用本征应变 \(\mu^{\xi}(x)\) 表征材料非弹性的影响, 那么本构方程为: \[ \sigma^{\xi}(x) &#x3D; L^{\xi}(x):\left(\varepsilon^{\xi}(x) - \mu^{\xi}(x)\right)">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-04-15T01:59:09.000Z">
-<meta property="article:modified_time" content="2024-04-22T02:54:12.149Z">
+<meta property="article:modified_time" content="2024-05-17T12:51:44.640Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta property="article:tag" content="多尺度">
 <meta property="article:tag" content="Green 函数">
@@ -145,10 +145,11 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#reduced-order-%E4%B8%AD%E5%87%BD%E6%95%B0-h_ikl-%E4%B8%8E%E7%BB%86%E8%A7%82%E5%8A%9B%E5%AD%A6-green-%E5%87%BD%E6%95%B0%E7%9A%84%E5%85%B3%E8%81%94"><span class="nav-number">1.</span> <span class="nav-text">Reduced
-Order 中函数 \(h_{i}^{kl}\) 与细观力学
-Green 函数的关联</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#reduced-order-green-%E5%87%BD%E6%95%B0%E5%9C%A8-partition-%E4%B8%8A%E7%9A%84%E7%A7%AF%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">Reduced Order:
-Green 函数在 Partition 上的积分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%B0%BA%E5%BA%A6%E5%BE%97%E5%88%B0%E7%9A%84%E5%8D%95%E8%83%9E%E5%BA%94%E5%8F%98%E5%9C%BA%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-number">3.</span> <span class="nav-text">多尺度得到的单胞应变场与本征应变的关系</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#reduced-order-%E4%B8%AD%E5%87%BD%E6%95%B0-h_ikl-%E4%B8%8E%E7%BB%86%E8%A7%82%E5%8A%9B%E5%AD%A6-green-%E5%87%BD%E6%95%B0%E7%9A%84%E5%85%B3%E8%81%94"><span class="nav-number">1.</span> <span class="nav-text">1.
+Reduced Order 中函数 \(h_{i}^{kl}\)
+与细观力学 Green 函数的关联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reduced-order-green-%E5%87%BD%E6%95%B0%E5%9C%A8-partition-%E4%B8%8A%E7%9A%84%E7%A7%AF%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">2. Reduced Order:
+Green 函数在 Partition 上的积分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%99%8D%E9%98%B6%E5%A4%9A%E5%B0%BA%E5%BA%A6%E7%9A%84%E5%88%86%E6%AE%B5%E5%B8%B8%E5%80%BC%E5%81%87%E8%AE%BE"><span class="nav-number">2.0.1.</span> <span class="nav-text">降阶多尺度的分段常值假设:</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%B0%BA%E5%BA%A6%E5%BE%97%E5%88%B0%E7%9A%84%E5%8D%95%E8%83%9E%E5%88%86%E5%9D%97%E5%BA%94%E5%8F%98%E6%96%B9%E7%A8%8B"><span class="nav-number">3.</span> <span class="nav-text">3.
+多尺度得到的单胞分块应变方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E5%B0%BA%E5%BA%A6%E5%BE%97%E5%88%B0%E7%9A%84%E5%AE%8F%E8%A7%82%E7%89%A9%E7%90%86%E9%87%8F"><span class="nav-number">4.</span> <span class="nav-text">4. 多尺度得到的宏观物理量</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -163,7 +164,7 @@ Green 函数在 Partition 上的积分</span></a></li><li class="nav-item nav-le
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-count">40</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -174,7 +175,7 @@ Green 函数在 Partition 上的积分</span></a></li><li class="nav-item nav-le
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-count">40</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -248,7 +249,7 @@ Green 函数在 Partition 上的积分</span></a></li><li class="nav-item nav-le
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-22 10:54:12" itemprop="dateModified" datetime="2024-04-22T10:54:12+08:00">2024-04-22</time>
+      <time title="修改时间：2024-05-17 20:51:44" itemprop="dateModified" datetime="2024-05-17T20:51:44+08:00">2024-05-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -276,9 +277,9 @@ Green 函数在 Partition 上的积分</span></a></li><li class="nav-item nav-le
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="reduced-order-中函数-h_ikl-与细观力学-green-函数的关联">Reduced
-Order 中函数 <span class="math inline">\(h_{i}^{kl}\)</span> 与细观力学
-Green 函数的关联</h2>
+    <div class="post-body" itemprop="articleBody"><h3 id="reduced-order-中函数-h_ikl-与细观力学-green-函数的关联">1.
+Reduced Order 中函数 <span class="math inline">\(h_{i}^{kl}\)</span>
+与细观力学 Green 函数的关联</h3>
 <p>在多尺度的单胞问题中, 如果使用本征应变 <span
 class="math inline">\(\mu^{\xi}(x)\)</span> 表征材料非弹性的影响,
 那么本构方程为:</p>
@@ -286,28 +287,32 @@ class="math inline">\(\mu^{\xi}(x)\)</span> 表征材料非弹性的影响,
 \sigma^{\xi}(x) = L^{\xi}(x):\left(\varepsilon^{\xi}(x) -
 \mu^{\xi}(x)\right)
 \]</span></p>
-<p>对位移变量进行渐近展开, 得到</p>
+<p>对位移变量进行双尺度渐近展开, 得到</p>
 <p><span class="math display">\[
-\text{ANSATZ}:u^{\xi}(x) = u^{c}(x) + \xi u^{(1)}(x,y) + O(\xi^2)
+\text{ANSATZ}:u^{\xi}(x) \sim u^{c}(x) + \xi u^{(1)}(x,y) + O(\xi^2)
 \]</span></p>
 <span id="more"></span>
 <p>依照上述 ANSATZ, 同样也可以得到应变,应力,本征应变的渐进展开式: <span
 class="math display">\[
 \begin{aligned}
-\varepsilon^{\xi}(x) &amp;= \varepsilon^f(x,y) + \xi
+\varepsilon^{\xi}(x) &amp;\sim \varepsilon^f(x,y) + \xi
 \varepsilon^{(1)}(x,y) + O(\xi^2)\\
-\sigma^{\xi}(x) &amp;= \sigma^{f}(x,y) + \xi \sigma^{(1)}(x,y) +
+\sigma^{\xi}(x) &amp;\sim \sigma^{f}(x,y) + \xi \sigma^{(1)}(x,y) +
 O(\xi^2)\\
-\mu^{\xi}(x) &amp;= \mu^f(x,y) + \xi \mu^{(1)}(x,y) + O(\xi^2)
+\mu^{\xi}(x) &amp;\sim \mu^f(x,y) + \xi \mu^{(1)}(x,y) + O(\xi^2)
 \end{aligned}
 \]</span></p>
 <p>通过应力平衡方程, 以及解的存在唯一条件,
 可以得到渐进展开式中不同阶次项之间的关系. 其中, fine scale
 上的变量之间的关系式为:</p>
 <p><span class="math display">\[
-\varepsilon^f = \underbrace{\nabla_x u^c}_{\equiv \varepsilon^c} +
-\nabla_y u^{(1)}\\
-\sigma^f = \mathbb{L}(y) : \left( \varepsilon^f - \mu^f \right)
+\begin{aligned}
+\varepsilon^f(x,y) &amp;\triangleq \underbrace{\nabla_x
+u^c(x)}_{\triangleq \varepsilon^c} + \nabla_y u^{(1)}(x,y)\\
+\sigma^f(x,y) &amp;\triangleq \mathbb{L}(y) : \left( \varepsilon^f(x,y)
+- \mu^f(x,y) \right)
+\end{aligned}
+\tag{1.1}
 \]</span></p>
 <p>在多尺度中, 单胞内精细的位移场 <span
 class="math inline">\(u^{(1)}\)</span> 是通过如下方式进行构造的:</p>
@@ -315,32 +320,33 @@ class="math inline">\(u^{(1)}\)</span> 是通过如下方式进行构造的:</p>
 u_i^{(1)}(x,y) = \underbrace{\varepsilon_{kl}^c(x) H_i^{kl}(y) }_{(1)}
 + \underbrace{\int_{Y} \mu_{kl}^f(x,y^{\prime}) h_{i}^{kl}(y,y^{\prime})
 \mathrm{d} y^{\prime}}_{(2)}
+\tag{1.2}
 \]</span></p>
 <p>式中, 第 (1) 项只考虑线弹性材料非均质在单胞内部产生的位移场
-fluctuation; 第 (2) 项考虑单胞内非弹性的本征应变造成的位移场的扰动.</p>
-<p>式 (2) 的构造来源于细观力学 (Mura1987),
-由本征应变产生的位移可以写作本征应变与 Green 函数的卷积形式 <span
-class="math display">\[
+fluctuation; 第 (2) 项考虑单胞内非弹性的本征应变造成的位移场的扰动. (2)
+的构造来源于细观力学 (Mura1987), 由本征应变产生的位移可以写作本征应变与
+Green 函数的卷积形式</p>
+<p><span class="math display">\[
 u_{i}(x) = -\int L_{mnkl} G_{in,m}(x-x^{\prime}) \mu_{kl}(x^{\prime})
 \mathrm{d} x^{\prime}
-\tag{3}
+\tag{1.3}
 \]</span></p>
-<p>观察式 (2) 与式 (3) 相同的部分, 可以得到</p>
+<p>观察 (2) 与式 (1.3) 相同的部分, 可以得到</p>
 <p><span class="math display">\[
 h_{i}^{kl}(y,y^{\prime}) = -L_{mnkl} G_{in,m}(y-y^{\prime})
-\tag{4}
+\tag{1.4}
 \]</span></p>
 <div class="note info"><p>在细观力学推导 Green 函数过程中, 弹性模量 <span
 class="math inline">\(L_{mnkl}\)</span> 看作是常数, 并没有出现作为
 Fourier 变换后的函数 <span
 class="math inline">\(\hat{L}_{mnkl}\)</span>, 但是单胞问题中, <span
-class="math inline">\(L_{mnkl}\)</span> 是分段常数. 我不确定式 (4) 中
+class="math inline">\(L_{mnkl}\)</span> 是分段常数. 我不确定式 (1.4) 中
 <span class="math inline">\(L_{mnkl}\)</span> 是不是关于坐标 <span
 class="math inline">\(y\)</span> 或 <span
-class="math inline">\(y^{\prime}\)</span>​ 的函数.</p>
+class="math inline">\(y^{\prime}\)</span> 的函数.</p>
 </div>
-<h2 id="reduced-order-green-函数在-partition-上的积分">Reduced Order:
-Green 函数在 Partition 上的积分</h2>
+<h3 id="reduced-order-green-函数在-partition-上的积分">2. Reduced Order:
+Green 函数在 Partition 上的积分</h3>
 <p>在对非均质线弹性单胞问题渐进展开的推导中, 我们得到表征单胞上应变
 fluctuation 的张量场 <span class="math inline">\(E_{ij}^{kl}: Y \mapsto
 \mathcal{S}\)</span>, 现在我们将要推导表征分块 Partition
@@ -361,28 +367,32 @@ class="math inline">\(u_{i}^{(1)}\)</span> 的表达式 (1), (2)
 <p>线弹性部分的单胞方程为:</p>
 <p><span class="math display">\[
 \left\{ L_{ijkl}(y) E_{kl}^{mn}(y) \right\}_{,y_j} = 0
+\tag{2.1}
 \]</span></p>
 <p>本征应变的单胞方程为</p>
 <p><span class="math display">\[
 \left\{ L_{ijkl}(y) \left[ \int_{Y} \mu_{mn}^f(x,y^{\prime})
 h_{(k,y_l)}^{mn}(y,y^{\prime}) \mathrm{d} y^{\prime} - \mu_{kl}^f(x,y)
 \right] \right\}_{,y_j} = 0
-\tag{5}
+\tag{2.2}
 \]</span></p>
+<div class="note success no-icon"><h5 id="降阶多尺度的分段常值假设">降阶多尺度的分段常值假设:</h5>
 <p>将单胞分成若干个 partition: <span class="math inline">\(Y^{(1)},
-Y^{(2)}, \ldots, Y^{(N)}\)</span>,并假设每一个 partition
-上的本征应变是相同的, 每个 partition 上的本征应变为 <span
+Y^{(2)}, \ldots, Y^{(N)}\)</span>,并假设每一个 partition 上的本征应变
+(以及其它的物理量) 是相同的, 每个 partition 上的本征应变为 <span
 class="math inline">\(\mu_{mn}^{(1)}(x), \mu_{mn}^{(1)}(x), \ldots,
-\mu_{mn}^{(N)}(x)\)</span>, 这样得到本征应变在单胞上的分段常值分布:</p>
-<p><span class="math display">\[
-\mu_{mn}^{f}(x,y) = \mu_{mn}^{(\alpha)}(x) \chi^{(\alpha)}(y) \quad
-\text{(使用求和约定)}
+\mu_{mn}^{(N)}(x)\)</span>, 由此得到本征应变场是在单胞上的分段常值分布:
+<span class="math display">\[
+\mu_{mn}^{f}(x,y) := \sum_{\alpha=1}^{N} \mu_{mn}^{(\alpha)}(x)
+\chi^{(\alpha)}(y)
 \]</span></p>
-<p>代入到本征应变单胞方程 (5) 中, 得到</p>
-<p><span class="math display">\[
-\mu_{mn}^{(\alpha)}(x)\left\{ L_{ijkl}(y) \left[ \int_{Y}
-h_{(k,y_l)}^{mn}(y,y^{\prime}) \chi^{(\alpha)}(y^{\prime}) \mathrm{d}
-y^{\prime} - I_{kl}^{mn}\chi^{(\alpha)}(y) \right] \right\}_{,y_j} = 0
+</div>
+<p>将分段常值的本征应变场代入到单胞方程 (2.2) 中, 得到 <span
+class="math display">\[
+\sum_{\alpha=1}^{N} \mu_{mn}^{(\alpha)}(x)\left\{ L_{ijkl}(y) \left[
+\int_{Y} h_{(k,y_l)}^{mn}(y,y^{\prime}) \chi^{(\alpha)}(y^{\prime})
+\mathrm{d} y^{\prime} - I_{kl}^{mn}\chi^{(\alpha)}(y) \right]
+\right\}_{,y_j} = 0
 \]</span></p>
 <p>上式是关于 <span
 class="math inline">\(\mu_{mn}^{(\alpha)}(x)\)</span> 的方程组,
@@ -398,8 +408,9 @@ I_{kl}^{mn}\chi^{(\alpha)}(y) \right] \right\}_{,y_j} = 0, \quad  \alpha
 \]</span></p>
 <p>将 Green 函数在 partition 上的积分定义为</p>
 <p><span class="math display">\[
-P_{kl}^{mn(\alpha)}(y) = \int_{Y} h_{(k,y_l)}^{mn}(y,y^{\prime})
-\chi^{(\alpha)}(y^{\prime}) \mathrm{d} y^{\prime}
+P_{kl}^{mn(\alpha)}(y) \triangleq \int_{Y}
+h_{(k,y_l)}^{mn}(y,y^{\prime}) \chi^{(\alpha)}(y^{\prime}) \mathrm{d}
+y^{\prime}
 \]</span></p>
 <p>这样就得到关于张量 <span
 class="math inline">\(P_{kl}^{mn(\alpha)}\)</span> 的 <span
@@ -409,24 +420,87 @@ class="math inline">\(N\)</span> 个方程:</p>
 I_{kl}^{mn}\chi^{(\alpha)}(y) \right] \right\}_{,y_j} = 0, \text{in}~ Y
 \quad \alpha=1,2, \ldots,N
 \]</span></p>
-<h2
-id="多尺度得到的单胞应变场与本征应变的关系">多尺度得到的单胞应变场与本征应变的关系</h2>
-<p>只考虑本征应变对 fine-scale 应变的影响, 我们有如下关系式:</p>
+<h3 id="多尺度得到的单胞分块应变方程">3.
+多尺度得到的单胞分块应变方程</h3>
 <p><span class="math display">\[
-\varepsilon_{ij}^{f}(x,y) = \int_{Y} h_{(i,y_j)}^{kl}(y,y^{\prime})
+u_i^{(1)}(x,y) = \underbrace{\varepsilon_{kl}^c(x) H_i^{kl}(y) }_{(1)}
++ \underbrace{\int_{Y} \mu_{kl}^f(x,y^{\prime}) h_{i}^{kl}(y,y^{\prime})
+\mathrm{d} y^{\prime}}_{(2)}
+\]</span></p>
+<p>只考虑上式中第 (2) 部分, 也即本征应变对 fine-scale 应变的影响,
+那么单胞上的微尺度应变为</p>
+<p><span class="math display">\[
+\varepsilon_{ij}^{(2)}(x,y) = \int_{Y} h_{(i,y_j)}^{kl}(y,y^{\prime})
 \mu_{kl}^{f}(x,y^{\prime}) \mathrm{d} y^{\prime}
 \]</span></p>
 <p>将 reduced order 分块均匀假设代入上式, 就得到</p>
 <p><span class="math display">\[
-\varepsilon_{ij}^{f}(x,y) = P_{ij}^{kl(\alpha)}(y)
+\varepsilon_{ij}^{(2)}(x,y) = \sum_{\alpha=1}^{N} P_{ij}^{kl(\alpha)}(y)
 \mu_{kl}^{(\alpha)}(x)
 \]</span></p>
 <p>在每一个分块 <span class="math inline">\(Y^{(\alpha)}\)</span> 上对
 <span class="math inline">\(\varepsilon^f\)</span> 进行积分平均, 得到
 <span class="math display">\[
-\varepsilon_{ij}^{(\beta)}(x) = \langle P_{ij}^{kl(\alpha)}(y)
-\rangle_{Y^{(\beta)}} \mu_{kl}^{(\alpha)}(x)
-= P_{ij}^{kl(\beta \alpha)} \mu_{kl}^{(\alpha)}(x)
+\varepsilon_{ij}^{(\beta)}(x) = \sum_{\alpha=1}^{N} \langle
+P_{ij}^{kl(\alpha)}(y) \rangle_{Y^{(\beta)}} \mu_{kl}^{(\alpha)}(x)
+= \sum_{\alpha=1}^{N} P_{ij}^{kl(\beta \alpha)} \mu_{kl}^{(\alpha)}(x)
+\tag{3.1}
+\]</span> 式中, <span class="math inline">\(P_{ij}^{kl(\beta \alpha)}
+\triangleq \langle P_{ij}^{kl(\alpha)}(y)
+\rangle_{Y^{(\beta)}}\)</span>.
+如果再考虑线弹性材料的非均质性对应变场造成的扰动,
+那么该项造成的单胞上的微尺度应变为</p>
+<p><span class="math display">\[
+\varepsilon_{ij}^{(1)}(x,y) = \varepsilon_{kl}^c(x) H_{(i,y_j)}^{kl}(y)
+\]</span> 对上式在分块上进行体平均, 就得到 <span class="math display">\[
+\varepsilon_{ij}^{(\beta)}(x) = \varepsilon_{kl}^c(x) \left(
+E_{ij}^{kl(\beta)} - I_{ij}^{kl(\beta)} \right)
+\tag{3.2}
+\]</span> 因此, 分块上的应变, 就等于 ①.宏观尺度的应变 ②.式 (3.1)
+本征应变造成的应变扰动场平均 ③.式 (3.2)
+线弹性材料不均匀性造成的应变扰动场平均, 所以 <span
+class="math display">\[
+\begin{aligned}
+\varepsilon_{ij}^{(\beta)}(x)
+&amp;= \varepsilon_{ij}^{c}(x)
++ \sum_{\alpha=1}^{N} P_{ij}^{kl(\beta \alpha)} \mu_{kl}^{(\alpha)}(x)
++ \varepsilon_{kl}^c(x) \left( E_{ij}^{kl(\beta)} - I_{ij}^{kl(\beta)}
+\right) \\
+&amp;=  \sum_{\alpha=1}^{N} P_{ij}^{kl(\beta \alpha)}
+\mu_{kl}^{(\alpha)}(x)
++ E_{ij}^{kl(\beta)}\varepsilon_{kl}^c(x)
+\end{aligned}
+\]</span></p>
+<h3 id="多尺度得到的宏观物理量">4. 多尺度得到的宏观物理量</h3>
+<p>将多尺度得到的结果代入到式 (1.1) 当中 <span class="math display">\[
+\sigma^{f}(x,y) = L(y):\left( E(y):\varepsilon^{c}(x)
++ \sum_{\alpha=1}^{N} P^{(\alpha)}(y):\mu^{(\alpha)}(x)
+- \sum_{\alpha=1}^{N} I^{(\alpha)}(y):\mu^{(\alpha)}(x)
+\right)
+\]</span> 式中, <span class="math inline">\(I^{(\alpha)}(y) \triangleq
+\chi^{(\alpha)}(y) \mathbb{I}\)</span>. 对上式在单胞上作体积平均, 得到
+<span class="math display">\[
+\sigma^{c} \triangleq \langle \sigma(x,y) \rangle
+= \left\langle L(y):E(y) \right\rangle :\varepsilon^{c}(x)  
++ \sum_{\alpha=1}^{N} \left\langle L(y):
+\left(P^{(\alpha)}(y)-I^{(\alpha)}(y)\right) \right\rangle :
+\mu^{(\alpha)}(x)
+\]</span> 引入记号 <span class="math display">\[
+L^{c} \triangleq \left\langle L(y):E(y) \right\rangle , \quad
+A^{(\alpha)} \triangleq \left\langle L(y):
+\left(P^{(\alpha)}(y)-I^{(\alpha)}(y)\right) \right\rangle
+\]</span> 这样宏观应力就可以表示为 <span class="math display">\[
+\sigma^{c} = L^{c} : \varepsilon^{c} + \sum_{\alpha=1}^{N}
+A^{(\alpha)}:\mu^{(\alpha)}
+\]</span> 如果考虑单胞模量是分段常值的, 也即 <span
+class="math inline">\(L(y) = \sum_{\alpha} \chi^{(\alpha)}(y)
+L^{(\alpha)}\)</span>, 那么 <span
+class="math inline">\(A^{(\alpha)}\)</span> 就可以表示为 <span
+class="math display">\[
+A^{(\alpha)} = \left\langle \sum_{\beta=1}^{N} \chi^{(\beta)}(y)
+L^{(\beta)}: \left(P^{(\alpha)}(y)-I^{(\alpha)}(y)\right) \right\rangle
+= \sum_{\beta=1}^{N} c^{(\beta)}L^{(\beta)}:P^{(\beta\alpha)} -
+c^{(\alpha)} L^{(\alpha)}
 \]</span></p>
 
     </div>

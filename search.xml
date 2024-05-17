@@ -3493,9 +3493,9 @@ class="math inline">\(v_{i,j}\)</span>
   <entry>
     <title>多尺度 Reduced Order 推导</title>
     <url>/mech/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/</url>
-    <content><![CDATA[<h2 id="reduced-order-中函数-h_ikl-与细观力学-green-函数的关联">Reduced
-Order 中函数 <span class="math inline">\(h_{i}^{kl}\)</span> 与细观力学
-Green 函数的关联</h2>
+    <content><![CDATA[<h3 id="reduced-order-中函数-h_ikl-与细观力学-green-函数的关联">1.
+Reduced Order 中函数 <span class="math inline">\(h_{i}^{kl}\)</span>
+与细观力学 Green 函数的关联</h3>
 <p>在多尺度的单胞问题中, 如果使用本征应变 <span
 class="math inline">\(\mu^{\xi}(x)\)</span> 表征材料非弹性的影响,
 那么本构方程为:</p>
@@ -3503,28 +3503,32 @@ class="math inline">\(\mu^{\xi}(x)\)</span> 表征材料非弹性的影响,
 \sigma^{\xi}(x) = L^{\xi}(x):\left(\varepsilon^{\xi}(x) -
 \mu^{\xi}(x)\right)
 \]</span></p>
-<p>对位移变量进行渐近展开, 得到</p>
+<p>对位移变量进行双尺度渐近展开, 得到</p>
 <p><span class="math display">\[
-\text{ANSATZ}:u^{\xi}(x) = u^{c}(x) + \xi u^{(1)}(x,y) + O(\xi^2)
+\text{ANSATZ}:u^{\xi}(x) \sim u^{c}(x) + \xi u^{(1)}(x,y) + O(\xi^2)
 \]</span></p>
 <span id="more"></span>
 <p>依照上述 ANSATZ, 同样也可以得到应变,应力,本征应变的渐进展开式: <span
 class="math display">\[
 \begin{aligned}
-\varepsilon^{\xi}(x) &amp;= \varepsilon^f(x,y) + \xi
+\varepsilon^{\xi}(x) &amp;\sim \varepsilon^f(x,y) + \xi
 \varepsilon^{(1)}(x,y) + O(\xi^2)\\
-\sigma^{\xi}(x) &amp;= \sigma^{f}(x,y) + \xi \sigma^{(1)}(x,y) +
+\sigma^{\xi}(x) &amp;\sim \sigma^{f}(x,y) + \xi \sigma^{(1)}(x,y) +
 O(\xi^2)\\
-\mu^{\xi}(x) &amp;= \mu^f(x,y) + \xi \mu^{(1)}(x,y) + O(\xi^2)
+\mu^{\xi}(x) &amp;\sim \mu^f(x,y) + \xi \mu^{(1)}(x,y) + O(\xi^2)
 \end{aligned}
 \]</span></p>
 <p>通过应力平衡方程, 以及解的存在唯一条件,
 可以得到渐进展开式中不同阶次项之间的关系. 其中, fine scale
 上的变量之间的关系式为:</p>
 <p><span class="math display">\[
-\varepsilon^f = \underbrace{\nabla_x u^c}_{\equiv \varepsilon^c} +
-\nabla_y u^{(1)}\\
-\sigma^f = \mathbb{L}(y) : \left( \varepsilon^f - \mu^f \right)
+\begin{aligned}
+\varepsilon^f(x,y) &amp;\triangleq \underbrace{\nabla_x
+u^c(x)}_{\triangleq \varepsilon^c} + \nabla_y u^{(1)}(x,y)\\
+\sigma^f(x,y) &amp;\triangleq \mathbb{L}(y) : \left( \varepsilon^f(x,y)
+- \mu^f(x,y) \right)
+\end{aligned}
+\tag{1.1}
 \]</span></p>
 <p>在多尺度中, 单胞内精细的位移场 <span
 class="math inline">\(u^{(1)}\)</span> 是通过如下方式进行构造的:</p>
@@ -3532,32 +3536,33 @@ class="math inline">\(u^{(1)}\)</span> 是通过如下方式进行构造的:</p>
 u_i^{(1)}(x,y) = \underbrace{\varepsilon_{kl}^c(x) H_i^{kl}(y) }_{(1)}
 + \underbrace{\int_{Y} \mu_{kl}^f(x,y^{\prime}) h_{i}^{kl}(y,y^{\prime})
 \mathrm{d} y^{\prime}}_{(2)}
+\tag{1.2}
 \]</span></p>
 <p>式中, 第 (1) 项只考虑线弹性材料非均质在单胞内部产生的位移场
-fluctuation; 第 (2) 项考虑单胞内非弹性的本征应变造成的位移场的扰动.</p>
-<p>式 (2) 的构造来源于细观力学 (Mura1987),
-由本征应变产生的位移可以写作本征应变与 Green 函数的卷积形式 <span
-class="math display">\[
+fluctuation; 第 (2) 项考虑单胞内非弹性的本征应变造成的位移场的扰动. (2)
+的构造来源于细观力学 (Mura1987), 由本征应变产生的位移可以写作本征应变与
+Green 函数的卷积形式</p>
+<p><span class="math display">\[
 u_{i}(x) = -\int L_{mnkl} G_{in,m}(x-x^{\prime}) \mu_{kl}(x^{\prime})
 \mathrm{d} x^{\prime}
-\tag{3}
+\tag{1.3}
 \]</span></p>
-<p>观察式 (2) 与式 (3) 相同的部分, 可以得到</p>
+<p>观察 (2) 与式 (1.3) 相同的部分, 可以得到</p>
 <p><span class="math display">\[
 h_{i}^{kl}(y,y^{\prime}) = -L_{mnkl} G_{in,m}(y-y^{\prime})
-\tag{4}
+\tag{1.4}
 \]</span></p>
 <div class="note info"><p>在细观力学推导 Green 函数过程中, 弹性模量 <span
 class="math inline">\(L_{mnkl}\)</span> 看作是常数, 并没有出现作为
 Fourier 变换后的函数 <span
 class="math inline">\(\hat{L}_{mnkl}\)</span>, 但是单胞问题中, <span
-class="math inline">\(L_{mnkl}\)</span> 是分段常数. 我不确定式 (4) 中
+class="math inline">\(L_{mnkl}\)</span> 是分段常数. 我不确定式 (1.4) 中
 <span class="math inline">\(L_{mnkl}\)</span> 是不是关于坐标 <span
 class="math inline">\(y\)</span> 或 <span
-class="math inline">\(y^{\prime}\)</span>​ 的函数.</p>
+class="math inline">\(y^{\prime}\)</span> 的函数.</p>
 </div>
-<h2 id="reduced-order-green-函数在-partition-上的积分">Reduced Order:
-Green 函数在 Partition 上的积分</h2>
+<h3 id="reduced-order-green-函数在-partition-上的积分">2. Reduced Order:
+Green 函数在 Partition 上的积分</h3>
 <p>在对非均质线弹性单胞问题渐进展开的推导中, 我们得到表征单胞上应变
 fluctuation 的张量场 <span class="math inline">\(E_{ij}^{kl}: Y \mapsto
 \mathcal{S}\)</span>, 现在我们将要推导表征分块 Partition
@@ -3578,28 +3583,32 @@ class="math inline">\(u_{i}^{(1)}\)</span> 的表达式 (1), (2)
 <p>线弹性部分的单胞方程为:</p>
 <p><span class="math display">\[
 \left\{ L_{ijkl}(y) E_{kl}^{mn}(y) \right\}_{,y_j} = 0
+\tag{2.1}
 \]</span></p>
 <p>本征应变的单胞方程为</p>
 <p><span class="math display">\[
 \left\{ L_{ijkl}(y) \left[ \int_{Y} \mu_{mn}^f(x,y^{\prime})
 h_{(k,y_l)}^{mn}(y,y^{\prime}) \mathrm{d} y^{\prime} - \mu_{kl}^f(x,y)
 \right] \right\}_{,y_j} = 0
-\tag{5}
+\tag{2.2}
 \]</span></p>
+<div class="note success no-icon"><h5 id="降阶多尺度的分段常值假设">降阶多尺度的分段常值假设:</h5>
 <p>将单胞分成若干个 partition: <span class="math inline">\(Y^{(1)},
-Y^{(2)}, \ldots, Y^{(N)}\)</span>,并假设每一个 partition
-上的本征应变是相同的, 每个 partition 上的本征应变为 <span
+Y^{(2)}, \ldots, Y^{(N)}\)</span>,并假设每一个 partition 上的本征应变
+(以及其它的物理量) 是相同的, 每个 partition 上的本征应变为 <span
 class="math inline">\(\mu_{mn}^{(1)}(x), \mu_{mn}^{(1)}(x), \ldots,
-\mu_{mn}^{(N)}(x)\)</span>, 这样得到本征应变在单胞上的分段常值分布:</p>
-<p><span class="math display">\[
-\mu_{mn}^{f}(x,y) = \mu_{mn}^{(\alpha)}(x) \chi^{(\alpha)}(y) \quad
-\text{(使用求和约定)}
+\mu_{mn}^{(N)}(x)\)</span>, 由此得到本征应变场是在单胞上的分段常值分布:
+<span class="math display">\[
+\mu_{mn}^{f}(x,y) := \sum_{\alpha=1}^{N} \mu_{mn}^{(\alpha)}(x)
+\chi^{(\alpha)}(y)
 \]</span></p>
-<p>代入到本征应变单胞方程 (5) 中, 得到</p>
-<p><span class="math display">\[
-\mu_{mn}^{(\alpha)}(x)\left\{ L_{ijkl}(y) \left[ \int_{Y}
-h_{(k,y_l)}^{mn}(y,y^{\prime}) \chi^{(\alpha)}(y^{\prime}) \mathrm{d}
-y^{\prime} - I_{kl}^{mn}\chi^{(\alpha)}(y) \right] \right\}_{,y_j} = 0
+</div>
+<p>将分段常值的本征应变场代入到单胞方程 (2.2) 中, 得到 <span
+class="math display">\[
+\sum_{\alpha=1}^{N} \mu_{mn}^{(\alpha)}(x)\left\{ L_{ijkl}(y) \left[
+\int_{Y} h_{(k,y_l)}^{mn}(y,y^{\prime}) \chi^{(\alpha)}(y^{\prime})
+\mathrm{d} y^{\prime} - I_{kl}^{mn}\chi^{(\alpha)}(y) \right]
+\right\}_{,y_j} = 0
 \]</span></p>
 <p>上式是关于 <span
 class="math inline">\(\mu_{mn}^{(\alpha)}(x)\)</span> 的方程组,
@@ -3615,8 +3624,9 @@ I_{kl}^{mn}\chi^{(\alpha)}(y) \right] \right\}_{,y_j} = 0, \quad  \alpha
 \]</span></p>
 <p>将 Green 函数在 partition 上的积分定义为</p>
 <p><span class="math display">\[
-P_{kl}^{mn(\alpha)}(y) = \int_{Y} h_{(k,y_l)}^{mn}(y,y^{\prime})
-\chi^{(\alpha)}(y^{\prime}) \mathrm{d} y^{\prime}
+P_{kl}^{mn(\alpha)}(y) \triangleq \int_{Y}
+h_{(k,y_l)}^{mn}(y,y^{\prime}) \chi^{(\alpha)}(y^{\prime}) \mathrm{d}
+y^{\prime}
 \]</span></p>
 <p>这样就得到关于张量 <span
 class="math inline">\(P_{kl}^{mn(\alpha)}\)</span> 的 <span
@@ -3626,24 +3636,87 @@ class="math inline">\(N\)</span> 个方程:</p>
 I_{kl}^{mn}\chi^{(\alpha)}(y) \right] \right\}_{,y_j} = 0, \text{in}~ Y
 \quad \alpha=1,2, \ldots,N
 \]</span></p>
-<h2
-id="多尺度得到的单胞应变场与本征应变的关系">多尺度得到的单胞应变场与本征应变的关系</h2>
-<p>只考虑本征应变对 fine-scale 应变的影响, 我们有如下关系式:</p>
+<h3 id="多尺度得到的单胞分块应变方程">3.
+多尺度得到的单胞分块应变方程</h3>
 <p><span class="math display">\[
-\varepsilon_{ij}^{f}(x,y) = \int_{Y} h_{(i,y_j)}^{kl}(y,y^{\prime})
+u_i^{(1)}(x,y) = \underbrace{\varepsilon_{kl}^c(x) H_i^{kl}(y) }_{(1)}
++ \underbrace{\int_{Y} \mu_{kl}^f(x,y^{\prime}) h_{i}^{kl}(y,y^{\prime})
+\mathrm{d} y^{\prime}}_{(2)}
+\]</span></p>
+<p>只考虑上式中第 (2) 部分, 也即本征应变对 fine-scale 应变的影响,
+那么单胞上的微尺度应变为</p>
+<p><span class="math display">\[
+\varepsilon_{ij}^{(2)}(x,y) = \int_{Y} h_{(i,y_j)}^{kl}(y,y^{\prime})
 \mu_{kl}^{f}(x,y^{\prime}) \mathrm{d} y^{\prime}
 \]</span></p>
 <p>将 reduced order 分块均匀假设代入上式, 就得到</p>
 <p><span class="math display">\[
-\varepsilon_{ij}^{f}(x,y) = P_{ij}^{kl(\alpha)}(y)
+\varepsilon_{ij}^{(2)}(x,y) = \sum_{\alpha=1}^{N} P_{ij}^{kl(\alpha)}(y)
 \mu_{kl}^{(\alpha)}(x)
 \]</span></p>
 <p>在每一个分块 <span class="math inline">\(Y^{(\alpha)}\)</span> 上对
 <span class="math inline">\(\varepsilon^f\)</span> 进行积分平均, 得到
 <span class="math display">\[
-\varepsilon_{ij}^{(\beta)}(x) = \langle P_{ij}^{kl(\alpha)}(y)
-\rangle_{Y^{(\beta)}} \mu_{kl}^{(\alpha)}(x)
-= P_{ij}^{kl(\beta \alpha)} \mu_{kl}^{(\alpha)}(x)
+\varepsilon_{ij}^{(\beta)}(x) = \sum_{\alpha=1}^{N} \langle
+P_{ij}^{kl(\alpha)}(y) \rangle_{Y^{(\beta)}} \mu_{kl}^{(\alpha)}(x)
+= \sum_{\alpha=1}^{N} P_{ij}^{kl(\beta \alpha)} \mu_{kl}^{(\alpha)}(x)
+\tag{3.1}
+\]</span> 式中, <span class="math inline">\(P_{ij}^{kl(\beta \alpha)}
+\triangleq \langle P_{ij}^{kl(\alpha)}(y)
+\rangle_{Y^{(\beta)}}\)</span>.
+如果再考虑线弹性材料的非均质性对应变场造成的扰动,
+那么该项造成的单胞上的微尺度应变为</p>
+<p><span class="math display">\[
+\varepsilon_{ij}^{(1)}(x,y) = \varepsilon_{kl}^c(x) H_{(i,y_j)}^{kl}(y)
+\]</span> 对上式在分块上进行体平均, 就得到 <span class="math display">\[
+\varepsilon_{ij}^{(\beta)}(x) = \varepsilon_{kl}^c(x) \left(
+E_{ij}^{kl(\beta)} - I_{ij}^{kl(\beta)} \right)
+\tag{3.2}
+\]</span> 因此, 分块上的应变, 就等于 ①.宏观尺度的应变 ②.式 (3.1)
+本征应变造成的应变扰动场平均 ③.式 (3.2)
+线弹性材料不均匀性造成的应变扰动场平均, 所以 <span
+class="math display">\[
+\begin{aligned}
+\varepsilon_{ij}^{(\beta)}(x)
+&amp;= \varepsilon_{ij}^{c}(x)
++ \sum_{\alpha=1}^{N} P_{ij}^{kl(\beta \alpha)} \mu_{kl}^{(\alpha)}(x)
++ \varepsilon_{kl}^c(x) \left( E_{ij}^{kl(\beta)} - I_{ij}^{kl(\beta)}
+\right) \\
+&amp;=  \sum_{\alpha=1}^{N} P_{ij}^{kl(\beta \alpha)}
+\mu_{kl}^{(\alpha)}(x)
++ E_{ij}^{kl(\beta)}\varepsilon_{kl}^c(x)
+\end{aligned}
+\]</span></p>
+<h3 id="多尺度得到的宏观物理量">4. 多尺度得到的宏观物理量</h3>
+<p>将多尺度得到的结果代入到式 (1.1) 当中 <span class="math display">\[
+\sigma^{f}(x,y) = L(y):\left( E(y):\varepsilon^{c}(x)
++ \sum_{\alpha=1}^{N} P^{(\alpha)}(y):\mu^{(\alpha)}(x)
+- \sum_{\alpha=1}^{N} I^{(\alpha)}(y):\mu^{(\alpha)}(x)
+\right)
+\]</span> 式中, <span class="math inline">\(I^{(\alpha)}(y) \triangleq
+\chi^{(\alpha)}(y) \mathbb{I}\)</span>. 对上式在单胞上作体积平均, 得到
+<span class="math display">\[
+\sigma^{c} \triangleq \langle \sigma(x,y) \rangle
+= \left\langle L(y):E(y) \right\rangle :\varepsilon^{c}(x)  
++ \sum_{\alpha=1}^{N} \left\langle L(y):
+\left(P^{(\alpha)}(y)-I^{(\alpha)}(y)\right) \right\rangle :
+\mu^{(\alpha)}(x)
+\]</span> 引入记号 <span class="math display">\[
+L^{c} \triangleq \left\langle L(y):E(y) \right\rangle , \quad
+A^{(\alpha)} \triangleq \left\langle L(y):
+\left(P^{(\alpha)}(y)-I^{(\alpha)}(y)\right) \right\rangle
+\]</span> 这样宏观应力就可以表示为 <span class="math display">\[
+\sigma^{c} = L^{c} : \varepsilon^{c} + \sum_{\alpha=1}^{N}
+A^{(\alpha)}:\mu^{(\alpha)}
+\]</span> 如果考虑单胞模量是分段常值的, 也即 <span
+class="math inline">\(L(y) = \sum_{\alpha} \chi^{(\alpha)}(y)
+L^{(\alpha)}\)</span>, 那么 <span
+class="math inline">\(A^{(\alpha)}\)</span> 就可以表示为 <span
+class="math display">\[
+A^{(\alpha)} = \left\langle \sum_{\beta=1}^{N} \chi^{(\beta)}(y)
+L^{(\beta)}: \left(P^{(\alpha)}(y)-I^{(\alpha)}(y)\right) \right\rangle
+= \sum_{\beta=1}^{N} c^{(\beta)}L^{(\beta)}:P^{(\beta\alpha)} -
+c^{(\alpha)} L^{(\alpha)}
 \]</span></p>
 ]]></content>
       <categories>
@@ -5003,6 +5076,49 @@ g( w_{n+1}^{(i)}), \quad
 w_{n+1}^{(i+1)} = w_{n+1}^{(i)} + \Delta w_{n+1}^{(i+1)}
 \tag{8}
 \]</span></p>
+<div class="note info no-icon"><p>我们可以将式 (8) 写成更一般的形式,
+系统内力与外力在每一个增量步都应保持平衡: <span class="math display">\[
+f^{\mathrm{int}}(\sigma(\varepsilon)) - f^{\mathrm{ext}}_{i} \equiv 0,
+\quad i = 1,2,\ldots
+\]</span> 内力通过应力得到, 应力通过本构关系与应变相关联. 定义系统第
+<span class="math inline">\(i\)</span> 步的残差函数为 <span
+class="math display">\[
+r_{i}(\varepsilon) = f^{\mathrm{int}}(\sigma(\varepsilon)) -
+f^{\mathrm{ext}}_{i}, \quad i = 1,2,\ldots
+\]</span> 在第 <span class="math inline">\(n\)</span>
+个增量步时系统内外力达到平衡: <span class="math display">\[
+f^{\mathrm{int}}(\sigma(\varepsilon_n)) - f^{\mathrm{ext}}_n =0
+\]</span> 在第 <span class="math inline">\(n+1\)</span> 个增量步时,
+系统外力为 <span class="math inline">\(f^{\mathrm{ext}}_{n+1}\)</span>,
+为求得使内外力平衡的 <span
+class="math inline">\(\varepsilon_{n+1}\)</span>, 将残差函数在 <span
+class="math inline">\(\varepsilon_n\)</span> 处展开 <span
+class="math display">\[
+r_{n+1}(\varepsilon_n + \delta \varepsilon)
+\sim r_{n+1}(\varepsilon_n)
++ \left.\frac{\partial r_{n+1}}{\partial
+\varepsilon}\right|_{\varepsilon_n} \delta \varepsilon
+\]</span> 并令上式等于 0, 这就得到关于 <span
+class="math inline">\(\delta \varepsilon\)</span>​ 的线性方程: <span
+class="math display">\[
+r_{n+1}(\varepsilon_n)
++ \left.\frac{\partial r_{n+1}}{\partial
+\varepsilon}\right|_{\varepsilon_n} \delta \varepsilon = 0
+\tag{$\star$}
+\]</span> 在 ABAQUS 中写本构时, 程序会提供应变增量 <span
+class="math inline">\(\Delta \varepsilon\)</span> (对应式 (<span
+class="math inline">\(\star\)</span>) 中的 <span
+class="math inline">\(\varepsilon_n\)</span>), 并要求用户返回应力增量
+<span class="math inline">\(\Delta \sigma\)</span> (用于计算 <span
+class="math inline">\(r_{n+1}\)</span>) 和切线刚度模量 <span
+class="math inline">\(\partial \Delta \sigma / \partial \Delta
+\varepsilon\)</span> (用于计算 <span
+class="math inline">\(\left.{\partial r_{n+1}}/{\partial
+\varepsilon}\right|_{\varepsilon_n}\)</span>)
+以及非线性本构要用到的状态变量. 这样 ABAQUS 内部得到 <span
+class="math inline">\(\delta \varepsilon\)</span>,
+并进行下一步的迭代</p>
+</div>
 <p>我们可以通过如下公式衡量迭代算法的收敛速度。如果方程在前后两次迭代步的残差满足
 <span class="math display">\[
 \frac{|g( w_{n+1}^{(i+1)})|}{|g( w_{n+1}^{(i)})|^M} \approx \text{Const}
@@ -5038,6 +5154,9 @@ w_{n+1}^{(i+1)} = w_{n+1}^{(i)} + \Delta w_{n+1}^{(i+1)}
 <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">Current load step: <span class="number">1</span> </span><br><span class="line">Current iteration step: <span class="number">1</span>; The out of balance force is <span class="number">9.5086E-02</span></span><br><span class="line">Current iteration step: <span class="number">2</span>; The out of balance force is <span class="number">6.0843E-03</span></span><br><span class="line">Current iteration step: <span class="number">3</span>; The out of balance force is <span class="number">3.9566E-04</span></span><br><span class="line">Current iteration step: <span class="number">4</span>; The out of balance force is <span class="number">2.5756E-05</span></span><br><span class="line">Current iteration step: <span class="number">5</span>; The out of balance force is <span class="number">1.6768E-06</span></span><br><span class="line">Current iteration step: <span class="number">6</span>; The out of balance force is <span class="number">1.0916E-07</span></span><br><span class="line">Current iteration step: <span class="number">7</span>; The out of balance force is <span class="number">7.1064E-09</span></span><br><span class="line">Current iteration step: <span class="number">8</span>; The out of balance force is <span class="number">4.6264E-10</span></span><br><span class="line">Current iteration step: <span class="number">9</span>; The out of balance force is <span class="number">3.0118E-11</span></span><br><span class="line">Current iteration step: <span class="number">10</span>; The out of balance force is <span class="number">1.9611E-12</span></span><br><span class="line">Current iteration step: <span class="number">11</span>; The out of balance force is <span class="number">1.2745E-13</span></span><br></pre></td></tr></table></figure>
 <p>算法（8）和（9）在每一个加载步的迭代过程可以用下图清晰地表示出来：</p>
 <div class="group-picture"><div class="group-picture-row"><div class="group-picture-column"><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404161457984切线刚度矩阵.png" alt="sln_iteration" style="zoom:40%;" /></div><div class="group-picture-column"><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404161456503切线刚度矩阵.png" alt="sln_same_slope" style="zoom: 20%;" /></div></div></div>
+<p>切线刚度矩阵可以使用近似值，这会影响迭代收敛的速度，但一般不会影响迭代收敛到准确值的精度。但是，残差
+<span class="math inline">\(g( w_{n+1}^{(i)})\)</span>
+的计算结果<strong>必须是准确的</strong>。如果系统的内力与外力计算误差太大，那么无论怎样提高切线刚度矩阵的精度，或者增加迭代的次数，或者减小增量步的步长，都不会得到正确的计算结果！</p>
 <p>最终，我们给出在使用增量步，并对每一个增量步的结果进行 Newton
 迭代，使得内力等于外载后得到的数值计算结果：</p>
 <p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404161503122最终数值结果.png" alt="sln_inc_iter" style="zoom: 67%;" /></p>
@@ -5547,6 +5666,237 @@ F^{-1}(f \circ g) &amp;= \left[ (F)^{-1}f \right]*\left[ (F)^{-1}f
       <tags>
         <tag>Fourier 变换</tag>
         <tag>数值方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多尺度的计算层面</title>
+    <url>/mech/%E5%A4%9A%E5%B0%BA%E5%BA%A6%E7%9A%84%E8%AE%A1%E7%AE%97%E5%B1%82%E9%9D%A2/</url>
+    <content><![CDATA[<div class="note info no-icon"><h5 id="注意">注意</h5>
+<p>以下的推导均是<strong>形式上的推导</strong>, 也就是说,
+读者可能没有办法从推导过程中直接获得编写程序的方法.
+这是因为力学的物理量需要引用的指标太多, 如果将它们每一个分量,
+每一个自由度全部写出来, 公式会过于繁琐以致不可读
+读者应在阅读中尝试使用自己的一套符号体系复述一遍,
+反复斟酌用什么样的符号可以比作者更好地表达算法的内涵.
+我认为这是理解形式化推导的一个好方法.</p>
+</div>
+<span id="more"></span>
+<p>现在我们来到有限元计算框架中第 <span
+class="math inline">\(n+1\)</span> 迭代步,
+称为<strong>当前迭代步</strong>. 为了使接下来方程的增量表达式更加清晰,
+我们首先引入以下增量记号. 它们写在力学变量之前, 表示不同的增量含义:</p>
+<ul>
+<li>记号 <span class="math inline">\(\delta_i\)</span> 表示变量在迭代步
+<span class="math inline">\(i\)</span> 的增量, 特别的,
+在当前迭代步省略下标</li>
+<li>记号 <span class="math inline">\(\Delta^{i}\)</span> 表示 <span
+class="math inline">\(\sum_{k=1}^{i} \delta_k\)</span>​ , 特别的, 当
+<span class="math inline">\(i=n+1\)</span> 时省略上标,</li>
+</ul>
+<p>可以看到, 在当前迭代步中, 变量 <span
+class="math inline">\(\delta\)</span> <span
+class="math inline">\(\Delta\)</span> 是未知量,
+需要使用数值方法计算后更新变量. <span
+class="math inline">\(\Delta^n\)</span> 包含过去历史的信息, 是已知量,
+并且 <span class="math display">\[
+\Delta = \Delta^n~ + \delta
+\]</span> 以及, 对于线性方程 <span class="math inline">\(L\)</span>,
+如果在前 <span class="math inline">\(n\)</span> 个迭代步中均保证平衡,
+也即 <span class="math display">\[
+L(\Delta^i v) = 0, \quad i=1,2,\ldots,n
+\]</span> 那么在当前迭代步中, 关于 <span
+class="math inline">\(\Delta\)</span> 的方程与关于 <span
+class="math inline">\(\delta\)</span> 的方程等价: <span
+class="math display">\[
+L(\Delta v) \Leftrightarrow L(\delta v)
+\]</span> 所以, 对于关于迭代总增量的方程 <span
+class="math inline">\(L(\Delta v)\)</span>,
+同样可以看作是关于当前迭代增量的方程 <span
+class="math inline">\(L(\delta v)\)</span>​.</p>
+<p>我们再引入花括号 <span class="math inline">\(\{\cdot\}\)</span>
+表示分块物理量的集合. 例如 <span class="math inline">\(\{ \Delta
+\varepsilon \}\)</span> 表示分块上的应变 <span
+class="math inline">\(\Delta \varepsilon^{(\alpha)}\)</span>, <span
+class="math inline">\(\alpha=1,2,\ldots,N\)</span>.</p>
+<h2 id="宏观尺度迭代步-">宏观尺度迭代步-&gt;</h2>
+<p>积分点处的宏观应变 <span class="math inline">\(\Delta
+\varepsilon^c(x_{p})\)</span> 作为有限元求解框架中的驱动变量,
+在宏观层面当前迭代步开始时就已经给定. 因此, 当前迭代步迭代步的宏观应变
+<span class="math inline">\(\Delta \varepsilon^c(x_p)\)</span> 应变增量
+<span class="math inline">\(\delta \varepsilon^c(x_p)\)</span>
+是作为已知量进入到多尺度的计算当中.</p>
+<h2 id="多尺度计算-">多尺度计算-&gt;</h2>
+<div class="note success no-icon"><h5 id="输入变量">输入变量:</h5>
+<p>宏观应变 <span class="math inline">\(\Delta
+\varepsilon^c(x_p)\)</span>; 宏观应变增量 <span
+class="math inline">\(\delta \varepsilon^c(x_p)\)</span>​</p>
+<p>分块上的应变 <span class="math inline">\(\{\Delta^n
+\varepsilon\}\)</span> 和本征应变 <span class="math inline">\(\{\Delta^n
+\mu^{(\alpha)}\}\)</span></p>
+<p>分块上的影响张量 <span class="math inline">\(\{P\}\)</span> <span
+class="math inline">\(\{E\}\)</span></p>
+</div>
+<p>在多尺度计算层面, 待求解的非线性方程为 <span class="math display">\[
+\Delta \varepsilon^{(\beta)}
+-\sum_{\alpha=1}^{N} P^{(\beta \alpha)} : \Delta \mu^{(\alpha)}
+=E^{(\beta)} : \Delta \varepsilon^c(x),
+\quad \beta = 1, 2, \ldots, N
+\tag{4.41}
+\]</span></p>
+<p>定义残差 <span class="math display">\[
+r^{(\beta)}(\{ \Delta \varepsilon \}) \triangleq \Delta
+\varepsilon^{(\beta)}
+-\sum_{\alpha=1}^{N} P^{(\beta \alpha)} : \Delta \mu^{(\alpha)}
+- E^{(\beta)} : {\Delta} \varepsilon^c(x_p),
+\quad \beta = 1, 2, \ldots, N
+\]</span> 方程中出现的未知量是分块上的应变 <span
+class="math inline">\(\{ \Delta \varepsilon \} \triangleq \{ \Delta
+\varepsilon^{(1)}, \Delta \varepsilon^{(2)}, \ldots , \Delta
+\varepsilon^{(N)} \}\)</span> 和本征应变 <span class="math inline">\(\{
+\Delta \mu \} \triangleq \{ \Delta \mu^{(1)}, \Delta \mu^{(2)}, \ldots ,
+\Delta \mu^{(N)} \}\)</span>, 本征应变 <span
+class="math inline">\(\mu^{(\alpha)}\)</span>
+通过分块上独立的非线性材料本构与分块的应变 <span
+class="math inline">\(\Delta \varepsilon^{(\alpha)}\)</span> 相关联,
+因此也是关于变量 <span class="math inline">\(\{ \Delta \varepsilon
+\}\)</span> 的函数. <span class="math inline">\(P^{(\beta
+\alpha)}\)</span> 与 <span class="math inline">\(E^{(\beta)}\)</span>
+是在线下阶段计算线弹性的单胞问题得到的分块上的张量,
+在多尺度计算中同样作为已知量输入到方程中,
+可以看作是方程的<strong>常系数</strong>.</p>
+<p>我们需要计算分块上的应变迭代增量 <span class="math inline">\(\{
+\delta \varepsilon \}\)</span>, 使得下一迭代步的分块应变更新为 <span
+class="math display">\[
+\{ \Delta \varepsilon \} := \{ \Delta^n \varepsilon \} + \{ \delta
+\varepsilon \}
+\]</span> 使用 Newton 迭代法对残差方程 <span class="math inline">\(\{ r
+\} = 0\)</span> 关于分块应变 <span class="math inline">\(\{ \Delta
+\varepsilon \}\)</span> 线性化得到 <span class="math display">\[
+\{ r \} + \{M\} \{ \delta \varepsilon \} = 0, \quad
+\{M\} = \frac{\partial \{r\}}{\partial \{ \Delta \varepsilon \}}
+\tag{1}
+\]</span> 上述形式化的推导说明, 我们需要计算残差关于分块应变的偏导数:
+<span class="math display">\[
+\frac{\partial r^{(\beta)}}{\partial \Delta \varepsilon^{(\gamma)}}
+= \delta^{\beta \gamma} \mathbb{I}
+- \sum_{\alpha=1}^{N} P^{(\beta \alpha)} :  \frac{\partial \Delta
+\mu^{(\alpha)}}{\partial \Delta \varepsilon^{(\gamma)}}
+\]</span> 分块上的本征应变只与该分块上的应变相关, 所以可以消去求和号
+<span class="math display">\[
+\frac{\partial r^{(\alpha)}}{\partial \Delta \varepsilon^{(\beta)}}
+= \delta^{\alpha \beta} \mathbb{I}
+-  P^{(\alpha \beta)} :  \frac{\partial \Delta \mu^{(\beta)}}{\partial
+\Delta \varepsilon^{(\beta)}}
+\tag{2}
+\]</span> 式中本征应变对应变的偏导数可以通过本征应变表示的本构方程 <span
+class="math display">\[
+\Delta \mu^{(\alpha)} = \Delta \varepsilon^{(\alpha)} - M^{(\alpha)} :
+\Delta \sigma^{(\alpha)}
+\tag{3}
+\]</span> 对应变求偏导数得到: <span class="math display">\[
+\frac{\partial \Delta \mu^{(\alpha)}}{\partial \Delta
+\varepsilon^{(\alpha)}}
+= \mathbb{I} - M^{(\alpha)} : \frac{\partial \Delta
+\sigma^{(\alpha)}}{\partial \Delta \varepsilon^{(\alpha)}}
+\tag{4}
+\]</span> 式中, <span class="math inline">\({\partial \Delta
+\sigma^{(\alpha)}}/{\partial \Delta \varepsilon^{(\alpha)}}\)</span>
+是单相上的切线刚度矩阵, 这可以通过一般的本构获得.</p>
+<h2
+id="单相分块上的非线性本构计算-">-&gt;单相分块上的非线性本构计算-&gt;</h2>
+<div class="note success no-icon"><h5 id="输入变量">输入变量:</h5>
+<p>分块应变 <span class="math inline">\(\{\Delta^n
+\varepsilon\}\)</span></p>
+</div>
+<p>现在的一个问题是: 我是通过方程 (4.41)
+<strong>求解分块上的应变增量</strong>, 以此更新下一步的应变. 使用 Newton
+迭代法求解方程, 这样需要用到式 (2) 和式 (4) 得到残差偏导数的信息. 式 (4)
+将问题转化为单相分块上非线性本构的求解问题,
+这又<strong>需要提供在单相上应变增量的信息</strong>.
+求解分块上的应变增量需要提供应变增量?</p>
+<h2 id="多尺度计算">-&gt;多尺度计算</h2>
+<div class="note success no-icon"><h5 id="输入变量">输入变量:</h5>
+<p>分块上的切线刚度矩阵 <span class="math inline">\(\{\partial \Delta
+\sigma/\partial \Delta \varepsilon\}\)</span>; 分块应力 <span
+class="math inline">\(\{\Delta \sigma\}\)</span>; 状态变量 <span
+class="math inline">\(\{\mathrm{sv}\}\)</span></p>
+</div>
+<p>残差关于分块应变的偏导数为 <span class="math display">\[
+\frac{\partial r^{(\alpha)}}{\partial \Delta \varepsilon^{(\beta)}}
+= \delta^{\alpha \beta} \mathbb{I}
+-  P^{(\alpha \beta)}
++ P^{(\alpha \beta)} : M^{(\beta)} : \frac{\partial \Delta
+\sigma^{(\beta)}}{\partial \Delta \varepsilon^{(\beta)}}
+\]</span> 分块上的应变迭代增量 <span class="math inline">\(\{ \delta
+\varepsilon \}\)</span> 可以通过求解线性方程组式 (1) 得到 <span
+class="math display">\[
+\{ \delta \varepsilon \} = - \{M\}^{-1} \{ r \}
+\]</span> 因此, 分块上的应变更新为 <span class="math display">\[
+\{ \Delta \varepsilon \} := \{ \Delta^n \varepsilon \} + \{ \delta
+\varepsilon \}
+\]</span></p>
+<p>分块上的本征应变通过式 (3) 得到: <span class="math display">\[
+\{\Delta \mu\} := \{\Delta \varepsilon\} - \{M\} : \{\Delta \sigma\}
+\tag{3}
+\]</span></p>
+<h2 id="宏观尺度迭代步">-&gt; 宏观尺度迭代步</h2>
+<div class="note success no-icon"><h5 id="输入变量">输入变量:</h5>
+<p>分块上的切线刚度矩阵 <span class="math inline">\(\{\partial \Delta
+\sigma/\partial \Delta \varepsilon\}\)</span>; 分块应力 <span
+class="math inline">\(\{\Delta \sigma\}\)</span>; 状态变量 <span
+class="math inline">\(\{\mathrm{sv}\}\)</span></p>
+<p>分块上的应变 <span class="math inline">\(\{\Delta
+\varepsilon\}\)</span> 和本征应变 <span class="math inline">\(\{\Delta
+\mu\}\)</span></p>
+</div>
+<p>首先, 单胞上的宏观应变 <span class="math inline">\(\Delta
+\varepsilon^{c}\)</span> 为 <span class="math display">\[
+\Delta \varepsilon^{c} = \sum_{\alpha=1}^{N} c^{(\alpha)} \Delta
+\varepsilon^{(\alpha)}
+\]</span> 宏观应力 <span class="math inline">\(\Delta
+\sigma^{c}\)</span> 为 <span class="math display">\[
+\Delta \sigma^{c} = L^{c} : \Delta \varepsilon^{c} + \sum_{\alpha=1}^{N}
+A^{(\alpha)}:\Delta\mu^{(\alpha)}
+\tag{4}
+\]</span> 式中, <span class="math inline">\(L^c\)</span> 和 <span
+class="math inline">\(A^{(\alpha)}\)</span> 分别为 <span
+class="math display">\[
+L^{c} = \sum_{\alpha=1}^{N} c^{(\alpha)} L^{(\alpha)} E^{(\alpha)},
+\quad
+A^{(\alpha)} = \sum_{\beta=1}^{N} \left(
+c^{(\beta)}L^{(\beta)}:P^{(\beta\alpha)}  \right)
+- c^{(\alpha)} L^{(\alpha)}
+\]</span> 现在我们还需要返回宏观切线刚度模量 <span
+class="math inline">\(\partial \Delta \sigma^{c} / \partial \Delta
+\varepsilon^{c}\)</span>, 式 (4) 对宏观应变求偏导数得到 <span
+class="math display">\[
+\frac{\partial \Delta \sigma^{c}}{\partial \Delta \varepsilon^{c}} =
+L^{c}
++ \sum_{\alpha=1}^{N} A^{(\alpha)}
+: \frac{\partial \Delta\mu^{(\alpha)}}{\partial \Delta
+\varepsilon^{(\alpha)}}
+: \frac{\partial \Delta\varepsilon^{(\alpha)}}{\partial \Delta
+\varepsilon^{c}}
+\]</span> 式中, 分块应变关于宏观应变的偏导数可以通过式 (4.41) 求偏导数,
+得到相关的 <span class="math inline">\(N\)</span> 个代数方程 <span
+class="math display">\[
+\frac{\partial \Delta\varepsilon^{(\beta)}}{\partial \Delta
+\varepsilon^{c}}
+- \sum_{\alpha=1}^{N} P^{(\beta \alpha)}
+: \frac{\partial \Delta\mu^{(\alpha)}}{\partial \Delta
+\varepsilon^{(\alpha)}}
+: \frac{\partial \Delta\varepsilon^{(\alpha)}}{\partial \Delta
+\varepsilon^{c}}
+=E^{(\beta)}
+\quad \beta = 1, 2, \ldots, N
+\]</span></p>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>多尺度</tag>
+        <tag>计算力学</tag>
       </tags>
   </entry>
 </search>
