@@ -2170,9 +2170,9 @@ c^{\alpha} f_{ij}^{\alpha} f_{ij}^{\alpha} - \bar{f}_{ij}\bar{f}_{ij}
   <entry>
     <title>J2 塑性本构</title>
     <url>/mech/J2-%E5%A1%91%E6%80%A7%E6%9C%AC%E6%9E%84/</url>
-    <content><![CDATA[<p>以下 pdf 整理主要参考 Simo 的 <em>Computational Inelasticity</em>。向
-Simo 致敬！</p>
-<div class="pdf-container" data-target="https://maipdf.cn/est/a66482da4078f3/pdf" data-height="800px"></div>
+    <content><![CDATA[<p>以下整理主要参考 Simo 的 <em>Computational Inelasticity</em>。向 Simo
+致敬！</p>
+<div class="pdf-container" data-target="https://maipdf.cn/est/d66482f3e37a9b/pdf" data-height="800px"></div>
 ]]></content>
       <categories>
         <category>力学</category>
