@@ -835,6 +835,11 @@ pre code {
   font-family: 'Font Awesome 6 Free';
   font-weight: 900;
 }
+.pdfobject-container iframe,
+.pdfobject-container embed {
+  height: 500px;
+  width: 100%;
+}
 .post-body .tabs {
   margin-bottom: 20px;
 }
