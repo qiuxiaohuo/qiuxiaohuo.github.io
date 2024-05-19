@@ -230,7 +230,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-05-19 13:13:38 / 修改时间：15:07:50" itemprop="dateCreated datePublished" datetime="2024-05-19T13:13:38+08:00">2024-05-19</time>
+      <time title="创建时间：2024-05-19 13:13:38 / 修改时间：15:08:16" itemprop="dateCreated datePublished" datetime="2024-05-19T13:13:38+08:00">2024-05-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -265,72 +265,15 @@ y^2}
 + \frac{1}{r} \frac{\partial~}{\partial r}
 + \frac{1}{r^2} \frac{\partial^2~}{\partial \theta^2}
 \tag{P}
-\]</span> 这两种坐标形式下的 Laplace 算子表示可以通过坐标变换 <span
-class="math display">\[
-x = r\cos \theta, \quad y = r \sin \theta
-\]</span> 或者 <span class="math display">\[
-r = \sqrt{x^2 + y^2}, \quad \theta = \arctan \frac{y}{x}
-\]</span> 得到, 但是我现在不想这样做, 因为我已经这么做了很多次了,
-并且每一次推导都是 “全新” 的体验.
-我现在想做的是怎么样才能快速记住极坐标变换的形式.</p>
-<p>首先可以观察方程的量纲, 可以验证, 式 (P) 与式 (D) 在量纲上是一致的.
-但是这也仅仅限于验证, 并不能帮助我得到极坐标表达式的形式.</p>
-<p>如果尝试将一阶微分写成矩阵的形式, 那么就有: <span
-class="math display">\[
-\begin{pmatrix}
-\frac{\partial~}{\partial x} \\ \frac{\partial~}{\partial y}
-\end{pmatrix}
-= R(\theta)
-\begin{pmatrix}
-\frac{\partial~}{\partial r} \\ \frac{1}{r} \frac{\partial~}{\partial
-\theta}
-\end{pmatrix}
-\]</span> 式中, <span class="math inline">\(R(\theta)\)</span>
-为旋转矩阵 <span class="math display">\[
-R(\theta) \triangleq \begin{pmatrix}
-\cos\theta &amp; -\sin\theta \\ \sin\theta &amp; \cos\theta
-\end{pmatrix}
-\]</span> 但是, 无法再继续得到用矩阵表示的二阶偏导数形式,
-这是因为算子的系数是非线性的. 如果是线性的, 那么极坐标表达式 (P)
-就不会出现关于 <span class="math inline">\(r\)</span> 的一次偏导数.</p>
-<p>那么还可以继续怎么做下去呢? 最终我在 Math stack Exchange
-上找到了这一篇回答: <span class="exturl" data-url="aHR0cHM6Ly9tYXRoLnN0YWNrZXhjaGFuZ2UuY29tL3F1ZXN0aW9ucy8yMjQ4NjYxL2hvdy10by1yZW1lbWJlci1sYXBsYWNpYW4taW4tcG9sYXItYW5kLWh5cGVyc3BoZXJpY2FsLWNvb3JkaW5hdGVz">How
-to remember laplacian in polar and (hyper)spherical coordinates<i class="fa fa-external-link-alt"></i></span></p>
-<p>设直角坐标下的函数形式为 <span class="math inline">\(u(x,y)\)</span>,
-考虑点 <span class="math inline">\(P\)</span> 在 <span
-class="math inline">\((x,0)\)</span> 的特殊情况, 此时 <span
-class="math inline">\(r \equiv x\)</span>, 所以 <span
-class="math inline">\(u_{xx} \equiv u_{rr}\)</span>.
-现在我们要考虑在圆周曲线上的导数与垂直于 <span
-class="math inline">\(x\)</span> 轴直线的导数的区别. <span
-class="math display">\[
-u_{\theta}(\theta) = u(r\cos\theta, r\sin\theta)
-\]</span> <span class="math inline">\(U_{\theta}\)</span> 对 <span
-class="math inline">\(\theta\)</span> 的一阶导数为 <span
-class="math display">\[
-\frac{\mathrm{d} u_{\theta}}{\mathrm{d} \theta} = u_x
-(-r\sin\theta)|_{\theta=0}
-+ u_{y}(r\cos\theta)|_{\theta=0} = r u_y
-\]</span> 这是很合理的, 因为在垂直于 <span
-class="math inline">\(x\)</span> 轴方向上有微元关系 <span
-class="math inline">\(r~\mathrm{d} \theta = \mathrm{d}y\)</span>.</p>
-<p>接下来要求二阶导数, 注意到不能直接对上式代入数值之后的关系式 <span
-class="math inline">\({\mathrm{d} u_{\theta}}/{\mathrm{d} \theta}= r
-u_y\)</span> 关于 <span class="math inline">\(\theta\)</span> 求导得到
-<span class="math inline">\({\mathrm{d}^2 u_{\theta}}/{\mathrm{d}
-\theta^2}= r^2 u_{yy}\)</span>, 因为 <span
-class="math inline">\({\mathrm{d} u_{\theta}}/{\mathrm{d} \theta}=
-0\)</span> 的项中仍可能对二阶导数项有贡献. 所以 <span
-class="math display">\[
-\left.\frac{\mathrm{d}^2 u_{\theta}}{\mathrm{d}
-\theta^2}\right|_{\theta=0}= -u_x r + u_{yy}r^2
-\]</span> 注意到 <span class="math inline">\(u_x \equiv u_r\)</span>,
-所以 <span class="math inline">\(u_{yy}\)</span> 可以表示为 <span
-class="math display">\[
-u_{yy} = \frac{1}{r}u_r + \frac{1}{r^2}u_{\theta\theta}
-\]</span> 这就通过特殊位置的点, 得到极坐标的形式 (P)</p>
-<p><em>还可以继续推广到高维情景</em></p>
-
+\]</span>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/math/Laplace-%E7%AE%97%E5%AD%90%E5%9C%A8%E6%9E%81%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%BD%A2%E5%BC%8F/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
