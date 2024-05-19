@@ -6151,7 +6151,7 @@ class="math inline">\(u(r,\theta) = A(\theta)B(r)\)</span>​,
 代入到上述方程中 <span class="math display">\[
 AB^{\prime\prime} + \frac{1}{r}AB^{\prime} +
 \frac{1}{r^2}A^{\prime\prime}B + \lambda AB = 0
-\]</span> 方程乘 <span class="math inline">\(r^2\)</span>,
+\]</span> <span id="more"></span>方程乘 <span class="math inline">\(r^2\)</span>,
 然后将不同变量的函数分离, 并分别放在方程两侧得到 <span
 class="math display">\[
 \frac{r^2 B^{\prime\prime} + r B^{\prime} + \lambda r^2 B}{B} (r) = -
@@ -6237,6 +6237,132 @@ class="math display">\[
       </categories>
       <tags>
         <tag>偏微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>复分析-从求解微分方程出发</title>
+    <url>/math/%E5%A4%8D%E5%88%86%E6%9E%90-%E4%BB%8E%E6%B1%82%E8%A7%A3%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%87%BA%E5%8F%91/</url>
+    <content><![CDATA[<p><strong><em>参考文献: Gilbert Strang, Introduction to applied
+mathematics</em></strong></p>
+<p>在这篇文章中, 我将从求解微分方程出发, 只引入必要的复分析方法作为工具.
+此外, 因为复数 <span class="math inline">\(z\)</span> <span
+class="math display">\[
+z = x + iy, \quad x,y \in \mathbb{R}
+\]</span> 只包含两个实数变量,
+所以方程的定解域也限制在二维平面上.<span id="more"></span></p>
+<p>待求解的微分方程为 Laplace 方程: <span class="math display">\[
+\frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} =
+0
+\]</span> 我们断言: <strong>函数 <span class="math inline">\(f(z) = f(x
++ iy)\)</span> 自动满足 Laplace 方程.</strong> 这是因为根据链式法则, 对
+<span class="math inline">\(x\)</span> 的二阶偏导数为 <span
+class="math display">\[
+\frac{\partial f}{\partial x} = \frac{\mathrm{d}f}{\mathrm{d}z}
+\frac{\partial z}{\partial x}
+= \frac{\mathrm{d}f}{\mathrm{d}z}, \quad
+\frac{\partial^2 f}{\partial x^2} = \frac{\mathrm{d}^2f}{\mathrm{d}z^2}
+\frac{\partial z}{\partial x}
+= \frac{\mathrm{d}^2f}{\mathrm{d}z^2}
+\]</span> 而在对 <span class="math inline">\(y\)</span> 求偏导数时,
+会多出 <span class="math inline">\(i^2 = -1\)</span> 的因子: <span
+class="math display">\[
+\frac{\partial f}{\partial y} = \frac{\mathrm{d}f}{\mathrm{d}z}
+\frac{\partial z}{\partial y}
+= i\frac{\mathrm{d}f}{\mathrm{d}z}, \quad
+\frac{\partial^2 f}{\partial y^2} = (i^2)
+\frac{\mathrm{d}^2f}{\mathrm{d}z^2}
+= - \frac{\mathrm{d}^2f}{\mathrm{d}z^2}
+\]</span> 所以有 <span class="math display">\[
+i \frac{\partial f}{\partial x} = \frac{\partial f}{\partial y}, \quad
+\frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} =
+0
+\tag{1}
+\]</span> 但是, <span class="math inline">\(f(x+iy)\)</span>
+给出的是复数形式的解, 而我们感兴趣的是实数域 <span
+class="math inline">\((x,y) \in \mathbb{R}^2\)</span> 上的解. 事实上,
+如果我们将函数 <span class="math inline">\(f\)</span>
+写成实数与虚数两部分: <span class="math display">\[
+f(x+iy) = u(x,y) + i v(x,y), \quad u,v: \mathbb{R}^2 \mapsto \mathbb{R}
+\]</span> 那么 <span class="math inline">\(u\)</span>, <span
+class="math inline">\(v\)</span> 均满足 Laplace 方程.</p>
+<div class="note primary no-icon"><h5 id="验证-fz-的实部和虚部满足-laplace-方程">验证 <span
+class="math inline">\(f(z)\)</span> 的实部和虚部满足 Laplace 方程</h5>
+<p><span class="math display">\[
+\frac{\partial^2 f}{\partial x^2} = \frac{\partial^2 u}{\partial x^2} +
+i \frac{\partial^2 v}{\partial x^2}, \quad
+\frac{\partial^2 f}{\partial y^2} = \frac{\partial^2 u}{\partial y^2} +
+i \frac{\partial^2 v}{\partial y^2}, \quad
+\Delta f = \Delta u + i\Delta v
+\]</span></p>
+<p>而函数 <span class="math inline">\(f\)</span> 满足 Laplace 方程, 所以
+<span class="math display">\[
+\Re (\Delta f)=0, \quad
+\Im (\Delta f)=0
+\]</span> 这就得到 <span class="math display">\[
+\Delta u = 0, \quad \Delta v = 0
+\]</span> 我们还可以验算一个不平凡的算例, 比如 <span
+class="math inline">\(f(z) = z^3\)</span>, <span class="math display">\[
+f(x+iy) = x^3-3xy^2 + i (3x^2y - y^3)
+\]</span> 所以, 函数 <span class="math inline">\(f\)</span> 的实部 <span
+class="math inline">\(u(x,y) = x^3 - 3xy^2\)</span> 验算结果为 <span
+class="math display">\[
+\frac{\partial^2 u}{\partial x^2} = 6x, \quad \frac{\partial^2
+u}{\partial y^2} = -6x
+\Rightarrow \Delta u = 0
+\]</span> 以及函数 <span class="math inline">\(f\)</span> 的虚部 <span
+class="math inline">\(v(x,y) = 3x^2y - y^3\)</span> 验算结果为 <span
+class="math display">\[
+\frac{\partial^2 v}{\partial x^2} = 6y, \quad \frac{\partial^2
+v}{\partial y^2} = -6y
+\Rightarrow \Delta v = 0
+\]</span> 最后一个例子是在求解圆盘上的 Laplace 方程时,
+我们给出解的级数形式为 <span class="math display">\[
+u(r,\theta) = \frac{a_0}{2} + a_1 r \cos \theta + b_1 r \sin \theta
++ a_2 r^2 \cos 2\theta + b_2 r^2 \sin 2\theta
++ \cdots
+\]</span> 级数项 <span class="math inline">\(r^n\cos n \theta\)</span>,
+<span class="math inline">\(r^n \sin n\theta\)</span> 自动满足 Laplace
+方程, 这是因为它们分别来自于 <span class="math inline">\(f(z) =
+z^n\)</span> 的实部和虚部.</p>
+</div>
+<p>需要强调的是, <strong>并不是所有的函数都可以写成某一个关于复数 <span
+class="math inline">\(z\)</span> 函数的实部或者虚部</strong>, 这样的话,
+所有的函数都会满足 Laplace 方程, 那么求解该方程的行为就变成平凡的了.
+例如函数 <span class="math inline">\(u(x,y) = x^2 + y^2\)</span>,
+可以快速验证 <span class="math inline">\(\Delta u =4 \neq
+0\)</span>.</p>
+<div class="note info no-icon"><p>任意函数 <span class="math inline">\(f(x,y)\)</span> 均可以表示为
+<span class="math inline">\(f(z,\bar z)\)</span>, 如果使用变量替换 <span
+class="math display">\[
+x = \frac{z + \bar z}{2}, \quad y = \frac{z - \bar z}{2i}
+\]</span> 例如 <span class="math inline">\(u(x,y)=x^2 + y^2\)</span>
+写成关于 <span class="math inline">\((z, \bar z)\)</span> 的函数为 <span
+class="math inline">\(u(z, \bar z) = z \bar z\)</span>.</p>
+</div>
+<p>现在的问题是, 如果给定 <span class="math inline">\(u\)</span> 和
+<span class="math inline">\(v\)</span>, 怎样才能确定组合 <span
+class="math inline">\(u + iv\)</span> 是不是一个解析函数? 这就需要用到式
+(1) 中一阶导数的结果: <span class="math display">\[
+i \frac{\partial f}{\partial x} = \frac{\partial f}{\partial y}
+\]</span> 将 <span class="math inline">\(f = u + iv\)</span> 代入得到
+<span class="math display">\[
+- \frac{\partial v}{\partial x} + i \frac{\partial u}{\partial x}
+= \frac{\partial u}{\partial y} + i\frac{\partial v}{\partial y}
+\]</span> 令方程左右两端实部与虚部分别相等, 就得到
+<strong>Cauchy-Riemann 条件:</strong> <span class="math display">\[
+\boxed{
+- \frac{\partial v}{\partial x} = \frac{\partial u}{\partial y}, \quad
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}
+}
+\]</span> 最终总结如下:</p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202405192337811analytical.png" alt="image-20240519233712661" style="zoom: 67%;" /></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>偏微分方程</tag>
+        <tag>解析方法</tag>
       </tags>
   </entry>
 </search>

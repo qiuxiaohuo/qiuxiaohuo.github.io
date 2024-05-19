@@ -20,29 +20,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="参考文献：MOULINEC H, SUQUET P. A numerical method for computing the overall response of nonlinear composites with complex microstructure[J&#x2F;OL]. Computer Methods in Applied Mechanics and Engineering, 19">
+    <meta name="description" content="参考文献: Gilbert Strang, Introduction to applied mathematics 在这篇文章中, 我将从求解微分方程出发, 只引入必要的复分析方法作为工具. 此外, 因为复数 \(z\) \[ z &#x3D; x + iy, \quad x,y \in \mathbb{R} \] 只包含两个实数变量, 所以方程的定解域也限制在二维平面上.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="FFT 方法求解单胞问题">
-<meta property="og:url" content="http://qiuxiaohuo.github.io/mech/FFT-%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E5%8D%95%E8%83%9E%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="复分析-从求解微分方程出发">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/math/%E5%A4%8D%E5%88%86%E6%9E%90-%E4%BB%8E%E6%B1%82%E8%A7%A3%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%87%BA%E5%8F%91/index.html">
 <meta property="og:site_name" content="邱小伙的博客">
-<meta property="og:description" content="参考文献：MOULINEC H, SUQUET P. A numerical method for computing the overall response of nonlinear composites with complex microstructure[J&#x2F;OL]. Computer Methods in Applied Mechanics and Engineering, 19">
+<meta property="og:description" content="参考文献: Gilbert Strang, Introduction to applied mathematics 在这篇文章中, 我将从求解微分方程出发, 只引入必要的复分析方法作为工具. 此外, 因为复数 \(z\) \[ z &#x3D; x + iy, \quad x,y \in \mathbb{R} \] 只包含两个实数变量, 所以方程的定解域也限制在二维平面上.">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-05-06T08:14:55.000Z">
-<meta property="article:modified_time" content="2024-05-06T08:15:27.090Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202405192337811analytical.png">
+<meta property="article:published_time" content="2024-05-19T13:44:59.000Z">
+<meta property="article:modified_time" content="2024-05-19T15:37:31.983Z">
 <meta property="article:author" content="Qiu Xiaohuo">
-<meta property="article:tag" content="FFT">
-<meta property="article:tag" content="多尺度">
+<meta property="article:tag" content="偏微分方程">
+<meta property="article:tag" content="解析方法">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202405192337811analytical.png">
 
 
-<link rel="canonical" href="http://qiuxiaohuo.github.io/mech/FFT-%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E5%8D%95%E8%83%9E%E9%97%AE%E9%A2%98/">
+<link rel="canonical" href="http://qiuxiaohuo.github.io/math/%E5%A4%8D%E5%88%86%E6%9E%90-%E4%BB%8E%E6%B1%82%E8%A7%A3%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%87%BA%E5%8F%91/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/mech/FFT-%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E5%8D%95%E8%83%9E%E9%97%AE%E9%A2%98/","path":"mech/FFT-方法求解单胞问题/","title":"FFT 方法求解单胞问题"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/math/%E5%A4%8D%E5%88%86%E6%9E%90-%E4%BB%8E%E6%B1%82%E8%A7%A3%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%87%BA%E5%8F%91/","path":"math/复分析-从求解微分方程出发/","title":"复分析-从求解微分方程出发"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>FFT 方法求解单胞问题 | 邱小伙的博客</title>
+<title>复分析-从求解微分方程出发 | 邱小伙的博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -144,7 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%9B%E5%AD%A6%E5%88%97%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">力学列式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%97%E6%B3%95"><span class="nav-number">2.</span> <span class="nav-text">算法</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%AA%8C%E8%AF%81-fz-%E7%9A%84%E5%AE%9E%E9%83%A8%E5%92%8C%E8%99%9A%E9%83%A8%E6%BB%A1%E8%B6%B3-laplace-%E6%96%B9%E7%A8%8B"><span class="nav-number">1.</span> <span class="nav-text">验证 \(f(z)\) 的实部和虚部满足 Laplace 方程</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -208,7 +210,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/FFT-%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E5%8D%95%E8%83%9E%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/%E5%A4%8D%E5%88%86%E6%9E%90-%E4%BB%8E%E6%B1%82%E8%A7%A3%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B%E5%87%BA%E5%8F%91/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -221,12 +223,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="FFT 方法求解单胞问题 | 邱小伙的博客">
+      <meta itemprop="name" content="复分析-从求解微分方程出发 | 邱小伙的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          FFT 方法求解单胞问题
+          复分析-从求解微分方程出发
         </h1>
 
         <div class="post-meta-container">
@@ -238,7 +240,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-05-06 16:14:55 / 修改时间：16:15:27" itemprop="dateCreated datePublished" datetime="2024-05-06T16:14:55+08:00">2024-05-06</time>
+      <time title="创建时间：2024-05-19 21:44:59 / 修改时间：23:37:31" itemprop="dateCreated datePublished" datetime="2024-05-19T21:44:59+08:00">2024-05-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -246,7 +248,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
         </span>
     </span>
 
@@ -266,175 +268,120 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><p>参考文献：MOULINEC H, SUQUET P. A numerical method for computing the
-overall response of nonlinear composites with complex
-microstructure[J/OL]. Computer Methods in Applied Mechanics and
-Engineering, 1998, 157(1-2): 69-94. DOI:<span class="exturl" data-url="aHR0cHM6Ly9kb2kub3JnLzEwLjEwMTYvUzAwNDUtNzgyNSg5NykwMDIxOC0x">10.1016/S0045-7825(97)00218-1<i class="fa fa-external-link-alt"></i></span>.</p>
-<h2 id="力学列式">力学列式</h2>
-<p>对于非均质线弹性材料，其模量为 <span
-class="math inline">\(\mathbb{L}:Y \mapsto
-\mathbb{S}^4\)</span>，单胞上的应变与应力为 <span
-class="math inline">\(\varepsilon, \sigma:Y \mapsto
-\mathbb{S}^2\)</span>，在单胞上满足无体力的平衡方程： <span
+    <div class="post-body" itemprop="articleBody"><p><strong><em>参考文献: Gilbert Strang, Introduction to applied
+mathematics</em></strong></p>
+<p>在这篇文章中, 我将从求解微分方程出发, 只引入必要的复分析方法作为工具.
+此外, 因为复数 <span class="math inline">\(z\)</span> <span
 class="math display">\[
-\nabla \cdot \sigma = 0
-\tag{1}
-\]</span> 以及线弹性本构方程 <span class="math display">\[
-\sigma = \mathbb{L} : \varepsilon
-\tag{2}
-\]</span> 引入一个参考均质模量 <span class="math inline">\(\mathbb{L}^0
-\in \mathbb{S}^2\)</span>，并定义 <span class="math display">\[
-\delta \mathbb{L} \triangleq \mathbb{L}- \mathbb{L}^0
-\]</span> 以及极化应力 <span class="math inline">\(p:Y \mapsto
-\mathbb{S}^2\)</span> <span class="math display">\[
-p \triangleq \delta \mathbb{L}:\varepsilon
-\]</span> <span id="more"></span>代入本构方程（2）中得到 <span
-class="math display">\[
-\sigma = p + \mathbb{L}^{0}:\varepsilon
-\]</span> 为了定解上述方程，我们将应变 <span
-class="math inline">\(\varepsilon(x)\)</span> 分解为远场处的常值应变
-<span class="math inline">\(\varepsilon_0 \in \mathbb{S}^2\)</span>
-和满足周期性边界条件的应变扰动 <span
-class="math inline">\(\tilde{\varepsilon}:\Omega \mapsto
-\mathbb{S}^2\)</span> ： <span class="math display">\[
-\varepsilon \triangleq \tilde{\varepsilon} + \varepsilon^0
-\]</span> 由此得到 <span class="math display">\[
-\sigma = p + \mathbb{L}^{0}:\tilde{\varepsilon} +
-\mathbb{L}^{0}:\varepsilon^{0}
-\]</span> 再代入到平衡方程（1）中得到 <span class="math display">\[
-\nabla \cdot  \left( \mathbb{L}^{0}:\tilde{\varepsilon} \right) + \nabla
-\cdot p = 0
-\]</span> 写成关于位移 <span class="math inline">\(u:Y \mapsto
-\mathbb{R}^3\)</span> 的分量形式 <span class="math display">\[
-L_{ijkl}^0 \tilde{u}_{k,lj} + p_{ij,j} = 0
-\tag{3}
-\]</span> 若求得偏微分方程的基本解 <span class="math display">\[
-L_{ijkl}^0 G_{nk,lj}(x-x^{\prime}) + \delta_{in} \delta(x-x^{\prime}) =
+z = x + iy, \quad x,y \in \mathbb{R}
+\]</span> 只包含两个实数变量,
+所以方程的定解域也限制在二维平面上.<span id="more"></span></p>
+<p>待求解的微分方程为 Laplace 方程: <span class="math display">\[
+\frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} =
 0
-\]</span> 那么位移场可以表示为基本解和极化应力的卷积形式。对式（3）进行
-Fourier 变换得到 <span class="math display">\[
-\xi_j\xi_l L_{ijkl}^{0}~ \hat{\tilde u}_{k}(\xi) = i\xi_j~
-\hat{p}_{ij}(\xi)
-\tag{4}
-\]</span> 这里用到的 Fourier 变换定义为 <span class="math display">\[
-\mathscr{F}[f(x)](\xi) = \hat{f}(\xi) \triangleq
-\int_{\mathbb{R}^3} f(x) e^{-i \xi \cdot x} \mathrm{d}x
-\]</span> 以及相应的 Fourier 逆变换 <span class="math display">\[
-\mathscr{F}^{-1}[f(\xi)](x) = \check{f}(\xi) \triangleq
-\frac{1}{(2\pi)^3}\int_{\mathbb{R}^3} f(\xi) e^{i \xi \cdot x}
-\mathrm{d}\xi
-\]</span> 定义关于代数方程（4）的系数矩阵以及其它相关量 <span
+\]</span> 我们断言: <strong>函数 <span class="math inline">\(f(z) = f(x
++ iy)\)</span> 自动满足 Laplace 方程.</strong> 这是因为根据链式法则, 对
+<span class="math inline">\(x\)</span> 的二阶偏导数为 <span
 class="math display">\[
-K_{ik} \triangleq \xi_j\xi_l L_{ijkl}, \quad
-N_{ik} \triangleq \mathrm{adj}(K_{ik}), \quad
-D \triangleq \det(K_{ik})
-\]</span> 由此方程（4）的解可以表示为 <span class="math display">\[
-\hat{\tilde u}_{k}=  i\xi_j~ D^{-1} N_{ki} \hat{p}_{ij}
+\frac{\partial f}{\partial x} = \frac{\mathrm{d}f}{\mathrm{d}z}
+\frac{\partial z}{\partial x}
+= \frac{\mathrm{d}f}{\mathrm{d}z}, \quad
+\frac{\partial^2 f}{\partial x^2} = \frac{\mathrm{d}^2f}{\mathrm{d}z^2}
+\frac{\partial z}{\partial x}
+= \frac{\mathrm{d}^2f}{\mathrm{d}z^2}
+\]</span> 而在对 <span class="math inline">\(y\)</span> 求偏导数时,
+会多出 <span class="math inline">\(i^2 = -1\)</span> 的因子: <span
+class="math display">\[
+\frac{\partial f}{\partial y} = \frac{\mathrm{d}f}{\mathrm{d}z}
+\frac{\partial z}{\partial y}
+= i\frac{\mathrm{d}f}{\mathrm{d}z}, \quad
+\frac{\partial^2 f}{\partial y^2} = (i^2)
+\frac{\mathrm{d}^2f}{\mathrm{d}z^2}
+= - \frac{\mathrm{d}^2f}{\mathrm{d}z^2}
+\]</span> 所以有 <span class="math display">\[
+i \frac{\partial f}{\partial x} = \frac{\partial f}{\partial y}, \quad
+\frac{\partial^2 f}{\partial x^2} + \frac{\partial^2 f}{\partial y^2} =
+0
+\tag{1}
+\]</span> 但是, <span class="math inline">\(f(x+iy)\)</span>
+给出的是复数形式的解, 而我们感兴趣的是实数域 <span
+class="math inline">\((x,y) \in \mathbb{R}^2\)</span> 上的解. 事实上,
+如果我们将函数 <span class="math inline">\(f\)</span>
+写成实数与虚数两部分: <span class="math display">\[
+f(x+iy) = u(x,y) + i v(x,y), \quad u,v: \mathbb{R}^2 \mapsto \mathbb{R}
+\]</span> 那么 <span class="math inline">\(u\)</span>, <span
+class="math inline">\(v\)</span> 均满足 Laplace 方程.</p>
+<div class="note primary no-icon"><h5 id="验证-fz-的实部和虚部满足-laplace-方程">验证 <span
+class="math inline">\(f(z)\)</span> 的实部和虚部满足 Laplace 方程</h5>
+<p><span class="math display">\[
+\frac{\partial^2 f}{\partial x^2} = \frac{\partial^2 u}{\partial x^2} +
+i \frac{\partial^2 v}{\partial x^2}, \quad
+\frac{\partial^2 f}{\partial y^2} = \frac{\partial^2 u}{\partial y^2} +
+i \frac{\partial^2 v}{\partial y^2}, \quad
+\Delta f = \Delta u + i\Delta v
 \]</span></p>
-<p>为了接下来可以得到具有对称性的算子，我们利用 <span
-class="math inline">\(\hat{p}_{ij}\)</span> 的对称性将上式写为 <span
-class="math display">\[
-\hat{\tilde u}_{k} =  \frac{i}{2}~ D^{-1}
-\left( \xi_j N_{ki} + \xi_i N_{kj} \right)
-\hat{p}_{ij}
-\]</span> 所以应变扰动 <span
-class="math inline">\(\tilde{\varepsilon}\)</span> 的 Fourier 变换为
+<p>而函数 <span class="math inline">\(f\)</span> 满足 Laplace 方程, 所以
 <span class="math display">\[
-\hat{\tilde\varepsilon}_{ij} = \frac{i}{2} (\xi_i \hat{\tilde u}_{j} +
-\xi_j \hat{\tilde u}_{i})
-= - \frac{1}{4} D^{-1}
-\left( \xi_l N_{ik} + \xi_k N_{il} + \xi_l N_{jk} + \xi_k N_{jl} \right)
-\hat{p}_{kl}
-\tag{5}
-\]</span>
-因此我们通过上式将极化应力与应变扰动相关联。为了写成更简洁的形式，定义
-<span class="math inline">\(\hat{\Gamma}_{ijkl}\)</span> 为 <span
+\Re (\Delta f)=0, \quad
+\Im (\Delta f)=0
+\]</span> 这就得到 <span class="math display">\[
+\Delta u = 0, \quad \Delta v = 0
+\]</span> 我们还可以验算一个不平凡的算例, 比如 <span
+class="math inline">\(f(z) = z^3\)</span>, <span class="math display">\[
+f(x+iy) = x^3-3xy^2 + i (3x^2y - y^3)
+\]</span> 所以, 函数 <span class="math inline">\(f\)</span> 的实部 <span
+class="math inline">\(u(x,y) = x^3 - 3xy^2\)</span> 验算结果为 <span
 class="math display">\[
-\hat{\Gamma}_{ijkl} \triangleq \frac{1}{4} D^{-1}
-\left( \xi_l N_{ik} + \xi_k N_{il} + \xi_l N_{jk} + \xi_k N_{jl} \right)
-\]</span> 所以式（5）可以写成如下更加紧凑的形式： <span
+\frac{\partial^2 u}{\partial x^2} = 6x, \quad \frac{\partial^2
+u}{\partial y^2} = -6x
+\Rightarrow \Delta u = 0
+\]</span> 以及函数 <span class="math inline">\(f\)</span> 的虚部 <span
+class="math inline">\(v(x,y) = 3x^2y - y^3\)</span> 验算结果为 <span
 class="math display">\[
-\hat{\tilde\varepsilon}_{ij}
-= - \hat{\Gamma}_{ijkl} \hat{p}_{kl}
-\]</span> 或者写成卷积的形式： <span class="math display">\[
-\tilde\varepsilon_{ij}
-= - \Gamma_{ijkl} * p_{kl}
-\]</span> 最终我们得到关于应变 <span
-class="math inline">\(\varepsilon\)</span> 的积分方程： <span
+\frac{\partial^2 v}{\partial x^2} = 6y, \quad \frac{\partial^2
+v}{\partial y^2} = -6y
+\Rightarrow \Delta v = 0
+\]</span> 最后一个例子是在求解圆盘上的 Laplace 方程时,
+我们给出解的级数形式为 <span class="math display">\[
+u(r,\theta) = \frac{a_0}{2} + a_1 r \cos \theta + b_1 r \sin \theta
++ a_2 r^2 \cos 2\theta + b_2 r^2 \sin 2\theta
++ \cdots
+\]</span> 级数项 <span class="math inline">\(r^n\cos n \theta\)</span>,
+<span class="math inline">\(r^n \sin n\theta\)</span> 自动满足 Laplace
+方程, 这是因为它们分别来自于 <span class="math inline">\(f(z) =
+z^n\)</span> 的实部和虚部.</p>
+</div>
+<p>需要强调的是, <strong>并不是所有的函数都可以写成某一个关于复数 <span
+class="math inline">\(z\)</span> 函数的实部或者虚部</strong>, 这样的话,
+所有的函数都会满足 Laplace 方程, 那么求解该方程的行为就变成平凡的了.
+例如函数 <span class="math inline">\(u(x,y) = x^2 + y^2\)</span>,
+可以快速验证 <span class="math inline">\(\Delta u =4 \neq
+0\)</span>.</p>
+<div class="note info no-icon"><p>任意函数 <span class="math inline">\(f(x,y)\)</span> 均可以表示为
+<span class="math inline">\(f(z,\bar z)\)</span>, 如果使用变量替换 <span
 class="math display">\[
-\varepsilon_{ij} = \varepsilon_{ij}^{0} - \Gamma_{ijkl} * (\delta
-L_{klmn} \varepsilon_{mn})
-\]</span></p>
-<p>若参考材料为各项同性，其 Lame 系数和剪切模量分别为 <span
-class="math inline">\(\lambda^0\)</span> 和 <span
-class="math inline">\(\mu^0\)</span>，那么可以显式地写出相空间中 <span
-class="math inline">\(\hat{\Gamma}_{ijkl}^0\)</span>： <span
-class="math display">\[
-\hat{\Gamma}_{ijkl}^{0}
-=\frac{1}{4 \mu^0|\xi|^2}
-\left(\delta_{ik} \xi_j \xi_l + \delta_{il} \xi_j \xi_k
-+\delta_{jk} \xi_i \xi_l + \delta_{jl} \xi_i \xi_k \right)
--\frac{\lambda^0+\mu^0}{\mu^0\left(\lambda^0+2 \mu^0\right)}
-\frac{\xi_i \xi_j \xi_k \xi_l}{|\xi|^4} .
-\]</span></p>
-<h2 id="算法">算法</h2>
-<table>
-<colgroup>
-<col style="width: 20%" />
-<col style="width: 80%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td style="text-align: right;">初始化</td>
-<td><span class="math inline">\(\varepsilon^{(0)}(x) = \varepsilon^0,
-\quad \sigma^{(0)}(x) = \mathbb{L}(x):\varepsilon^{(0)}(x), \quad
-\forall x \in Y\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">第 <span
-class="math inline">\(i+1\)</span> 次迭代</td>
-<td>已知 <span class="math inline">\(\varepsilon^{(i)}\)</span> 与 <span
-class="math inline">\(\sigma^{(i)}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">(a)</td>
-<td><span class="math inline">\(p^{(i)}(x) = \sigma^{(i)}(x) -
-\mathbb{L}_0 : \varepsilon^{(i)}(x)\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">(b)</td>
-<td><span class="math inline">\(\hat{p}^{(i)} =
-\mathscr{F}[p^{(i)}]\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">(c)</td>
-<td>收敛性测试，<span class="math inline">\(e^{(i)} &lt;
-\mathrm{Tol}\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">(d)</td>
-<td><span class="math inline">\(\hat{\varepsilon}^{(i+1)}(\xi) =
--\hat{\Gamma}^{0}(\xi):\hat{p}^{(i)}\)</span></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">(e)</td>
-<td><span class="math inline">\(\varepsilon^{(i+1)}(\xi) =
-\mathscr{F}^{-1}[\hat{\varepsilon}^{(i+1)}(\xi)]\)</span></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">(f)</td>
-<td><span class="math inline">\(\sigma^{(i+1)} =
-\mathbb{L}(x):\varepsilon^{(i+1)}(x)\)</span></td>
-</tr>
-</tbody>
-</table>
-<p>当得到的应力场 <span class="math inline">\(\sigma^{(i+1)}\)</span>
-满足平衡方程时算法收敛，因此检验算法收敛性的误差公式为 <span
-class="math display">\[
-e^{(i)} = \frac{\left( \langle \| \nabla \cdot \sigma^{(i)} \|^2 \rangle
-\right)^{\frac{1}{2}}}
-{\langle \| \sigma^{(i)} \| \rangle}
-\]</span></p>
+x = \frac{z + \bar z}{2}, \quad y = \frac{z - \bar z}{2i}
+\]</span> 例如 <span class="math inline">\(u(x,y)=x^2 + y^2\)</span>
+写成关于 <span class="math inline">\((z, \bar z)\)</span> 的函数为 <span
+class="math inline">\(u(z, \bar z) = z \bar z\)</span>.</p>
+</div>
+<p>现在的问题是, 如果给定 <span class="math inline">\(u\)</span> 和
+<span class="math inline">\(v\)</span>, 怎样才能确定组合 <span
+class="math inline">\(u + iv\)</span> 是不是一个解析函数? 这就需要用到式
+(1) 中一阶导数的结果: <span class="math display">\[
+i \frac{\partial f}{\partial x} = \frac{\partial f}{\partial y}
+\]</span> 将 <span class="math inline">\(f = u + iv\)</span> 代入得到
+<span class="math display">\[
+- \frac{\partial v}{\partial x} + i \frac{\partial u}{\partial x}
+= \frac{\partial u}{\partial y} + i\frac{\partial v}{\partial y}
+\]</span> 令方程左右两端实部与虚部分别相等, 就得到
+<strong>Cauchy-Riemann 条件:</strong> <span class="math display">\[
+\boxed{
+- \frac{\partial v}{\partial x} = \frac{\partial u}{\partial y}, \quad
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}
+}
+\]</span> 最终总结如下:</p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202405192337811analytical.png" alt="image-20240519233712661" style="zoom: 67%;" /></p>
 
     </div>
 
@@ -444,22 +391,19 @@ e^{(i)} = \frac{\left( \langle \| \nabla \cdot \sigma^{(i)} \|^2 \rangle
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/FFT/" rel="tag"># FFT</a>
-              <a href="/tags/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" rel="tag"># 多尺度</a>
+              <a href="/tags/%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" rel="tag"># 偏微分方程</a>
+              <a href="/tags/%E8%A7%A3%E6%9E%90%E6%96%B9%E6%B3%95/" rel="tag"># 解析方法</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/math/%E6%B3%8A%E6%9D%BE%E5%85%AC%E5%BC%8F%E6%B1%82%E8%A7%A3-Laplace-%E6%96%B9%E7%A8%8B/" rel="prev" title="泊松公式求解 Laplace 方程">
-                  <i class="fa fa-angle-left"></i> 泊松公式求解 Laplace 方程
+                <a href="/math/Bessel-%E5%87%BD%E6%95%B0/" rel="prev" title="Bessel 函数">
+                  <i class="fa fa-angle-left"></i> Bessel 函数
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/math/%E7%A6%BB%E6%95%A3%E5%8D%B7%E7%A7%AF%E5%AE%9A%E7%90%86/" rel="next" title="离散卷积定理">
-                  离散卷积定理 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
