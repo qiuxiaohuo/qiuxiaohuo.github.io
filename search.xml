@@ -5913,4 +5913,132 @@ alt="typora 上传图片设置" />
         <tag>typora</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Chebyshev 多项式</title>
+    <url>/math/Chebyshev-%E5%A4%9A%E9%A1%B9%E5%BC%8F/</url>
+    <content><![CDATA[<p>Chebyshev 多项式的引入需要用关于 <span class="math inline">\(\cos
+\theta\)</span> 的多项式表示 <span class="math inline">\(\cos
+n\theta\)</span>, 这可以通过 Euler 公式得到: <span
+class="math display">\[
+\cos n\theta + i\sin n \theta = e^{i n \theta}
+= (\cos \theta + i\sin \theta)^{n}
+= \sum_{k=0}^{n} C_{n}^{k}(i\sin \theta)^{k}(\cos\theta)^{n-k}
+\]</span> 因此, <span class="math inline">\(\cos n\theta\)</span>
+等于上式右端的实数部分: <span class="math display">\[
+\begin{aligned}
+\cos n\theta &amp;= \mathrm{Re}~ \sum_{k=0}^{n} C_{n}^{k}(i)^{k}(\sin
+\theta)^{k}(\cos\theta)^{n-k}
+= \sum_{2k\leq n} C_{n}^{2k}(-1)^{k}(\sin
+\theta)^{2k}(\cos\theta)^{n-2k} \\
+&amp;= \sum_{2k\leq n} C_{n}^{2k}(-1)^{k}(1 -
+\cos^2\theta)^{k}(\cos\theta)^{n-2k}
+\triangleq  T_{n}(\cos \theta)
+\end{aligned}
+\tag{1}
+\]</span> 而 Chebyshev 多项式就等于 <span
+class="math inline">\(T_n\)</span>, <span
+class="math inline">\(n=1,2,\ldots\)</span><span id="more"></span></p>
+<div class="note primary no-icon"><h5 id="计算-chebyshev-多项式">计算 Chebyshev 多项式</h5>
+<p><span class="math inline">\(T_0 = 1\)</span>, <span
+class="math inline">\(T_1 = x\)</span>, <span class="math inline">\(T_2
+= 2x^2 - 1\)</span></p>
+<p><span class="math inline">\(n=3\)</span> 时, <span
+class="math display">\[
+\cos 3\theta = (\cos\theta)^3 + 3(-1)(1-\cos^2\theta)\cos\theta
+= 4(\cos\theta)^3 - 3\cos\theta \\
+\Rightarrow T_3 = 4x^3 -3x
+\]</span> <span class="math inline">\(n = 4\)</span> 时, <span
+class="math display">\[
+\cos 4\theta = (\cos\theta)^4 + 6(-1)(1-\cos^2\theta)\cos^2\theta +
+(1-\cos^2\theta)^2
+= 8(\cos\theta)^4 - 8(\cos\theta)^2 + 1 \\
+\Rightarrow T_4 = 8x^4 -8x^2 + 1
+\]</span></p>
+</div>
+<p>接下来我们希望得到 Chebyshev 多项式的正交性,
+由三角函数之间的正交性可以得到: <span class="math display">\[
+\frac{1}{\pi}\int_{0}^{2\pi} \cos n \theta \cos k \theta
+~\mathrm{d}\theta
+= \begin{cases}
+1, \quad n=k\\
+0, \quad n \neq k
+\end{cases}
+\]</span> 根据式 (1), 将上式积分项写成关于 <span
+class="math inline">\(\cos\theta\)</span> 函数的形式: <span
+class="math display">\[
+\frac{1}{\pi}\int_{0}^{2\pi} \cos n \theta \cos k \theta
+~\mathrm{d}\theta
+= \frac{1}{\pi}\int_{0}^{2\pi} T_n(\cos\theta) T_k(\cos\theta)
+~\mathrm{d}\theta
+= \frac{2}{\pi}\int_{0}^{\pi} T_n(\cos\theta) T_k(\cos\theta)
+~\mathrm{d}\theta
+\]</span> 作换元 <span class="math inline">\(x \doteq
+\cos\theta\)</span>, 那么 <span class="math display">\[
+\mathrm{d} x = -\sin\theta ~\mathrm{d}\theta = -\sqrt{1-x^2}
+~\mathrm{d}\theta, \quad
+\theta|_{0}^{\pi} \rightarrow x|_{1}^{-1}
+\]</span> 所以得到 <span class="math display">\[
+\frac{2}{\pi}\int_{0}^{\pi} T_n(\cos\theta) T_k(\cos\theta)
+~\mathrm{d}\theta
+= \frac{2}{\pi}\int_{-1}^{1} T_n(x) T_k(x)
+\frac{\mathrm{d}x}{\sqrt{1-x^2}}
+\tag{$\star$}
+\]</span> 式 (<span class="math inline">\(\star\)</span>) 表示,
+Chebyshev 多项式是在带权重意义下积分正交, 权函数 <span
+class="math inline">\(w \triangleq 1/\sqrt{1-x^2}\)</span>.</p>
+<p>另一种推导 Chebyshev 多项式的方法是,
+将正交多项式看作是某个<strong>对称微分方程的特征函数</strong>.
+类似于对称矩阵的特征向量是正交的, 对称微分方程的特征函数也是正交的.
+Chebyshev 多项式对应的微分方程为 <span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d}x} \left( \sqrt{1-x^2}
+\frac{\mathrm{d}u}{\mathrm{d}x} \right)
+= \frac{\lambda}{\sqrt{1-x^2}} u, \quad\text{or}\quad
+\frac{\mathrm{d}~}{\mathrm{d}x} \left( w^{-1}
+\frac{\mathrm{d}u}{\mathrm{d}x} \right)
+= \lambda w u
+\tag{2}
+\]</span> <div class="note primary no-icon"><h5 id="验证-chebyshev-多项式满足微分方程-2">验证 Chebyshev
+多项式满足微分方程 （2）</h5>
+<p><span class="math inline">\(T_0\)</span> 对应特征值为 <span
+class="math inline">\(0\)</span>, <span
+class="math inline">\(T_1\)</span> 对应特征值为 <span
+class="math inline">\(-1\)</span>.</p>
+<p>将 <span class="math inline">\(u=T_2(x)\)</span>​ 代入式 (2) 左端得到
+<span class="math display">\[
+\begin{aligned}
+LHS
+&amp;= \frac{\mathrm{d}~}{\mathrm{d}x} \left( \sqrt{1-x^2}
+\frac{\mathrm{d}~}{\mathrm{d}x}\underbrace{(2x^2-1)}_{T_2(x)} \right)
+= \frac{\mathrm{d}~}{\mathrm{d}x} \left( \sqrt{1-x^2} 4x \right)\\
+&amp;= \frac{-x}{\sqrt{1-x^2}}4x + \sqrt{1-x^2}4 = \frac{-4x^2 + 4 -
+4x^2}{\sqrt{1-x^2}} \\
+&amp;= \frac{-4}{\sqrt{1-x^2}} \underbrace{(2x^2-1)}_{T_3(x)} \equiv
+RHS(\lambda=-4)
+\end{aligned}
+\]</span> 将 <span class="math inline">\(u=T_3(x)\)</span> 代入式 (2)
+左端, 得到 <span class="math display">\[
+\begin{aligned}
+LHS
+&amp;= \frac{\mathrm{d}~}{\mathrm{d}x} \left( \sqrt{1-x^2}
+\frac{\mathrm{d}~}{\mathrm{d}x}\underbrace{(4x^3-3x)}_{T_3(x)} \right)
+= \frac{\mathrm{d}~}{\mathrm{d}x} \left( \sqrt{1-x^2} (12x^2-3)
+\right)\\
+&amp;= \frac{-x}{\sqrt{1-x^2}}(12x^2 - 3) + \sqrt{1-x^2}24x =
+\frac{-12x^3 + 3x + 24x - 24x^3}{\sqrt{1-x^2}}\\
+&amp;= \frac{-9}{\sqrt{1-x^2}} \underbrace{(4x^3-3x)}_{T_3(x)} \equiv
+RHS(\lambda=-9)
+\end{aligned}
+\]</span> 将 <span class="math inline">\(u=T_4(x)\)</span> 代入式 (2)
+左端得到 <span class="math display">\[
+LHS \equiv RHS(\lambda = -16)
+\]</span></p>
+</div></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>正交多项式</tag>
+      </tags>
+  </entry>
 </search>
