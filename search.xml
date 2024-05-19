@@ -6130,4 +6130,113 @@ u_{yy} = \frac{1}{r}u_r + \frac{1}{r^2}u_{\theta\theta}
         <tag>偏微分方程</tag>
       </tags>
   </entry>
+  <entry>
+    <title>Bessel 函数</title>
+    <url>/math/Bessel-%E5%87%BD%E6%95%B0/</url>
+    <content><![CDATA[<p><strong><em>参考文献: Gilbert Strang, Introduction to applied
+mathematics</em></strong></p>
+<p>Bessel 函数是求解二维圆形区域上的振型方程引入的, 振型方程为 <span
+class="math display">\[
+\Delta u + \lambda u = 0, \quad
+u=0 \quad\text{on}\quad B(1,0)
+\]</span> 写成极坐标的形式为 <span class="math display">\[
+\frac{\partial^2 u}{\partial r^2}
++ \frac{1}{r}\frac{\partial u}{\partial r}
++ \frac{1}{r^2}\frac{\partial^2 u}{\partial \theta^2}
++ \lambda u = 0
+\tag{1}
+\]</span> 如果将极坐标上的方程解 <span
+class="math inline">\(u(r,\theta)\)</span> 写成分离变量的形式, <span
+class="math inline">\(u(r,\theta) = A(\theta)B(r)\)</span>​,
+代入到上述方程中 <span class="math display">\[
+AB^{\prime\prime} + \frac{1}{r}AB^{\prime} +
+\frac{1}{r^2}A^{\prime\prime}B + \lambda AB = 0
+\]</span> 方程乘 <span class="math inline">\(r^2\)</span>,
+然后将不同变量的函数分离, 并分别放在方程两侧得到 <span
+class="math display">\[
+\frac{r^2 B^{\prime\prime} + r B^{\prime} + \lambda r^2 B}{B} (r) = -
+\frac{A^{\prime\prime}}{A~~} (\theta)
+\tag{2}
+\]</span> 等号两边的函数依赖于不同的独立变量, 并且等号恒成立,
+这就不得不要求方程两边应该等于一个相同的常数 <span
+class="math inline">\(C\)</span>. 常数 <span
+class="math inline">\(C\)</span> 的确定需要观察方程 (1) 的边界条件:
+<span class="math inline">\(A(\theta)\)</span> 是周期为 <span
+class="math inline">\(2\pi\)</span> 的函数, 因此常数 <span
+class="math inline">\(C\)</span> 必须大于等于 0 (否则依指数衰减), 且等于
+<span class="math inline">\(n^2\)</span>, <span
+class="math inline">\(n\)</span> 为非零整数(否则就不能以 <span
+class="math inline">\(2\pi\)</span> 为周期). 式 (2) 右端方程解得 <span
+class="math display">\[
+A = c_1 e^{-i n\theta} + c_2 e^{-i n\theta} \quad 或者 \quad
+A = a_1 \cos n\theta + a_2 \sin n\theta
+\]</span> 式 (2) 左端满足的微分方程, 以及根据式 (1) 得到的对 <span
+class="math inline">\(B\)</span> 的约束 <span class="math display">\[
+r^2 B^{\prime\prime} + r B^{\prime} + \lambda r^2 B + n^2 B = 0, \quad
+B(1) = 0
+\tag{3}
+\]</span> 这是一个变系数二阶线性齐次常微分方程,
+方程的解没办法直接猜出来, 并且还要满足约束 <span
+class="math inline">\(B(1) = 0\)</span>, 所以构造 <span
+class="math inline">\(B\)</span> 为关于 <span
+class="math inline">\(r\)</span> 的级数解形式: <span
+class="math display">\[
+\mathrm{ANSATZ}\quad B(r) = \sum c_m r^m
+\]</span> 代入到方程 (3) 当中, 得到 <span class="math display">\[
+\sum c_m m(m-1) r^m + \sum c_m m r^m + \sum \lambda c_m  r^{m+2} + \sum
+n^2 c_m r^m \equiv 0
+\]</span> 整理一下级数项 <span class="math inline">\(r^m\)</span>
+的系数得到 <span class="math display">\[
+\sum \left[ c_m m(m-1) + c_m m + \lambda c_{m-2} + n^2 c_m \right] r^m
+\equiv 0
+\]</span> 级数项系数应恒等于 0, 于是我们就得到了关于系数 <span
+class="math inline">\(c_m\)</span> 的递归方程 <span
+class="math display">\[
+c_m = \frac{-\lambda}{m^2 + n^2} c_{m-2}
+\]</span> 特别的, 如果我们令 <span class="math inline">\(n:=0\)</span>
+(此时 <span class="math inline">\(A(\theta) \equiv
+\mathrm{Const}\)</span>, <span class="math inline">\(u(r,\theta) =
+B(r)\)</span> 为径向对称函数), 以及 <span class="math inline">\(c_0 =
+1\)</span>, <span class="math inline">\(c_1 = 0\)</span>, 就得到 Bessel
+方程 <span class="math display">\[
+B(r) = 1 - \frac{\lambda}{2^2} r^2 + \frac{\lambda^2}{2^2 4^2} r^4
+- \frac{\lambda^3}{2^2 4^2 6^2} r^6 + \cdots
+\tag{4}
+\]</span> 令上式 <span class="math inline">\(\lambda=1\)</span>,
+就得到零阶 Bessel 函数 (零阶对应 <span
+class="math inline">\(n=0\)</span>​) <span class="math display">\[
+J_{0}(r) \triangleq 1 - \frac{1}{2^2} r^2 + \frac{1}{2^2 4^2} r^4
+- \frac{1}{2^2 4^2 6^2} r^6 + \cdots
+\]</span> 以及 <span class="math inline">\(B(r) =
+J_{0}(\sqrt{\lambda}~r)\)</span>.</p>
+<p>现在我们还没有确定式 (4) 中 <span
+class="math inline">\(\lambda\)</span> 可以取哪些数值. <span
+class="math inline">\(\lambda\)</span> 应满足 <span
+class="math inline">\(B(1)=0\)</span>, 也即 <span
+class="math display">\[
+B(1) = J_0(\sqrt{\lambda}) = 1 - \frac{\lambda}{2^2} +
+\frac{\lambda^2}{2^2 4^2}
+- \frac{\lambda^3}{2^2 4^2 6^2} + \cdots
+= \sum_{n=0}^{\infty} \frac{(-1)^n}{(n! 2^n)^2} \lambda^n
+= 0
+\]</span> 上述方程根没有解析表达式, 但是可以类比余弦函数 <span
+class="math display">\[
+\cos x = \sum_{n=0}^{\infty} \frac{(-1)^n}{(2n)!} x^{2n}
+\]</span> 若 <span class="math inline">\(\cos \sqrt{\lambda} =
+0\)</span>, 那么 <span class="math inline">\(\sqrt{\lambda} = \pi/2,
+3\pi/2, 5\pi/2\ldots\)</span>. 使得 <span
+class="math inline">\(J_0(\sqrt{\lambda}) = 0\)</span> 的取值为 <span
+class="math display">\[
+\sqrt{\lambda} = 2.4,~ 5.5,~ 8.65,~ 11.8,~ 14.9, ...
+\]</span> Bessel 函数的前 <span class="math inline">\(n\)</span>
+项和的图像为</p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202405192100470Bessel.png" alt="image-20240519210015336" style="zoom: 50%;" /></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>偏微分方程</tag>
+      </tags>
+  </entry>
 </search>
