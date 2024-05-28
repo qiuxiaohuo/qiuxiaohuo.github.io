@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="4IgN6N71kznUS9PIMp6itE5oUv0s3hzVzFzFOpC-4Ig">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="参考文献: Gilbert Strang, Introduction to applied mathematics 解析函数在曲线上的积分: Cauchy 定理 首先, 我们先计算一些简单的复积分例子做一下热身: 例 1 函数 \(f(z) &#x3D; z^2\) 在圆 \(\odot:z&#x3D;Re^{i \theta}\) 上的积分为 \[ \int_{\odot} f(z) ~\mathrm">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一些复积分中的定理和公式">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/math/complex-analysis/%E4%B8%80%E4%BA%9B%E5%A4%8D%E7%A7%AF%E5%88%86%E4%B8%AD%E7%9A%84%E5%AE%9A%E7%90%86%E5%92%8C%E5%85%AC%E5%BC%8F/index.html">
+<meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="参考文献: Gilbert Strang, Introduction to applied mathematics 解析函数在曲线上的积分: Cauchy 定理 首先, 我们先计算一些简单的复积分例子做一下热身: 例 1 函数 \(f(z) &#x3D; z^2\) 在圆 \(\odot:z&#x3D;Re^{i \theta}\) 上的积分为 \[ \int_{\odot} f(z) ~\mathrm">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202405261829260.png">
+<meta property="article:published_time" content="2024-05-26T08:48:16.000Z">
+<meta property="article:modified_time" content="2024-05-28T02:46:06.988Z">
+<meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="Cauchy 定理">
+<meta property="article:tag" content="Stokes 公式">
+<meta property="article:tag" content="Cauchy 积分公式">
+<meta property="article:tag" content="极值原理">
+<meta property="article:tag" content="Liouville 定理">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202405261829260.png">
+
+
+<link rel="canonical" href="http://qiuxiaohuo.github.io/math/complex-analysis/%E4%B8%80%E4%BA%9B%E5%A4%8D%E7%A7%AF%E5%88%86%E4%B8%AD%E7%9A%84%E5%AE%9A%E7%90%86%E5%92%8C%E5%85%AC%E5%BC%8F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/math/complex-analysis/%E4%B8%80%E4%BA%9B%E5%A4%8D%E7%A7%AF%E5%88%86%E4%B8%AD%E7%9A%84%E5%AE%9A%E7%90%86%E5%92%8C%E5%85%AC%E5%BC%8F/","path":"math/complex-analysis/一些复积分中的定理和公式/","title":"一些复积分中的定理和公式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>一些复积分中的定理和公式 | 邱小伙的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">邱小伙的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E5%87%BD%E6%95%B0%E5%9C%A8%E6%9B%B2%E7%BA%BF%E4%B8%8A%E7%9A%84%E7%A7%AF%E5%88%86-cauchy-%E5%AE%9A%E7%90%86"><span class="nav-number">1.</span> <span class="nav-text">解析函数在曲线上的积分:
+Cauchy 定理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B-1"><span class="nav-number">1.0.0.1.</span> <span class="nav-text">例 1</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B-2"><span class="nav-number">1.0.0.2.</span> <span class="nav-text">例 2</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B-3"><span class="nav-number">1.0.0.3.</span> <span class="nav-text">例 3</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#cauchys-theorem"><span class="nav-number">1.0.0.4.</span> <span class="nav-text">Cauchy&#39;s Theorem</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BE%8B-4"><span class="nav-number">1.0.0.5.</span> <span class="nav-text">例 4</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#cauchy-%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">Cauchy 积分公式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#cauchys-integral-formula"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">Cauchy&#39;s integral formula</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%9E%90%E5%87%BD%E6%95%B0%E7%9A%84%E6%9E%81%E5%80%BC%E5%8E%9F%E7%90%86"><span class="nav-number">2.0.0.2.</span> <span class="nav-text">解析函数的极值原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#liouville-%E5%AE%9A%E7%90%86"><span class="nav-number">2.0.0.3.</span> <span class="nav-text">Liouville 定理</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qiu Xiaohuo"
+      src="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+  <p class="site-author-name" itemprop="name">Qiu Xiaohuo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">46</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">64</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiuxiaohuo"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnFpdXhpYW9odW9AZ21haWwuY29t" title="E-Mail → mailto:qiuxiaohuo@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/complex-analysis/%E4%B8%80%E4%BA%9B%E5%A4%8D%E7%A7%AF%E5%88%86%E4%B8%AD%E7%9A%84%E5%AE%9A%E7%90%86%E5%92%8C%E5%85%AC%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="一些复积分中的定理和公式 | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          一些复积分中的定理和公式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-26 16:48:16" itemprop="dateCreated datePublished" datetime="2024-05-26T16:48:16+08:00">2024-05-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-05-28 10:46:06" itemprop="dateModified" datetime="2024-05-28T10:46:06+08:00">2024-05-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%8D%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">复分析</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p><strong><em>参考文献: Gilbert Strang, Introduction to applied
+mathematics</em></strong></p>
+<h2 id="解析函数在曲线上的积分-cauchy-定理">解析函数在曲线上的积分:
+Cauchy 定理</h2>
+<p>首先, 我们先计算一些简单的复积分例子做一下热身:</p>
+<div class="note primary no-icon"><h5 id="例-1">例 1</h5>
+<p>函数 <span class="math inline">\(f(z) = z^2\)</span> 在圆 <span
+class="math inline">\(\odot:z=Re^{i \theta}\)</span> 上的积分为 <span
+class="math display">\[
+\int_{\odot} f(z) ~\mathrm{d}z
+= \int_{0}^{2\pi} R^2 e^{i2\theta} i R e^{i\theta} ~\mathrm{d}\theta
+= \frac{R^3}{3} \left. e^{i3\theta}\right|_{0}^{2\pi}
+= 0
+\]</span></p>
+<h5 id="例-2">例 2</h5>
+<p>函数 <span class="math inline">\(f(z) = z^{1/2}\)</span> 在圆 <span
+class="math inline">\(\odot:z=Re^{i \theta}\)</span> 上的积分为 <span
+class="math display">\[
+\int_{\odot} f(z) ~\mathrm{d}z
+= \int_{0}^{2\pi} R^{1/2} e^{i\theta/2} i R e^{i\theta}
+~\mathrm{d}\theta
+= \frac{R^{3/2}}{3/2} \left. e^{i3\theta/2}\right|_{0}^{2\pi}
+= -\frac{4}{3}R^{3/2}
+\]</span></p>
+<h5 id="例-3">例 3</h5>
+<p>函数 <span class="math inline">\(f(z) = 1/z\)</span> 在圆 <span
+class="math inline">\(\odot:z=Re^{i \theta}\)</span> 上的积分为 <span
+class="math display">\[
+\int_{\odot} f(z) ~\mathrm{d}z
+= \int_{0}^{2\pi} \frac{1}{R e^{i\theta}} i R e^{i\theta}
+~\mathrm{d}\theta
+= 2\pi i
+\]</span></p>
+</div>
+<span id="more"></span>
+<p>上面的算例当然是特地设计的,
+目的是引出一般的解析函数在闭曲线上的积分定理, 也即 <strong>Cauchy
+定理</strong>:</p>
+<div class="note success no-icon"><h5 id="cauchys-theorem">Cauchy's Theorem</h5>
+<p>If <span class="math inline">\(f\)</span> is analytic in a simply
+connected region containing the closed curve <span
+class="math inline">\(C\)</span>, then <span class="math display">\[
+\int_C f(z) \mathrm{d}z = 0
+\tag{3}
+\]</span></p>
+</div>
+<p>通过该定理, 我们可以直接得到例 1 的结果, 因为圆盘 <span
+class="math inline">\(S:x^2 + y^2 \leq R^2\)</span> 包含曲线 <span
+class="math inline">\(C\)</span>, 并且函数 <span
+class="math inline">\(f(z)=z^2\)</span> 在 <span
+class="math inline">\(S\)</span> 上是解析的.</p>
+<p>例 2 和例 3 是作为 Cauchy 定理的补充说明:</p>
+<ul>
+<li>简单连通区域 (simply connected region)
+是<strong>没有孔洞</strong>的区域. 例如, 函数 <span
+class="math inline">\(f(z)=1/z\)</span> 在区域 <span
+class="math inline">\(1/2 &lt; |z| &lt; 2\)</span> 之间是解析的,
+并且该圆环区域包含圆 <span class="math inline">\(\odot\)</span> , 但是,
+该区域不是简单连通的. 包含圆 <span class="math inline">\(\odot\)</span>
+的区域必定包含点 <span class="math inline">\(z=0\)</span>, 而函数在
+<span class="math inline">\(z=0\)</span> 处不是解析的. 之后会看到,
+正是在这一点的奇异性, 使得 <span class="math inline">\(1/z\)</span>
+在曲线 <span class="math inline">\(C\)</span> 上的积分不等于 0.</li>
+<li>函数 <span class="math inline">\(f\)</span>
+也必须是<strong>单值</strong>的, 否则式 (3) 的积分可能不等于 0,
+我们已经通过例 3 说明了这一点.</li>
+</ul>
+<p>这一定理的证明需要用到解析函数最重要的性质:
+<strong>解析函数的实部与虚部 <span class="math inline">\(u\)</span>
+<span class="math inline">\(v\)</span>​ 满足 Cauchy-Riemann 条件</strong>
+<span class="math display">\[
+\boxed{
+- \frac{\partial v}{\partial x} = \frac{\partial u}{\partial y}, \quad
+\frac{\partial u}{\partial x} = \frac{\partial v}{\partial y}
+}
+\]</span> 我们将复积分 (3) 分成实部与虚部两部分: <span
+class="math display">\[
+\int_C f(z) ~\mathrm{d}z = \int_C (u + iv)(\mathrm{d}x + i\mathrm{d}y)
+= \int_C u\mathrm{d}x - v\mathrm{d}y
++ i\int_C v\mathrm{d}x + u\mathrm{d}y
+\]</span> 第二类曲线积分可以通过 Stokes 公式转换到曲线内部区域上的积分:
+<span class="math display">\[
+\int_C f_1 ~\mathrm{d}x + f_2 ~\mathrm{d}y
+= \iint_{S} \mathrm{curl~}f ~\mathrm{d}x \mathrm{d}y, \quad
+\mathrm{curl~}f = \begin{vmatrix}
+\partial/\partial x &amp; \partial/\partial y \\
+f_1 &amp; f_2
+\end{vmatrix}
+\]</span> 所以 <span class="math display">\[
+\int_C u\mathrm{d}x - v\mathrm{d}y
+= \iint_{S} - \frac{\partial v}{\partial x} - \frac{\partial u}{\partial
+y} ~\mathrm{d}x\mathrm{d}y,\quad
+\int_C v\mathrm{d}x + u\mathrm{d}y
+= \iint_{S} \frac{\partial u}{\partial x} - \frac{\partial v}{\partial
+y} ~\mathrm{d}x\mathrm{d}y
+\]</span> 再根据 Cauchy-Riemann 条件, 就得到了定理式 (3) 的结论.</p>
+<p>需要补充说明的是, Cauchy 定理反过来并不成立, 也即如果某一函数 <span
+class="math inline">\(f\)</span> 对复平面任意环绕闭合曲线 <span
+class="math inline">\(C\)</span> 的积分都等于 0, 这也不能确定函数 <span
+class="math inline">\(f\)</span> 在复平面上就是解析的, 比如说:</p>
+<div class="note primary no-icon"><h5 id="例-4">例 4</h5>
+<p>函数 <span class="math inline">\(f(z) = 1/z^n\)</span>, <span
+class="math inline">\(n&gt;1\)</span> 在圆 <span
+class="math inline">\(\odot:z=Re^{i \theta}\)</span> 上的积分为 <span
+class="math display">\[
+\int_{\odot} f(z) ~\mathrm{d}z
+= i R^{1-n} \int_{0}^{2\pi} e^{i (1-n)\theta} ~\mathrm{d}\theta
+= 0
+\]</span></p>
+</div>
+<h2 id="cauchy-积分公式">Cauchy 积分公式</h2>
+<p>现在我们知道, 解析函数在闭合曲线上的积分结果等于 0.
+接下来我们考察一下, 如果函数在闭合曲线 <span
+class="math inline">\(C\)</span> 围成的区域 <span
+class="math inline">\(S\)</span> 上个别点处不解析
+(这样的点称为<strong>奇点</strong>),
+那么沿闭合曲线积分会得到什么结果.</p>
+<p>从例 2 可以看到, 在 <span class="math inline">\(z=0\)</span>
+处不解析的函数 <span class="math inline">\(f(z) = 1/z\)</span>, 沿圆
+<span class="math inline">\(C\)</span> 的积分等于 <span
+class="math inline">\(2\pi i\)</span>, 与半径 <span
+class="math inline">\(R\)</span> 无关. 所以可以合理地猜想
+(虽然早就知道结论了), 是否对任意的环绕 <span
+class="math inline">\(z=0\)</span> 的闭合曲线 <span
+class="math inline">\(C\)</span>, <span
+class="math inline">\(1/z\)</span> 的积分结果都是一样的呢? 有如下结论:
+<span class="math display">\[
+\boxed{
+\int_C \frac{1}{z-a} ~\mathrm{d}z = 2\pi i, \quad \forall \text{~closed
+curve~} C \text{~around~} a
+}
+\tag{8}
+\]</span> 证明只需要看下面这一张图. 环绕圆 <span
+class="math inline">\(\odot\)</span> 与曲线 <span
+class="math inline">\(C\)</span> 的积分为 <span class="math display">\[
+I = \int_C \frac{1}{z-a} ~\mathrm{d}z
+- \int_{\odot} \frac{1}{z-a} ~\mathrm{d}z
+\]</span> 同样, 该积分也可以看作是环绕图中阴影区域做的积分.
+因为阴影区域不包含奇点, 所以根据 Cauchy 定理, 积分等于 0: <span
+class="math display">\[
+\int_C \frac{1}{z-a} ~\mathrm{d}z - \int_{\odot} \frac{1}{z-a}
+~\mathrm{d}z = 0
+\]</span>
+<img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202405261829260.png" alt="image-20240526182910161" style="zoom: 50%;" /></p>
+<p>上述证明过程同样也可以将例 4 的结果推广到任意环绕奇点的闭合曲线 <span
+class="math inline">\(C\)</span> 上: <span class="math display">\[
+\int_C \frac{1}{(z-a)^n} ~\mathrm{d}z = 0, \quad \forall n&gt;1
+\]</span> 式 (8) 可以说是复积分中最重要的积分,
+因为我们还可以将它进一步地推广. 对任意在区域 <span
+class="math inline">\(S\)</span> 上解析的函数 <span
+class="math inline">\(f(z)\)</span>, <span
+class="math inline">\(f(z)/(z-a)\)</span> 在 <span
+class="math inline">\(z=a\)</span> 处奇异. 但是我们可以构造函数 <span
+class="math inline">\(F(z)\)</span>: <span class="math display">\[
+F(z) = \frac{f(z) - f(a)}{z-a}
+\]</span> 函数 <span class="math inline">\(F\)</span> 在 <span
+class="math inline">\(z=a\)</span> 处是解析的 (用专业的术语说, <span
+class="math inline">\(z=a\)</span> 是函数 <span
+class="math inline">\(F(z)\)</span> 的可去奇点), 因此在区域 <span
+class="math inline">\(S\)</span> 中, 包含奇点 <span
+class="math inline">\(z=a\)</span> 的闭合曲线 <span
+class="math inline">\(C\)</span> 上的积分等于 0: <span
+class="math display">\[
+\int_{C} F(z) ~\mathrm{d}z = 0 \quad \Rightarrow \quad
+\int_C \frac{f(z)}{z-a} ~\mathrm{d}z - 2\pi i f(a) = 0
+\]</span> 这样我们就得到了 <strong>Cauchy 积分公式:</strong></p>
+<div class="note success no-icon"><h5 id="cauchys-integral-formula">Cauchy's integral formula</h5>
+<p>If <span class="math inline">\(a\)</span> is any point inside the
+simple closed curve <span class="math inline">\(C\)</span>, and <span
+class="math inline">\(f\)</span> is analytic inside and on <span
+class="math inline">\(C\)</span>, then <span class="math display">\[
+f(a) = \frac{1}{2\pi i} \int_C \frac{f(z)}{z-a} ~\mathrm{d}z
+\tag{10}
+\]</span></p>
+</div>
+<p>以下摘自教材中对公式 (10) 的解释:</p>
+<blockquote>
+<p>To know <span class="math inline">\(f\)</span> on <span
+class="math inline">\(C\)</span> is to know <span
+class="math inline">\(f\)</span> everywhere inside; there is not much
+freedom for analytic functions. Equation (8) was the special case <span
+class="math inline">\(f=1\)</span>​.</p>
+<p>知道 <span class="math inline">\(f\)</span> 在曲线 <span
+class="math inline">\(C\)</span> 上的值, 就等于知道 <span
+class="math inline">\(f\)</span> 在曲线内部每一点处的值.
+对于解析函数而言, 没有太多可自由发挥的空间. 式 (8) 是上式 <span
+class="math inline">\(f \equiv 1\)</span> 的特例.</p>
+</blockquote>
+<p>知道解析函数 <span class="math inline">\(f\)</span> 在曲线 <span
+class="math inline">\(C\)</span> 上的值, 还可以确定内部每一点的导数值,
+如果将式 (10) 看作是关于 <span class="math inline">\(a\)</span> 的函数,
+两边对 <span class="math inline">\(a\)</span> 求导数得到 <span
+class="math display">\[
+f&#39;(a) = \frac{1}{2\pi i} \int_C \frac{f(z)}{(z-a)^2} ~\mathrm{d}z
+\tag{12}
+\]</span> 由此还可以推广到任意高阶导数. 所以说, 解析函数性质是非常好的,
+但因此解析函数的性态会受到诸多限制. 应用 Cauchy 积分公式,
+可以直接得到一些对一般解析函数定性上的限制, 比如说,</p>
+<div class="note success no-icon"><h5 id="解析函数的极值原理">解析函数的极值原理</h5>
+<p>如果函数 <span class="math inline">\(f\)</span> 是解析的, 那么 <span
+class="math inline">\(|f|\)</span> 的最大值只会在边界上取到.</p>
+</div>
+<p>在这里我们只给出边界为圆的证明. 考虑以点 <span
+class="math inline">\(z=a\)</span> 为中心, 半径为 <span
+class="math inline">\(R\)</span> 的圆 <span
+class="math inline">\(\odot\)</span>, 根据式 (10) 有 <span
+class="math display">\[
+f(a) = \frac{1}{2\pi } \int_{0}^{2\pi} f(a + R e^{i\theta})
+~\mathrm{d}\theta
+\]</span> 上式右端恰好等于 <span class="math inline">\(f(z)\)</span>
+在圆 <span class="math inline">\(\odot\)</span> 上的积分平均. 因此,
+除非在圆 <span class="math inline">\(\odot\)</span> 上 <span
+class="math inline">\(f \equiv \mathrm{const}\)</span>,
+否则必然存在某一点 <span class="math inline">\(z_0\)</span>, 使得 <span
+class="math inline">\(|f(z_0)| &gt; |f(a)|\)</span>. 对上式取实部,
+就可以用来说明 Laplace 方程的极值原理.</p>
+<p>如果更进一步， 考虑式 (12) 在圆上的曲线积分: <span
+class="math display">\[
+f&#39;(a) = \frac{1}{2\pi i} \int_{\odot} \frac{f(z)}{(z-a)^2}
+~\mathrm{d}z
+= \frac{1}{2\pi} \int_{0}^{2\pi} \frac{f(a + R e^{i\theta})}{R
+e^{i\theta}}  ~\mathrm{d}\theta
+\]</span> 按照与极值原理证明相同的方法, 点 <span
+class="math inline">\(a\)</span> 的导数模 <span
+class="math inline">\(|f&#39;(a)| &lt; |f(z_0)|/R\)</span>, 其中 <span
+class="math inline">\(z_0\)</span> 为任意环绕点 <span
+class="math inline">\(a\)</span> 曲线上的某一点. 在对 <span
+class="math inline">\(|f&#39;(a)|\)</span>
+的估计式右端出现了与曲线尺寸相关的参数 (半径 <span
+class="math inline">\(R\)</span>), 如果 <span
+class="math inline">\(f\)</span> 在整个复平面有界, 那么 <span
+class="math inline">\(|f&#39;(a)| &lt; C/R\)</span> 对任意 <span
+class="math inline">\(R\)</span> 成立, 这就等价于 <span
+class="math display">\[
+f&#39;(a) \equiv 0, \quad \forall a \in \mathbb{C}
+\]</span> 所以 <span class="math inline">\(f\)</span> 只能是常数. 这就是
+Liouville 定理:</p>
+<div class="note success no-icon"><h5 id="liouville-定理">Liouville 定理</h5>
+<p>如果函数 <span class="math inline">\(f\)</span>
+是在整个复平面上<strong>解析</strong>且<strong>有界</strong>, 那么 <span
+class="math inline">\(f\)</span> 一定是常数.</p>
+</div>
+<p>Liouville 定理反过来可以说明, 如果函数 <span
+class="math inline">\(f\)</span> 在整个复平面上有界, 并且不等于常数,
+那么函数 <span class="math inline">\(f\)</span> 在复平面上必定存在极点.
+例如, 函数 <span class="math inline">\(f(z) = 1/(1+z^2)\)</span>
+在整个复平面上的模值小于等于 1. 虽然在实数轴上, 函数 <span
+class="math inline">\(1/(1+x^2)\)</span> 都是有意义的,
+但是如果放到整个复平面上来看, 函数 <span
+class="math inline">\(f(z)\)</span> 存在两个极点, <span
+class="math inline">\(z=i\)</span> 和 <span
+class="math inline">\(z=-i\)</span>.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Cauchy-%E5%AE%9A%E7%90%86/" rel="tag"># Cauchy 定理</a>
+              <a href="/tags/Stokes-%E5%85%AC%E5%BC%8F/" rel="tag"># Stokes 公式</a>
+              <a href="/tags/Cauchy-%E7%A7%AF%E5%88%86%E5%85%AC%E5%BC%8F/" rel="tag"># Cauchy 积分公式</a>
+              <a href="/tags/%E6%9E%81%E5%80%BC%E5%8E%9F%E7%90%86/" rel="tag"># 极值原理</a>
+              <a href="/tags/Liouville-%E5%AE%9A%E7%90%86/" rel="tag"># Liouville 定理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/math/complex-analysis/%E8%A7%A3%E6%9E%90%E5%87%BD%E6%95%B0%E4%B8%8E-Laplace-%E6%96%B9%E7%A8%8B/" rel="prev" title="解析函数与 Laplace 方程">
+                  <i class="fa fa-angle-left"></i> 解析函数与 Laplace 方程
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qiu Xiaohuo</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
