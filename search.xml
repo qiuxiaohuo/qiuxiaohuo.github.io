@@ -3237,7 +3237,8 @@ class="math display">\[
 <h2
 id="各向同性弹性张量的不同表示方法">各向同性弹性张量的不同表示方法</h2>
 <p>对于各向同性材料, 四阶弹性模量张量 <span
-class="math inline">\(L_{ijkl}\)</span> 可以用 Lame 系数表示为 <span
+class="math inline">\(L_{ijkl}\)</span> 可以用 <span
+class="math inline">\(\rm Lam\acute{e}\)</span> 系数表示为 <span
 class="math display">\[
 L_{ijkl} \triangleq \lambda \delta_{ij} \delta_{kl}
                        + \mu \delta_{ik} \delta_{jl}
@@ -3246,8 +3247,7 @@ L_{ijkl} \triangleq \lambda \delta_{ij} \delta_{kl}
 class="math inline">\(\mathbb{L}\)</span> 为 <span
 class="math display">\[
 \mathbb{L} = \lambda \mathbf{I}\otimes \mathbf{I}+ 2\mu \mathbb{I}.
-\]</span> 同样的, 我们也可以将 柔度张量写为 <span
-class="math display">\[
+\]</span> 同样的, 我们也可以将柔度张量写为 <span class="math display">\[
 \mathbb{M} = -\frac{\lambda}{2\mu(3\lambda + 2\mu)}
 \mathbf{I}\otimes\mathbf{I}
 + \frac{1}{2\mu} \mathbb{I}
@@ -5153,9 +5153,9 @@ class="math inline">\(S_N\)</span> 在 <span class="math inline">\((0,
 </div>
 <h2 id="riemann-lebesgue-引理">Riemann-Lebesgue 引理</h2>
 <p>接下来, 我们希望建立起一个对 <span class="math inline">\(c_k\)</span>
-与 <span class="math inline">\(f\)</span> 光滑性联系的印象: <span
-class="math inline">\(f\)</span> 越光滑, <span
-class="math inline">\(c_k\)</span> 收敛到 0 的速度就越快.</p>
+与 <span class="math inline">\(f\)</span> 光滑性联系的印象:
+<strong><span class="math inline">\(f\)</span> 越光滑, <span
+class="math inline">\(c_k\)</span> 收敛到 0 的速度就越快.</strong></p>
 <p>首先, 我们可以通过定义得到关于 <span
 class="math inline">\(c_k\)</span> 最粗糙的估计: <span
 class="math display">\[
@@ -5165,7 +5165,9 @@ class="math display">\[
 \rightarrow \infty\)</span> 时, <span class="math inline">\(c_k
 \rightarrow 0\)</span></strong>. 这一结论由 Riemann-Lebesgue
 引理给出:</p>
-<div class="note success no-icon"><p>若 <span class="math inline">\(f\)</span> 在 <span
+<div class="note success no-icon"><h5 id="riemann-lebesgue-引理-级数形式">Riemann-Lebesgue 引理
+(级数形式)</h5>
+<p>若 <span class="math inline">\(f\)</span> 在 <span
 class="math inline">\((0,1)\)</span> 上可积, 那么当 <span
 class="math inline">\(|k| \rightarrow \infty\)</span> 时, <span
 class="math display">\[
@@ -5190,10 +5192,11 @@ c_k = \frac{c_k - c_k^{\prime}}{2}
 2\pi kx} ~\mathrm{d}x
 \tag{$\clubsuit$}
 \]</span> 由上式可以看到, 如果函数 <span
-class="math inline">\(f\)</span> 连续, 那么当 <span
+class="math inline">\(f\)</span> <strong>连续</strong>, 那么当 <span
 class="math inline">\(|k| \rightarrow \infty\)</span> 时, <span
-class="math inline">\(c_k \rightarrow 0\)</span>. 对于一般的可积函数
-<span class="math inline">\(f\)</span>, 给定 <span
+class="math inline">\(c_k \rightarrow 0\)</span>.
+对于一般的<strong>可积函数</strong> <span
+class="math inline">\(f\)</span>, 给定 <span
 class="math inline">\(\varepsilon &gt; 0\)</span>,
 总可以确定某一个连续函数 <span class="math inline">\(g\)</span>, 使得
 <span class="math display">\[
@@ -5205,11 +5208,13 @@ class="math inline">\(c_k(g) &lt; \frac{\varepsilon}{2}\)</span>,
 |c_k(f)| \leq |c_k(f) - c_k(g)| + |c_k(g)|
 \leq \int_{0}^{1} |f(x) - g(x)| ~\mathrm{d}x + \frac{\varepsilon}{2}
 \leq \varepsilon
-\]</span> 这就证明了 Riemann-Lebesgue 引理.</p>
+\]</span> 这就证明了 Riemann-Lebesgue 引理. <span
+class="math inline">\(\blacksquare\)</span></p>
 <p>再然后, 我们希望在知道函数 <span class="math inline">\(f\)</span>
-光滑性的信息之后, 能够对 <span class="math inline">\(c_k\)</span> 收敛到
-0 的速度有一个估计. 如果函数 <span class="math inline">\(f \in
-C^1(\mathbb{R})\)</span>, 那么通过下面简单的计算可以得到系数 <span
+光滑性的信息之后, <strong>能够对 <span
+class="math inline">\(c_k\)</span> 收敛到 0 的速度有一个估计</strong>.
+如果函数 <span class="math inline">\(f \in C^1(\mathbb{R})\)</span>,
+那么通过下面简单的计算可以得到系数 <span
 class="math inline">\(c_k\)</span> 的收敛速度为 <span
 class="math inline">\(\mathcal{O}(\frac{1}{|k|})\)</span> : <span
 class="math display">\[
@@ -5217,11 +5222,19 @@ class="math display">\[
 c_k &amp;= \int_{0}^{1} f(x) e^{-i 2\pi k x} ~\mathrm{d}x
 = \frac{1}{-i 2\pi k} \int_{0}^{1} f(x) ~\mathrm{d}e^{-i 2\pi k x} \\
 &amp;= \frac{1}{i 2\pi k} \int_{0}^{1} e^{-i 2\pi k x} ~\mathrm{d}f(x)
-+ \left. \frac{1}{-i 2\pi k} f(x) e^{-i 2\pi k x}\right\vert_{0}^{1} \\
-&amp;= \frac{1}{i 2\pi k} \left( \int_{0}^{1} e^{-i 2\pi k x} f&#39;(x)
-~\mathrm{d}x + ( f(0) - f(1) )
-\right) \sim \mathcal{O}(\frac{1}{|k|})
++ \underbrace{\left. \frac{1}{-i 2\pi k} f(x) e^{-i 2\pi k
+x}\right\vert_{0}^{1}}_{=0} \\
+&amp;= \frac{1}{i 2\pi k} \int_{0}^{1} e^{-i 2\pi k x} f&#39;(x)
+~\mathrm{d}x
+\sim \mathcal{O}(\frac{1}{|k|})
 \end{aligned}
+\]</span> 如果函数 <span class="math inline">\(f\)</span>
+具有更高阶的光滑性, 那么 <span class="math display">\[
+c_k =  \frac{1}{i 2\pi k} \int_{0}^{1} e^{-i 2\pi k x}
+f&#39;(x)  ~\mathrm{d} x
+= \frac{1}{(i 2\pi k)^2}  \int_{0}^{1} e^{-i 2\pi k x} f&#39;&#39;(x)
+~\mathrm{d} x
+= \cdots
 \]</span> 如果函数 <span class="math inline">\(f\)</span> 是 Lipschitz
 连续的, 也即 <span class="math display">\[
 |f(x) - f(y)| \leq \mathrm{Lip}(f) |x-y|, \quad \forall x,y \in
@@ -5229,7 +5242,28 @@ c_k &amp;= \int_{0}^{1} f(x) e^{-i 2\pi k x} ~\mathrm{d}x
 \]</span> 那么代入式 (<span class="math inline">\(\clubsuit\)</span>)
 中得到 <span class="math display">\[
 |c_k| \leq \frac{\mathrm{Lip}(f)}{4 |k|}
+\]</span> Fourier 变换的 Riemann-Lebesgue 引理为</p>
+<div class="note success no-icon"><h5 id="riemann-lebesgue-引理-变换形式">Riemann-Lebesgue 引理
+(变换形式)</h5>
+<p>若 <span class="math inline">\(f\)</span> 在 <span
+class="math inline">\(\mathbb{R}\)</span> 上可积, 那么当 <span
+class="math inline">\(\xi \rightarrow \infty\)</span> 时, <span
+class="math display">\[
+\widehat f(\xi) = \int_{\mathbb{R}} f(x) e^{i 2 \pi \xi x} ~\mathrm{d}x
+\rightarrow 0.
 \]</span></p>
+</div>
+<blockquote>
+<p>[!NOTE]</p>
+<p>从 Riemann-Lebesgue 引理中可以直接得到以下结论:</p>
+<p>若函数 <span class="math inline">\(f(x)\)</span> 在 <span
+class="math inline">\(\mathbb{R}\)</span> 上可积, 那么 <span
+class="math display">\[
+\int_{\mathbb{R}} f(x) \cos(tx) ~\mathrm{d}x \rightarrow 0, ~
+\int_{\mathbb{R}} f(x) \sin(tx) ~\mathrm{d}x \rightarrow 0, ~
+~when~ t \rightarrow \infty
+\]</span></p>
+</blockquote>
 ]]></content>
       <categories>
         <category>Fourier 分析</category>
@@ -6640,6 +6674,1721 @@ class="math display">\[
         <tag>Dirichlet 边界</tag>
         <tag>圆盘区域</tag>
         <tag>Poisson 公式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>德语语法点拾碎</title>
+    <url>/deutsche/%E5%BE%B7%E8%AF%AD%E8%AF%AD%E6%B3%95%E7%82%B9%E6%8B%BE%E7%A2%8E/</url>
+    <content><![CDATA[<h2 id="物主代词和人称代词">物主代词和人称代词</h2>
+<table>
+<thead>
+<tr class="header">
+<th>第一格</th>
+<th>第四格</th>
+<th>第三格</th>
+<th>物主代词</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ich</td>
+<td>mich</td>
+<td>mir</td>
+<td>mein-</td>
+</tr>
+<tr class="even">
+<td>du</td>
+<td>dich</td>
+<td>dir</td>
+<td>dein-</td>
+</tr>
+<tr class="odd">
+<td>er</td>
+<td>ihn</td>
+<td>ihm</td>
+<td>sein-</td>
+</tr>
+<tr class="even">
+<td>es</td>
+<td>es</td>
+<td>ihm</td>
+<td>sein-</td>
+</tr>
+<tr class="odd">
+<td>sie</td>
+<td>sie</td>
+<td>ihr</td>
+<td>ihr-</td>
+</tr>
+<tr class="even">
+<td>Sie</td>
+<td>Sie</td>
+<td>Ihnen</td>
+<td>Ihr-</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr class="header">
+<th>第一格</th>
+<th>第四格</th>
+<th>第三格</th>
+<th>物主代词</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>wir</td>
+<td>uns</td>
+<td>uns</td>
+<td>unser-</td>
+</tr>
+<tr class="even">
+<td>ihr</td>
+<td>euch</td>
+<td>euch</td>
+<td>euer-</td>
+</tr>
+<tr class="odd">
+<td>sie</td>
+<td>sie</td>
+<td>ihnen</td>
+<td>ihr-</td>
+</tr>
+<tr class="even">
+<td>Sie</td>
+<td>Sie</td>
+<td>Ihnen</td>
+<td>Ihr-</td>
+</tr>
+</tbody>
+</table>
+<p>物主代词除了要记住词干随人称的变化形式之外, 还要注意词尾的变化,
+这与冠词的词尾变化是一样的.<span id="more"></span></p>
+<h2 id="不定代词-man-和-ein-">不定代词 man 和 ein-</h2>
+<p>不定代词 man 类似于 “人们”, “人家”, 虽然表示一群人的概念,
+但是动词变位仍是<strong>第三人称单数</strong>. man 是有格的变化的:</p>
+<table>
+<thead>
+<tr class="header">
+<th>Nom.</th>
+<th>Akk.</th>
+<th>Dat.</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>man</td>
+<td>einen</td>
+<td>einem</td>
+</tr>
+</tbody>
+</table>
+<p><strong>z.B.</strong> Bei Frau Kant gibt es so viele Verbote.
+<strong>Man</strong> darf fast ganz nichts machen. Das geht
+<strong>einem</strong> ganz schön auf die Nerven.</p>
+<p>ein- kein- 表示前文提到的, 泛指的单数/否定代词, 词性与前文保持一致,
+格的变化需要看代词所在的语境. 关于格和单复数的变化规律为:</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>阳性</th>
+<th>中性</th>
+<th>阴性</th>
+<th>复数</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Nom.</td>
+<td>einer keiner</td>
+<td>eins keins</td>
+<td>eine keine</td>
+<td>- keine</td>
+</tr>
+<tr class="even">
+<td>Akk.</td>
+<td>einen keinen</td>
+<td>eins keins</td>
+<td>eine keine</td>
+<td>- keine</td>
+</tr>
+<tr class="odd">
+<td>Dat.</td>
+<td>einem keinem</td>
+<td>einem keinem</td>
+<td>einer keiner</td>
+<td>- keinen</td>
+</tr>
+</tbody>
+</table>
+<h2 id="关于-hause-的固定搭配">关于 Hause 的固定搭配</h2>
+<table>
+<thead>
+<tr class="header">
+<th>问句</th>
+<th>回答</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Wo bist du?</td>
+<td>Ich bin <strong>zu Hause</strong>. ==我在家==</td>
+</tr>
+<tr class="even">
+<td>Woher kommst du?</td>
+<td>Ich komme von <strong>zu Hause</strong>. ==我从家过来==</td>
+</tr>
+<tr class="odd">
+<td>Wohin gehst du?</td>
+<td>Ich gehe <strong>nach Hause</strong>. ==我回家==</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>德语学习</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>德语中不规则动词变位分组</title>
+    <url>/deutsche/%E5%BE%B7%E8%AF%AD%E4%B8%AD%E4%B8%8D%E8%A7%84%E5%88%99%E5%8A%A8%E8%AF%8D%E5%8F%98%E4%BD%8D%E5%88%86%E7%BB%84/</url>
+    <content><![CDATA[<h2
+id="不规则动词的过去时与过去分词词尾变化">不规则动词的过去时与过去分词词尾变化</h2>
+<p>在介绍不规则动词变位之前,
+首先介绍动词过去时与过去分词随人称的词尾变化. (第二)
+过去分词<strong>不会再随人称发生变换</strong>,
+但是不定式和过去时的动词的词尾还是会随人称变化的,
+过去时的词尾变化一般为</p>
+<table>
+<thead>
+<tr class="header">
+<th>人称</th>
+<th>词尾变化</th>
+<th>人称</th>
+<th>词尾变化</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ich</td>
+<td>-</td>
+<td>wir</td>
+<td>-en</td>
+</tr>
+<tr class="even">
+<td>du</td>
+<td>-st</td>
+<td>ihr</td>
+<td>-t</td>
+</tr>
+<tr class="odd">
+<td>er/sie/es</td>
+<td>-</td>
+<td>sie/Sie</td>
+<td>-en</td>
+</tr>
+</tbody>
+</table>
+<p>不定式的词尾变化与过去时稍有不同, 这体现在第一和第三人称单数情景.
+不定式第一人称单数 (ich) 词干后加 -e, 第三人称单数 (er/sie/es) 词干后加
+-t, 而过去时的第一和第三人称单数词尾不加任何东西,
+这有些类似于情态动词的词尾变化
+(情态动词的现在时也是第一第三人称单数词尾相同).<span id="more"></span></p>
+<h2 id="不规则动词变位分组">不规则动词变位分组</h2>
+<p>按照不定式-过去时-过去分词中元音的变化规律, 一共分成如下七组动词:</p>
+<h3 id="第一组动词">第一组动词</h3>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">不定式 (ei)</th>
+<th style="text-align: left;">过去时 (ie)</th>
+<th style="text-align: left;">过去分词 (ie)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">bleiben</td>
+<td style="text-align: left;">blieb</td>
+<td style="text-align: left;">(ist) geblieben</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">schreiben</td>
+<td style="text-align: left;">schrieb</td>
+<td style="text-align: left;">geschrieben</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">treiben</td>
+<td style="text-align: left;">trieb</td>
+<td style="text-align: left;">getrieben</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">steigen ==爬,上升==</td>
+<td style="text-align: left;">stieg</td>
+<td style="text-align: left;">(ist) gestiegen</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><em>vergleich</em></td>
+<td style="text-align: left;"><em>verglich</em></td>
+<td style="text-align: left;"><em>verglichen</em> ==比较, 对比==</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第二组动词">第二组动词</h3>
+<table>
+<thead>
+<tr class="header">
+<th>不定式 (ie)</th>
+<th>过去时 (o)</th>
+<th>过去分词 (o)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>fliegen</td>
+<td>flog</td>
+<td>geflogen</td>
+</tr>
+<tr class="even">
+<td>riechen ==嗅, 闻==</td>
+<td>roch</td>
+<td>gerochen</td>
+</tr>
+<tr class="odd">
+<td>schieben</td>
+<td>schob</td>
+<td>geschoben</td>
+</tr>
+<tr class="even">
+<td>schließen</td>
+<td>schloss</td>
+<td>geschlossen</td>
+</tr>
+<tr class="odd">
+<td>ziehen</td>
+<td>zog</td>
+<td>gezogen</td>
+</tr>
+<tr class="even">
+<td>verbieten</td>
+<td>verbot</td>
+<td>verboten</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第三组动词">第三组动词</h3>
+<p>这一组动词类似于英语的变化, 过去分词元音有两种可能的变形: o oder
+u</p>
+<table>
+<thead>
+<tr class="header">
+<th>不定式 (i)</th>
+<th>过去时 (a)</th>
+<th>过去分词 (o/u)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>beginnen</td>
+<td>begann</td>
+<td>begonnen</td>
+</tr>
+<tr class="even">
+<td>gewinnen</td>
+<td>gewann</td>
+<td>gewonnen</td>
+</tr>
+<tr class="odd">
+<td>schwimmen</td>
+<td>schwamm</td>
+<td>geschwommen</td>
+</tr>
+<tr class="even">
+<td>finden</td>
+<td>fand</td>
+<td>gefunden</td>
+</tr>
+<tr class="odd">
+<td>singen</td>
+<td>sang</td>
+<td>gesungen</td>
+</tr>
+<tr class="even">
+<td>trinken</td>
+<td>trank</td>
+<td>getrunken</td>
+</tr>
+<tr class="odd">
+<td>verbinden</td>
+<td>verband</td>
+<td>verbunden (连接, 包扎)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第四组动词">第四组动词</h3>
+<table>
+<thead>
+<tr class="header">
+<th>不定式 (e)</th>
+<th>过去时 (a)</th>
+<th>过去分词 (o)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>empfehlen</td>
+<td>empfahl</td>
+<td><strong>empfohlen</strong></td>
+</tr>
+<tr class="even">
+<td>helfen</td>
+<td>half</td>
+<td>geholfen</td>
+</tr>
+<tr class="odd">
+<td>nehmen</td>
+<td>nahm</td>
+<td>genommen</td>
+</tr>
+<tr class="even">
+<td>sprechen</td>
+<td>sprach</td>
+<td>gesprochen</td>
+</tr>
+<tr class="odd">
+<td>treffen ==遇见==</td>
+<td>traf</td>
+<td>getroffen</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第五组动词">第五组动词</h3>
+<table>
+<thead>
+<tr class="header">
+<th>不定式 (i/ie/e)</th>
+<th>过去时 (a)</th>
+<th>过去分词 (e)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>bitten</td>
+<td>bat</td>
+<td>gebeten</td>
+</tr>
+<tr class="even">
+<td>liegen</td>
+<td>lag</td>
+<td>gelegen</td>
+</tr>
+<tr class="odd">
+<td>sitzen</td>
+<td>saß</td>
+<td>gesessen</td>
+</tr>
+<tr class="even">
+<td>essen</td>
+<td>aß</td>
+<td>gegessen</td>
+</tr>
+<tr class="odd">
+<td>vergessen</td>
+<td>vergaß</td>
+<td>vergessen</td>
+</tr>
+<tr class="even">
+<td>geben</td>
+<td>gab</td>
+<td>gegeben</td>
+</tr>
+<tr class="odd">
+<td>lesen</td>
+<td>laß</td>
+<td>gelesen</td>
+</tr>
+<tr class="even">
+<td>sehen</td>
+<td>sah</td>
+<td>gesehen</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第六组动词">第六组动词</h3>
+<table>
+<thead>
+<tr class="header">
+<th>不定式 (a)</th>
+<th>过去时 (u)</th>
+<th>过去分词 (a)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ein/laden</td>
+<td>lud ein</td>
+<td>eingeladen</td>
+</tr>
+<tr class="even">
+<td>fahren</td>
+<td>fuhr</td>
+<td>gefahren</td>
+</tr>
+<tr class="odd">
+<td>waschen</td>
+<td>wusch</td>
+<td>gewaschen</td>
+</tr>
+</tbody>
+</table>
+<h3 id="第七组动词">第七组动词</h3>
+<p>不定式与过去分词的<strong>元音相同</strong>, 过去时元音变为 ie/i</p>
+<table>
+<thead>
+<tr class="header">
+<th>不定式 (a/u/au/ei)</th>
+<th>过去时 (ie/i)</th>
+<th>过去分词 (a/u/au/ei)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>an/fangen</td>
+<td>fing an</td>
+<td>angefangen</td>
+</tr>
+<tr class="even">
+<td>braten</td>
+<td>briet</td>
+<td>gebraten</td>
+</tr>
+<tr class="odd">
+<td>gefallen</td>
+<td>gefiel</td>
+<td>gefallen</td>
+</tr>
+<tr class="even">
+<td>hängen</td>
+<td>hing</td>
+<td>gehangen</td>
+</tr>
+<tr class="odd">
+<td>heißen</td>
+<td>hieß</td>
+<td>geheißen</td>
+</tr>
+<tr class="even">
+<td>laufen</td>
+<td>lief</td>
+<td>gelaufen</td>
+</tr>
+<tr class="odd">
+<td>raten ==建议==</td>
+<td>riet</td>
+<td>geraten</td>
+</tr>
+<tr class="even">
+<td>rufen</td>
+<td>rief</td>
+<td>gerufen</td>
+</tr>
+<tr class="odd">
+<td>schlafen</td>
+<td>schlief</td>
+<td>geschlafen</td>
+</tr>
+</tbody>
+</table>
+<p>此外还有三组动词没有办法按照元音分类, 需要特别记忆.</p>
+<h3 id="过去分词为--t-的强动词">过去分词为 -t 的强动词</h3>
+<table>
+<thead>
+<tr class="header">
+<th>不定式</th>
+<th>过去时</th>
+<th>过去分词</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>bringen</td>
+<td>brachte</td>
+<td>gebracht</td>
+</tr>
+<tr class="even">
+<td>denken</td>
+<td>dachte</td>
+<td>gedacht</td>
+</tr>
+<tr class="odd">
+<td>haben</td>
+<td>hatte</td>
+<td>gehabt</td>
+</tr>
+<tr class="even">
+<td>kennen</td>
+<td>kannte</td>
+<td>gekannt</td>
+</tr>
+<tr class="odd">
+<td>nennen</td>
+<td>nannte</td>
+<td>genannt</td>
+</tr>
+<tr class="even">
+<td>rennen ==奔跑==</td>
+<td>rannte</td>
+<td>gerannt</td>
+</tr>
+<tr class="odd">
+<td>wenden ==翻转==</td>
+<td>wandte</td>
+<td>gewandt</td>
+</tr>
+<tr class="even">
+<td>wissen</td>
+<td><strong>wusste</strong></td>
+<td>gewusst</td>
+</tr>
+</tbody>
+</table>
+<h3 id="情态动词">情态动词</h3>
+<table>
+<thead>
+<tr class="header">
+<th>不定式</th>
+<th>过去时</th>
+<th>过去分词</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>dürfen</td>
+<td>durfte</td>
+<td>gedurft</td>
+</tr>
+<tr class="even">
+<td>können</td>
+<td>konnte</td>
+<td>gekonnt</td>
+</tr>
+<tr class="odd">
+<td>müssen</td>
+<td>musste</td>
+<td>gemusst</td>
+</tr>
+<tr class="even">
+<td>sollen</td>
+<td>sollte</td>
+<td>gesollt</td>
+</tr>
+<tr class="odd">
+<td>wollen</td>
+<td>wollte</td>
+<td>gewollt</td>
+</tr>
+<tr class="even">
+<td>mögen</td>
+<td>mochte</td>
+<td>gemocht</td>
+</tr>
+</tbody>
+</table>
+<h3 id="非常不规则的动词">非常不规则的动词</h3>
+<table>
+<thead>
+<tr class="header">
+<th>不定式</th>
+<th>过去时</th>
+<th>过去分词</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>gehen</td>
+<td>ging</td>
+<td>gegangen</td>
+</tr>
+<tr class="even">
+<td>kommen</td>
+<td>kam</td>
+<td>gekommen</td>
+</tr>
+<tr class="odd">
+<td>sein</td>
+<td>war</td>
+<td>gewesen</td>
+</tr>
+<tr class="even">
+<td>stehen</td>
+<td>stand</td>
+<td>gestanden</td>
+</tr>
+<tr class="odd">
+<td>tun</td>
+<td>tat</td>
+<td><strong>getan</strong></td>
+</tr>
+<tr class="even">
+<td>werden</td>
+<td>wurde</td>
+<td>geworden</td>
+</tr>
+</tbody>
+</table>
+<h2 id="werden-sein-的动词变位">werden sein 的动词变位</h2>
+<p>werden sein 动词的过去时随人称变化较大, 需要特别注意.</p>
+<h4 id="werden-的动词变位">werden 的动词变位</h4>
+<table>
+<thead>
+<tr class="header">
+<th>人称</th>
+<th>不定式</th>
+<th>过去时</th>
+<th>过去分词</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ich</td>
+<td>werde</td>
+<td>wurde</td>
+<td>geworden</td>
+</tr>
+<tr class="even">
+<td>du</td>
+<td>wirst</td>
+<td>wurdest</td>
+<td>geworden</td>
+</tr>
+<tr class="odd">
+<td>er/sie/es</td>
+<td>wird</td>
+<td>wurde</td>
+<td>geworden</td>
+</tr>
+<tr class="even">
+<td>wir</td>
+<td>werden</td>
+<td>wurden</td>
+<td>geworden</td>
+</tr>
+<tr class="odd">
+<td>ihr</td>
+<td>werdet</td>
+<td>wurdet</td>
+<td>geworden</td>
+</tr>
+<tr class="even">
+<td>sie/Sie</td>
+<td>werden</td>
+<td>wurden</td>
+<td>geworden</td>
+</tr>
+</tbody>
+</table>
+<h4 id="sein-的动词变位">sein 的动词变位</h4>
+<table>
+<thead>
+<tr class="header">
+<th>人称</th>
+<th>不定式</th>
+<th>过去时</th>
+<th>过去分词</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>ich</td>
+<td>bin</td>
+<td>war</td>
+<td>gewesen</td>
+</tr>
+<tr class="even">
+<td>du</td>
+<td>bist</td>
+<td>warst</td>
+<td>gewesen</td>
+</tr>
+<tr class="odd">
+<td>er/sie/es</td>
+<td>ist</td>
+<td>war</td>
+<td>gewesen</td>
+</tr>
+<tr class="even">
+<td>wir</td>
+<td>sind</td>
+<td>waren</td>
+<td>gewesen</td>
+</tr>
+<tr class="odd">
+<td>ihr</td>
+<td>seid</td>
+<td>wart</td>
+<td>gewesen</td>
+</tr>
+<tr class="even">
+<td>sie/Sie</td>
+<td>sind</td>
+<td>waren</td>
+<td>gewesen</td>
+</tr>
+</tbody>
+</table>
+<h2 id="使用-sein-引导完成时的常见动词">使用 sein
+引导完成时的常见动词</h2>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>睡觉相关 <br />(一觉醒来竟与世界为敌)</td>
+<td>aufstehen ==起床==; aufwachen ==睡醒==; einschlafen ==入睡==;</td>
+</tr>
+<tr class="even">
+<td>走, 跑, 开车, 飞, 来,
+爬<br />以及与之相关的可分动词<br />旅游常用</td>
+<td>gehen: aus/ ==外出==<br />laufen: <br />fahren: ab/
+==启程==<br />fliegen: ab/ ==起飞==<br />kommen: an/ ==抵达==; mit/
+==一起去==<br />steigen: aus/ ==下车==; um/ ==换乘==</td>
+</tr>
+<tr class="odd">
+<td>运动</td>
+<td>schwimmen; spazieren<br /><em>hat gejoggt</em></td>
+</tr>
+<tr class="even">
+<td>搬家</td>
+<td>umziehen ==搬家==; ausziehen ==搬出去==</td>
+</tr>
+<tr class="odd">
+<td>逗留某地</td>
+<td>sein: ich bin gewesen.<br />bleiben: ich bin geblieben.</td>
+</tr>
+<tr class="even">
+<td>发生肾么事了</td>
+<td>passieren: Was ist denn passiert?<br />explodieren ==爆炸==</td>
+</tr>
+<tr class="odd">
+<td>生老病死</td>
+<td>waschen ==成长==; sterben ==逝世==</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>德语学习</category>
+      </categories>
+      <tags>
+        <tag>动词变位</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>德语中只跟第三格和第四格的介词</title>
+    <url>/deutsche/%E5%BE%B7%E8%AF%AD%E4%B8%AD%E5%8F%AA%E8%B7%9F%E7%AC%AC%E4%B8%89%E6%A0%BC%E5%92%8C%E7%AC%AC%E5%9B%9B%E6%A0%BC%E7%9A%84%E4%BB%8B%E8%AF%8D/</url>
+    <content><![CDATA[<p>主要参考:</p>
+<ul>
+<li>德语语法活学活用, Friederike Jin, Ute Voß</li>
+<li>实用英语德语比较语法, 芦力军, 外研社</li>
+</ul>
+<h3 id="只跟第三格的介词">只跟第三格的介词</h3>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>aus</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>作为<strong>空间介词</strong>, 基本含义是: 从某个封闭空间中出来,
+类似于 out of</td>
+<td>Die Mutter nimmt die Wäsche <strong>aus</strong> dem Korb.
+==篮子==</td>
+</tr>
+<tr class="even">
+<td>表示来自于某个地方, 类似于 come from, 中性国家,
+以及城市之前不加冠词</td>
+<td>Ich komme <strong>aus</strong> China/JiangSu/der Schweiz.</td>
+</tr>
+<tr class="odd">
+<td>来自于某个时代</td>
+<td>Er singt ein Lied <strong>aus</strong> alten Zeiten.</td>
+</tr>
+<tr class="even">
+<td>由 … 做成, 类似于 made out of</td>
+<td>Ich kaufe einen Koffer <strong>aus</strong> Holz.
+<br />==我买了一个木制的箱子==</td>
+</tr>
+<tr class="odd">
+<td>表示原因</td>
+<td>Er half ihr <strong>aus</strong> Mitleid. ==同情==</td>
+</tr>
+</tbody>
+</table>
+<span id="more"></span>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>von</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>作为<strong>空间介词</strong>, 基本含义是: 从 … 过来, 但语感上不像
+aus 那么具体, 指代大方向</td>
+<td>von der Schule / dem Arzt / dem Strand ==海滩== / dem Fußballplatz /
+Tomas / dem Picknick / zu Hause</td>
+</tr>
+<tr class="even">
+<td>还可以与其它介词 (bis nach zu) 连用, 表示从 … 到 …</td>
+<td>1. Das Auto fährt <strong>von</strong> Leipzig <strong>bis</strong>
+Dresden. <br />2. Wir fliegen <strong>von</strong> Berlin
+<strong>nach</strong> Moskau.<br />3. Das Kind läuft
+<strong>vom</strong> Vater <strong>zur</strong> Mutter.</td>
+</tr>
+<tr class="odd">
+<td>作为<strong>时间介词</strong>, 基本含义是: 从 … 开始, 还可以与 bis
+连用, 表示一段时间区间</td>
+<td>1. <strong>Von</strong> wann <strong>bis</strong> wann …<br />2.
+<strong>Von</strong> acht Uhr <strong>ab</strong> bin ich wieder zu
+Hause.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>zu</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>作为<strong>空间介词</strong>, 基本含义是: 到 … 去. zu 后的地点更
+“日常化”<br /><strong><em>! 注意与 nach 进行区分</em></strong></td>
+<td>1. Wir gehen <strong>zum</strong> Bahnhof / Station.<br />2. Heute
+fahren wir <strong>zu</strong> meinen Eltern / dem Arzt / der
+Nachbarin.<br />3. Kommt ihr heute <strong>Zum</strong> Frühstück /
+Abendessen?</td>
+</tr>
+<tr class="even">
+<td>zu 也可以作为<strong>时间介词</strong>, 表示在 … 时候</td>
+<td>1. Zum Frühstück esse ich immer ein Ei.<br />2. Er hat uns zum
+Jahresende besucht.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>nach</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>作为<strong>空间介词</strong>, 基本含义是: 到 … 去, 后面一般跟 国家
+城市 方向<br /><strong><em>! 注意与 zu 进行区分</em></strong></td>
+<td>1. Ich möchte nach Deutschland fahren.<br />2. Wir fahren nach
+Süden. ==南方==</td>
+</tr>
+<tr class="even">
+<td>作为<strong>时间介词</strong>, 基本含义是在 … 之后</td>
+<td>Nach dem Essen geht sie immer spazieren.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 39%" />
+<col style="width: 60%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>bei</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>作为<strong>空间介词</strong>, 基本含义是: 在 … 旁边</td>
+<td>1. Er saß bei seiner Freundin.<br />2. Das Haus steht bei einem
+Springbrunnen.<br />3. Sie wohnt bei ihren Eltern.<br />4. Augsburg
+liegt bei München.</td>
+</tr>
+<tr class="even">
+<td>引申义有在 … 情况下</td>
+<td>Bei Regen fällt die Veranstaltung aus.</td>
+</tr>
+<tr class="odd">
+<td>以及 在 … 时候</td>
+<td>Beim Essen soll man nicht sprechen.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 49%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>mit</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>mit 类似于英语的 with, 后面加人表示和 … 一起, 加物表示工具</td>
+<td>1. Ich fahre mit meinem Freund in den Urlaub.<br />2. Ich schreibe
+mit dem Bleistift.<br />3. Wir fahren mit dem Bus.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 49%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>seit</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>作为时间介词, 表示 从 … 以来, 持续到至今, 也许一直持续下去</td>
+<td>1. Seit drei Monaten liegt seine Frau im Krankenhaus.<br />2. Seit
+einem Jahr wohne ich in Berlin.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="只跟第四格的介词">只跟第四格的介词</h3>
+<table>
+<colgroup>
+<col style="width: 41%" />
+<col style="width: 58%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>für</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>表示目的<br /><strong><em>$ 与英语中的 for 作对比</em></strong></td>
+<td>1. Dieses Geschenk ist für meinen Bruder.<br />2. Der Fisch ist für
+dich!</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>durch</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>作为空间介词, 基本的含义是穿过</td>
+<td>Wir fahren mit dem Bus durch diese Stadt.</td>
+</tr>
+<tr class="even">
+<td>作为时间介词, 表示经过一段时间 (或者从空间介词的意义上理解, “穿过”
+一段时间)</td>
+<td>Die Soldaten marschierten durch die ganze Nacht.
+==战士整夜行军==</td>
+</tr>
+<tr class="odd">
+<td>通过 ( 考试, 对话 ) 等引申义</td>
+<td>Ich bin durch die Prüfung gefallen.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 67%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>um</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>空间介词中最基本的含义是 环绕</td>
+<td>1. Der Wagen ==汽车== fährt um die Ecke.<br />2. Die Studenten sind
+um den Dozenten versammelt.<br />一些可分动词也体现环绕的含义: um/fahren
+==绕…而行== um/fangen ==抱住== um/hören ==向许多人闻询== um/schauen
+==环视==</td>
+</tr>
+<tr class="even">
+<td>作为时间介词, 后面加钟表时间</td>
+<td>Kommen Sie bitte um 10 Uhr.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 36%" />
+<col style="width: 63%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>gegen</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>作为空间介词, 表示对抗与冲撞的方向</td>
+<td>1. Das Auto ist gegen einen Baum gefahren.<br />2. Er schlug mit der
+Faust ==拳头== gegen die Tür.</td>
+</tr>
+<tr class="even">
+<td>作为空间介词, 表示大约</td>
+<td>Der Zug kommt gegen 19.00 Uhr an.</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col style="width: 49%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>ohne</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>类似于英语中的 without<br /><strong>! ohne
+后面名词一般不加冠词</strong></td>
+<td>1. Das Zimmer kostet ohne Frühstück 5.00 Euro.<br />2. Er fährt ohne
+seine Kinder in den Urlaub.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>关于 Hause 的固定搭配</p>
+<table>
+<thead>
+<tr class="header">
+<th>问句</th>
+<th>回答</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Wo bist du?</td>
+<td>Ich bin <strong>zu Hause</strong>. ==我在家==</td>
+</tr>
+<tr class="even">
+<td>Woher kommst du?</td>
+<td>Ich komme von <strong>zu Hause</strong>. ==我从家过来==</td>
+</tr>
+<tr class="odd">
+<td>Wohin gehst du?</td>
+<td>Ich gehe <strong>nach Hause</strong>. ==我回家==</td>
+</tr>
+</tbody>
+</table>
+</blockquote>
+]]></content>
+      <categories>
+        <category>德语学习</category>
+      </categories>
+      <tags>
+        <tag>介词</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>德语动词相关语法点</title>
+    <url>/deutsche/%E5%BE%B7%E8%AF%AD%E5%8A%A8%E8%AF%8D%E7%9B%B8%E5%85%B3%E8%AF%AD%E6%B3%95%E7%82%B9/</url>
+    <content><![CDATA[<h2 id="加第三格补足语的常见动词">加第三格补足语的常见动词</h2>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 76%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>动词</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>danken</td>
+<td>Er <strong>dankt</strong> mir für das Geburtstagsgeschenk.</td>
+</tr>
+<tr class="even">
+<td>fehlen</td>
+<td>Ein Spieler <strong>fehlt</strong> uns./Uns <strong>fehlt</strong>
+noch ein Spieler.<br />Deutschland <strong>gefällt</strong> mir sehr
+gut. Aber meine Heimat und meine Freunde <strong>fehlen</strong> mir
+sehr.</td>
+</tr>
+<tr class="odd">
+<td>helfen</td>
+<td>Ich muss Sabina (ihr) bei ihrer Hausaufgabe
+<strong>helfen</strong></td>
+</tr>
+<tr class="even">
+<td>antworten</td>
+<td>Der Lehrer fragt den Schüler. Aber er <strong>antwortet</strong> ihm
+nicht.</td>
+</tr>
+<tr class="odd">
+<td>gratulieren</td>
+<td>Sigrid hat heute Geburtstag. Wir müssen ihr
+<strong>gratulieren</strong>.</td>
+</tr>
+<tr class="even">
+<td>glauben</td>
+<td>Martin lügt immer. Ich <strong>glaube</strong> ihm kein einziges
+Wort mehr.</td>
+</tr>
+<tr class="odd">
+<td>zuhören ==仔细听==</td>
+<td>Ich werde wütend ==生气的==, wenn du mir nicht
+<strong>zuhörst</strong>!</td>
+</tr>
+</tbody>
+</table>
+<span id="more"></span>
+<p>这其中还有一类特殊的动词, 是物作为主语, 因此单独列出来</p>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 86%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>动词</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>passen</td>
+<td>Der Pullover <strong>passt</strong> meinem Mann gut.</td>
+</tr>
+<tr class="even">
+<td>gefallen</td>
+<td>Die Farbe <strong>gefällt</strong> ihm auch sehr.</td>
+</tr>
+<tr class="odd">
+<td>schmecken</td>
+<td>Deine Obsttorte ==水果馅饼== <strong>schmeckt</strong> meinem Mann
+außerordentlich gut.</td>
+</tr>
+<tr class="even">
+<td>gehört</td>
+<td>Von wem ist das Buch? Astrid, <strong>gehört</strong> es dir?</td>
+</tr>
+<tr class="odd">
+<td>stehen</td>
+<td>Blau <strong>steht</strong> dir sehr gut!</td>
+</tr>
+</tbody>
+</table>
+<p>以及类似结构的常用表达方式:</p>
+<ul>
+<li>Es tut <strong>mir</strong> leid.</li>
+<li>Wie geht es <strong>Ihnen</strong>?</li>
+</ul>
+<h2 id="支配双宾语的动词">支配双宾语的动词</h2>
+<p>支配双宾语的动词, 宾语的摆放顺序为: <strong>名三四, 代四三,
+代词放在名词前.</strong></p>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 86%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>动词</th>
+<th>例句 (三格使用( )圈出, 四格使用<u>下划线</u>表示)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>schreiben</td>
+<td>Der Mann schreibt (seiner Freundin) <u>eine E-Mail</u>.</td>
+</tr>
+<tr class="even">
+<td>geben</td>
+<td>Dr. König gebt (deiner Frau) <u>Tabletten</u>. ==药片, pl.==</td>
+</tr>
+<tr class="odd">
+<td>zeigen</td>
+<td>Wir zeigen (den Gästen) <u>das Haus</u>.</td>
+</tr>
+<tr class="even">
+<td>kaufen</td>
+<td>Der Vater kauft (dem Sohn) <u>einen Computer</u>.</td>
+</tr>
+<tr class="odd">
+<td>schenken</td>
+<td>Die Mutter schenkt (der Tochter) <u>eine Puppe</u>.</td>
+</tr>
+<tr class="even">
+<td>verkaufen</td>
+<td>Ich verkaufe (meinem Freund) <u>ein Auto</u>.</td>
+</tr>
+<tr class="odd">
+<td>servieren</td>
+<td>Er serviert (seinen Freunden) <u>Kaffee</u>.</td>
+</tr>
+<tr class="even">
+<td>kochen</td>
+<td>Sie kocht (dem Kind) <u>eine Suppe</u>.</td>
+</tr>
+<tr class="odd">
+<td>bringen</td>
+<td>Er bringt (uns) <u>das Essen</u>.</td>
+</tr>
+<tr class="even">
+<td>empfehlen</td>
+<td>Sie empfiehlt (mir) <u>den Roman</u>.</td>
+</tr>
+<tr class="odd">
+<td>erklären</td>
+<td>Erklärst du (ihm) <u>die Grammatik</u>?</td>
+</tr>
+<tr class="even">
+<td>wünschen</td>
+<td>Ich wünsche (dir) <u>einen Guten Tag</u>!</td>
+</tr>
+</tbody>
+</table>
+<h2 id="与介词搭配的动词">与介词搭配的动词</h2>
+<p>动词与介词的搭配, 支配第四格</p>
+<table>
+<thead>
+<tr class="header">
+<th>动词</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>sich freuen <strong>auf</strong> (未来的事情)</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>sich freuen <strong>über</strong> (过去或现在发生的事情)</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="静态-动态动词对">静态-动态动词对</h2>
+<p><span class="exturl" data-url="aHR0cHM6Ly93d3cuZWFzeWdlcm1hbmdyYW1tYXJzdG9yaWVzLmRlL2dyYW1tYXRpay9zZXR6ZW4tc3RlbGxlbi1sZWdlbi1oYWVuZ2VuLw==">setzen,
+stellen, legen, sitzen, stehen, liegen, hängen<i class="fa fa-external-link-alt"></i></span></p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>静态</th>
+<th>例句</th>
+<th>动态</th>
+<th>例句</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><img src="https://www.easygermangrammarstories.de/attachments/Image/liegen-wo.jpg?template=generic" alt="liegen - wo?" style="zoom:50%;" /></td>
+<td>Das Buch <strong>liegt</strong> <u>auf dem Bett</u>.<br />Das Buch
+hat <u>auf dem Bett</u> <strong>gelegen</strong>.</td>
+<td><img src="https://www.easygermangrammarstories.de/attachments/Image/legen-wohin.jpg?template=generic" alt="legen - wohin?" style="zoom: 50%;" /></td>
+<td>Die Frau <strong>legt</strong> das Buch <u>auf das
+Bett</u>.<br />Die Frau hat das Buch <u>auf das Bett</u>
+<strong>gelegt</strong>.</td>
+</tr>
+<tr class="even">
+<td><img src="https://www.easygermangrammarstories.de/attachments/Image/haengen-wo-intransitiv.jpg?template=generic" alt="hängen (intransitiv) wo?" style="zoom:50%;" /></td>
+<td>Das Bild <strong>hängt</strong> <u>an der Wand</u>.<br />Das Bild
+hat <u>an der Wand</u> <strong>gehangen</strong>.</td>
+<td><img src="https://www.easygermangrammarstories.de/attachments/Image/haengen-wohin-transitiv.jpg?template=generic" alt="hängen (transitiv) wohin?" style="zoom:50%;" /></td>
+<td>Die Frau <strong>hängt</strong> das Bild <u>an die
+Wand</u>.<br />Die Frau hat das Bild <u>an die Wand</u>
+<strong>gehängt</strong>.</td>
+</tr>
+<tr class="odd">
+<td><img src="https://www.easygermangrammarstories.de/attachments/Image/stehen-wo.jpg?template=generic" alt="stehen - wo?" style="zoom:50%;" /></td>
+<td>Die Vase <strong>steht</strong> <u>auf dem Tisch</u>.<br />Die Vase
+hat <u>auf dem Tisch</u> <strong>gestanden</strong>.</td>
+<td><img src="https://www.easygermangrammarstories.de/attachments/Image/stellen-wohin_1.jpg?template=generic" alt="stellen - wohin?" style="zoom:50%;" /></td>
+<td>Die Frau <strong>stellt</strong> die Vase <u>auf den
+Tisch</u>.<br />Die Frau hat die Vase <u>auf den Tisch</u>
+<strong>gestellt</strong>.</td>
+</tr>
+<tr class="even">
+<td><img src="https://www.easygermangrammarstories.de/attachments/Image/sitzen-wo_1.jpg?template=generic" alt="sitzen - wo?" style="zoom:50%;" /></td>
+<td>Das Kind <strong>sitzt</strong> <u>auf dem Stuhl</u>.<br />Das Kind
+hat auf dem Stuhl <strong>gesessen</strong>.</td>
+<td><img src="https://www.easygermangrammarstories.de/attachments/Image/setzen-wohin.jpg?template=generic" alt="setzen - wohin?" style="zoom:50%;" /></td>
+<td>Die Frau <strong>setzt</strong> das Kind <u>auf den
+Stuhl</u>.<br />Die Frau hat das Kind <u>auf den Stuhl</u>
+<strong>gesetzt</strong>.</td>
+</tr>
+</tbody>
+</table>
+]]></content>
+      <categories>
+        <category>德语学习</category>
+      </categories>
+      <tags>
+        <tag>动词</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>本征应变是不相容的应变</title>
+    <url>/mech/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E6%98%AF%E4%B8%8D%E5%8D%8F%E8%B0%83%E7%9A%84%E5%BA%94%E5%8F%98/</url>
+    <content><![CDATA[<p>这里的公式编号与 Mura 保持一致.</p>
+<p>考虑如图所示的弹性体, 想象其中有一根细长杆,
+在周围弹性介质的作用下发生变形, 其构型为 <span
+class="math inline">\(AP\)</span>. 将周围的弹性介质 <span
+class="math inline">\(D\)</span> 移除之后, 细长杆恢复原来的形貌, 构型为
+<span class="math inline">\(AP&#39;\)</span>. 点 <span
+class="math inline">\(P\)</span> 处不仅发生了位移, 并且如果考虑固连在点
+<span class="math inline">\(P\)</span> 处的坐标系, 在变形前后,
+该坐标系会产生旋转. 接下来我们将通过公式推导得到刻画点 <span
+class="math inline">\(P\)</span>​ 的位移与旋转.</p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202405311043584.png" alt="image-20240531104312495" style="zoom: 50%;" /></p>
+<p>在进行推导之前, 我们需要再强调一下变形与自由构型的符号</p>
+<ul>
+<li>变形体: <span class="math inline">\(AP\)</span></li>
+<li>自由体: <span class="math inline">\(AP&#39;\)</span></li>
+</ul>
+<p>首先刻画的是细长杆中任意微元 <span class="math inline">\(\mathrm{d}
+s\)</span> 的应变 <span class="math inline">\(e_{ij}\)</span> 与端点位移
+<span class="math inline">\(u_i\)</span>​ 之间的关系. 因为是弹性应变,
+所以有 <span class="math display">\[
+e_{ij} = -\frac{1}{2} \left( \frac{\delta u_i}{\delta x_j} +
+\frac{\delta u_j}{\delta x_i} \right)
+\tag{10.1}
+\]</span> 需要强调的是, 上述应变公式是定义在曲线 <span
+class="math inline">\(AP\)</span> 上的, 负号是因为我们考虑的是从变形体
+<span class="math inline">\(AP\)</span> 到自由体 <span
+class="math inline">\(AP&#39;\)</span> 的位移. <span
+class="math inline">\(\delta u_i\)</span> 是沿着弧长微元 <span
+class="math inline">\(\mathrm{d} s = (\delta x_i \delta
+x_i)^{1/2}\)</span> 位移的变化量. 类似的, 可以得到坐标系的旋转矩阵 <span
+class="math inline">\(\omega_{ij}\)</span> 为 <span
+class="math display">\[
+\omega_{ij} = -\frac{1}{2} \left( \frac{\delta u_j}{\delta x_i} -
+\frac{\delta u_i}{\delta x_j} \right)
+\tag{10.1}
+\]</span> 由此得到微元 <span class="math inline">\(\delta u_i\)</span>
+与 <span class="math inline">\(\delta x_i\)</span> 之间的关系: <span
+class="math display">\[
+\delta u_i = -(e_{ij} - \omega_{ij}) \delta x_j
+\tag{10.2}
+\]</span> 接下来推导旋度矩阵的微元 <span class="math inline">\(\delta
+\omega_{ij}\)</span> 与 <span class="math inline">\(\delta x_i\)</span>
+之间的关系. 对应变 <span class="math inline">\(e_{ij}\)</span> 求偏导数,
+就得到 <span class="math display">\[
+\begin{aligned}
+e_{kj,i} = -\frac{1}{2} \left( \frac{\partial ~}{\partial x_i}
+\frac{\delta u_k}{\delta x_j}
++ \frac{\partial ~}{\partial x_i} \frac{\delta u_j}{\delta x_k}
+\right)\\
+e_{ki,j} = -\frac{1}{2} \left( \frac{\partial ~}{\partial x_j}
+\frac{\delta u_k}{\delta x_i}
++ \frac{\partial ~}{\partial x_j} \frac{\delta u_i}{\delta x_k} \right)
+\end{aligned}
+\]</span> <em>这怎么看都有点不太合理, 因为使用记号 <span
+class="math inline">\(\delta\)</span> 是为了和偏导数进行区别,
+但是为什么在这里又可以直接作用偏导数呢? 这不是我熟悉的语言</em></p>
+<p>两式相减, 就得到 <span class="math display">\[
+e_{kj,i} - e_{ki,j}
+= -\frac{1}{2} \left( \frac{\partial ~}{\partial x_i} \frac{\delta
+u_j}{\delta x_k}
+- \frac{\partial ~}{\partial x_j} \frac{\delta u_i}{\delta x_k}
+\right)
+\]</span> 这里用到了 (????) <span class="math display">\[
+\frac{\partial ~}{\partial x_i} \frac{\delta u_k}{\delta x_j}
+= \frac{\partial ~}{\partial x_j} \frac{\delta u_k}{\delta x_i}
+\]</span> 两边乘 <span class="math inline">\(\delta x_k\)</span>,
+再根据式 (2), 就得到 <span class="math display">\[
+\delta \omega_{ij} = (e_{kj,i} - e_{ki,j}) \delta x_k
+\tag{10.7$&#39;$}
+\]</span> 上式也可以用置换张量写作 <span class="math display">\[
+\delta \omega_{ij} = \epsilon_{hij} \epsilon_{hlm} e_{km,l} \delta x_k
+\tag{10.7}
+\]</span> <em>(<span class="math inline">\(\epsilon_{hij} \epsilon_{hlm}
+= \delta_{il}\delta_{jm} - \delta_{im}\delta_{jl}\)</span>)</em></p>
+<p>对式 (1) (2) 沿 <span class="math inline">\(AP\)</span> 进行路径积分,
+就得到 <span class="math inline">\(P\)</span>​ 点处的位移和旋转矩阵:
+<span class="math display">\[
+\begin{aligned}
+    u_i &amp;= -\int_{A}^{P}(e_{ij} - \omega_{ij}) ~\mathrm{d} x_j \\
+    \omega_{ij} &amp;= \int_{A}^{P} \epsilon_{hij} \epsilon_{hlm}
+e_{km,l} ~\mathrm{d} x_k
+\end{aligned}
+\]</span> 以及初始条件 <span class="math display">\[
+u_i = 0, \quad \omega_{ij} = 0, \quad at ~~ A
+\]</span> 如果考虑一个封闭的积分路径, 也即 <span
+class="math inline">\(A\)</span> 与 <span
+class="math inline">\(P\)</span> 重合, 并将环路末端点 <span
+class="math inline">\(P\)</span>​ 的位移与旋转称为 dislocation 和
+disclination, 那么, 根据上面的推导过程有 <span class="math display">\[
+\begin{aligned}
+    u_i &amp;= -\oint_{C}(e_{ij} - \omega_{ij}) ~\mathrm{d} x_j \\
+    \omega_{ij} &amp;= \oint_{C} \epsilon_{hij} \epsilon_{hlm} e_{km,l}
+~\mathrm{d} x_k
+\end{aligned}
+\]</span> 环路曲线 <span class="math inline">\(C\)</span> 又称为 Burgers
+环路. (应该在第七章有过讨论)</p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202405311348119.png" alt="image-20240531134851992" style="zoom: 40%;" /></p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202405311355932.png" alt="image-20240531135522807" style="zoom: 50%;" /></p>
+<p>应用 Stokes 定理: <span class="math display">\[
+\nabla \times v =
+\begin{vmatrix}
+e_1 &amp; e_2 &amp; e_3 \\
+_{,1} &amp; _{,2} &amp; _{,3} \\
+v_1 &amp; v_2 &amp; v_3
+\end{vmatrix}
+= \epsilon_{ijk} e_k v_{j,i}
+\]</span></p>
+<p><span class="math display">\[
+\oint_{C} f \cdot \mathrm{d}x = \iint_S \nabla \times f \cdot n
+~\mathrm{d}S
+\]</span></p>
+<p>写成指标形式 <span class="math display">\[
+\oint_{C} f_i ~\mathrm{d}x_i = \iint_S \epsilon_{ijk} n_k
+f_{j,i}  ~\mathrm{d}S
+\]</span></p>
+<p><span class="math display">\[
+\omega_{ij} = \iint_{S} \epsilon_{hij} \epsilon_{qpk} \epsilon_{hlm}
+e_{km,lp}
+n_q~\mathrm{d} S
+= \iint_{S} \epsilon_{hij} R_{hq} n_q ~\mathrm{d} S
+\tag{10.12}
+\]</span></p>
+<p><span class="math display">\[
+R_{qh} \triangleq \epsilon_{qpk} \epsilon_{hlm} e_{km,lp}
+\tag{10.13}
+\]</span></p>
+<p>张量 <span class="math inline">\(R_{qh}\)</span> 的对称性来自于 <span
+class="math inline">\(e_{km}\)</span> 的指标 <span
+class="math inline">\(k \leftrightarrow m\)</span> 对称, 以及求导次序
+<span class="math inline">\(l \leftrightarrow p\)</span> 可以交换. <span
+class="math display">\[
+u_i = -\oint_{C} (e_{ij} - \omega_{ij}) ~\mathrm{d} x_j
+\]</span> 没办法直接应用 Stokes 公式转换到面 <span
+class="math inline">\(S\)</span> 上的积分, 因为 <span
+class="math inline">\(\omega_{ij}\)</span>
+没办法直接求偏导数????对上式分部积分得到 <span class="math display">\[
+u_i = -\oint_{C} e_{ij} ~\mathrm{d} x_j + \oint_{C} \omega_{ij}
+~\mathrm{d}x_j
+= -\oint_{C} e_{ij} ~\mathrm{d} x_j - \oint_{C} \delta\omega_{ij}x_j
++ \left.\omega_{ij}x_j\right|_{C}
+\]</span> 以下得到的结果我没有办法理解, 这里只是将下一步的公式抄下来
+<span class="math display">\[
+u_i = \underbrace{-\oint_{C} e_{ij} ~\mathrm{d} x_j}_{\equiv 0}
+- \oint_{C} x_j \epsilon_{hij} \epsilon_{hlm} e_{km,l} \mathrm{d} x_k
++ \underbrace{\left.\omega_{ij}x_j\right|_{C}}_{\equiv \omega_{ij}x_j^0}
+\]</span> 整理一下得到 <span class="math display">\[
+u_i = \omega_{ij}x_j^0
+- \iint_{S} x_j \epsilon_{hij} R_{hq} n_q ~\mathrm{d} S
+\tag{10.15}
+\]</span></p>
+<p>式中的 <span class="math inline">\(\omega_{ij}x_j^0\)</span>
+还可以写作 <span class="math display">\[
+\omega_{ij}x_j^0 = x_i^{\prime}-O_i^{\prime} - (x_i - O_i)
+\triangleq (ox)_i^{\prime} - (ox)_i
+\]</span> 这样就相对更容易理解式 (10.15), 移项得到 <span
+class="math display">\[
+(ox)_i + u_i - (ox)_i^{\prime} = - \iint_{S} x_j \epsilon_{hij} R_{hq}
+n_q ~\mathrm{d} S
+\]</span> 上式左端项就等于固连在点 <span
+class="math inline">\(A\)</span> 处的坐标系变形前后, 坐标系端点 <span
+class="math inline">\(oo&#39;\)</span> 之间的距离, 定义为 <span
+class="math display">\[
+\boxed{
+\xi_i \triangleq - \iint_{S} x_j \epsilon_{hij} R_{hq} n_q ~\mathrm{d} S
+}
+\tag{10.17}
+\]</span> 应变相容条件为 <span class="math display">\[
+\epsilon_{pki} \epsilon_{qlj} \varepsilon_{ij,kl} = 0 \\
+\]</span> 注意到张量 <span class="math inline">\(R_{hq}\)</span>
+的定义式 (10.13). 如果应变 <span class="math inline">\(e_{ij}\)</span>​
+是相容的, 那么 <span class="math display">\[
+R_{hq} \equiv 0
+\]</span> 如果考虑应变 <span
+class="math inline">\(\varepsilon_{ij}\)</span> 中还包含本征应变 <span
+class="math inline">\(\mu_{ij}\)</span> <span class="math display">\[
+\varepsilon_{ij} = e_{ij} - \mu_{ij}
+\]</span> 代入到式 (10.13) 中, 就得到由本征应变导致的不相容性 <span
+class="math display">\[
+R_{qh} = -\epsilon_{qpk} \epsilon_{hlm} \mu_{km,lp}
+\]</span></p>
+]]></content>
+  </entry>
+  <entry>
+    <title>Gaussian 函数的 Fourier 变换与逆变换</title>
+    <url>/math/Fourier-analysis/Gauss-%E5%87%BD%E6%95%B0%E7%9A%84-Fourier-%E5%8F%98%E6%8D%A2%E4%B8%8E%E9%80%86%E5%8F%98%E6%8D%A2/</url>
+    <content><![CDATA[<p>首先, 我们来考虑一维情景下 Gauss 函数在 <span
+class="math inline">\(\mathbb{R}\)</span> 上的积分: <span
+class="math display">\[
+I = \int_{-\infty}^{\infty} e^{-\pi x^2} \mathrm{d}x
+\tag{1}
+\]</span> 这可以通过 “升一维” (replica trick) 的办法去做: <span
+class="math display">\[
+I^2 = \int_{-\infty}^{\infty} e^{-\pi x^2} \mathrm{d}x
+\int_{-\infty}^{\infty} e^{-\pi y^2} \mathrm{d}y
+= \iint_{\mathbb{R}^2} e^{-\pi (x^2 + y^2)} \mathrm{d}x\mathrm{d}y
+\]</span> 变换到极坐标系中, 得到 <span class="math display">\[
+x^2 + y^2 = r^2, \quad \mathrm{d}x\mathrm{d}y =
+r\mathrm{d}r\mathrm{d}\theta
+\]</span> 所以 <span class="math display">\[
+I^2 = \int_{0}^{2\pi} \mathrm{d}\theta \int_{0}^{\infty} e^{-\pi r^2}
+r\mathrm{d}r = 1
+\]</span></p>
+<blockquote>
+<p>[!TIP]</p>
+<p>一个有意思的结论是, 上述的 replica trick 可以应用函数的范围是有限的
+(<em>Poisson’s remarkable calculation – a method or a trick?</em>).
+如果函数 <span class="math inline">\(f:\mathbb{R} \mapsto
+\mathbb{R}\)</span> 满足如下泛函: <span class="math display">\[
+f(x) f(y) = g(x^2 + y^2) h(y/x)
+\]</span> 并且待选取的函数集合是基本函数, 那么函数 <span
+class="math inline">\(f\)</span> 的形式只能是关于 <span
+class="math inline">\(x\)</span> 的幂函数和 <span
+class="math inline">\(e^{x^2}\)</span> 的乘积: <span
+class="math display">\[
+f(x) = A x^p e^{x^2}
+\]</span></p>
+</blockquote>
+<p>接下来, 我们考虑一维情景 Gauss 函数的 Fourier 变换: <span
+class="math display">\[
+\widehat{e^{-\pi x^2}}  = \int_{\mathbb{R}} e^{-\pi x^2} e^{-i 2\pi \xi
+x} ~\mathrm{d}x
+\tag{2}
+\]</span></p>
+<p>最直接的方法是使用换元, <span class="math display">\[
+\int_{\mathbb{R}}  e^{-\pi(x^2 + 2i\xi x)} ~\mathrm{d}x
+= e^{ -\pi\xi^2} \int_{\mathbb{R}}  e^{-\pi(x + i\xi)^2} ~\mathrm{d}x
+= e^{ -\pi\xi^2} \int_{L}  e^{-z^2} ~\mathrm{d}z, \quad L =
+line(-\infty+i\xi, +\infty + i\xi)
+\]</span> 构造积分回路 <span class="math inline">\((-a+i\xi, a + i\xi,
+a, -a)\)</span>, 可以证明当 <span class="math inline">\(a \rightarrow
+\infty\)</span> 时, 在 <span class="math inline">\((a, a+i\xi)\)</span>
+, <span class="math inline">\((-a, -a + i\xi)\)</span> 上的积分等于 0,
+所以 <span class="math display">\[
+\int_{L}  e^{-z^2} ~\mathrm{d}z = \int_{-\infty}^{\infty} e^{-\pi x^2}
+\mathrm{d}x = 1
+\]</span> 最终得到 <span class="math display">\[
+\widehat{e^{-\pi x^2}} = e^{-\pi \xi^2}
+\]</span></p>
+<p>还有一种方式是使用分部积分, 得到关于 <span
+class="math inline">\(\widehat{e^{-\pi x^2}}\)</span> 的微分方程.
+引入新的函数记号 <span class="math inline">\(F(\xi) \triangleq
+\widehat{e^{-\pi x^2}}\)</span>, 再对式 (2) 两边分别关于 <span
+class="math inline">\(\xi\)</span> 求导数: <span class="math display">\[
+\begin{aligned}
+F&#39;(\xi) &amp;= \int_{\mathbb{R}} -i2\pi x e^{-\pi x^2} e^{- i 2\pi
+\xi x} ~\mathrm{d}x
+= \int_{\mathbb{R}} i  e^{- i 2\pi \xi x} ~\mathrm{d}e^{-\pi x^2} \\
+&amp;= - \int_{\mathbb{R}} i e^{-\pi x^2} ~\mathrm{d}e^{- i 2\pi \xi x}
++ \underbrace{i e^{- i 2\pi \xi x} e^{-\pi
+x^2}|_{-\infty}^{+\infty}}_{=0}\\
+&amp;= -2\pi\xi F(\xi)
+\end{aligned}
+\]</span> 求解上述微分方程得到 <span class="math display">\[
+F(\xi) = F(0) e^{-\pi\xi^2}
+\]</span> 又因为 <span class="math inline">\(F(0) = I \equiv 1\)</span>,
+所以 <span class="math inline">\(\widehat{e^{-\pi x^2}} = e^{-\pi
+\xi^2}\)</span>.</p>
+<p>高维情境下的 Gaussian 函数的 Fourier
+变换可以根据指数的性质自然分解为一维 Fourier 变换的乘积: <span
+class="math display">\[
+\widehat{e^{-\pi |x|^2}} = \int_{\mathbb{R}^d} e^{-\pi \sum x_i}
+e^{-i2\pi \xi \cdot x} ~\mathrm{d}x
+= \sum_{i=1}^{d} \int_{\mathbb{R}} e^{-\pi x_i^2} e^{-2\pi \xi_i x_i}
+~\mathrm{d} x_i
+= e^{-\pi|\xi|^2}
+\]</span> Gaussian 函数的逆变换可以通过 Fourier 逆定理,
+也可以通过将上述证明中的 <span class="math inline">\(i\)</span> 替换为
+<span class="math inline">\(-i\)</span>, 结论是不变的: <span
+class="math display">\[
+( e^{-\pi|\xi|^2}   )^{\vee} = e^{-\pi |x|^2}
+\]</span> 当 Gaussian 函数中含有因子时, 其 Fourier 变换为 <span
+class="math display">\[
+(e^{-\lambda \pi |x|^2})^{\wedge} = \lambda^{-d/2} e^{ - \pi
+|\xi|^2/\lambda}
+\]</span> 对应的 Fourier 逆变换为 (形式上完全一样) <span
+class="math display">\[
+(e^{-\lambda \pi |\xi|^2})^{\vee} = \lambda^{-d/2} e^{-\pi |x|^2 /
+\lambda}
+\]</span> 如果函数 <span class="math inline">\(f\)</span> 是 <span
+class="math inline">\(\alpha-\)</span>​ 齐次的, 也即 <span
+class="math display">\[
+f(\lambda x) = \lambda^{\alpha} f(x)
+\]</span> 线性函数 <span class="math inline">\(\alpha = 1\)</span>;
+幂函数 <span class="math inline">\(x^p\)</span> <span
+class="math inline">\(\alpha = p\)</span>; Gaussian 函数是径向对称函数,
+但不是齐次函数.</p>
+]]></content>
+      <categories>
+        <category>Fourier 分析</category>
+      </categories>
+      <tags>
+        <tag>Gaussian 函数</tag>
+        <tag>积分技巧</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>留数定理计算积分</title>
+    <url>/math/complex-analysis/%E7%95%99%E6%95%B0%E5%AE%9A%E7%90%86%E8%AE%A1%E7%AE%97%E7%A7%AF%E5%88%86/</url>
+    <content><![CDATA[
+]]></content>
+      <categories>
+        <category>复分析</category>
+      </categories>
+      <tags>
+        <tag>留数定理</tag>
       </tags>
   </entry>
 </search>
