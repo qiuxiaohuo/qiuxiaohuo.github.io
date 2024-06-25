@@ -8567,13 +8567,15 @@ e^{It} = \sum_{k=0}^{\infty} \frac{1}{k!} I^k t^k
 <p>[!TIP]</p>
 <p><span class="math inline">\(A = \mathrm{diag}(a_1, a_2, \ldots,
 a_n)\)</span> 时, 矩阵指数为 <span class="math display">\[
-e^{At} = \sum_{k=0}^{\infty} \frac{t^k}{k!} \mathrm{diag}(a_1^k, a_2^k,
-\ldots, a_n^k)
+\begin{aligned}
+e^{At} &amp;= \sum_{k=0}^{\infty} \frac{t^k}{k!} \mathrm{diag}(a_1^k,
+a_2^k, \ldots, a_n^k)
 = \mathrm{diag}(
 \sum_{k=0}^{\infty} \frac{t^k}{k!}a_1^k,
 \sum_{k=0}^{\infty} \frac{t^k}{k!}a_2^k, \ldots,
-\sum_{k=0}^{\infty} \frac{t^k}{k!}a_n^k)
-= \mathrm{diag}(e^{a_1 t}, e^{a_2 t}, \ldots, e^{a_n t})
+\sum_{k=0}^{\infty} \frac{t^k}{k!}a_n^k) \\
+&amp;= \mathrm{diag}(e^{a_1 t}, e^{a_2 t}, \ldots, e^{a_n t})
+\end{aligned}
 \]</span></p>
 </blockquote>
 <blockquote>
@@ -8802,6 +8804,7 @@ class="math inline">\((v_1, v_2, v_3, \ldots)\)</span> 的顺序,
       </categories>
       <tags>
         <tag>微分方程</tag>
+        <tag>Jordan 标准型</tag>
       </tags>
   </entry>
   <entry>
