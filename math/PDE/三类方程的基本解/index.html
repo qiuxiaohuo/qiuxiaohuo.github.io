@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="4IgN6N71kznUS9PIMp6itE5oUv0s3hzVzFzFOpC-4Ig">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="基本解只与方程相关, 与边界条件无关. 以下将考虑 Laplace 方程, 热方程和波动方程的基本解. 方程 \(L\) 基本解的定义为右端项为 delta 函数的响应: \[ L[u] &#x3D; \delta \] Laplace 方程的基本解 先给出结论: 设 Laplace 方程的基本解为 \(N(x)\) \[ -\Delta N &#x3D; \delta \] 那么对不同的维度, 解">
+<meta property="og:type" content="article">
+<meta property="og:title" content="三类方程的基本解">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/math/PDE/%E4%B8%89%E7%B1%BB%E6%96%B9%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%A3/index.html">
+<meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="基本解只与方程相关, 与边界条件无关. 以下将考虑 Laplace 方程, 热方程和波动方程的基本解. 方程 \(L\) 基本解的定义为右端项为 delta 函数的响应: \[ L[u] &#x3D; \delta \] Laplace 方程的基本解 先给出结论: 设 Laplace 方程的基本解为 \(N(x)\) \[ -\Delta N &#x3D; \delta \] 那么对不同的维度, 解">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202406151119398.png">
+<meta property="article:published_time" content="2024-06-14T05:47:33.000Z">
+<meta property="article:modified_time" content="2024-06-25T12:29:47.709Z">
+<meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="Laplace 方程">
+<meta property="article:tag" content="基本解">
+<meta property="article:tag" content="热方程">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202406151119398.png">
+
+
+<link rel="canonical" href="http://qiuxiaohuo.github.io/math/PDE/%E4%B8%89%E7%B1%BB%E6%96%B9%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%A3/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/math/PDE/%E4%B8%89%E7%B1%BB%E6%96%B9%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%A3/","path":"math/PDE/三类方程的基本解/","title":"三类方程的基本解"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>三类方程的基本解 | 邱小伙的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">邱小伙的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#laplace-%E6%96%B9%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%A3"><span class="nav-number">1.</span> <span class="nav-text">Laplace 方程的基本解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%83%AD%E6%96%B9%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%A3"><span class="nav-number">2.</span> <span class="nav-text">热方程的基本解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B3%A2%E5%8A%A8%E6%96%B9%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">波动方程的基本解</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qiu Xiaohuo"
+      src="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+  <p class="site-author-name" itemprop="name">Qiu Xiaohuo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">57</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">77</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiuxiaohuo"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnFpdXhpYW9odW9AZ21haWwuY29t" title="E-Mail → mailto:qiuxiaohuo@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/PDE/%E4%B8%89%E7%B1%BB%E6%96%B9%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%A3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="三类方程的基本解 | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          三类方程的基本解
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-06-14 13:47:33" itemprop="dateCreated datePublished" datetime="2024-06-14T13:47:33+08:00">2024-06-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-06-25 20:29:47" itemprop="dateModified" datetime="2024-06-25T20:29:47+08:00">2024-06-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">偏微分方程</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>基本解只与方程相关, 与边界条件无关. 以下将考虑 Laplace 方程,
+热方程和波动方程的基本解.</p>
+<p>方程 <span class="math inline">\(L\)</span> 基本解的定义为右端项为
+delta 函数的响应: <span class="math display">\[
+L[u] = \delta
+\]</span></p>
+<h2 id="laplace-方程的基本解">Laplace 方程的基本解</h2>
+<p>先给出结论: 设 Laplace 方程的基本解为 <span
+class="math inline">\(N(x)\)</span> <span class="math display">\[
+-\Delta N = \delta
+\]</span> 那么对不同的维度, 解 <span class="math inline">\(N(x)\)</span>
+为 <span class="math display">\[
+\boxed{N(x) = \left\{\begin{array}{cl}
+\dfrac{1}{(d-2) S_d} |x|^{2-d}, &amp;d \neq 2\\
+- \dfrac{1}{2\pi} \ln|x|, \quad &amp; d = 2
+\end{array}\right.}
+\]</span> 式中, <span class="math inline">\(S_d\)</span> 为 <span
+class="math inline">\(d\)</span> 维单位球的表面积. 分别列出一维,
+二维和三维情景下 Laplace 方程的基本解: <span class="math display">\[
+\boxed{N(x) = \left\{\begin{array}{cl}
+-\dfrac{1}{2} |x|, &amp; d = 1\\
+-\dfrac{1}{2\pi} \ln|x|, &amp; d = 2\\
+\dfrac{1}{4\pi} \dfrac{1}{|x|}, &amp; d =3
+\end{array}\right.}
+\]</span>
+<img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202406151119398.png" alt="image-20240615111956159" style="zoom:50%;" /></p>
+<p>接下来, 我们会用两种方式推导基本解. 第一种方式是利用 Laplace
+解的<strong>径向对称性</strong>, 因此假设方程的解 <span
+class="math inline">\(u(x)\)</span> 可以写成关于距原点距离为 <span
+class="math inline">\(r\)</span> 的函数 <span
+class="math inline">\(v(r)\)</span>: <span class="math display">\[
+u(x) = v(r), \quad r = |x|
+\]</span> 将径向对称解代入到 Laplace 方程中的二阶导数项 <span
+class="math display">\[
+\frac{\partial v(|x|)}{\partial x_i} = v&#39; \frac{x_i}{|x|}, \quad
+\frac{\partial^2 v(|x|)}{\partial x_i^2}
+= v&#39;&#39; \frac{x_i^2}{|x|^2} + v&#39; \frac{|x|^2 - x_i^2}{|x|^{3}}
+\]</span> 求和得到关于 <span class="math inline">\(r\)</span>
+的<strong>常微分方程</strong> <span class="math display">\[
+\Delta u = v&#39;&#39; + \frac{(d-1)}{r}v&#39; = 0
+\]</span> 当 <span class="math inline">\(d \neq 1\)</span> 时,
+上述微分方程的一个不平凡解为 <span class="math display">\[
+v&#39; = Ar^{1-d}, \quad v =
+\begin{cases}
+A \ln r,   &amp;d = 2 \\
+B r^{2-d}, &amp;d &gt; 2
+\end{cases}
+\]</span> 这样, 除了待定常数之外,Laplace
+方程基本解的形式是已经确定的了.</p>
+<p>另一种, 也是更常规的方法, 是使用 <strong>Fourier 变换</strong>.
+方程两端作 Fourier 变换得到 <span class="math display">\[
+4 \pi^2 |\xi|^2 \widehat N = 1, \quad |\xi|^2 \triangleq \xi_i \xi_i
+\]</span> 所以方程的基本解可以通过 Fourier 逆变换表示为 <span
+class="math display">\[
+N(x) = \mathscr{F}^{-1}[\widehat N] = \int_{\mathbb{R}^d}
+\frac{1}{4\pi^2 |\xi|^2} e^{i2\pi\xi \cdot x} ~\mathrm{d}\xi
+\]</span> 注意到 <span class="math inline">\(\widehat{N}\)</span> 是
+<span class="math inline">\(\alpha=-2\)</span> 的齐次径向对称函数, 所以
+<span class="math inline">\(N\)</span> 是 <span
+class="math inline">\(-d-\alpha = -d+2\)</span> 齐次径向对称函数, 因此
+<span class="math inline">\(N\)</span> 可以写成 <span
+class="math display">\[
+N(x) = N(|x|\frac{x}{|x|}) = |x|^{2-d} N_{0}(1)
+\]</span> <strong>为确定常数 <span
+class="math inline">\(N_0(1)\)</span>, 对 <span
+class="math inline">\(\Delta N\)</span> 在球 <span
+class="math inline">\(B_{\varepsilon}(0)\)</span> 上积分</strong>,
+并应用 Gauss 公式, 得到 <span class="math display">\[
+\int_{B_{\varepsilon}} -\Delta N ~\mathrm{d}x = 1
+= - \int_{\partial B_{\varepsilon}} n \cdot \nabla N ~\mathrm{d}
+\sigma(x)
+\]</span> 径向对称函数的法向导数为 <span class="math display">\[
+\boxed{\nabla N = N_0&#39;(r)\frac{x_i}{|x|} = N_0&#39;(r) n, \quad n
+\cdot \nabla N = N_{0}&#39;(r)}
+\]</span> 所以 <span class="math display">\[
+1 = - \int_{\partial B_{\varepsilon}} N_{0}&#39; ~\mathrm{d} \sigma(x)
+= - N_{0}&#39;(\varepsilon) S_{d} \varepsilon^{d-1}
+= (d-2) S_{d} N_0(1)
+\]</span> 由此得到 <span class="math display">\[
+N(x) = \frac{1}{(d-2) S_{d}} |x|^{2-d}
+\]</span></p>
+<blockquote>
+<p>[!Important]</p>
+<p>式中对于 <span class="math inline">\(d=2\)</span> 的情景是不适用的,
+不过可以考虑这样 (虽然不令人很信服) 的极限: <span
+class="math inline">\(d = 2 + \varepsilon\)</span>, 那么, <span
+class="math display">\[
+N(x) = \frac{1}{\omega_{1+ \varepsilon} \varepsilon }|x|^{-\varepsilon}
+= \frac{1}{2\pi} ~ \frac{1}{ \varepsilon }|x|^{-\varepsilon}
+\]</span> 将上式右端项关于 <span
+class="math inline">\(\varepsilon\)</span> 渐进展开得到 <span
+class="math display">\[
+\frac{1}{ \varepsilon }|x|^{-\varepsilon} = \frac{1}{ \varepsilon
+}e^{-\varepsilon\ln|x|}
+\sim \frac{1}{\varepsilon} ( 1 - \boxed{\varepsilon \ln |x|} +
+o(\varepsilon) )
+\]</span> 最后得到 <span class="math display">\[
+N(x) = -\frac{1}{2\pi} \ln|x|
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>[!NOTE]</p>
+<p><strong><span class="math inline">\(d=1\)</span>
+时的基本解</strong></p>
+<p>此时方程为 <span class="math display">\[
+-u&#39;&#39; = \delta
+\]</span> 该方程在 <span class="math inline">\(x=0\)</span> 处有奇性,
+所以分别对 <span class="math inline">\(x&gt;0\)</span> 和 <span
+class="math inline">\(x&lt;0\)</span> 区域分别求解得到 <span
+class="math display">\[
+u = \begin{cases}
+c_1 x, &amp; x&lt;0\\
+c_2 x, &amp; x&gt;0
+\end{cases}
+\]</span> <em>基本解中忽略常数项.</em> 为确定积分中出现的常数,
+还需要利用如下性质. 首先是对称性, 这要求 <span class="math inline">\(c_1
+= -c_2 = c\)</span>. 然后对方程在区间 <span
+class="math inline">\((-\varepsilon,\varepsilon)\)</span> 上积分得到
+<span class="math display">\[
+-\int_{-\varepsilon}^{\varepsilon} u&#39;&#39; ~\mathrm{d}x = 1
+\]</span> 分别对 <span class="math inline">\((0,\varepsilon)\)</span> 和
+<span class="math inline">\((-\varepsilon,0)\)</span> 两个区间段积分得到
+<span class="math display">\[
+-u&#39;|_{0^+}^{\varepsilon} - u&#39;|_{-\varepsilon}^{0^-}
+= -c + u&#39;(0^+)-u&#39;(0^-)-c = [u&#39;(0)] - 2c = 1
+\]</span> 如果设置间断条件 <span class="math inline">\([u&#39;(0)] =
+0\)</span>, 那么 <span class="math display">\[
+c = -\frac{1}{2}
+\]</span></p>
+</blockquote>
+<h2 id="热方程的基本解">热方程的基本解</h2>
+<p>热方程基本解满足的方程和初始条件为 <span class="math display">\[
+\left\{\begin{array}{c}
+\dfrac{\partial H}{\partial t} = \Delta H \\
+H(x,0) = \delta(x)
+\end{array}\right.
+\]</span> 应用 Fourier 变换, 得到 <span class="math display">\[
+\left\{\begin{array}{c}
+\dfrac{\mathrm{d} \widehat H}{\mathrm{d} t} + 4 \pi^2 |\xi|^2 \widehat H
+\\
+\widehat H(0) = 1
+\end{array}\right.
+\]</span> 求解上述微分方程, 得到 <span class="math display">\[
+\widehat H(t) = e^{-4\pi^2 |\xi|^2 t}
+\]</span> 所以热方程的基本解为 <span class="math display">\[
+\boxed{H(x,t) = \frac{1}{(4\pi t)^{d/2}} e^{- |x|^2/4t}}
+\]</span> <img
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Fundamental_solution_to_the_heat_equation.gif/440px-Fundamental_solution_to_the_heat_equation.gif"
+alt="img" /></p>
+<p>另一种得到热方程基本解的方式是自相似方法. 如果 <span
+class="math inline">\(H(x,t)\)</span> 满足热方程和初始条件, 那么, <span
+class="math inline">\(cH(\lambda x, \lambda^2 t)\)</span>
+同样也满足热方程. 为保证初始条件一致, <span
+class="math inline">\(cH(\lambda x, 0) = c\delta(\lambda x)\)</span>
+应等于 <span class="math inline">\(\delta(x)\)</span>, 这要求 <span
+class="math inline">\(c = \lambda^d\)</span>. 所以, 对任意 <span
+class="math inline">\(\lambda \neq 0\)</span>, <span
+class="math display">\[
+H(x,t) = \lambda^d H(\lambda x, \lambda^2 t)
+\]</span> 如果取 <span class="math inline">\(\lambda =
+1/\sqrt{t}\)</span>, 那么 <span class="math display">\[
+H(x,t) = t^{-d/2} H(x/\sqrt{t}, 1)
+\]</span> 再考虑到热方程关于空间的微分是径向对称的, 所以 <span
+class="math inline">\(H(x/\sqrt{t}, 1)\)</span> 可以表示为 <span
+class="math inline">\(\mathbb{R}\)</span> 上单变量的函数 <span
+class="math inline">\(v(r)\)</span>, <span class="math inline">\(r =
+|x|/\sqrt{t}\)</span>: <span class="math display">\[
+H(x,t) = t^{-d/2} v(r)
+\]</span> 将解代入到热方程 <span class="math inline">\(\partial_t H =
+\Delta H\)</span> 中得到 <span class="math display">\[
+-\frac{d}{2} t^{-d/2 - 1} v + t^{-d/2} v&#39; \frac{\mathrm{d}
+r}{\mathrm{d} t}
+= t^{-d/2} (v&#39;&#39;/t + \frac{d-1}{|x|}v&#39;/\sqrt{t})
+\]</span> 这就得到微分方程 <span class="math display">\[
+v&#39;&#39; + \left(\frac{d-1}{r} + \frac{1}{2} r \right)v&#39; +
+\frac{d}{2} v = 0
+\]</span> 也即 <span class="math display">\[
+(r^{d-1} v&#39;)&#39; + \frac{1}{2} (r^d v)&#39; = 0 \Rightarrow
+r^{d-1} v&#39; + \frac{1}{2} r^d v = \mathrm{const}
+\]</span> 令常数等于 0, 那么 <span class="math display">\[
+v = c e^{-r^2/4}
+\]</span></p>
+<h2 id="波动方程的基本解">波动方程的基本解</h2>
+<p>在波动方程基本解的定义当中, 函数 <span
+class="math inline">\(\delta\)</span> 放在了初始速度项: <span
+class="math display">\[
+\frac{\partial^2 W}{\partial t^2} - \Delta W = 0,\\
+W(x, 0) = 0, \\
+\partial_t W(x,0) = \delta
+\]</span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Laplace-%E6%96%B9%E7%A8%8B/" rel="tag"># Laplace 方程</a>
+              <a href="/tags/%E5%9F%BA%E6%9C%AC%E8%A7%A3/" rel="tag"># 基本解</a>
+              <a href="/tags/%E7%83%AD%E6%96%B9%E7%A8%8B/" rel="tag"># 热方程</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mech/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E6%98%AF%E4%B8%8D%E5%8D%8F%E8%B0%83%E7%9A%84%E5%BA%94%E5%8F%98/" rel="prev" title="本征应变是不相容的应变">
+                  <i class="fa fa-angle-left"></i> 本征应变是不相容的应变
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/deutsche/%E5%BE%B7%E8%AF%AD%E4%B8%AD%E5%8F%AA%E8%B7%9F%E7%AC%AC%E4%B8%89%E6%A0%BC%E5%92%8C%E7%AC%AC%E5%9B%9B%E6%A0%BC%E7%9A%84%E4%BB%8B%E8%AF%8D/" rel="next" title="德语中只跟第三格和第四格的介词">
+                  德语中只跟第三格和第四格的介词 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qiu Xiaohuo</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

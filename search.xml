@@ -8284,8 +8284,9 @@ x^2 + y^2 = r^2, \quad \mathrm{d}x\mathrm{d}y =
 r\mathrm{d}r\mathrm{d}\theta
 \]</span> 所以 <span class="math display">\[
 I^2 = \int_{0}^{2\pi} \mathrm{d}\theta \int_{0}^{\infty} e^{-\pi r^2}
-r\mathrm{d}r = 1
+r\mathrm{d}r = 10
 \]</span></p>
+<span id="more"></span>
 <blockquote>
 <p>[!TIP]</p>
 <p>一个有意思的结论是, 上述的 replica trick 可以应用函数的范围是有限的
@@ -8358,8 +8359,8 @@ class="math display">\[
 class="math display">\[
 (e^{-\lambda \pi |x|^2})^{\wedge} = \lambda^{-d/2} e^{ - \pi
 |\xi|^2/\lambda}
-\]</span> 对应的 Fourier 逆变换为 (形式上完全一样) <span
-class="math display">\[
+\]</span> 对应的 Fourier 逆变换为 <strong>(形式上完全一样)</strong>
+<span class="math display">\[
 (e^{-\lambda \pi |\xi|^2})^{\vee} = \lambda^{-d/2} e^{-\pi |x|^2 /
 \lambda}
 \]</span> 如果函数 <span class="math inline">\(f\)</span> 是 <span
@@ -8389,6 +8390,621 @@ class="math inline">\(\alpha = p\)</span>; Gaussian 函数是径向对称函数,
       </categories>
       <tags>
         <tag>留数定理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矩阵值函数的微分运算</title>
+    <url>/math/%E7%9F%A9%E9%98%B5%E5%80%BC%E5%87%BD%E6%95%B0%E7%9A%84%E5%BE%AE%E5%88%86%E8%BF%90%E7%AE%97/</url>
+    <content><![CDATA[<p>我们考虑的矩阵值函数, 其每个元素是关于 <span
+class="math inline">\(t\)</span> 的单变量函数: <span
+class="math display">\[
+A(t) = [a_{ij}(t)]
+\]</span> 从 <span class="math inline">\(\mathbb{R} \mapsto
+\mathbb{R}^n\)</span> 上的函数几乎可以将单变量函数的微分运算直接平推,
+只要确定了范数度量 <span class="math inline">\(\|\cdot\|\)</span> (从
+<span class="math inline">\(\mathbb{R} \mapsto \mathbb{R}^n\)</span>
+的函数就没有那么平凡).</p>
+<p>考虑如下微分 <span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} e^{At}
+= \frac{\mathrm{d}~}{\mathrm{d} t} \sum_{k=0}^{\infty} \frac{t^k}{k!}A^k
+= A\sum_{k=1}^{\infty} \frac{t^{k-1}}{(k-1)!}A^{k-1} = A e^{At} = e^{At}
+A
+\]</span> 对 <span class="math inline">\(\det A(t)\)</span> 的导数,
+可以有两种方式看. 一种是利用定义 <span class="math display">\[
+\det A(t) = \sum_{\{\sigma_i\}} (-1)^{\mathrm{sign} \{\sigma_i\}}
+a_{1\sigma_1}(t) a_{2\sigma_2}(t) \ldots a_{n\sigma_n}(t)
+\]</span> <span id="more"></span>根据导数定义 <span class="math display">\[
+\det A(t+h) - \det A(t) \\
+= \sum_{\{\sigma_i\}} (-1)^{\mathrm{sign} \{\sigma_i\}}
+(a_{1\sigma_1}(t+h) a_{2\sigma_2}(t+h) \ldots a_{n\sigma_n}(t+h)
+- a_{1\sigma_1}(t) a_{2\sigma_2}(t) \ldots a_{n\sigma_n}(t)) \\
+= \sum_{\{\sigma_i\}} (-1)^{\mathrm{sign} \{\sigma_i\}}
+(a&#39;_{1\sigma_1} a_{2\sigma_2} \ldots a_{n\sigma_n}
++ a_{1\sigma_1} a&#39;_{2\sigma_2} \ldots a_{n\sigma_n}
++ \cdots
++ a_{1\sigma_1} a_{2\sigma_2} \ldots a&#39;_{n\sigma_n}) \\
+= \det(A&#39;_1, A_2, \ldots, A_n) + \det(A_1, A&#39;_2, \ldots, A_n)
++ \ldots + \det(A_1, A_2, \ldots, A&#39;_n)
+\]</span> 另一种证明要用到如下结论: 对于特征多项式 <span
+class="math inline">\(\det (A + \lambda I)\)</span>, 是关于 <span
+class="math inline">\(\lambda\)</span> 的 <span
+class="math inline">\(n\)</span> 阶多项式, 多项式的前两项系数为 <span
+class="math display">\[
+\det (A + \lambda I) = \lambda^n + (\mathrm{tr} A )\lambda^{n-1} +
+\cdots
+\]</span> 可以通过递归方法证明. <span class="math display">\[
+\det A(t+h) = \det [A(t) + h A&#39;(t) + o(h)]
+= \det A(t) \det [I + h A^{-1}(t)A&#39;(t) + o(h)] \\
+= \det A(t) (1 + h\mathrm{tr}(A^{-1}A&#39;) + o(h) )
+\]</span> 因此 <span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \det A(t) = \det A
+~\mathrm{tr}(A^{-1}A&#39;)
+\]</span> 上式要求 <span class="math inline">\(A(t)\)</span> 可逆,
+对于更一般的矩阵 <span class="math inline">\(A(t)\)</span>, 可以通过
+adjugate 矩阵表示 <span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \det A(t)
+=  \mathrm{tr}(\mathrm{adj}(A) A&#39;)
+\]</span> 积分得到 <span class="math display">\[
+\det A(t) = \det A(0) e^{\int_0^t \mathrm{tr}(A^{-1}(s)A&#39;(s))
+~\mathrm{d}s}
+\]</span> 如果将 <span class="math inline">\(A(t) = e^{At}\)</span>
+代入, 就会得到很有意思的等式 <span class="math display">\[
+\int_0^t \mathrm{tr}(e^{-As} A e^{As}) ~\mathrm{d}s = \mathrm{tr}(A)t
+\]</span> 所以 <span class="math display">\[
+\det e^{At} = e^{\mathrm{tr}(A)t}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>矩阵值函数</tag>
+        <tag>行列式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Bessel 位势和 Yukawa 位势</title>
+    <url>/math/Fourier-analysis/Bessel-%E4%BD%8D%E5%8A%BF%E5%92%8C-Yukawa-%E4%BD%8D%E5%8A%BF/</url>
+    <content><![CDATA[<p>Bessel 方程定义为 <span class="math display">\[
+-\Delta u + u = f
+\]</span> 为了求该方程的基本解, 方程右端非齐次项换成 Delta 函数 <span
+class="math inline">\(\delta\)</span>. 两边作 Fourier 变换, 就得到 <span
+class="math display">\[
+(1 + 4\pi^2 |\xi|^2) \widehat{B} = 1
+\]</span> 接下来要求解函数 <span
+class="math inline">\(\widehat{B}(\xi)\)</span> 的 Fourier 逆变换,
+又称为 Bessel 位势 <span class="math display">\[
+B(x)
+= \int_{\mathbb{R}^d} \frac{e^{i2\pi \xi \cdot x}}{1 + 4\pi^2 |\xi|^2}
+~\mathrm{d}\xi
+\]</span> <span id="more"></span>但是这个积分我们不会算啊, 怎么办?
+一种思路是将该积分转换为我们熟悉的 Gauss 积分, 我们知道 <span
+class="math display">\[
+\int_0^{\infty} e^{-ct} \mathrm{d}t = \frac{1}{c}
+\]</span> 将积分中的常数 <span class="math inline">\(c\)</span> 换成
+Bessel 位势, 就得到 <span class="math display">\[
+\widehat{B}(\xi) = \int_0^{\infty} e^{-t - 4\pi^2 t |\xi|^2} \mathrm{d}t
+\]</span> 不幸的是, 我们现在多了一层积分, 幸运的是, 我们把讨厌的 <span
+class="math inline">\(|\xi|^2\)</span> 移到指数上去了, 这就可以通过
+Gauss 积分处理, 如果我们默认积分是可以换序的: <span
+class="math display">\[
+\int_0^{\infty} e^{-t} \int_{\mathbb{R}^d} e^{i2\pi \xi \cdot x}  e^{-
+4\pi^2 t |\xi|^2}
+~\mathrm{d}\xi \mathrm{d}t
+\]</span> 这就得到 <span class="math display">\[
+\int_0^{\infty} e^{-t} (4\pi^2 t)^{-d/2} e^{-|x|^2/4\pi^2 t}
+~\mathrm{d}t
+\]</span> 特别的, 当 <span class="math inline">\(d=1\)</span> 时, 积分为
+<span class="math display">\[
+B(x)
+= \int_{\mathbb{R}} \frac{e^{i2\pi \xi x}}{1 + 4\pi^2 \xi^2}
+~\mathrm{d}\xi
+\]</span> 我们可以通过留数积分来计算, 考虑函数 <span
+class="math display">\[
+f(z) = \frac{1}{1 + 4\pi^2 z^2}
+\]</span> 注意到当 <span class="math inline">\(|z| \rightarrow
+\infty\)</span> 时, <span class="math inline">\(f(z) \rightarrow
+0\)</span>. 考虑上半平面的半圆, 可以证明, 当半圆半径 <span
+class="math inline">\(R \rightarrow \infty\)</span> 时, 在半圆弧上的积分
+<span class="math display">\[
+\lim_{R \rightarrow \infty} \int_{\Gamma_R} f(z) e^{i2\pi x z}
+~\mathrm{d}z = 0
+\]</span> 因此 <span class="math display">\[
+\oint_{C} f(z) e^{i2\pi x z} ~\mathrm{d}z = \int_{\mathbb{R}} f(\xi)
+e^{i2\pi x \xi} ~\mathrm{d}\xi
+= 2\pi i \mathrm{Res}
+\]</span> 因此问题转化为计算留数. 函数 <span
+class="math inline">\(f(z)\)</span> 的极点为 <span
+class="math display">\[
+\pm\frac{1}{2\pi i}
+\]</span> 选择位于上半平面的极点 <span class="math inline">\(-1/2\pi
+i\)</span>, 得到留数为 <span class="math display">\[
+\mathrm{Res} = \lim_{z\rightarrow z_0} (z-z_0) f(z) e^{i2\pi x z}
+= -\frac{i}{4\pi} e^{-x}
+\]</span> 最终得到 <span class="math display">\[
+\int_{\mathbb{R}} f(\xi) e^{i2\pi x \xi} ~\mathrm{d}\xi
+= \frac{1}{2} e^{-x}
+\]</span> 但是这个答案是不完全对的! 因为一维的 Bessel 位势为 <span
+class="math display">\[
+B(x) = \frac{1}{2} e^{-|x|}
+\]</span> 我没有看到怎样把这个绝对值的符号加进去.</p>
+]]></content>
+      <categories>
+        <category>Fourier 分析</category>
+      </categories>
+      <tags>
+        <tag>Bessel 方程</tag>
+        <tag>Yukawa 位势</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>矩阵指数</title>
+    <url>/math/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0/</url>
+    <content><![CDATA[<p>矩阵指数 (Matrix Exponential) 定义为 <span class="math display">\[
+e^{A} \triangleq \sum_{k=0}^{\infty} \frac{1}{k!}A^k
+\]</span> 因为之后要用到矩阵指数表示常微分方程组的解,
+所以在上式中加入时间项 <span class="math display">\[
+e^{At} \triangleq \sum_{k=0}^{\infty} \frac{t^k}{k!}A^k
+\]</span> 在接下来的计算中, 我们给出 <span
+class="math inline">\(e^{At}\)</span> 而不是 <span
+class="math inline">\(e^A\)</span>, 因为虽然 <span
+class="math inline">\(e^{At}\)</span> 与 <span
+class="math inline">\(e^{A}\)</span> 计算过程相同, 但是从 <span
+class="math inline">\(e^A\)</span> 的结果并不是可以很轻松地得到 <span
+class="math inline">\(e^{At}\)</span> 的形式.
+所以直接给出更一般的结论.</p>
+<p>通过级数的定义式, 可以得到一些特殊矩阵级数的表达式<span id="more"></span></p>
+<blockquote>
+<p>[!TIP]</p>
+<p><span class="math inline">\(A = I\)</span> 时, 矩阵指数为 <span
+class="math display">\[
+e^{It} = \sum_{k=0}^{\infty} \frac{1}{k!} I^k t^k
+= \left( \sum_{k=0}^{\infty} \frac{t^k}{k!}  \right)I
+= e^{t} I
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>[!TIP]</p>
+<p><span class="math inline">\(A = \mathrm{diag}(a_1, a_2, \ldots,
+a_n)\)</span> 时, 矩阵指数为 <span class="math display">\[
+e^{At} = \sum_{k=0}^{\infty} \frac{t^k}{k!} \mathrm{diag}(a_1^k, a_2^k,
+\ldots, a_n^k)
+= \mathrm{diag}(
+\sum_{k=0}^{\infty} \frac{t^k}{k!}a_1^k,
+\sum_{k=0}^{\infty} \frac{t^k}{k!}a_2^k, \ldots,
+\sum_{k=0}^{\infty} \frac{t^k}{k!}a_n^k)
+= \mathrm{diag}(e^{a_1 t}, e^{a_2 t}, \ldots, e^{a_n t})
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>[!TIP]</p>
+<p><span class="math inline">\(A\)</span> 可以对角化时: <span
+class="math display">\[
+A = P \Lambda P^{-1}, ~\Lambda = \mathrm{diag}(\lambda_1, \lambda_2,
+\ldots, \lambda_n)
+\]</span></p>
+<p><span class="math display">\[
+e^{At} = \sum_{k=0}^{\infty} \frac{t^k}{k!} \left( P \Lambda P^{-1}
+\right)^k
+= P \left( \sum_{k=0}^{\infty} \frac{t^k}{k!}\Lambda^k \right) P^{-1}
+= P e^{\Lambda t} P^{-1}
+\]</span></p>
+</blockquote>
+<p>除此之外, 还可以根据矩阵乘积随幂次增长的规律,
+得到另一些常见矩阵的指数</p>
+<blockquote>
+<p>[!TIP]</p>
+<p>矩阵 <span class="math inline">\(A\)</span> 时 Nilpotent 矩阵, 如果
+<span class="math display">\[
+A^N = 0
+\]</span> 这意味着矩阵指数只涉及到有限项矩阵幂的求和: <span
+class="math display">\[
+e^{At} = \sum_{k=0}^{N} \frac{t^k}{k!}A^k
+\]</span> 对于方阵 <span class="math inline">\(A\)</span>,
+如果对角线以及对角线(上/下)所有元素都等于 0, 那么该矩阵就是 <span
+class="math inline">\(n\)</span> 次的 Nilpotent 矩阵, 例如 <span
+class="math display">\[
+A = \begin{pmatrix}
+  0 &amp; 1\\0 &amp; 0
+\end{pmatrix}, \quad
+A^2 = \begin{pmatrix}
+  0 &amp; 0\\0 &amp; 0
+\end{pmatrix}, \quad
+e^{At} = \begin{pmatrix}
+  1 &amp; 0\\0 &amp; 1
+\end{pmatrix}
++ t\begin{pmatrix}
+  0 &amp; 1\\0 &amp; 0
+\end{pmatrix}
+= \begin{pmatrix}
+  1 &amp; t\\0 &amp; 1
+\end{pmatrix}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>[!TIP]</p>
+<p>矩阵 <span class="math inline">\(A\)</span> 为 <span
+class="math display">\[
+A = \begin{pmatrix}
+  0 &amp; 1\\-1 &amp; 0
+\end{pmatrix}
+\]</span> 计算前 4 项的矩阵幂为 <span class="math display">\[
+A^2 = -I, \quad
+A^3 = -A, \quad
+A^4 =  I
+\]</span> 所以 <span class="math display">\[
+e^{At}
+= \begin{pmatrix}
+  0 &amp; \sum_{k=0}^{\infty}\frac{(-t)^k}{(2k+1)!}\\
+  -\sum_{k=0}^{\infty}\frac{(-t)^k}{(2k+1)!} &amp; 0
+\end{pmatrix}
++ \begin{pmatrix}
+  \sum_{k=0}^{\infty}\frac{(-t)^k}{(2k)!} &amp; 0\\
+  0 &amp; \sum_{k=0}^{\infty}\frac{(-t)^k}{(2k)!}
+\end{pmatrix}
+= \begin{pmatrix}
+   \cos t &amp; \sin t\\
+  -\sin t &amp; \cos t
+\end{pmatrix}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>[!TIP]</p>
+<p>矩阵 <span class="math inline">\(A\)</span> 为 <span
+class="math display">\[
+A = \begin{pmatrix}
+\lambda &amp; 1 \\
+0 &amp; \lambda
+\end{pmatrix}
+\]</span> 那么 <span class="math display">\[
+A^{k} = \begin{pmatrix}
+\lambda^k &amp; k\lambda^{k-1} \\
+0 &amp; \lambda^k
+\end{pmatrix}
+\]</span> 所以 <span class="math display">\[
+e^{At} = I + \sum_{k=1}^{\infty} \frac{t^k}{k!}\begin{pmatrix}
+\lambda^k &amp; k\lambda^{k-1} \\
+0 &amp; \lambda^k
+\end{pmatrix}
+= \lim_{N\rightarrow \infty} \begin{pmatrix}
+\sum_{k=0}^{N} \frac{(t\lambda)^k}{k!} &amp; t\sum_{k=0}^{N-1}
+\frac{(t\lambda)^k}{k!} \\
+0 &amp; \sum_{k=0}^{N} \frac{(t\lambda)^k}{k!}
+\end{pmatrix}
+= e^{\lambda t}\begin{pmatrix}
+1 &amp; t \\
+0 &amp; 1
+\end{pmatrix}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>[!TIP]</p>
+<p>矩阵 <span class="math inline">\(A\)</span> 的另一种计算方法 <span
+class="math display">\[
+A = \begin{pmatrix}
+\lambda &amp; 1 \\
+0 &amp; \lambda
+\end{pmatrix}
+\]</span> 有如下定理:</p>
+<p>如果 <span class="math inline">\(AB = BA\)</span>, 那么 <span
+class="math inline">\(e^{A+B} = e^{B+A}\)</span>.</p>
+<p>将矩阵 <span class="math inline">\(A\)</span> 分解为 <span
+class="math display">\[
+A = \begin{pmatrix}
+\lambda &amp; 0 \\
+0 &amp; \lambda
+\end{pmatrix}
++ \begin{pmatrix}
+0 &amp; 1 \\
+0 &amp; 0
+\end{pmatrix} = B+C
+\]</span> 容易验证 <span class="math inline">\(BC = CB\)</span>, 所以
+<span class="math display">\[
+e^{At} = e^{Bt}e^{Ct} = e^{\lambda t}I\begin{pmatrix}
+  1 &amp; t\\0 &amp; 1
+\end{pmatrix}
+= e^{\lambda t} \begin{pmatrix}
+  1 &amp; t\\0 &amp; 1
+\end{pmatrix}
+\]</span></p>
+</blockquote>
+<p>好了, 经过前面的热身之后, 我们现在来处理讨厌的 Jordan 标准型情况.
+任何 <span class="math inline">\(n\)</span> 维矩阵都可以分解为对角线上为
+Jordan 标准块的 “对角”矩阵: <span class="math display">\[
+A = P \mathrm{diag}(J_1, J_2, \ldots, J_k) P^{-1}, \quad k \leq n
+\]</span> 我们需要特别考虑重根情况. 只有出现重根时, 才有可能用到 Jordan
+标准型. 设特征根 <span class="math inline">\(\lambda_i\)</span> 为 <span
+class="math inline">\(m_i\)</span> 阶代数重根, 对应的特征向量空间 <span
+class="math inline">\(E_{\lambda_i}\)</span>, 特征向量空间的维度 <span
+class="math inline">\(\dim E_{\lambda_i}\)</span>
+总是小于等于该特征值对应的代数重数的, 并且根据定义, <span
+class="math inline">\(\dim E_{\lambda_i} \geq 1\)</span>. 所以 <span
+class="math display">\[
+1 \leq \dim E_{\lambda_i} \leq m_i
+\]</span> 当 <span class="math inline">\(\dim E_{\lambda_i} &lt;
+m_i\)</span> 时, 就会出现维度大于 1 的 Jordan 块. 一个典型的 Jordan
+块可以表示为如下次对角线为 1 的矩阵: <span class="math display">\[
+J_i = \begin{pmatrix}
+\lambda_i &amp; 1 &amp;  &amp; 0 \\
+                    &amp; \lambda_i &amp; \ddots &amp; \\
+                 &amp;  &amp; \ddots &amp; 1\\
+                0 &amp;  &amp;  &amp; \lambda_i
+\end{pmatrix}_{m\times m}
+\]</span> 关于 Jordan 块有如下性质:</p>
+<ol type="1">
+<li><span class="math inline">\(J_i\)</span> 只有一个特征值 <span
+class="math inline">\(\lambda_i\)</span>;</li>
+<li><span class="math inline">\(\dim E_{\lambda_i} = 1\)</span>,
+或者更确切地说, <span class="math inline">\(E_{\lambda_i} =
+\mathrm{span} \{ (1,0,0,\ldots,0)^\top \}\)</span>, 因为矩阵 <span
+class="math inline">\(J_i - \lambda_i I\)</span> 的零空间是一维的;</li>
+<li>使得 <span class="math inline">\((J_i - \lambda_i I)^p = 0\)</span>
+的最小 <span class="math inline">\(p\)</span> 值为 <span
+class="math inline">\(m\)</span>, 也即 <span class="math inline">\((J_i
+- \lambda_i I)^m = 0\)</span>;</li>
+<li>设 <span class="math inline">\(\{e_i\}\)</span> 为空间 <span
+class="math inline">\(\mathbb{C}^{m}\)</span> 的标准基, 那么对任意的
+<span class="math inline">\(i\)</span>, <span class="math inline">\((J_i
+- \lambda_i I)^i e_k = 0\)</span>, <span class="math inline">\(k =
+1,2,\ldots, i\)</span></li>
+</ol>
+<p>由性质 4, 我们可以定义广义的特征向量空间 <span
+class="math inline">\(K_{\lambda_i}\)</span> <span
+class="math display">\[
+K_{\lambda_i} = \{ x \mid (A - \lambda I)^px = 0  \}
+\]</span> 接下来, 我们将陈述 Jordan 分解定理</p>
+<p>对于 <span class="math inline">\(n\)</span> 阶方阵 <span
+class="math inline">\(A\)</span>, 得到特征值序列 <span
+class="math inline">\(\lambda_1, \lambda_2, \ldots, \lambda_k\)</span>,
+以及相应的代数重数 <span class="math inline">\(m_1, m_2, \ldots,
+m_k\)</span>, 有如下结论</p>
+<ol type="1">
+<li><span class="math inline">\(\dim K_{\lambda_i} = m_i\)</span>;</li>
+<li><span class="math inline">\(\mathbb{C}^{n} = K_{\lambda_1} \oplus
+K_{\lambda_2} \oplus \cdots \oplus K_{\lambda_k}\)</span>;</li>
+</ol>
+<p>好了, 上述结论告诉我们 Jordan 分解是可行的, 可是具体要怎么做呢?
+关键的地方就在于此. 我们希望将矩阵 <span
+class="math inline">\(A\)</span> 分解为 <span class="math display">\[
+A = P J P^{-1}
+\]</span> 式中, <span class="math inline">\(J\)</span> 为 Jordan 标准型,
+对于可对角化的矩阵, <span class="math inline">\(P\)</span>
+是由特征向量组成的矩阵. 对于 Jordan 标准型, 该怎样构造 <span
+class="math inline">\(P\)</span> 呢?</p>
+<p>我们将上述矩阵写成如下特征向量的形式 <span class="math display">\[
+A ( v_1, v_2, v_3, \ldots ) = ( v_1, v_2, v_3, \ldots ) J
+= (\lambda v_1, \lambda v_2 + v_1, \lambda v_3 + v_2, \ldots)
+\]</span> 所以有 <span class="math display">\[
+(A - \lambda I) v_1 =  0, \\
+(A - \lambda I) v_2 = v_1 \iff (A - \lambda I)^2 v_2 = 0 \\
+(A - \lambda I) v_3 = v_2 \iff (A - \lambda I)^3 v_3 = 0 \\
+\cdots
+\]</span> 因此, 我们可以递归地确定向量 <span class="math inline">\(v_1,
+v_2, v_3, \ldots\)</span>. 首先根据 <span
+class="math inline">\(N(A-\lambda I)\)</span> 确定特征向量空间 <span
+class="math inline">\(E_1\)</span>, 再求解 <span
+class="math inline">\(N(A-\lambda I)^2\)</span>, 确定特征向量空间 <span
+class="math inline">\(E_2\)</span>, 依此类推确定特征向量空间 <span
+class="math inline">\(E_3, \ldots, E_m\)</span>, 那么,
+最终确定的特征向量族为 <span class="math display">\[
+v_m \in E_m / \bigcup_{i=1}^{m-1} E_i, \quad v_{m-1} = (A - \lambda
+I)v_m, \ldots
+\]</span></p>
+<blockquote>
+<p>[!CAUTION]</p>
+<p>矩阵 <span class="math inline">\(P\)</span> 的排列必须严格按照 <span
+class="math inline">\((v_1, v_2, v_3, \ldots)\)</span> 的顺序,
+否则无法得到 Jordan 标准形式.</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>微分方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>三类方程的基本解</title>
+    <url>/math/PDE/%E4%B8%89%E7%B1%BB%E6%96%B9%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%A3/</url>
+    <content><![CDATA[<p>基本解只与方程相关, 与边界条件无关. 以下将考虑 Laplace 方程,
+热方程和波动方程的基本解.</p>
+<p>方程 <span class="math inline">\(L\)</span> 基本解的定义为右端项为
+delta 函数的响应: <span class="math display">\[
+L[u] = \delta
+\]</span></p>
+<h2 id="laplace-方程的基本解">Laplace 方程的基本解</h2>
+<p>先给出结论: 设 Laplace 方程的基本解为 <span
+class="math inline">\(N(x)\)</span> <span class="math display">\[
+-\Delta N = \delta
+\]</span> 那么对不同的维度, 解 <span class="math inline">\(N(x)\)</span>
+为 <span class="math display">\[
+\boxed{N(x) = \left\{\begin{array}{cl}
+\dfrac{1}{(d-2) S_d} |x|^{2-d}, &amp;d \neq 2\\
+- \dfrac{1}{2\pi} \ln|x|, \quad &amp; d = 2
+\end{array}\right.}
+\]</span> 式中, <span class="math inline">\(S_d\)</span> 为 <span
+class="math inline">\(d\)</span> 维单位球的表面积. 分别列出一维,
+二维和三维情景下 Laplace 方程的基本解: <span class="math display">\[
+\boxed{N(x) = \left\{\begin{array}{cl}
+-\dfrac{1}{2} |x|, &amp; d = 1\\
+-\dfrac{1}{2\pi} \ln|x|, &amp; d = 2\\
+\dfrac{1}{4\pi} \dfrac{1}{|x|}, &amp; d =3
+\end{array}\right.}
+\]</span>
+<img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202406151119398.png" alt="image-20240615111956159" style="zoom:50%;" /></p>
+<p>接下来, 我们会用两种方式推导基本解. 第一种方式是利用 Laplace
+解的<strong>径向对称性</strong>, 因此假设方程的解 <span
+class="math inline">\(u(x)\)</span> 可以写成关于距原点距离为 <span
+class="math inline">\(r\)</span> 的函数 <span
+class="math inline">\(v(r)\)</span>: <span class="math display">\[
+u(x) = v(r), \quad r = |x|
+\]</span> 将径向对称解代入到 Laplace 方程中的二阶导数项 <span
+class="math display">\[
+\frac{\partial v(|x|)}{\partial x_i} = v&#39; \frac{x_i}{|x|}, \quad
+\frac{\partial^2 v(|x|)}{\partial x_i^2}
+= v&#39;&#39; \frac{x_i^2}{|x|^2} + v&#39; \frac{|x|^2 - x_i^2}{|x|^{3}}
+\]</span> 求和得到关于 <span class="math inline">\(r\)</span>
+的<strong>常微分方程</strong> <span class="math display">\[
+\Delta u = v&#39;&#39; + \frac{(d-1)}{r}v&#39; = 0
+\]</span> 当 <span class="math inline">\(d \neq 1\)</span> 时,
+上述微分方程的一个不平凡解为 <span class="math display">\[
+v&#39; = Ar^{1-d}, \quad v =
+\begin{cases}
+A \ln r,   &amp;d = 2 \\
+B r^{2-d}, &amp;d &gt; 2
+\end{cases}
+\]</span> 这样, 除了待定常数之外,Laplace
+方程基本解的形式是已经确定的了.</p>
+<p>另一种, 也是更常规的方法, 是使用 <strong>Fourier 变换</strong>.
+方程两端作 Fourier 变换得到 <span class="math display">\[
+4 \pi^2 |\xi|^2 \widehat N = 1, \quad |\xi|^2 \triangleq \xi_i \xi_i
+\]</span> 所以方程的基本解可以通过 Fourier 逆变换表示为 <span
+class="math display">\[
+N(x) = \mathscr{F}^{-1}[\widehat N] = \int_{\mathbb{R}^d}
+\frac{1}{4\pi^2 |\xi|^2} e^{i2\pi\xi \cdot x} ~\mathrm{d}\xi
+\]</span> 注意到 <span class="math inline">\(\widehat{N}\)</span> 是
+<span class="math inline">\(\alpha=-2\)</span> 的齐次径向对称函数, 所以
+<span class="math inline">\(N\)</span> 是 <span
+class="math inline">\(-d-\alpha = -d+2\)</span> 齐次径向对称函数, 因此
+<span class="math inline">\(N\)</span> 可以写成 <span
+class="math display">\[
+N(x) = N(|x|\frac{x}{|x|}) = |x|^{2-d} N_{0}(1)
+\]</span> <strong>为确定常数 <span
+class="math inline">\(N_0(1)\)</span>, 对 <span
+class="math inline">\(\Delta N\)</span> 在球 <span
+class="math inline">\(B_{\varepsilon}(0)\)</span> 上积分</strong>,
+并应用 Gauss 公式, 得到 <span class="math display">\[
+\int_{B_{\varepsilon}} -\Delta N ~\mathrm{d}x = 1
+= - \int_{\partial B_{\varepsilon}} n \cdot \nabla N ~\mathrm{d}
+\sigma(x)
+\]</span> 径向对称函数的法向导数为 <span class="math display">\[
+\boxed{\nabla N = N_0&#39;(r)\frac{x_i}{|x|} = N_0&#39;(r) n, \quad n
+\cdot \nabla N = N_{0}&#39;(r)}
+\]</span> 所以 <span class="math display">\[
+1 = - \int_{\partial B_{\varepsilon}} N_{0}&#39; ~\mathrm{d} \sigma(x)
+= - N_{0}&#39;(\varepsilon) S_{d} \varepsilon^{d-1}
+= (d-2) S_{d} N_0(1)
+\]</span> 由此得到 <span class="math display">\[
+N(x) = \frac{1}{(d-2) S_{d}} |x|^{2-d}
+\]</span></p>
+<blockquote>
+<p>[!Important]</p>
+<p>式中对于 <span class="math inline">\(d=2\)</span> 的情景是不适用的,
+不过可以考虑这样 (虽然不令人很信服) 的极限: <span
+class="math inline">\(d = 2 + \varepsilon\)</span>, 那么, <span
+class="math display">\[
+N(x) = \frac{1}{\omega_{1+ \varepsilon} \varepsilon }|x|^{-\varepsilon}
+= \frac{1}{2\pi} ~ \frac{1}{ \varepsilon }|x|^{-\varepsilon}
+\]</span> 将上式右端项关于 <span
+class="math inline">\(\varepsilon\)</span> 渐进展开得到 <span
+class="math display">\[
+\frac{1}{ \varepsilon }|x|^{-\varepsilon} = \frac{1}{ \varepsilon
+}e^{-\varepsilon\ln|x|}
+\sim \frac{1}{\varepsilon} ( 1 - \boxed{\varepsilon \ln |x|} +
+o(\varepsilon) )
+\]</span> 最后得到 <span class="math display">\[
+N(x) = -\frac{1}{2\pi} \ln|x|
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>[!NOTE]</p>
+<p><strong><span class="math inline">\(d=1\)</span>
+时的基本解</strong></p>
+<p>此时方程为 <span class="math display">\[
+-u&#39;&#39; = \delta
+\]</span> 该方程在 <span class="math inline">\(x=0\)</span> 处有奇性,
+所以分别对 <span class="math inline">\(x&gt;0\)</span> 和 <span
+class="math inline">\(x&lt;0\)</span> 区域分别求解得到 <span
+class="math display">\[
+u = \begin{cases}
+c_1 x, &amp; x&lt;0\\
+c_2 x, &amp; x&gt;0
+\end{cases}
+\]</span> <em>基本解中忽略常数项.</em> 为确定积分中出现的常数,
+还需要利用如下性质. 首先是对称性, 这要求 <span class="math inline">\(c_1
+= -c_2 = c\)</span>. 然后对方程在区间 <span
+class="math inline">\((-\varepsilon,\varepsilon)\)</span> 上积分得到
+<span class="math display">\[
+-\int_{-\varepsilon}^{\varepsilon} u&#39;&#39; ~\mathrm{d}x = 1
+\]</span> 分别对 <span class="math inline">\((0,\varepsilon)\)</span> 和
+<span class="math inline">\((-\varepsilon,0)\)</span> 两个区间段积分得到
+<span class="math display">\[
+-u&#39;|_{0^+}^{\varepsilon} - u&#39;|_{-\varepsilon}^{0^-}
+= -c + u&#39;(0^+)-u&#39;(0^-)-c = [u&#39;(0)] - 2c = 1
+\]</span> 如果设置间断条件 <span class="math inline">\([u&#39;(0)] =
+0\)</span>, 那么 <span class="math display">\[
+c = -\frac{1}{2}
+\]</span></p>
+</blockquote>
+<h2 id="热方程的基本解">热方程的基本解</h2>
+<p>热方程基本解满足的方程和初始条件为 <span class="math display">\[
+\left\{\begin{array}{c}
+\dfrac{\partial H}{\partial t} = \Delta H \\
+H(x,0) = \delta(x)
+\end{array}\right.
+\]</span> 应用 Fourier 变换, 得到 <span class="math display">\[
+\left\{\begin{array}{c}
+\dfrac{\mathrm{d} \widehat H}{\mathrm{d} t} + 4 \pi^2 |\xi|^2 \widehat H
+\\
+\widehat H(0) = 1
+\end{array}\right.
+\]</span> 求解上述微分方程, 得到 <span class="math display">\[
+\widehat H(t) = e^{-4\pi^2 |\xi|^2 t}
+\]</span> 所以热方程的基本解为 <span class="math display">\[
+\boxed{H(x,t) = \frac{1}{(4\pi t)^{d/2}} e^{- |x|^2/4t}}
+\]</span> <img
+src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Fundamental_solution_to_the_heat_equation.gif/440px-Fundamental_solution_to_the_heat_equation.gif"
+alt="img" /></p>
+<p>另一种得到热方程基本解的方式是自相似方法. 如果 <span
+class="math inline">\(H(x,t)\)</span> 满足热方程和初始条件, 那么, <span
+class="math inline">\(cH(\lambda x, \lambda^2 t)\)</span>
+同样也满足热方程. 为保证初始条件一致, <span
+class="math inline">\(cH(\lambda x, 0) = c\delta(\lambda x)\)</span>
+应等于 <span class="math inline">\(\delta(x)\)</span>, 这要求 <span
+class="math inline">\(c = \lambda^d\)</span>. 所以, 对任意 <span
+class="math inline">\(\lambda \neq 0\)</span>, <span
+class="math display">\[
+H(x,t) = \lambda^d H(\lambda x, \lambda^2 t)
+\]</span> 如果取 <span class="math inline">\(\lambda =
+1/\sqrt{t}\)</span>, 那么 <span class="math display">\[
+H(x,t) = t^{-d/2} H(x/\sqrt{t}, 1)
+\]</span> 再考虑到热方程关于空间的微分是径向对称的, 所以 <span
+class="math inline">\(H(x/\sqrt{t}, 1)\)</span> 可以表示为 <span
+class="math inline">\(\mathbb{R}\)</span> 上单变量的函数 <span
+class="math inline">\(v(r)\)</span>, <span class="math inline">\(r =
+|x|/\sqrt{t}\)</span>: <span class="math display">\[
+H(x,t) = t^{-d/2} v(r)
+\]</span> 将解代入到热方程 <span class="math inline">\(\partial_t H =
+\Delta H\)</span> 中得到 <span class="math display">\[
+-\frac{d}{2} t^{-d/2 - 1} v + t^{-d/2} v&#39; \frac{\mathrm{d}
+r}{\mathrm{d} t}
+= t^{-d/2} (v&#39;&#39;/t + \frac{d-1}{|x|}v&#39;/\sqrt{t})
+\]</span> 这就得到微分方程 <span class="math display">\[
+v&#39;&#39; + \left(\frac{d-1}{r} + \frac{1}{2} r \right)v&#39; +
+\frac{d}{2} v = 0
+\]</span> 也即 <span class="math display">\[
+(r^{d-1} v&#39;)&#39; + \frac{1}{2} (r^d v)&#39; = 0 \Rightarrow
+r^{d-1} v&#39; + \frac{1}{2} r^d v = \mathrm{const}
+\]</span> 令常数等于 0, 那么 <span class="math display">\[
+v = c e^{-r^2/4}
+\]</span></p>
+<h2 id="波动方程的基本解">波动方程的基本解</h2>
+<p>在波动方程基本解的定义当中, 函数 <span
+class="math inline">\(\delta\)</span> 放在了初始速度项: <span
+class="math display">\[
+\frac{\partial^2 W}{\partial t^2} - \Delta W = 0,\\
+W(x, 0) = 0, \\
+\partial_t W(x,0) = \delta
+\]</span></p>
+]]></content>
+      <categories>
+        <category>偏微分方程</category>
+      </categories>
+      <tags>
+        <tag>Laplace 方程</tag>
+        <tag>基本解</tag>
+        <tag>热方程</tag>
       </tags>
   </entry>
 </search>
