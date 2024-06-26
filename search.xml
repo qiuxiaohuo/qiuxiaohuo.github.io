@@ -2916,24 +2916,27 @@ K^{\star} &lt; K^{*}(\max_{\alpha} K^{\alpha},\max_{\alpha}
   <entry>
     <title>弹性力学方程的 Green 函数</title>
     <url>/mech/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/</url>
-    <content><![CDATA[<p>如果将微分方程写成抽象的算子形式:</p>
-<p><span class="math display">\[
-L[u] + f = 0 \text{ on } \Omega
+    <content><![CDATA[<div class="note info"><h5 id="基本解和-green-函数的区别">基本解和 Green 函数的区别</h5>
+<p>如果将微分方程写成抽象的算子形式: <span class="math display">\[
+L[u] = f \text{ on } \Omega
 \]</span></p>
 <p>特别的, 当函数 <span class="math inline">\(f\)</span> 为 Dirac 函数
 <span class="math inline">\(\delta\)</span> 时, 微分方程的解 <span
-class="math inline">\(G\)</span> 称为算子 <span
-class="math inline">\(L\)</span> 的 Green 函数 (或者称为微分方程 <span
-class="math inline">\(L\)</span> 的基本解): <span
-class="math display">\[
-L [G] + \delta = 0
+class="math inline">\(F\)</span> 称为算子 <span
+class="math inline">\(L\)</span> 的基本解: <span class="math display">\[
+L [F] = \delta
 \]</span></p>
+<p>注意到上述过程中, 并没有提到方程需要满足什么边界条件, 这也是基本解和
+Green 函数之间的区别. Green 函数需要考虑边界的影响,
+并且函数中会引入另一个空间变量 <span
+class="math inline">\(x&#39;\)</span>, 表示在这一点处 Dirac
+函数作用下方程的响应. 严格来说, 下文得到的是基本解, 不是 Green 函数.</p>
+</div>
 <span id="more"></span>
 <p>当微分方程右端项为一般的函数 <span class="math inline">\(f\)</span>
 时, 此时微分方程的解 <span class="math inline">\(u\)</span> 可以表示为
 Green 函数 <span class="math inline">\(G\)</span> 与 <span
-class="math inline">\(f\)</span> 的卷积:</p>
-<p><span class="math display">\[
+class="math inline">\(f\)</span> 的卷积: <span class="math display">\[
 u = G*f = \int_{-\infty}^{\infty} G(x-x^{\prime}) f(x^{\prime})
 \mathrm{d} x^{\prime}
 \]</span></p>
@@ -8082,7 +8085,7 @@ Stuhl</u>.<br />Die Frau hat das Kind <u>auf den Stuhl</u>
       </tags>
   </entry>
   <entry>
-    <title>本征应变是不相容的应变</title>
+    <title>本征应变是不协调的应变</title>
     <url>/mech/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E6%98%AF%E4%B8%8D%E5%8D%8F%E8%B0%83%E7%9A%84%E5%BA%94%E5%8F%98/</url>
     <content><![CDATA[<p>这里的公式编号与 Mura 保持一致.</p>
 <p>考虑如图所示的弹性体, 想象其中有一根细长杆,
@@ -8250,21 +8253,28 @@ class="math display">\[
 \xi_i \triangleq - \iint_{S} x_j \epsilon_{hij} R_{hq} n_q ~\mathrm{d} S
 }
 \tag{10.17}
-\]</span> 应变相容条件为 <span class="math display">\[
+\]</span> 应变协调条件为 <span class="math display">\[
 \epsilon_{pki} \epsilon_{qlj} \varepsilon_{ij,kl} = 0 \\
 \]</span> 注意到张量 <span class="math inline">\(R_{hq}\)</span>
 的定义式 (10.13). 如果应变 <span class="math inline">\(e_{ij}\)</span>​
-是相容的, 那么 <span class="math display">\[
+是协调的, 那么 <span class="math display">\[
 R_{hq} \equiv 0
 \]</span> 如果考虑应变 <span
 class="math inline">\(\varepsilon_{ij}\)</span> 中还包含本征应变 <span
 class="math inline">\(\mu_{ij}\)</span> <span class="math display">\[
 \varepsilon_{ij} = e_{ij} - \mu_{ij}
-\]</span> 代入到式 (10.13) 中, 就得到由本征应变导致的不相容性 <span
+\]</span> 代入到式 (10.13) 中, 就得到由本征应变导致的不协调性 <span
 class="math display">\[
 R_{qh} = -\epsilon_{qpk} \epsilon_{hlm} \mu_{km,lp}
 \]</span></p>
 ]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>细观力学</tag>
+        <tag>本正应变</tag>
+      </tags>
   </entry>
   <entry>
     <title>Gaussian 函数的 Fourier 变换与逆变换</title>
@@ -9008,6 +9018,111 @@ W(x, 0) = 0, \\
         <tag>Laplace 方程</tag>
         <tag>基本解</tag>
         <tag>热方程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>韦伯谈学者的人格</title>
+    <url>/deutsche/%E9%9F%A6%E4%BC%AF%E8%B0%88%E5%AD%A6%E8%80%85%E7%9A%84%E4%BA%BA%E6%A0%BC/</url>
+    <content><![CDATA[<p>在《学术作为一种志业》演讲中，韦伯谈到了个性（Persönlichkeit），并与流行观念中的个人体验（Erleben）进行辨析：</p>
+<blockquote>
+<p>今天我们在每一个街角和每一份杂志里，都可看到这种偶像崇拜。这些偶像就是「个性」和「个人体验」。两者有着密切的联系，占上风的想法是，后者就等于前者并隶属于前者。人们不畏困苦，竭力要「有所体验」，因为这就是「个性」应有的生活风格，如果没有成功，至少也要装成有这种天纵之才的样子。过去人们只把这称为「体会」或——用老百姓的德语说——「感觉」。我想，对于「个性」是什么东西，它意味着什么，人们已经有了更为恰当的理解。</p>
+<p>《学术与政治》——韦伯，冯克利译本（以下简称<strong>冯本</strong>）</p>
+</blockquote>
+<span id="more"></span>
+<p>在另一个译本中（钱永祥等，广西师范大学出版社，2004，以下简称<strong>广本</strong>），Persönlichkeit
+被翻译为「人格」：</p>
+<blockquote>
+<p>我们从事学术研究时是否有灵感，靠的是人所不能测知的命运，此外就是靠「天赋」。目前流行一种心态，把这项无可置疑的真理，变成崇拜偶像的借口，这些偶像就是「人格」与「个人体验」。这种崇拜充斥大街小巷与各种报刊，在年轻人的圈子里，尤为风行，这是可以理解的。这两个偶像彼此紧密联系在一起：一般认为，「个人体验」构成人格，并为人格本质的一部分。于是人们使尽解数，努力去「体验」生活。因为他们相信，这才是一个「人格」应有的生活方式。即使「体验」生活没有成功，也得装出一副有异禀的样子。从前德文把「个人体验」称为「感动」，我认为在当时人们对人格及其代表的意义，有更恰当的了解。</p>
+</blockquote>
+<p>对比一下，感觉冯的译本翻译更加流畅，但也正因为流畅，稍微牺牲了一点点准确度；广本的翻译更直接一些。比如这一句：</p>
+<blockquote>
+<p>Beide sind eng verbunden: die Vorstellung herrscht, das letztere
+mache die erstere aus und gehöre zu ihr.</p>
+</blockquote>
+<p>aus/machen
+由……构成，或者在这里可以翻译为：个人体验是个性的要素。冯的译本感觉没有把这两者的关系翻译清楚。</p>
+<p>还有这一个词：感觉（Sensation），德语中直译为感觉的词语还有
+Empfindung 和 Gefühl，Sensation
+相对于这两个词语，似乎更多了一层情感上的强烈的刺激，可以对比这些例句：</p>
+<blockquote>
+<p>Dieses Gefühl(Diese Empfindung) ist kaum ausdrückbar.
+这种感情难以言表</p>
+<p>Der erste Flug zum Mond war eine echte Sensation.
+首次飞往月球是一件真正轰动的事件</p>
+</blockquote>
+<p>所以，相对于冯本中的「感觉」，我认为广本中的「感动」更能表现出体验带来的情绪上的刺激。</p>
+<p>再说这一句</p>
+<blockquote>
+<p>Früher nannte man dieses „Erlebnis“ auf deutsch: „Sensation“. Und von
+dem, was „Persönlichkeit“ sei und bedeute, hatte man eine – ich glaube –
+zutreffendere Vorstellung.</p>
+</blockquote>
+<p>我认为冯本对这句的翻译自由发挥得过了头，Erleben 是动词 erleben
+直接大写首字母，作为表示这个动作本身的名词，与 Erlebnis
+语感上差别不太大，冯本是将 Erleben 和 Sensation
+看作是不需要区别词义的近义词。最后的 “hatte man eine zutreffendere
+Vorstellung”，我认为冯本中的「已经」没有突出过去与现在的对比状况。</p>
+<p>讲了这么多冯本的坏话，还是得夸一下它：我觉得「天纵之才」这句翻译真是太妙了。</p>
+<p>最后再把这一段的原文给贴上：</p>
+<blockquote>
+<p>Nun: ob jemand wissenschaftliche Eingebungen hat, das hängt ab von
+uns verborgenen Schicksalen, außerdem aber von „Gabe“. Nicht zuletzt auf
+Grund jener zweifellosen Wahrheit hat nun eine ganz begreiflicherweise
+gerade bei der Jugend sehr populäre Einstellung sich in den Dienst
+einiger Götzen gestellt, deren Kult wir heute an allen Straßenecken und
+in allen Zeitschriften sich breit machen finden. Jene Götzen sind: die
+„Persönlichkeit“ und das „Erleben“. Beide sind eng verbunden: die
+Vorstellung herrscht, das letztere mache die erstere aus und gehöre zu
+ihr. Man quält sich ab, zu „erleben“, – denn das gehört ja zur
+standesgemäßen Lebensführung einer Persönlichkeit –, und gelingt es
+nicht, dann muß man wenigstens so tun, als habe man diese Gnadengabe.
+Früher nannte man dieses „Erlebnis“ auf deutsch: „Sensation“. Und von
+dem, was „Persönlichkeit“ sei und bedeute, hatte man eine – ich glaube –
+zutreffendere Vorstellung.</p>
+</blockquote>
+<p>下一段，我的感觉是两个译本意思差别不大，冯本要更流畅一些。相较之下，我更喜欢冯的译本。</p>
+<blockquote>
+<p><em>冯本</em></p>
+<p>女士们，先生们！在科学的领地，个性是只有那些全心服膺他的学科要求的人才具备的，不唯在科学中如此。我们不知道有哪位伟大的艺术家，他除了献身于自己的工作，完全献身于自己的工作，还会做别的事情。即使具有歌德那种层次的人格，如果仅就他的艺术而言，如果他任性地想把自己的「生活」也变成一件艺术品，后果会不堪设想。若是有人对此有所怀疑，那就让他至少把自己当作歌德试试看吧。人们至少会同意，即使像他这种千年一遇的人物，这样的任性也要付出代价。</p>
+</blockquote>
+<blockquote>
+<p><em>广本</em></p>
+<p>各位贵宾们！在学问的领域里，唯有那纯粹向具体工作献身的人，才有「人格」。不仅研究学问如此，就我们所知，伟大的艺术家，没有一个不是把全部心力放在工作上；工作就是他的一切。就艺术家的艺术而论，即使「人格」伟大如歌德者，要想把「生活」变成一件艺术品，都会对艺术造成伤害。如果有人怀疑这一点，他必须是歌德，才能胆敢让自己拥有这种自由。至少，每个人都会同意，即使在像歌德这种千年一见的人身上，这种自由也必须付出代价。</p>
+</blockquote>
+<blockquote>
+<p><em>原文</em></p>
+<p>Verehrte Anwesende! „Persönlichkeit“ auf wissenschaftlichem Gebiet
+hat nur der, der rein der Sache dient. Und nicht nur auf
+wissenschaftlichem Gebiet ist es so. Wir kennen keinen großen Künstler,
+der je etwas anderes getan hätte, als seiner Sache und nur ihr zu
+dienen. Es hat sich, soweit seine Kunst in Betracht kommt, selbst bei
+einer Persönlichkeit vom Range Goethes gerächt, daß er sich die Freiheit
+nahm: sein „Leben“ zum Kunstwerk machen zu wollen. Aber mag man das
+bezweifeln, – jedenfalls muß man eben ein Goethe sein, um sich das
+überhaupt erlauben zu dürfen, und wenigstens das wird jeder zugeben:
+unbezahlt ist es auch bei jemand wie ihm, der alle Jahrtausende einmal
+erscheint, nicht geblieben.</p>
+</blockquote>
+<p>接下来的这一段，作为警句自省：</p>
+<blockquote>
+<p>Auf dem Gebiet der Wissenschaft aber ist derjenige==这个人== ganz
+gewiß==一定== keine „Persönlichkeit“, der als Impresario der Sache, der
+er sich hingeben==奉献== sollte, mit auf die Bühne==舞台== tritt, sich
+durch „Erleben“ legitimieren==确认合法== möchte und fragt: Wie
+beweise==证实== ich, daß ich etwas anderes bin als nur ein „Fachmann“,
+wie mache ich es, daß ich, in der Form oder in der Sache, etwas sage,
+das so noch keiner gesagt hat wie ich</p>
+</blockquote>
+<blockquote>
+<p><em>广本</em></p>
+<p>在学术圈内，当一个人把他应该献身的志业，当作是一项表演事业，并以其经理人的身份自居；当他出现在舞台上，竭力以「个人体验」来证明自己的价值；当他自问，我如何证明我不止是「专家」，我又如何能够在形式和内容上发前人未发之言的时候，我们绝对不能把他当作是一个有「人格」的人。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>德语学习</category>
+      </categories>
+      <tags>
+        <tag>韦伯</tag>
       </tags>
   </entry>
 </search>

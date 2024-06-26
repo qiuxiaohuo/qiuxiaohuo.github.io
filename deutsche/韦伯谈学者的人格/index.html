@@ -20,28 +20,28 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="四阶单位张量的不同定义方式 四阶单位张量可以表示为含有四个自由指标 Kronecker delta 记号的组合: \(\delta_{ij} \delta_{kl}\). 不过, 与二阶单位张量不同的是, 改变指标的顺序, 会得到三种不同的四阶单位张量: \[ \delta_{ij} \delta_{kl} \triangleq {\mathcal{F}}_{iljk} \triang">
+    <meta name="description" content="在《学术作为一种志业》演讲中，韦伯谈到了个性（Persönlichkeit），并与流行观念中的个人体验（Erleben）进行辨析：  今天我们在每一个街角和每一份杂志里，都可看到这种偶像崇拜。这些偶像就是「个性」和「个人体验」。两者有着密切的联系，占上风的想法是，后者就等于前者并隶属于前者。人们不畏困苦，竭力要「有所体验」，因为这就是「个性」应有的生活风格，如果没有成功，至少也要装成有这种天纵">
 <meta property="og:type" content="article">
-<meta property="og:title" content="四阶单位张量的定义">
-<meta property="og:url" content="http://qiuxiaohuo.github.io/mech/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E5%AE%9A%E4%B9%89/index.html">
+<meta property="og:title" content="韦伯谈学者的人格">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/deutsche/%E9%9F%A6%E4%BC%AF%E8%B0%88%E5%AD%A6%E8%80%85%E7%9A%84%E4%BA%BA%E6%A0%BC/index.html">
 <meta property="og:site_name" content="邱小伙的博客">
-<meta property="og:description" content="四阶单位张量的不同定义方式 四阶单位张量可以表示为含有四个自由指标 Kronecker delta 记号的组合: \(\delta_{ij} \delta_{kl}\). 不过, 与二阶单位张量不同的是, 改变指标的顺序, 会得到三种不同的四阶单位张量: \[ \delta_{ij} \delta_{kl} \triangleq {\mathcal{F}}_{iljk} \triang">
+<meta property="og:description" content="在《学术作为一种志业》演讲中，韦伯谈到了个性（Persönlichkeit），并与流行观念中的个人体验（Erleben）进行辨析：  今天我们在每一个街角和每一份杂志里，都可看到这种偶像崇拜。这些偶像就是「个性」和「个人体验」。两者有着密切的联系，占上风的想法是，后者就等于前者并隶属于前者。人们不畏困苦，竭力要「有所体验」，因为这就是「个性」应有的生活风格，如果没有成功，至少也要装成有这种天纵">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-01-22T14:36:54.000Z">
-<meta property="article:modified_time" content="2024-04-22T09:31:52.961Z">
+<meta property="article:published_time" content="2024-06-26T05:21:27.000Z">
+<meta property="article:modified_time" content="2024-06-26T07:01:05.177Z">
 <meta property="article:author" content="Qiu Xiaohuo">
-<meta property="article:tag" content="张量运算">
+<meta property="article:tag" content="韦伯">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qiuxiaohuo.github.io/mech/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E5%AE%9A%E4%B9%89/">
+<link rel="canonical" href="http://qiuxiaohuo.github.io/deutsche/%E9%9F%A6%E4%BC%AF%E8%B0%88%E5%AD%A6%E8%80%85%E7%9A%84%E4%BA%BA%E6%A0%BC/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/mech/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E5%AE%9A%E4%B9%89/","path":"mech/四阶单位张量的定义/","title":"四阶单位张量的定义"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/deutsche/%E9%9F%A6%E4%BC%AF%E8%B0%88%E5%AD%A6%E8%80%85%E7%9A%84%E4%BA%BA%E6%A0%BC/","path":"deutsche/韦伯谈学者的人格/","title":"韦伯谈学者的人格"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>四阶单位张量的定义 | 邱小伙的博客</title>
+<title>韦伯谈学者的人格 | 邱小伙的博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -130,7 +130,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+    <div class="sidebar-inner sidebar-overview-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -143,8 +143,6 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E4%B8%8D%E5%90%8C%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F"><span class="nav-number">1.</span> <span class="nav-text">四阶单位张量的不同定义方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84-voigt-%E7%9F%A9%E9%98%B5%E5%BD%A2%E5%BC%8F"><span class="nav-number">2.</span> <span class="nav-text">四阶单位张量的 Voigt
-矩阵形式</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -208,7 +206,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E5%9B%9B%E9%98%B6%E5%8D%95%E4%BD%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E5%AE%9A%E4%B9%89/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/deutsche/%E9%9F%A6%E4%BC%AF%E8%B0%88%E5%AD%A6%E8%80%85%E7%9A%84%E4%BA%BA%E6%A0%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -221,12 +219,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="四阶单位张量的定义 | 邱小伙的博客">
+      <meta itemprop="name" content="韦伯谈学者的人格 | 邱小伙的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          四阶单位张量的定义
+          韦伯谈学者的人格
         </h1>
 
         <div class="post-meta-container">
@@ -236,15 +234,9 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2024-01-22 22:36:54" itemprop="dateCreated datePublished" datetime="2024-01-22T22:36:54+08:00">2024-01-22</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-22 17:31:52" itemprop="dateModified" datetime="2024-04-22T17:31:52+08:00">2024-04-22</time>
+      <time title="创建时间：2024-06-26 13:21:27 / 修改时间：15:01:05" itemprop="dateCreated datePublished" datetime="2024-06-26T13:21:27+08:00">2024-06-26</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -252,7 +244,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E5%BE%B7%E8%AF%AD%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">德语学习</span></a>
         </span>
     </span>
 
@@ -272,88 +264,100 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="四阶单位张量的不同定义方式">四阶单位张量的不同定义方式</h2>
-<p>四阶单位张量可以表示为含有四个自由指标 Kronecker delta 记号的组合:
-<span class="math inline">\(\delta_{ij} \delta_{kl}\)</span>. 不过,
-与二阶单位张量不同的是, 改变指标的顺序, 会得到三种不同的四阶单位张量:
-<span class="math display">\[
-\delta_{ij} \delta_{kl} \triangleq {\mathcal{F}}_{iljk}
-\triangleq{\mathcal{E}}_{ikjl} \triangleq {\mathcal{I}}_{ijkl}
-\]</span></p>
-<p>或者</p>
-<p><span class="math display">\[
-{\mathcal{I}}_{ijkl} \triangleq \delta_{ij} \delta_{kl} ,\quad
-{\mathcal{E}}_{ijkl} \triangleq \delta_{ik} \delta_{jl} ,\quad
-{\mathcal{F}}_{ijkl} \triangleq \delta_{il} \delta_{jk}
-\tag{1}
-\]</span></p>
+    <div class="post-body" itemprop="articleBody"><p>在《学术作为一种志业》演讲中，韦伯谈到了个性（Persönlichkeit），并与流行观念中的个人体验（Erleben）进行辨析：</p>
+<blockquote>
+<p>今天我们在每一个街角和每一份杂志里，都可看到这种偶像崇拜。这些偶像就是「个性」和「个人体验」。两者有着密切的联系，占上风的想法是，后者就等于前者并隶属于前者。人们不畏困苦，竭力要「有所体验」，因为这就是「个性」应有的生活风格，如果没有成功，至少也要装成有这种天纵之才的样子。过去人们只把这称为「体会」或——用老百姓的德语说——「感觉」。我想，对于「个性」是什么东西，它意味着什么，人们已经有了更为恰当的理解。</p>
+<p>《学术与政治》——韦伯，冯克利译本（以下简称<strong>冯本</strong>）</p>
+</blockquote>
 <span id="more"></span>
-<p>对于任意四阶张量 <span class="math inline">\(\mathbb{L}\)</span>,
-在双点积 (<span class="math inline">\(A:B:=A_{\cdot mn} B_{mn\cdot
-}\)</span>) 作用下, 张量 <span
-class="math inline">\(\mathcal{E}\)</span> 满足:</p>
-<p><span class="math display">\[
-\mathcal{E}:\mathbb{L}=\delta_{ik} \delta_{jl} L_{klmn} = L_{ijmn},
-\quad
-\mathbb{L}:\mathcal{E}= L_{ijkl} \delta_{km} \delta_{ln}= L_{ijmn}
-\]</span></p>
-<p>除上述三种定义四阶单位张量的方式之外, 还可以定义如下四阶张量:</p>
-<p><span class="math display">\[
-\mathcal{L}_{ijkl}\triangleq\frac{1}{2}(\mathcal{F}_{ijkl}+\mathcal{E}_{ijkl})
-= \frac{1}{2}(\delta_{il} \delta_{jk}+\delta_{ik} \delta_{jl})
-\]</span></p>
-<p>如果四阶张量的指标满足 <span class="math display">\[
-\square_{ijkl} = \square_{jikl} = \square_{ijlk}
-\]</span> 那么称张量 <span class="math inline">\(\square_{ijkl}\)</span>
-具有次对称性. 具有次对称性的单位张量为 <span
-class="math inline">\(\mathcal{L}_{ijkl}\)</span></p>
-<p>在力学中, 我们一般将四阶单位张量 <span
-class="math inline">\(\mathcal{I}_{ijkl}\)</span> 和 <span
-class="math inline">\(\mathcal{L}_{ijkl}\)</span> 分别记作 <span
-class="math display">\[
-\mathcal{I}_{ijkl} \triangleq \mathbf{I} \otimes \mathbf{I}, \quad
-\mathcal{L}_{ijkl} \triangleq \mathbb{I}
-\]</span></p>
-<h2 id="四阶单位张量的-voigt-矩阵形式">四阶单位张量的 Voigt
-矩阵形式</h2>
-<p>将式 (1) 定义的三种单位张量写成 Voigt 矩阵形式为 <span
-class="math display">\[
-[\mathcal{I}] = \begin{pmatrix}
-      1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
-      1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
-      1 &amp; 1 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
-      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
-      \end{pmatrix}, \quad
-[\mathcal{E}] = \begin{pmatrix}
-      1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-      0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-      0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
-      0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 \\
-      0 &amp; 0 &amp; 0 &amp; 0 &amp; 1 &amp; 0 \\
-      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 1
-      \end{pmatrix}, \quad
-[\mathcal{F}] = \begin{pmatrix}
-      1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-      0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-      0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
-      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-      0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0
-    \end{pmatrix}.
-\]</span></p>
-<p>以及单位张量 <span class="math inline">\(\mathcal{L}_{ijkl}\)</span>
-<span class="math display">\[
-[\mathcal{L}] = \begin{pmatrix}
-    1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-    0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
-    0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
-    0 &amp; 0 &amp; 0 &amp; \frac{1}{2} &amp; 0 &amp; 0 \\
-    0 &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{2} &amp; 0 \\
-    0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; \frac{1}{2}
-    \end{pmatrix}
-\]</span> 计算单位张量的 MATLAB 脚本见 <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8vZm91cnRoLW9yZGVyLWlkZW50aXR5LXRlbnNvcg==">Github<i class="fa fa-external-link-alt"></i></span></p>
+<p>在另一个译本中（钱永祥等，广西师范大学出版社，2004，以下简称<strong>广本</strong>），Persönlichkeit
+被翻译为「人格」：</p>
+<blockquote>
+<p>我们从事学术研究时是否有灵感，靠的是人所不能测知的命运，此外就是靠「天赋」。目前流行一种心态，把这项无可置疑的真理，变成崇拜偶像的借口，这些偶像就是「人格」与「个人体验」。这种崇拜充斥大街小巷与各种报刊，在年轻人的圈子里，尤为风行，这是可以理解的。这两个偶像彼此紧密联系在一起：一般认为，「个人体验」构成人格，并为人格本质的一部分。于是人们使尽解数，努力去「体验」生活。因为他们相信，这才是一个「人格」应有的生活方式。即使「体验」生活没有成功，也得装出一副有异禀的样子。从前德文把「个人体验」称为「感动」，我认为在当时人们对人格及其代表的意义，有更恰当的了解。</p>
+</blockquote>
+<p>对比一下，感觉冯的译本翻译更加流畅，但也正因为流畅，稍微牺牲了一点点准确度；广本的翻译更直接一些。比如这一句：</p>
+<blockquote>
+<p>Beide sind eng verbunden: die Vorstellung herrscht, das letztere
+mache die erstere aus und gehöre zu ihr.</p>
+</blockquote>
+<p>aus/machen
+由……构成，或者在这里可以翻译为：个人体验是个性的要素。冯的译本感觉没有把这两者的关系翻译清楚。</p>
+<p>还有这一个词：感觉（Sensation），德语中直译为感觉的词语还有
+Empfindung 和 Gefühl，Sensation
+相对于这两个词语，似乎更多了一层情感上的强烈的刺激，可以对比这些例句：</p>
+<blockquote>
+<p>Dieses Gefühl(Diese Empfindung) ist kaum ausdrückbar.
+这种感情难以言表</p>
+<p>Der erste Flug zum Mond war eine echte Sensation.
+首次飞往月球是一件真正轰动的事件</p>
+</blockquote>
+<p>所以，相对于冯本中的「感觉」，我认为广本中的「感动」更能表现出体验带来的情绪上的刺激。</p>
+<p>再说这一句</p>
+<blockquote>
+<p>Früher nannte man dieses „Erlebnis“ auf deutsch: „Sensation“. Und von
+dem, was „Persönlichkeit“ sei und bedeute, hatte man eine – ich glaube –
+zutreffendere Vorstellung.</p>
+</blockquote>
+<p>我认为冯本对这句的翻译自由发挥得过了头，Erleben 是动词 erleben
+直接大写首字母，作为表示这个动作本身的名词，与 Erlebnis
+语感上差别不太大，冯本是将 Erleben 和 Sensation
+看作是不需要区别词义的近义词。最后的 “hatte man eine zutreffendere
+Vorstellung”，我认为冯本中的「已经」没有突出过去与现在的对比状况。</p>
+<p>讲了这么多冯本的坏话，还是得夸一下它：我觉得「天纵之才」这句翻译真是太妙了。</p>
+<p>最后再把这一段的原文给贴上：</p>
+<blockquote>
+<p>Nun: ob jemand wissenschaftliche Eingebungen hat, das hängt ab von
+uns verborgenen Schicksalen, außerdem aber von „Gabe“. Nicht zuletzt auf
+Grund jener zweifellosen Wahrheit hat nun eine ganz begreiflicherweise
+gerade bei der Jugend sehr populäre Einstellung sich in den Dienst
+einiger Götzen gestellt, deren Kult wir heute an allen Straßenecken und
+in allen Zeitschriften sich breit machen finden. Jene Götzen sind: die
+„Persönlichkeit“ und das „Erleben“. Beide sind eng verbunden: die
+Vorstellung herrscht, das letztere mache die erstere aus und gehöre zu
+ihr. Man quält sich ab, zu „erleben“, – denn das gehört ja zur
+standesgemäßen Lebensführung einer Persönlichkeit –, und gelingt es
+nicht, dann muß man wenigstens so tun, als habe man diese Gnadengabe.
+Früher nannte man dieses „Erlebnis“ auf deutsch: „Sensation“. Und von
+dem, was „Persönlichkeit“ sei und bedeute, hatte man eine – ich glaube –
+zutreffendere Vorstellung.</p>
+</blockquote>
+<p>下一段，我的感觉是两个译本意思差别不大，冯本要更流畅一些。相较之下，我更喜欢冯的译本。</p>
+<blockquote>
+<p><em>冯本</em></p>
+<p>女士们，先生们！在科学的领地，个性是只有那些全心服膺他的学科要求的人才具备的，不唯在科学中如此。我们不知道有哪位伟大的艺术家，他除了献身于自己的工作，完全献身于自己的工作，还会做别的事情。即使具有歌德那种层次的人格，如果仅就他的艺术而言，如果他任性地想把自己的「生活」也变成一件艺术品，后果会不堪设想。若是有人对此有所怀疑，那就让他至少把自己当作歌德试试看吧。人们至少会同意，即使像他这种千年一遇的人物，这样的任性也要付出代价。</p>
+</blockquote>
+<blockquote>
+<p><em>广本</em></p>
+<p>各位贵宾们！在学问的领域里，唯有那纯粹向具体工作献身的人，才有「人格」。不仅研究学问如此，就我们所知，伟大的艺术家，没有一个不是把全部心力放在工作上；工作就是他的一切。就艺术家的艺术而论，即使「人格」伟大如歌德者，要想把「生活」变成一件艺术品，都会对艺术造成伤害。如果有人怀疑这一点，他必须是歌德，才能胆敢让自己拥有这种自由。至少，每个人都会同意，即使在像歌德这种千年一见的人身上，这种自由也必须付出代价。</p>
+</blockquote>
+<blockquote>
+<p><em>原文</em></p>
+<p>Verehrte Anwesende! „Persönlichkeit“ auf wissenschaftlichem Gebiet
+hat nur der, der rein der Sache dient. Und nicht nur auf
+wissenschaftlichem Gebiet ist es so. Wir kennen keinen großen Künstler,
+der je etwas anderes getan hätte, als seiner Sache und nur ihr zu
+dienen. Es hat sich, soweit seine Kunst in Betracht kommt, selbst bei
+einer Persönlichkeit vom Range Goethes gerächt, daß er sich die Freiheit
+nahm: sein „Leben“ zum Kunstwerk machen zu wollen. Aber mag man das
+bezweifeln, – jedenfalls muß man eben ein Goethe sein, um sich das
+überhaupt erlauben zu dürfen, und wenigstens das wird jeder zugeben:
+unbezahlt ist es auch bei jemand wie ihm, der alle Jahrtausende einmal
+erscheint, nicht geblieben.</p>
+</blockquote>
+<p>接下来的这一段，作为警句自省：</p>
+<blockquote>
+<p>Auf dem Gebiet der Wissenschaft aber ist derjenige==这个人== ganz
+gewiß==一定== keine „Persönlichkeit“, der als Impresario der Sache, der
+er sich hingeben==奉献== sollte, mit auf die Bühne==舞台== tritt, sich
+durch „Erleben“ legitimieren==确认合法== möchte und fragt: Wie
+beweise==证实== ich, daß ich etwas anderes bin als nur ein „Fachmann“,
+wie mache ich es, daß ich, in der Form oder in der Sache, etwas sage,
+das so noch keiner gesagt hat wie ich</p>
+</blockquote>
+<blockquote>
+<p><em>广本</em></p>
+<p>在学术圈内，当一个人把他应该献身的志业，当作是一项表演事业，并以其经理人的身份自居；当他出现在舞台上，竭力以「个人体验」来证明自己的价值；当他自问，我如何证明我不止是「专家」，我又如何能够在形式和内容上发前人未发之言的时候，我们绝对不能把他当作是一个有「人格」的人。</p>
+</blockquote>
 
     </div>
 
@@ -363,21 +367,18 @@ class="math display">\[
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/" rel="tag"># 张量运算</a>
+              <a href="/tags/%E9%9F%A6%E4%BC%AF/" rel="tag"># 韦伯</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/misc/%E5%A6%82%E4%BD%95%E6%92%B0%E5%86%99%E8%AE%BE%E8%AE%A1%E6%97%A5%E5%BF%97/" rel="prev" title="如何撰写设计日志">
-                  <i class="fa fa-angle-left"></i> 如何撰写设计日志
+                <a href="/math/Fourier-analysis/Bessel-%E4%BD%8D%E5%8A%BF%E5%92%8C-Yukawa-%E4%BD%8D%E5%8A%BF/" rel="prev" title="Bessel 位势和 Yukawa 位势">
+                  <i class="fa fa-angle-left"></i> Bessel 位势和 Yukawa 位势
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/math/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/" rel="next" title="逻辑命题视角下的极限 连续与一致连续">
-                  逻辑命题视角下的极限 连续与一致连续 <i class="fa fa-angle-right"></i>
-                </a>
             </div>
           </div>
     </footer>
