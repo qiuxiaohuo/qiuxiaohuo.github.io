@@ -2962,30 +2962,36 @@ K_{ik} \hat{u}_k = X_i
 <p>如果 <span class="math inline">\(L_{ijkl}\)</span> 具有主对称性,
 也就是说, <span class="math inline">\(L_{(ij)[kl]} =
 L_{[kl](ij)}\)</span>, 那么矩阵 <span
-class="math inline">\(K_{ik}(\xi)\)</span> 是对称矩阵. 例如,
-当材料是各项同性时, 矩阵 <span class="math inline">\(K\)</span>
-可以写成</p>
+class="math inline">\(K_{ik}(\xi)\)</span> 是对称矩阵. 若定义矩阵 <span
+class="math inline">\(K_{ik}(\xi)\)</span> 的 Adjugate 矩阵为 <span
+class="math inline">\(N_{ik}(\xi)\)</span>:</p>
 <p><span class="math display">\[
-K = (\lambda + \mu)\begin{pmatrix}
-\xi_1 \xi_1 &amp; \xi_1 \xi_2 &amp; \xi_1 \xi_3 \\
-\xi_2 \xi_1 &amp; \xi_2 \xi_2 &amp; \xi_2 \xi_3 \\
-\xi_3 \xi_1 &amp; \xi_3 \xi_2 &amp; \xi_3 \xi_3
-\end{pmatrix}
-+
-\mu \xi^2 I, \quad \xi^2 = \xi_1^2 + \xi_2^2 + \xi_3^2
-\]</span></p>
-<p>若定义矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span> 的
-Adjugate 矩阵为 <span class="math inline">\(N_{ik}(\xi)\)</span>: <span
-class="math display">\[
 N_{ik}(\xi) \triangleq \mathrm{adj}(K_{ik}(\xi))
 \]</span> 那么, 矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span>
 的逆可以表示为 <span class="math display">\[
 K_{ik}^{-1}(\xi) = D^{-1}(\xi)N_{ik}(\xi)
 \]</span></p>
 <p>式中, <span class="math inline">\(D(\xi) \triangleq
-\det(K_{ik}(\xi))\)</span>. 再应用 Fourier 逆变换, 就可以得到解 <span
-class="math inline">\(u(x)\)</span>:</p>
-<p><span class="math display">\[
+\det(K_{ik}(\xi))\)</span>​. 对于各向同性材料, 方程左端的系数矩阵为 <span
+class="math display">\[
+K \triangleq \mu \xi^{T} \xi ~\mathbf{I} + (\lambda + \mu)\xi \xi^{T}
+= \mu \xi^2 \mathbf{I}
++ (\lambda + \mu)
+\begin{pmatrix}
+\xi_1 \xi_1 &amp; \xi_1 \xi_2 &amp; \xi_1 \xi_3 \\
+\xi_2 \xi_1 &amp; \xi_2 \xi_2 &amp; \xi_2 \xi_3 \\
+\xi_3 \xi_1 &amp; \xi_3 \xi_2 &amp; \xi_3 \xi_3
+\end{pmatrix}
+\]</span> 式中, <span class="math inline">\(\mathbf{I}\)</span> 为 3
+阶单位矩阵. 对于形式为 <span class="math inline">\(I + \alpha
+vv^T\)</span> 的矩阵, 其逆矩阵的形式为 <span class="math inline">\(I +
+\beta vv^T\)</span>, 矩阵 <span class="math inline">\(A\)</span>
+的逆求解得到 <span class="math display">\[
+K^{-1} = \frac{1}{\mu} \frac{1}{\xi^2} \mathbf{I}
+- \frac{\lambda + \mu}{\mu (\lambda + 2\mu)} \frac{1}{(\xi^2)^2} \xi
+\xi^{T}
+\]</span> 再应用 Fourier 逆变换, 就可以得到解 <span
+class="math inline">\(u(x)\)</span>: <span class="math display">\[
 \begin{align}
 u_{i}(x) &amp;= \mathscr{F}^{-1} [\hat{u}_{i}(\xi)]
 = \mathscr{F}^{-1}[D^{-1}(\xi)N_{ik}(\xi) X_k] \\
@@ -9119,6 +9125,98 @@ das so noch keiner gesagt hat wie ich.</p>
       </categories>
       <tags>
         <tag>韦伯</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Fourier-变换和逆变换公式的一致性</title>
+    <url>/math/Fourier-analysis/Fourier-%E5%8F%98%E6%8D%A2%E5%85%AC%E5%BC%8F%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7/</url>
+    <content><![CDATA[<p>Fourier 变换公式, 在不同的应用场景下, 定义可能是不一样的. 但是,
+Fourier 逆变换公式必须与变换公式保持<strong>一致</strong>, 才能满足
+Fourier 逆定理. 例如, 定义一种 Fourier 变换方式如下 <span
+class="math display">\[
+\hat f(\xi) \triangleq \int_{\mathbb{R}^d} f(x) e^{-i2\pi x \cdot \xi}
+~\mathrm{d} x
+\]</span> Fourier 逆变换公式并<strong>不是通过定义得到,</strong>
+而是<strong>根据 Fourier 逆定理推导得到</strong>: <span
+class="math display">\[
+f(x) =  \int_{\mathbb{R}^d} \hat f(\xi) e^{i2\pi x \cdot \xi}
+~\mathrm{d} \xi
+\]</span> 上面例子的好处是不需要在变换公式的前面引入额外的系数. 接下来,
+我们将根据这一公式, 利用积分变换, 得到不同形式下一致的 Fourier
+变换和逆变换公式. <span id="more"></span>首先定义一般的 Fourier 变换公式: <span
+class="math display">\[
+\tilde f(\xi) \triangleq b\int_{\mathbb{R}^d} f(x) e^{-i2\pi a x \cdot
+\xi} ~\mathrm{d} x
+= b \hat f(a\xi)
+\]</span> 对应的 Fourier 逆变换公式为 <span class="math display">\[
+f(x) = b&#39; \int_{\mathbb{R}^d} \tilde f(\xi) e^{i 2\pi a x \cdot
+\xi}  ~\mathrm{d} \xi
+= b b&#39; \int_{\mathbb{R}^d} \hat f(a \xi) e^{i 2\pi a x \cdot
+\xi}  ~\mathrm{d} \xi
+\]</span> 作换元 <span class="math inline">\(a\xi = \eta\)</span>, 那么
+<span class="math inline">\(a^d \mathrm{d} \xi = \mathrm{d}
+\eta\)</span>, 代入公式中得到 <span class="math display">\[
+f(x) = a^{-d} b b&#39; \int_{\mathbb{R}^d} \hat f(\eta) e^{i 2\pi x
+\cdot \eta}  ~\mathrm{d} \eta
+= a^{-d} b b&#39; f(x)
+\]</span> 由此得到变换公式中设定的变量之间的关系为 <span
+class="math display">\[
+a^{-d} b b&#39; \equiv 1
+\]</span> 综上所述, <span class="math display">\[
+\boxed{
+\begin{aligned}
+\hat f(\xi) &amp;= b \int_{\mathbb{R}^d} f(x) e^{-i2\pi a x \cdot \xi}
+~\mathrm{d} x \\
+f(x) &amp;= \frac{a^d}{b~} \int_{\mathbb{R}^d} \hat f(\xi) e^{i2\pi a x
+\cdot \xi} ~\mathrm{d} \xi
+\end{aligned}
+}
+\]</span> <div class="note info"><p>评注:</p>
+<p>按照上式定义的 Fourier 变换公式, 对于偏导数的 Fourier 变换为 <span
+class="math display">\[
+\widehat{\frac{\partial f}{\partial x_i}} = i2\pi a\xi_i \hat f(\xi)
+\]</span> 该公式与积分项前的系数无关.</p>
+</div></p>
+<p>现在考虑一些常用的情况. 对于一维情景, 如果定义 Fourier 变换公式为
+<span class="math display">\[
+\hat f(\xi) \triangleq \int_{\mathbb{R}} f(x) e^{-i x \xi} ~\mathrm{d} x
+, \quad
+b = 1, \quad a = \frac{1}{2\pi}
+\]</span> 那么对应的 Fourier 逆变换公式为 <span class="math display">\[
+f(x) = \frac{1}{2\pi} \int_{\mathbb{R}} f(x) e^{i x \xi} ~\mathrm{d} \xi
+\]</span> 推广到三维场景, 那么 <span class="math display">\[
+\begin{aligned}
+\hat f(\xi) &amp;\triangleq \int_{\mathbb{R}^3} f(x) e^{-i x \cdot \xi}
+~\mathrm{d} x \\
+f(x) &amp;= \frac{1}{(2\pi)^3} \int_{\mathbb{R}^3} \hat f(\xi) e^{i x
+\cdot \xi} ~\mathrm{d} \xi
+\end{aligned}
+\]</span> 如果希望 Fourier 变换与逆变换公式前的系数相等, 那么有 <span
+class="math display">\[
+b = a^{d/2}
+\]</span> 如果继续考虑 <span class="math inline">\(a = 1/2\pi\)</span>
+的情景, 那么</p>
+<p>一维情景 <span class="math display">\[
+\begin{aligned}
+\hat f(\xi) &amp;\triangleq \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} f(x)
+e^{-i x \xi} ~\mathrm{d} x \\
+f(x) &amp;= \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} \hat f(\xi) e^{i x
+\xi} ~\mathrm{d} \xi
+\end{aligned}
+\]</span> 三维情景 <span class="math display">\[
+\begin{aligned}
+\hat f(\xi) &amp;\triangleq  \frac{1}{(2\pi)^{3/2}} \int_{\mathbb{R}^3}
+f(x) e^{-i x \cdot \xi} ~\mathrm{d} x \\
+f(x) &amp;= \frac{1}{(2\pi)^{3/2}} \int_{\mathbb{R}^3} \hat f(\xi) e^{i
+x \cdot \xi} ~\mathrm{d} \xi
+\end{aligned}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>Fourier 分析</category>
+      </categories>
+      <tags>
+        <tag>Fourier 变换</tag>
       </tags>
   </entry>
 </search>
