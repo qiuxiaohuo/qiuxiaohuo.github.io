@@ -20,15 +20,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="基本解和 Green 函数的区别 如果将微分方程写成抽象的算子形式: \[ L[u] &#x3D; f \text{ on } \Omega \] 特别的, 当函数 \(f\) 为 Dirac 函数 \(\delta\) 时, 微分方程的解 \(F\) 称为算子 \(L\) 的基本解: \[ L [F] &#x3D; \delta \] 注意到上述过程中, 并没有提到方程需要满足什么边界条件, 这也是">
+    <meta name="description" content="基本解和 Green 函数的区别 如果将微分方程写成抽象的算子形式: \[ L[u] &#x3D; f \text{ on } \Omega \] 特别的, 当函数 \(f\) 为 Dirac 函数 \(\delta\) 时, 微分方程的解称为算子 \(L\) 的基本解: \[ L [G] &#x3D; \delta \] 注意到上述过程中, 并没有提到方程需要满足什么边界条件, 这也是基本解和">
 <meta property="og:type" content="article">
 <meta property="og:title" content="弹性力学方程的 Green 函数">
 <meta property="og:url" content="http://qiuxiaohuo.github.io/mech/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/index.html">
 <meta property="og:site_name" content="邱小伙的博客">
-<meta property="og:description" content="基本解和 Green 函数的区别 如果将微分方程写成抽象的算子形式: \[ L[u] &#x3D; f \text{ on } \Omega \] 特别的, 当函数 \(f\) 为 Dirac 函数 \(\delta\) 时, 微分方程的解 \(F\) 称为算子 \(L\) 的基本解: \[ L [F] &#x3D; \delta \] 注意到上述过程中, 并没有提到方程需要满足什么边界条件, 这也是">
+<meta property="og:description" content="基本解和 Green 函数的区别 如果将微分方程写成抽象的算子形式: \[ L[u] &#x3D; f \text{ on } \Omega \] 特别的, 当函数 \(f\) 为 Dirac 函数 \(\delta\) 时, 微分方程的解称为算子 \(L\) 的基本解: \[ L [G] &#x3D; \delta \] 注意到上述过程中, 并没有提到方程需要满足什么边界条件, 这也是基本解和">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-04-15T01:50:09.000Z">
-<meta property="article:modified_time" content="2024-06-27T02:06:41.663Z">
+<meta property="article:modified_time" content="2024-06-27T09:20:49.897Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta property="article:tag" content="Fourier 变换">
 <meta property="article:tag" content="弹性力学">
@@ -145,7 +145,8 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%A7%A3%E5%92%8C-green-%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">基本解和 Green 函数的区别</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E8%A7%A3%E5%92%8C-green-%E5%87%BD%E6%95%B0%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">1.</span> <span class="nav-text">基本解和 Green 函数的区别</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BC%A0%E9%87%8F%E5%80%BC%E5%87%BD%E6%95%B0%E7%9A%84%E5%8D%B7%E7%A7%AF%E5%AE%9A%E4%B9%89"><span class="nav-number">2.</span> <span class="nav-text">张量值函数的卷积定义</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%AB%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E5%BC%B9%E6%80%A7%E6%96%B9%E7%A8%8B%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A7%A3"><span class="nav-number"></span> <span class="nav-text">含本征应变弹性方程的基本解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%90%84%E9%A1%B9%E5%90%8C%E6%80%A7%E6%9D%90%E6%96%99%E7%9A%84-green-%E5%87%BD%E6%95%B0%E8%A1%A8%E7%A4%BA"><span class="nav-number"></span> <span class="nav-text">各项同性材料的 Green
+函数表示</span></a></div>
         </div>
         <!--/noindex-->
 
@@ -245,7 +246,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-06-27 10:06:41" itemprop="dateModified" datetime="2024-06-27T10:06:41+08:00">2024-06-27</time>
+      <time title="修改时间：2024-06-27 17:20:49" itemprop="dateModified" datetime="2024-06-27T17:20:49+08:00">2024-06-27</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -273,32 +274,52 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><div class="note info"><h5 id="基本解和-green-函数的区别">基本解和 Green 函数的区别</h5>
+    <div class="post-body" itemprop="articleBody"><div class="note info no-icon"><h5 id="基本解和-green-函数的区别">基本解和 Green 函数的区别</h5>
 <p>如果将微分方程写成抽象的算子形式: <span class="math display">\[
 L[u] = f \text{ on } \Omega
 \]</span></p>
 <p>特别的, 当函数 <span class="math inline">\(f\)</span> 为 Dirac 函数
-<span class="math inline">\(\delta\)</span> 时, 微分方程的解 <span
-class="math inline">\(F\)</span> 称为算子 <span
-class="math inline">\(L\)</span> 的基本解: <span class="math display">\[
-L [F] = \delta
+<span class="math inline">\(\delta\)</span> 时, 微分方程的解称为算子
+<span class="math inline">\(L\)</span> 的<strong>基本解</strong>: <span
+class="math display">\[
+L [G] = \delta
 \]</span></p>
 <p>注意到上述过程中, 并没有提到方程需要满足什么边界条件, 这也是基本解和
-Green 函数之间的区别. Green 函数需要考虑边界的影响,
-并且函数中会引入另一个空间变量 <span
-class="math inline">\(x&#39;\)</span>, 表示在这一点处 Dirac
-函数作用下方程的响应. 严格来说, 下文得到的是基本解, 不是 Green 函数.</p>
-</div>
-<span id="more"></span>
-<p>当微分方程右端项为一般的函数 <span class="math inline">\(f\)</span>
-时, 此时微分方程的解 <span class="math inline">\(u\)</span> 可以表示为
-Green 函数 <span class="math inline">\(G\)</span> 与 <span
-class="math inline">\(f\)</span> 的卷积: <span class="math display">\[
+Green 函数之间的区别. <strong>Green 函数需要考虑边界的影响,
+基本解只需要考虑函数在区域内满足什么微分方程.</strong> 在下文中,
+我还是按照 Mura 书中的表述, 将以求解基本解方式得到的函数称为 Green 函数.
+当微分方程右端项为一般的函数 <span class="math inline">\(f\)</span> 时,
+此时微分方程的解 <span class="math inline">\(u\)</span> 可以表示为Green
+<span class="math inline">\(G\)</span> 与 <span
+class="math inline">\(f\)</span> 的卷积:</p>
+<p><span class="math display">\[
 u = G*f = \int_{-\infty}^{\infty} G(x-x^{\prime}) f(x^{\prime})
 \mathrm{d} x^{\prime}
 \]</span></p>
-<p>对于含本征应变的控制方程:</p>
-<p><span class="math display">\[
+<h5 id="张量值函数的卷积定义">张量值函数的卷积定义</h5>
+<p>对于张量值方程 <span class="math display">\[
+L[u] = f
+\]</span> 应用 Fourier 变换, 方程组转化为关于 <span
+class="math inline">\(\hat u\)</span> 的代数方程: <span
+class="math display">\[
+\hat L_{ij}(\xi) \hat u_{j} = \hat f_i
+\]</span> 对方程系数矩阵 <span class="math inline">\(\hat
+L_{ij}\)</span> 求逆, 再作 Fourier 逆变换, 就得到解 <span
+class="math inline">\(u\)</span> 表示为 <span class="math display">\[
+u_i = \mathscr{F}^{-1} [\hat{L}_{ij}^{-1} \hat{f}_j]
+\]</span> 定义张量值函数之间的卷积为 <span class="math display">\[
+A * f:  L(\Omega,\mathbb{R}^{m\times n}) \times L(\Omega,\mathbb{R}^{
+n}) \mapsto L(\Omega,\mathbb{R}^{m}) \\
+A * f \triangleq A_{ij} * f_{j}
+\]</span> 上式默认了指标求和约定. 这也就是说,
+张量的代数运算保存在卷积的积分号内.</p>
+<p>张量值方程的基本解定义为 <span class="math display">\[
+G_{ij} = \mathscr{F}^{-1} [\hat{L}_{ij}^{-1}]
+\]</span></p>
+</div>
+<span id="more"></span>
+<h2 id="含本征应变弹性方程的基本解">含本征应变弹性方程的基本解</h2>
+<p>对于含本征应变的控制方程: <span class="math display">\[
 L_{ijkl}~u_{k,lj} - L_{ijkl}~\mu_{kl,j} = 0
 \]</span></p>
 <p>我们希望能够找到该方程的 Green 函数 <span
@@ -319,65 +340,35 @@ K_{ik} \hat{u}_k = X_i
 <p>如果 <span class="math inline">\(L_{ijkl}\)</span> 具有主对称性,
 也就是说, <span class="math inline">\(L_{(ij)[kl]} =
 L_{[kl](ij)}\)</span>, 那么矩阵 <span
-class="math inline">\(K_{ik}(\xi)\)</span> 是对称矩阵. 若定义矩阵 <span
-class="math inline">\(K_{ik}(\xi)\)</span> 的 Adjugate 矩阵为 <span
-class="math inline">\(N_{ik}(\xi)\)</span>:</p>
+class="math inline">\(K_{ik}(\xi)\)</span> 是对称矩阵. 再应用 Fourier
+逆变换, 就可以得到解 <span class="math inline">\(u(x)\)</span>:</p>
 <p><span class="math display">\[
-N_{ik}(\xi) \triangleq \mathrm{adj}(K_{ik}(\xi))
-\]</span> 那么, 矩阵 <span class="math inline">\(K_{ik}(\xi)\)</span>
-的逆可以表示为 <span class="math display">\[
-K_{ik}^{-1}(\xi) = D^{-1}(\xi)N_{ik}(\xi)
+u_{i}(x) = \mathscr{F}^{-1} [\hat{u}_{i}(\xi)]
+= \mathscr{F}^{-1}[ -i\xi_{j}~ L_{kjmn}~K_{ik}^{-1}(\xi)\hat{\mu}_{mn}]
 \]</span></p>
-<p>式中, <span class="math inline">\(D(\xi) \triangleq
-\det(K_{ik}(\xi))\)</span>​. 对于各向同性材料, 方程左端的系数矩阵为 <span
-class="math display">\[
-K \triangleq \mu \xi^{T} \xi ~\mathbf{I} + (\lambda + \mu)\xi \xi^{T}
-= \mu \xi^2 \mathbf{I}
-+ (\lambda + \mu)
-\begin{pmatrix}
-\xi_1 \xi_1 &amp; \xi_1 \xi_2 &amp; \xi_1 \xi_3 \\
-\xi_2 \xi_1 &amp; \xi_2 \xi_2 &amp; \xi_2 \xi_3 \\
-\xi_3 \xi_1 &amp; \xi_3 \xi_2 &amp; \xi_3 \xi_3
-\end{pmatrix}
-\]</span> 式中, <span class="math inline">\(\mathbf{I}\)</span> 为 3
-阶单位矩阵. 对于形式为 <span class="math inline">\(I + \alpha
-vv^T\)</span> 的矩阵, 其逆矩阵的形式为 <span class="math inline">\(I +
-\beta vv^T\)</span>, 矩阵 <span class="math inline">\(A\)</span>
-的逆求解得到 <span class="math display">\[
-K^{-1} = \frac{1}{\mu} \frac{1}{\xi^2} \mathbf{I}
-- \frac{\lambda + \mu}{\mu (\lambda + 2\mu)} \frac{1}{(\xi^2)^2} \xi
-\xi^{T}
-\]</span> 再应用 Fourier 逆变换, 就可以得到解 <span
-class="math inline">\(u(x)\)</span>: <span class="math display">\[
-\begin{align}
-u_{i}(x) &amp;= \mathscr{F}^{-1} [\hat{u}_{i}(\xi)]
-= \mathscr{F}^{-1}[D^{-1}(\xi)N_{ik}(\xi) X_k] \\
-&amp;=  -i
-\mathscr{F}^{-1}[L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)\xi_{j}~\hat{\mu}_{mn}]
-\end{align}
-\]</span></p>
-<p>将 Fourier 变换的公式代入得到</p>
+<p>将三维 Fourier 逆变换的公式代入得到</p>
 <p><span class="math display">\[
-\begin{align}
-u_{i}(x) &amp;= -i \int L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi)\xi_{j} e^{i\xi
-\cdot x} \mathrm{d} \xi
+\begin{aligned}
+u_{i}(x)
+&amp;= - \frac{1}{(2\pi)^3}
+\int i\xi_{j} L_{kjmn} K_{ik}^{-1}(\xi) e^{i\xi \cdot x} \mathrm{d} \xi
 \int \mu_{mn}(x^{\prime}) e^{-i\xi \cdot x^{\prime}} \mathrm{d}
 x^{\prime}\\
-&amp;= - \frac{\partial}{\partial x_j}\int
-L_{kjmn}~D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot x} \mathrm{d} \xi
-\int \mu_{mn}(x^{\prime}) e^{-i\xi \cdot x^{\prime}} \mathrm{d}
-x^{\prime}\\
-&amp;= - \int L_{kjmn} \left(\frac{\partial}{\partial x_j}\int
-D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
-\right)  \mu_{mn}(x^{\prime}) \mathrm{d} x^{\prime}
-\end{align}
+&amp;= - \int L_{kjmn}
+\frac{\partial}{\partial x_j} \left( \frac{1}{(2\pi)^3}
+\int K_{ik}^{-1}(\xi) e^{i\xi \cdot (x-x^{\prime})}
+\mathrm{d} \xi \right)  
+\mu_{mn}(x^{\prime}) \mathrm{d} x^{\prime}
+\end{aligned}
 \]</span></p>
-<p>定义 Green 函数为</p>
+<p>定义 Green 函数为弹性方程逆矩阵的 Fourier 逆变换:</p>
 <p><span class="math display">\[
-G_{ik}(x) \triangleq \int D^{-1}(\xi)N_{ik}(\xi) e^{i\xi \cdot x}
-\mathrm{d} \xi
+G_{ik}(x) \triangleq \mathscr{F}^{-1}[K_{ik}^{-1}](x)
+=\frac{1}{(2\pi)^3} \int K_{ik}^{-1}(\xi) e^{i\xi \cdot x} \mathrm{d}
+\xi
 \]</span></p>
-<p>则 <span class="math inline">\(u_i\)</span> 可以记作</p>
+<p>那么位移 <span class="math inline">\(u_i\)</span> 可以表示为 Green
+函数与本征应变的卷积</p>
 <p><span class="math display">\[
 u_{i}(x) = -\int L_{jkmn} G_{ik,j}(x-x^{\prime}) \mu_{mn}(x^{\prime})
 \mathrm{d} x^{\prime}
@@ -388,87 +379,123 @@ class="math inline">\(x_j\)</span> 求偏导 (注意区别变量 <span
 class="math inline">\(x\)</span> 与 <span
 class="math inline">\(x^{\prime}\)</span>). 或者将上式记为卷积的形式:
 <span class="math display">\[
-u_i = G_{ik} * \left( -L_{jkmn} \mu_{mn} \right)
-\]</span> 对 Green 函数求二阶导数, 得到 <span class="math display">\[
-G_{ij,kl}(x-x^{\prime}) = -\int D^{-1}(\xi)N_{ij}(\xi) \xi_k \xi_l
-e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
+u_i = G_{ik,j} * \left( -L_{jkmn} \mu_{mn} \right)
+\]</span> ## 验证 Green 函数所满足的微分方程</p>
+<p>对 Green 函数求二阶导数, 得到 <span class="math display">\[
+G_{ij,kl}(x) = - \frac{1}{(2\pi)^3}
+\int K_{ij}^{-1}(\xi) \xi_k \xi_l e^{i\xi \cdot x} \mathrm{d} \xi
 \]</span></p>
 <p>方程两端乘 <span class="math inline">\(L_{jknl}\)</span>,
 等式依旧成立, 得到</p>
 <p><span class="math display">\[
 \begin{align}
-L_{jknl}G_{ij,kl}(x-x^{\prime}) &amp;= -\int D^{-1}(\xi)N_{ij}(\xi)
-L_{jknl} \xi_k \xi_l e^{i\xi \cdot (x-x^{\prime})} \mathrm{d} \xi
+L_{jknl}G_{ij,kl}(x)
+&amp;= -\frac{1}{(2\pi)^3}
+\int K_{ij}^{-1}(\xi) L_{jknl} \xi_k \xi_l e^{i\xi \cdot (x-x^{\prime})}
+\mathrm{d} \xi
 \end{align}
 \]</span></p>
-<p>这样就凑出了之前的定义式 <span class="math inline">\(K_{ik}(\xi) :=
-L_{ijkl}\xi_{l}\xi_{j}\)</span>, 所以有 <span class="math display">\[
-\begin{align}
-L_{jknl}G_{ij,kl}(x-x^{\prime})
-&amp;= -\int D^{-1}(\xi)K_{jn}(\xi)N_{ij}(\xi)  e^{i\xi \cdot
-(x-x^{\prime})} \mathrm{d} \xi = -\delta_{in}\int e^{i\xi \cdot
-(x-x^{\prime})} \mathrm{d} \xi \\
-&amp;= -\delta_{in} \delta(x-x^{\prime})
-\end{align}
+<p>注意到 <span class="math inline">\(K_{jn}(\xi) :=
+L_{jknl}\xi_{k}\xi_{l}\)</span>, 所以有 <span class="math display">\[
+L_{jknl}G_{ij,kl}(x)
+= -\delta_{in} \frac{1}{(2\pi)^3}\int e^{i\xi \cdot x} \mathrm{d} \xi
+= -\delta_{in} \delta(x)
 \]</span> 整理一下指标, 得到 <span class="math display">\[
-L_{ijkl}G_{nk,lj}(x-x^{\prime}) + \delta_{in} \delta(x-x^{\prime}) = 0
-\tag{1}
+L_{ijkl}G_{nk,lj}(x) + \delta_{in} \delta(x) = 0
 \]</span></p>
-<p>在阐述 Green 函数的物理意义之前,
-我们可以先观察一下上述方程自由指标的个数. 上述方程一共有两个自由指标
-<span class="math inline">\(i\)</span>, <span
-class="math inline">\(n\)</span>,
-同时该方程的形式与以位移为变量的控制方程非常相似: <span
+<p>展开指标 <span class="math inline">\(i\)</span>, <span
+class="math inline">\(n\)</span>, 就得到 9 个方程: <span
 class="math display">\[
-L_{ijkl}u_{k,lj} + f_i = 0
-\]</span> 只是控制方程自由指标只有一个, <span
-class="math inline">\(i\)</span>, 我们将控制方程的自由指标展开: <span
-class="math display">\[
-\left\{
-\begin{aligned}
-L_{1jkl}u_{k,lj} + f_1 = 0\\
-L_{2jkl}u_{k,lj} + f_2 = 0\\
-L_{3jkl}u_{k,lj} + f_3 = 0
-\end{aligned}
-\right.
-\]</span> 如果固定指标 <span class="math inline">\(n=1\)</span>,
-那么控制方程 (1) 为 <span class="math display">\[
-\left\{
-\begin{aligned}
-L_{1jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{11} \delta(x-x^{\prime}) = 0\\
-L_{2jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{21} \delta(x-x^{\prime}) = 0\\
-L_{3jkl}G_{1k,lj}(x-x^{\prime}) + \delta_{31} \delta(x-x^{\prime}) = 0
-\end{aligned}
-\right.
-\]</span> 因此该组控制方程的外力项为 <span class="math display">\[
-{f} = \begin{pmatrix}
-\delta(x-x^{\prime}) \\
-0 \\
-0
+\begin{pmatrix}
+L_{1jkl}G_{1k,lj} + \delta(x) &amp; L_{1jkl}G_{2k,lj} &amp;
+L_{1jkl}G_{3k,lj} \\
+L_{2jkl}G_{1k,lj} &amp; L_{2jkl}G_{2k,lj} + \delta(x) &amp;
+L_{2jkl}G_{3k,lj} \\
+L_{3jkl}G_{1k,lj} &amp; L_{3jkl}G_{2k,lj} &amp; L_{3jkl}G_{3k,lj} +
+\delta(x)
 \end{pmatrix}
-\]</span></p>
-<p>所以, 函数 <span class="math inline">\(f\)</span> 表示作用在点 <span
-class="math inline">\(x^{\prime}\)</span>, 方向为 <span
-class="math inline">\((1,0,0)\)</span> 的单位集中力. 函数 <span
-class="math inline">\(G_{1k}(x-x^\prime)\)</span> 表示在上述外力 <span
-class="math inline">\(f\)</span> 作用下系统的位移响应.</p>
-<p>综上, 可以得到 Green 函数 <span
-class="math inline">\(G_{nk}(x-x^{\prime})\)</span> 的物理意义是:
-作用在点 <span class="math inline">\(x^{\prime}\)</span> 上, <span
-class="math inline">\(n\)</span> 方向的单位集中力所造成的点 <span
-class="math inline">\(x\)</span> 在 <span
-class="math inline">\(k\)</span> 方向上的位移分量. 如果 <span
+= \mathbf{0}_{3\times 3}
+\]</span> 方程的每一列代表了空间中三个方向上作用在 <span
+class="math inline">\(x=0\)</span>​ 处的单位力, Green 函数 <span
+class="math inline">\(G_{nk}(x)\)</span> 表示在 <span
+class="math inline">\(n\)</span> 方向的单位集中力作用下, 弹性方程 <span
+class="math inline">\(k\)</span> 方向的位移响应. 如果 <span
 class="math inline">\(L_{ijkl}\)</span> 具有主对称性, 那么矩阵 <span
 class="math inline">\(K\)</span> <span class="math inline">\(N\)</span>
 是对称矩阵, 所以 <span class="math display">\[
 G_{nk} = G_{kn}
-\]</span> 所以, <span
-class="math inline">\(G_{nk}(x-x^{\prime})\)</span> 同样也可以解释为:
-作用在点 <span class="math inline">\(x^{\prime}\)</span> 上, <span
-class="math inline">\(k\)</span> 方向的单位集中力所造成的点 <span
-class="math inline">\(x\)</span> 在 <span
-class="math inline">\(n\)</span> 方向上的位移分量.
-这恰好与互易原理的结论相同.</p>
+\]</span> 所以, <span class="math inline">\(G_{nk}(x)\)</span>
+同样也可以解释为: 在 <span class="math inline">\(k\)</span>
+方向的单位集中力作用下, 弹性方程 <span class="math inline">\(n\)</span>
+方向的位移响应. 这恰好与互易原理的结论相同.</p>
+<h2 id="各项同性材料的-green-函数表示">各项同性材料的 Green
+函数表示</h2>
+<p>对于各向同性材料, 方程左端的系数矩阵为 <span class="math display">\[
+\hat K \triangleq \mu \xi^{T} \xi ~\mathbf{I} + (\lambda + \mu)\xi
+\xi^{T}
+= \mu |\xi|^2 \mathbf{I}
++ (\lambda + \mu)
+\begin{pmatrix}
+\xi_1 \xi_1 &amp; \xi_1 \xi_2 &amp; \xi_1 \xi_3 \\
+\xi_2 \xi_1 &amp; \xi_2 \xi_2 &amp; \xi_2 \xi_3 \\
+\xi_3 \xi_1 &amp; \xi_3 \xi_2 &amp; \xi_3 \xi_3
+\end{pmatrix}
+\]</span> 式中, <span class="math inline">\(\mathbf{I}\)</span> 为 3
+阶单位矩阵, <span class="math inline">\(\xi = (\xi_1, \xi_2,
+\xi_3)^{\top}\)</span>, <span class="math inline">\(|\xi|^2 = \xi_1^2 +
+\xi_2^2 + \xi_3^2\)</span>. 对于形式为 <span class="math inline">\(I +
+\alpha vv^T\)</span> 的矩阵, 其逆矩阵的形式依旧为 <span
+class="math inline">\(I + \beta vv^T\)</span>, 因此矩阵 <span
+class="math inline">\(\hat{K}\)</span> 的逆为 <span
+class="math display">\[
+\hat{K}^{-1}  = \frac{1}{\mu} \frac{1}{|\xi|^2} \mathbf{I}
+- \frac{\lambda + \mu}{\mu (\lambda + 2\mu)} \frac{1}{|\xi|^4} \xi
+\xi^{\top}, \quad
+\det(\hat{K}) = (\lambda + 2\mu)\mu^2 |\xi|^6
+\]</span> 各项同性材料的 Green 函数为 <span class="math display">\[
+G(x) = \frac{1}{(2\pi)^3} \frac{1}{\mu} \int_{\mathbb{R}^3}
+\frac{1}{|\xi|^2} \mathbf{I} ~\mathrm{d} \xi
+- \frac{1}{(2\pi)^3} \frac{\lambda + \mu}{\mu (\lambda + 2\mu)}
+\int_{\mathbb{R}^3} \frac{1}{|\xi|^4} \xi \xi^{\top} \mathrm{d} \xi
+\]</span> 将积分分成两部分进行计算 <span class="math display">\[
+I_0(x) = \int_{\mathbb{R}^3} \frac{1}{|\xi|^2} e^{i\xi \cdot x}
+~\mathrm{d} \xi, \quad
+I_{ij}(x) = - \frac{\partial^2}{\partial x_i \partial x_j}
+\int_{\mathbb{R}^3} \frac{1}{|\xi|^4} e^{i\xi \cdot x} \mathrm{d} \xi
+\]</span> 一波操作得到 <span class="math display">\[
+I_0(x) = 2\pi^2 \frac{1}{|x|}, \quad
+I_{ij} = \pi^2 \frac{\partial^2 |x|}{\partial x_i \partial x_j}
+\]</span> 代入方程中得到 <span class="math display">\[
+G_{ij}(x) = \frac{1}{4\pi \mu} \frac{1}{|x|} \delta_{ij}
+- \frac{\lambda + \mu}{8\pi \mu (\lambda + 2\mu)}
+\frac{\partial^2}{\partial x_i \partial x_j}  |x|
+\]</span> <div class="note info no-icon"><p>对于径向对称幂函数 <span class="math inline">\(1/|\xi|^a\)</span>,
+Fourier 逆变换依旧得到径向对称幂函数 <span
+class="math inline">\(C_a/|x|^{d-a}\)</span>, 这时需要确定常数 <span
+class="math inline">\(C_a\)</span>, 当 <span class="math inline">\(a
+&lt; d\)</span> 时, 有 <span class="math display">\[
+C_a=(2 \pi)^{\frac{n}{2}} \frac{2^{\frac{n-a}{2}}
+\Gamma\left(\frac{n-a}{2}\right)}{2^{\frac{a}{2}}
+\Gamma\left(\frac{a}{2}\right)} .
+\]</span> <span class="exturl" data-url="aHR0cHM6Ly9tYXRoLmFyaXpvbmEuZWR1L35mYXJpcy9tZXRob2Rzd2ViL2hhbmtlbC5wZGY=">Radial
+functions and the Fourier transform<i class="fa fa-external-link-alt"></i></span></p>
+<p>对于 <span class="math inline">\(a &gt; d\)</span> 的情况,
+积分是不收敛的, 但注意到 <span class="math inline">\(I_{ij}\)</span>
+还是关于 <span class="math inline">\(x_i\)</span> 的二阶导数, 这就抵消了
+2 幂次, 积分是收敛的. 尝试计算 <span
+class="math inline">\(I_{11}(x)\)</span>, 并令 <span
+class="math inline">\(x=(0,0,1)\)</span>, 最终得到 <span
+class="math display">\[
+C_{4} = 4\pi \int_{0}^{\infty} \frac{1}{r^3} \sin r - \frac{1}{r^2} \cos
+r ~\mathrm{d}r
+\]</span> 有意思的是, 如果直接通过计算积分 <span
+class="math inline">\(\int_{\mathbb{R}^3} \frac{1}{|\xi|^4} e^{i\xi
+\cdot x} \mathrm{d} \xi\)</span> 求解常数 <span
+class="math inline">\(C_4\)</span>, 最终会得到上式积分项中关于 <span
+class="math inline">\(\sin r\)</span> 部分 <span class="math display">\[
+C_4 = 4\pi \int_{0}^{\infty} \frac{1}{r^3} \sin r ~\mathrm{d}r
+\]</span> 而这个积分是不收敛的</p>
+</div></p>
 
     </div>
 
