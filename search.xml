@@ -3024,8 +3024,8 @@ class="math inline">\(x^{\prime}\)</span>). 或者将上式记为卷积的形式
 u_i = G_{ik,j} * \left( -L_{jkmn} \mu_{mn} \right)
 \]</span> ## 验证 Green 函数所满足的微分方程</p>
 <p>对 Green 函数求二阶导数, 得到 <span class="math display">\[
-G_{ij,kl}(x) = - \frac{1}{(2\pi)^3}
-\int K_{ij}^{-1}(\xi) \xi_k \xi_l e^{i\xi \cdot x} \mathrm{d} \xi
+G_{ij,kl}(x) = \frac{1}{(2\pi)^3}
+\int -K_{ij}^{-1}(\xi) \xi_k \xi_l e^{i\xi \cdot x} \mathrm{d} \xi
 \]</span></p>
 <p>方程两端乘 <span class="math inline">\(L_{jknl}\)</span>,
 等式依旧成立, 得到</p>
