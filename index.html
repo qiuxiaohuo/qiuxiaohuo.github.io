@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">59</span>
+          <span class="site-state-item-count">61</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -191,6 +191,487 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E5%BC%A0%E9%87%8F%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mech/%E5%BC%A0%E9%87%8F%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/" class="post-title-link" itemprop="url">张量定义及坐标变换</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-07-20 10:20:51 / 修改时间：16:02:32" itemprop="dateCreated datePublished" datetime="2024-07-20T10:20:51+08:00">2024-07-20</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="向量空间的定义">向量空间的定义</h2>
+<p>向量空间的定义在此不再赘述, 不过需要补充一些 remarks:</p>
+<blockquote>
+<p>[!NOTE]</p>
+<ol type="1">
+<li>向量空间只定义了运算的概念, 并没有引入距离, 角度等拓扑概念.</li>
+<li>向量空间中的“向量”并不局限于后文提到的一阶张量, 而是更抽象的概念,
+比如表示全体连续函数的向量空间 <span
+class="math inline">\(C^{0}\)</span>, 连续函数 <span
+class="math inline">\(f\)</span> 是向量空间 <span
+class="math inline">\(C^0\)</span> 中的一个元素.</li>
+<li>向量空间总是需要伴随一个数域 <span
+class="math inline">\(\mathbb{F}\)</span>, 可以是实数域 <span
+class="math inline">\(\mathbb{R}\)</span>, 也可以是复数域 <span
+class="math inline">\(\mathbb{C}\)</span>. 对于有限维的向量空间,
+在给定一组基底之后, 就能够定义一个从 <span
+class="math inline">\(V\)</span> 到 <span
+class="math inline">\(\mathbb{F}^n\)</span> (<span
+class="math inline">\(n\)</span> 为向量空间的维度) 的一一映射, 因此
+<span class="math inline">\(V\)</span> 同构于 <span
+class="math inline">\(\mathbb{F}^n\)</span></li>
+</ol>
+</blockquote>
+<p>引入距离 (范数) 定义的是赋范空间. 引入内积定义的空间是内积空间.
+内积可以诱导出范数的定义, 通过 <span class="math display">\[
+\| x \| \triangleq \langle x,x  \rangle^{1/2}
+\]</span> 特别的, 我们定义诱导出 Euclid
+距离范数的内积为<strong>点积</strong>, 记作 <span
+class="math display">\[
+\langle a,b  \rangle \triangleq a \cdot b
+\]</span> 在该内积定义下的向量空间为 <strong>Euclidean vector
+space</strong>, 记作 <span class="math inline">\(\vec{E}\)</span>.
+Euclidean vector space 中的元素称为<strong>自由向量</strong>.</p>
+<p>空间 <span class="math inline">\(\vec{E}\)</span> 的 affine space
+称为 <strong>Euclidean point space</strong>, 记作 <span
+class="math inline">\(E\)</span>. <span class="math inline">\(E\)</span>
+中的元素一般称为<strong>点</strong>, 点集 <span
+class="math inline">\(E\)</span> 与向量空间 <span
+class="math inline">\(\vec{E}\)</span> 之间的关系为: 对任意的一对点
+<span class="math inline">\(P_1\)</span>, <span
+class="math inline">\(P_2\)</span>, 存在自由向量 <span
+class="math inline">\(v(P_1,P_2)\)</span>, 满足如下条件:</p>
+<ol type="1">
+<li><span class="math inline">\(v(P_1,P_2) = v(P_1,P_3) + v(P_3,P_2),
+\quad \forall P_3 \in E\)</span></li>
+<li><span class="math inline">\(v(P_1,P_2) = v(P_1,P_3) \iff P_2 =
+P_3\)</span></li>
+</ol>
+<p>当给定空间 <span class="math inline">\(E\)</span> 中的一个参考点
+<span class="math inline">\(O\)</span> 时, 就可以确定任一点 <span
+class="math inline">\(P\)</span> 的<strong>位矢</strong> <span
+class="math inline">\(x_P \in \vec{E}\)</span> 为 <span
+class="math display">\[
+x_P = v(P, O)
+\]</span> 由此, 任意两点之间的距离, 和三点之间的夹角, 可以通过空间 <span
+class="math inline">\(\vec{E}\)</span> 上距离和内积的定义进行计算.</p>
+<p>接下来我们将定义<strong>坐标系</strong>. 最一般的坐标系是曲线坐标系,
+它包含一个坐标原点 (由此可以度量空间 <span
+class="math inline">\(E\)</span> 中点的位矢), 以及一系列坐标曲线,
+每一条坐标曲线对应为某一个坐标分量为常数.
+这些曲线在空间中的交汇点给出了这一点的坐标. 以下我们考虑笛卡尔坐标系,
+它包含一个坐标原点 <span class="math inline">\(O \in E\)</span>,
+和一组规范正交基 <span class="math inline">\(\{e_i\} \in
+\vec{E}\)</span>. 坐标系 <span class="math inline">\(\{ O; e_i
+\}\)</span> 同时定义了空间 <span class="math inline">\(\vec{E}\)</span>
+中向量和点集 <span class="math inline">\(E\)</span> 中点的坐标:</p>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202407201444327.png"
+alt="image-20240720144358373" />
+<figcaption aria-hidden="true">image-20240720144358373</figcaption>
+</figure>
+<p>笛卡尔坐标定义了一个从 <span class="math inline">\(E\)</span> 到
+<span class="math inline">\(\mathbb{R}^n\)</span> 的同构. 对任意向量(点)
+<span class="math inline">\(a\)</span>, 可以表示为一个元组 <span
+class="math display">\[
+a \cong (a_1, a_2, \ldots, a_n), \quad a = a_i e_i, \quad  a_i = a \cdot
+e_i
+\]</span> 使用分量表示空间 <span class="math inline">\(\vec{E}\)</span>
+中的内积和距离范数为: <span class="math display">\[
+a \cdot b = a_i b_i, \quad \|a\| = \sqrt{a_i a_i}
+\]</span></p>
+<h2 id="基底变换符号约定">基底变换符号约定</h2>
+<p>考虑两组正交规范基 <span class="math inline">\(\{e_i&#39;\}\)</span>
+和 <span class="math inline">\(\{e_{\alpha}\}\)</span>, 其中指标 <span
+class="math inline">\(i\)</span> 表示新坐标系的基底, 上方带 <span
+class="math inline">\(&#39;\)</span> 是为了区分新旧基底的分量; <span
+class="math inline">\(\alpha\)</span> 表示旧坐标系的基底. 新基底 <span
+class="math inline">\(e_i&#39;\)</span> 总是能通过旧基底 <span
+class="math inline">\(e_{\alpha}\)</span> 表示为 <span
+class="math display">\[
+\boxed{
+e_i&#39; = Q_{\alpha i} e_{\alpha}
+}
+\tag{1}
+\]</span> 或者写成矩阵形式 <span class="math display">\[
+\begin{bmatrix} e_1&#39; \\ e_2&#39; \\ e_3&#39; \end{bmatrix}
+= \begin{bmatrix}
+Q_{11} &amp; Q_{12} &amp; Q_{13} \\
+Q_{21} &amp; Q_{22} &amp; Q_{23} \\
+Q_{31} &amp; Q_{32} &amp; Q_{33}
+\end{bmatrix}^{\top}
+\begin{bmatrix} e_1 \\ e_2 \\ e_3 \end{bmatrix}
+\]</span> 注意到转换矩阵 <span class="math inline">\(Q\)</span>
+是带有转置符号的, 这是我们的符号约定.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>基底变换不需要考虑基底的原点设在何处.</p>
+</blockquote>
+<p>当基底是正交规范基时, 转换矩阵 <span class="math inline">\(Q\)</span>
+是正交矩阵, 这是因为 <span class="math display">\[
+\delta_{ij} = e_i&#39; \cdot e_j&#39; = Q_{\alpha i} e_{\alpha} Q_{\beta
+j} e_{\beta}
+= Q_{\alpha i}Q_{\alpha j}
+\]</span> 写成矩阵形式为 <span class="math display">\[
+QQ^{\top} = I
+\]</span> 注意到, 矩阵 <span class="math inline">\(Q\)</span>
+的行列式值有两种可能: <span class="math inline">\(\pm 1\)</span>. 当
+<span class="math inline">\(\det Q = +1\)</span> 时, 称 <span
+class="math inline">\(Q\)</span> 为 proper orthogonal, 对应为纯旋转; 当
+<span class="math inline">\(\det Q = -1\)</span> 时, 对应为旋转加镜像.
+以下默认为 proper orthogonal 情况.</p>
+<h2
+id="向量在不同基底下的坐标变换规则">向量在不同基底下的坐标变换规则</h2>
+<p>接下来, 我们考虑向量分量在不同坐标系下的变换规则. 对于向量 <span
+class="math inline">\(a\)</span>, 在新旧坐标系下的分量分别表示为 <span
+class="math display">\[
+a = a_i&#39; e_i&#39; = a_{\alpha} e_{\alpha}
+\]</span> 将式 (1) 中基底转换关系代入到上式中,
+就得到不同坐标系下分量之间的关系 <span class="math display">\[
+a_i&#39; e_i&#39; = a_i&#39;Q_{\alpha i} e_{\alpha} =  a_{\alpha}
+e_{\alpha}
+\Rightarrow \boxed{a_{\alpha} = Q_{\alpha i} a_i&#39;, \quad  a_i&#39; =
+Q_{\alpha i} a_{\alpha}}
+\tag{2}
+\]</span> 因此, 也可以用如上坐标变换关系定义向量.</p>
+<h2 id="一般的高阶张量">一般的高阶张量</h2>
+<p>如果考虑对偶空间 <span class="math inline">\(V^{*}\)</span>, 那么存在
+<span class="math inline">\(v^{*} \in V^{*}\)</span>, 使得 <span
+class="math display">\[
+v^{*}[u] = v \cdot u, \quad \forall u \in V
+\]</span> 因此一阶张量除了看作是向量空间 <span
+class="math inline">\(V\)</span> 的元素之外, 在同构的意义上,
+还可以看作是 <span class="math inline">\(V\)</span> 上的线性映射.
+从这一观点出发, 很容易得到 <span class="math inline">\(n\)</span>
+阶张量的另一种方式, 也就是 <span class="math inline">\(V\)</span>
+的乘积空间上的线性映射: <span class="math display">\[
+T: \underbrace{V \times \cdots \times V}_{n} \mapsto \mathbb{R}
+\]</span></p>
+<h2 id="坐标变换">坐标变换</h2>
+<p>考虑点集 <span class="math inline">\(E\)</span> 中的一点 <span
+class="math inline">\(P\)</span> 在不同的笛卡尔坐标系 <span
+class="math inline">\(\{ O; e_\alpha \}\)</span> , <span
+class="math inline">\(\{ O&#39;; e_i&#39; \}\)</span> 下的表示. 向量
+<span class="math inline">\(OP\)</span> 表示为 <span
+class="math display">\[
+OP = x_{\alpha} e_{\alpha}
+\]</span> <span class="math inline">\(O&#39;P\)</span> 表示为 <span
+class="math display">\[
+O&#39;P = O&#39;O + OP = O&#39;O + \tilde{x}_i&#39; e_i&#39;
+\]</span> 如果记 <span class="math inline">\(O&#39;O = o_i&#39;
+e_i&#39;\)</span>, 再根据式 (2), 可以得到坐标 <span
+class="math inline">\(x_\alpha\)</span> 和 <span
+class="math inline">\(x_i&#39;\)</span> 之间的关系为 <span
+class="math display">\[
+x_i&#39; = o_i&#39; + \tilde{x}_i&#39; = o_i&#39; + Q_{\alpha i}
+x_{\alpha}
+\]</span> 坐标变换的偏导数之间的关系为 <span class="math display">\[
+\frac{\partial x_i&#39;}{\partial x_{\alpha}} = Q_{\alpha i}
+\]</span> 通过上述关系, 就不难验证, 对于 <span
+class="math inline">\(n\)</span> 阶张量场 <span
+class="math inline">\(T_{\cdot}\)</span>, 其偏导数得到 <span
+class="math inline">\(n+1\)</span> 阶张量场. 我们需要验证张量分量的导数
+<span class="math inline">\(T_{\cdot,\alpha}\)</span> 关于指标 <span
+class="math inline">\(\alpha\)</span> 的坐标变换关系. <span
+class="math display">\[
+T_{\cdot,\alpha} = \frac{\partial T_{\cdot}}{\partial x_{\alpha}}
+= \frac{\partial T_{\cdot}}{\partial x_{i}&#39;} \frac{\partial
+x_i&#39;}{\partial x_{\alpha}}
+= Q_{\alpha i} T_{\cdot,i}
+\]</span> 由此得到通过求偏导数增加的指标, 是满足坐标变换关系的, 因此
+<span class="math inline">\(T_{\cdot,\alpha}\)</span> 是比 <span
+class="math inline">\(T\)</span> 高一阶的张量.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E5%BA%94%E5%8F%98%E9%9B%86%E4%B8%AD%E5%BC%A0%E9%87%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mech/%E5%BA%94%E5%8F%98%E9%9B%86%E4%B8%AD%E5%BC%A0%E9%87%8F/" class="post-title-link" itemprop="url">应变集中张量</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-07-04 09:24:03" itemprop="dateCreated datePublished" datetime="2024-07-04T09:24:03+08:00">2024-07-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-07-06 17:53:27" itemprop="dateModified" datetime="2024-07-06T17:53:27+08:00">2024-07-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>[!TIP]</p>
+<h5 id="一些记号上的说明">一些记号上的说明</h5>
+<p>记号 <span class="math inline">\(\epsilon\)</span> 表示张量应变,
+<span class="math inline">\(\varepsilon\)</span> 表示工程应变,
+其分量之间的关系为 <span class="math display">\[
+\varepsilon_{ij} = \epsilon_{ij}, \quad i=j\\
+\varepsilon_{ij} = 2\epsilon_{ij}, \quad i \neq j\\
+\]</span> 如果表示成 Voigt 记法, 并定义矩阵 <span
+class="math display">\[
+[:] \triangleq \begin{pmatrix}
+1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 1 &amp; 0 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 2 &amp; 0 \\
+0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 2
+\end{pmatrix}
+\]</span> 那么, 张量应变与工程应变之间的关系为 <span
+class="math display">\[
+[\varepsilon] = [:] [\epsilon]
+\]</span> 变量右下角的指标总是保留给分量的编号,
+其它类型的编号总是放在右上角.</p>
+</blockquote>
+<h2 id="应变集中张量的定义">应变集中张量的定义</h2>
+<p>在给定加载模式下, 宏观应变 <span
+class="math inline">\(\bar{\epsilon}\)</span> 已知, 单胞内的每一点的应变
+<span class="math inline">\(\epsilon(y)\)</span> 通过应变集中张量 <span
+class="math inline">\(A(y)\)</span>（四阶张量）与宏观应变 <span
+class="math inline">\(\bar{\epsilon}\)</span> 相关联: <span
+class="math display">\[
+\epsilon(y) = A(y):\bar{\epsilon}
+\tag{1}
+\]</span></p>
+<p>在多尺度中, 联系宏观与微观尺度应变关系的方程为（Fish, 式（2.37））
+<span class="math display">\[
+\epsilon_{k l}(x, y)=E_{k l}^{m n}(y) \bar{\epsilon}_{m n}(x)
+\tag{2}
+\]</span> 式（2）写成张量形式为 <span class="math display">\[
+\epsilon(y) = \mathbb{E}(y):\bar{\epsilon}
+\tag{3}
+\]</span></p>
+<h2 id="应变集中张量计算">应变集中张量计算</h2>
+<p>宏观应变 <span class="math inline">\(\bar{\epsilon}\)</span>
+可以看作是 <span class="math inline">\(\mathcal{S}(\Omega) \mapsto
+\mathbb{S}(\Omega)\)</span> 的线性映射: <span class="math display">\[
+\bar{\epsilon} \in \mathcal{L}(\mathcal{S}(\Omega),\mathbb{S}(\Omega))
+\]</span> 或者省略空间记号 <span class="math inline">\(\bar{\epsilon}
+\in \mathcal{L}(\mathcal{S},\mathbb{S})\)</span>. 其中, <span
+class="math inline">\(\mathcal{S}(\Omega)\)</span>
+为具有<strong>次对称性的四阶张量场空间</strong>, <span
+class="math inline">\(\mathbb{S}(\Omega)\)</span>
+为<strong>二阶对称张量场空间</strong>, <span
+class="math inline">\(\mathcal{L}(\mathcal{S},\mathbb{S})\)</span>
+表示所有从 <span class="math inline">\(\mathcal{S}(\Omega)\)</span> 到
+<span class="math inline">\(\mathbb{S}(\Omega)\)</span>
+的线性映射所组成的集合. 将 <span
+class="math inline">\(\mathcal{L}(\mathcal{S},\mathbb{S})\)</span>
+中<strong>不依赖于区域坐标 <span class="math inline">\(y \in
+\Omega\)</span> 的映射</strong>所组成的子空间记为 <span
+class="math inline">\(\bar{\mathcal{L}}(\mathcal{S},\mathbb{S})\)</span>,
+子空间的维度等于二阶对称张量独立分量的个数: <span
+class="math display">\[
+\begin{align}
+\dim \bar{\mathcal{L}}(\mathcal{S},\mathbb{S}) = 6,\quad
+\text{三维问题}\\
+\dim \bar{\mathcal{L}}(\mathcal{S},\mathbb{S}) = 3,\quad
+\text{二维问题}\\
+\end{align}
+\]</span> 以三维空间问题为例, 任意宏观应变 <span
+class="math inline">\(\bar{\epsilon}\)</span>
+总可以表示为二阶对称张量空间 <span
+class="math inline">\(\mathbb{S}\)</span> 中一组基底 <span
+class="math inline">\(\bar{\epsilon}_1,\bar{\epsilon}_2,\ldots
+,\bar{\epsilon}_6\)</span> 的线性组合. 如果给出与基底对应的应变场 <span
+class="math inline">\(\widehat\epsilon^{1}(y), \widehat\epsilon^{2}(y),
+\ldots \widehat\epsilon^{6}(y)\)</span>, 那么这六组数据就可以唯一确定
+<span class="math inline">\(\widehat{\mathbb{E}}(y) \in
+\mathcal{S}(\Omega)\)</span>, 满足 <span class="math display">\[
+\widehat\epsilon^\alpha (y) =
+\widehat{\mathbb{E}}(y):\bar{\epsilon}^\alpha, \quad \alpha=1,\ldots,6
+\]</span> 对于任意的宏观应变 <span
+class="math inline">\(\bar{\epsilon}=\sum_{\alpha=1}^{6}\mu^\alpha\bar{\epsilon}^\alpha
+\in \bar{\mathcal{L}}(\mathcal{S},\mathbb{S})\)</span>, <span
+class="math display">\[
+{\epsilon}(y) = \widehat{\mathbb{E}}(y):\bar{\epsilon}=\mu^{\alpha}
+\widehat\epsilon^{\alpha}(y)
+\]</span></p>
+<blockquote>
+<p>[!TIP]</p>
+<p>在应变集中张量加标记 <span
+class="math inline">\(\widehat{\square}\)</span>, 是为了强调, 张量 <span
+class="math inline">\(\widehat{\mathbb{E}}(y)\)</span> 依赖于计算 <span
+class="math inline">\(\widehat\epsilon^{\alpha}(y)\)</span> 时的条件.
+例如, 周期性边界条件和线性位移边界条件得到的计算结果是不一样的.</p>
+</blockquote>
+<p>接下来, 我们考虑上述运算的矩阵表示. 如果使用 Voigt 记法, <span
+class="math inline">\(\mathcal{S} \rightarrow \mathbb{R}^{6 \times
+6}\)</span>, <span class="math inline">\(\mathbb{S} \rightarrow
+\mathbb{R}^6\)</span>。选取空间 <span
+class="math inline">\(\bar{\mathcal{L}}(\mathbb{R}^{6 \times
+6},\mathbb{R}^{6})\)</span> 中的基底为 <span class="math display">\[
+[\bar{\varepsilon}^1] = (1,0,0,0,0,0)^{T},~ \dots,~
+[\bar{\varepsilon}^6] = (0,0,0,0,0,1)^{T}
+\]</span> 并计算在给定的宏观应变下, 对应单胞的应变场 <span
+class="math inline">\(\widehat\varepsilon^{\alpha}(y),
+\alpha=1,\ldots,6\)</span>, 应变场表示为
+<code>NIPT</code>×<code>6</code> 的矩阵 <span
+class="math inline">\([\widehat\varepsilon^\alpha]\)</span>,
+<code>NIPT</code> 表示单胞积分点的总数. 那么, 对于任何用 Voigt
+记法表示的宏观应变 <span
+class="math inline">\([\bar{\varepsilon}]\)</span>,
+单胞上的应变场可以表示为 <span class="math display">\[
+[\varepsilon]_{\mathrm{NIPT} \times 6}
+= \sum_{\alpha=1}^{6} \bar{\varepsilon}^{\alpha}
+[\widehat\varepsilon^{\alpha}]_{\mathrm{NIPT} \times 6}
+\tag{4}
+\]</span> 如果将式 (3) 表示成矩阵形式, 就得到任意积分点上的应变为 <span
+class="math display">\[
+[\epsilon(y^{ipt})] = [\mathbb{E}(y^{ipt})][:][\bar{\epsilon}], \quad
+\forall y^{ipt}
+\tag{5}
+\]</span></p>
+<p>因为张量应变和工程应变的关系为 <span class="math display">\[
+[:][\bar{\epsilon}] = [\bar{\varepsilon}]
+\]</span> 式 (5) 左右两端左乘 <span class="math inline">\([:]\)</span>
+得到 <span class="math display">\[
+[\varepsilon(y^{ipt})]_{6\times 1}  = [:][\mathbb{E}(y^{ipt})]_{6\times
+6}
+[\bar{\varepsilon}]_{6\times1}, \quad \forall y^{ipt}
+\tag{6}
+\]</span> 式 (4) 给出的积分点上的应变是 <code>1</code>x<code>6</code>
+的行向量, 为了得到类似于式 (4) 的形式, 需要将 $[:][(y^{ipt})]_{6} $
+“切成” 6 个行向量, 并按照积分点顺序排列所有行, 因此,
+应变影响张量的矩阵表示是一个 <span class="math inline">\({\mathrm{NIPT}
+\times 36}\)</span> 的矩阵.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -2074,215 +2555,6 @@ r\mathrm{d}r = 10
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/math/Fourier-analysis/Gauss-%E5%87%BD%E6%95%B0%E7%9A%84-Fourier-%E5%8F%98%E6%8D%A2%E4%B8%8E%E9%80%86%E5%8F%98%E6%8D%A2/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/complex-analysis/%E8%A7%A3%E6%9E%90%E5%87%BD%E6%95%B0%E4%B8%8E-Laplace-%E6%96%B9%E7%A8%8B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/math/complex-analysis/%E8%A7%A3%E6%9E%90%E5%87%BD%E6%95%B0%E4%B8%8E-Laplace-%E6%96%B9%E7%A8%8B/" class="post-title-link" itemprop="url">解析函数与 Laplace 方程</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-05-19 21:44:59" itemprop="dateCreated datePublished" datetime="2024-05-19T21:44:59+08:00">2024-05-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-05-28 09:53:38" itemprop="dateModified" datetime="2024-05-28T09:53:38+08:00">2024-05-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%A4%8D%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">复分析</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong><em>参考文献: Gilbert Strang, Introduction to applied
-mathematics</em></strong></p>
-<p>在这篇文章中, 我将从求解微分方程出发, 只引入必要的复分析方法作为工具.
-此外, 因为复数 <span class="math inline">\(z\)</span> <span
-class="math display">\[
-z = x + iy, \quad x,y \in \mathbb{R}
-\]</span> 只包含两个实数变量,
-所以方程的定解域也限制在二维平面上.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/math/complex-analysis/%E8%A7%A3%E6%9E%90%E5%87%BD%E6%95%B0%E4%B8%8E-Laplace-%E6%96%B9%E7%A8%8B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/PDE/Bessel-%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/math/PDE/Bessel-%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">Bessel 函数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-05-19 17:13:29" itemprop="dateCreated datePublished" datetime="2024-05-19T17:13:29+08:00">2024-05-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-05-28 09:52:44" itemprop="dateModified" datetime="2024-05-28T09:52:44+08:00">2024-05-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">偏微分方程</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong><em>参考文献: Gilbert Strang, Introduction to applied
-mathematics</em></strong></p>
-<p>Bessel 函数是求解二维圆形区域上的振型方程引入的, 振型方程为 <span
-class="math display">\[
-\Delta u + \lambda u = 0, \quad
-u=0 \quad\text{on}\quad B(1,0)
-\]</span> 写成极坐标的形式为 <span class="math display">\[
-\frac{\partial^2 u}{\partial r^2}
-+ \frac{1}{r}\frac{\partial u}{\partial r}
-+ \frac{1}{r^2}\frac{\partial^2 u}{\partial \theta^2}
-+ \lambda u = 0
-\tag{1}
-\]</span> 如果将极坐标上的方程解 <span
-class="math inline">\(u(r,\theta)\)</span> 写成分离变量的形式, <span
-class="math inline">\(u(r,\theta) = A(\theta)B(r)\)</span>​,
-代入到上述方程中 <span class="math display">\[
-AB^{\prime\prime} + \frac{1}{r}AB^{\prime} +
-\frac{1}{r^2}A^{\prime\prime}B + \lambda AB = 0
-\]</span>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/math/PDE/Bessel-%E5%87%BD%E6%95%B0/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
