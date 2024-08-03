@@ -9759,155 +9759,6 @@ x(t) = \int_0^t e^{A(t-s)} g(s) \mathrm{s} s
       </tags>
   </entry>
   <entry>
-    <title>张量场的分析公式</title>
-    <url>/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E5%88%86%E6%9E%90%E5%85%AC%E5%BC%8F/</url>
-    <content><![CDATA[<p>首先, 我们先定义梯度, 散度和旋度的概念, 并特别强调对于高阶张量的定义,
-这将规范我们使用的 notation. 然后, 我们以二维空间为例, 引出散度定理,
-Stokes 公式和 Gauss 公式. 最后,
-我们再给出一般的张量场中这三种公式的形式.</p>
-<h2 id="梯度-散度和旋度">梯度, 散度和旋度</h2>
-<p>我们引入记号 <span class="math inline">\(\nabla\)</span>, <span
-class="math inline">\(\nabla \cdot\)</span>, <span
-class="math inline">\(\nabla \times\)</span>, 分别表示梯度, 散度和旋度.
-我们首先介绍这三种运算最简单的情况, 然后再推广到一般的张量空间当中.</p>
-<p>对标量场的梯度运算, 得到的是一个向量场: <span class="math display">\[
-\nabla \phi = \frac{\partial \phi\ }{\partial x_i} e_i
-\]</span> 对向量场的散度运算, 得到的是一个标量场: <span
-class="math display">\[
-\nabla \cdot v = \frac{\partial v_i}{\partial x_i}
-\]</span> 对向量场的旋度运算, 得到的仍是一个向量场: <span
-class="math display">\[
-\nabla \times v = \begin{vmatrix}
-i &amp; j &amp; k \\
-\dfrac{\partial ~}{\partial x_1} &amp; \dfrac{\partial ~}{\partial x_1}
-&amp; \dfrac{\partial ~}{\partial x_1} \\
-v_1 &amp; v_2 &amp; v_3
-\end{vmatrix}
-\]</span> <span id="more"></span>可以看到,
-上述运算分别将原本张量的阶数提升(梯度)或下降(散度)一阶,
-或者保持不变(旋度). 推广到高阶之后情况也是相同, 但需要特别强调的是,
-因为高阶张量 (二阶及以上) 引入了指标的排序,
-所以即使所有分量所构成的集合相同, 排列不同, 也是不同的张量.</p>
-<p>我们定义高阶张量的梯度运算为 <span class="math display">\[
-\boxed{
-\nabla B \triangleq e_k \otimes \frac{\partial B}{\partial x_k}, \quad
-B \nabla \triangleq \frac{\partial B}{\partial x_k} \otimes e_k
-}
-\tag{1}
-\]</span> 例如, 向量场 <span class="math inline">\(v\)</span>
-的梯度为二阶张量 <span class="math display">\[
-\nabla v = v_{j,i} e_{i} \otimes e_{j}, \quad
-v \nabla = v_{i,j} e_{i} \otimes e_{j}
-\]</span> 所以 <span class="math display">\[
-\nabla v = (v \nabla)^{\top}
-\]</span> 定义张量的散度运算为 <span class="math display">\[
-\boxed{
-\nabla \cdot B \triangleq e_k \cdot \frac{\partial B}{\partial x_k},
-\quad
-B \cdot \nabla \triangleq \frac{\partial B}{\partial x_k} \cdot e_k
-}
-\tag{2}
-\]</span> 例如, 二阶张量场 <span class="math inline">\(\sigma\)</span>
-的散度为向量场 <span class="math display">\[
-\nabla \cdot \sigma = \sigma_{ij,i} e_j , \quad
-\sigma \cdot \nabla = \sigma_{ij,j} e_i
-\]</span> 定义张量的旋度运算为 <span class="math display">\[
-\boxed{
-\nabla \times B \triangleq e_k \times \frac{\partial B}{\partial x_k},
-\quad
-B \times \nabla \triangleq \frac{\partial B}{\partial x_k} \times e_k
-}
-\tag{3}
-\]</span></p>
-<h2 id="二维空间中向量场的分析性质">二维空间中向量场的分析性质</h2>
-<h3 id="stokes-定理">Stokes 定理</h3>
-<p>对于区域 <span class="math inline">\(S\)</span> 的无旋流动,
-以下三个条件是<strong>等价</strong>的:</p>
-<ol type="1">
-<li><p>速度场环绕任意闭合路径 <span class="math inline">\(C\)</span>
-的积分等于 0: <span class="math display">\[
-\oint_{C} v \cdot \mathrm{d} r = 0
-\]</span></p></li>
-<li><p>速度场是某一势函数 <span class="math inline">\(u\)</span> 的梯度:
-<span class="math display">\[
-v = \nabla u
-\]</span></p></li>
-<li><p>速度场的旋度 (vorticity) 等于 0: <span class="math display">\[
-\mathrm{curl}~ v \triangleq \frac{\partial v_y}{\partial x} -
-\frac{\partial v_x}{\partial y} \equiv 0
-\]</span></p></li>
-</ol>
-<p>条件 1 和 3 的等价性可以通过 <strong>Stokes 定理</strong> 证明.
-在二维情景下, 区域 <span class="math inline">\(S\)</span>
-内对旋度的积分等于在边界 <span class="math inline">\(C\)</span>
-上的第二类曲线积分: <span class="math display">\[
-\boxed{
-\int_{S} \mathrm{curl}~ v ~\mathrm{d}S =  \oint_{C} v \cdot \mathrm{d} r
-}
-\]</span> 条件 2 和 3 的等价性更加直接. 如果速度场满足条件 2,
-同时假设势函数 <span class="math inline">\(u\)</span> 二阶导数连续, 那么
-<span class="math display">\[
-\mathrm{curl}~ v
-= \frac{\partial^2 u}{\partial x \partial y} - \frac{\partial^2
-u}{\partial y \partial x}
-\equiv 0
-\]</span> 因此, <span class="math inline">\(\nabla u\)</span>
-表征的是空间中的无旋流动. 条件 1 和 3 提供了检验流场有旋无旋的方式, 条件
-1 是全局的, 条件 3 是点态的.</p>
-<blockquote>
-<p>[!NOTE]</p>
-<p>旋度 <span class="math inline">\(\mathrm{curl}\)</span> 作用在向量上,
-得到的是一个向量场. 在二维情景下, 旋度只在垂直于平面方向的分量不等于 0,
-因此这里使用的旋度是标量.</p>
-</blockquote>
-<h3 id="散度定理">散度定理</h3>
-<p>以上我们通过势函数的梯度刻画了无旋流动速度场,
-接下来将通过数学公式描述物理场的另一种重要的性质:
-<strong>守恒性质</strong>. 类似于上文中的条件 1 和 条件 3,
-守恒性质同样也可以通过全局和点态两种方式进行描述:</p>
-<ol type="1">
-<li><p>对任意闭合曲线, 通量等于 0: <span class="math display">\[
-\oint_{C} n \cdot v ~\mathrm{d}s = 0
-\]</span></p></li>
-<li><p>速度场的散度恒等于 0: <span class="math display">\[
-\nabla \cdot v \equiv 0
-\]</span></p></li>
-</ol>
-<p>这里的条件 1 和 2 的等价性可以通过<strong>散度定理</strong>证明:
-在区域 <span class="math inline">\(S\)</span> 中对散度的积分,
-等于在边界处 <span class="math inline">\(C\)</span> 的通量: <span
-class="math display">\[
-\boxed{
-\int_{S} \nabla \cdot v ~\mathrm{d}S = \oint_{C} n \cdot v ~\mathrm{d}s
-}
-\]</span></p>
-<h3 id="gauss-公式">Gauss 公式</h3>
-<p>Gauss 公式是分部积分公式在高维情景下的推广: <span
-class="math display">\[
-\int \boldsymbol{w} \cdot \nabla u ~\mathrm{d}S
-= \int u (-\nabla \cdot \boldsymbol{w}) ~\mathrm{d}S
-+ \int \nabla \cdot (u \boldsymbol{w}) ~\mathrm{d}S
-\]</span> 上式最后一项可以通过散度定理化简为 <span
-class="math display">\[
-\boxed{
-\int \boldsymbol{w} \cdot \nabla u ~\mathrm{d}S
-= \int u (-\nabla \cdot \boldsymbol{w}) ~\mathrm{d}S
-+ \underbrace{\oint u~ \boldsymbol{w} \cdot \boldsymbol{n}
-~\mathrm{d}s}_{\bigstar}
-}
-\]</span> 这就得到了 Gauss 公式.</p>
-]]></content>
-      <categories>
-        <category>数学</category>
-      </categories>
-      <tags>
-        <tag>连续介质力学</tag>
-        <tag>Stokes 公式</tag>
-        <tag>散度定理</tag>
-        <tag>Gauss 公式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>行列式相关的概念</title>
     <url>/math/%E8%A1%8C%E5%88%97%E5%BC%8F/</url>
     <content><![CDATA[<p>对于 <span class="math inline">\(n\)</span> 阶行列式 <span
@@ -10237,6 +10088,187 @@ class="math inline">\(D = L\)</span>, <span class="math inline">\(W =
       <tags>
         <tag>连续介质力学</tag>
         <tag>速度梯度</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>张量场的积分定理</title>
+    <url>/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/</url>
+    <content><![CDATA[<p>首先, 我们先定义梯度, 散度和旋度的概念, 并特别强调对于高阶张量的定义,
+这将规范我们使用的 notation. 然后, 我们以二维空间为例, 引出散度定理,
+Stokes 公式和 Gauss 公式. 最后,
+我们再给出一般的张量场中这三种公式的形式.</p>
+<h2 id="梯度-散度和旋度">梯度, 散度和旋度</h2>
+<p>我们引入记号 <span class="math inline">\(\nabla\)</span>, <span
+class="math inline">\(\nabla \cdot\)</span>, <span
+class="math inline">\(\nabla \times\)</span>, 分别表示梯度, 散度和旋度.
+我们首先介绍这三种运算最简单的情况, 然后再推广到一般的张量空间当中.</p>
+<p>对标量场的梯度运算, 得到的是一个向量场: <span class="math display">\[
+\nabla \phi = \frac{\partial \phi\ }{\partial x_i} e_i
+\]</span> 对向量场的散度运算, 得到的是一个标量场: <span
+class="math display">\[
+\nabla \cdot v = \frac{\partial v_i}{\partial x_i}
+\]</span> 对向量场的旋度运算, 得到的仍是一个向量场: <span
+class="math display">\[
+\nabla \times v = \begin{vmatrix}
+i &amp; j &amp; k \\
+\dfrac{\partial ~}{\partial x_1} &amp; \dfrac{\partial ~}{\partial x_1}
+&amp; \dfrac{\partial ~}{\partial x_1} \\
+v_1 &amp; v_2 &amp; v_3
+\end{vmatrix}
+\]</span> <span id="more"></span>可以看到,
+上述运算分别将原本张量的阶数提升(梯度)或下降(散度)一阶,
+或者保持不变(旋度). 推广到高阶之后情况也是相同, 但需要特别强调的是,
+因为高阶张量 (二阶及以上) 引入了指标的排序,
+所以即使所有分量所构成的集合相同, 排列不同, 也是不同的张量.</p>
+<p>我们定义高阶张量的梯度运算为 <span class="math display">\[
+\boxed{
+\nabla B \triangleq e_k \otimes \frac{\partial B}{\partial x_k}, \quad
+B \nabla \triangleq \frac{\partial B}{\partial x_k} \otimes e_k
+}
+\tag{1}
+\]</span> 例如, 向量场 <span class="math inline">\(v\)</span>
+的梯度为二阶张量 <span class="math display">\[
+\nabla v = v_{j,i} e_{i} \otimes e_{j}, \quad
+v \nabla = v_{i,j} e_{i} \otimes e_{j}
+\]</span> 所以 <span class="math display">\[
+\nabla v = (v \nabla)^{\top}
+\]</span> 定义张量的散度运算为 <span class="math display">\[
+\boxed{
+\nabla \cdot B \triangleq e_k \cdot \frac{\partial B}{\partial x_k},
+\quad
+B \cdot \nabla \triangleq \frac{\partial B}{\partial x_k} \cdot e_k
+}
+\tag{2}
+\]</span> 例如, 二阶张量场 <span class="math inline">\(\sigma\)</span>
+的散度为向量场 <span class="math display">\[
+\nabla \cdot \sigma = \sigma_{ij,i} e_j , \quad
+\sigma \cdot \nabla = \sigma_{ij,j} e_i
+\]</span> 定义张量的旋度运算为 <span class="math display">\[
+\boxed{
+\nabla \times B \triangleq e_k \times \frac{\partial B}{\partial x_k},
+\quad
+B \times \nabla \triangleq \frac{\partial B}{\partial x_k} \times e_k
+}
+\tag{3}
+\]</span></p>
+<h2 id="二维空间中向量场的积分定理">二维空间中向量场的积分定理</h2>
+<h3 id="stokes-定理">Stokes 定理</h3>
+<p>对于区域 <span class="math inline">\(S\)</span> 的无旋流动,
+以下三个条件是<strong>等价</strong>的:</p>
+<ol type="1">
+<li><p>速度场环绕任意闭合路径 <span class="math inline">\(C\)</span>
+的积分等于 0: <span class="math display">\[
+\oint_{C} v \cdot \mathrm{d} r = 0
+\]</span></p></li>
+<li><p>速度场是某一势函数 <span class="math inline">\(u\)</span> 的梯度:
+<span class="math display">\[
+v = \nabla u
+\]</span></p></li>
+<li><p>速度场的旋度 (vorticity) 等于 0: <span class="math display">\[
+\mathrm{curl}~ v \triangleq \frac{\partial v_y}{\partial x} -
+\frac{\partial v_x}{\partial y} \equiv 0
+\]</span></p></li>
+</ol>
+<p>条件 1 和 3 的等价性可以通过 <strong>Stokes 定理</strong> 证明.
+在二维情景下, 区域 <span class="math inline">\(S\)</span>
+内对旋度的积分等于在边界 <span class="math inline">\(C\)</span>
+上的第二类曲线积分: <span class="math display">\[
+\boxed{
+\int_{S} \mathrm{curl}~ v ~\mathrm{d}S =  \oint_{C} v \cdot \mathrm{d} r
+}
+\]</span> 条件 2 和 3 的等价性更加直接. 如果速度场满足条件 2,
+同时假设势函数 <span class="math inline">\(u\)</span> 二阶导数连续, 那么
+<span class="math display">\[
+\mathrm{curl}~ v
+= \frac{\partial^2 u}{\partial x \partial y} - \frac{\partial^2
+u}{\partial y \partial x}
+\equiv 0
+\]</span> 因此, <span class="math inline">\(\nabla u\)</span>
+表征的是空间中的无旋流动. 条件 1 和 3 提供了检验流场有旋无旋的方式, 条件
+1 是全局的, 条件 3 是点态的.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>旋度 <span class="math inline">\(\mathrm{curl}\)</span> 作用在向量上,
+得到的是一个向量场. 在二维情景下, 旋度只在垂直于平面方向的分量不等于 0,
+因此这里使用的旋度是标量.</p>
+</blockquote>
+<h3 id="散度定理">散度定理</h3>
+<p>以上我们通过势函数的梯度刻画了无旋流动速度场,
+接下来将通过数学公式描述物理场的另一种重要的性质:
+<strong>守恒性质</strong>. 类似于上文中的条件 1 和 条件 3,
+守恒性质同样也可以通过全局和点态两种方式进行描述:</p>
+<ol type="1">
+<li><p>对任意闭合曲线, 通量等于 0: <span class="math display">\[
+\oint_{C} n \cdot v ~\mathrm{d}s = 0
+\]</span></p></li>
+<li><p>速度场的散度恒等于 0: <span class="math display">\[
+\nabla \cdot v \equiv 0
+\]</span></p></li>
+</ol>
+<p>这里的条件 1 和 2 的等价性可以通过<strong>散度定理</strong>证明:
+在区域 <span class="math inline">\(S\)</span> 中对散度的积分,
+等于在边界处 <span class="math inline">\(C\)</span> 的通量: <span
+class="math display">\[
+\boxed{
+\int_{S} \nabla \cdot v ~\mathrm{d}S = \oint_{C} n \cdot v ~\mathrm{d}s
+}
+\]</span></p>
+<h3 id="gauss-公式">Gauss 公式</h3>
+<p>Gauss 公式是分部积分公式在高维情景下的推广: <span
+class="math display">\[
+\int \boldsymbol{w} \cdot \nabla u ~\mathrm{d}S
+= \int u (-\nabla \cdot \boldsymbol{w}) ~\mathrm{d}S
++ \int \nabla \cdot (u \boldsymbol{w}) ~\mathrm{d}S
+\]</span> 上式最后一项可以通过散度定理化简为 <span
+class="math display">\[
+\boxed{
+\int \boldsymbol{w} \cdot \nabla u ~\mathrm{d}S
+= \int u (-\nabla \cdot \boldsymbol{w}) ~\mathrm{d}S
++ \underbrace{\oint u~ \boldsymbol{w} \cdot \boldsymbol{n}
+~\mathrm{d}s}_{\bigstar}
+}
+\]</span> 这就得到了 Gauss 公式.</p>
+<h2 id="一般形式的散度定理">一般形式的散度定理</h2>
+<p>对于区域 <span class="math inline">\(V\)</span> 上的光滑标量场 <span
+class="math inline">\(\varphi\)</span>, 并假设边界 <span
+class="math inline">\(\partial V\)</span> 分片光滑, 那么以下等式成立:
+<span class="math display">\[
+\int_{V} \varphi_{,i} ~\mathrm{d}x = \int_{\partial V} \varphi n_i
+~\mathrm{d}\sigma(x), \quad i=1,2,3
+\]</span> 首先考虑梯度运算, 写成分量形式为 <span class="math display">\[
+\int_V \nabla B ~\mathrm{d}x = \int_{V} B_{\cdot,i} e_i \otimes
+e_{\cdot} ~\mathrm{d}x
+= \int_{\partial V} B_{\cdot} n_i ~e_i \otimes e_{\cdot}
+~\mathrm{d}\sigma(x)
+= \int_{\partial V} n \otimes B  ~\mathrm{d}\sigma(x)
+\]</span> 再考虑散度运算, <span class="math display">\[
+\int_{V} \nabla \cdot B ~\mathrm{d}x = \int_{V} B_{i\cdot,i} ~e_{\cdot}
+~\mathrm{d}x
+= \int_{\partial V} B_{i\cdot} n_i ~e_{\cdot} ~\mathrm{d}\sigma(x)
+= \int_{\partial V} n \cdot B ~\mathrm{d}\sigma(x)
+\]</span> 最后考虑旋度运算 <span class="math display">\[
+\int_{V} \nabla \times B ~\mathrm{d}x = \int_{V} B_{\cdot,i} ~ e_{i}
+\times e_{\cdot} ~\mathrm{d}x
+= \int_{\partial V} B_{\cdot} n_i ~ e_{i} \times e_{\cdot}
+~\mathrm{d}\sigma(x)
+= \int_{\partial V} n \times B ~\mathrm{d}\sigma(x)
+\]</span> 对于右侧的运算也是类似的, 因此, 如果我们定义一般的运算符 <span
+class="math inline">\(\divideontimes\)</span>, 代表梯度,
+散度或旋度的其中一种, 那么 <span class="math display">\[
+\int_V \nabla \divideontimes B ~\mathrm{d}x = \int_{\partial V} n
+\divideontimes B ~\mathrm{d}\sigma(x), \quad
+\int_V B \divideontimes \nabla ~\mathrm{d}x = \int_{\partial V} B
+\divideontimes n ~\mathrm{d}\sigma(x)
+\]</span></p>
+]]></content>
+      <categories>
+        <category>数学</category>
+      </categories>
+      <tags>
+        <tag>连续介质力学</tag>
+        <tag>Stokes 公式</tag>
+        <tag>散度定理</tag>
+        <tag>Gauss 公式</tag>
       </tags>
   </entry>
 </search>

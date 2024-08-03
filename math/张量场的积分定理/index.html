@@ -22,13 +22,13 @@
 
     <meta name="description" content="首先, 我们先定义梯度, 散度和旋度的概念, 并特别强调对于高阶张量的定义, 这将规范我们使用的 notation. 然后, 我们以二维空间为例, 引出散度定理, Stokes 公式和 Gauss 公式. 最后, 我们再给出一般的张量场中这三种公式的形式. 梯度, 散度和旋度 我们引入记号 \(\nabla\), \(\nabla \cdot\), \(\nabla \times\),">
 <meta property="og:type" content="article">
-<meta property="og:title" content="张量场的分析公式">
-<meta property="og:url" content="http://qiuxiaohuo.github.io/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E5%88%86%E6%9E%90%E5%85%AC%E5%BC%8F/index.html">
+<meta property="og:title" content="张量场的积分定理">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/index.html">
 <meta property="og:site_name" content="邱小伙的博客">
 <meta property="og:description" content="首先, 我们先定义梯度, 散度和旋度的概念, 并特别强调对于高阶张量的定义, 这将规范我们使用的 notation. 然后, 我们以二维空间为例, 引出散度定理, Stokes 公式和 Gauss 公式. 最后, 我们再给出一般的张量场中这三种公式的形式. 梯度, 散度和旋度 我们引入记号 \(\nabla\), \(\nabla \cdot\), \(\nabla \times\),">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-19T03:02:02.000Z">
-<meta property="article:modified_time" content="2024-08-03T03:00:22.499Z">
+<meta property="article:modified_time" content="2024-08-03T07:43:38.782Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta property="article:tag" content="连续介质力学">
 <meta property="article:tag" content="Stokes 公式">
@@ -37,14 +37,14 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qiuxiaohuo.github.io/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E5%88%86%E6%9E%90%E5%85%AC%E5%BC%8F/">
+<link rel="canonical" href="http://qiuxiaohuo.github.io/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E5%88%86%E6%9E%90%E5%85%AC%E5%BC%8F/","path":"math/张量场的分析公式/","title":"张量场的分析公式"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/","path":"math/张量场的积分定理/","title":"张量场的积分定理"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>张量场的分析公式 | 邱小伙的博客</title>
+<title>张量场的积分定理 | 邱小伙的博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -146,7 +146,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6-%E6%95%A3%E5%BA%A6%E5%92%8C%E6%97%8B%E5%BA%A6"><span class="nav-number">1.</span> <span class="nav-text">梯度, 散度和旋度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E7%A9%BA%E9%97%B4%E4%B8%AD%E5%90%91%E9%87%8F%E5%9C%BA%E7%9A%84%E5%88%86%E6%9E%90%E6%80%A7%E8%B4%A8"><span class="nav-number">2.</span> <span class="nav-text">二维空间中向量场的分析性质</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#stokes-%E5%AE%9A%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">Stokes 定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%A3%E5%BA%A6%E5%AE%9A%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">散度定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gauss-%E5%85%AC%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">Gauss 公式</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6-%E6%95%A3%E5%BA%A6%E5%92%8C%E6%97%8B%E5%BA%A6"><span class="nav-number">1.</span> <span class="nav-text">梯度, 散度和旋度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%8C%E7%BB%B4%E7%A9%BA%E9%97%B4%E4%B8%AD%E5%90%91%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">二维空间中向量场的积分定理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#stokes-%E5%AE%9A%E7%90%86"><span class="nav-number">2.1.</span> <span class="nav-text">Stokes 定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%A3%E5%BA%A6%E5%AE%9A%E7%90%86"><span class="nav-number">2.2.</span> <span class="nav-text">散度定理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#gauss-%E5%85%AC%E5%BC%8F"><span class="nav-number">2.3.</span> <span class="nav-text">Gauss 公式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%80%E8%88%AC%E5%BD%A2%E5%BC%8F%E7%9A%84%E6%95%A3%E5%BA%A6%E5%AE%9A%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">一般形式的散度定理</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -210,7 +210,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E5%88%86%E6%9E%90%E5%85%AC%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -223,12 +223,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="张量场的分析公式 | 邱小伙的博客">
+      <meta itemprop="name" content="张量场的积分定理 | 邱小伙的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          张量场的分析公式
+          张量场的积分定理
         </h1>
 
         <div class="post-meta-container">
@@ -246,7 +246,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-03 11:00:22" itemprop="dateModified" datetime="2024-08-03T11:00:22+08:00">2024-08-03</time>
+      <time title="修改时间：2024-08-03 15:43:38" itemprop="dateModified" datetime="2024-08-03T15:43:38+08:00">2024-08-03</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -332,7 +332,7 @@ B \times \nabla \triangleq \frac{\partial B}{\partial x_k} \times e_k
 }
 \tag{3}
 \]</span></p>
-<h2 id="二维空间中向量场的分析性质">二维空间中向量场的分析性质</h2>
+<h2 id="二维空间中向量场的积分定理">二维空间中向量场的积分定理</h2>
 <h3 id="stokes-定理">Stokes 定理</h3>
 <p>对于区域 <span class="math inline">\(S\)</span> 的无旋流动,
 以下三个条件是<strong>等价</strong>的:</p>
@@ -409,6 +409,38 @@ class="math display">\[
 ~\mathrm{d}s}_{\bigstar}
 }
 \]</span> 这就得到了 Gauss 公式.</p>
+<h2 id="一般形式的散度定理">一般形式的散度定理</h2>
+<p>对于区域 <span class="math inline">\(V\)</span> 上的光滑标量场 <span
+class="math inline">\(\varphi\)</span>, 并假设边界 <span
+class="math inline">\(\partial V\)</span> 分片光滑, 那么以下等式成立:
+<span class="math display">\[
+\int_{V} \varphi_{,i} ~\mathrm{d}x = \int_{\partial V} \varphi n_i
+~\mathrm{d}\sigma(x), \quad i=1,2,3
+\]</span> 首先考虑梯度运算, 写成分量形式为 <span class="math display">\[
+\int_V \nabla B ~\mathrm{d}x = \int_{V} B_{\cdot,i} e_i \otimes
+e_{\cdot} ~\mathrm{d}x
+= \int_{\partial V} B_{\cdot} n_i ~e_i \otimes e_{\cdot}
+~\mathrm{d}\sigma(x)
+= \int_{\partial V} n \otimes B  ~\mathrm{d}\sigma(x)
+\]</span> 再考虑散度运算, <span class="math display">\[
+\int_{V} \nabla \cdot B ~\mathrm{d}x = \int_{V} B_{i\cdot,i} ~e_{\cdot}
+~\mathrm{d}x
+= \int_{\partial V} B_{i\cdot} n_i ~e_{\cdot} ~\mathrm{d}\sigma(x)
+= \int_{\partial V} n \cdot B ~\mathrm{d}\sigma(x)
+\]</span> 最后考虑旋度运算 <span class="math display">\[
+\int_{V} \nabla \times B ~\mathrm{d}x = \int_{V} B_{\cdot,i} ~ e_{i}
+\times e_{\cdot} ~\mathrm{d}x
+= \int_{\partial V} B_{\cdot} n_i ~ e_{i} \times e_{\cdot}
+~\mathrm{d}\sigma(x)
+= \int_{\partial V} n \times B ~\mathrm{d}\sigma(x)
+\]</span> 对于右侧的运算也是类似的, 因此, 如果我们定义一般的运算符 <span
+class="math inline">\(\divideontimes\)</span>, 代表梯度,
+散度或旋度的其中一种, 那么 <span class="math display">\[
+\int_V \nabla \divideontimes B ~\mathrm{d}x = \int_{\partial V} n
+\divideontimes B ~\mathrm{d}\sigma(x), \quad
+\int_V B \divideontimes \nabla ~\mathrm{d}x = \int_{\partial V} B
+\divideontimes n ~\mathrm{d}\sigma(x)
+\]</span></p>
 
     </div>
 
