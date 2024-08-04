@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -163,7 +163,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">86</span>
+        <span class="site-state-item-count">87</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -191,6 +191,318 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/Fourier-analysis/%E7%A6%BB%E6%95%A3%E5%8D%B7%E7%A7%AF%E5%AE%9A%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/math/Fourier-analysis/%E7%A6%BB%E6%95%A3%E5%8D%B7%E7%A7%AF%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">离散卷积定理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-15 15:02:47" itemprop="dateCreated datePublished" datetime="2024-05-15T15:02:47+08:00">2024-05-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-05-28 10:26:03" itemprop="dateModified" datetime="2024-05-28T10:26:03+08:00">2024-05-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Fourier-%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Fourier 分析</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>首先, 定义两种向量之间的运算: 乘积 <span class="math inline">\(f
+\circ g\)</span> 和卷积 <span class="math inline">\(f*g\)</span>:</p>
+<p>向量 <span class="math inline">\(f,g\)</span> 之间的乘积计算 <span
+class="math inline">\(f \circ g: \mathbb{R}^n \times \mathbb{R}^n
+\mapsto \mathbb{R}^n\)</span> 定义为 <span class="math display">\[
+(f \circ g)_k \triangleq f_k g_k, \quad k = 0,1,\ldots,n-1
+\]</span> 向量 <span class="math inline">\(f,g\)</span> 之间的卷积计算
+<span class="math inline">\(f*g: \mathbb{R}^n \times \mathbb{R}^n
+\mapsto \mathbb{R}^n\)</span> 定义为 <span class="math display">\[
+(f*g)_k \triangleq \sum_{i=0}^{n-1} f_i g_{k-i}, \quad k =
+0,1,\ldots,n-1
+\]</span> 我在这篇文章中希望说明的是, 向量的 乘积/卷积 运算,
+总是可以通过 卷积/乘积 运算得到同样的结果.
+将这两种运算联系到一起的就是<strong>离散卷积定理</strong>.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/math/Fourier-analysis/%E7%A6%BB%E6%95%A3%E5%8D%B7%E7%A7%AF%E5%AE%9A%E7%90%86/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/FFT-%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E5%8D%95%E8%83%9E%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mech/FFT-%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E5%8D%95%E8%83%9E%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">FFT 方法求解单胞问题</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-05-06 16:14:55 / 修改时间：16:15:27" itemprop="dateCreated datePublished" datetime="2024-05-06T16:14:55+08:00">2024-05-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>参考文献：MOULINEC H, SUQUET P. A numerical method for computing the
+overall response of nonlinear composites with complex
+microstructure[J/OL]. Computer Methods in Applied Mechanics and
+Engineering, 1998, 157(1-2): 69-94. DOI:<span class="exturl" data-url="aHR0cHM6Ly9kb2kub3JnLzEwLjEwMTYvUzAwNDUtNzgyNSg5NykwMDIxOC0x">10.1016/S0045-7825(97)00218-1<i class="fa fa-external-link-alt"></i></span>.</p>
+<h2 id="力学列式">力学列式</h2>
+<p>对于非均质线弹性材料，其模量为 <span
+class="math inline">\(\mathbb{L}:Y \mapsto
+\mathbb{S}^4\)</span>，单胞上的应变与应力为 <span
+class="math inline">\(\varepsilon, \sigma:Y \mapsto
+\mathbb{S}^2\)</span>，在单胞上满足无体力的平衡方程： <span
+class="math display">\[
+\nabla \cdot \sigma = 0
+\tag{1}
+\]</span> 以及线弹性本构方程 <span class="math display">\[
+\sigma = \mathbb{L} : \varepsilon
+\tag{2}
+\]</span> 引入一个参考均质模量 <span class="math inline">\(\mathbb{L}^0
+\in \mathbb{S}^2\)</span>，并定义 <span class="math display">\[
+\delta \mathbb{L} \triangleq \mathbb{L}- \mathbb{L}^0
+\]</span> 以及极化应力 <span class="math inline">\(p:Y \mapsto
+\mathbb{S}^2\)</span> <span class="math display">\[
+p \triangleq \delta \mathbb{L}:\varepsilon
+\]</span>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/mech/FFT-%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E5%8D%95%E8%83%9E%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/PDE/%E6%B3%8A%E6%9D%BE%E5%85%AC%E5%BC%8F%E6%B1%82%E8%A7%A3-Laplace-%E6%96%B9%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/math/PDE/%E6%B3%8A%E6%9D%BE%E5%85%AC%E5%BC%8F%E6%B1%82%E8%A7%A3-Laplace-%E6%96%B9%E7%A8%8B/" class="post-title-link" itemprop="url">泊松公式求解 Laplace 方程</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-05 11:12:39" itemprop="dateCreated datePublished" datetime="2024-05-05T11:12:39+08:00">2024-05-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-05-28 10:25:59" itemprop="dateModified" datetime="2024-05-28T10:25:59+08:00">2024-05-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">偏微分方程</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>考虑在圆盘 <span class="math inline">\(\{(x,y) \mid x^2+y^2 \leq
+1\}\)</span> 上的 Laplace 方程: <span class="math display">\[
+\frac{\partial^2 u}{\partial x^2} + \frac{\partial^2 u}{\partial y^2} =
+0
+\tag{1}
+\]</span> 以及圆盘边界条件 <span class="math display">\[
+u(1,\theta) := u_0(\theta)
+\]</span>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/math/PDE/%E6%B3%8A%E6%9D%BE%E5%85%AC%E5%BC%8F%E6%B1%82%E8%A7%A3-Laplace-%E6%96%B9%E7%A8%8B/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -1588,287 +1900,6 @@ class="math inline">\(\sigma^0 + \sigma\)</span>.
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/mech/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/mech/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/" class="post-title-link" itemprop="url">本征应变与本征应力</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-04-15 09:47:09 / 修改时间：10:43:13" itemprop="dateCreated datePublished" datetime="2024-04-15T09:47:09+08:00">2024-04-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>将应变 <span class="math inline">\(\varepsilon\)</span> 分成弹性应变
-<span class="math inline">\(e\)</span> 与本征应变 <span
-class="math inline">\(\mu\)</span>(nonelastic strains, 比如热膨胀, 相变,
-塑性应变等)</p>
-<p><span class="math display">\[
-\varepsilon = e+\mu
-\]</span></p>
-<p>应变 <span class="math inline">\(\varepsilon\)</span> 满足协调方程
-<span class="math inline">\(\varepsilon_{ij} =
-\frac{1}{2}(u_{i,j}+u_{j,i})\)</span>.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/mech/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/Linux/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/Linux/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/" class="post-title-link" itemprop="url">Linux + apache2 配置 https 协议下的 SVN 仓库</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-04-13 14:10:04" itemprop="dateCreated datePublished" datetime="2024-04-13T14:10:04+08:00">2024-04-13</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-15 17:17:47" itemprop="dateModified" datetime="2024-04-15T17:17:47+08:00">2024-04-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>在 Windows 环境下，因为有 Tortoise SVN 和 Visual SVN Server
-的存在，SVN 的操作难度降低了不少。但在 Linux
-环境下，为了让用户更好地了解 SVN
-的工作原理，<del>从而体验自立更生的快乐和自闭，</del>SVN
-的种种操作，从建仓到创建用户到配置网络到 checkout 到 commit 到
-update，全都是用命令行实现的。虽然一些编译器集成了版本控制的功能，但是要建立
-SVN 仓库，据作者有限的知识，应该只能通过命令行创建。本文介绍的是如何在
-Linux 环境下使用 apache2 配置 https 协议下的 SVN 仓库。</p>
-<p>主要的参考文档是：<span class="exturl" data-url="aHR0cHM6Ly9oZWxwLnVidW50dS5jb20vY29tbXVuaXR5L1N1YnZlcnNpb24=">Subversion<i class="fa fa-external-link-alt"></i></span> 和 <span class="exturl" data-url="aHR0cHM6Ly9yYmdlZWsud29yZHByZXNzLmNvbS8yMDEyLzA5LzA5L3N2bi1zZXJ2ZXItb24tdWJ1bnR1LXdpdGgtaHR0cHMtYWNjZXNzLw==">ssl
-配置<i class="fa fa-external-link-alt"></i></span>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/Linux/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/misc/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/misc/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/" class="post-title-link" itemprop="url">创作文档管理</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-04-12 21:49:33" itemprop="dateCreated datePublished" datetime="2024-04-12T21:49:33+08:00">2024-04-12</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-16 15:28:29" itemprop="dateModified" datetime="2024-04-16T15:28:29+08:00">2024-04-16</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我过去的文档管理方式太过粗放，以至我感到自己似乎一直是在原地踏步。这是因为我在用多个平台（知乎，Hexo+NexT
-博客，Zotero 等），用多种方式（MATLAB 实时脚本，LaTeX，Markdown
-等）写文档，这些文档缺少一个「地图」索引，所以我的知识库相互是分割独立的，仿佛一盘散沙，没办法攒出某种结构出来。所以我希望建立一个文档管理的规则，按照这个规则，我可以系统地将所有创作的文档相互关联。
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/misc/%E5%88%9B%E4%BD%9C%E6%96%87%E6%A1%A3%E7%AE%A1%E7%90%86/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

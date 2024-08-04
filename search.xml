@@ -10092,7 +10092,7 @@ class="math inline">\(D = L\)</span>, <span class="math inline">\(W =
   </entry>
   <entry>
     <title>张量场的积分定理</title>
-    <url>/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/</url>
+    <url>/mech/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/</url>
     <content><![CDATA[<p>首先, 我们先定义梯度, 散度和旋度的概念, 并特别强调对于高阶张量的定义,
 这将规范我们使用的 notation. 然后, 我们以二维空间为例, 引出散度定理,
 Stokes 公式和 Gauss 公式. 最后,
@@ -10269,6 +10269,510 @@ class="math inline">\(\divideontimes\)</span>, 代表梯度,
         <tag>Stokes 公式</tag>
         <tag>散度定理</tag>
         <tag>Gauss 公式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>应力的定义方式</title>
+    <url>/mech/%E5%BA%94%E5%8A%9B%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F/</url>
+    <content><![CDATA[<p>写这篇文章是在看 Spencer 的连续介质力学书, 其中的应力定义为 <span
+class="math display">\[
+t^{(i)} = \sigma_{ij} e_{j}, \quad \mathrm{or} \quad \sigma_{ij}
+\triangleq t^{(i)} \cdot e_{j}
+\]</span> 这样得到的平衡方程为 <span class="math display">\[
+\nabla \cdot \sigma + \rho b = 0, \quad \mathrm{or} \quad
+\sigma_{ji,j} + \rho b_{i} = 0
+\tag{1}
+\]</span> 而我熟悉的平衡方程为 <span class="math display">\[
+\sigma_{ij,j} + \rho b_i = 0
+\]</span> <span id="more"></span>这是因为定义应力分量的方式不同.
+如果将应力张量看作是一个矩阵, 那么使用 Spencer 的定义方式,
+矩阵的每一行代表着在坐标系基矢量法面的作用力 <span
+class="math inline">\(t^{(i)}\)</span>, 因此, 对于任意方向向量 <span
+class="math inline">\(n\)</span> 作用在法向为 <span
+class="math inline">\(n\)</span> 的法面上的力为法向分量 <span
+class="math inline">\(n_i\)</span> 和 <span
+class="math inline">\(t^{(i)}\)</span> 的线性组合: <span
+class="math display">\[
+t^{(n)} = n_1 t^{(1)} + n_2 t^{(2)} + n_3 t^{(3)}
+\]</span> 也即 <span class="math display">\[
+t^{(n)} = n_i \sigma_{ij} e_{j} = n \cdot \sigma
+\]</span> 在一些其它的教材上 (Tadmor, 黄筑平), 应力分量定义为 <span
+class="math display">\[
+\sigma_{ij} \triangleq e_{i} \cdot t^{(j)}
+\]</span> 由此得到的平衡方程为 <span class="math display">\[
+\sigma \cdot \nabla + \rho b = 0, \quad \mathrm{or} \quad
+\sigma_{ij,j} + \rho b_{i} = 0
+\tag{2}
+\]</span> 由于 <span class="math inline">\(\sigma\)</span> 是对称张量,
+所以式 (1) 等价于式 (2), 但是在定义 P-K 应力时,
+就会体现出这两类定义应力方式的区别. 对于我而言,
+还是按照最熟悉的定义出发吧.</p>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>连续介质力学</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>物质坐标下的守恒方程</title>
+    <url>/mech/%E7%89%A9%E8%B4%A8%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/</url>
+    <content><![CDATA[<p>空间坐标下的守恒方程可通过输运定理获得, 而对于物质坐标下的守恒方程,
+我们通过积分参数变换的方式获得. 因此在本文中,
+我们首先陈述微元在不同参数表示下的变换关系,
+然后再根据空间坐标下的守恒方程, 通过参数变换,
+得到物质坐标下的守恒方程.<span id="more"></span></p>
+<h2 id="微元的参数变换关系">微元的参数变换关系</h2>
+<h3 id="线微元">线微元</h3>
+<p>可通过变形梯度得到 <span class="math display">\[
+\boxed{
+\mathrm{d} x = F \cdot \mathrm{d} X, \quad \mathrm{or} \quad
+\mathrm{d} X = F^{-1} \cdot ~\mathrm{d}X
+}
+\tag{1}
+\]</span></p>
+<h3 id="体微元">体微元</h3>
+<p>线微元建立起参数 <span class="math inline">\(X \leftrightarrow
+x\)</span> 邻域的仿射变换关系 <span class="math inline">\(F\)</span>.
+对于仿射变换, 体积微元通过 <span class="math inline">\(F\)</span>
+的行列式相关联, 定义 <span class="math inline">\(J \triangleq \det
+F\)</span>, 那么 <span class="math display">\[
+\boxed{
+\mathrm{d} v = J \mathrm{d} V, \quad \mathrm{or} \quad
+\mathrm{d} V = \frac{1}{J} ~\mathrm{d} v
+}
+\tag{2}
+\]</span></p>
+<h3 id="面微元">面微元</h3>
+<p>参考构型和当前构型中的面微元分别定义为 <span class="math display">\[
+\mathrm{d} A \triangleq N ~\mathrm{d} \Sigma, \quad
+\mathrm{d} a \triangleq n ~\mathrm{d} \sigma
+\]</span> 式中, <span class="math inline">\(N\)</span> 和 <span
+class="math inline">\(n\)</span> 表示面微元的法向方向, <span
+class="math inline">\(\mathrm{d} \Sigma\)</span> 和 <span
+class="math inline">\(\mathrm{d} \sigma\)</span> 表示面微元面积大小.
+考虑参考构型中的两段线微元<span class="math inline">\(~\mathrm{d}
+X^1\)</span> 和<span class="math inline">\(~\mathrm{d}X^2\)</span>,
+作为面微元的两条边, 因此, 参考构型中的面微元可以表示为 <span
+class="math display">\[
+\mathrm{d} A = \mathrm{d} X^1 \times ~\mathrm{d} X^2
+\]</span> 变形后, 面微元 <span class="math inline">\(\mathrm{d}
+A\)</span> 变形为 <span class="math inline">\(\mathrm{d} a\)</span>,
+组成 <span class="math inline">\(\mathrm{d} a\)</span> 的两边分别为
+<span class="math inline">\(\mathrm{d} x^1\)</span> 和 <span
+class="math inline">\(\mathrm{d} x^2\)</span>: <span
+class="math display">\[
+\mathrm{d} a = \mathrm{d}x^1 \times \mathrm{d}x^2 = (F ~\mathrm{d}X^1)
+\times (F ~\mathrm{d}X^2)
+\]</span></p>
+<p>写成分量形式, 就得到 <span class="math display">\[
+n_i \mathrm{d} \sigma = e_{ijk} F_{jJ} \mathrm{d}X_{J}^1 F_{kK}
+\mathrm{d}X_{K}^2
+\]</span> 上式两端同乘 <span class="math inline">\(F_{iI}\)</span>,
+同时应用 <span class="math inline">\(e_{ijk}F_{iI}F_{jJ}F_{kK} = e_{IJK}
+\det F\)</span>, 得到 <span class="math display">\[
+n_i F_{iI} \mathrm{d} \sigma = \det F ~e_{IJK} \mathrm{d}X_{J}^1
+\mathrm{d}X_{K}^2
+\]</span> 因此 <span class="math display">\[
+\boxed{
+\mathrm{d}A = \frac{1}{J} F^{\top} \cdot \mathrm{d}a, \quad \mathrm{or}
+\quad
+\mathrm{d}a = J F^{-\top} \cdot \mathrm{d}A
+}
+\tag{3}
+\]</span></p>
+<h2 id="函数记号说明">函数记号说明</h2>
+<p>函数 <span class="math inline">\(f\)</span> 定义在 <span
+class="math inline">\(E_3 \times (0,T)\)</span> 上, 其中 <span
+class="math inline">\(E_3\)</span> 为 Euclidean 点空间. 函数 <span
+class="math inline">\(f\)</span> 可以表示为空间坐标形式和物质坐标形式:
+<span class="math display">\[
+f = \hat{f}(X,t), \quad \mathrm{or} \quad
+f = \breve{f}(x,t)
+\tag{4}
+\]</span> 空间坐标 <span class="math inline">\(x\)</span> 和物质坐标
+<span class="math inline">\(X\)</span> 之间通过一一映射 <span
+class="math inline">\(\varphi\)</span> 关联 <span
+class="math display">\[
+x = \varphi(X,t), \quad
+X = \varphi^{-1}(x,t)
+\]</span> 因此式 (4) 中不同坐标形式的函数可以互相表示, <span
+class="math display">\[
+\hat{f} = \breve{f}(\varphi(X,t), t), \quad
+\breve{f} = \hat{f}(\varphi^{-1}(x,t), t)
+\]</span> 函数 <span class="math inline">\(f\)</span>
+的空间变量类型一般可以通过积分微元等语境中推断得到, 为了记号的清晰,
+我们使用 <span class="math inline">\(f\)</span> 指代 <span
+class="math inline">\(\hat{f}\)</span> 或 <span
+class="math inline">\(\breve{f}\)</span> 中的一种. 我们用下标 <span
+class="math inline">\(\square_{\tau}\)</span> 表示在时刻 <span
+class="math inline">\(\tau\)</span> 构型的变量. 当 <span
+class="math inline">\(\tau=0\)</span> 时, 对应构型为参考构型,
+此时的变量默认用物质坐标描述. 例如, <span
+class="math inline">\(B_0\)</span> 表示材料在参考构型下占据的空间区域,
+<span class="math inline">\(\rho_0\)</span> 表示 <span
+class="math inline">\(t=0\)</span> 时刻材料的密度, <span
+class="math inline">\(\rho_0(X) = \hat{\rho}(X,0)\)</span>.
+如果省略下标, 那么默认为时刻 <span class="math inline">\(t\)</span>
+当前构型下的变量.</p>
+<h2 id="质量守恒定律">质量守恒定律</h2>
+<p>考虑参考构型中的区域 <span class="math inline">\(B_0\)</span>,
+该区域的质量为 <span class="math display">\[
+M = \int_{B_0} \rho_0 ~\mathrm{d} X
+\]</span> 经变形后, 区域为 <span class="math inline">\(B\)</span>,
+其中的质量为 <span class="math display">\[
+m = \int_{B} \rho ~\mathrm{d}x
+\]</span> 作积分变换, 得到 <span class="math display">\[
+m = \int_{B_0} \rho J~\mathrm{d}X
+\]</span> 根据质量守恒有 <span class="math display">\[
+M \equiv m \Rightarrow \int_{B_0} \rho_0 - J\rho ~\mathrm{d} X \equiv 0
+\]</span> 上式对任何区域 <span class="math inline">\(B_0\)</span> 成立,
+所以 <span class="math display">\[
+\boxed{
+\rho_0 - J \rho = 0
+}
+\tag{4}
+\]</span></p>
+<h2 id="动量守恒定律">动量守恒定律</h2>
+<p>空间坐标下的动量守恒定律为 <span class="math display">\[
+\sigma \cdot \nabla + \rho b = \rho a
+\]</span> 为了表示成物质坐标的形式, 我们首先将上式还原为积分形式 <span
+class="math display">\[
+\int_{B} \sigma \cdot \nabla + \rho b - \rho a ~\mathrm{d}x = 0
+\tag{5}
+\]</span> 作变量替换, 上式中第二项和第三项为 <span
+class="math display">\[
+\int_{B} \rho b - \rho a ~\mathrm{d}x
+= \int_{B_0} (\rho b - \rho a)J\mathrm{d}X
+\]</span> 应力散度项先通过散度定理转化到边界 <span
+class="math inline">\(\partial B\)</span> 上的积分 <span
+class="math display">\[
+\int_{B} \sigma \cdot \nabla ~\mathrm{d}x = \int_{\partial B} \sigma
+\cdot n ~\mathrm{d}\sigma
+\]</span> 再根据面微元的变换公式 (3), 得到 <span class="math display">\[
+\int_{\partial B}  \sigma \cdot n ~\mathrm{d}\sigma
+= \int_{\partial B_0} J \sigma \cdot F^{-\top} \cdot N ~\mathrm{d}\Sigma
+\]</span> 定义第一类 P-K 应力为 <span class="math display">\[
+P \triangleq J \sigma \cdot F^{-\top} \Rightarrow \sigma = \frac{1}{J} P
+\cdot F^{\top}
+\]</span> 代入式 (5) 中得到 <span class="math display">\[
+\int_{\partial B_0} P \cdot N ~\mathrm{d}\Sigma
++ \int_{B_0} (\rho b - \rho a)J\mathrm{d}X = 0
+\]</span> 在 <span class="math inline">\(B_0\)</span> 上应用散度定理,
+以及 <span class="math inline">\(B_0\)</span> 的任意性,
+就得到物质坐标表示的动量守恒定律: <span class="math display">\[
+\boxed{
+P \cdot \nabla_0 + \rho b - \rho a = 0
+}
+\tag{6}
+\]</span></p>
+<h2 id="角动量守恒定律">角动量守恒定律</h2>
+<p>根据公式 <span class="math display">\[
+\int_{B} e_{ijk} \sigma_{jk} ~\mathrm{d}x = 0
+\]</span> 做参数变换, 得到 <span class="math display">\[
+\int_{B_0} e_{ijk} P_{jJ} F_{kJ} ~\mathrm{d}X = 0
+\]</span> 最终得到 <span class="math display">\[
+P \cdot F^{\top} = F \cdot P^{\top}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>连续介质力学</tag>
+        <tag>守恒定律</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>空间坐标下的守恒方程</title>
+    <url>/mech/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="质量守恒">质量守恒</h2>
+<p>考虑空间坐标下的控制体 <span class="math inline">\(V\)</span>, 在
+<span class="math inline">\(\delta t\)</span> 时间内, 流出控制体 <span
+class="math inline">\(V\)</span> 的质量为 <span class="math display">\[
+\mathrm{d} m = \delta_t\int_{\partial V} \rho v\cdot n  ~\mathrm{d}S +
+\mathcal{O}(\delta t^2)
+\]</span> 控制体在 <span class="math inline">\(t+\delta t\)</span>
+时刻的质量为 <span class="math display">\[
+m_V(t+\delta t) = \int_{V} \rho(x,t+\delta t) ~\mathrm{d}x
+\]</span> 质量守恒的表述为: 在控制体的质量改变,
+只能通过质量进出控制体引起. 因此有 <span class="math display">\[
+m_{V}(t + \delta t) = m_{V}(t) - \mathrm{d} m
+\Rightarrow m_{V}(t + \delta t) - m_{V}(t) + \mathrm{d} m = 0
+\]</span> <span id="more"></span>两边同除 <span class="math inline">\(\delta
+t\)</span>, 并令 <span class="math inline">\(\delta t \rightarrow
+0\)</span>, 就得到 <span class="math display">\[
+\int_{V} \frac{\partial \rho}{\partial t} ~\mathrm{d}x
++ \int_{\partial V} \rho v\cdot n  ~\mathrm{d}S = 0
+\]</span> 再应用散度定理, 就得到 <span class="math display">\[
+\int_{V} \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho v)
+~\mathrm{d}x  = 0
+\]</span> 又因为 <span class="math inline">\(V\)</span> 是任意选取的,
+所以有 <span class="math display">\[
+\boxed{
+\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho v) = 0
+}
+\tag{1}
+\]</span> 如果材料不可压缩, 那么, 无论是物质坐标下,
+还是空间坐标下的密度, 都是恒定不变的常数. 因此, 根据式 (1) 有 <span
+class="math display">\[
+J \equiv 1
+\]</span> 同时为了保证质量守恒, 又不能改变物质的密度,
+因此必须对速度场进行约束: <span class="math display">\[
+\nabla \cdot v = 0
+\]</span></p>
+<h2 id="输运定理">输运定理</h2>
+<p>设想一个包裹着一团物质的曲面 <span class="math inline">\(\partial
+B\)</span>, 当材料变形时, 曲面也在不断地变形. 在当前构型中,
+设由该曲面包裹的物质区域为 <span class="math inline">\(B\)</span>.
+对该区域的物理量(的质量密度) <span class="math inline">\(\phi\)</span>
+进行积分: <span class="math display">\[
+\Phi_{B}(t) = \int_{B} \rho \phi ~\mathrm{d} x
+\]</span> 与此同时, 在当前构型中考虑与 <span
+class="math inline">\(B\)</span> 重合的控制体 <span
+class="math inline">\(V\)</span>, 对上式积分项求偏导数后积分: <span
+class="math display">\[
+\int_{V} \frac{\partial (\rho \phi)}{\partial t} ~\mathrm{d}x
+\]</span> <span class="math inline">\(\Phi\)</span> 在控制体 <span
+class="math inline">\(V\)</span> 中的增加量, 等于物质面 <span
+class="math inline">\(B\)</span> 中 <span
+class="math inline">\(\Phi\)</span> 的增加量, 再加上流进 <span
+class="math inline">\(V\)</span> 的 <span
+class="math inline">\(\Phi\)</span>, 写成公式为 <span
+class="math display">\[
+\int_{V} \frac{\partial (\rho \phi)}{\partial t} ~\mathrm{d}x
+= \frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho \phi ~\mathrm{d}x
+- \int_{\partial V} \rho \phi v \cdot n ~\mathrm{d} S
+\]</span> 应用散度定理, 上式就可以写成 <span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho \phi ~\mathrm{d}x
+= \int_{V} \frac{\partial (\rho \phi)}{\partial t}
++ \mathrm{div}(\rho \phi v) ~\mathrm{d} x
+\tag{2}
+\]</span> 观察式 (2), 可以看到, 等式左端是物质团 <span
+class="math inline">\(B\)</span> 关于时间的变化率,
+等式右端是关于空间区域 <span class="math inline">\(V\)</span> 的积分,
+因此, 输运定理将物质团变化率表述为为空间坐标的形式. 需要指出的是,
+输运定理并不是守恒定律, 但确实可以通过质量守恒进行化简. 式 (2)
+右端项可以展开为 <span class="math display">\[
+\int_{V} \frac{\partial (\rho \phi)}{\partial t}
++ \mathrm{div}(\rho \phi v) ~\mathrm{d} x
+= \int_{V} \rho \frac{\partial \phi}{\partial t} + \rho v \cdot \nabla
+\phi
++ \phi \left( \frac{\partial \rho}{\partial t} + \mathrm{div}(\rho v)
+\right) ~\mathrm{d} x \\
+= \int_{V} \rho \left( \frac{\partial \phi}{\partial t} +  v \cdot
+\nabla \phi \right) ~\mathrm{d} x
+= \int_{V} \rho \frac{\mathrm{D} \phi}{\mathrm{D} t} ~\mathrm{d} x
+\]</span> 所以, 式 (2) 可以通过质量守恒 (1) 化简为 <span
+class="math display">\[
+\boxed{
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho \phi ~\mathrm{d}x
+= \int_{V} \rho \frac{\mathrm{D} \phi}{\mathrm{D} t} ~\mathrm{d} x
+}
+\tag{3}
+\]</span> 可见物质团 <span class="math inline">\(B\)</span>
+积分号外的关于时间的导数, 移动到控制体积分中对物理量 <span
+class="math inline">\(\phi\)</span> 的物质导数.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<h5
+id="应用输运定理推导质量守恒的空间表达形式">应用输运定理推导质量守恒的空间表达形式</h5>
+<p>围绕在物质曲面 <span class="math inline">\(\partial B\)</span>
+的物理量 <span class="math inline">\(\phi\)</span> 如果等于恒定的常数
+<span class="math inline">\(1\)</span>, 那么 <span
+class="math inline">\(\phi\)</span>
+在空间或者物质坐标下的表达形式是相同的. 定义关于时间的函数 <span
+class="math inline">\(m(t)\)</span> 为 <span class="math display">\[
+m(t) \triangleq \int_{B} \rho(x,t) ~\mathrm{d}x
+\]</span> 质量守恒定律声明, 物质团的质量, 无论物质如何变形,
+总是恒定不变, 因此 <span class="math display">\[
+m(t) \equiv m(0) = \int_{B_0} \rho(X,0) ~\mathrm{d}X
+\]</span> 因此 <span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho ~\mathrm{d}x  \equiv 0
+\]</span> 代入式 (2) 中得到 <span class="math display">\[
+\int_{V} \frac{\partial \rho}{\partial t}
++ \mathrm{div}(\rho v) ~\mathrm{d} x = 0
+\]</span></p>
+</blockquote>
+<h2 id="动量守恒定律">动量守恒定律</h2>
+<p>粒子所满足的动量守恒定律为: 粒子动量的变化率, 等于粒子所受的外力:
+<span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} (mv) = f
+\]</span> 将粒子换成物质团 <span class="math inline">\(B\)</span>,
+就得到 <span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho v ~\mathrm{d}x = f
+\]</span> 对上式左端应用质量守恒简化后的输运定理 (3) : <span
+class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho v ~\mathrm{d}x = \int_{V}
+\rho a ~\mathrm{d}x
+\]</span> 在当前构型下, 选取与 <span class="math inline">\(B\)</span>
+重合的控制体 <span class="math inline">\(V\)</span>,
+外力可以表示为两部分: <span class="math inline">\(V\)</span> 内的体力和
+<span class="math inline">\(\partial V\)</span> 上的面力: <span
+class="math display">\[
+f = \int_{V} \rho b ~\mathrm{d}x + \int_{\partial V} \sigma \cdot n
+~\mathrm{d}S
+\]</span> 再应用散度定理, 将面积分转换为体积分, 就得到 <span
+class="math display">\[
+\int_{V} \sigma \cdot \nabla + \rho b - \rho a ~\mathrm{d}V = 0
+\]</span> 又因为 <span class="math inline">\(V\)</span> 的任意性,
+所以得到空间坐标下的动量守恒定律的微分形式 <span class="math display">\[
+\boxed{
+\sigma \cdot \nabla + \rho b - \rho a = 0
+}
+\tag{4}
+\]</span></p>
+<p>如果系统满足平衡方程, 那么加速度 <span
+class="math inline">\(a=0\)</span>, 因此式 (4) 为 <span
+class="math display">\[
+\boxed{
+\sigma \cdot \nabla + \rho b= 0
+}
+\tag{5}
+\]</span></p>
+<h2 id="角动量守恒定律">角动量守恒定律</h2>
+<p>粒子所满足的角动量守恒定律为: 粒子关于坐标系原点 <span
+class="math inline">\(O\)</span> 角动量的变化率, 等于粒子所受的外力矩:
+<span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} (x \times mv) = x \times f
+\]</span> 我们应用分量形式进行推导, 上述方程的左端为 <span
+class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho x \times v ~\mathrm{d}x
+= \int_{V} \rho e_{ijk} \frac{\mathrm{D} (x_j v_k)}{\mathrm{D} t}
+~\mathrm{d}x
+= \int_{V} \underbrace{\rho e_{ijk} v_j v_k}_{=0} + \rho e_{ijk} x_j a_k
+~\mathrm{d}x
+= \int_{V} \rho e_{ijk} x_j a_k ~\mathrm{d}x
+\]</span> 方程的右端为 <span class="math display">\[
+x \times f = \int_{V} \rho e_{ijk} x_j b_k ~\mathrm{d}x
++ \int_{\partial V} e_{ijk} x_j \sigma_{kl} n_{l} ~\mathrm{d}S
+\]</span> 并应用散度定理, 得到 <span class="math display">\[
+\int_{\partial V} e_{ijk} x_j \sigma_{kl} n_{l} ~\mathrm{d}S
+= \int_{V} e_{ijk} (x_j \sigma_{kl})_{,l} ~\mathrm{d}x
+\]</span> 式中的积分项为 <span class="math display">\[
+e_{ijk} (x_j \sigma_{kl})_{,l} = e_{ijk} (\sigma_{kj} + x_{j}
+\sigma_{ki,i})
+\]</span> 代入到角动量守恒方程中, 整理得到 <span class="math display">\[
+\int_{V} e_{ijk} x_j (\rho  a_k - \rho b_k - \sigma_{ki,i}) ~\mathrm{d}x
+= \int_{V} e_{ijk} \sigma_{kj} ~\mathrm{d}x
+\]</span> 根据平衡方程 (4), 上式左端恒等于 0, 所以 <span
+class="math display">\[
+\boxed{
+e_{ijk} \sigma_{kj} = 0 \Rightarrow \sigma_{jk} = \sigma_{kj}
+}
+\tag{6}
+\]</span></p>
+<h2 id="能量守恒定律">能量守恒定律</h2>
+<p>物质的能量由动能 <span class="math inline">\(K\)</span> 和内能 <span
+class="math inline">\(E\)</span> 构成, 定义为 <span
+class="math display">\[
+K \triangleq \frac{1}{2} \int_{B} \rho |v|^2 ~\mathrm{d}x, \quad
+E \triangleq \int_{B} \rho e ~\mathrm{d}x
+\]</span> 式中, <span class="math inline">\(|v|^2 = v \cdot v\)</span>,
+<span class="math inline">\(e\)</span> 为材料内能的质量密度.
+物质团的能量来源有两种: 外力做功与其它形式热量的流入流出.
+因此能量守恒定律就是在陈述这些能量的平衡关系.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>如果我们不能够确定内能 <span class="math inline">\(e\)</span> 或
+<span class="math inline">\(E\)</span> 的形式,
+那么能量守恒定律只能是一个文字的陈述, 或者作为内能的定义.
+能量守恒只有在确定内能形式 (也就是本构) 的时候才有用.</p>
+</blockquote>
+<p>如果考虑外部能量的来源只有热流 <span
+class="math inline">\(h\)</span>, 那么能量守恒定律可以表示为 <span
+class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho \left( \frac{1}{2}|v^2| +
+e \right) ~\mathrm{d}x
+= \int_{V} \rho b \cdot v ~\mathrm{d}x + \int_{\partial V}  (v \cdot
+\sigma - h) \cdot n ~\mathrm{d}S
+\]</span> 对上式左端应用输运定理得到 <span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho \left( \frac{1}{2}|v^2| +
+e \right) ~\mathrm{d}x
+= \int_{V} \rho a \cdot v + \rho \dot{e} ~\mathrm{d}x
+\]</span> 再由 <span class="math inline">\(V\)</span> 的任意性,
+得到微分形式的能量守恒定律 <span class="math display">\[
+\rho a \cdot v + \rho \dot{e} = \rho b \cdot v + (v \cdot \sigma) \cdot
+\nabla - h \cdot \nabla
+\]</span> 式中, <span class="math display">\[
+(v \cdot \sigma) \cdot \nabla = (v_{i} \sigma_{ij})_{,j}
+= (\sigma \cdot \nabla) \cdot v + \sigma : v \nabla
+\]</span> 代入得到 <span class="math display">\[
+[\rho a - \rho b - (\sigma \cdot \nabla)] \cdot v
++ \rho \dot{e}
+- \sigma : v \nabla
++ h \cdot \nabla
+=0
+\]</span> 也即 <span class="math display">\[
+\boxed{
+\rho \dot{e} - \sigma : v \nabla+ h \cdot \nabla = 0
+}
+\tag{7}
+\]</span></p>
+<blockquote>
+<p>[!NOTE]</p>
+<h5
+id="不可压缩牛顿流体的能量守恒方程">不可压缩牛顿流体的能量守恒方程</h5>
+<p>流体的本构方程为 <span class="math display">\[
+\sigma = -p I + 2\mu D
+\]</span> 热流满足 Fourier 传热定律: <span class="math display">\[
+h = - \kappa \nabla T
+\]</span> 流体的内能密度只与温度相关 <span class="math display">\[
+e = C_m T
+\]</span> 代入到方程 (7) 中得到 <span class="math display">\[
+\rho C_m \dot{T} + p \nabla \cdot v= 2\mu D : D + \nabla^2 T
+\]</span> 又因为不可压缩性, 所以 <span class="math inline">\(\nabla
+\cdot v \equiv 0\)</span>, 因此 <span class="math display">\[
+\rho C_m \dot{T} = 2\mu D : D + \nabla^2 T
+\]</span></p>
+</blockquote>
+<h2 id="虚功原理">虚功原理</h2>
+<p>考虑满足平衡方程 <span class="math display">\[
+\sigma \cdot \nabla + \rho b = 0
+\]</span> 的应力场 <span class="math inline">\(\sigma\)</span>,
+以及独立的速度场 <span class="math inline">\(v\)</span>,
+和相应的变形率张量 <span class="math display">\[
+D = \frac{1}{2} ( \nabla v + v \nabla )
+\]</span> 需要强调的是, 应力场 <span
+class="math inline">\(\sigma\)</span> 和速度场 <span
+class="math inline">\(v\)</span> 是<strong>相互独立</strong>的,
+没有任何的关联. 在 <span class="math inline">\(V\)</span>
+上对应力和变形率张量的双点积积分得到 <span class="math display">\[
+\int_{V} \sigma : D ~\mathrm{d} x
+= \int_{V} \sigma : v\nabla ~\mathrm{d}x
+= \int_{\partial V} v \cdot \sigma \cdot n ~\mathrm{d}S
++ \int_{V} \rho b \cdot v ~\mathrm{d}x
+\]</span> 注意到 <span class="math inline">\(\sigma \cdot n =
+t^{(n)}\)</span> 为作用在边界 <span class="math inline">\(\partial
+V\)</span> 的面力, 因此 <span class="math display">\[
+\boxed{
+\int_{V} \sigma : D ~\mathrm{d} x
+= \int_{\partial V} t^{(n)} \cdot v ~\mathrm{d}S
++ \int_{V} \rho b \cdot v ~\mathrm{d}x
+}
+\tag{8}
+\]</span></p>
+<blockquote>
+<p>[!NOTE]</p>
+<h5 id="小变形下的虚功原理">小变形下的虚功原理</h5>
+<p>在小变形假设下, <span class="math display">\[
+\delta u = v \delta t, \quad \delta  \varepsilon \triangleq
+\frac{1}{2}(\nabla \delta u + \delta u \nabla) = D \delta  t
+\]</span> 因此, 对式 (8) 两边同乘 <span class="math inline">\(\delta
+t\)</span>, 得到 <span class="math display">\[
+\int_{V} \sigma : \delta \varepsilon ~\mathrm{d} x
+= \int_{\partial V} t^{(n)} \cdot \delta u ~\mathrm{d}S
++ \int_{V} \rho b \cdot \delta u ~\mathrm{d}x
+\]</span></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>力学</category>
+      </categories>
+      <tags>
+        <tag>连续介质力学</tag>
+        <tag>守恒定律</tag>
       </tags>
   </entry>
 </search>

@@ -23,12 +23,12 @@
     <meta name="description" content="首先, 我们先定义梯度, 散度和旋度的概念, 并特别强调对于高阶张量的定义, 这将规范我们使用的 notation. 然后, 我们以二维空间为例, 引出散度定理, Stokes 公式和 Gauss 公式. 最后, 我们再给出一般的张量场中这三种公式的形式. 梯度, 散度和旋度 我们引入记号 \(\nabla\), \(\nabla \cdot\), \(\nabla \times\),">
 <meta property="og:type" content="article">
 <meta property="og:title" content="张量场的积分定理">
-<meta property="og:url" content="http://qiuxiaohuo.github.io/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/index.html">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/mech/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/index.html">
 <meta property="og:site_name" content="邱小伙的博客">
 <meta property="og:description" content="首先, 我们先定义梯度, 散度和旋度的概念, 并特别强调对于高阶张量的定义, 这将规范我们使用的 notation. 然后, 我们以二维空间为例, 引出散度定理, Stokes 公式和 Gauss 公式. 最后, 我们再给出一般的张量场中这三种公式的形式. 梯度, 散度和旋度 我们引入记号 \(\nabla\), \(\nabla \cdot\), \(\nabla \times\),">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-19T03:02:02.000Z">
-<meta property="article:modified_time" content="2024-08-03T07:43:38.782Z">
+<meta property="article:modified_time" content="2024-08-04T07:35:59.634Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta property="article:tag" content="连续介质力学">
 <meta property="article:tag" content="Stokes 公式">
@@ -37,11 +37,11 @@
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qiuxiaohuo.github.io/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/">
+<link rel="canonical" href="http://qiuxiaohuo.github.io/mech/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/","path":"math/张量场的积分定理/","title":"张量场的积分定理"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/mech/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/","path":"mech/张量场的积分定理/","title":"张量场的积分定理"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
 <title>张量场的积分定理 | 邱小伙的博客</title>
@@ -161,7 +161,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">67</span>
+          <span class="site-state-item-count">70</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -172,7 +172,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">86</span>
+        <span class="site-state-item-count">87</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -210,7 +210,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -246,7 +246,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-03 15:43:38" itemprop="dateModified" datetime="2024-08-03T15:43:38+08:00">2024-08-03</time>
+      <time title="修改时间：2024-08-04 15:35:59" itemprop="dateModified" datetime="2024-08-04T15:35:59+08:00">2024-08-04</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
