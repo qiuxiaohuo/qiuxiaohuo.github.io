@@ -152,18 +152,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">77</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">87</span>
+        <span class="site-state-item-count">98</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -200,7 +200,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/multiscale/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -218,7 +218,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/mech/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/" class="post-title-link" itemprop="url">本征应变与本征应力</a>
+          <a href="/mech/multiscale/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/" class="post-title-link" itemprop="url">多尺度 Reduced Order 推导</a>
         </h2>
 
         <div class="post-meta-container">
@@ -228,9 +228,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-04-15 09:47:09 / 修改时间：10:43:13" itemprop="dateCreated datePublished" datetime="2024-04-15T09:47:09+08:00">2024-04-15</time>
+      <time title="创建时间：2024-04-15 09:59:09" itemprop="dateCreated datePublished" datetime="2024-04-15T09:59:09+08:00">2024-04-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-02 14:46:59" itemprop="dateModified" datetime="2024-09-02T14:46:59+08:00">2024-09-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -238,7 +244,350 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" itemprop="url" rel="index"><span itemprop="name">多尺度</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="reduced-order-中函数-h_ikl-与细观力学-green-函数的关联">1.
+Reduced Order 中函数 <span class="math inline">\(h_{i}^{kl}\)</span>
+与细观力学 Green 函数的关联</h3>
+<p>在多尺度的单胞问题中, 如果使用本征应变 <span
+class="math inline">\(\mu^{\xi}(x)\)</span> 表征材料非弹性的影响,
+那么本构方程为:</p>
+<p><span class="math display">\[
+\sigma^{\xi}(x) = L^{\xi}(x):\left(\varepsilon^{\xi}(x) -
+\mu^{\xi}(x)\right)
+\]</span></p>
+<p>对位移变量进行双尺度渐近展开, 得到</p>
+<p><span class="math display">\[
+\text{ANSATZ}:u^{\xi}(x) \sim u^{c}(x) + \xi u^{(1)}(x,y) + O(\xi^2)
+\]</span></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/mech/multiscale/%E5%A4%9A%E5%B0%BA%E5%BA%A6-Reduced-Order-%E6%8E%A8%E5%AF%BC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/multiscale/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mech/multiscale/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">弹性力学方程的 Green 函数</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-15 09:50:09" itemprop="dateCreated datePublished" datetime="2024-04-15T09:50:09+08:00">2024-04-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-02 14:46:10" itemprop="dateModified" datetime="2024-09-02T14:46:10+08:00">2024-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" itemprop="url" rel="index"><span itemprop="name">多尺度</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <div class="note info no-icon"><h5 id="基本解和-green-函数的区别">基本解和 Green 函数的区别</h5>
+<p>如果将微分方程写成抽象的算子形式: <span class="math display">\[
+L[u] = f \text{ on } \Omega
+\]</span></p>
+<p>特别的, 当函数 <span class="math inline">\(f\)</span> 为 Dirac 函数
+<span class="math inline">\(\delta\)</span> 时, 微分方程的解称为算子
+<span class="math inline">\(L\)</span> 的<strong>基本解</strong>: <span
+class="math display">\[
+L [G] = \delta
+\]</span></p>
+<p>注意到上述过程中, 并没有提到方程需要满足什么边界条件, 这也是基本解和
+Green 函数之间的区别. <strong>Green 函数需要考虑边界的影响,
+基本解只需要考虑函数在区域内满足什么微分方程.</strong> 在下文中,
+我还是按照 Mura 书中的表述, 将以求解基本解方式得到的函数称为 Green 函数.
+当微分方程右端项为一般的函数 <span class="math inline">\(f\)</span> 时,
+此时微分方程的解 <span class="math inline">\(u\)</span> 可以表示为Green
+<span class="math inline">\(G\)</span> 与 <span
+class="math inline">\(f\)</span> 的卷积:</p>
+<p><span class="math display">\[
+u = G*f = \int_{-\infty}^{\infty} G(x-x^{\prime}) f(x^{\prime})
+\mathrm{d} x^{\prime}
+\]</span></p>
+<h5 id="张量值函数的卷积定义">张量值函数的卷积定义</h5>
+<p>对于张量值方程 <span class="math display">\[
+L[u] = f
+\]</span> 应用 Fourier 变换, 方程组转化为关于 <span
+class="math inline">\(\hat u\)</span> 的代数方程: <span
+class="math display">\[
+\hat L_{ij}(\xi) \hat u_{j} = \hat f_i
+\]</span> 对方程系数矩阵 <span class="math inline">\(\hat
+L_{ij}\)</span> 求逆, 再作 Fourier 逆变换, 就得到解 <span
+class="math inline">\(u\)</span> 表示为 <span class="math display">\[
+u_i = \mathscr{F}^{-1} [\hat{L}_{ij}^{-1} \hat{f}_j]
+\]</span> 定义张量值函数之间的卷积为 <span class="math display">\[
+A * f:  L(\Omega,\mathbb{R}^{m\times n}) \times L(\Omega,\mathbb{R}^{
+n}) \mapsto L(\Omega,\mathbb{R}^{m}) \\
+A * f \triangleq A_{ij} * f_{j}
+\]</span> 上式默认了指标求和约定. 这也就是说,
+张量的代数运算保存在卷积的积分号内.</p>
+<p>张量值方程的基本解定义为 <span class="math display">\[
+G_{ij} = \mathscr{F}^{-1} [\hat{L}_{ij}^{-1}]
+\]</span></p>
+</div>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/mech/multiscale/%E5%BC%B9%E6%80%A7%E5%8A%9B%E5%AD%A6%E6%96%B9%E7%A8%8B%E7%9A%84%20Green%20%E5%87%BD%E6%95%B0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/multiscale/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mech/multiscale/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">等效夹杂方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-15 09:47:11" itemprop="dateCreated datePublished" datetime="2024-04-15T09:47:11+08:00">2024-04-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-02 14:47:54" itemprop="dateModified" datetime="2024-09-02T14:47:54+08:00">2024-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" itemprop="url" rel="index"><span itemprop="name">多尺度</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>考虑如下场景: 一个无穷大的弹性体 D 中嵌入一个椭球形状的夹杂 <span
+class="math inline">\(\Omega\)</span>, 如果夹杂的弹性模量 <span
+class="math inline">\(C^*_{ijkl}\)</span><strong>与周围弹性体的弹性模量</strong><span
+class="math inline">\(C_{ijkl}\)</span> 不同,
+则称该夹杂为<strong>非均质夹杂</strong>. 因为非均质夹杂的存在,
+其附近的应力场会发生改变. 考虑无穷远处的应变场强度为 <span
+class="math inline">\(\varepsilon^0\)</span>, 对应的应力场为 <span
+class="math inline">\(\sigma^0 = C : \varepsilon^0\)</span>,
+应变与应力场扰动量分别为 <span
+class="math inline">\(\varepsilon\)</span> 和 <span
+class="math inline">\(\sigma\)</span>, 因此真实的位移和应力为 <span
+class="math inline">\(u_i^0 + u_i\)</span> 和 <span
+class="math inline">\(\sigma^0 + \sigma\)</span>.
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/mech/multiscale/%E7%AD%89%E6%95%88%E5%A4%B9%E6%9D%82%E6%96%B9%E6%B3%95/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/multiscale/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mech/multiscale/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/" class="post-title-link" itemprop="url">本征应变与本征应力</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-04-15 09:47:09" itemprop="dateCreated datePublished" datetime="2024-04-15T09:47:09+08:00">2024-04-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-02 14:47:50" itemprop="dateModified" datetime="2024-09-02T14:47:50+08:00">2024-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" itemprop="url" rel="index"><span itemprop="name">多尺度</span></a>
         </span>
     </span>
 
@@ -264,7 +613,7 @@ class="math inline">\(\mu\)</span>(nonelastic strains, 比如热膨胀, 相变,
 \frac{1}{2}(u_{i,j}+u_{j,i})\)</span>.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/mech/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/#more" rel="contents">
+              <a class="btn" href="/mech/multiscale/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E4%B8%8E%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8A%9B/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -481,7 +830,7 @@ Linux 环境下使用 apache2 配置 https 协议下的 SVN 仓库。</p>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/constitutive/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -499,7 +848,7 @@ Linux 环境下使用 apache2 配置 https 协议下的 SVN 仓库。</p>
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/mech/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/" class="post-title-link" itemprop="url">推导非线性本构时用到的张量运算</a>
+          <a href="/mech/constitutive/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/" class="post-title-link" itemprop="url">推导非线性本构时用到的张量运算</a>
         </h2>
 
         <div class="post-meta-container">
@@ -517,7 +866,7 @@ Linux 环境下使用 apache2 配置 https 协议下的 SVN 仓库。</p>
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-05-30 12:53:29" itemprop="dateModified" datetime="2024-05-30T12:53:29+08:00">2024-05-30</time>
+      <time title="修改时间：2024-09-02 14:45:52" itemprop="dateModified" datetime="2024-09-02T14:45:52+08:00">2024-09-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -525,7 +874,7 @@ Linux 环境下使用 apache2 配置 https 协议下的 SVN 仓库。</p>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E6%9C%AC%E6%9E%84%E7%90%86%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">本构理论</span></a>
         </span>
     </span>
 
@@ -552,7 +901,7 @@ class="math inline">\(\boldsymbol{\varepsilon}\)</span>,
 \]</span> deviatoric 分解的性质为:
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/mech/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/#more" rel="contents">
+              <a class="btn" href="/mech/constitutive/%E6%8E%A8%E5%AF%BC%E9%9D%9E%E7%BA%BF%E6%80%A7%E6%9C%AC%E6%9E%84%E6%97%B6%E7%94%A8%E5%88%B0%E7%9A%84%E5%BC%A0%E9%87%8F%E8%BF%90%E7%AE%97/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -583,7 +932,7 @@ class="math inline">\(\boldsymbol{\varepsilon}\)</span>,
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/multiscale/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -601,7 +950,7 @@ class="math inline">\(\boldsymbol{\varepsilon}\)</span>,
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/mech/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/" class="post-title-link" itemprop="url">使用有限元方法求解单胞方程</a>
+          <a href="/mech/multiscale/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/" class="post-title-link" itemprop="url">使用有限元方法求解单胞方程</a>
         </h2>
 
         <div class="post-meta-container">
@@ -619,7 +968,7 @@ class="math inline">\(\boldsymbol{\varepsilon}\)</span>,
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-22 12:39:01" itemprop="dateModified" datetime="2024-04-22T12:39:01+08:00">2024-04-22</time>
+      <time title="修改时间：2024-09-02 14:47:43" itemprop="dateModified" datetime="2024-09-02T14:47:43+08:00">2024-09-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -627,7 +976,7 @@ class="math inline">\(\boldsymbol{\varepsilon}\)</span>,
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" itemprop="url" rel="index"><span itemprop="name">多尺度</span></a>
         </span>
     </span>
 
@@ -655,7 +1004,7 @@ class="math display">\[
 满足周期性边界条件,
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/mech/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/#more" rel="contents">
+              <a class="btn" href="/mech/multiscale/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1385,280 +1734,6 @@ class="math inline">\(\LaTeX\)</span>​​​ 中, 一般是用命令
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/Linux/tmux-%E5%BF%AB%E6%8D%B7%E9%94%AE%E7%B4%A2%E5%BC%95/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/tools/Vim%20%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/tools/Vim%20%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/" class="post-title-link" itemprop="url">Vim 快捷指令</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-04-05 11:28:37" itemprop="dateCreated datePublished" datetime="2024-04-05T11:28:37+08:00">2024-04-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-09 18:23:11" itemprop="dateModified" datetime="2024-04-09T18:23:11+08:00">2024-04-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="为什么会用-vim">为什么会用 Vim</h2>
-<p>因为 Vim 提供了一种不太一样的文本编辑器哲学.
-它认为代码主要的工作是修改代码, 所以提供了大量的键盘指令操作,
-方便使用者来修改 ta 们的代码.
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/tools/Vim%20%E5%BF%AB%E6%8D%B7%E6%8C%87%E4%BB%A4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/misc/%E5%B7%A5%E4%BD%9C%E7%AB%99%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%96%B9%E6%A1%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/misc/%E5%B7%A5%E4%BD%9C%E7%AB%99%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%96%B9%E6%A1%88/" class="post-title-link" itemprop="url">工作站的数据存储方案</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-04-05 10:06:54" itemprop="dateCreated datePublished" datetime="2024-04-05T10:06:54+08:00">2024-04-05</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-04-09 18:23:15" itemprop="dateModified" datetime="2024-04-09T18:23:15+08:00">2024-04-09</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>现在我的工作站数据分配空间如下 (省略了其它系统盘的存储空间数据)</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">laptop@qxh-Precision-7920-Tower /repos&gt; <span class="built_in">df</span> -h</span><br><span class="line">文件系统        大小  已用  可用 已用% 挂载点</span><br><span class="line">/dev/sdb8       234G   42G  180G   19% /</span><br><span class="line">/dev/sdc3       916G   58G  813G    7% /home</span><br><span class="line">/dev/sda3       3.9T  705G  3.0T   19% /repos</span><br></pre></td></tr></table></figure>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/misc/%E5%B7%A5%E4%BD%9C%E7%AB%99%E7%9A%84%E6%95%B0%E6%8D%AE%E5%AD%98%E5%82%A8%E6%96%B9%E6%A1%88/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/math/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/" class="post-title-link" itemprop="url">逻辑命题视角下的极限 连续与一致连续</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-01-24 22:21:51" itemprop="dateCreated datePublished" datetime="2024-01-24T22:21:51+08:00">2024-01-24</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-05-28 10:36:08" itemprop="dateModified" datetime="2024-05-28T10:36:08+08:00">2024-05-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h3 id="极限的定义-以及否定形式">极限的定义, 以及否定形式</h3>
-<p>关于序列 <span class="math inline">\(\{a_n\}\)</span>
-的极限命题为:</p>
-<blockquote>
-<p>对任意的 <span class="math inline">\(\varepsilon &gt; 0\)</span>,
-存在 <span class="math inline">\(N \in \mathbb{N}\)</span>, 当 <span
-class="math inline">\(n&gt;N\)</span> 时, <span
-class="math inline">\(|a_n - a| &lt; \varepsilon\)</span></p>
-</blockquote>
-<p>我们用<strong>含参数的陈述</strong>表示上述命题的后半段:</p>
-<p><span class="math display">\[
-S(N, \varepsilon): n &gt; N \Rightarrow |a_n - a| &lt; \varepsilon
-\]</span></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/math/%E9%80%BB%E8%BE%91%E5%91%BD%E9%A2%98%E8%A7%86%E8%A7%92%E4%B8%8B%E7%9A%84%E6%9E%81%E9%99%90-%E8%BF%9E%E7%BB%AD%E4%B8%8E%E4%B8%80%E8%87%B4%E8%BF%9E%E7%BB%AD/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

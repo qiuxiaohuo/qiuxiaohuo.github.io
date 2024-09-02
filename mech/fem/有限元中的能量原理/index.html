@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="4IgN6N71kznUS9PIMp6itE5oUv0s3hzVzFzFOpC-4Ig">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="初边值问题的陈述 物质描述 使用物质描述的控制方程定义在 \(B_0 \times (0,t_0)\) 区域上, 方程的未知量为 \(\varphi(X,t)\), 满足守恒定律的控制方程为 \[ (\varphi \nabla_0) \cdot S \cdot \nabla_0 + \rho_0 b &#x3D; \rho_0 \frac{ \partial^2 \varphi }{ \par">
+<meta property="og:type" content="article">
+<meta property="og:title" content="有限元中的能量原理">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/mech/fem/%E6%9C%89%E9%99%90%E5%85%83%E4%B8%AD%E7%9A%84%E8%83%BD%E9%87%8F%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="初边值问题的陈述 物质描述 使用物质描述的控制方程定义在 \(B_0 \times (0,t_0)\) 区域上, 方程的未知量为 \(\varphi(X,t)\), 满足守恒定律的控制方程为 \[ (\varphi \nabla_0) \cdot S \cdot \nabla_0 + \rho_0 b &#x3D; \rho_0 \frac{ \partial^2 \varphi }{ \par">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-06-29T01:41:34.000Z">
+<meta property="article:modified_time" content="2024-09-02T06:50:34.590Z">
+<meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="虚功原理">
+<meta property="article:tag" content="最小势能原理">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://qiuxiaohuo.github.io/mech/fem/%E6%9C%89%E9%99%90%E5%85%83%E4%B8%AD%E7%9A%84%E8%83%BD%E9%87%8F%E5%8E%9F%E7%90%86/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/mech/fem/%E6%9C%89%E9%99%90%E5%85%83%E4%B8%AD%E7%9A%84%E8%83%BD%E9%87%8F%E5%8E%9F%E7%90%86/","path":"mech/fem/有限元中的能量原理/","title":"有限元中的能量原理"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>有限元中的能量原理 | 邱小伙的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">邱小伙的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E8%BE%B9%E5%80%BC%E9%97%AE%E9%A2%98%E7%9A%84%E9%99%88%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">初边值问题的陈述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%A9%E8%B4%A8%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">物质描述</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E4%BD%8D%E7%A7%BB-u-%E4%BD%9C%E4%B8%BA%E6%9C%AA%E7%9F%A5%E9%87%8F%E8%A1%A8%E8%BF%B0%E7%9A%84%E5%88%9D%E8%BE%B9%E5%80%BC%E9%97%AE%E9%A2%98"><span class="nav-number">1.1.0.1.</span> <span class="nav-text">使用位移 \(u\) 作为未知量表述的初边值问题</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A9%BA%E9%97%B4%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.2.</span> <span class="nav-text">空间描述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%BF%E8%83%BD%E5%8E%9F%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">势能原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E8%A1%A1%E6%96%B9%E7%A8%8B%E7%9A%84%E5%8A%BF%E8%83%BD%E6%B3%9B%E5%87%BD"><span class="nav-number">2.1.</span> <span class="nav-text">平衡方程的势能泛函</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%9B%E5%87%BD%E7%9A%84%E5%8F%98%E5%88%86"><span class="nav-number">2.2.</span> <span class="nav-text">泛函的变分</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%8F%98%E5%88%86%E8%BF%90%E7%AE%97%E5%85%AC%E5%BC%8F"><span class="nav-number">2.2.0.1.</span> <span class="nav-text">变分运算公式</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B3%9B%E5%87%BD%E9%A9%BB%E5%80%BC%E6%9D%A1%E4%BB%B6%E8%95%B4%E5%90%AB%E5%B9%B3%E8%A1%A1%E6%96%B9%E7%A8%8B"><span class="nav-number">2.3.</span> <span class="nav-text">泛函驻值条件蕴含平衡方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%B9%B3%E8%A1%A1%E6%80%81%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7-%E6%9C%80%E5%B0%8F%E5%8A%BF%E8%83%BD%E5%8E%9F%E7%90%86"><span class="nav-number">2.4.</span> <span class="nav-text">平衡态的稳定性, 最小势能原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E5%8A%9F%E5%8E%9F%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">虚功原理</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qiu Xiaohuo"
+      src="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+  <p class="site-author-name" itemprop="name">Qiu Xiaohuo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiuxiaohuo"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnFpdXhpYW9odW9AZ21haWwuY29t" title="E-Mail → mailto:qiuxiaohuo@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/fem/%E6%9C%89%E9%99%90%E5%85%83%E4%B8%AD%E7%9A%84%E8%83%BD%E9%87%8F%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="有限元中的能量原理 | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          有限元中的能量原理
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-06-29 09:41:34" itemprop="dateCreated datePublished" datetime="2024-06-29T09:41:34+08:00">2024-06-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-02 14:50:34" itemprop="dateModified" datetime="2024-09-02T14:50:34+08:00">2024-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">有限元方法</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="初边值问题的陈述">初边值问题的陈述</h2>
+<h3 id="物质描述">物质描述</h3>
+<p>使用物质描述的控制方程定义在 <span class="math inline">\(B_0 \times
+(0,t_0)\)</span> 区域上, 方程的未知量为 <span
+class="math inline">\(\varphi(X,t)\)</span>, 满足守恒定律的控制方程为
+<span class="math display">\[
+(\varphi \nabla_0) \cdot S \cdot \nabla_0 + \rho_0 b
+= \rho_0 \frac{ \partial^2 \varphi }{ \partial t^2 }
+\tag{1.1.a}
+\]</span> 式中, <span class="math inline">\(S\)</span> 为 PK2 应力.
+对于是初边值问题, 定解需要给定初始条件和边界条件. 其中初始条件为 <span
+class="math display">\[
+\varphi(X,0) = X, \quad \frac{ \partial \varphi }{ \partial t}(X,0) =
+v_0(X)
+\tag{1.1.b}
+\]</span> 方程的边界条件有两类, 一类是位移边界条件,
+在参考构型中的边界处指定 <span class="math inline">\(t&gt;0\)</span>
+时刻的位移: <span class="math display">\[
+\varphi(X,t) = \overline{x}(X,t), \quad X \in \partial B_{0u},~ t &gt; 0
+\tag{1.1.c}
+\]</span> 另一类是力边界条件, 在参考构型的边界处指定 <span
+class="math inline">\(t&gt;0\)</span> 时刻的面力: <span
+class="math display">\[
+F \cdot S \cdot N(X) = \overline{T}(X,t) \quad X \in \partial B_{0t},~ t
+&gt; 0
+\tag{1.1.d}
+\]</span> 这两类边界条件不能重叠,
+也即不能在边界点同一个分量处指定两种边界条件, 否则就是 ill-posed: <span
+class="math display">\[
+\partial B_{0u} \cup \partial B_{0t} = \partial B_{0}, \quad
+\partial B_{0u} \cap \partial B_{0t} = \empty
+\]</span> 除上述初边值条件之外, 还需要提供本构关系, 将 PK2
+应力与变形和变形历史相关联, 以及 <span
+class="math inline">\(t=0\)</span> 时刻的密度 <span
+class="math inline">\(\rho_0 = \rho_0(X)\)</span> 和 <span
+class="math inline">\(t&gt;0\)</span> 时刻的体积力 <span
+class="math inline">\(b = b(X,t)\)</span>. 至此, 待求解的力学初边值问题
+(1) 才算完整地陈述.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<h5 id="使用位移-u-作为未知量表述的初边值问题">使用位移 <span
+class="math inline">\(u\)</span> 作为未知量表述的初边值问题</h5>
+<p>方程中的未知量也可以是位移 <span class="math inline">\(u\)</span>, 与
+<span class="math inline">\(\varphi\)</span> 的关系为 <span
+class="math display">\[
+u(X,t) = \varphi(X,t) - X
+\tag{1.2}
+\]</span> 相应的初始条件为 <span class="math display">\[
+u(X,0) = 0, \quad \frac{ \partial u }{ \partial t}(X,0) = v_0(X)
+\]</span> 以及位移边界条件为 <span class="math display">\[
+u(X,t) = \overline{u}(X,t), \quad X \in \partial B_{0u},~ t &gt; 0
+\]</span> 上式与式 (1.1.c) 的关系为 <span class="math display">\[
+\overline{u}(X,t) = \overline{x}(X,t) - X
+\]</span></p>
+</blockquote>
+<h3 id="空间描述">空间描述</h3>
+<h2 id="势能原理">势能原理</h2>
+<p>在这一节中, 我们将平衡方程与某一能量泛函取驻值的条件等价,
+由此得到势能驻值原理. 泛函的驻值点可能是极大值或极小值或鞍点,
+我们将指出系统的稳定平衡状态对应能量泛函的极小值,
+这也是最小势能原理.</p>
+<h3 id="平衡方程的势能泛函">平衡方程的势能泛函</h3>
+<p>若不考虑方程 (1.1.a) 中的加速度项,
+就得到材料在平衡状态下满足的控制方程为 <span class="math display">\[
+(\varphi \nabla_0) \cdot S \cdot \nabla_0 + \rho_0 b  = 0
+\tag{2.1.a}
+\]</span> 以及边界条件 <span class="math display">\[
+\varphi(X) = \overline{x}(X), \quad X \in \partial B_{0u} \\
+F \cdot S \cdot N(X) = \overline{T}(X) \quad X \in \partial B_{0t}
+\tag{2.1.b}
+\]</span> 接下来, 我们将构造一个与上述边值问题等价的变分问题.
+首先构造如下能量泛函 <span class="math inline">\(\Pi:L \mapsto
+\mathbb{R}\)</span>, 等于材料中的应变能与外力势能之和: <span
+class="math display">\[
+\Pi(\varphi) = \underbrace{\int_{B_0} W(F) ~\mathrm{d} X }_{应变能}
+\underbrace{
+- \int_{B_0} \rho_0 b \cdot \varphi ~\mathrm{d} X
+- \int_{\partial B_{0t}} \overline{T} \cdot \varphi ~\mathrm{d}
+\Sigma(X)
+}_{外力势能}
+\tag{2.2.a}
+\]</span> 式中, <span class="math inline">\(W\)</span> 为应变能密度函数
+(质量密度), 变形梯度 <span class="math inline">\(F = \varphi
+\nabla_0\)</span>. 泛函 <span class="math inline">\(\Pi\)</span>
+定义在函数空间上, 为了建立等价关系, 除了确定泛函的形式之外,
+<strong>还需要确定函数变量 <span class="math inline">\(\varphi\)</span>
+所在的空间 <span class="math inline">\(L\)</span></strong>.
+我们约束变形映射 <span class="math inline">\(\varphi\)</span>
+满足与边值问题的位移边界条件 (2.1.b) 一致: <span class="math display">\[
+\varphi \in L = \{ f \mid f \in C^0(B_0), \quad f = \overline{x}
+~~\text{on}~~ \partial B_{0u} \}
+\tag{2.2.b}
+\]</span></p>
+<h3 id="泛函的变分">泛函的变分</h3>
+<p>在函数空间 <span class="math inline">\(L\)</span> 中点 <span
+class="math inline">\(\varphi_0\)</span> 附近, 定义一条经过点 <span
+class="math inline">\(\varphi_0\)</span> 的参数曲线: <span
+class="math display">\[
+\varphi(\varepsilon) = \varphi_0 + \varepsilon \eta, \quad \varepsilon
+\in \mathbb{R}
+\tag{2.3}
+\]</span> 由此得到关于参数 <span
+class="math inline">\(\varepsilon\)</span> 的函数 <span
+class="math inline">\(\phi(\varepsilon)\)</span>: <span
+class="math display">\[
+\phi(\varepsilon) \triangleq \Pi(\varphi_0 + \varepsilon \eta)
+\]</span> 若泛函在点 <span class="math inline">\(\varphi_0\)</span>
+处取极大(小)值, 那么对应函数 <span class="math inline">\(\phi\)</span>
+在 <span class="math inline">\(\varepsilon = 0\)</span> 处取极大(小)值,
+因此 <span class="math display">\[
+\left. \frac{\mathrm{d} \phi}{\mathrm{d} \varepsilon}
+\right|_{\varepsilon=0} = 0
+\tag{2.4}
+\]</span> 是泛函取极值的一个必要条件. 如果定义运算 <span
+class="math inline">\(\delta_{\eta}: L \mapsto L\)</span> <span
+class="math display">\[
+\boxed{
+\delta_{\eta}[f](\varphi_0) \triangleq
+\left. \frac{\mathrm{d} ~}{\mathrm{d} \varepsilon} f(\varphi_0 +
+\varepsilon \eta) \right|_{\varepsilon=0}
+}
+\tag{2.5}
+\]</span> 那么条件 (2.4) 就可以重新叙述为 <span class="math display">\[
+\delta_{\eta}[\Pi](\varphi_0) = 0, \quad \forall \eta \in \overline{L}
+\tag{2.6}
+\]</span> 接下来确定 <span class="math inline">\(\eta\)</span>
+的取值空间. 根据式 (2.3), <span class="math inline">\(\varphi_0 \in
+L\)</span>, <span class="math inline">\(\varphi(\varepsilon) \in
+L\)</span>, 因此 <span class="math inline">\(\eta\)</span>
+的取值函数空间对应为位移边界处恒等于 0 的函数: <span
+class="math display">\[
+\eta \in \overline{L} = \{ f \mid f \in C^0(B_0), \quad f = 0
+~~\text{on}~~ \partial B_{0u} \}
+\tag{2.7}
+\]</span> 为了在记号上与微分符号进行类比, 我们将 <span
+class="math inline">\(\varepsilon\eta\)</span> 重映射为 <span
+class="math inline">\(\varepsilon\delta \varphi\)</span>,
+表示关于独立变量 <span class="math inline">\(\varphi\)</span>
+的<strong>变分</strong>. 当独立变量的变分意义明确时, 省略运算符 <span
+class="math inline">\(\delta_{\eta}\)</span> 的下标, 并将 <span
+class="math inline">\(\delta_{\eta}[f]\)</span> 简记作 <span
+class="math inline">\(\delta f\)</span>. 根据式 (2.5), 运算符 <span
+class="math inline">\(\delta\)</span> 的定义是基于单变量微积分的导数,
+因此继承了关于求导数的线性性质, 所以可以将 <span
+class="math inline">\(\delta\)</span> 与微分符号 <span
+class="math inline">\(~\mathrm{d}\)</span> 进行类推.</p>
+<blockquote>
+<p>[!TIP]</p>
+<h5 id="变分运算公式">变分运算公式</h5>
+<p>函数的乘积: <span class="math display">\[
+\begin{aligned}
+\delta(fg) &amp;= \left. \frac{\mathrm{d} ~}{\mathrm{d} \varepsilon}
+f(\varphi + \varepsilon \delta\varphi) g(\varphi + \varepsilon
+\delta\varphi)
+\right|_{\varepsilon=0} \\
+&amp;= \left( \left. f(\varphi + \varepsilon \delta\varphi)
+\frac{\mathrm{d} ~}{\mathrm{d} \varepsilon}
+g(\varphi + \varepsilon \delta\varphi)
++ g(\varphi + \varepsilon \delta\varphi) \frac{\mathrm{d} ~}{\mathrm{d}
+\varepsilon}
+f(\varphi + \varepsilon \delta\varphi)
+\right)\right|_{\varepsilon=0} \\
+&amp;= f ~\delta g + g ~\delta f
+\end{aligned}
+\]</span> 微分运算: <span class="math display">\[
+\delta (\varphi \circ \nabla_0) = \left. \frac{\mathrm{d} ~}{\mathrm{d}
+\varepsilon}
+\left(  (\varphi \circ \nabla_0) + \varepsilon (\delta \varphi \circ
+\nabla_0) \right)
+\right|_{\varepsilon=0}
+= \delta \varphi \circ \nabla_0
+\]</span> 式中, <span class="math inline">\(\circ\)</span> 表示梯度,
+散度 <span class="math inline">\(\cdot\)</span>, 叉乘 <span
+class="math inline">\(\times\)</span> 中的一种.</p>
+<p>积分运算: <span class="math display">\[
+\delta \int f(\varphi) ~\mathrm{d}X
+= \left. \frac{\mathrm{d} ~}{\mathrm{d} \varepsilon}
+\int f(\varphi + \varepsilon \delta \varphi) ~\mathrm{d}X
+\right|_{\varepsilon=0}
+= \int \left. \frac{\mathrm{d} ~}{\mathrm{d} \varepsilon}
+f(\varphi + \varepsilon \delta \varphi) \right|_{\varepsilon=0}
+~\mathrm{d}X
+= \int \delta f ~\mathrm{d} X
+\]</span> 复合函数: <span class="math display">\[
+\left. \delta f \circ g = \frac{\mathrm{d} ~}{\mathrm{d} \varepsilon}
+f \circ g (\varphi + \varepsilon \delta \varphi) \right|_{\varepsilon=0}
+= \frac{\mathrm{d} f}{\mathrm{d} g} \delta g
+\]</span> 最后, 我们说明即使选取不同的独立变量 <span
+class="math inline">\(u\)</span> 或者 <span
+class="math inline">\(\varphi\)</span>, 它们的变分总是相同的. 根据式
+(1.2): <span class="math display">\[
+\delta u = \delta (\varphi -X)
+\]</span> <span class="math inline">\(X\)</span> 与 <span
+class="math inline">\(\varphi\)</span> 无关, 因此有 <span
+class="math display">\[
+\delta u = \delta \varphi
+\]</span> 因此在下文的推导中, 我们用更符合惯例的 <span
+class="math inline">\(\delta u\)</span> 代替 <span
+class="math inline">\(\delta \varphi\)</span>.</p>
+</blockquote>
+<h3 id="泛函驻值条件蕴含平衡方程">泛函驻值条件蕴含平衡方程</h3>
+<p>根据式 (6), 泛函 <span class="math inline">\(\Pi\)</span>
+取驻值的必要条件为 <span class="math display">\[
+\delta \Pi = 0, \quad \forall \delta u \in \overline{L}
+\]</span> 将式 (2.2.a) 代入上式中得到 <span class="math display">\[
+\delta \Pi = \delta \int_{B_0} W(F) ~\mathrm{d} X
+- \delta \int_{B_0} \rho_0 b \cdot \varphi ~\mathrm{d} X
+- \delta \int_{\partial B_{0t}} \overline{T} \cdot \varphi ~\mathrm{d}
+\Sigma(X)
+\equiv 0, \quad \forall \delta u \in \overline{L}
+\tag{2.8}
+\]</span> 式中, <span class="math display">\[
+\delta \int_{B_0} W(F) ~\mathrm{d} X  = \int_{B_0} \delta W(F)
+~\mathrm{d} X
+= \int_{B_0} \frac{ \partial W }{ \partial F} : (\delta u
+\nabla_0)  ~\mathrm{d} X
+\tag{2.9}
+\]</span> 如果考虑材料为超弹材料, 那么 <span class="math display">\[
+P = \frac{ \partial W }{ \partial F}
+\]</span> 式中, <span class="math inline">\(P\)</span> 为 PK1 应力,
+<span class="math inline">\(P = F \cdot S\)</span>. 应用分部积分公式得到
+<span class="math display">\[
+P : (\delta u \nabla_0) = (\delta u \cdot P) \cdot \nabla_0
+- (P \cdot \nabla_0) \cdot \delta u
+\]</span> 代入到 (2.9) 式右端, 并注意到变分 <span
+class="math inline">\(\delta u \equiv 0\)</span> 在边界 <span
+class="math inline">\(\partial B_{0u}\)</span>: <span
+class="math display">\[
+\boxed{
+\int_{B_0} P : (\delta u \nabla_0)  ~\mathrm{d} X
+= \int_{\partial B_{0u}} \delta u \cdot P \cdot N ~\mathrm{d} \Sigma(X)
+- \int_{B_0} (P \cdot \nabla_0) \cdot \delta u ~\mathrm{d} X
+}
+\tag{2.10}
+\]</span> 式 (2.10) 是虚功原理的特殊形式, 这里我们是从守恒系统的变分等于
+0 出发, 得到式 (2.9). 之后我们将从平衡方程出发,
+得到更一般形式的虚功原理.</p>
+<p>将 (2.10) 代入到 (2.8) 中得到 <span class="math display">\[
+- \int_{B_0} (P \cdot \nabla_0 + \rho_0 b) \cdot \delta u ~\mathrm{d} X
++ \int_{\partial B_{0t}} (P \cdot N -\overline{T}) \cdot \delta u
+~\mathrm{d} \Sigma(X)
+= 0, \quad  \forall \delta u \in \overline{L}
+\]</span> 再根据 <span class="math inline">\(\delta u\)</span> 的任意性,
+就得到平衡方程 (2.1.a) 和力边界条件 (2.1.b).</p>
+<h3 id="平衡态的稳定性-最小势能原理">平衡态的稳定性, 最小势能原理</h3>
+<p>在上述推导中, 我们只预设了变分的驻值性,
+并由此得到平衡方程和力边界条件. 进一步地,
+如果我们能确定泛函在驻值点处如果取得极小值,
+那么就可以确定系统的平衡态是<strong>稳定的</strong>.
+这就是最小势能原理.</p>
+<h2 id="虚功原理">虚功原理</h2>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202408131701295.png"
+alt="image-20240813170058133" />
+<figcaption aria-hidden="true">image-20240813170058133</figcaption>
+</figure>
+<p>首先我们定义什么是 statically admissible forces and stresses 和
+kinematically admissible displacements:</p>
+<ul>
+<li><strong>statically admissible stresses</strong>:
+满足平衡方程和力边界条件的应力场分布 <span class="math inline">\(\tilde
+P\)</span>;</li>
+<li><strong>kinematically admissible displacements</strong>
+满足位移边界条件的位移场分布.</li>
+</ul>
+<p>在假想的位移场下, 可允许位移之间的差值被定义为虚位移场 <span
+class="math inline">\(\delta \tilde u\)</span>, 虚位移场在式 (2.7)
+定义的函数空间当中. 当施加虚位移场 <span class="math inline">\(\delta
+\tilde u\)</span> 时, 假设应力场和外力固定不变,
+因此外力在虚位移场下所做的虚外力功为力边界处的面力与体积力做功之和:
+<span class="math display">\[
+\delta W_{E}
+\triangleq \int_{\partial B_{0t}} \delta \tilde u \cdot \overline{T}
+~\mathrm{d}X
++ \int_{B_0} \rho_0 b \cdot \delta \tilde u ~\mathrm{d}\Sigma(X)
+\]</span> 虚应力场 <span class="math inline">\(\tilde{P}\)</span>
+满足指定的力边界条件 <span class="math inline">\(\tilde{P} \cdot N =
+\overline{T}\)</span>, 因此有 <span class="math display">\[
+\int_{\partial B_{0t}} \delta \tilde u \cdot \overline{T} ~\mathrm{d}X
+= \int_{\partial B_{0t}} \delta \tilde u \cdot \tilde{P} \cdot N
+~\mathrm{d}X
+\]</span> 注意到 <span class="math inline">\(\delta \tilde u\)</span>
+在边界 <span class="math inline">\(\partial B_{0u}\)</span> 处恒等于 0,
+因此可以将上式中边界积分项拓展到封闭边界区域的积分. 再应用散度定理得到
+<span class="math display">\[
+\oint_{\partial B_{0}} \delta \tilde u \cdot \tilde{P} \cdot N
+~\mathrm{d}X
+= \int_{B_0} (\delta \tilde u \nabla_0) : \tilde{P}
++ \delta \tilde u  \cdot (\tilde{P} \cdot \nabla_0)  ~\mathrm{d}X
+\]</span> 定义上式中第二项为内力虚功: <span class="math display">\[
+\delta W_{I} \triangleq \int_{B_0} (\delta \tilde u \nabla_0) :
+\tilde{P}
+\]</span> 同时注意到 <span class="math inline">\(\tilde{P}\)</span>
+是满足平衡方程的虚应力场: <span class="math display">\[
+\tilde{P} \cdot \nabla_0 + \rho_0 b = 0
+\]</span> 最终我们得到 <span class="math display">\[
+\delta W_{E} = \delta W_{I}
+\]</span> 因此, 对于满足平衡方程和力边界条件的虚应力场, 以及虚位移场,
+外力对系统的虚位移所做的外力功,
+等于虚应力场在虚位移导致的虚应变场所做的内力功. 在虚功原理的陈述中,
+应力场和位移场是完全独立的, 没有考虑任何附加的本构关系.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%99%9A%E5%8A%9F%E5%8E%9F%E7%90%86/" rel="tag"># 虚功原理</a>
+              <a href="/tags/%E6%9C%80%E5%B0%8F%E5%8A%BF%E8%83%BD%E5%8E%9F%E7%90%86/" rel="tag"># 最小势能原理</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/math/Fourier-analysis/Fourier-%E5%8F%98%E6%8D%A2%E5%85%AC%E5%BC%8F%E7%9A%84%E4%B8%80%E8%87%B4%E6%80%A7/" rel="prev" title="Fourier-变换和逆变换公式的一致性">
+                  <i class="fa fa-angle-left"></i> Fourier-变换和逆变换公式的一致性
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/mech/multiscale/%E5%BA%94%E5%8F%98%E9%9B%86%E4%B8%AD%E5%BC%A0%E9%87%8F/" rel="next" title="应变集中张量">
+                  应变集中张量 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qiu Xiaohuo</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

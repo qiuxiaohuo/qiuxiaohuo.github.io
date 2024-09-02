@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="4IgN6N71kznUS9PIMp6itE5oUv0s3hzVzFzFOpC-4Ig">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="质量守恒 考虑空间坐标下的控制体 \(V\), 在 \(\delta t\) 时间内, 流出控制体 \(V\) 的质量为 \[ \mathrm{d} m &#x3D; \delta_t\int_{\partial V} \rho v\cdot n  ~\mathrm{d}S + \mathcal{O}(\delta t^2) \] 控制体在 \(t+\delta t\) 时刻的质量为 \[ m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="空间坐标下的守恒方程">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/mech/continuum/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/index.html">
+<meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="质量守恒 考虑空间坐标下的控制体 \(V\), 在 \(\delta t\) 时间内, 流出控制体 \(V\) 的质量为 \[ \mathrm{d} m &#x3D; \delta_t\int_{\partial V} \rho v\cdot n  ~\mathrm{d}S + \mathcal{O}(\delta t^2) \] 控制体在 \(t+\delta t\) 时刻的质量为 \[ m">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-08-02T12:27:41.000Z">
+<meta property="article:modified_time" content="2024-09-02T06:48:37.630Z">
+<meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="守恒定律">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://qiuxiaohuo.github.io/mech/continuum/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/mech/continuum/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/","path":"mech/continuum/空间坐标下的守恒方程/","title":"空间坐标下的守恒方程"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>空间坐标下的守恒方程 | 邱小伙的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">邱小伙的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%B4%A8%E9%87%8F%E5%AE%88%E6%81%92"><span class="nav-number">1.</span> <span class="nav-text">质量守恒</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E8%BF%90%E5%AE%9A%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">输运定理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BA%94%E7%94%A8%E8%BE%93%E8%BF%90%E5%AE%9A%E7%90%86%E6%8E%A8%E5%AF%BC%E8%B4%A8%E9%87%8F%E5%AE%88%E6%81%92%E7%9A%84%E7%A9%BA%E9%97%B4%E8%A1%A8%E8%BE%BE%E5%BD%A2%E5%BC%8F"><span class="nav-number">2.0.0.1.</span> <span class="nav-text">应用输运定理推导质量守恒的空间表达形式</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8A%A8%E9%87%8F%E5%AE%88%E6%81%92%E5%AE%9A%E5%BE%8B"><span class="nav-number">3.</span> <span class="nav-text">动量守恒定律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%92%E5%8A%A8%E9%87%8F%E5%AE%88%E6%81%92%E5%AE%9A%E5%BE%8B"><span class="nav-number">4.</span> <span class="nav-text">角动量守恒定律</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%BD%E9%87%8F%E5%AE%88%E6%81%92%E5%AE%9A%E5%BE%8B"><span class="nav-number">5.</span> <span class="nav-text">能量守恒定律</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E4%B8%8D%E5%8F%AF%E5%8E%8B%E7%BC%A9%E7%89%9B%E9%A1%BF%E6%B5%81%E4%BD%93%E7%9A%84%E8%83%BD%E9%87%8F%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B"><span class="nav-number">5.0.0.1.</span> <span class="nav-text">不可压缩牛顿流体的能量守恒方程</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%99%9A%E5%8A%9F%E5%8E%9F%E7%90%86"><span class="nav-number">6.</span> <span class="nav-text">虚功原理</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%B0%8F%E5%8F%98%E5%BD%A2%E4%B8%8B%E7%9A%84%E8%99%9A%E5%8A%9F%E5%8E%9F%E7%90%86"><span class="nav-number">6.0.0.1.</span> <span class="nav-text">小变形下的虚功原理</span></a></li></ol></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qiu Xiaohuo"
+      src="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+  <p class="site-author-name" itemprop="name">Qiu Xiaohuo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiuxiaohuo"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnFpdXhpYW9odW9AZ21haWwuY29t" title="E-Mail → mailto:qiuxiaohuo@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/continuum/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="空间坐标下的守恒方程 | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          空间坐标下的守恒方程
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-02 20:27:41" itemprop="dateCreated datePublished" datetime="2024-08-02T20:27:41+08:00">2024-08-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-02 14:48:37" itemprop="dateModified" datetime="2024-09-02T14:48:37+08:00">2024-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BF%9E%E7%BB%AD%E4%BB%8B%E8%B4%A8%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">连续介质力学</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="质量守恒">质量守恒</h2>
+<p>考虑空间坐标下的控制体 <span class="math inline">\(V\)</span>, 在
+<span class="math inline">\(\delta t\)</span> 时间内, 流出控制体 <span
+class="math inline">\(V\)</span> 的质量为 <span class="math display">\[
+\mathrm{d} m = \delta_t\int_{\partial V} \rho v\cdot n  ~\mathrm{d}S +
+\mathcal{O}(\delta t^2)
+\]</span> 控制体在 <span class="math inline">\(t+\delta t\)</span>
+时刻的质量为 <span class="math display">\[
+m_V(t+\delta t) = \int_{V} \rho(x,t+\delta t) ~\mathrm{d}x
+\]</span> 质量守恒的表述为: 在控制体的质量改变,
+只能通过质量进出控制体引起. 因此有 <span class="math display">\[
+m_{V}(t + \delta t) = m_{V}(t) - \mathrm{d} m
+\Rightarrow m_{V}(t + \delta t) - m_{V}(t) + \mathrm{d} m = 0
+\]</span> <span id="more"></span>两边同除 <span class="math inline">\(\delta
+t\)</span>, 并令 <span class="math inline">\(\delta t \rightarrow
+0\)</span>, 就得到 <span class="math display">\[
+\int_{V} \frac{\partial \rho}{\partial t} ~\mathrm{d}x
++ \int_{\partial V} \rho v\cdot n  ~\mathrm{d}S = 0
+\]</span> 再应用散度定理, 就得到 <span class="math display">\[
+\int_{V} \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho v)
+~\mathrm{d}x  = 0
+\]</span> 又因为 <span class="math inline">\(V\)</span> 是任意选取的,
+所以有 <span class="math display">\[
+\boxed{
+\frac{\partial \rho}{\partial t} + \nabla \cdot (\rho v) = 0
+}
+\tag{1}
+\]</span> 如果材料不可压缩, 那么, 无论是物质坐标下,
+还是空间坐标下的密度, 都是恒定不变的常数. 因此, 根据式 (1) 有 <span
+class="math display">\[
+J \equiv 1
+\]</span> 同时为了保证质量守恒, 又不能改变物质的密度,
+因此必须对速度场进行约束: <span class="math display">\[
+\nabla \cdot v = 0
+\]</span></p>
+<h2 id="输运定理">输运定理</h2>
+<p>设想一个包裹着一团物质的曲面 <span class="math inline">\(\partial
+B\)</span>, 当材料变形时, 曲面也在不断地变形. 在当前构型中,
+设由该曲面包裹的物质区域为 <span class="math inline">\(B\)</span>.
+对该区域的物理量(的质量密度) <span class="math inline">\(\phi\)</span>
+进行积分: <span class="math display">\[
+\Phi_{B}(t) = \int_{B} \rho \phi ~\mathrm{d} x
+\]</span> 与此同时, 在当前构型中考虑与 <span
+class="math inline">\(B\)</span> 重合的控制体 <span
+class="math inline">\(V\)</span>, 对上式积分项求偏导数后积分: <span
+class="math display">\[
+\int_{V} \frac{\partial (\rho \phi)}{\partial t} ~\mathrm{d}x
+\]</span> <span class="math inline">\(\Phi\)</span> 在控制体 <span
+class="math inline">\(V\)</span> 中的增加量, 等于物质面 <span
+class="math inline">\(B\)</span> 中 <span
+class="math inline">\(\Phi\)</span> 的增加量, 再加上流进 <span
+class="math inline">\(V\)</span> 的 <span
+class="math inline">\(\Phi\)</span>, 写成公式为 <span
+class="math display">\[
+\int_{V} \frac{\partial (\rho \phi)}{\partial t} ~\mathrm{d}x
+= \frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho \phi ~\mathrm{d}x
+- \int_{\partial V} \rho \phi v \cdot n ~\mathrm{d} S
+\]</span> 应用散度定理, 上式就可以写成 <span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho \phi ~\mathrm{d}x
+= \int_{V} \frac{\partial (\rho \phi)}{\partial t}
++ \mathrm{div}(\rho \phi v) ~\mathrm{d} x
+\tag{2}
+\]</span> 观察式 (2), 可以看到, 等式左端是物质团 <span
+class="math inline">\(B\)</span> 关于时间的变化率,
+等式右端是关于空间区域 <span class="math inline">\(V\)</span> 的积分,
+因此, 输运定理将物质团变化率表述为为空间坐标的形式. 需要指出的是,
+输运定理并不是守恒定律, 但确实可以通过质量守恒进行化简. 式 (2)
+右端项可以展开为 <span class="math display">\[
+\int_{V} \frac{\partial (\rho \phi)}{\partial t}
++ \mathrm{div}(\rho \phi v) ~\mathrm{d} x
+= \int_{V} \rho \frac{\partial \phi}{\partial t} + \rho v \cdot \nabla
+\phi
++ \phi \left( \frac{\partial \rho}{\partial t} + \mathrm{div}(\rho v)
+\right) ~\mathrm{d} x \\
+= \int_{V} \rho \left( \frac{\partial \phi}{\partial t} +  v \cdot
+\nabla \phi \right) ~\mathrm{d} x
+= \int_{V} \rho \frac{\mathrm{D} \phi}{\mathrm{D} t} ~\mathrm{d} x
+\]</span> 所以, 式 (2) 可以通过质量守恒 (1) 化简为 <span
+class="math display">\[
+\boxed{
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho \phi ~\mathrm{d}x
+= \int_{V} \rho \frac{\mathrm{D} \phi}{\mathrm{D} t} ~\mathrm{d} x
+}
+\tag{3}
+\]</span> 可见物质团 <span class="math inline">\(B\)</span>
+积分号外的关于时间的导数, 移动到控制体积分中对物理量 <span
+class="math inline">\(\phi\)</span> 的物质导数.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<h5
+id="应用输运定理推导质量守恒的空间表达形式">应用输运定理推导质量守恒的空间表达形式</h5>
+<p>围绕在物质曲面 <span class="math inline">\(\partial B\)</span>
+的物理量 <span class="math inline">\(\phi\)</span> 如果等于恒定的常数
+<span class="math inline">\(1\)</span>, 那么 <span
+class="math inline">\(\phi\)</span>
+在空间或者物质坐标下的表达形式是相同的. 定义关于时间的函数 <span
+class="math inline">\(m(t)\)</span> 为 <span class="math display">\[
+m(t) \triangleq \int_{B} \rho(x,t) ~\mathrm{d}x
+\]</span> 质量守恒定律声明, 物质团的质量, 无论物质如何变形,
+总是恒定不变, 因此 <span class="math display">\[
+m(t) \equiv m(0) = \int_{B_0} \rho(X,0) ~\mathrm{d}X
+\]</span> 因此 <span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho ~\mathrm{d}x  \equiv 0
+\]</span> 代入式 (2) 中得到 <span class="math display">\[
+\int_{V} \frac{\partial \rho}{\partial t}
++ \mathrm{div}(\rho v) ~\mathrm{d} x = 0
+\]</span></p>
+</blockquote>
+<h2 id="动量守恒定律">动量守恒定律</h2>
+<p>粒子所满足的动量守恒定律为: 粒子动量的变化率, 等于粒子所受的外力:
+<span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} (mv) = f
+\]</span> 将粒子换成物质团 <span class="math inline">\(B\)</span>,
+就得到 <span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho v ~\mathrm{d}x = f
+\]</span> 对上式左端应用质量守恒简化后的输运定理 (3) : <span
+class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho v ~\mathrm{d}x = \int_{V}
+\rho a ~\mathrm{d}x
+\]</span> 在当前构型下, 选取与 <span class="math inline">\(B\)</span>
+重合的控制体 <span class="math inline">\(V\)</span>,
+外力可以表示为两部分: <span class="math inline">\(V\)</span> 内的体力和
+<span class="math inline">\(\partial V\)</span> 上的面力: <span
+class="math display">\[
+f = \int_{V} \rho b ~\mathrm{d}x + \int_{\partial V} \sigma \cdot n
+~\mathrm{d}S
+\]</span> 再应用散度定理, 将面积分转换为体积分, 就得到 <span
+class="math display">\[
+\int_{V} \sigma \cdot \nabla + \rho b - \rho a ~\mathrm{d}V = 0
+\]</span> 又因为 <span class="math inline">\(V\)</span> 的任意性,
+所以得到空间坐标下的动量守恒定律的微分形式 <span class="math display">\[
+\boxed{
+\sigma \cdot \nabla + \rho b - \rho a = 0
+}
+\tag{4}
+\]</span></p>
+<p>如果系统满足平衡方程, 那么加速度 <span
+class="math inline">\(a=0\)</span>, 因此式 (4) 为 <span
+class="math display">\[
+\boxed{
+\sigma \cdot \nabla + \rho b= 0
+}
+\tag{5}
+\]</span></p>
+<h2 id="角动量守恒定律">角动量守恒定律</h2>
+<p>粒子所满足的角动量守恒定律为: 粒子关于坐标系原点 <span
+class="math inline">\(O\)</span> 角动量的变化率, 等于粒子所受的外力矩:
+<span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} (x \times mv) = x \times f
+\]</span> 我们应用分量形式进行推导, 上述方程的左端为 <span
+class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho x \times v ~\mathrm{d}x
+= \int_{V} \rho e_{ijk} \frac{\mathrm{D} (x_j v_k)}{\mathrm{D} t}
+~\mathrm{d}x
+= \int_{V} \underbrace{\rho e_{ijk} v_j v_k}_{=0} + \rho e_{ijk} x_j a_k
+~\mathrm{d}x
+= \int_{V} \rho e_{ijk} x_j a_k ~\mathrm{d}x
+\]</span> 方程的右端为 <span class="math display">\[
+x \times f = \int_{V} \rho e_{ijk} x_j b_k ~\mathrm{d}x
++ \int_{\partial V} e_{ijk} x_j \sigma_{kl} n_{l} ~\mathrm{d}S
+\]</span> 并应用散度定理, 得到 <span class="math display">\[
+\int_{\partial V} e_{ijk} x_j \sigma_{kl} n_{l} ~\mathrm{d}S
+= \int_{V} e_{ijk} (x_j \sigma_{kl})_{,l} ~\mathrm{d}x
+\]</span> 式中的积分项为 <span class="math display">\[
+e_{ijk} (x_j \sigma_{kl})_{,l} = e_{ijk} (\sigma_{kj} + x_{j}
+\sigma_{ki,i})
+\]</span> 代入到角动量守恒方程中, 整理得到 <span class="math display">\[
+\int_{V} e_{ijk} x_j (\rho  a_k - \rho b_k - \sigma_{ki,i}) ~\mathrm{d}x
+= \int_{V} e_{ijk} \sigma_{kj} ~\mathrm{d}x
+\]</span> 根据平衡方程 (4), 上式左端恒等于 0, 所以 <span
+class="math display">\[
+\boxed{
+e_{ijk} \sigma_{kj} = 0 \Rightarrow \sigma_{jk} = \sigma_{kj}
+}
+\tag{6}
+\]</span></p>
+<h2 id="能量守恒定律">能量守恒定律</h2>
+<p>物质的能量由动能 <span class="math inline">\(K\)</span> 和内能 <span
+class="math inline">\(E\)</span> 构成, 定义为 <span
+class="math display">\[
+K \triangleq \frac{1}{2} \int_{B} \rho |v|^2 ~\mathrm{d}x, \quad
+E \triangleq \int_{B} \rho e ~\mathrm{d}x
+\]</span> 式中, <span class="math inline">\(|v|^2 = v \cdot v\)</span>,
+<span class="math inline">\(e\)</span> 为材料内能的质量密度.
+物质团的能量来源有两种: 外力做功与其它形式热量的流入流出.
+因此能量守恒定律就是在陈述这些能量的平衡关系.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>如果我们不能够确定内能 <span class="math inline">\(e\)</span> 或
+<span class="math inline">\(E\)</span> 的形式,
+那么能量守恒定律只能是一个文字的陈述, 或者作为内能的定义.
+能量守恒只有在确定内能形式 (也就是本构) 的时候才有用.</p>
+</blockquote>
+<p>如果考虑外部能量的来源只有热流 <span
+class="math inline">\(h\)</span>, 那么能量守恒定律可以表示为 <span
+class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho \left( \frac{1}{2}|v^2| +
+e \right) ~\mathrm{d}x
+= \int_{V} \rho b \cdot v ~\mathrm{d}x + \int_{\partial V}  (v \cdot
+\sigma - h) \cdot n ~\mathrm{d}S
+\]</span> 对上式左端应用输运定理得到 <span class="math display">\[
+\frac{\mathrm{d}~}{\mathrm{d} t} \int_{B} \rho \left( \frac{1}{2}|v^2| +
+e \right) ~\mathrm{d}x
+= \int_{V} \rho a \cdot v + \rho \dot{e} ~\mathrm{d}x
+\]</span> 再由 <span class="math inline">\(V\)</span> 的任意性,
+得到微分形式的能量守恒定律 <span class="math display">\[
+\rho a \cdot v + \rho \dot{e} = \rho b \cdot v + (v \cdot \sigma) \cdot
+\nabla - h \cdot \nabla
+\]</span> 式中, <span class="math display">\[
+(v \cdot \sigma) \cdot \nabla = (v_{i} \sigma_{ij})_{,j}
+= (\sigma \cdot \nabla) \cdot v + \sigma : v \nabla
+\]</span> 代入得到 <span class="math display">\[
+[\rho a - \rho b - (\sigma \cdot \nabla)] \cdot v
++ \rho \dot{e}
+- \sigma : v \nabla
++ h \cdot \nabla
+=0
+\]</span> 也即 <span class="math display">\[
+\boxed{
+\rho \dot{e} - \sigma : v \nabla+ h \cdot \nabla = 0
+}
+\tag{7}
+\]</span></p>
+<blockquote>
+<p>[!NOTE]</p>
+<h5
+id="不可压缩牛顿流体的能量守恒方程">不可压缩牛顿流体的能量守恒方程</h5>
+<p>流体的本构方程为 <span class="math display">\[
+\sigma = -p I + 2\mu D
+\]</span> 热流满足 Fourier 传热定律: <span class="math display">\[
+h = - \kappa \nabla T
+\]</span> 流体的内能密度只与温度相关 <span class="math display">\[
+e = C_m T
+\]</span> 代入到方程 (7) 中得到 <span class="math display">\[
+\rho C_m \dot{T} + p \nabla \cdot v= 2\mu D : D + \nabla^2 T
+\]</span> 又因为不可压缩性, 所以 <span class="math inline">\(\nabla
+\cdot v \equiv 0\)</span>, 因此 <span class="math display">\[
+\rho C_m \dot{T} = 2\mu D : D + \nabla^2 T
+\]</span></p>
+</blockquote>
+<h2 id="虚功原理">虚功原理</h2>
+<p>考虑满足平衡方程 <span class="math display">\[
+\sigma \cdot \nabla + \rho b = 0
+\]</span> 的应力场 <span class="math inline">\(\sigma\)</span>,
+以及独立的速度场 <span class="math inline">\(v\)</span>,
+和相应的变形率张量 <span class="math display">\[
+D = \frac{1}{2} ( \nabla v + v \nabla )
+\]</span> 需要强调的是, 应力场 <span
+class="math inline">\(\sigma\)</span> 和速度场 <span
+class="math inline">\(v\)</span> 是<strong>相互独立</strong>的,
+没有任何的关联. 在 <span class="math inline">\(V\)</span>
+上对应力和变形率张量的双点积积分得到 <span class="math display">\[
+\int_{V} \sigma : D ~\mathrm{d} x
+= \int_{V} \sigma : v\nabla ~\mathrm{d}x
+= \int_{\partial V} v \cdot \sigma \cdot n ~\mathrm{d}S
++ \int_{V} \rho b \cdot v ~\mathrm{d}x
+\]</span> 注意到 <span class="math inline">\(\sigma \cdot n =
+t^{(n)}\)</span> 为作用在边界 <span class="math inline">\(\partial
+V\)</span> 的面力, 因此 <span class="math display">\[
+\boxed{
+\int_{V} \sigma : D ~\mathrm{d} x
+= \int_{\partial V} t^{(n)} \cdot v ~\mathrm{d}S
++ \int_{V} \rho b \cdot v ~\mathrm{d}x
+}
+\tag{8}
+\]</span></p>
+<blockquote>
+<p>[!NOTE]</p>
+<h5 id="小变形下的虚功原理">小变形下的虚功原理</h5>
+<p>在小变形假设下, <span class="math display">\[
+\delta u = v \delta t, \quad \delta  \varepsilon \triangleq
+\frac{1}{2}(\nabla \delta u + \delta u \nabla) = D \delta  t
+\]</span> 因此, 对式 (8) 两边同乘 <span class="math inline">\(\delta
+t\)</span>, 得到 <span class="math display">\[
+\int_{V} \sigma : \delta \varepsilon ~\mathrm{d} x
+= \int_{\partial V} t^{(n)} \cdot \delta u ~\mathrm{d}S
++ \int_{V} \rho b \cdot \delta u ~\mathrm{d}x
+\]</span></p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AE%88%E6%81%92%E5%AE%9A%E5%BE%8B/" rel="tag"># 守恒定律</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mech/continuum/%E9%80%9F%E5%BA%A6%E6%A2%AF%E5%BA%A6%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%8E%A8%E5%AF%BC/" rel="prev" title="速度梯度及相关推导">
+                  <i class="fa fa-angle-left"></i> 速度梯度及相关推导
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/math/%E8%A1%8C%E5%88%97%E5%BC%8F/" rel="next" title="行列式相关的概念">
+                  行列式相关的概念 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qiu Xiaohuo</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

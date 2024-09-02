@@ -152,18 +152,18 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">70</span>
+          <span class="site-state-item-count">77</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
           <a href="/categories/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">10</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">87</span>
+        <span class="site-state-item-count">98</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -200,7 +200,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E5%BA%94%E5%8A%9B%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/constitutive/%E5%BC%B9%E6%80%A7%E6%9C%89%E9%99%90%E5%8F%98%E5%BD%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -218,7 +218,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/mech/%E5%BA%94%E5%8A%9B%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">应力的定义方式</a>
+          <a href="/mech/constitutive/%E5%BC%B9%E6%80%A7%E6%9C%89%E9%99%90%E5%8F%98%E5%BD%A2/" class="post-title-link" itemprop="url">弹性有限变形</a>
         </h2>
 
         <div class="post-meta-container">
@@ -230,7 +230,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2024-08-04 15:56:24 / 修改时间：16:36:24" itemprop="dateCreated datePublished" datetime="2024-08-04T15:56:24+08:00">2024-08-04</time>
+      <time title="创建时间：2024-09-02 10:02:00 / 修改时间：14:45:18" itemprop="dateCreated datePublished" datetime="2024-09-02T10:02:00+08:00">2024-09-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -238,7 +238,7 @@
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E6%9C%AC%E6%9E%84%E7%90%86%E8%AE%BA/" itemprop="url" rel="index"><span itemprop="name">本构理论</span></a>
         </span>
     </span>
 
@@ -252,7 +252,544 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>写这篇文章是在看 Spencer 的连续介质力学书, 其中的应力定义为 <span
+          <h2 id="弹性有限变形的一般本构方程">弹性有限变形的一般本构方程</h2>
+<p>在本节推导中假设如下:</p>
+<ol type="1">
+<li><p>材料在参考构型中的内能体积密度 <span class="math inline">\(W =
+\rho_0 e\)</span> 可以表示为变形梯度的函数, <span
+class="math inline">\(W= W(F)\)</span>;</p></li>
+<li><p>不考虑材料与外部的热交换, 因此能量守恒定律表述为</p>
+<p><span class="math display">\[
+\begin{equation}
+\frac{\mathrm{D} W}{\mathrm{D} t} = J \sigma : v \nabla
+\label{eq:energy_conservation}
+\end{equation}
+\]</span></p></li>
+</ol>
+<p>式中, <span class="math inline">\(J \triangleq \det F =
+\rho_0/\rho\)</span>. 上式左端应用链式法则得到 <span
+class="math display">\[
+\begin{equation}
+\frac{\mathrm{D} W}{\mathrm{D} t} = \frac{\partial W}{\partial F} :
+\frac{\mathrm{D} F}{\mathrm{D} t}
+= \left( \frac{\partial W}{\partial F} \cdot F^{\top} \right) : v \nabla
+\label{eq:matl_deriv_of_e_density}
+\end{equation}
+\]</span> 对比式 <span
+class="math inline">\(\ref{eq:energy_conservation}\)</span> 与式 <span
+class="math inline">\(\ref{eq:matl_deriv_of_e_density}\)</span>,
+再由速度梯度场的任意性可得等式 <span class="math display">\[
+\sigma = \frac{1}{J} \frac{\partial W}{\partial F} \cdot F^{\top}
+\]</span> 上式从形式看很简单, 但需要确定 <span
+class="math inline">\(W\)</span> 关于变形梯度 <span
+class="math inline">\(F\)</span> <strong>9 个分量</strong>的函数形式.
+因此在实际操作中不可用.
+接下来通过本构的<strong>客观性原理</strong>和<strong>材料的对称性</strong>减少
+<span class="math inline">\(W\)</span> 的函数独立变量数量.</p>
+<h3
+id="客观性原理对内能体积密度函数的简化">客观性原理对内能体积密度函数的简化</h3>
+<p>考虑变形 1 和变形 2, 变形 1 给出变形梯度场 <span
+class="math inline">\(F\)</span>, 变形 2 在变形 1 的基础上作施加旋转场
+<span class="math inline">\(Q\)</span>, 因此变形 2 的变形梯度场为 <span
+class="math display">\[
+F&#39; = Q \cdot F
+\]</span> 经旋转之后, 内能密度在每个物质点 <span
+class="math inline">\(X\)</span> 处应保持不变, 因此有 <span
+class="math display">\[
+W(F) \equiv W(Q \cdot F)
+\]</span> 又因为变形梯度可以通过极分解原理分解为正交张量 <span
+class="math inline">\(R\)</span> 和对称正定张量 <span
+class="math inline">\(U\)</span>, 作变量替换, 得到关于 <span
+class="math inline">\(U\)</span> 的内能密度函数 <span
+class="math inline">\(\widetilde W\)</span> <span
+class="math display">\[
+\widetilde W(U, R) \triangleq W(R \cdot U)
+\]</span> 在任意旋转下 <span class="math inline">\(\widetilde W\)</span>
+保持不变, 所以 <span class="math display">\[
+\widetilde W(U, R) \equiv W(Q \cdot R \cdot U)
+\]</span> 因此总可以选取一个旋转场: <span class="math inline">\(Q \equiv
+R^{-1}\)</span>, 上式转化为 <span class="math display">\[
+\widetilde W(U, R) \equiv W( U)
+\]</span> 因此, 内能密度函数可以表示为关于右伸长张量 <span
+class="math inline">\(U\)</span> 的函数, 并且函数形式与 <span
+class="math inline">\(W(U)\)</span> 相同. 这样就将分量的个数简化为
+<strong>6 个</strong>. 又因为 <span class="math inline">\(U =
+\sqrt{C}\)</span>, 所以 <span class="math display">\[
+\hat{W}(C) = W(\sqrt{C})
+\]</span> 在上述推导中, 为了区分不同的函数表达形式, 使用记号 <span
+class="math inline">\(\widetilde{W}\)</span> 或 <span
+class="math inline">\(\hat{W}\)</span>, 之后则不加区别地使用函数记号
+<span class="math inline">\(W\)</span>.</p>
+<p>如果将内能密度考虑为右 Cauchy-Green 张量 <span
+class="math inline">\(C\)</span> 的函数, 那么 <span
+class="math inline">\(W\)</span> 的物质导数为 <span
+class="math display">\[
+\frac{\mathrm{D} W}{\mathrm{D} t}
+= \left[ F \cdot \left( \frac{\partial W}{\partial C} + \frac{\partial
+W}{\partial C^{\top}} \right) \cdot F^{\top} \right] : v \nabla
+\]</span> 如果 <span class="math inline">\(W\)</span> 可以表示为关于分量
+<span class="math inline">\(C_{IJ}\)</span> 的对称函数, 也即 <span
+class="math inline">\(W(C_{IJ}) \equiv W(C_{JI})\)</span>,
+那么上式又可以化简为 <span class="math display">\[
+\frac{\mathrm{D} W}{\mathrm{D} t}
+= \left( F \cdot 2 \frac{\partial W}{\partial C} \cdot F^{\top} \right)
+: v \nabla
+\]</span> 再比较上式和式 <span
+class="math inline">\(\ref{eq:energy_conservation}\)</span>, 就得到
+<span class="math display">\[
+\begin{equation}
+\boxed{
+\sigma = \frac{1}{J} F \cdot 2 \frac{\partial W}{\partial C} \cdot
+F^{\top}
+}
+\label{eq:sigma_rep_as_psi_to_C}
+\end{equation}
+\]</span></p>
+<blockquote>
+<p>[!NOTE]</p>
+<h5 id="内能密度函数与-pk2-应力的关系">内能密度函数与 PK2
+应力的关系</h5>
+<p>Cauchy 应力与 PK2 应力之间的关系为 <span class="math display">\[
+F \cdot S \cdot F^{\top} = J \sigma \quad
+\]</span> 再根据式 <span
+class="math inline">\(\ref{eq:sigma_rep_as_psi_to_C}\)</span>, 就得到
+<span class="math display">\[
+\boxed{
+S = 2 \frac{\partial W}{\partial C}
+}
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>[!NOTE]</p>
+<h5 id="小变形下的近似">小变形下的近似</h5>
+<p>在小变形下, <span class="math display">\[
+C \sim I + 2 \varepsilon
+\]</span> 因此 <span class="math display">\[
+\frac{\partial W}{\partial \varepsilon} \sim 2 \frac{\partial
+W}{\partial C}
+\]</span> 将式 (4) 展开为位移梯度的函数 <span class="math display">\[
+\sigma \sim \frac{1}{1 + \mathrm{tr}(u\nabla)}
+(I + u \nabla) \cdot \frac{\partial W}{\partial \varepsilon} \cdot (I +
+\nabla u) \\
+\sim \frac{\partial W}{\partial \varepsilon}
++ 2\frac{\partial W}{\partial \varepsilon} \cdot \varepsilon
++ \mathcal{O}(\varepsilon^2)
+\]</span> 忽略掉关于 <span class="math inline">\(\varepsilon\)</span>
+的一阶和二阶项, 得到 <span class="math display">\[
+\boxed{
+\sigma = \frac{\partial W}{\partial \varepsilon}
+}
+\]</span></p>
+</blockquote>
+<h3 id="各向同性对内能密度函数的简化">各向同性对内能密度函数的简化</h3>
+<p>考虑旋转矩阵 <span class="math inline">\(Q\)</span>, 若材料对 <span
+class="math inline">\(Q\)</span> 具有旋转不变性, 那么 <span
+class="math display">\[
+W(C) \equiv W(Q^{\top} \cdot C \cdot Q)
+\]</span> 特别的, 对于<strong>各向同性材料</strong>, <span
+class="math inline">\(Q\)</span> 是任意的, 上式等价于 <span
+class="math inline">\(W\)</span> 在任意坐标变化下形式不变,
+因此内能密度函数 <span class="math inline">\(W\)</span>
+可以写成应变不变量 <span
+class="math inline">\(\ref{eq:invariants_1}\)</span> 的函数: <span
+class="math display">\[
+W = W(\mathscr{I}_1, \mathscr{I}_2, \mathscr{I}_3)
+\]</span> 根据链式法则, <span class="math inline">\(W\)</span> 对右
+Cauchy-Green 张量 <span class="math inline">\(C\)</span> 的导数为 <span
+class="math display">\[
+\frac{\partial W}{\partial \boldsymbol{C}}
+= \frac{\partial W}{\partial \mathscr{I}_1} \frac{\partial
+\mathscr{I}_1}{\partial \boldsymbol{C}}
++ \frac{\partial W}{\partial \mathscr{I}_2} \frac{\partial
+\mathscr{I}_2}{\partial \boldsymbol{C}}
++ \frac{\partial W}{\partial \mathscr{I}_3} \frac{\partial
+\mathscr{I}_3}{\partial \boldsymbol{C}}
+\]</span> 式中, 应变不变量对 <span
+class="math inline">\(\boldsymbol{C}\)</span> 的导数为 <span
+class="math display">\[
+\boxed{
+\frac{\partial \mathscr{I}_1}{\partial \boldsymbol{C}} = \boldsymbol{I},
+\quad
+\frac{\partial \mathscr{I}_2}{\partial \boldsymbol{C}} =
+\mathscr{I}_1\boldsymbol{I} - \boldsymbol{C}, \quad
+\frac{\partial \mathscr{I}_3}{\partial \boldsymbol{C}} =
+\mathscr{I}_3\boldsymbol{C}^{-1}
+}
+\]</span> 代入 <span class="math inline">\(\partial W / \partial
+\boldsymbol{C}\)</span>, <span class="math display">\[
+\frac{\partial W}{\partial \boldsymbol{C}}
+= W_{,1} \boldsymbol{I} + W_{,2} (\mathscr{I}_1\boldsymbol{I} -
+\boldsymbol{C}) + W_{,3}\mathscr{I}_3 \boldsymbol{C}^{-1}
+\]</span> 式中, <span class="math inline">\(W_{,i} = {\partial
+W}/{\partial \mathscr{I}_i}\)</span>. 再根据式 <span
+class="math inline">\(\ref{eq:sigma_rep_as_psi_to_C}\)</span> , 并应用
+<span class="math inline">\(\mathscr{I}_3 = J^2\)</span> ,
+就得到应力的表达式 <span class="math display">\[
+\boldsymbol{\sigma} = \frac{1}{\sqrt{\mathscr{I}_3}} \boldsymbol{F}
+\cdot 2 \left( W_{,1} \boldsymbol{I} + W_{,2}
+(\mathscr{I}_1\boldsymbol{I} - \boldsymbol{C}) + W_{,3}\mathscr{I}_3
+\boldsymbol{C}^{-1} \right) \cdot \boldsymbol{F}^{\top}
+\]</span> 注意到 <span class="math inline">\(\boldsymbol{B}\)</span> 与
+<span class="math inline">\(\boldsymbol{C}\)</span> 之间的关系满足 <span
+class="math display">\[
+\boldsymbol{F} \cdot \boldsymbol{C}^{n} \cdot \boldsymbol{F}^{\top}
+= \boldsymbol{F} \cdot ( \boldsymbol{F}^{\top} \cdot \boldsymbol{F}
+\cdot \boldsymbol{F}^{\top} \cdots \boldsymbol{F}^{\top} \cdot
+\boldsymbol{F} ) \cdot \boldsymbol{F}^{\top}
+= \boldsymbol{B}^{n+1}, \quad n \in \mathbb{Z}
+\]</span> 所以应力 <span class="math inline">\(\sigma\)</span>
+又可以写作关于 <span class="math inline">\(B\)</span> 的形式 <span
+class="math display">\[
+\boxed{
+\boldsymbol{\sigma} = \frac{1}{\sqrt{\mathscr{I}_3}} 2 \left(
+W_{,3}\mathscr{I}_3 I
++(W_{,1} + W_{,2} \mathscr{I}_1) B
+- W_{,2} B^2 \right)
+}
+\]</span> 根据 Cayley-Hamilton 定理, 得到关于 <span
+class="math inline">\(B\)</span> 的代数恒等式 <span
+class="math display">\[
+\boldsymbol{B}^2 \equiv \mathscr{I}_1 \boldsymbol{B} - \mathscr{I}_2
+\boldsymbol{I} + \mathscr{I}_3 \boldsymbol{B}^{-1}
+\]</span> 代回之前用 <span class="math inline">\(\boldsymbol{B}\)</span>
+表示的应力表达式中, 得到使用 <span class="math inline">\(\{
+\boldsymbol{B}^{-1}, \boldsymbol{B} \}\)</span> 表示的应力 <span
+class="math display">\[
+\boxed{
+\boldsymbol{\sigma} = \frac{1}{\sqrt{\mathscr{I}_3}} 2 \left(
+W_{,1} \boldsymbol{B}
++ (W_{,2} \mathscr{I}_2 + W_{,3}\mathscr{I}_3) \boldsymbol{I}
+- W_{,2} \mathscr{I}_3 \boldsymbol{B}^{-1} \right)
+}
+\]</span></p>
+<blockquote>
+<p>[!TIP]</p>
+<h5 id="使用-barmathscri_1-barmathscri_2-j-表示各向同性弹性材料">使用
+<span class="math inline">\(\{\bar{\mathscr{I}}_1, \bar{\mathscr{I}}_2,
+J \}\)</span> 表示各向同性弹性材料</h5>
+<p>通过链式法则, 可以得到 <span class="math display">\[
+\begin{equation}
+\boxed{
+\boldsymbol{\sigma} = \frac{2}{J} \left[
+\frac{1}{J^{2/3}} \left( W_{,1} + \bar{\mathscr{I}}_1 W_{,2} \right)
+\boldsymbol{B}
+- \frac{1}{3} (\bar{\mathscr{I}}_1 W_{,1} + 2\bar{\mathscr{I}}_2 W_{,2})
+\boldsymbol{I}
+- \frac{1}{J^{4/3}} W_{,2} \boldsymbol{B}^2
+\right]
++ W_{,3} \boldsymbol{I}
+}
+\label{eq:cons_rep_as_B_inva_3}
+\end{equation}
+\]</span></p>
+</blockquote>
+<h3 id="考虑材料不可压缩的情况">考虑材料不可压缩的情况</h3>
+<p>当材料不可压缩时 <span class="math display">\[
+\mathscr{I}_3 \equiv 1
+\]</span> 对于不可压缩情况, 不可以直接令 <span
+class="math inline">\(\mathscr{I}_3 = 1\)</span>, 因为这会导致式中函数
+<span class="math inline">\(W\)</span> 导数项爆破. 使用 Lagrange
+乘子将不可压缩的特性考虑进去: <span class="math display">\[
+\widetilde W = W(\mathscr{I}_1, \mathscr{I}_2) - \frac{1}{2}p
+(\mathscr{I}_3 -1)
+\]</span></p>
+<p><span class="math display">\[
+\sigma
+= - pI
++ (2W_{,1} + 2W_{,2}\mathscr{I}_1) B
+- 2W_{,2} B^2
+\]</span></p>
+<p><em>动力学约束中, <span class="math inline">\(p\)</span>
+只能通过平衡方程求解, 无法通过本构关系得到</em></p>
+<h2 id="一些超弹本构">一些超弹本构</h2>
+<h3 id="hypoelasticity-材料">Hypoelasticity 材料</h3>
+<p>在绝大多数情况下, 只有当材料受剪时才会表现出非线性的响应 (与 <span
+class="math inline">\(\mathscr{I}&#39;_2\)</span> 相关),
+同时应力与体积变化呈线性关系 (与 <span
+class="math inline">\(\mathscr{I}_1\)</span> 相关).
+一种定义内能密度函数的方式为 <span class="math display">\[
+W(\mathscr{I}_1, \mathscr{I}&#39;_2)
+= \frac{1}{6} K \mathscr{I}_1^2 + \frac{2n \sigma_0 \varepsilon_0}{n+1}
+\left( \frac{\mathscr{I}&#39;_2}{\varepsilon_0^2} \right)^{(n+1)/2n}
+\]</span> 对应变 <span class="math inline">\(\varepsilon\)</span>
+求导数得到 <span class="math display">\[
+\boldsymbol{\sigma} = \frac{ \partial W }{ \partial \varepsilon}
+= \frac{1}{3}K \mathscr{I}_1 \mathbf{I}
++ \sigma_0 \left( \frac{\mathscr{I}&#39;_2}{\varepsilon_0^2}
+\right)^{(1-n)/2n}
+\frac{\boldsymbol{\varepsilon}&#39;}{\varepsilon_0}
+\]</span> 或者表示成关于应力的表达式: <span class="math display">\[
+\boldsymbol{\varepsilon} = \frac{1}{3K} \mathscr{J}_1 \mathbf{I}
++ \varepsilon_0 \left( \frac{\mathscr{J}_2}{\sigma_0^2}
+\right)^{(n-1)/2} \frac{\boldsymbol{\sigma}&#39;}{\sigma_0}
+\]</span> 式中, <span class="math inline">\(\mathscr{J}_1\)</span>,
+<span class="math inline">\(\mathscr{J}_2\)</span>
+为应力的第一和第二不变量: <span class="math display">\[
+\mathscr{J}_1 \triangleq \mathrm{tr}~\sigma, \quad
+\mathscr{J}_2 \triangleq \frac{1}{2}
+\left( \mathrm{tr}~ \sigma^2
+- \frac{1}{3}(\mathrm{tr}~\sigma)^2 \right)
+\]</span> 由此可以得到以下三种工况的应力应变关系:</p>
+<ol type="1">
+<li><p>单轴拉伸. 应力分量为 <span
+class="math inline">\(\sigma_1\)</span>. 此时没有剪切变形, 应变分量为
+<span class="math display">\[
+\varepsilon_{11} = \frac{1}{3K} \sigma_1
++ \frac{2 \varepsilon_0}{\sqrt{3}} \left( \frac{\sigma_1}{\sqrt{3}
+\sigma} \right)^{n}
+\]</span></p></li>
+<li><p>承受静水压力 <span class="math inline">\(-p\)</span>. 此时 <span
+class="math inline">\(\mathscr{J}_2 = 0\)</span>, 因此变形为 <span
+class="math display">\[
+\boldsymbol{\varepsilon} = -\frac{p}{K} \mathbf{I}
+\]</span></p></li>
+<li><p>承受剪切力 <span class="math inline">\(\tau\)</span>.
+此时应变只有对应剪应力分量处非零, 并满足幂形式: <span
+class="math display">\[
+\varepsilon = \varepsilon_0 \left( \frac{\tau}{\sigma_0} \right)^n
+\]</span></p></li>
+</ol>
+<h3 id="neo-hookean-材料">Neo-Hookean 材料</h3>
+<p>内能密度函数为 <span class="math display">\[
+\boxed{
+W(\bar{\mathscr{I}}_1, J)
+= \frac{1}{2} \mu (\bar{\mathscr{I}}_1 - 3)
++ \frac{1}{2} K (J - 1)^2
+}
+\]</span></p>
+<p>式中, <span class="math inline">\(\mu\)</span> 和 <span
+class="math inline">\(K\)</span> 为材料参数,
+在小变形的情况下分别对应剪切和 bulk 模量. 对于近不可压缩材料, <span
+class="math inline">\(K \gg \mu\)</span>. 将 <span
+class="math inline">\(W\)</span> 对不变量的导数带入到式 <span
+class="math inline">\(\ref{eq:cons_rep_as_B_inva_3}\)</span> 中得到
+<span class="math display">\[
+\boxed{
+\boldsymbol{\sigma}
+= \frac{\mu}{J^{5/3}} ~\mathrm{dev}\boldsymbol{B}
++  K(J-1)\boldsymbol{I}
+}
+\]</span></p>
+<h3 id="mooney-rivlin-材料">Mooney-Rivlin 材料</h3>
+<p>内能密度函数为 <span class="math display">\[
+\boxed{
+W(\bar{\mathscr{I}}_1, \bar{\mathscr{I}}_2, J)
+= \frac{1}{2} \mu_1 (\bar{\mathscr{I}}_1 - 3)
++ \frac{1}{2} \mu_2 (\bar{\mathscr{I}}_2 - 3)
++ \frac{1}{2} K (J - 1)^2
+}
+\]</span> 式中, <span class="math inline">\(\mu_1\)</span>, <span
+class="math inline">\(\mu_2\)</span> 和 <span
+class="math inline">\(K\)</span> 为材料参数, 对于近不可压缩材料, <span
+class="math inline">\(K \gg \mu_1 , \mu_2\)</span>. 应力应变关系为 <span
+class="math display">\[
+\boxed{
+\boldsymbol{\sigma}
+= \frac{\mu_1}{J^{5/3}} ~\mathrm{dev}\boldsymbol{B}
++ \frac{\mu_2}{J^{7/3}} \left(
+\mathscr{I}_1 \boldsymbol{B}
+- \frac{2}{3} \mathscr{I}_2 \boldsymbol{I}
+- \boldsymbol{B}^2
+\right)
++ K(J-1)\boldsymbol{I}
+}
+\]</span></p>
+<h2 id="附录-应变的不变量">附录: 应变的不变量</h2>
+<p>我们使用右 Cauchy-Green 张量 <span class="math inline">\(C\)</span>
+的不变量定义应变的不变量 <span class="math display">\[
+\begin{equation}
+\begin{gathered}
+\mathscr{I}_1 = \mathrm{tr}~C \\
+\mathscr{I}_2 = \frac{1}{2} \left( (\mathrm{tr}~C)^2 - \mathrm{tr}~C^2
+\right) \\
+\mathscr{I}_3 = \det C
+\label{eq:invariants_1}
+\end{gathered}
+\end{equation}
+\]</span> 如果定义 <span class="math inline">\(C\)</span> 的特征值为
+<span class="math inline">\(\lambda_1^2\)</span>, <span
+class="math inline">\(\lambda_2^2\)</span>, <span
+class="math inline">\(\lambda_3^2\)</span>,
+那么上述应变不变量又可以表述为 <span class="math display">\[
+\mathscr{I}_1 = \lambda_1^2 + \lambda_2^2 + \lambda_3^2 \\
+\mathscr{I}_2 = \lambda_1^2 \lambda_2^2 + \lambda_1^2 \lambda_3^2 +
+\lambda_1^2 \lambda_3^2 \\
+\mathscr{I}_3 = \lambda_1^2 \lambda_2^2\lambda_3^2
+\]</span></p>
+<p>注意到 <span class="math inline">\(C\)</span> 的不变量与左
+Cauchy-Green 张量 <span class="math inline">\(B\)</span> 相同, 因此式
+(0) 中将 <span class="math inline">\(C\)</span> 替换为 <span
+class="math inline">\(B\)</span> 同样成立.</p>
+<p>Cayley-Hamilton 定理给出关于 <span class="math inline">\(C\)</span>
+<span class="math inline">\(B\)</span> 以及不变量作为系数的恒等式: <span
+class="math display">\[
+C^3 - \mathscr{I}_1 C^2 + \mathscr{I}_2 C - \mathscr{I}_3 I = 0 \\
+B^3 - \mathscr{I}_1 B^2 + \mathscr{I}_2 B - \mathscr{I}_3 I = 0
+\]</span></p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>如果考虑仿射量 <span class="math inline">\(A\)</span> 的 deviatoric
+部分: <span class="math display">\[
+A&#39; = A - \frac{1}{3} (\mathrm{tr}A)~ I
+\]</span> <span class="math inline">\(A&#39;\)</span> 的不变量定义与式
+(0) 一致, 那么 <span class="math display">\[
+\begin{equation}
+\begin{gathered}
+\mathscr{I}&#39;_1 = \mathrm{tr}A&#39; = 0 \\
+\mathscr{I}&#39;_2 = \frac{1}{2} \left( (\mathrm{tr}A&#39;)^2 -
+\mathrm{tr}A&#39;^2 \right) \\
+\mathscr{I}&#39;_3 = \det A&#39;
+\end{gathered}
+\label{eq:invariants_2}
+\end{equation}
+\]</span> 不变量 <span class="math inline">\((\mathscr{I}&#39;_1,
+\mathscr{I}&#39;_2, \mathscr{I}&#39;_3)\)</span> 也可以通过 <span
+class="math inline">\((\mathscr{I}_1, \mathscr{I}_2,
+\mathscr{I}_3)\)</span> 表示, 或者 <span
+class="math inline">\((\mathrm{tr}A, \mathrm{tr}A^2,
+\mathrm{tr}A^3)\)</span> 表示. 例如, <span
+class="math inline">\(A&#39;\)</span> 的第二不变量可以表示为 <span
+class="math display">\[
+\mathscr{I}&#39;_2 = \frac{1}{2} \left( (\mathrm{tr}A&#39;)^2 -
+\mathrm{tr}A&#39;^2 \right)
+= -\frac{1}{2}
+\mathrm{tr}\left( A^2 - \frac{2}{3} (\mathrm{tr}A)~ A + \frac{1}{9}
+(\mathrm{tr}A)^2~ I \right)
+= -\frac{1}{2} \mathrm{tr}A^2 + \frac{1}{6} (\mathrm{tr}A)^2
+= \mathscr{I}_2 -\frac{1}{3} \mathscr{I}_1^2
+\]</span> 可以证明, 上述定义的 <span
+class="math inline">\(\mathscr{I}&#39;_2\)</span> 总是负值, 如果 <span
+class="math inline">\(A\)</span> 的特征值总是大于 0. 因此我们重定义
+<span class="math inline">\(\mathscr{I}&#39;_2\)</span> 为原来的负数,
+使得它总是大于 0: <span class="math display">\[
+\mathscr{I}&#39;_2 := -\mathscr{I}&#39;_2 &gt; 0
+\]</span></p>
+</blockquote>
+<blockquote>
+<p>[!NOTE]</p>
+<h5
+id="应用于近不可压缩情况下的应变不变量">应用于近不可压缩情况下的应变不变量</h5>
+<p><span class="math display">\[
+\begin{equation}
+\begin{aligned}
+\bar{\mathscr{I}}_1 &amp;= \frac{\mathscr{I}_1}{J^{2/3}}, \\
+\bar{\mathscr{I}}_2 &amp;= \frac{\mathscr{I}_2}{J^{4/3}}, \\
+J &amp;= \sqrt{\mathscr{I}_3}
+\end{aligned}
+\label{eq:invariants_3}
+\end{equation}
+\]</span></p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/continuum/%E5%BA%94%E5%8A%9B%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mech/continuum/%E5%BA%94%E5%8A%9B%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F/" class="post-title-link" itemprop="url">应力度量</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-08-04 15:56:24" itemprop="dateCreated datePublished" datetime="2024-08-04T15:56:24+08:00">2024-08-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-02 14:48:20" itemprop="dateModified" datetime="2024-09-02T14:48:20+08:00">2024-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%BF%9E%E7%BB%AD%E4%BB%8B%E8%B4%A8%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">连续介质力学</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="pull-back-和-push-forword-操作">Pull-back 和 push-forword
+操作</h2>
+<p>变形梯度不仅将参考构型中的微元 <span
+class="math inline">\(\mathrm{d}X\)</span> 映射为当前构型中的微元 <span
+class="math inline">\(\mathrm{d}x\)</span>, 同时作为两点张量,
+还将物质形式的物理量映射到空间形式的物理量. 因此, 对于空间向量 <span
+class="math inline">\(v_{i}(x,t)\)</span>, 我们可以从数学的意义上,
+将该变量 pull back 到物质坐标表示的物质形式的向量 <span
+class="math inline">\(V_I(X,t)\)</span>: <span class="math display">\[
+V_I(X,t) \triangleq F_{Ii}^{-1} v_{i}(\varphi(X,t), t)
+\]</span> 类似的, 也可以将用物质形式的向量 <span
+class="math inline">\(G_{I}\)</span>, push forward 到空间形式的向量
+<span class="math inline">\(g_i\)</span>: <span class="math display">\[
+g_i(x,t) \triangleq F_{iI} G_{I}(\varphi^{-1}(x,t), t)
+\]</span> 如果使用变形梯度作为对向量前推后拉的操作运算, 那么除了使用
+<span class="math inline">\(F_{iI}\)</span>, <span
+class="math inline">\(F_{Ii}^{-1}\)</span> 之外,
+还可以使用变形梯度的转置 <span
+class="math inline">\(F_{iI}^{-\top}\)</span>, <span
+class="math inline">\(F_{Ii}^{\top}\)</span>. 对每一个指标, 有两种前推
+<span class="math inline">\(\{ F_{iI}, F_{iI}^{-\top} \}\)</span> 后拉
+<span class="math inline">\(\{ F_{Ii}^{-1}, F_{Ii}^{T} \}\)</span>
+的方式. 因此, 如果推广到对二阶张量的前推后拉操作,
+每种运算有四种方式.</p>
+<h2 id="cauchy-应力的定义">Cauchy 应力的定义</h2>
+<p>在 Spencer 的连续介质力学书中, Cauchy 应力定义为 <span
 class="math display">\[
 t^{(i)} = \sigma_{ij} e_{j}, \quad \mathrm{or} \quad \sigma_{ij}
 \triangleq t^{(i)} \cdot e_{j}
@@ -265,7 +802,7 @@ t^{(i)} = \sigma_{ij} e_{j}, \quad \mathrm{or} \quad \sigma_{ij}
 \]</span>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/mech/%E5%BA%94%E5%8A%9B%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F/#more" rel="contents">
+              <a class="btn" href="/mech/continuum/%E5%BA%94%E5%8A%9B%E7%9A%84%E5%AE%9A%E4%B9%89%E6%96%B9%E5%BC%8F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -296,7 +833,7 @@ t^{(i)} = \sigma_{ij} e_{j}, \quad \mathrm{or} \quad \sigma_{ij}
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E7%89%A9%E8%B4%A8%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/continuum/%E7%89%A9%E8%B4%A8%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -314,7 +851,7 @@ t^{(i)} = \sigma_{ij} e_{j}, \quad \mathrm{or} \quad \sigma_{ij}
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/mech/%E7%89%A9%E8%B4%A8%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/" class="post-title-link" itemprop="url">物质坐标下的守恒方程</a>
+          <a href="/mech/continuum/%E7%89%A9%E8%B4%A8%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/" class="post-title-link" itemprop="url">物质坐标下的守恒方程</a>
         </h2>
 
         <div class="post-meta-container">
@@ -324,9 +861,15 @@ t^{(i)} = \sigma_{ij} e_{j}, \quad \mathrm{or} \quad \sigma_{ij}
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-08-04 11:07:59 / 修改时间：16:36:17" itemprop="dateCreated datePublished" datetime="2024-08-04T11:07:59+08:00">2024-08-04</time>
+      <time title="创建时间：2024-08-04 11:07:59" itemprop="dateCreated datePublished" datetime="2024-08-04T11:07:59+08:00">2024-08-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-02 14:48:28" itemprop="dateModified" datetime="2024-09-02T14:48:28+08:00">2024-09-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -334,7 +877,7 @@ t^{(i)} = \sigma_{ij} e_{j}, \quad \mathrm{or} \quad \sigma_{ij}
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E8%BF%9E%E7%BB%AD%E4%BB%8B%E8%B4%A8%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">连续介质力学</span></a>
         </span>
     </span>
 
@@ -355,7 +898,7 @@ t^{(i)} = \sigma_{ij} e_{j}, \quad \mathrm{or} \quad \sigma_{ij}
 得到物质坐标下的守恒方程.
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/mech/%E7%89%A9%E8%B4%A8%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/#more" rel="contents">
+              <a class="btn" href="/mech/continuum/%E7%89%A9%E8%B4%A8%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -414,9 +957,15 @@ t^{(i)} = \sigma_{ij} e_{j}, \quad \mathrm{or} \quad \sigma_{ij}
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-08-03 11:02:02 / 修改时间：11:00:39" itemprop="dateCreated datePublished" datetime="2024-08-03T11:02:02+08:00">2024-08-03</time>
+      <time title="创建时间：2024-08-03 11:02:02" itemprop="dateCreated datePublished" datetime="2024-08-03T11:02:02+08:00">2024-08-03</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-08-17 11:03:17" itemprop="dateModified" datetime="2024-08-17T11:03:17+08:00">2024-08-17</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -484,7 +1033,7 @@ class="math display">\[
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/continuum/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -502,7 +1051,7 @@ class="math display">\[
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/mech/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/" class="post-title-link" itemprop="url">空间坐标下的守恒方程</a>
+          <a href="/mech/continuum/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/" class="post-title-link" itemprop="url">空间坐标下的守恒方程</a>
         </h2>
 
         <div class="post-meta-container">
@@ -520,7 +1069,7 @@ class="math display">\[
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-04 16:36:12" itemprop="dateModified" datetime="2024-08-04T16:36:12+08:00">2024-08-04</time>
+      <time title="修改时间：2024-09-02 14:48:37" itemprop="dateModified" datetime="2024-09-02T14:48:37+08:00">2024-09-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -528,7 +1077,7 @@ class="math display">\[
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E8%BF%9E%E7%BB%AD%E4%BB%8B%E8%B4%A8%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">连续介质力学</span></a>
         </span>
     </span>
 
@@ -558,7 +1107,7 @@ m_{V}(t + \delta t) = m_{V}(t) - \mathrm{d} m
 \]</span>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/mech/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/#more" rel="contents">
+              <a class="btn" href="/mech/continuum/%E7%A9%BA%E9%97%B4%E5%9D%90%E6%A0%87%E4%B8%8B%E7%9A%84%E5%AE%88%E6%81%92%E6%96%B9%E7%A8%8B/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -589,7 +1138,7 @@ m_{V}(t + \delta t) = m_{V}(t) - \mathrm{d} m
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E9%80%9F%E5%BA%A6%E6%A2%AF%E5%BA%A6%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%8E%A8%E5%AF%BC/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/continuum/%E9%80%9F%E5%BA%A6%E6%A2%AF%E5%BA%A6%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%8E%A8%E5%AF%BC/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -607,7 +1156,7 @@ m_{V}(t + \delta t) = m_{V}(t) - \mathrm{d} m
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/mech/%E9%80%9F%E5%BA%A6%E6%A2%AF%E5%BA%A6%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%8E%A8%E5%AF%BC/" class="post-title-link" itemprop="url">速度梯度及相关推导</a>
+          <a href="/mech/continuum/%E9%80%9F%E5%BA%A6%E6%A2%AF%E5%BA%A6%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%8E%A8%E5%AF%BC/" class="post-title-link" itemprop="url">速度梯度及相关推导</a>
         </h2>
 
         <div class="post-meta-container">
@@ -625,7 +1174,7 @@ m_{V}(t + \delta t) = m_{V}(t) - \mathrm{d} m
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-03 11:02:29" itemprop="dateModified" datetime="2024-08-03T11:02:29+08:00">2024-08-03</time>
+      <time title="修改时间：2024-09-02 14:48:50" itemprop="dateModified" datetime="2024-09-02T14:48:50+08:00">2024-09-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -633,7 +1182,7 @@ m_{V}(t + \delta t) = m_{V}(t) - \mathrm{d} m
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E8%BF%9E%E7%BB%AD%E4%BB%8B%E8%B4%A8%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">连续介质力学</span></a>
         </span>
     </span>
 
@@ -659,7 +1208,7 @@ m_{V}(t + \delta t) = m_{V}(t) - \mathrm{d} m
 \]</span>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/mech/%E9%80%9F%E5%BA%A6%E6%A2%AF%E5%BA%A6%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%8E%A8%E5%AF%BC/#more" rel="contents">
+              <a class="btn" href="/mech/continuum/%E9%80%9F%E5%BA%A6%E6%A2%AF%E5%BA%A6%E5%8F%8A%E7%9B%B8%E5%85%B3%E6%8E%A8%E5%AF%BC/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -690,7 +1239,7 @@ m_{V}(t + \delta t) = m_{V}(t) - \mathrm{d} m
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E4%BB%8E%E4%B8%80%E8%88%AC%E7%9A%84%E5%BA%94%E5%8F%98%E5%BC%A0%E9%87%8F%E5%88%B0%E5%B0%8F%E5%8F%98%E5%BD%A2%E5%92%8C%E5%B0%8F%E8%BD%AC%E5%8A%A8/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/continuum/%E4%BB%8E%E4%B8%80%E8%88%AC%E7%9A%84%E5%BA%94%E5%8F%98%E5%BC%A0%E9%87%8F%E5%88%B0%E5%B0%8F%E5%8F%98%E5%BD%A2%E5%92%8C%E5%B0%8F%E8%BD%AC%E5%8A%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -708,7 +1257,7 @@ m_{V}(t + \delta t) = m_{V}(t) - \mathrm{d} m
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/mech/%E4%BB%8E%E4%B8%80%E8%88%AC%E7%9A%84%E5%BA%94%E5%8F%98%E5%BC%A0%E9%87%8F%E5%88%B0%E5%B0%8F%E5%8F%98%E5%BD%A2%E5%92%8C%E5%B0%8F%E8%BD%AC%E5%8A%A8/" class="post-title-link" itemprop="url">从一般的应变张量到小变形和小转动</a>
+          <a href="/mech/continuum/%E4%BB%8E%E4%B8%80%E8%88%AC%E7%9A%84%E5%BA%94%E5%8F%98%E5%BC%A0%E9%87%8F%E5%88%B0%E5%B0%8F%E5%8F%98%E5%BD%A2%E5%92%8C%E5%B0%8F%E8%BD%AC%E5%8A%A8/" class="post-title-link" itemprop="url">从一般的应变张量到小变形和小转动</a>
         </h2>
 
         <div class="post-meta-container">
@@ -726,7 +1275,7 @@ m_{V}(t + \delta t) = m_{V}(t) - \mathrm{d} m
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-03 11:02:17" itemprop="dateModified" datetime="2024-08-03T11:02:17+08:00">2024-08-03</time>
+      <time title="修改时间：2024-09-02 14:48:57" itemprop="dateModified" datetime="2024-09-02T14:48:57+08:00">2024-09-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -734,7 +1283,7 @@ m_{V}(t + \delta t) = m_{V}(t) - \mathrm{d} m
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E8%BF%9E%E7%BB%AD%E4%BB%8B%E8%B4%A8%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">连续介质力学</span></a>
         </span>
     </span>
 
@@ -762,7 +1311,7 @@ F_{Ii}^{-1} = \frac{\partial X_I}{\partial x_i}
 \]</span>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/mech/%E4%BB%8E%E4%B8%80%E8%88%AC%E7%9A%84%E5%BA%94%E5%8F%98%E5%BC%A0%E9%87%8F%E5%88%B0%E5%B0%8F%E5%8F%98%E5%BD%A2%E5%92%8C%E5%B0%8F%E8%BD%AC%E5%8A%A8/#more" rel="contents">
+              <a class="btn" href="/mech/continuum/%E4%BB%8E%E4%B8%80%E8%88%AC%E7%9A%84%E5%BA%94%E5%8F%98%E5%BC%A0%E9%87%8F%E5%88%B0%E5%B0%8F%E5%8F%98%E5%BD%A2%E5%92%8C%E5%B0%8F%E8%BD%AC%E5%8A%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -793,7 +1342,7 @@ F_{Ii}^{-1} = \frac{\partial X_I}{\partial x_i}
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E5%BC%A0%E9%87%8F%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/continuum/%E5%BC%A0%E9%87%8F%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -811,7 +1360,7 @@ F_{Ii}^{-1} = \frac{\partial X_I}{\partial x_i}
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/mech/%E5%BC%A0%E9%87%8F%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/" class="post-title-link" itemprop="url">张量定义及坐标变换</a>
+          <a href="/mech/continuum/%E5%BC%A0%E9%87%8F%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/" class="post-title-link" itemprop="url">张量定义及坐标变换</a>
         </h2>
 
         <div class="post-meta-container">
@@ -829,7 +1378,7 @@ F_{Ii}^{-1} = \frac{\partial X_I}{\partial x_i}
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-03 11:02:07" itemprop="dateModified" datetime="2024-08-03T11:02:07+08:00">2024-08-03</time>
+      <time title="修改时间：2024-09-02 14:48:31" itemprop="dateModified" datetime="2024-09-02T14:48:31+08:00">2024-09-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -837,7 +1386,7 @@ F_{Ii}^{-1} = \frac{\partial X_I}{\partial x_i}
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E8%BF%9E%E7%BB%AD%E4%BB%8B%E8%B4%A8%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">连续介质力学</span></a>
         </span>
     </span>
 
@@ -876,7 +1425,7 @@ class="math inline">\(\mathbb{F}^n\)</span></li>
 </blockquote>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/mech/%E5%BC%A0%E9%87%8F%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/#more" rel="contents">
+              <a class="btn" href="/mech/continuum/%E5%BC%A0%E9%87%8F%E5%AE%9A%E4%B9%89%E5%8F%8A%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -907,7 +1456,7 @@ class="math inline">\(\mathbb{F}^n\)</span></li>
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/continuum/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -925,7 +1474,7 @@ class="math inline">\(\mathbb{F}^n\)</span></li>
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/mech/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">张量场的积分定理</a>
+          <a href="/mech/continuum/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/" class="post-title-link" itemprop="url">张量场的积分定理</a>
         </h2>
 
         <div class="post-meta-container">
@@ -943,7 +1492,7 @@ class="math inline">\(\mathbb{F}^n\)</span></li>
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-04 15:35:59" itemprop="dateModified" datetime="2024-08-04T15:35:59+08:00">2024-08-04</time>
+      <time title="修改时间：2024-09-02 14:48:43" itemprop="dateModified" datetime="2024-09-02T14:48:43+08:00">2024-09-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -951,7 +1500,7 @@ class="math inline">\(\mathbb{F}^n\)</span></li>
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
+          <a href="/categories/%E8%BF%9E%E7%BB%AD%E4%BB%8B%E8%B4%A8%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">连续介质力学</span></a>
         </span>
     </span>
 
@@ -990,7 +1539,7 @@ v_1 &amp; v_2 &amp; v_3
 \]</span>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/mech/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/#more" rel="contents">
+              <a class="btn" href="/mech/continuum/%E5%BC%A0%E9%87%8F%E5%9C%BA%E7%9A%84%E7%A7%AF%E5%88%86%E5%AE%9A%E7%90%86/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1021,7 +1570,7 @@ v_1 &amp; v_2 &amp; v_3
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/%E5%BA%94%E5%8F%98%E9%9B%86%E4%B8%AD%E5%BC%A0%E9%87%8F/">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/multiscale/%E5%BA%94%E5%8F%98%E9%9B%86%E4%B8%AD%E5%BC%A0%E9%87%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
@@ -1039,7 +1588,7 @@ v_1 &amp; v_2 &amp; v_3
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/mech/%E5%BA%94%E5%8F%98%E9%9B%86%E4%B8%AD%E5%BC%A0%E9%87%8F/" class="post-title-link" itemprop="url">应变集中张量</a>
+          <a href="/mech/multiscale/%E5%BA%94%E5%8F%98%E9%9B%86%E4%B8%AD%E5%BC%A0%E9%87%8F/" class="post-title-link" itemprop="url">应变集中张量</a>
         </h2>
 
         <div class="post-meta-container">
@@ -1057,7 +1606,7 @@ v_1 &amp; v_2 &amp; v_3
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-03 11:01:25" itemprop="dateModified" datetime="2024-08-03T11:01:25+08:00">2024-08-03</time>
+      <time title="修改时间：2024-09-02 14:49:05" itemprop="dateModified" datetime="2024-09-02T14:49:05+08:00">2024-09-02</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1065,7 +1614,7 @@ v_1 &amp; v_2 &amp; v_3
       </span>
       <span class="post-meta-item-text">分类于</span>
         <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%8A%9B%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">力学</span></a>
+          <a href="/categories/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" itemprop="url" rel="index"><span itemprop="name">多尺度</span></a>
         </span>
     </span>
 
@@ -1106,12 +1655,398 @@ class="math display">\[
 <h2 id="应变集中张量的定义">
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/mech/%E5%BA%94%E5%8F%98%E9%9B%86%E4%B8%AD%E5%BC%A0%E9%87%8F/#more" rel="contents">
+              <a class="btn" href="/mech/multiscale/%E5%BA%94%E5%8F%98%E9%9B%86%E4%B8%AD%E5%BC%A0%E9%87%8F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/fem/%E6%9C%89%E9%99%90%E5%85%83%E4%B8%AD%E7%9A%84%E8%83%BD%E9%87%8F%E5%8E%9F%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mech/fem/%E6%9C%89%E9%99%90%E5%85%83%E4%B8%AD%E7%9A%84%E8%83%BD%E9%87%8F%E5%8E%9F%E7%90%86/" class="post-title-link" itemprop="url">有限元中的能量原理</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-06-29 09:41:34" itemprop="dateCreated datePublished" datetime="2024-06-29T09:41:34+08:00">2024-06-29</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-02 14:50:34" itemprop="dateModified" datetime="2024-09-02T14:50:34+08:00">2024-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">有限元方法</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="初边值问题的陈述">初边值问题的陈述</h2>
+<h3 id="物质描述">物质描述</h3>
+<p>使用物质描述的控制方程定义在 <span class="math inline">\(B_0 \times
+(0,t_0)\)</span> 区域上, 方程的未知量为 <span
+class="math inline">\(\varphi(X,t)\)</span>, 满足守恒定律的控制方程为
+<span class="math display">\[
+(\varphi \nabla_0) \cdot S \cdot \nabla_0 + \rho_0 b
+= \rho_0 \frac{ \partial^2 \varphi }{ \partial t^2 }
+\tag{1.1.a}
+\]</span> 式中, <span class="math inline">\(S\)</span> 为 PK2 应力.
+对于是初边值问题, 定解需要给定初始条件和边界条件. 其中初始条件为 <span
+class="math display">\[
+\varphi(X,0) = X, \quad \frac{ \partial \varphi }{ \partial t}(X,0) =
+v_0(X)
+\tag{1.1.b}
+\]</span> 方程的边界条件有两类, 一类是位移边界条件,
+在参考构型中的边界处指定 <span class="math inline">\(t&gt;0\)</span>
+时刻的位移: <span class="math display">\[
+\varphi(X,t) = \overline{x}(X,t), \quad X \in \partial B_{0u},~ t &gt; 0
+\tag{1.1.c}
+\]</span> 另一类是力边界条件, 在参考构型的边界处指定 <span
+class="math inline">\(t&gt;0\)</span> 时刻的面力: <span
+class="math display">\[
+F \cdot S \cdot N(X) = \overline{T}(X,t) \quad X \in \partial B_{0t},~ t
+&gt; 0
+\tag{1.1.d}
+\]</span> 这两类边界条件不能重叠,
+也即不能在边界点同一个分量处指定两种边界条件, 否则就是 ill-posed: <span
+class="math display">\[
+\partial B_{0u} \cup \partial B_{0t} = \partial B_{0}, \quad
+\partial B_{0u} \cap \partial B_{0t} = \empty
+\]</span> 除上述初边值条件之外, 还需要提供本构关系, 将 PK2
+应力与变形和变形历史相关联, 以及 <span
+class="math inline">\(t=0\)</span> 时刻的密度 <span
+class="math inline">\(\rho_0 = \rho_0(X)\)</span> 和 <span
+class="math inline">\(t&gt;0\)</span> 时刻的体积力 <span
+class="math inline">\(b = b(X,t)\)</span>. 至此, 待求解的力学初边值问题
+(1) 才算完整地陈述.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<h5 id="使用位移-u-作为未知量表述的初边值问题">使用位移 <span
+class="math inline">\(u\)</span> 作为未知量表述的初边值问题</h5>
+<p>方程中的未知量也可以是位移 <span class="math inline">\(u\)</span>, 与
+<span class="math inline">\(\varphi\)</span> 的关系为 <span
+class="math display">\[
+u(X,t) = \varphi(X,t) - X
+\tag{1.2}
+\]</span> 相应的初始条件为 <span class="math display">\[
+u(X,0) = 0, \quad \frac{ \partial u }{ \partial t}(X,0) = v_0(X)
+\]</span> 以及位移边界条件为 <span class="math display">\[
+u(X,t) = \overline{u}(X,t), \quad X \in \partial B_{0u},~ t &gt; 0
+\]</span> 上式与式 (1.1.c) 的关系为 <span class="math display">\[
+\overline{u}(X,t) = \overline{x}(X,t) - X
+\]</span></p>
+</blockquote>
+<h3 id="空间描述">空间描述</h3>
+<h2 id="势能原理">势能原理</h2>
+<p>在这一节中, 我们将平衡方程与某一能量泛函取驻值的条件等价,
+由此得到势能驻值原理. 泛函的驻值点可能是极大值或极小值或鞍点,
+我们将指出系统的稳定平衡状态对应能量泛函的极小值,
+这也是最小势能原理.</p>
+<h3 id="平衡方程的势能泛函">平衡方程的势能泛函</h3>
+<p>若不考虑方程 (1.1.a) 中的加速度项,
+就得到材料在平衡状态下满足的控制方程为 <span class="math display">\[
+(\varphi \nabla_0) \cdot S \cdot \nabla_0 + \rho_0 b  = 0
+\tag{2.1.a}
+\]</span> 以及边界条件 <span class="math display">\[
+\varphi(X) = \overline{x}(X), \quad X \in \partial B_{0u} \\
+F \cdot S \cdot N(X) = \overline{T}(X) \quad X \in \partial B_{0t}
+\tag{2.1.b}
+\]</span> 接下来, 我们将构造一个与上述边值问题等价的变分问题.
+首先构造如下能量泛函 <span class="math inline">\(\Pi:L \mapsto
+\mathbb{R}\)</span>, 等于材料中的应变能与外力势能之和: <span
+class="math display">\[
+\Pi(\varphi) = \underbrace{\int_{B_0} W(F) ~\mathrm{d} X }_{应变能}
+\underbrace{
+- \int_{B_0} \rho_0 b \cdot \varphi ~\mathrm{d} X
+- \int_{\partial B_{0t}} \overline{T} \cdot \varphi ~\mathrm{d}
+\Sigma(X)
+}_{外力势能}
+\tag{2.2.a}
+\]</span> 式中, <span class="math inline">\(W\)</span> 为应变能密度函数
+(质量密度), 变形梯度 <span class="math inline">\(F = \varphi
+\nabla_0\)</span>. 泛函 <span class="math inline">\(\Pi\)</span>
+定义在函数空间上, 为了建立等价关系, 除了确定泛函的形式之外,
+<strong>还需要确定函数变量 <span class="math inline">\(\varphi\)</span>
+所在的空间 <span class="math inline">\(L\)</span></strong>.
+我们约束变形映射 <span class="math inline">\(\varphi\)</span>
+满足与边值问题的位移边界条件 (2.1.b) 一致: <span class="math display">\[
+\varphi \in L = \{ f \mid f \in C^0(B_0), \quad f = \overline{x}
+~~\text{on}~~ \partial B_{0u} \}
+\tag{2.2.b}
+\]</span></p>
+<h3 id="泛函的变分">泛函的变分</h3>
+<p>在函数空间 <span class="math inline">\(L\)</span> 中点 <span
+class="math inline">\(\varphi_0\)</span> 附近, 定义一条经过点 <span
+class="math inline">\(\varphi_0\)</span> 的参数曲线: <span
+class="math display">\[
+\varphi(\varepsilon) = \varphi_0 + \varepsilon \eta, \quad \varepsilon
+\in \mathbb{R}
+\tag{2.3}
+\]</span> 由此得到关于参数 <span
+class="math inline">\(\varepsilon\)</span> 的函数 <span
+class="math inline">\(\phi(\varepsilon)\)</span>: <span
+class="math display">\[
+\phi(\varepsilon) \triangleq \Pi(\varphi_0 + \varepsilon \eta)
+\]</span> 若泛函在点 <span class="math inline">\(\varphi_0\)</span>
+处取极大(小)值, 那么对应函数 <span class="math inline">\(\phi\)</span>
+在 <span class="math inline">\(\varepsilon = 0\)</span> 处取极大(小)值,
+因此 <span class="math display">\[
+\left. \frac{\mathrm{d} \phi}{\mathrm{d} \varepsilon}
+\right|_{\varepsilon=0} = 0
+\tag{2.4}
+\]</span> 是泛函取极值的一个必要条件. 如果定义运算 <span
+class="math inline">\(\delta_{\eta}: L \mapsto L\)</span> <span
+class="math display">\[
+\boxed{
+\delta_{\eta}[f](\varphi_0) \triangleq
+\left. \frac{\mathrm{d} ~}{\mathrm{d} \varepsilon} f(\varphi_0 +
+\varepsilon \eta) \right|_{\varepsilon=0}
+}
+\tag{2.5}
+\]</span> 那么条件 (2.4) 就可以重新叙述为 <span class="math display">\[
+\delta_{\eta}[\Pi](\varphi_0) = 0, \quad \forall \eta \in \overline{L}
+\tag{2.6}
+\]</span> 接下来确定 <span class="math inline">\(\eta\)</span>
+的取值空间. 根据式 (2.3), <span class="math inline">\(\varphi_0 \in
+L\)</span>, <span class="math inline">\(\varphi(\varepsilon) \in
+L\)</span>, 因此 <span class="math inline">\(\eta\)</span>
+的取值函数空间对应为位移边界处恒等于 0 的函数: <span
+class="math display">\[
+\eta \in \overline{L} = \{ f \mid f \in C^0(B_0), \quad f = 0
+~~\text{on}~~ \partial B_{0u} \}
+\tag{2.7}
+\]</span> 为了在记号上与微分符号进行类比, 我们将 <span
+class="math inline">\(\varepsilon\eta\)</span> 重映射为 <span
+class="math inline">\(\varepsilon\delta \varphi\)</span>,
+表示关于独立变量 <span class="math inline">\(\varphi\)</span>
+的<strong>变分</strong>. 当独立变量的变分意义明确时, 省略运算符 <span
+class="math inline">\(\delta_{\eta}\)</span> 的下标, 并将 <span
+class="math inline">\(\delta_{\eta}[f]\)</span> 简记作 <span
+class="math inline">\(\delta f\)</span>. 根据式 (2.5), 运算符 <span
+class="math inline">\(\delta\)</span> 的定义是基于单变量微积分的导数,
+因此继承了关于求导数的线性性质, 所以可以将 <span
+class="math inline">\(\delta\)</span> 与微分符号 <span
+class="math inline">\(~\mathrm{d}\)</span> 进行类推.</p>
+<blockquote>
+<p>[!TIP]</p>
+<h5 id="变分运算公式">变分运算公式</h5>
+<p>函数的乘积: <span class="math display">\[
+\begin{aligned}
+\delta(fg) &amp;= \left. \frac{\mathrm{d} ~}{\mathrm{d} \varepsilon}
+f(\varphi + \varepsilon \delta\varphi) g(\varphi + \varepsilon
+\delta\varphi)
+\right|_{\varepsilon=0} \\
+&amp;= \left( \left. f(\varphi + \varepsilon \delta\varphi)
+\frac{\mathrm{d} ~}{\mathrm{d} \varepsilon}
+g(\varphi + \varepsilon \delta\varphi)
++ g(\varphi + \varepsilon \delta\varphi) \frac{\mathrm{d} ~}{\mathrm{d}
+\varepsilon}
+f(\varphi + \varepsilon \delta\varphi)
+\right)\right|_{\varepsilon=0} \\
+&amp;= f ~\delta g + g ~\delta f
+\end{aligned}
+\]</span> 微分运算: <span class="math display">\[
+\delta (\varphi \circ \nabla_0) = \left. \frac{\mathrm{d} ~}{\mathrm{d}
+\varepsilon}
+\left(  (\varphi \circ \nabla_0) + \varepsilon (\delta \varphi \circ
+\nabla_0) \right)
+\right|_{\varepsilon=0}
+= \delta \varphi \circ \nabla_0
+\]</span> 式中, <span class="math inline">\(\circ\)</span> 表示梯度,
+散度 <span class="math inline">\(\cdot\)</span>, 叉乘 <span
+class="math inline">\(\times\)</span> 中的一种.</p>
+<p>积分运算: <span class="math display">\[
+\delta \int f(\varphi) ~\mathrm{d}X
+= \left. \frac{\mathrm{d} ~}{\mathrm{d} \varepsilon}
+\int f(\varphi + \varepsilon \delta \varphi) ~\mathrm{d}X
+\right|_{\varepsilon=0}
+= \int \left. \frac{\mathrm{d} ~}{\mathrm{d} \varepsilon}
+f(\varphi + \varepsilon \delta \varphi) \right|_{\varepsilon=0}
+~\mathrm{d}X
+= \int \delta f ~\mathrm{d} X
+\]</span> 复合函数: <span class="math display">\[
+\left. \delta f \circ g = \frac{\mathrm{d} ~}{\mathrm{d} \varepsilon}
+f \circ g (\varphi + \varepsilon \delta \varphi) \right|_{\varepsilon=0}
+= \frac{\mathrm{d} f}{\mathrm{d} g} \delta g
+\]</span> 最后, 我们说明即使选取不同的独立变量 <span
+class="math inline">\(u\)</span> 或者 <span
+class="math inline">\(\varphi\)</span>, 它们的变分总是相同的. 根据式
+(1.2): <span class="math display">\[
+\delta u = \delta (\varphi -X)
+\]</span> <span class="math inline">\(X\)</span> 与 <span
+class="math inline">\(\varphi\)</span> 无关, 因此有 <span
+class="math display">\[
+\delta u = \delta \varphi
+\]</span> 因此在下文的推导中, 我们用更符合惯例的 <span
+class="math inline">\(\delta u\)</span> 代替 <span
+class="math inline">\(\delta \varphi\)</span>.</p>
+</blockquote>
+<h3 id="泛函驻值条件蕴含平衡方程">泛函驻值条件蕴含平衡方程</h3>
+<p>根据式 (6), 泛函 <span class="math inline">\(\Pi\)</span>
+取驻值的必要条件为 <span class="math display">\[
+\delta \Pi = 0, \quad \forall \delta u \in \overline{L}
+\]</span> 将式 (2.2.a) 代入上式中得到 <span class="math display">\[
+\delta \Pi = \delta \int_{B_0} W(F) ~\mathrm{d} X
+- \delta \int_{B_0} \rho_0 b \cdot \varphi ~\mathrm{d} X
+- \delta \int_{\partial B_{0t}} \overline{T} \cdot \varphi ~\mathrm{d}
+\Sigma(X)
+\equiv 0, \quad \forall \delta u \in \overline{L}
+\tag{2.8}
+\]</span> 式中, <span class="math display">\[
+\delta \int_{B_0} W(F) ~\mathrm{d} X  = \int_{B_0} \delta W(F)
+~\mathrm{d} X
+= \int_{B_0} \frac{ \partial W }{ \partial F} : (\delta u
+\nabla_0)  ~\mathrm{d} X
+\tag{2.9}
+\]</span> 如果考虑材料为超弹材料, 那么 <span class="math display">\[
+P = \frac{ \partial W }{ \partial F}
+\]</span> 式中, <span class="math inline">\(P\)</span> 为 PK1 应力,
+<span class="math inline">\(P = F \cdot S\)</span>. 应用分部积分公式得到
+<span class="math display">\[
+P : (\delta u \nabla_0) = (\delta u \cdot P) \cdot \nabla_0
+- (P \cdot \nabla_0) \cdot \delta u
+\]</span> 代入到 (2.9) 式右端, 并注意到变分 <span
+class="math inline">\(\delta u \equiv 0\)</span> 在边界 <span
+class="math inline">\(\partial B_{0u}\)</span>: <span
+class="math display">\[
+\boxed{
+\int_{B_0} P : (\delta u \nabla_0)  ~\mathrm{d} X
+= \int_{\partial B_{0u}} \delta u \cdot P \cdot N ~\mathrm{d} \Sigma(X)
+- \int_{B_0} (P \cdot \nabla_0) \cdot \delta u ~\mathrm{d} X
+}
+\tag{2.10}
+\]</span> 式 (2.10) 是虚功原理的特殊形式, 这里我们是从守恒系统的变分等于
+0 出发, 得到式 (2.9). 之后我们将从平衡方程出发,
+得到更一般形式的虚功原理.</p>
+<p>将 (2.10) 代入到 (2.8) 中得到 <span class="math display">\[
+- \int_{B_0} (P \cdot \nabla_0 + \rho_0 b) \cdot \delta u ~\mathrm{d} X
++ \int_{\partial B_{0t}} (P \cdot N -\overline{T}) \cdot \delta u
+~\mathrm{d} \Sigma(X)
+= 0, \quad  \forall \delta u \in \overline{L}
+\]</span> 再根据 <span class="math inline">\(\delta u\)</span> 的任意性,
+就得到平衡方程 (2.1.a) 和力边界条件 (2.1.b).</p>
+<h3 id="平衡态的稳定性-最小势能原理">平衡态的稳定性, 最小势能原理</h3>
+<p>在上述推导中, 我们只预设了变分的驻值性,
+并由此得到平衡方程和力边界条件. 进一步地,
+如果我们能确定泛函在驻值点处如果取得极小值,
+那么就可以确定系统的平衡态是<strong>稳定的</strong>.
+这就是最小势能原理.</p>
+<h2 id="虚功原理">虚功原理</h2>
+<figure>
+<img
+src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202408131701295.png"
+alt="image-20240813170058133" />
+<figcaption aria-hidden="true">image-20240813170058133</figcaption>
+</figure>
+<p>首先我们定义什么是 statically admissible forces and stresses 和
+kinematically admissible displacements:</p>
+<ul>
+<li><strong>statically admissible stresses</strong>:
+满足平衡方程和力边界条件的应力场分布 <span class="math inline">\(\tilde
+P\)</span>;</li>
+<li><strong>kinematically admissible displacements</strong>
+满足位移边界条件的位移场分布.</li>
+</ul>
+<p>在假想的位移场下, 可允许位移之间的差值被定义为虚位移场 <span
+class="math inline">\(\delta \tilde u\)</span>, 虚位移场在式 (2.7)
+定义的函数空间当中. 当施加虚位移场 <span class="math inline">\(\delta
+\tilde u\)</span> 时, 假设应力场和外力固定不变,
+因此外力在虚位移场下所做的虚外力功为力边界处的面力与体积力做功之和:
+<span class="math display">\[
+\delta W_{E}
+\triangleq \int_{\partial B_{0t}} \delta \tilde u \cdot \overline{T}
+~\mathrm{d}X
++ \int_{B_0} \rho_0 b \cdot \delta \tilde u ~\mathrm{d}\Sigma(X)
+\]</span> 虚应力场 <span class="math inline">\(\tilde{P}\)</span>
+满足指定的力边界条件 <span class="math inline">\(\tilde{P} \cdot N =
+\overline{T}\)</span>, 因此有 <span class="math display">\[
+\int_{\partial B_{0t}} \delta \tilde u \cdot \overline{T} ~\mathrm{d}X
+= \int_{\partial B_{0t}} \delta \tilde u \cdot \tilde{P} \cdot N
+~\mathrm{d}X
+\]</span> 注意到 <span class="math inline">\(\delta \tilde u\)</span>
+在边界 <span class="math inline">\(\partial B_{0u}\)</span> 处恒等于 0,
+因此可以将上式中边界积分项拓展到封闭边界区域的积分. 再应用散度定理得到
+<span class="math display">\[
+\oint_{\partial B_{0}} \delta \tilde u \cdot \tilde{P} \cdot N
+~\mathrm{d}X
+= \int_{B_0} (\delta \tilde u \nabla_0) : \tilde{P}
++ \delta \tilde u  \cdot (\tilde{P} \cdot \nabla_0)  ~\mathrm{d}X
+\]</span> 定义上式中第二项为内力虚功: <span class="math display">\[
+\delta W_{I} \triangleq \int_{B_0} (\delta \tilde u \nabla_0) :
+\tilde{P}
+\]</span> 同时注意到 <span class="math inline">\(\tilde{P}\)</span>
+是满足平衡方程的虚应力场: <span class="math display">\[
+\tilde{P} \cdot \nabla_0 + \rho_0 b = 0
+\]</span> 最终我们得到 <span class="math display">\[
+\delta W_{E} = \delta W_{I}
+\]</span> 因此, 对于满足平衡方程和力边界条件的虚应力场, 以及虚位移场,
+外力对系统的虚位移所做的外力功,
+等于虚应力场在虚位移导致的虚应变场所做的内力功. 在虚功原理的陈述中,
+应力场和位移场是完全独立的, 没有考虑任何附加的本构关系.</p>
+
       
     </div>
 
@@ -1590,215 +2525,6 @@ x(t) = x_0 e^{At}
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/math/%E4%B8%80%E8%88%AC%E7%9A%84%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/%E7%9F%A9%E9%98%B5%E5%80%BC%E5%87%BD%E6%95%B0%E7%9A%84%E5%BE%AE%E5%88%86%E8%BF%90%E7%AE%97/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/math/%E7%9F%A9%E9%98%B5%E5%80%BC%E5%87%BD%E6%95%B0%E7%9A%84%E5%BE%AE%E5%88%86%E8%BF%90%E7%AE%97/" class="post-title-link" itemprop="url">矩阵值函数的微分运算</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-06-25 20:20:40" itemprop="dateCreated datePublished" datetime="2024-06-25T20:20:40+08:00">2024-06-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-03 09:39:17" itemprop="dateModified" datetime="2024-08-03T09:39:17+08:00">2024-08-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我们考虑的矩阵值函数, 其每个元素是关于 <span
-class="math inline">\(t\)</span> 的单变量函数: <span
-class="math display">\[
-A(t) = [a_{ij}(t)]
-\]</span> 从 <span class="math inline">\(\mathbb{R} \mapsto
-\mathbb{R}^n\)</span> 上的函数几乎可以将单变量函数的微分运算直接平推,
-只要确定了范数度量 <span class="math inline">\(\|\cdot\|\)</span> (从
-<span class="math inline">\(\mathbb{R} \mapsto \mathbb{R}^n\)</span>
-的函数就没有那么平凡).</p>
-<p>考虑如下微分 <span class="math display">\[
-\frac{\mathrm{d}~}{\mathrm{d} t} e^{At}
-= \frac{\mathrm{d}~}{\mathrm{d} t} \sum_{k=0}^{\infty} \frac{t^k}{k!}A^k
-= A\sum_{k=1}^{\infty} \frac{t^{k-1}}{(k-1)!}A^{k-1} = A e^{At} = e^{At}
-A
-\]</span> 对 <span class="math inline">\(\det A(t)\)</span> 的导数,
-可以有两种方式看. 一种是利用定义 <span class="math display">\[
-\det A(t) = \sum_{\{\sigma_i\}} (-1)^{\mathrm{sign} \{\sigma_i\}}
-a_{1\sigma_1}(t) a_{2\sigma_2}(t) \ldots a_{n\sigma_n}(t)
-\]</span>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/math/%E7%9F%A9%E9%98%B5%E5%80%BC%E5%87%BD%E6%95%B0%E7%9A%84%E5%BE%AE%E5%88%86%E8%BF%90%E7%AE%97/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/Lagrange-%E4%B9%98%E5%AD%90%E6%B3%95/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/math/Lagrange-%E4%B9%98%E5%AD%90%E6%B3%95/" class="post-title-link" itemprop="url">Lagrange 乘子法</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-06-25 20:20:40" itemprop="dateCreated datePublished" datetime="2024-06-25T20:20:40+08:00">2024-06-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-03 11:00:45" itemprop="dateModified" datetime="2024-08-03T11:00:45+08:00">2024-08-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我们来推导一下 Lagrange 乘子法与含约束问题的等价性.
-以关于双变量的函数为例,: <span class="math display">\[
-Q(y_1, y_2): \mathbb{R^2} \mapsto \mathbb{R}
-\]</span></p>
-<p>现在希望获取该函数的最小值, 同时满足约束 <span
-class="math display">\[
-A(y_1, y_2) = 0
-\]</span>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/math/Lagrange-%E4%B9%98%E5%AD%90%E6%B3%95/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

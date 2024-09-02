@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="4IgN6N71kznUS9PIMp6itE5oUv0s3hzVzFzFOpC-4Ig">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="壳体插值函数 三维空间中壳单元的插值函数为 \[ \boldsymbol{x}(\xi, \eta, \zeta) &#x3D; \overline{\boldsymbol{x}}(\xi, \eta) + \boldsymbol{X}(\xi, \eta, \zeta) \\ \overline{\boldsymbol{x}}(\xi, \eta) &#x3D; \sum_{a}^{\mathrm{nen}">
+<meta property="og:type" content="article">
+<meta property="og:title" content="壳单元列式">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/mech/fem/%E5%A3%B3%E5%8D%95%E5%85%83%E5%88%97%E5%BC%8F/index.html">
+<meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="壳体插值函数 三维空间中壳单元的插值函数为 \[ \boldsymbol{x}(\xi, \eta, \zeta) &#x3D; \overline{\boldsymbol{x}}(\xi, \eta) + \boldsymbol{X}(\xi, \eta, \zeta) \\ \overline{\boldsymbol{x}}(\xi, \eta) &#x3D; \sum_{a}^{\mathrm{nen}">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-09-02T06:54:32.000Z">
+<meta property="article:modified_time" content="2024-09-02T06:54:49.927Z">
+<meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="壳单元">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://qiuxiaohuo.github.io/mech/fem/%E5%A3%B3%E5%8D%95%E5%85%83%E5%88%97%E5%BC%8F/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/mech/fem/%E5%A3%B3%E5%8D%95%E5%85%83%E5%88%97%E5%BC%8F/","path":"mech/fem/壳单元列式/","title":"壳单元列式"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>壳单元列式 | 邱小伙的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">邱小伙的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A3%B3%E4%BD%93%E6%8F%92%E5%80%BC%E5%87%BD%E6%95%B0"><span class="nav-number">1.</span> <span class="nav-text">壳体插值函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A3%B3%E5%8D%95%E5%85%83%E5%9D%90%E6%A0%87%E7%B3%BB"><span class="nav-number">2.</span> <span class="nav-text">壳单元坐标系</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E7%A7%AF%E5%88%86%E7%82%B9%E5%A4%84-lamina-%E5%9D%90%E6%A0%87%E7%B3%BB"><span class="nav-number">2.1.</span> <span class="nav-text">单元积分点处 Lamina 坐标系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%8A%82%E7%82%B9%E5%A4%84-fiber-direction-%E5%9D%90%E6%A0%87%E7%B3%BB"><span class="nav-number">2.2.</span> <span class="nav-text">节点处 fiber direction
+坐标系</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9D%90%E6%A0%87%E5%8F%98%E6%8D%A2"><span class="nav-number">2.3.</span> <span class="nav-text">坐标变换</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%8D%95%E5%85%83%E7%9A%84%E8%BF%90%E5%8A%A8%E5%AD%A6%E6%8F%8F%E8%BF%B0"><span class="nav-number">3.</span> <span class="nav-text">单元的运动学描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9C%AC%E6%9E%84%E6%96%B9%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">本构方程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-%E7%9F%A9%E9%98%B5%E7%9A%84%E6%9E%84%E9%80%A0"><span class="nav-number">5.</span> <span class="nav-text">B 矩阵的构造</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9A%E5%BA%A6%E7%9F%A9%E9%98%B5"><span class="nav-number">6.</span> <span class="nav-text">刚度矩阵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%96%E5%8A%9B%E5%90%91%E9%87%8F"><span class="nav-number">7.</span> <span class="nav-text">外力向量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%93%E7%A7%AF%E5%8A%9B"><span class="nav-number">7.1.</span> <span class="nav-text">体积力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9D%A2%E5%8A%9B"><span class="nav-number">7.2.</span> <span class="nav-text">面力</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BE%B9%E5%8A%9B"><span class="nav-number">7.3.</span> <span class="nav-text">边力</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%94%E5%8A%9B%E7%BB%93%E6%9E%9C"><span class="nav-number">8.</span> <span class="nav-text">应力结果</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qiu Xiaohuo"
+      src="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+  <p class="site-author-name" itemprop="name">Qiu Xiaohuo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiuxiaohuo"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnFpdXhpYW9odW9AZ21haWwuY29t" title="E-Mail → mailto:qiuxiaohuo@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/fem/%E5%A3%B3%E5%8D%95%E5%85%83%E5%88%97%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="壳单元列式 | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          壳单元列式
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-09-02 14:54:32" itemprop="dateCreated datePublished" datetime="2023-09-02T14:54:32+08:00">2023-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-09-02 14:54:49" itemprop="dateModified" datetime="2024-09-02T14:54:49+08:00">2024-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95/" itemprop="url" rel="index"><span itemprop="name">有限元方法</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h3 id="壳体插值函数">壳体插值函数</h3>
+<p>三维空间中壳单元的插值函数为 <span class="math display">\[
+\boldsymbol{x}(\xi, \eta, \zeta) = \overline{\boldsymbol{x}}(\xi, \eta)
++ \boldsymbol{X}(\xi, \eta, \zeta) \\
+\overline{\boldsymbol{x}}(\xi, \eta) = \sum_{a}^{\mathrm{nen}}N^{a}(\xi,
+\eta) \overline{\boldsymbol{x}}^a \\
+\boldsymbol{X}(\xi, \eta, \zeta) = \sum_{a}^{\mathrm{nen}} N^{a}(\xi,
+\eta) \boldsymbol{X}^a(\zeta) \\
+\boldsymbol{X}^a(\zeta) = z^{a}(\zeta) \hat{\boldsymbol{X}}^a
+\quad(\text{不求和})\\
+z^a(\zeta) = N_{+}(\zeta) z_{+}^{a} + N_{-}(\zeta) z_{-}^{a} \\
+N_{+}(\zeta) = \frac{1}{2}(1 + \zeta), \quad N_{-}(\zeta) =
+\frac{1}{2}(1 - \zeta)
+\tag{1}
+\]</span> 式中, <span
+class="math inline">\(\overline{\boldsymbol{x}}\)</span>
+为壳单元中参考面中的点; <span
+class="math inline">\(\boldsymbol{X}\)</span> 是参考平面中指向 “纤维”
+方向的向量, <span class="math inline">\(\hat{\boldsymbol{X}}^a\)</span>
+是节点处纤维法向量 (注意, 纤维方向并不一定垂直于参考平面); <span
+class="math inline">\(z_a\)</span> 是厚度方程. 壳单元需要输入的参数为
+<span class="math display">\[
+\boxed{
+\overline{\boldsymbol{x}}^a, \quad \hat{\boldsymbol{X}}^a, \quad
+z_{+}^{a}, \quad z_{-}^{a}
+}
+\tag{2}
+\]</span></p>
+<ul>
+<li>纤维: 固定坐标 <span class="math inline">\((\xi, \eta)\)</span>
+得到的关于 <span class="math inline">\(\zeta\)</span> 的参数曲线;</li>
+<li>lamina: 固定坐标 <span class="math inline">\(\zeta\)</span>
+得到的关于 <span class="math inline">\((\xi, \eta)\)</span>
+的参数曲面</li>
+</ul>
+<p>壳单元的另一类参数: 如果给出节点纤维的上下端点 <span
+class="math inline">\(\boldsymbol{x}_{+}^a\)</span>, <span
+class="math inline">\(\boldsymbol{x}_{-}^a\)</span>,
+以及参考面对应的参数 <span
+class="math inline">\(\overline{\zeta}\)</span>, 那么由此得到式 (2)
+所需要的参数为 <span class="math display">\[
+\overline{\boldsymbol{x}}^a = \frac{1}{2}(1 + \overline{\zeta})
+\boldsymbol{x}_{+}^a
++ \frac{1}{2}(1 - \overline{\zeta}) \boldsymbol{x}_{-}^a \\
+\hat{\boldsymbol{X}}^a = \frac{\boldsymbol{x}_{+}^a -
+\boldsymbol{x}_{-}^a}
+{\| \boldsymbol{x}_{+}^a - \boldsymbol{x}_{-}^a \|} \\
+\quad z_{+}^{a} = \frac{1}{2}(1 - \overline{\zeta}) \|
+\boldsymbol{x}_{+}^a - \boldsymbol{x}_{-}^a \| \\
+\quad z_{-}^{a} = -\frac{1}{2}(1 + \overline{\zeta}) \|
+\boldsymbol{x}_{+}^a - \boldsymbol{x}_{-}^a \|
+\]</span></p>
+<h3 id="壳单元坐标系">壳单元坐标系</h3>
+<h4 id="单元积分点处-lamina-坐标系">单元积分点处 Lamina 坐标系</h4>
+<p>定义在单元积分点上的笛卡尔坐标系 <span class="math inline">\(\{
+\boldsymbol{e}_1^l, ~\boldsymbol{e}_2^l, ~\boldsymbol{e}_3^l
+\}\)</span>, 其中 <span
+class="math inline">\(\boldsymbol{e}_3^l\)</span> 垂直于过该点的 Lamina.
+该坐标系需要进行构造. 首先根据单元的插值函数得到: <span
+class="math display">\[
+\boldsymbol{e}_{\xi} =
+\frac{\boldsymbol{x}_{,\xi}}{\|\boldsymbol{x}_{,\xi}\|}, \quad
+\boldsymbol{e}_{\eta} =
+\frac{\boldsymbol{x}_{,\eta}}{\|\boldsymbol{x}_{,\eta}\|}
+\]</span> 这两个单位向量不一定相互垂直, 但是切于 Lamina. 因此 <span
+class="math inline">\(e_{3}^l\)</span> 可通过这两个向量叉乘得到 <span
+class="math display">\[
+\boldsymbol{e}_{3}^{l}\triangleq \frac{\boldsymbol{e}_{\xi} \times
+\boldsymbol{e}_{\eta}}
+{\| \boldsymbol{e}_{\xi} \times \boldsymbol{e}_{\eta} \|}
+\]</span> <span class="math inline">\(\boldsymbol{e}_\xi\)</span>, <span
+class="math inline">\(\boldsymbol{e}_\eta\)</span> 的角平分单位向量为
+<span class="math display">\[
+\boldsymbol{e}_{\alpha} = \frac{\boldsymbol{e}_\xi +
+\boldsymbol{e}_\eta}
+{\|\boldsymbol{e}_\xi + \boldsymbol{e}_\eta\|}, \quad
+\boldsymbol{e}_{\beta} = \frac{\boldsymbol{e}_3^l \times
+\boldsymbol{e}_\alpha}
+{\|\boldsymbol{e}_3^l \times \boldsymbol{e}_\alpha\|}
+\]</span> 绕 <span class="math inline">\(\boldsymbol{e}_3^l\)</span>
+顺时针旋转 <span class="math inline">\(45\deg\)</span> 得到 <span
+class="math display">\[
+\boldsymbol{e}_1^l = \frac{\sqrt{2}}{2} (\boldsymbol{e}_{\alpha} -
+\boldsymbol{e}_{\beta}), \quad
+\boldsymbol{e}_2^l = \frac{\sqrt{2}}{2} (\boldsymbol{e}_{\alpha} +
+\boldsymbol{e}_{\beta})
+\]</span></p>
+<h4 id="节点处-fiber-direction-坐标系">节点处 fiber direction
+坐标系</h4>
+<p>节点处坐标系要求 <span
+class="math inline">\(\boldsymbol{e}_3^f\)</span> 与 <span
+class="math inline">\(\hat{\boldsymbol{X}}^a\)</span> 重合.
+其它两个方向不定, Hughes 给出一个算法, 能够在 <span
+class="math inline">\(\hat{\boldsymbol{X}}^a\)</span> 接近 <span
+class="math inline">\(e_3\)</span> 时 保持与全局坐标系近乎一致.
+不过这类算法, 应该不是唯一的, 只要能避免 <span
+class="math inline">\(\hat{\boldsymbol{X}}^a\)</span>
+与一个接近平行的向量叉乘即可.</p>
+<h4 id="坐标变换">坐标变换</h4>
+<p>宏观坐标系与上述定义的坐标系之间的坐标变换关系为 <span
+class="math display">\[
+\boldsymbol{e}_{i}^{\cdot} = Q_{\alpha i}^{\cdot}
+\boldsymbol{e}_{\alpha}
+\]</span> 式中, <span class="math inline">\(\cdot\)</span>
+表示积分点上的 lamina 坐标系或节点处的 fiber 坐标系. 因此, 向量 <span
+class="math inline">\(\boldsymbol{e}_{i}^{\cdot}\)</span>
+在宏观坐标系中的坐标列向量排布得到旋转矩阵 <span
+class="math inline">\([\mathrm{Q}]\)</span>: <span
+class="math display">\[
+[\mathrm{Q}^{\cdot}] = [\boldsymbol{e}_{1}^{\cdot},
+~\boldsymbol{e}_{2}^{\cdot}, ~\boldsymbol{e}_{3}^{\cdot}]
+\]</span> 由此得到坐标变换矩阵为 <span class="math display">\[
+[\mathrm{x}^{\cdot}] = [\mathrm{Q}^{\cdot}]^{\top} [\mathrm{x}]
+\]</span> lamina 和 fiber 坐标系之间的关系为 <span
+class="math display">\[
+\boldsymbol{e}_{i}^{f} = Q_{\alpha i}^{f} \boldsymbol{e}_{\alpha} \\
+\boldsymbol{e}_{i}^{l} = Q_{\alpha i}^{l} \boldsymbol{e}_{\alpha} \\
+\]</span></p>
+<h3 id="单元的运动学描述">单元的运动学描述</h3>
+<p><span class="math display">\[
+\boldsymbol{u}(\xi, \eta, \zeta) = \overline{\boldsymbol{u}}(\xi, \eta)
++ \boldsymbol{U}(\xi, \eta, \zeta) \\
+\overline{\boldsymbol{u}}(\xi, \eta) = \sum_{a}^{\mathrm{nen}}
+N^{a}(\xi, \eta) \overline{\boldsymbol{u}}^a \\
+\boldsymbol{U}(\xi, \eta, \zeta) = \sum_{a}^{\mathrm{nen}} N^{a}(\xi,
+\eta) \boldsymbol{U}^a(\zeta) \\
+\boldsymbol{U}^a(\zeta) = z^{a}(\zeta) \hat{\boldsymbol{U}}^a
+\quad(\text{不求和})
+\]</span></p>
+<p>壳单元假设纤维方向只有旋转没有拉伸, 因此在小转动假设下,
+节点处的向量为 <span
+class="math inline">\(\hat{\boldsymbol{U}}^a\)</span> <span
+class="math display">\[
+\hat{\boldsymbol{U}}^a = \theta_2^a \boldsymbol{e}_{a1}^f - \theta_1^a
+\boldsymbol{e}_{a2}^f
+\]</span></p>
+<h3 id="本构方程">本构方程</h3>
+<p>在壳体 Lamina 坐标系下的线弹性本构方程为 <span
+class="math display">\[
+\sigma^{l} = \mathbb{L}^{l} : \varepsilon^{l}
+\]</span> 表示成 Voigt 记法后的矩阵形式为 <span class="math display">\[
+[\sigma^{l}] = [\mathrm{L}^{l}] : [\varepsilon^{l}]
+\]</span> 壳体的 zero normal stress 假设要求应力分量 <span
+class="math inline">\(\sigma_{33}^{l}\)</span> 等于 0, 由此得到关于
+<span class="math inline">\(\varepsilon_{3}^{l}\)</span> 的方程: <span
+class="math display">\[
+\varepsilon_{3}^{l} = -\frac{1}{L_{33}^{l}} (L_{3i&#39;}^{l}
+\varepsilon_{i&#39;}^{l})
+\]</span></p>
+<table>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(i&#39;\)</span></th>
+<th><span class="math inline">\(1\)</span></th>
+<th><span class="math inline">\(2\)</span></th>
+<th><span class="math inline">\(3\)</span></th>
+<th><span class="math inline">\(4\)</span></th>
+<th><span class="math inline">\(5\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(ij\)</span></td>
+<td><span class="math inline">\(11\)</span></td>
+<td><span class="math inline">\(22\)</span></td>
+<td><span class="math inline">\(12\)</span></td>
+<td><span class="math inline">\(23\)</span></td>
+<td><span class="math inline">\(13\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>本构方程 <span class="math display">\[
+\sigma_{i&#39;}^{l} = L_{i&#39;j}^{l} \varepsilon_{j}^{l}
+= L_{i&#39;j&#39;}^{l} \varepsilon_{j&#39;}^{l} + L_{i&#39;3}^{l}
+\varepsilon_{3}^{l}
+= \left( L_{i&#39;j&#39;}^{l} - \frac{1}{L_{33}}^{l}
+L_{i&#39;3}L_{3j&#39;}^{l} \right) \varepsilon_{j&#39;}^{l}
+\]</span> 得到各向同性线弹性本构矩阵 <span class="math display">\[
+[\mathrm{L}^{l}] = \frac{E}{(1-\nu^2)}
+\begin{bmatrix}
+1 &amp; \nu &amp; &amp; &amp; \\
+&amp; 1 &amp; &amp; &amp; \\
+&amp;&amp; \dfrac{1-\nu}{2} &amp;&amp; \\
+&amp;&amp;&amp; \kappa\dfrac{1-\nu}{2} &amp; \\
+&amp;&amp;&amp;&amp; \kappa \dfrac{1-\nu}{2}
+\end{bmatrix}
+\]</span> 再加上 bending 修正系数 <span class="math inline">\(\kappa =
+5/6\)</span></p>
+<h3 id="b-矩阵的构造">B 矩阵的构造</h3>
+<p>节点的自由度为 3 个位移自由度和 2 个转角自由度. 由此得到 B
+矩阵的列式为 <span class="math display">\[
+[\varepsilon^{l}] = \sum_{a}^{\mathrm{nen}} [\mathrm{B}^a]
+\begin{bmatrix}
+\boldsymbol{u}^a \\
+\theta_{a1} \\
+\theta_{a2}
+\end{bmatrix}
+\]</span> 式中, 矩阵 <span class="math inline">\([\mathrm{B}^a]\)</span>
+定义为 <span class="math display">\[
+[\mathrm{B}^a] = \left[\begin{array}{ll}
+b_I^u &amp; b_I^\theta
+\end{array}\right]=\left[\begin{array}{cc}
+b_1^u &amp; b_1^\theta \\
+b_2^u &amp; b_2^\theta \\
+b_3^u &amp; b_3^\theta \\
+\hdashline
+b_4^u &amp; b_4^\theta \\
+b_5^u &amp; b_5^\theta
+\end{array}\right]
+\]</span> 式中的 <span class="math inline">\(b_{I}^u\)</span> 和 <span
+class="math inline">\(b_{I}^{\theta}\)</span> 是行向量, <span
+class="math display">\[
+\begin{aligned}
+&amp; b_I^u=\left\langle b_{I
+m}^u\right\rangle=\left\langle\begin{array}{lll}
+b_{I1}^u &amp; b_{I2}^u &amp; b_{I3}^u
+\end{array}\right\rangle \\
+&amp; b_I^\theta=\left\langle b_{I
+a}^\theta\right\rangle=\left\langle\begin{array}{lll}
+b_{I 1}^\theta &amp; b_{I2}^\theta
+\end{array}\right\rangle
+\end{aligned}
+\]</span> 注意到,
+节点上的位移自由度是在<strong>全局坐标系下</strong>的分量, 应变是 Lamina
+坐标系下的表达式, 因此在求位移导数时需要进行坐标变换.
+根据壳单元的运动学方程, 得到 Lamina 坐标系下的位移导数为 <span
+class="math display">\[
+\frac{ \partial u_{i}^{l} }{ \partial x_{j}^{l}}
+= Q_{im}^{l} \frac{ \partial u_{m} }{ \partial x_{j}^{l}}
+= Q_{im}^{l} \sum_{a}^{\mathrm{nen}}\left(
+\frac{ \partial N^{a} }{ \partial x_{j}^{l}} \overline{u}_m^a
++ \frac{ \partial (N^{a} z^a)}{ \partial x_{j}^{l}} (\theta_2^a
+\boldsymbol{e}_{a1}^f - \theta_1^a \boldsymbol{e}_{a2}^f) \cdot
+\boldsymbol{e}_{m}
+\right)\\
+= Q_{im}^{l} \sum_{a}^{\mathrm{nen}}\left(
+\frac{ \partial N^{a} }{ \partial x_{j}^{l}} \overline{u}_m^a
+- \frac{ \partial (N^{a} z^a)}{ \partial x_{j}^{l}}
+\boldsymbol{e}_{am2}^f ~\theta_1^a
++ \frac{ \partial (N^{a} z^a)}{ \partial x_{j}^{l}}
+\boldsymbol{e}_{am1}^f ~\theta_2^a
+\right)
+\]</span> <img
+src="./../../../../AppData/Roaming/Typora/typora-user-images/image-20240818151636114.png"
+alt="image-20240818151636114" /></p>
+<p>式中出现的关于 lamina 坐标的导数,
+可以通过坐标变换转换为宏观坐标导数的计算: <span class="math display">\[
+\frac{ \partial ~}{ \partial x_{i}^{l}} = Q_{im} \frac{ \partial ~}{
+\partial x_{m}}
+\]</span></p>
+<h3 id="刚度矩阵">刚度矩阵</h3>
+<p><span class="math display">\[
+\underbrace{[\mathrm{k}]}_{\rm 5 nen \times 5 nen}
+= [[\mathrm{k}^{ab}]], \\
+\underbrace{[\mathrm{k}^{ab}]}_{\rm 5 \times 5}
+= \int_{\square} \int_{-1}^{+1} [\mathrm{B}^a]^{\top} [\mathrm{L}^{l}]
+[\mathrm{B}]
+J  ~\mathrm{d} \zeta ~\mathrm{d} \square
+\]</span></p>
+<h3 id="外力向量">外力向量</h3>
+<h4 id="体积力">体积力</h4>
+<p><span class="math display">\[
+\underbrace{[f^{\mathrm{body}}]}_{\rm 5 nen \times 1}
+= [[f_a^{\mathrm{body}}]] \\
+\underbrace{[f_a^{\mathrm{body}}]}_{\rm 5 \times 1}
+= \int_{\square} \int_{-1}^{+1} [\mathrm{N}^a]^{\top} [\mathrm{b}]
+J  ~\mathrm{d} \zeta ~\mathrm{d} \square
+\]</span></p>
+<p>式中, 矩阵 <span class="math inline">\([\mathrm{N}^a]\)</span> 为
+<span class="math display">\[
+[\mathrm{N}^a]
+= \left[\begin{array}{ccc:cc}
+N^a &amp; 0 &amp; 0 &amp; -N^a z^a e_{a 12}^f &amp; N^a z^a e_{a 11}^f
+\\
+0 &amp; N^a &amp; 0 &amp; -N^a z^a e_{a 22}^f &amp; N^a z^a e_{a 21}^f
+\\
+0 &amp; 0 &amp; N^a &amp; -N^a z^a e_{a 32}^f &amp; N^a z^a e_{a 31}^f
+\end{array}\right]
+\]</span></p>
+<h4 id="面力">面力</h4>
+<p><span class="math display">\[
+\underbrace{[f^{\mathrm{surf}}]}_{\rm 5 nen \times 1}
+= [[f_a^{\mathrm{surf}}]] \\
+\underbrace{[f_a^{\mathrm{surf}}]}_{\rm 5 \times 1}
+= \int_{\square} [\mathrm{N}^a]^{\top} [\mathrm{t}]
+J_s  ~\mathrm{d} \square, \quad
+\zeta = \begin{cases}
++1 &amp; \text{top surface} \\
+-1 &amp; \text{bottom surface}
+\end{cases}
+\]</span></p>
+<p>式中, <span class="math inline">\(J_s = \| \boldsymbol{x}_{,\xi}
+\times \boldsymbol{x}_{,\eta} \|\)</span>.</p>
+<p>当面力为压力时, 对应的面力为 <span class="math display">\[
+t = -\zeta p \boldsymbol{n}, \quad
+\boldsymbol{n} = \frac{\boldsymbol{x}_{,\xi} \times
+\boldsymbol{x}_{,\eta}}
+{\| \boldsymbol{x}_{,\xi} \times \boldsymbol{x}_{,\eta} \|}
+\]</span> 当面力为壳体面内的剪切力时, 假设已知沿参数坐标线的面力分量,
+由此得到 <span class="math display">\[
+t = h_{\xi} \boldsymbol{e}_{\xi} + h_{\eta} \boldsymbol{e}_{\eta}
+\]</span></p>
+<h4 id="边力">边力</h4>
+<p><span class="math display">\[
+[f^{\mathrm{edge}}]
+= [[f_a^{\mathrm{edge}}]] \\
+[f_a^{\mathrm{edge}}]
+= \int_{-1}^{+1} \int_{-1}^{+1} [\mathrm{N}^a]^{\top} [\mathrm{t}]
+J_e  ~\mathrm{d} \xi ~\mathrm{d} \zeta, \quad
+\eta = \{+1, -1\}
+\]</span></p>
+<p>式中, <span class="math inline">\(J_e = \| \boldsymbol{x}_{,\xi}
+\times \boldsymbol{x}_{,\zeta} \|\)</span>.</p>
+<h3 id="应力结果">应力结果</h3>
+<p>弯矩, 膜力以及横向剪力可以通过对应力分量 在 <span
+class="math inline">\(\zeta\)</span> 方向积分得到</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%A3%B3%E5%8D%95%E5%85%83/" rel="tag"># 壳单元</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mech/fem/%E5%AE%8C%E5%85%A8%E6%8B%89%E6%A0%BC%E6%9C%97%E6%97%A5%E5%BD%A2%E5%BC%8F%E7%9A%84%E7%9F%A9%E9%98%B5%E5%88%97%E5%BC%8F/" rel="prev" title="完全拉格朗日形式的矩阵列式">
+                  <i class="fa fa-angle-left"></i> 完全拉格朗日形式的矩阵列式
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/mech/fem/%E9%9A%90%E5%BC%8F%E8%BF%AD%E4%BB%A3%E6%96%B9%E6%B3%95/" rel="next" title="隐式迭代方法">
+                  隐式迭代方法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qiu Xiaohuo</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>
