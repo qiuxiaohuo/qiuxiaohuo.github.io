@@ -4942,6 +4942,7 @@ class="math display">\[
 adjugate 矩阵表示 <span class="math display">\[
 \frac{\mathrm{d}~}{\mathrm{d} t} \det A(t)
 =  \mathrm{tr}(\mathrm{adj}(A) A&#39;)
+= \mathrm{cof}(A) : A&#39;
 \]</span> 积分得到 <span class="math display">\[
 \det A(t) = \det A(0) e^{\int_0^t \mathrm{tr}(A^{-1}(s)A&#39;(s))
 ~\mathrm{d}s}
@@ -5898,8 +5899,9 @@ a_{ki} m_{kj} = a_{ik} m_{jk} = |A| \delta_{ij}
 \]</span> 将上式写成矩阵形式为 <span class="math display">\[
 A M^{\top} = M^{\top} A = |A| I
 \]</span> 通常将 <span class="math inline">\(M^{\top}\)</span>
-定义为矩阵 <span class="math inline">\(A\)</span>
-的<strong>伴随矩阵</strong>: <span class="math display">\[
+定义为矩阵 <span class="math inline">\(A\)</span> 的<strong>伴随
+(adjugate) 矩阵</strong>, <span class="math inline">\(M\)</span> 称为
+<strong>cofactor</strong> 矩阵: <span class="math display">\[
 \mathrm{adj}~A \triangleq M^{\top}
 \]</span> 注意到, 如果矩阵 <span class="math inline">\(A\)</span> 可逆,
 那么伴随矩阵与矩阵的逆之间的关系为 <span class="math display">\[
@@ -5908,7 +5910,7 @@ A^{-1} = \frac{1}{|A|}\mathrm{adj}~A = \frac{1}{|A|} M^{\top}
 <blockquote>
 <p>[!NOTE]</p>
 <p>矩阵 <span class="math inline">\(A\)</span> 的逆可以通过伴随矩阵表示,
-即使 <span class="math inline">\(A\)</span> 不可逆, <span
+但即使矩阵 <span class="math inline">\(A\)</span> 不可逆, <span
 class="math inline">\(A\)</span> 的伴随矩阵同样存在</p>
 </blockquote>
 <blockquote>
@@ -5953,9 +5955,7 @@ A(\lambda) = \lambda^{n} -\mathrm{tr}A~\lambda^{n-1} + \cdots
   <entry>
     <title>J2 塑性本构</title>
     <url>/mech/constitutive/J2-%E5%A1%91%E6%80%A7%E6%9C%AC%E6%9E%84/</url>
-    <content><![CDATA[<p>以下整理主要参考 Simo 的 <em>Computational Inelasticity</em>。向 Simo
-致敬！</p>
-<div class="pdf-container" data-target="https://maipdf.cn/est/d66482f3e37a9b/pdf" data-height="800px"></div>
+    <content><![CDATA[<div class="pdf-container" data-target="https://maipdf.cn/est/d66482f3e37a9b/pdf" data-height="800px"></div>
 ]]></content>
       <categories>
         <category>本构理论</category>
@@ -6410,7 +6410,7 @@ class="math inline">\(\lambda_3^2\)</span>,
 \]</span></p>
 <p>注意到 <span class="math inline">\(C\)</span> 的不变量与左
 Cauchy-Green 张量 <span class="math inline">\(B\)</span> 相同, 因此式
-(0) 中将 <span class="math inline">\(C\)</span> 替换为 <span
+(5) 中将 <span class="math inline">\(C\)</span> 替换为 <span
 class="math inline">\(B\)</span> 同样成立.</p>
 <p>Cayley-Hamilton 定理给出关于 <span class="math inline">\(C\)</span>
 <span class="math inline">\(B\)</span> 以及不变量作为系数的恒等式: <span
@@ -7042,8 +7042,8 @@ class="math display">\[
 class="math display">\[
 \nabla \times v = \begin{vmatrix}
 i &amp; j &amp; k \\
-\dfrac{\partial ~}{\partial x_1} &amp; \dfrac{\partial ~}{\partial x_1}
-&amp; \dfrac{\partial ~}{\partial x_1} \\
+\dfrac{\partial \ }{\partial x_1} &amp; \dfrac{\partial \ }{\partial
+x_1} &amp; \dfrac{\partial \ }{\partial x_1} \\
 v_1 &amp; v_2 &amp; v_3
 \end{vmatrix}
 \]</span> <span id="more"></span>可以看到,
@@ -7096,7 +7096,7 @@ B \times \nabla \triangleq \frac{\partial B}{\partial x_k} \times e_k
 v = \nabla u
 \]</span></p></li>
 <li><p>速度场的旋度 (vorticity) 等于 0: <span class="math display">\[
-\mathrm{curl}~ v \triangleq \frac{\partial v_y}{\partial x} -
+\mathrm{curl}\  v \triangleq \frac{\partial v_y}{\partial x} -
 \frac{\partial v_x}{\partial y} \equiv 0
 \]</span></p></li>
 </ol>
@@ -7105,12 +7105,13 @@ v = \nabla u
 内对旋度的积分等于在边界 <span class="math inline">\(C\)</span>
 上的第二类曲线积分: <span class="math display">\[
 \boxed{
-\int_{S} \mathrm{curl}~ v ~\mathrm{d}S =  \oint_{C} v \cdot \mathrm{d} r
+\int_{S} \mathrm{curl}\  v \ \mathrm{d}S =  \oint_{C} v \cdot \mathrm{d}
+r
 }
 \]</span> 条件 2 和 3 的等价性更加直接. 如果速度场满足条件 2,
 同时假设势函数 <span class="math inline">\(u\)</span> 二阶导数连续, 那么
 <span class="math display">\[
-\mathrm{curl}~ v
+\mathrm{curl}\  v
 = \frac{\partial^2 u}{\partial x \partial y} - \frac{\partial^2
 u}{\partial y \partial x}
 \equiv 0
@@ -7130,7 +7131,7 @@ u}{\partial y \partial x}
 守恒性质同样也可以通过全局和点态两种方式进行描述:</p>
 <ol type="1">
 <li><p>对任意闭合曲线, 通量等于 0: <span class="math display">\[
-\oint_{C} n \cdot v ~\mathrm{d}s = 0
+\oint_{C} n \cdot v \ \mathrm{d}s = 0
 \]</span></p></li>
 <li><p>速度场的散度恒等于 0: <span class="math display">\[
 \nabla \cdot v \equiv 0
@@ -7141,22 +7142,23 @@ u}{\partial y \partial x}
 等于在边界处 <span class="math inline">\(C\)</span> 的通量: <span
 class="math display">\[
 \boxed{
-\int_{S} \nabla \cdot v ~\mathrm{d}S = \oint_{C} n \cdot v ~\mathrm{d}s
+\int_{S} \nabla \cdot v \ \mathrm{d}S = \oint_{C} n \cdot v \
+\mathrm{d}s
 }
 \]</span></p>
 <h3 id="gauss-公式">Gauss 公式</h3>
 <p>Gauss 公式是分部积分公式在高维情景下的推广: <span
 class="math display">\[
-\int \boldsymbol{w} \cdot \nabla u ~\mathrm{d}S
-= \int u (-\nabla \cdot \boldsymbol{w}) ~\mathrm{d}S
-+ \int \nabla \cdot (u \boldsymbol{w}) ~\mathrm{d}S
+\int \boldsymbol{w} \cdot \nabla u \ \mathrm{d}S
+= \int u (-\nabla \cdot \boldsymbol{w}) \ \mathrm{d}S
++ \int \nabla \cdot (u \boldsymbol{w}) \ \mathrm{d}S
 \]</span> 上式最后一项可以通过散度定理化简为 <span
 class="math display">\[
 \boxed{
-\int \boldsymbol{w} \cdot \nabla u ~\mathrm{d}S
-= \int u (-\nabla \cdot \boldsymbol{w}) ~\mathrm{d}S
-+ \underbrace{\oint u~ \boldsymbol{w} \cdot \boldsymbol{n}
-~\mathrm{d}s}_{\bigstar}
+\int \boldsymbol{w} \cdot \nabla u \ \mathrm{d}S
+= \int u (-\nabla \cdot \boldsymbol{w}) \ \mathrm{d}S
++ \underbrace{\oint u\  \boldsymbol{w} \cdot \boldsymbol{n} \
+\mathrm{d}s}_{\bigstar}
 }
 \]</span> 这就得到了 Gauss 公式.</p>
 <h2 id="一般形式的散度定理">一般形式的散度定理</h2>
@@ -7164,32 +7166,32 @@ class="math display">\[
 class="math inline">\(\varphi\)</span>, 并假设边界 <span
 class="math inline">\(\partial V\)</span> 分片光滑, 那么以下等式成立:
 <span class="math display">\[
-\int_{V} \varphi_{,i} ~\mathrm{d}x = \int_{\partial V} \varphi n_i
-~\mathrm{d}\sigma(x), \quad i=1,2,3
+\int_{V} \varphi_{,i} \ \mathrm{d}x = \int_{\partial V} \varphi n_i \
+\mathrm{d}\sigma(x), \quad i=1,2,3
 \]</span> 首先考虑梯度运算, 写成分量形式为 <span class="math display">\[
-\int_V \nabla B ~\mathrm{d}x = \int_{V} B_{\cdot,i} e_i \otimes
-e_{\cdot} ~\mathrm{d}x
-= \int_{\partial V} B_{\cdot} n_i ~e_i \otimes e_{\cdot}
-~\mathrm{d}\sigma(x)
-= \int_{\partial V} n \otimes B  ~\mathrm{d}\sigma(x)
+\int_V \nabla B \ \mathrm{d}x = \int_{V} B_{\cdot,i} e_i \otimes
+e_{\cdot} \ \mathrm{d}x
+= \int_{\partial V} B_{\cdot} n_i \ e_i \otimes e_{\cdot} \
+\mathrm{d}\sigma(x)
+= \int_{\partial V} n \otimes B  \ \mathrm{d}\sigma(x)
 \]</span> 再考虑散度运算, <span class="math display">\[
-\int_{V} \nabla \cdot B ~\mathrm{d}x = \int_{V} B_{i\cdot,i} ~e_{\cdot}
-~\mathrm{d}x
-= \int_{\partial V} B_{i\cdot} n_i ~e_{\cdot} ~\mathrm{d}\sigma(x)
-= \int_{\partial V} n \cdot B ~\mathrm{d}\sigma(x)
+\int_{V} \nabla \cdot B \ \mathrm{d}x = \int_{V} B_{i\cdot,i} \
+e_{\cdot} \ \mathrm{d}x
+= \int_{\partial V} B_{i\cdot} n_i \ e_{\cdot} \ \mathrm{d}\sigma(x)
+= \int_{\partial V} n \cdot B \ \mathrm{d}\sigma(x)
 \]</span> 最后考虑旋度运算 <span class="math display">\[
-\int_{V} \nabla \times B ~\mathrm{d}x = \int_{V} B_{\cdot,i} ~ e_{i}
-\times e_{\cdot} ~\mathrm{d}x
-= \int_{\partial V} B_{\cdot} n_i ~ e_{i} \times e_{\cdot}
-~\mathrm{d}\sigma(x)
-= \int_{\partial V} n \times B ~\mathrm{d}\sigma(x)
+\int_{V} \nabla \times B \ \mathrm{d}x = \int_{V} B_{\cdot,i} \  e_{i}
+\times e_{\cdot} \ \mathrm{d}x
+= \int_{\partial V} B_{\cdot} n_i \  e_{i} \times e_{\cdot} \
+\mathrm{d}\sigma(x)
+= \int_{\partial V} n \times B \ \mathrm{d}\sigma(x)
 \]</span> 对于右侧的运算也是类似的, 因此, 如果我们定义一般的运算符 <span
 class="math inline">\(\divideontimes\)</span>, 代表梯度,
 散度或旋度的其中一种, 那么 <span class="math display">\[
-\int_V \nabla \divideontimes B ~\mathrm{d}x = \int_{\partial V} n
-\divideontimes B ~\mathrm{d}\sigma(x), \quad
-\int_V B \divideontimes \nabla ~\mathrm{d}x = \int_{\partial V} B
-\divideontimes n ~\mathrm{d}\sigma(x)
+\int_V \nabla \divideontimes B \ \mathrm{d}x = \int_{\partial V} n
+\divideontimes B \ \mathrm{d}\sigma(x), \quad
+\int_V B \divideontimes \nabla \ \mathrm{d}x = \int_{\partial V} B
+\divideontimes n \ \mathrm{d}\sigma(x)
 \]</span></p>
 ]]></content>
       <categories>
@@ -7524,25 +7526,15 @@ class="math inline">\(e_i&#39;\)</span> 总是能通过旧基底 <span
 class="math inline">\(e_{\alpha}\)</span> 表示为 <span
 class="math display">\[
 \boxed{
-e_i&#39; = Q_{\alpha i} e_{\alpha}
+\boldsymbol{e}_i&#39; = Q_{\alpha i} \boldsymbol{e}_{\alpha}
 }
 \tag{1}
-\]</span> 或者写成矩阵形式 <span class="math display">\[
-\begin{bmatrix} e_1&#39; \\ e_2&#39; \\ e_3&#39; \end{bmatrix}
-= \begin{bmatrix}
-Q_{11} &amp; Q_{12} &amp; Q_{13} \\
-Q_{21} &amp; Q_{22} &amp; Q_{23} \\
-Q_{31} &amp; Q_{32} &amp; Q_{33}
-\end{bmatrix}^{\top}
-\begin{bmatrix} e_1 \\ e_2 \\ e_3 \end{bmatrix}
-\]</span> 注意到转换矩阵 <span class="math inline">\(Q\)</span>
-是带有转置符号的, 这是我们的符号约定.</p>
-<blockquote>
-<p>[!NOTE]</p>
-<p>基底变换不需要考虑基底的原点设在何处.</p>
-</blockquote>
-<p>当基底是正交规范基时, 转换矩阵 <span class="math inline">\(Q\)</span>
-是正交矩阵, 这是因为 <span class="math display">\[
+\]</span> 其中, <span class="math inline">\(Q_{\alpha i}\)</span>
+可以写成 <span class="math display">\[
+Q_{\alpha i} = \boldsymbol{e}_{\alpha} \cdot \boldsymbol{e}&#39;_{i}
+\]</span> 当基底是正交规范基时, 转换矩阵 <span
+class="math inline">\(Q\)</span> 是正交矩阵, 这是因为 <span
+class="math display">\[
 \delta_{ij} = e_i&#39; \cdot e_j&#39; = Q_{\alpha i} e_{\alpha} Q_{\beta
 j} e_{\beta}
 = Q_{\alpha i}Q_{\alpha j}
@@ -7554,6 +7546,14 @@ QQ^{\top} = I
 class="math inline">\(Q\)</span> 为 proper orthogonal, 对应为纯旋转; 当
 <span class="math inline">\(\det Q = -1\)</span> 时, 对应为旋转加镜像.
 以下默认为 proper orthogonal 情况.</p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>一些教材定义矩阵 <span class="math inline">\(Q\)</span>
+的方式与此处不同. 这里行指标是旧基底, 列指标是新基底, 所以,
+如果将新基底写成旧基底分量的形式, 对应矩阵 <span
+class="math inline">\(Q\)</span>
+的<strong>列</strong>向量是新基底(在旧基底下的分量形式)</p>
+</blockquote>
 <h2
 id="向量在不同基底下的坐标变换规则">向量在不同基底下的坐标变换规则</h2>
 <p>接下来, 我们考虑向量分量在不同坐标系下的变换规则. 对于向量 <span
@@ -8396,7 +8396,9 @@ class="math display">\[
 &amp;+ L_{1132} \epsilon_{32} + L_{1131} \epsilon_{31} + L_{1121}
 \epsilon_{21}
 \end{aligned}
-\]</span> 由于张量的对称性, 我们有 <span class="math display">\[
+\]</span> 由于 <span class="math inline">\(L\)</span> 和 <span
+class="math inline">\(\epsilon\)</span> 张量的次对称性, 我们有 <span
+class="math display">\[
 L_{1123} \epsilon_{23} = L_{1132} \epsilon_{32}, \quad
 L_{1113} \epsilon_{13} = L_{1131} \epsilon_{31}, \quad
 L_{1112} \epsilon_{12} = L_{1121} \epsilon_{21}
@@ -8438,7 +8440,7 @@ L_{1133} \epsilon_{33}
 <p>对任意的四阶张量, 有 <span class="math display">\[
 \mathbb{L} : \mathbb{I} = \mathbb{L}
 \]</span> 两边作 Voigt 变换得到 <span class="math display">\[
-[\mathbb{L}] [:] [\mathbb{I}] = [\mathbb{I}]
+[\mathbb{L}] [:] [\mathbb{I}] = [\mathbb{L}]
 \]</span> 我们选取某个 <span class="math inline">\(\mathbb{L}\)</span>,
 使得它在 Voigt 映射为 6x6 单位矩阵 <span
 class="math inline">\([I]\)</span>​ <span class="math display">\[
@@ -9011,7 +9013,7 @@ class="math display">\[
 <h4 id="d---tau-共轭对"><span class="math inline">\(D\)</span> - <span
 class="math inline">\(\tau\)</span> 共轭对</h4>
 <p>将插值函数代入到式 <span
-class="math inline">\(\ref{eq:tau_D}\)</span> 中得到内力项: <span
+class="math inline">\(\ref{eq:tau-D}\)</span> 中得到内力项: <span
 class="math display">\[
 \begin{equation}
 f_{i}^{\mathrm{int},a} = \int_{S_0} \tau_{ij} N_{,I}^a F_{Ij}^{-1}
@@ -9468,20 +9470,20 @@ class="math display">\[
 ~\mathrm{d} \boldsymbol{F}^{-1} = (\boldsymbol{I} + \boldsymbol{F}^{-1}
 \cdot \mathrm{d}\boldsymbol{F} )^{-1} \cdot \boldsymbol{F}^{-1}
 -\boldsymbol{F}^{-1}
-\sim \boldsymbol{F}^{-1} \cdot \mathrm{d}\boldsymbol{F} \cdot
+\sim -\boldsymbol{F}^{-1} \cdot \mathrm{d}\boldsymbol{F} \cdot
 \boldsymbol{F}^{-1}\quad
 \scriptsize{\left( (I + A)^{-1} \sim I - A \right)}
 \]</span> 因此有 <span class="math display">\[
-~\mathrm{d} F_{Ik}^{-1} = F_{Ii}^{-1} F_{Jj}^{-1} N_{,J}^b ~\mathrm{d}
+~\mathrm{d} F_{Ij}^{-1} = -F_{Ik}^{-1} F_{Jj}^{-1} N_{,J}^b ~\mathrm{d}
 \varphi_{k}^{b}
 \]</span> 代入到式 <span
 class="math inline">\(\ref{eq:neo_hookean_stiff}\)</span> 中积分项 <span
 class="math inline">\(I_2\)</span> 有 <span class="math display">\[
 \boxed{
-I_2 = \int_{S_0} \tau_{ij} N_{,I}^a N_{,J}^b F_{Ik}^{-1} F_{Jj}^{-1}
+I_2 = -\int_{S_0} \tau_{ij} N_{,I}^a N_{,J}^b F_{Ik}^{-1} F_{Jj}^{-1}
 ~\mathrm{d} X, \quad
 \text{或者} \quad
-I_2 = \int_{S_0} \tau_{ij} N_{,k}^a N_{,l}^b ~\mathrm{d} X
+I_2 = -\int_{S_0} \tau_{ij} N_{,k}^a N_{,j}^b ~\mathrm{d} X
 }
 \]</span></p>
 <h4 id="载荷刚度">载荷刚度</h4>
@@ -11854,34 +11856,26 @@ c^{\alpha} f_{ij}^{\alpha} f_{ij}^{\alpha} - \bar{f}_{ij}\bar{f}_{ij}
 class="math inline">\(E_{kl}^{(mn)}\)</span> 求解</h3>
 <p>在三维情景, 线弹性条件下, 单胞方程的弱形式为: <span
 class="math display">\[
-\int_{Y} L_{ijkl} \frac{\partial H_k^{(mn)}}{\partial y_l}
-\frac{\partial v_i}{\partial y_j} \mathrm{d} Y
-= -\int_{Y} L_{ij(mn)} \frac{\partial v_i}{\partial y_j} \mathrm{d} Y.
+\int_{\Theta} L_{ijkl} \frac{\partial H_k^{(mn)}}{\partial y_l}
+\frac{\partial v_i}{\partial y_j} \mathrm{d} y
+= -\int_{\Theta} L_{ij(mn)} \frac{\partial v_i}{\partial y_j} \mathrm{d}
+y.
 \tag{1}
 \]</span></p>
 <p>场变量 <span class="math inline">\(H_k^{(mn)}\)</span>
-满足周期性边界条件, <span id="more"></span>也即</p>
-<p><span class="math display">\[
-H_k^{(mn)}(y) = H_k^{(mn)}(y + kl).
-\]</span></p>
-<p>然而, 上述周期性边界条件只是提供了边界节点的约束条件,
-还不能唯一确定解. Fish 书中提供两种定解的方式:</p>
-<p><span class="math display">\[
-(1) \quad H_k^{(mn)} := 0, \text{ on } \partial
-\Theta^{\mathrm{vert}};\\
-(2) \quad \int_{\Theta} H_k^{(mn)} \mathrm{d} \Theta := 0.
-\]</span></p>
-<div class="note info"><p>在单胞方程中, <span class="math inline">\((mn)\)</span>
+满足周期性边界条件. <span id="more"></span></p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>在单胞方程中, <span class="math inline">\((mn)\)</span>
 是对称的自由指标, 使用 <span class="math inline">\(()\)</span> 标注指标
 <span class="math inline">\(mn\)</span>
 是因为该组指标表示单胞可能的变形模式 (对于三维问题共有 6 种模式,
-每一种模式确定一组偏微分方程), 而不是一般意义下的 Euclidean
-空间中的坐标分量.</p>
-</div>
+每一种模式确定一组偏微分方程).</p>
+</blockquote>
 <p>求解出 <span class="math inline">\(H_{k}^{(mn)}\)</span> 后,
 可得到均质化的弹性模量为: <span class="math display">\[
-L_{ij(mn)}^{\mathrm{hom}} = \frac{1}{|Y|} \int_{Y} L_{ij(mn)} +
-L_{ijkl}H_{k,l}^{(mn)} \mathrm{d} Y.
+L_{ij(mn)}^{\mathrm{hom}} = \frac{1}{|\Theta|} \int_{\Theta} L_{ij(mn)}
++ L_{ijkl}H_{k,l}^{(mn)} \mathrm{d} y.
 \tag{2}
 \]</span></p>
 <p>式中，<span class="math inline">\(H_{k,l}^{(mn)} = \frac{\partial
@@ -11889,31 +11883,32 @@ H_{k}^{(mn)}}{\partial y_l}\)</span>​ 。如果记 <span
 class="math display">\[
 E_{kl}^{(mn)} \triangleq I_{kl}^{(mn)} + H_{k,l}^{(mn)}
 \]</span> 式中, <span
-class="math inline">\(I_{kl}^{(mn)}=\frac{1}{2}(\delta_{km}\delta_{ln}+\delta_{kn}\delta_{lm})\)</span>.
-式（2）可以表示为 <span class="math display">\[
-L_{ij(mn)}^{\mathrm{hom}} = \frac{1}{|Y|} \int_{Y} L_{ijkl}E_{kl}^{(mn)}
-\mathrm{d} Y.
+class="math inline">\(I_{kl}^{(mn)}=\frac{1}{2}(\delta_{km}\delta_{ln}+\delta_{kn}\delta_{lm})\)</span>,
+那么式 (2) 可以表示为 <span class="math display">\[
+L_{ij(mn)}^{\mathrm{hom}} = \frac{1}{|\Theta|} \int_{\Theta}
+L_{ijkl}E_{kl}^{(mn)} \mathrm{d} y.
 \]</span></p>
 <h3 id="reduced-order-单胞方程张量场-p_klmn-求解">Reduced Order
 单胞方程张量场 <span class="math inline">\(P_{kl}^{mn}\)</span>
 求解</h3>
 <p>降阶多尺度的单胞方程弱形式为 <span class="math display">\[
-\int_{Y} L_{ijkl}(y)  P_{kl}^{mn(\alpha)}(y) v_{i,j}(y) ~\mathrm{d}y
-= \int_{Y} L_{ijmn}(y) \chi^{(\alpha)}(y) v_{i,j}(y) ~\mathrm{d}y
+\int_{\Theta} L_{ijkl}(y)  P_{kl}^{mn(\alpha)}(y) v_{i,j}(y)
+~\mathrm{d}y
+= \int_{\Theta} L_{ijmn}(y) \chi^{(\alpha)}(y) v_{i,j}(y) ~\mathrm{d}y
 \quad \alpha=1,2, \ldots,N
 \tag{3}
 \]</span></p>
-<p>方程（1）（3）的区别在于右端项的积分区域，以及正负号。式（3）右端对
-partition
-求和，可以得到式（1）的右端项（相差一个负号）。方程（3）的边界条件与（1）相同。</p>
+<p>方程 (1) (3) 的区别在于右端项的积分区域，以及正负号。式 (3) 右端对
+partition 求和，可以得到式 (1) 的右端项 (相差一个负号) 。方程 (3)
+的边界条件与 (1) 相同。</p>
 <h2 id="单胞方程的有限元列式">单胞方程的有限元列式</h2>
 <p>将单胞方程中的张量分量表示为矩阵形式:</p>
 <p><span class="math display">\[
-L_{ijkl}(y) \rightarrow [D](y), \quad
-\frac{\partial v_i}{\partial y_j} \rightarrow [B][v], \quad
-\frac{\partial H_k^{(mn)}}{\partial y_l} \rightarrow [B][u]^{(mn)},
-\quad
-L_{ij(mn)}(y) \rightarrow [D](y) [\varepsilon]^{(mn)}.
+L_{ijkl}(y) \rightarrow [\mathbf{D}](y), \quad
+\frac{\partial v_i}{\partial y_j} \rightarrow [\mathbf{B}][v], \quad
+\frac{\partial H_k^{(I)}}{\partial y_l} \rightarrow
+[\mathbf{B}][u]^{(I)}, \quad
+L_{ij(I)}(y) \rightarrow [\mathbf{D}](y) [\varepsilon]^{(mn)}.
 \]</span></p>
 <p>式中, <span class="math inline">\(mn =
 \{11,22,33,23,13,12\}\)</span>. 为方便表示向量分量, 我们使用 Voigt 映射
@@ -11950,6 +11945,14 @@ class="math inline">\((mn)\)</span> 分量为 1, 其它分量为 0. 例如, 当
 <p>注意, 约束矩阵 <span
 class="math inline">\([C_{\mathrm{per}}]\)</span> 与变形模式 <span
 class="math inline">\(mn\)</span> 无关.</p>
+<p>如果考虑材料坐标系, 那么, 在材料坐标系下表示的材料模量 <span
+class="math inline">\([\mathrm{D}&#39;]\)</span>,
+需要通过四阶张量的旋转得到宏观坐标系下 <span
+class="math inline">\([\mathrm{D}]\)</span>: <span
+class="math display">\[
+L_{ijkl} = L&#39;_{mnrs} A_{mi} A_{nj} A_{rk} A_{sl}
+\]</span> 在求解有限元方程之后,
+得到的是宏观坐标系下的均质化之后的材料刚度矩阵.</p>
 <p>求解 6 组变形模式下的有限元方程, 得到 <span
 class="math inline">\([u]^{(mn)}\)</span> 后,
 再代入到均质化弹性张量方程中:</p>
@@ -11981,6 +11984,8 @@ c_m [D_m].
 <p>式中, <span class="math inline">\([D_f]\)</span> 和 <span
 class="math inline">\([D_m]\)</span>
 分别为纤维和基体材料的弹性模量矩阵.</p>
+<p>各个分块上的 E P 张量, 分别对应求解之后的应变场在分块上的平均, 因此 E
+P 张量的数值形式都是宏观坐标系下的张量. 此外对</p>
 <h2 id="单胞方程的求解">单胞方程的求解</h2>
 <p>使用有限元方法求解单胞方程需要解决如下问题:</p>
 <ol type="1">
@@ -12124,7 +12129,8 @@ class="math inline">\(\varepsilon^c\)</span> 引入的位移量, 求解得到的
         <category>多尺度</category>
       </categories>
       <tags>
-        <tag>有限元</tag>
+        <tag>周期性边界条件</tag>
+        <tag>有限元离散化</tag>
       </tags>
   </entry>
   <entry>
@@ -12159,8 +12165,8 @@ c^{(1)}(\mathbb{L}^{(1)}-\mathbb{L}^{(2)}):\mathbb{E}^{(1)}  =
 \]</span> 所以 <span class="math inline">\(\mathbb{E}^{(1)}\)</span>
 可以通过分块的弹性模量以及体积分数表示为 <span class="math display">\[
 \mathbb{E}^{(1)} =
-\frac{1}{c^{(1)}}(\mathbb{L}^{(1)}-\mathbb{L}^{(2)})^{-1} (\mathbb{L}^c
-- \mathbb{L}^{(2)})
+\frac{1}{c^{(1)}}(\mathbb{L}^{(1)}-\mathbb{L}^{(2)})^{-1} :
+(\mathbb{L}^c - \mathbb{L}^{(2)})
 \]</span> 由于指标是对称的，所以有 <span class="math display">\[
 \mathbb{E}^{(2)} =
 \frac{1}{c^{(2)}}(\mathbb{L}^{(2)}-\mathbb{L}^{(1)})^{-1} (\mathbb{L}^c
@@ -12472,6 +12478,33 @@ class="math inline">\(v_{i,j}\)</span>
 \sum_{\alpha} c^{(\alpha)}
 \mathbb{L}^{(\alpha)}:(\mathbb{P}^{(\alpha\beta)} - \mathbb{I}) = 0,
 \quad \beta=1,2,\ldots,N
+\]</span></p>
+<h2
+id="层级平均应变影响张量和-transformation-influence-tensor-tif">层级平均应变影响张量和
+Transformation Influence Tensor (TIF)</h2>
+<p>设第 <span class="math inline">\(\alpha\)</span> 块分块分裂为 <span
+class="math inline">\(\alpha_1\)</span> 和 <span
+class="math inline">\(\alpha_2\)</span>. 这时根据 TIF
+和平均应变影响张量的定义,我们有 <span class="math display">\[
+\mathbb{E}^{(\alpha)} = \frac{c^{(\alpha_1)}}{c^{(\alpha)}}
+\mathbb{E}^{(\alpha_1)}
++ \frac{c^{(\alpha_2)}}{c^{(\alpha)}} \mathbb{E}^{(\alpha_2)}
+\]</span> 定义 <span class="math display">\[
+c&#39;^{(\alpha_1)} \triangleq \frac{c^{(\alpha_1)}}{c^{(\alpha)}},
+\quad
+c&#39;^{(\alpha_2)} \triangleq \frac{c^{(\alpha_2)}}{c^{(\alpha)}}
+\]</span> 有 <span class="math display">\[
+\mathbb{E}^{(\alpha)} = c&#39;^{(\alpha_1)} \mathbb{E}^{(\alpha_1)} +
+c&#39;^{(\alpha_2)} \mathbb{E}^{(\alpha_2)}
+\]</span> 同样有 <span class="math display">\[
+\mathbb{P}^{(\alpha)}(y) = \mathbb{P}^{(\alpha_1)}(y) +
+\mathbb{P}^{(\alpha_2)}(y) \Rightarrow \\
+\mathbb{P}^{(\beta\alpha)} = \mathbb{P}^{(\beta\alpha_1)} +
+\mathbb{P}^{(\beta\alpha_2)}, \alpha \neq \beta \\
+\mathbb{P}^{(\alpha\alpha)} = c&#39;^{(\alpha_1)} (
+\mathbb{P}^{(\alpha_1\alpha_1)} + \mathbb{P}^{(\alpha_1\alpha_2)} )
++ c&#39;^{(\alpha_2)} ( \mathbb{P}^{(\alpha_2\alpha_1)} +
+\mathbb{P}^{(\alpha_2\alpha_2)} )
 \]</span></p>
 ]]></content>
       <categories>
@@ -13089,236 +13122,6 @@ c^{(\alpha)} L^{(\alpha)}
       </tags>
   </entry>
   <entry>
-    <title>多尺度的计算层面</title>
-    <url>/mech/multiscale/%E5%A4%9A%E5%B0%BA%E5%BA%A6%E7%9A%84%E8%AE%A1%E7%AE%97%E5%B1%82%E9%9D%A2/</url>
-    <content><![CDATA[<div class="note info no-icon"><h5 id="注意">注意</h5>
-<p>以下的推导均是<strong>形式上的推导</strong>, 也就是说,
-读者可能没有办法从推导过程中直接获得编写程序的方法.
-这是因为力学的物理量需要引用的指标太多, 如果将它们每一个分量,
-每一个自由度全部写出来, 公式会过于繁琐以致不可读
-读者应在阅读中尝试使用自己的一套符号体系复述一遍,
-反复斟酌用什么样的符号可以比作者更好地表达算法的内涵.
-我认为这是理解形式化推导的一个好方法.</p>
-</div>
-<span id="more"></span>
-<p>现在我们来到有限元计算框架中第 <span
-class="math inline">\(n+1\)</span> 迭代步,
-称为<strong>当前迭代步</strong>. 为了使接下来方程的增量表达式更加清晰,
-我们首先引入以下增量记号. 它们写在力学变量之前, 表示不同的增量含义:</p>
-<ul>
-<li>记号 <span class="math inline">\(\delta_i\)</span> 表示变量在迭代步
-<span class="math inline">\(i\)</span> 的增量, 特别的,
-在当前迭代步省略下标</li>
-<li>记号 <span class="math inline">\(\Delta^{i}\)</span> 表示 <span
-class="math inline">\(\sum_{k=1}^{i} \delta_k\)</span>​ , 特别的, 当
-<span class="math inline">\(i=n+1\)</span> 时省略上标,</li>
-</ul>
-<p>可以看到, 在当前迭代步中, 变量 <span
-class="math inline">\(\delta\)</span> <span
-class="math inline">\(\Delta\)</span> 是未知量,
-需要使用数值方法计算后更新变量. <span
-class="math inline">\(\Delta^n\)</span> 包含过去历史的信息, 是已知量,
-并且 <span class="math display">\[
-\Delta = \Delta^n~ + \delta
-\]</span> 以及, 对于线性方程 <span class="math inline">\(L\)</span>,
-如果在前 <span class="math inline">\(n\)</span> 个迭代步中均保证平衡,
-也即 <span class="math display">\[
-L(\Delta^i v) = 0, \quad i=1,2,\ldots,n
-\]</span> 那么在当前迭代步中, 关于 <span
-class="math inline">\(\Delta\)</span> 的方程与关于 <span
-class="math inline">\(\delta\)</span> 的方程等价: <span
-class="math display">\[
-L(\Delta v) \Leftrightarrow L(\delta v)
-\]</span> 所以, 对于关于迭代总增量的方程 <span
-class="math inline">\(L(\Delta v)\)</span>,
-同样可以看作是关于当前迭代增量的方程 <span
-class="math inline">\(L(\delta v)\)</span>​.</p>
-<p>我们再引入花括号 <span class="math inline">\(\{\cdot\}\)</span>
-表示分块物理量的集合. 例如 <span class="math inline">\(\{ \Delta
-\varepsilon \}\)</span> 表示分块上的应变 <span
-class="math inline">\(\Delta \varepsilon^{(\alpha)}\)</span>, <span
-class="math inline">\(\alpha=1,2,\ldots,N\)</span>.</p>
-<h2 id="宏观尺度迭代步-">宏观尺度迭代步-&gt;</h2>
-<p>积分点处的宏观应变 <span class="math inline">\(\Delta
-\varepsilon^c(x_{p})\)</span> 作为有限元求解框架中的驱动变量,
-在宏观层面当前迭代步开始时就已经给定. 因此, 当前迭代步迭代步的宏观应变
-<span class="math inline">\(\Delta \varepsilon^c(x_p)\)</span> 应变增量
-<span class="math inline">\(\delta \varepsilon^c(x_p)\)</span>
-是作为已知量进入到多尺度的计算当中.</p>
-<h2 id="多尺度计算-">多尺度计算-&gt;</h2>
-<div class="note success no-icon"><h5 id="输入变量">输入变量:</h5>
-<p>宏观应变 <span class="math inline">\(\Delta
-\varepsilon^c(x_p)\)</span>; 宏观应变增量 <span
-class="math inline">\(\delta \varepsilon^c(x_p)\)</span>​</p>
-<p>分块上的应变 <span class="math inline">\(\{\Delta^n
-\varepsilon\}\)</span> 和本征应变 <span class="math inline">\(\{\Delta^n
-\mu^{(\alpha)}\}\)</span></p>
-<p>分块上的影响张量 <span class="math inline">\(\{P\}\)</span> <span
-class="math inline">\(\{E\}\)</span></p>
-</div>
-<p>在多尺度计算层面, 待求解的非线性方程为 <span class="math display">\[
-\Delta \varepsilon^{(\beta)}
--\sum_{\alpha=1}^{N} P^{(\beta \alpha)} : \Delta \mu^{(\alpha)}
-=E^{(\beta)} : \Delta \varepsilon^c(x),
-\quad \beta = 1, 2, \ldots, N
-\tag{4.41}
-\]</span></p>
-<p>定义残差 <span class="math display">\[
-r^{(\beta)}(\{ \Delta \varepsilon \}) \triangleq \Delta
-\varepsilon^{(\beta)}
--\sum_{\alpha=1}^{N} P^{(\beta \alpha)} : \Delta \mu^{(\alpha)}
-- E^{(\beta)} : {\Delta} \varepsilon^c(x_p),
-\quad \beta = 1, 2, \ldots, N
-\]</span> 方程中出现的未知量是分块上的应变 <span
-class="math inline">\(\{ \Delta \varepsilon \} \triangleq \{ \Delta
-\varepsilon^{(1)}, \Delta \varepsilon^{(2)}, \ldots , \Delta
-\varepsilon^{(N)} \}\)</span> 和本征应变 <span class="math inline">\(\{
-\Delta \mu \} \triangleq \{ \Delta \mu^{(1)}, \Delta \mu^{(2)}, \ldots ,
-\Delta \mu^{(N)} \}\)</span>, 本征应变 <span
-class="math inline">\(\mu^{(\alpha)}\)</span>
-通过分块上独立的非线性材料本构与分块的应变 <span
-class="math inline">\(\Delta \varepsilon^{(\alpha)}\)</span> 相关联,
-因此也是关于变量 <span class="math inline">\(\{ \Delta \varepsilon
-\}\)</span> 的函数. <span class="math inline">\(P^{(\beta
-\alpha)}\)</span> 与 <span class="math inline">\(E^{(\beta)}\)</span>
-是在线下阶段计算线弹性的单胞问题得到的分块上的张量,
-在多尺度计算中同样作为已知量输入到方程中,
-可以看作是方程的<strong>常系数</strong>.</p>
-<p>我们需要计算分块上的应变迭代增量 <span class="math inline">\(\{
-\delta \varepsilon \}\)</span>, 使得下一迭代步的分块应变更新为 <span
-class="math display">\[
-\{ \Delta \varepsilon \} := \{ \Delta^n \varepsilon \} + \{ \delta
-\varepsilon \}
-\]</span> 使用 Newton 迭代法对残差方程 <span class="math inline">\(\{ r
-\} = 0\)</span> 关于分块应变 <span class="math inline">\(\{ \Delta
-\varepsilon \}\)</span> 线性化得到 <span class="math display">\[
-\{ r \} + \{M\} \{ \delta \varepsilon \} = 0, \quad
-\{M\} = \frac{\partial \{r\}}{\partial \{ \Delta \varepsilon \}}
-\tag{1}
-\]</span> 上述形式化的推导说明, 我们需要计算残差关于分块应变的偏导数:
-<span class="math display">\[
-\frac{\partial r^{(\beta)}}{\partial \Delta \varepsilon^{(\gamma)}}
-= \delta^{\beta \gamma} \mathbb{I}
-- \sum_{\alpha=1}^{N} P^{(\beta \alpha)} :  \frac{\partial \Delta
-\mu^{(\alpha)}}{\partial \Delta \varepsilon^{(\gamma)}}
-\]</span> 分块上的本征应变只与该分块上的应变相关, 所以可以消去求和号
-<span class="math display">\[
-\frac{\partial r^{(\alpha)}}{\partial \Delta \varepsilon^{(\beta)}}
-= \delta^{\alpha \beta} \mathbb{I}
--  P^{(\alpha \beta)} :  \frac{\partial \Delta \mu^{(\beta)}}{\partial
-\Delta \varepsilon^{(\beta)}}
-\tag{2}
-\]</span> 式中本征应变对应变的偏导数可以通过本征应变表示的本构方程 <span
-class="math display">\[
-\Delta \mu^{(\alpha)} = \Delta \varepsilon^{(\alpha)} - M^{(\alpha)} :
-\Delta \sigma^{(\alpha)}
-\tag{3}
-\]</span> 对应变求偏导数得到: <span class="math display">\[
-\frac{\partial \Delta \mu^{(\alpha)}}{\partial \Delta
-\varepsilon^{(\alpha)}}
-= \mathbb{I} - M^{(\alpha)} : \frac{\partial \Delta
-\sigma^{(\alpha)}}{\partial \Delta \varepsilon^{(\alpha)}}
-\tag{4}
-\]</span> 式中, <span class="math inline">\({\partial \Delta
-\sigma^{(\alpha)}}/{\partial \Delta \varepsilon^{(\alpha)}}\)</span>
-是单相上的切线刚度矩阵, 这可以通过一般的本构获得.</p>
-<h2
-id="单相分块上的非线性本构计算-">-&gt;单相分块上的非线性本构计算-&gt;</h2>
-<div class="note success no-icon"><h5 id="输入变量">输入变量:</h5>
-<p>分块应变 <span class="math inline">\(\{\Delta^n
-\varepsilon\}\)</span></p>
-</div>
-<p>现在的一个问题是: 我是通过方程 (4.41)
-<strong>求解分块上的应变增量</strong>, 以此更新下一步的应变. 使用 Newton
-迭代法求解方程, 这样需要用到式 (2) 和式 (4) 得到残差偏导数的信息. 式 (4)
-将问题转化为单相分块上非线性本构的求解问题,
-这又<strong>需要提供在单相上应变增量的信息</strong>.
-求解分块上的应变增量需要提供应变增量?</p>
-<h2 id="多尺度计算">-&gt;多尺度计算</h2>
-<div class="note success no-icon"><h5 id="输入变量">输入变量:</h5>
-<p>分块上的切线刚度矩阵 <span class="math inline">\(\{\partial \Delta
-\sigma/\partial \Delta \varepsilon\}\)</span>; 分块应力 <span
-class="math inline">\(\{\Delta \sigma\}\)</span>; 状态变量 <span
-class="math inline">\(\{\mathrm{sv}\}\)</span></p>
-</div>
-<p>残差关于分块应变的偏导数为 <span class="math display">\[
-\frac{\partial r^{(\alpha)}}{\partial \Delta \varepsilon^{(\beta)}}
-= \delta^{\alpha \beta} \mathbb{I}
--  P^{(\alpha \beta)}
-+ P^{(\alpha \beta)} : M^{(\beta)} : \frac{\partial \Delta
-\sigma^{(\beta)}}{\partial \Delta \varepsilon^{(\beta)}}
-\]</span> 分块上的应变迭代增量 <span class="math inline">\(\{ \delta
-\varepsilon \}\)</span> 可以通过求解线性方程组式 (1) 得到 <span
-class="math display">\[
-\{ \delta \varepsilon \} = - \{M\}^{-1} \{ r \}
-\]</span> 因此, 分块上的应变更新为 <span class="math display">\[
-\{ \Delta \varepsilon \} := \{ \Delta^n \varepsilon \} + \{ \delta
-\varepsilon \}
-\]</span></p>
-<p>分块上的本征应变通过式 (3) 得到: <span class="math display">\[
-\{\Delta \mu\} := \{\Delta \varepsilon\} - \{M\} : \{\Delta \sigma\}
-\tag{3}
-\]</span></p>
-<h2 id="宏观尺度迭代步">-&gt; 宏观尺度迭代步</h2>
-<div class="note success no-icon"><h5 id="输入变量">输入变量:</h5>
-<p>分块上的切线刚度矩阵 <span class="math inline">\(\{\partial \Delta
-\sigma/\partial \Delta \varepsilon\}\)</span>; 分块应力 <span
-class="math inline">\(\{\Delta \sigma\}\)</span>; 状态变量 <span
-class="math inline">\(\{\mathrm{sv}\}\)</span></p>
-<p>分块上的应变 <span class="math inline">\(\{\Delta
-\varepsilon\}\)</span> 和本征应变 <span class="math inline">\(\{\Delta
-\mu\}\)</span></p>
-</div>
-<p>首先, 单胞上的宏观应变 <span class="math inline">\(\Delta
-\varepsilon^{c}\)</span> 为 <span class="math display">\[
-\Delta \varepsilon^{c} = \sum_{\alpha=1}^{N} c^{(\alpha)} \Delta
-\varepsilon^{(\alpha)}
-\]</span> 宏观应力 <span class="math inline">\(\Delta
-\sigma^{c}\)</span> 为 <span class="math display">\[
-\Delta \sigma^{c} = L^{c} : \Delta \varepsilon^{c} + \sum_{\alpha=1}^{N}
-A^{(\alpha)}:\Delta\mu^{(\alpha)}
-\tag{4}
-\]</span> 式中, <span class="math inline">\(L^c\)</span> 和 <span
-class="math inline">\(A^{(\alpha)}\)</span> 分别为 <span
-class="math display">\[
-L^{c} = \sum_{\alpha=1}^{N} c^{(\alpha)} L^{(\alpha)} E^{(\alpha)},
-\quad
-A^{(\alpha)} = \sum_{\beta=1}^{N} \left(
-c^{(\beta)}L^{(\beta)}:P^{(\beta\alpha)}  \right)
-- c^{(\alpha)} L^{(\alpha)}
-\]</span> 现在我们还需要返回宏观切线刚度模量 <span
-class="math inline">\(\partial \Delta \sigma^{c} / \partial \Delta
-\varepsilon^{c}\)</span>, 式 (4) 对宏观应变求偏导数得到 <span
-class="math display">\[
-\frac{\partial \Delta \sigma^{c}}{\partial \Delta \varepsilon^{c}} =
-L^{c}
-+ \sum_{\alpha=1}^{N} A^{(\alpha)}
-: \frac{\partial \Delta\mu^{(\alpha)}}{\partial \Delta
-\varepsilon^{(\alpha)}}
-: \frac{\partial \Delta\varepsilon^{(\alpha)}}{\partial \Delta
-\varepsilon^{c}}
-\]</span> 式中, 分块应变关于宏观应变的偏导数可以通过式 (4.41) 求偏导数,
-得到相关的 <span class="math inline">\(N\)</span> 个代数方程 <span
-class="math display">\[
-\frac{\partial \Delta\varepsilon^{(\beta)}}{\partial \Delta
-\varepsilon^{c}}
-- \sum_{\alpha=1}^{N} P^{(\beta \alpha)}
-: \frac{\partial \Delta\mu^{(\alpha)}}{\partial \Delta
-\varepsilon^{(\alpha)}}
-: \frac{\partial \Delta\varepsilon^{(\alpha)}}{\partial \Delta
-\varepsilon^{c}}
-=E^{(\beta)}
-\quad \beta = 1, 2, \ldots, N
-\]</span></p>
-]]></content>
-      <categories>
-        <category>多尺度</category>
-      </categories>
-      <tags>
-        <tag>计算力学</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>应变集中张量</title>
     <url>/mech/multiscale/%E5%BA%94%E5%8F%98%E9%9B%86%E4%B8%AD%E5%BC%A0%E9%87%8F/</url>
     <content><![CDATA[<blockquote>
@@ -13492,7 +13295,7 @@ u = G*f = \int_{-\infty}^{\infty} G(x-x^{\prime}) f(x^{\prime})
 \]</span></p>
 <h5 id="张量值函数的卷积定义">张量值函数的卷积定义</h5>
 <p>对于张量值方程 <span class="math display">\[
-L[u] = f
+\boldsymbol{L}[\boldsymbol{u}] = \boldsymbol{f}
 \]</span> 应用 Fourier 变换, 方程组转化为关于 <span
 class="math inline">\(\hat u\)</span> 的代数方程: <span
 class="math display">\[
@@ -13502,13 +13305,15 @@ L_{ij}\)</span> 求逆, 再作 Fourier 逆变换, 就得到解 <span
 class="math inline">\(u\)</span> 表示为 <span class="math display">\[
 u_i = \mathscr{F}^{-1} [\hat{L}_{ij}^{-1} \hat{f}_j]
 \]</span> 定义张量值函数之间的卷积为 <span class="math display">\[
-A * f:  L(\Omega,\mathbb{R}^{m\times n}) \times L(\Omega,\mathbb{R}^{
-n}) \mapsto L(\Omega,\mathbb{R}^{m}) \\
+A * f:  L(\Omega,\mathbb{R}^{n\times n}) \times L(\Omega,\mathbb{R}^{
+n}) \mapsto L(\Omega,\mathbb{R}^{n}) \\
 A * f \triangleq A_{ij} * f_{j}
 \]</span> 上式默认了指标求和约定. 这也就是说,
 张量的代数运算保存在卷积的积分号内.</p>
 <p>张量值方程的基本解定义为 <span class="math display">\[
 G_{ij} = \mathscr{F}^{-1} [\hat{L}_{ij}^{-1}]
+\]</span> 因此, 方程解可以表示为 <span class="math display">\[
+\boldsymbol{u} = \boldsymbol{G} * \boldsymbol{f}
 \]</span></p>
 </div>
 <span id="more"></span>
@@ -14041,6 +13846,637 @@ class="math inline">\(\varepsilon\)</span>.</p>
       <tags>
         <tag>细观力学</tag>
         <tag>Eshelby 问题</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>p-范数下的圆周率</title>
+    <url>/math/p-%E8%8C%83%E6%95%B0%E4%B8%8B%E7%9A%84%E5%9C%86%E5%91%A8%E7%8E%87/</url>
+    <content><![CDATA[<h2 id="待求解积分的解析性质">待求解积分的解析性质</h2>
+<p>在 <span class="math inline">\(p\)</span>-范数下的圆周率定义为 <span
+class="math display">\[
+\pi_p \triangleq \frac{2}{p} \int_{0}^{1} \left( u^{1-p} + (1-u)^{1-p}
+\right)^{1/p} ~\mathrm{d}u,
+\quad 1 &lt; p \leq \infty
+\tag{1}
+\]</span> 圆周率 <span class="math inline">\(\pi_p\)</span>
+具有如下性质</p>
+<ol type="1">
+<li><span class="math inline">\(\pi_2\)</span> 是最小值;</li>
+<li>如果 <span class="math inline">\({1}/{p} + {1}/{q} = 1\)</span>,
+那么 <span class="math inline">\(\pi_p = \pi_q\)</span>.</li>
+</ol>
+<p>证明的参考文献为</p>
+<ol type="1">
+<li>Adler, C. L., &amp; Tanton, J. (2000). <em>π is the Minimum Value
+for Pi. The College Mathematics Journal, 31(2), 102–106.</em></li>
+<li><span class="exturl" data-url="aHR0cHM6Ly9tYXRoLnN0YW5mb3JkLmVkdS9+dmFraWwvZmlsZXMvMDctMDMzMy5wZGY=">πp, the
+value of π in lp - Stanford Mathematics<i class="fa fa-external-link-alt"></i></span></li>
+</ol>
+<p>对不同的 <span class="math inline">\(p\)</span> 取值,
+积分项函数的图像为</p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202406031318804.png" alt="image-20240603131849757" style="zoom:50%;" /></p>
+<p>由此可以看到积分项函数的性质为</p>
+<ul>
+<li>在 <span class="math inline">\(x=0\)</span> 和 <span
+class="math inline">\(x=1\)</span> 处出现爆破,
+因此使用的数值方法必须考虑到这一情况；</li>
+<li>关于 <span class="math inline">\(x=0.5\)</span> 对称,
+因此可以只考虑区间 <span class="math inline">\((0,0.5)\)</span>
+上的积分</li>
+</ul>
+<h2 id="数值积分需要考虑的问题">数值积分需要考虑的问题</h2>
+<p>根据对称性, 式 (1) 可以转换到区间 <span
+class="math inline">\((0,0.5)\)</span> 上的积分: <span
+class="math display">\[
+\pi_p = \frac{4}{p} \int_{0}^{0.5} \left( u^{1-p} + (1-u)^{1-p}
+\right)^{1/p} ~\mathrm{d}u
+\]</span> 定义被积函数 <span class="math inline">\(f(x)\)</span> 为
+<span class="math display">\[
+f(x) \triangleq \frac{4}{p}\left( x^{1-p} + (1-x)^{1-p} \right)^{1/p}
+\]</span> 因此 <span class="math display">\[
+\pi_p = \int_{0}^{0.5} f(u) ~\mathrm{d}u
+\]</span></p>
+<h3 id="如何处理瑕积分">如何处理瑕积分</h3>
+<p>被积函数在 <span class="math inline">\(x=0\)</span> 处发生爆破,
+在本次作业中处理该瑕点的常用且可行的方式有:</p>
+<ol type="1">
+<li>将积分区间分成 <span class="math inline">\((0,\varepsilon)\)</span>
+和 <span class="math inline">\((\varepsilon, 0.5)\)</span>, 在区间 <span
+class="math inline">\((0,\varepsilon)\)</span> 上使用幂函数近似, 在区间
+<span class="math inline">\((\varepsilon, 0.5)\)</span>
+使用常规的积分策略;</li>
+<li>换元, 将积分区间 <span class="math inline">\((0,1)\)</span> 变换到
+<span class="math inline">\((0,\infty)\)</span> 上,
+同时采用的换元方式使得被积函数快速衰减,
+通过延展积分区间回避掉瑕点的爆破现象.</li>
+</ol>
+<p>方式 1 的一种推导思路陈述如下: 首先将 <span
+class="math inline">\(f(x)\)</span> 变形为 <span
+class="math inline">\((1+\square)^{1/p}\)</span> 的形式: <span
+class="math display">\[
+f(x) = \frac{4}{p} \frac{\left( 1 + \overbrace{(1/x-1)^{1-p}}^{\square}
+\right)^{1/p}}{x^{1-1/p}}
+\]</span> 注意到对任意给定的 <span
+class="math inline">\(p\in(1,\infty)\)</span>, <span
+class="math display">\[
+\left( \frac{1}{x} -1 \right)^{1-p} \rightarrow 0, \quad when \quad x
+\rightarrow 0^+
+\]</span> 所以可以使用如下近似 <span class="math display">\[
+(1+\square)^{1/p} \sim 1 + \frac{1}{p} \square
+\Rightarrow f(x) \sim \underbrace{\frac{4}{p}x^{1/p-1}}_{①}
++ \underbrace{\frac{4}{p^2} \left( x^{1/p-1}-x^{1/p} \right)^{1-p}}_{②}
+\]</span> 如果再忽略第 ② 项, 那么就可以用如下幂函数近似被积函数 <span
+class="math inline">\(f(x)\)</span>: <span class="math display">\[
+\widetilde f(x) = \frac{4}{p}x^{1/p-1}
+\]</span> 这种忽略是合理的, 分别绘制出这两项的函数图像 (<span
+class="math inline">\(p=1.1\)</span>​). 可以看到, 函数 <span
+class="math inline">\(f\)</span> 在 <span
+class="math inline">\(x=0\)</span> 附近的奇性完全是由第 ①
+项表现出来的.</p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202406081336560.png" alt="image-20240608133623497" style="zoom:50%;" /></p>
+<p>注意到当 <span class="math inline">\(p=1\)</span>, 时, <span
+class="math inline">\(\widetilde f(x) \equiv 4\)</span>, <span
+class="math inline">\(f(x) \equiv 8\)</span>, 为了弥补这一缺陷,
+可以再补充一项常数项, 最终得到的在区间 <span
+class="math inline">\((0,\varepsilon)\)</span> 上的近似函数为 <span
+class="math display">\[
+\widetilde f(x) \triangleq \frac{4}{p}x^{1/p-1} + 4
+\]</span> 对上式在区间 <span
+class="math inline">\((0,\varepsilon)\)</span> 上积分, 就得到 <span
+class="math display">\[
+\int_{0}^{\varepsilon} \widetilde f(x) ~\mathrm{d}x
+= \int_{0}^{\varepsilon} \frac{4}{p}x^{1/p-1} + 4 ~\mathrm{d}x
+= 4\varepsilon^{1/p} + 4\varepsilon
+\triangleq I_1
+\]</span> 最终 <span class="math inline">\(\pi_p\)</span> 为 <span
+class="math display">\[
+\boxed{
+\pi_p \approx I_1 + \int_{\varepsilon}^{0.5} f(x) ~\mathrm{d}x
+}
+\]</span> 方式 2 中一种常用的换元方式为 <span class="exturl" data-url="aHR0cHM6Ly90b2J5ZHJpc2NvbGwubmV0L2ZuYy1qdWxpYS9nbG9iYWxhcHByb3gvaW1wcm9wZXIuaHRtbCNpbnRlZ3JhbmQtc2luZ3VsYXJpdHk=">Fundamentals
+of Numerical Computation<i class="fa fa-external-link-alt"></i></span> <span class="math display">\[
+u(t) = \frac{1}{1+\exp(2\sinh t)}
+\]</span> 注意到 <span class="math inline">\(t=0\)</span> 时, <span
+class="math inline">\(u=0.5\)</span>; <span
+class="math inline">\(t\rightarrow \infty\)</span> 时, <span
+class="math inline">\(x \rightarrow 0\)</span>​. 微分关系为 <span
+class="math display">\[
+\mathrm{d} u = - \frac{\cosh t}{2\cosh(\sinh t)^2}  ~\mathrm{d}t
+\]</span> 所以 <span class="math display">\[
+\pi_p = \int_{0}^{0.5} f(u) ~\mathrm{d}u
+= -\int_{\infty}^{0} f(u(t)) \frac{\cosh t}{2\cosh(\sinh
+t)^2}  ~\mathrm{d}t
+= \int_{0}^{\infty} f(u(t)) \frac{\cosh t}{2\cosh(\sinh
+t)^2}  ~\mathrm{d}t
+\]</span> 定义权函数 <span class="math inline">\(\omega(t)\)</span>
+<span class="math display">\[
+\omega(t) \triangleq \frac{\cosh t}{2\cosh(\sinh t)^2}
+\]</span> 绘制权函数的图像如下, 可以观察到, 该函数收敛很快, 当 <span
+class="math inline">\(t=3\)</span> 时, <span
+class="math inline">\(\omega(t) = 8.0089\times10^{-8}\)</span>; 当 <span
+class="math inline">\(t=4\)</span> 时, <span
+class="math inline">\(\omega(t) = 2.16089\times10^{-22}\)</span>.
+因此在数值积分时, 可以设置初始积分区间为 <span
+class="math inline">\((0,3)\)</span>, 然后不断扩展积分区间.
+当被积函数取值小于给定阈值之后, 停止积分, 输出结果.</p>
+<p><img src="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202406081424413.png" alt="image-20240608142415330" style="zoom:50%;" /></p>
+<p>需要指出的是, 换元方式并不是<strong>唯一的</strong>.
+作业中使用到的换元方式还有 <span class="math display">\[
+u(t) = \frac{1}{1+e^{-t}}
+\]</span></p>
+<h3 id="如何处理-p-取较大值的情况">如何处理 <span
+class="math inline">\(p\)</span> 取较大值的情况</h3>
+<p>最方便的方式是使用最开始给出的解析性质: <span class="math display">\[
+\pi_p = \pi_q, \quad if \quad \frac{1}{p} + \frac{1}{q} = 1
+\]</span> 如果不清楚这一性质, 那么必须考虑数值计算 <span
+class="math inline">\(p\)</span> 次幂可能出现的问题. 例如计算 <span
+class="math inline">\((0.1^{1000})^{0.001}\)</span> 时, 正确结果为 <span
+class="math inline">\(0.1\)</span>, 但当 <span
+class="math inline">\(0.1^{1000}\)</span> 在计算机求解时等于 <span
+class="math inline">\(0\)</span>, 再开 <span
+class="math inline">\(0.001\)</span> 次方结果还是等于 0.
+这是一些同学的程序在 <span class="math inline">\(p\)</span>
+很大时输出结果误差很大的原因.</p>
+]]></content>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/deutsche/%E7%AC%AC%E4%BA%8C%E8%99%9A%E6%8B%9F%E5%BC%8F/</url>
+    <content><![CDATA[<p>时态只有完成和未完成之分</p>
+<blockquote>
+<p>Er arbeitet（他在工作）-&gt; Er würde arbeiten.</p>
+<p>Er arbeitete（他过去在工作） -&gt; Er hätte gearbeitet.
+（完成时体现在助动词 würden 上）</p>
+<p>Er habt gearbeitet （他完成了工作）-&gt; Er hätte gearbeitet.
+（与过去时相同）</p>
+<p>Er hatte gearbeitet （过去完成时）-&gt; Er hätte gearbeitet/Er hätte
+gearbeitet gehabt.</p>
+</blockquote>
+]]></content>
+  </entry>
+  <entry>
+    <title>应用相容本征应变的降阶均质化方法</title>
+    <url>/mech/multiscale/%E5%BA%94%E7%94%A8%E7%9B%B8%E5%AE%B9%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E7%9A%84%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="控制方程的渐进展开">控制方程的渐进展开</h2>
+<p>位移的渐进展开式为 <span class="math display">\[
+u_{i}^{\zeta} = u_{i}^{(0)}(x) + \zeta u_{i}^{(1)}(x,y) +
+\mathcal{O}(\zeta^2)
+\]</span> 这里已经应用应变渐进展开式 <span
+class="math inline">\(\mathcal{O}({\zeta^{-1}})\)</span> 项等于 0,
+所以零阶项 <span class="math inline">\(u_{i}^{(0)}\)</span> 只是关于变量
+<span class="math inline">\(x\)</span> 的函数. 应变,
+本征应变和应力的渐进展开式分别为 <span class="math display">\[
+\varepsilon_{ij}^{\zeta} = \varepsilon_{ij}^{(0)} + \zeta
+\varepsilon_{ij}^{(1)} + \mathcal{O}(\zeta^2)\\
+\mu_{ij}^{\zeta} = \mu_{ij}^{(0)} + \zeta \mu_{ij}^{(1)}
++  \mathcal{O}(\zeta^2) \\
+\sigma_{ij}^{\zeta} = \sigma_{ij}^{(0)} + \zeta \sigma_{ij}^{(1)}
++  \mathcal{O}(\zeta^2)
+\]</span> 位移,
+应变和应力渐进展开式的每一项分别通过几何方程和本构方程联系在一起: <span
+class="math display">\[
+\varepsilon_{ij}^{\zeta} = u_{(i,j)}^{\zeta}, \quad
+\sigma_{ij}^{\zeta} = L_{ijkl} \left( \varepsilon_{kl}^{\zeta} -
+\mu_{kl}^{\zeta} \right)
+\]</span> 对应得到渐进展开式每一阶的方程为 <span class="math display">\[
+\mathcal{O}(1):\varepsilon_{ij}^{(0)} = u_{(i,x_j)}^{(0)} +
+u_{(i,y_j)}^{(1)}, \quad
+\sigma_{ij}^{(0)} = L_{ijkl} \left( \varepsilon_{kl}^{(0)} -
+\mu_{kl}^{(0)} \right)
+\]</span> 以下用上标 <span class="math inline">\(\square^{f}\)</span>
+表示应变, 本征应变和应力场渐进展开式的零阶项. 将渐进展开项代入到控制方程
+<span class="math display">\[
+\sigma_{ij,j}^{\zeta} + b_{i}^{\zeta} = 0
+\]</span> 得到 <span class="math display">\[
+\begin{aligned}
+&amp;\mathcal{O}(\zeta^{-1}): \sigma_{ij,y_j}^{f} = 0 \\
+&amp;\mathcal{O}(1): \quad \sigma_{ij,x_j}^{f} + \sigma_{ij,y_j}^{(1)} +
+b_{i}^{(0)} = 0
+\end{aligned}
+\]</span></p>
+<h2 id="位移的一阶项表示">位移的一阶项表示</h2>
+<p>使用影响函数方法, 可以将宏观应变 <span
+class="math inline">\(\varepsilon_{ij}^{c} \triangleq
+u_{(i,x_j)}^{(0)}\)</span> 与本征应变 <span
+class="math inline">\(\mu_{ij}^{f}\)</span> 对位移一阶项 <span
+class="math inline">\(u_{i}^{(1)}\)</span> 的影响表示为 <span
+class="math display">\[
+u_{i}^{(1)} = H_{i}^{mn} \varepsilon_{mn}^{c}
++ \int_{\Theta} h_{i}^{mn}(y,y&#39;) \mu_{mn}^{f}(y&#39;)
+\mathrm{d}y&#39;
+\]</span> 式中, <span class="math inline">\(H_i^{mn}: \Theta \mapsto
+\mathbb{T}^3\)</span> 为位移影响函数 (displacement influence function),
+<span class="math inline">\(h_{i}^{mn}: \Theta \mapsto
+\mathbb{T}^3\)</span> 为本征应变影响函数 (transformation influence
+function for eigenstrain). 函数 <span
+class="math inline">\(h_{i}^{mn}\)</span>
+也称考虑本征应变的无体力项弹性方程的 Green 函数.</p>
+<p>将上式代入到精细尺度下的应变场 <span
+class="math inline">\(\varepsilon_{ij}^{f}\)</span>, 得到 <span
+class="math display">\[
+\varepsilon_{ij}^{f} = E_{ij}^{mn} \varepsilon_{mn}^{c}
++ \int_{\Theta} h_{(i,y_j)}^{mn}(y,y&#39;) \mu_{mn}^{f}(x,y&#39;)
+\mathrm{d}y&#39;
+\]</span> 式中, <span class="math inline">\(E_{ij}^{mn}: \Theta \mapsto
+\mathbb{T}^4\)</span> 为弹性应变影响函数 (elastic strain influence
+tensor), 定义为 <span class="math display">\[
+E_{ij}^{mn} \triangleq H_{(i,y_j)}^{mn} + I_{ij}^{mn}
+\]</span></p>
+<h2 id="相容的本征应变场">相容的本征应变场</h2>
+<p>若本征应变是相容的(compatible or impotent eigenstrain),
+那么它可以考虑为某个位移场 <span class="math inline">\(\left(
+u_{i}^{\mu} \right)^{\zeta}\)</span> 的梯度,
+由此精细尺度下的本征应变场可表示为 <span class="math display">\[
+\mu_{ij}^{f}(x,y) = u_{(i,x_j)}^{\mu(0)}(x) + u_{(i,y_j)}^{\mu(1)}(x,y)
+\]</span> 类似于宏观应变 <span
+class="math inline">\(\varepsilon^{c}\)</span>, 定义宏观本征应变 <span
+class="math inline">\(\mu_{ij}^{c}\)</span> <span
+class="math display">\[
+\mu_{ij}^{c} \triangleq u_{(i,x_j)}^{\mu(0)}
+\]</span> 将精细尺度下的本征应变表达式代入到位移的一阶项当中 <span
+class="math display">\[
+u_{i}^{(1)} = H_{i}^{mn} \varepsilon_{mn}^{c}
++ \int_{\Theta} h_{i}^{mn}(y,y&#39;)\mathrm{d}y&#39; \ \mu_{mn}^{c}
++ \int_{\Theta} h_{i}^{mn}(y,y&#39;) u_{(m,y_n)}^{\mu(1)}(x,y&#39;)
+\mathrm{d}y&#39;
+\]</span> 再代入到 <span
+class="math inline">\(\mathcal{O}(\zeta^{-1})\)</span>
+阶的控制方程中得到 <span class="math display">\[
+\left\{  
+L_{ijkl} E_{kl}^{mn} \varepsilon_{mn}^{c}
++ L_{ijkl} \left( \int_{\Theta}
+h_{(k,y_l)}^{mn}(y,y&#39;)\mathrm{d}y&#39; - I_{kl}^{mn} \right)
+\mu_{mn}^{c} \\
++ L_{ijkl} \left( \int_{\Theta} h_{(k,y_l)}^{mn}(y,y&#39;)
+u_{(m,y_n)}^{\mu(1)} \mathrm{d}y&#39; -u_{(k,y_l)}^{\mu(1)} \right)
+\right\}_{,y_j} = 0
+\]</span> 方程对任意的宏观应变 <span
+class="math inline">\(\varepsilon_{mn}^{c}\)</span> 和宏观本征应变 <span
+class="math inline">\(\mu_{mn}^{c}\)</span> 恒成立, 这就得到单胞 <span
+class="math inline">\(\Theta\)</span> 上的微分方程 <span
+class="math display">\[
+\left\{  
+L_{ijkl} E_{kl}^{mn}
+\right\}_{,y_j} = 0, \\
+\left\{  
+L_{ijkl} \left( R_{kl}^{mn} - I_{kl}^{mn} \right)
+\right\}_{,y_j} = 0, \\
+\left\{  
+L_{ijkl} \left( \int_{\Theta} h_{(k,y_l)}^{mn}(y,y&#39;)
+u_{(m,y_n)}^{\mu(1)} \mathrm{d}y&#39; -u_{(k,y_l)}^{\mu(1)} \right)
+\right\}_{,y_j} = 0
+\]</span> 式中, $R_{kl}^{mn}: ^4 $, <span
+class="math inline">\(R_{kl}^{mn}(y)= \int_{\Theta}
+h_{(k,y_l)}^{mn}(y,y&#39;)\mathrm{d}y&#39;\)</span>.
+根域位移影响函数的定义和它满足的方程, 可以确定 <span
+class="math display">\[
+R^{mn}_{kl} \equiv - H_{(k,y_l)}^{mn}
+\]</span> 再通过一些数学上的操作可以得到 <span class="math display">\[
+\int_{\Theta} h_{(k,y_l)}^{mn}(y,y&#39;) u_{(m,y_n)}^{\mu(1)}
+\mathrm{d}y&#39; \equiv u_{(k,y_l)}^{\mu(1)}
+\]</span> 这意味着 <span
+class="math inline">\(u_{(k,y_l)}^{\mu(1)}\)</span> 对应力场影响为零.
+最后得到用相容的本征应变表示的精细尺度下的应变场: <span
+class="math display">\[
+\varepsilon_{ij}^{f} = E_{ij}^{mn} \varepsilon_{mn}^{c}
+- H_{(i,y_j)}^{mn} \mu_{mn}^{c}
++ u_{(i,y_j)}^{\mu(1)}
+\]</span></p>
+<h3
+id="相容本征应变得到的解析本征应变影响张量">相容本征应变得到的解析本征应变影响张量</h3>
+<p>类似于降阶均质化方法, 同样设本征应变在单胞 <span
+class="math inline">\(\Theta\)</span> 上的分布为分片常值函数: <span
+class="math display">\[
+\mu_{ij}^{f}(x,y) \approx \sum_{\alpha} \chi^{(\alpha)}(y)
+\mu_{ij}^{(\alpha)}(x)
+\]</span> 并且考虑精细尺度下的应变场可以通过影响函数表示为 <span
+class="math display">\[
+\varepsilon_{ij}^{f} = E_{ij}^{mn} \varepsilon_{mn}^{c}
++ \sum_{\alpha}\widetilde{P}_{ij}^{mn, (\alpha)} \mu_{mn}^{(\alpha)}
+\]</span> 这就得到本征应变的一阶项与本征应变的影响函数关系为 <span
+class="math display">\[
+u_{(i,y_j)}^{\mu(1)}
+= \sum_{\alpha}\widetilde{P}_{ij}^{mn, (\alpha)} \mu_{mn}^{(\alpha)}
++ H_{(i,y_j)}^{mn} \mu_{mn}^{c}
+\]</span> 注意到 <span class="math inline">\(\mu_{ij}^{f} = \mu_{ij}^{c}
++ u_{(i,y_j)}^{\mu(1)}\)</span>, 将上式代入得到 <span
+class="math display">\[
+\sum_{\alpha} \chi^{(\alpha)}\mu_{ij}^{(\alpha)}
+= \sum_{\alpha}\widetilde{P}_{ij}^{mn, (\alpha)} \mu_{mn}^{(\alpha)}
++ E_{ij}^{mn} \mu_{mn}^{c}
+\]</span> 并且宏观本征应变等于各个分块上的本征应变的体积平均: <span
+class="math display">\[
+\mu_{mn}^{c} = \sum_{\alpha} c^{(\alpha)} \mu_{mn}^{(\alpha)}
+\]</span> 得到 <span class="math display">\[
+\sum_{\alpha} \left(
+\widetilde{P}_{ij}^{mn, (\alpha)}
++ c^{(\alpha)} E_{ij}^{mn}
+- I_{ij}^{mn,(\alpha)}\right)
+\mu_{mn}^{(\alpha)} \equiv 0
+\]</span> 对分块上的任意本征应变 <span class="math inline">\(\{
+\mu_{mn}^{(\alpha)} \}\)</span>, 上式应恒成立,
+最终得到关于本征应变影响函数的<strong>解析形式:</strong> <span
+class="math display">\[
+\widetilde{P}_{ij}^{mn, (\alpha)} \triangleq I_{ij}^{mn,(\alpha)} -
+c^{(\alpha)} E_{ij}^{mn}, \quad
+\forall \alpha
+\]</span> 需要指出的是,
+只有在<strong>基体主导下</strong>的变形模式才会使用如上形式的本征应变影响函数,
+这是为了解决使用不相容本征应变推导得到的基体相单分块影响函数,
+在基体变形主导的模式下锁定夹杂项的变形,
+导致宏观表征出的应力应变关系刚度太大. 为判断主导的变形模式(对于三维情景,
+变形模式分为三个方向上的拉伸和剪切),
+可以固定基体项和夹杂项为<strong>各向同性线弹性</strong>材料,
+基体相和夹杂相的模量分别设置为 <span class="math inline">\(1.0\)</span>
+和 <span class="math inline">\(10^{-8}\)</span>, 泊松比等于 <span
+class="math inline">\(0.0\)</span>, 根据均质化之后的宏观弹性模量计算得到
+<span class="math inline">\(E_1\)</span>, <span
+class="math inline">\(E_2\)</span>, <span
+class="math inline">\(E_3\)</span>, <span
+class="math inline">\(G_{23}\)</span>, <span
+class="math inline">\(G_{13}\)</span>, <span
+class="math inline">\(G_{12}\)</span>, 然后对比模量的阶次,
+确定主导的变形模式.</p>
+]]></content>
+      <categories>
+        <category>多尺度</category>
+      </categories>
+      <tags>
+        <tag>本征应变</tag>
+        <tag>降阶均质化</tag>
+        <tag>影响函数</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>降阶均质化方法层级分块计算</title>
+    <url>/mech/multiscale/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E8%AE%A1%E7%AE%97/</url>
+    <content><![CDATA[<h2
+id="在有限元求解框架下的增量步与迭代步">在有限元求解框架下的增量步与迭代步</h2>
+<p>降阶均质化方法是在 ABAQUS UMAT 层面实现的. ABAQUS
+在每个增量步的迭代步时调用 UMAT, 考虑有限元计算框架中第 <span
+class="math inline">\(n\)</span> 个增量步, 第 <span
+class="math inline">\(i+1\)</span> 个迭代步. 在进入 UMAT 时, 已知前
+<span class="math inline">\(n-1\)</span> 个增量步的历史信息,
+和当前迭代步 <span class="math inline">\(i+1\)</span> 的位移.
+为了使接下来方程的增量表达式更加清晰, 首先引入以下增量记号,
+它们写在力学变量之前, 表示不同的含义:</p>
+<ul>
+<li>记号 <span class="math inline">\(\delta\)</span>
+表示变量该迭代步的<strong>校正量</strong>;</li>
+<li>记号 <span class="math inline">\(\Delta_{n}^{i+1}\)</span> 表示在第
+<span class="math inline">\(i+1\)</span> 个迭代步时确定的第 <span
+class="math inline">\(n\)</span> 个增量步的增量. 若在第 <span
+class="math inline">\(i+1\)</span> 个迭代步收敛, 那么 <span
+class="math inline">\(\Delta_{n} :=\Delta_{n}^{i+1}\)</span>.</li>
+</ul>
+<p>我们再引入花括号 <span class="math inline">\(\{\cdot\}\)</span>
+表示分块物理量的集合. 例如 <span class="math inline">\(\{ \Delta
+\varepsilon \}\)</span> 表示分块上的应变 <span
+class="math inline">\(\Delta \varepsilon^{(\alpha)}\)</span>, <span
+class="math inline">\(\alpha=1,2,\ldots,N\)</span>.</p>
+<h2 id="降阶多尺度计算"><span id="more"></span> 降阶多尺度计算</h2>
+<p>在接下来的记号中, 使用 <span class="math inline">\([\cdot]\)</span>
+表示应用 Voigt 记法矩阵化的张量; <span
+class="math inline">\([:]=\mathrm{diag}(1,1,1,2,2,2)\)</span>, <span
+class="math inline">\([\boldsymbol{\epsilon}]\)</span> 和 <span
+class="math inline">\([\boldsymbol{\varepsilon}]\)</span>
+分别表示张量应变和工程应变, <span
+class="math inline">\([:][\boldsymbol{\epsilon}]=[\boldsymbol{\varepsilon}]\)</span>.
+计算在第 <span class="math inline">\(n+1\)</span>
+步时各分块上的平均应变分量. 待求解的方程为 <span class="math display">\[
+\boldsymbol{\epsilon}_{n+1}^{(\beta)} = \mathbb{E}^{(\beta)} :
+\boldsymbol{\epsilon}_{n+1}^{c}
++ \sum_{\alpha} \mathbb{P}^{(\beta\alpha)} :
+\boldsymbol{\mu}_{n+1}^{(\alpha)}
+\tag{1}
+\]</span> 写成增量形式, 并定义残差函数为 <span class="math display">\[
+\boldsymbol{r}^{(\beta)}(\{ \Delta \boldsymbol{\epsilon}^{(\alpha)}  \})
+\triangleq
+\Delta \boldsymbol{\epsilon}^{(\beta)}
+- \mathbb{E}^{(\beta)} : \Delta \boldsymbol{\epsilon}^{c}
+- \sum_{\alpha} \mathbb{P}^{(\beta\alpha)} : \Delta
+\boldsymbol{\mu}^{(\alpha)}
+\]</span> 应用 Voigt 记法, 将上述张量方程写成矩阵形式为 <span
+class="math display">\[
+\left[ \boldsymbol{r}^{(\beta)} \right]
+= \left[ \Delta \boldsymbol{\epsilon}^{(\beta)}  \right]
+- \left[ \mathbb{E}^{(\beta)} \right] \left[ \Delta
+\boldsymbol{\varepsilon}^{c} \right]
+- \sum_{\alpha} \left[ \mathbb{P}^{(\beta\alpha)} \right] \left[ \Delta
+\boldsymbol{\varkappa}^{(\alpha)} \right]
+\]</span> 式中, <span class="math inline">\(\left[ \Delta
+\boldsymbol{\varkappa}^{(\alpha)} \right]_{i} = [:]\left[ \Delta
+\boldsymbol{\mu}^{(\alpha)} \right]_{i}\)</span> 上式对平均应变求偏导数,
+就得到 Newton 迭代法中 Jacobian 矩阵的表达式: <span
+class="math display">\[
+\frac{ \partial \left[ \boldsymbol{r}^{(\beta)} \right]}{ \partial
+\left[ \Delta \boldsymbol{\varepsilon}^{(\gamma)}  \right]}
+= \delta^{\beta\gamma} [:]^{-1}
+- \sum_{\alpha} \left[ \mathbb{P}^{(\beta\alpha)} \right]
+\frac{ \partial \left[ \Delta \boldsymbol{\varkappa}^{(\alpha)}
+\right]}{ \partial \left[ \Delta
+\boldsymbol{\varepsilon}^{(\gamma)}  \right]}
+\]</span> 由于假设分块上的本征应变只与该分块上的平均应变相关, 所以 <span
+class="math display">\[
+\frac{ \partial \left[ \boldsymbol{r}^{(\beta)} \right]}{ \partial
+\left[ \Delta \boldsymbol{\varepsilon}^{(\gamma)}  \right]}
+= \delta^{\beta\gamma} [:]^{-1}
+- \left[ \mathbb{P}^{(\beta\gamma)} \right]
+\frac{ \partial \left[ \Delta \boldsymbol{\varkappa}^{(\gamma)}
+\right]}{ \partial \left[ \Delta
+\boldsymbol{\varepsilon}^{(\gamma)}  \right]}
+\]</span></p>
+<h2 id="多层级分块状态变量">多层级分块状态变量</h2>
+<p>应用 ROH 作为材料本构进行计算时, 状态变量可分为两类:</p>
+<ul>
+<li>各分块非弹性材料演化时的历史状态变量,
+称为<strong>材料状态变量</strong>;</li>
+<li>多尺度方程引入的状态变量, 比如分块上的平均应变和平均应力等,
+称为<strong>多尺度状态变量</strong>.</li>
+</ul>
+<p>新引入分块层级状态变量 <code>MESFE_P5001226_NSV_NCLUSTER</code>,
+并在结构体 <code>ROH_ptn6</code> 中加入新的数据 <code>cidx</code>,
+标识分块所属分块组序号. 分块组所对应的分块编号通过外部文件读取.
+根据概念大小, 有如下包含关系: <span class="math display">\[
+\text{Partition} \subseteq \text{PTNGroup} \subset \text{Phase}
+\]</span></p>
+<h2 id="ptngrp-状态变量更新">PTNGRP 状态变量更新</h2>
+<p>设在当前增量步时, PTNGRP 的数量为为 <code>NPTNGRP(int)</code>.
+首先更新分块所属分块组的序号, 然后组装分块组, 分块组的数据类型也是是
+<code>ROH_ptn6</code>, 接下来降阶多尺度方程的求解在分块组层级上执行.
+分块组状态变量应等于分块组所包含的任意单胞分块上的状态变量:</p>
+<p><span class="math display">\[
+\left[ \boldsymbol{\sigma}^{\langle \alpha \rangle} \right]^{n}
+:= \left[ \boldsymbol{\sigma}^{(\alpha_{i})} \right]^{n}, \quad
+\left[ \boldsymbol{\varepsilon}^{\langle \alpha \rangle} \right]^{n}
+:= \left[ \boldsymbol{\varepsilon}^{(\alpha_{i})} \right]^{n}, \quad
+\left[ \mathbb{E}_{\mathrm{tan}}^{\langle \alpha \rangle} \right]^{n}
+\triangleq \frac{ \partial \left[ \Delta
+\boldsymbol{\varepsilon}^{\langle \alpha \rangle} \right]^{n} }
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{c} \right]^{n} }
+:= \frac{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{(\alpha_{i})}
+\right]^{n} }
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{c} \right]^{n} }
+\]</span> 注意, 对于某一 分块组所拥有的<strong>所有子分块</strong>,
+它们的材料和多尺度状态变量应该是<strong>完全相同</strong>的: <span
+class="math display">\[
+\left[ \boldsymbol{\sigma}^{(\alpha_{i})} \right]^{n}
+= \left[ \boldsymbol{\sigma}^{(\alpha_{j})} \right]^{n}, \quad
+\left[ \boldsymbol{\varepsilon}^{(\alpha_{i})} \right]^{n}
+= \left[ \boldsymbol{\varepsilon}^{(\alpha_{j})} \right]^{n}, \quad
+\left[ \mathbb{E}_{\mathrm{tan}}^{(\alpha_{i})} \right]^{n}
+= \left[ \mathbb{E}_{\mathrm{tan}}^{(\alpha_{j})} \right]^{n} \\
+\alpha_{i},\alpha_{j} \in \{ i \mid \text{Partition}(i) \subseteq
+\text{PTNGRP} \langle \alpha \rangle \}
+\]</span> 式中, <span class="math inline">\(\langle \alpha
+\rangle\)</span> 表示分块组的编号, <span
+class="math inline">\((\alpha_{i})\)</span> 表示分块的编号.
+分块组的材料状态变量初始化为上一次增量步最终收敛得到的值: <span
+class="math display">\[
+\left[ \mathrm{statv}^{\langle \alpha \rangle} \right]_{0} := \left[
+\mathrm{statv}^{(\alpha_{i})} \right]^{n}
+\]</span> 应用上一增量步计算得到的瞬时应变影响张量, 根据当前宏观应变增量
+<span class="math inline">\(\left[ \Delta \boldsymbol{\varepsilon}^{c}
+\right]\)</span>, 更新各个分块组的初始平均应变增量: <span
+class="math display">\[
+\left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]_{1}
+:= \left[ \mathbb{E}_{\mathrm{tan}}^{\langle \alpha \rangle} \right]^{n}
+\left[ \Delta \boldsymbol{\varepsilon}^{c} \right]
+\]</span> 接下来应用 Newton 迭代法迭代求解各个分块组的平均应变. 设在第
+<span class="math inline">\(i\)</span> 次迭代步时分块组的平均应变增量为
+<span class="math inline">\(\left[ \Delta \varepsilon^{\langle \alpha
+\rangle} \right]_{i}\)</span>,代入到各相材料的 UMAT 中进行计算,
+得到相应的应力, 一致切线模量和状态变量:</p>
+<ul>
+<li><p>输入: <span class="math inline">\(\left[ \Delta
+\boldsymbol{\varepsilon}^{\langle \alpha \rangle} \right]_{i}\)</span>
+<span class="math inline">\(\left[ \mathrm{statv}^{\langle \alpha
+\rangle} \right]_{i-1}\)</span></p></li>
+<li><p>输出: <span
+class="math inline">\(\left[\boldsymbol{\sigma}^{\langle \alpha \rangle}
+\right]_{i} := \left[\boldsymbol{\sigma}^{\langle \alpha \rangle}
+\right]^{n} + \left[ \Delta \boldsymbol{\sigma}^{\langle \alpha \rangle}
+\right]_{i}\)</span> <span class="math inline">\(\frac{ \partial \left[
+\Delta \boldsymbol{\sigma}^{\langle \alpha \rangle} \right]_{i} } {
+\partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]_{i} }\)</span> <span class="math inline">\(\left[
+\mathrm{statv}^{\langle \alpha \rangle} \right]_{i}\)</span></p></li>
+</ul>
+<p>更新本征应变: <span class="math display">\[
+\left[ \boldsymbol{\varkappa}^{\langle \alpha \rangle} \right]_{i}
+:= \left[ \boldsymbol{\varepsilon}^{\langle \alpha \rangle} \right]^{n}
++ \left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]_{i}
+- [\mathbb{L}^{\langle \alpha \rangle}]^{-1}  : \left[
+\boldsymbol{\sigma}^{\langle \alpha \rangle} \right]_{i}
+\]</span> 以及本征应变关于分块应变的偏导数 <span class="math display">\[
+\frac{ \partial \left[ \Delta \boldsymbol{\varkappa}^{\langle \alpha
+\rangle} \right]_{i} }
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha
+\rangle} \right]_{i} }
+= [\boldsymbol{I}] - [\mathbb{L}^{\langle \alpha \rangle}]^{-1}
+\frac{ \partial \left[ \Delta \boldsymbol{\sigma}^{\langle \alpha
+\rangle} \right]_{i} }
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha
+\rangle} \right]_{i} }
+\]</span></p>
+<p>由此得到残差和 Jacobian 子矩阵分别为 $$ <em>{i} = </em>{i} - - <em>{}
+</em>{i}, \</p>
+<p>[]<em>{i}^{} { </em>{i}} = ^{} [:]^{-1} - { _{i}} $$</p>
+<p>组装多尺度系统的 Jacobian 矩阵 <span
+class="math inline">\([\mathbf{A}]_{i}\)</span>,
+得到分块组的平均应变迭代增量为 <span class="math display">\[
+\left[ \delta \boldsymbol{\varepsilon} \right]_{i+1}
+= -[\mathbf{A}]_{i}^{-1}
+\left[ \boldsymbol{r} \right]_{i}
+\]</span> 并更新 <span class="math inline">\(i+1\)</span>
+步的分块组平均应变:</p>
+<p><span class="math display">\[
+\left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]_{i+1}
+= \left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]_{i}
++ \left[ \delta \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]_{i+1}
+\]</span></p>
+<p>判断迭代收敛之后, 跳出 Newton 迭代过程, 继续判断是否需要分裂分块组.
+如果需要分裂分块组, 那么更新分块组的数量 <span class="math display">\[
+\mathrm{NCLUSTER} := \mathrm{NCLUSTER} + 1
+\]</span> 继续重复这一步的过程. 如果不需要分裂分块组的数量,
+那么确定最后一次迭代量为当前增量步的增量 <span
+class="math inline">\(\left[ \boldsymbol{\sigma}^{\langle \alpha
+\rangle} \right]^{n+1}\)</span> <span class="math inline">\(\frac{
+\partial \left[ \Delta \boldsymbol{\sigma}^{\langle \alpha \rangle}
+\right]^{n+1} } { \partial \left[ \Delta
+\boldsymbol{\varepsilon}^{\langle \alpha \rangle} \right]^{n+1}
+}\)</span> <span class="math inline">\(\left[ \mathrm{statv}^{\langle
+\alpha \rangle} \right]^{n+1}\)</span>
+并以此计算宏观应力和宏观一致切线模量: <span class="math display">\[
+\left[ \boldsymbol{\sigma}^{c} \right]^{n+1}
+= \sum_{\alpha} c^{\langle \alpha \rangle} \left[
+\boldsymbol{\sigma}^{\langle \alpha \rangle} \right]^{n+1}, \\
+\frac{ \partial \left[ \Delta \boldsymbol{\sigma}^{c} \right]^{n+1} }
+{ \partial \left[ \Delta  \boldsymbol{\varepsilon}^{c} \right]^{n+1} }
+= \sum_{\alpha} c^{\langle \alpha \rangle}
+\frac{ \partial \left[ \Delta \boldsymbol{\sigma}^{\langle \alpha
+\rangle} \right]^{n+1} }
+{ \partial \left[ \Delta  \boldsymbol{\varepsilon}^{\langle \alpha
+\rangle} \right]^{n+1} }
+\frac{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha
+\rangle} \right]^{n+1} }
+{ \partial \left[ \Delta  \boldsymbol{\varepsilon}^{c} \right]^{n+1} }
+= \sum_{\alpha} c^{\langle \alpha \rangle}
+\frac{ \partial \left[ \Delta \boldsymbol{\sigma}^{\langle \alpha
+\rangle} \right]^{n+1} }
+{ \partial \left[ \Delta  \boldsymbol{\varepsilon}^{\langle \alpha
+\rangle} \right]^{n+1} }
+\left[ \mathbb{E}_{\mathrm{tan}}^{\langle \alpha \rangle} \right]^{n+1}
+\]</span> 式中, <span class="math inline">\(\left[
+\mathbb{E}_{\mathrm{tan}}^{\langle \alpha \rangle}
+\right]^{n+1}\)</span> 为瞬时应变影响张量, 对式 (1)
+关于宏观应变增量求偏导数得到 <span class="math display">\[
+[:]^{-1}\frac{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle
+\beta \rangle} \right]^{n+1} }
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{c} \right]^{n+1} }
+= \left[ \mathbb{E}^{\langle \beta \rangle} \right]
++ \sum_{\gamma} \left[  \mathbb{P}^{\langle \beta\gamma \rangle} \right]
+\frac{ \partial \left[ \Delta \boldsymbol{\varkappa}^{\langle
+\gamma\rangle} \right]^{n+1}}
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle
+\gamma\rangle}  \right]^{n+1}}
+\frac{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle
+\gamma\rangle} \right]^{n+1}}
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{c}  \right]^{n+1}}
+\]</span> 移项之后, 得到 <span class="math display">\[
+\sum_{\gamma}  [\mathbf{A}]_{i}^{\langle \beta \gamma \rangle}
+\frac{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle
+\gamma\rangle} \right]^{n+1}}
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{c}  \right]^{n+1}}
+= \left[ \mathbb{E}^{\langle \beta \rangle} \right]
+\]</span> 所以 <span class="math display">\[
+\frac{ \partial \left[ \Delta \boldsymbol{\varepsilon} \right]^{n+1}}
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{c}  \right]^{n+1}}
+= [\mathbf{A}]_{i}^{-1} \left[ \mathbb{E} \right]
+\]</span> 最后再根据分块组更新后的状态变量, 更新所属分块的状态变量:
+<span class="math display">\[
+\left[ \boldsymbol{\sigma}^{(\alpha_{i})} \right]^{n+1}
+:= \left[ \boldsymbol{\sigma}^{\langle \alpha \rangle} \right]^{n+1},
+\quad
+\left[ \boldsymbol{\varepsilon}^{(\alpha_{i})} \right]^{n+1}
+:= \left[ \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]^{n+1}, \quad
+\left[ \mathbb{E}_{\mathrm{tan}}^{(\alpha_{i})} \right]^{n+1}
+:= \left[ \mathbb{E}_{\mathrm{tan}}^{\langle \alpha \rangle}
+\right]^{n+1}
+\]</span></p>
+]]></content>
+      <categories>
+        <category>多尺度</category>
+      </categories>
+      <tags>
+        <tag>降阶均质化</tag>
+        <tag>Newton-Raphson 迭代</tag>
       </tags>
   </entry>
 </search>

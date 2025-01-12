@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="4IgN6N71kznUS9PIMp6itE5oUv0s3hzVzFzFOpC-4Ig">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="在有限元求解框架下的增量步与迭代步 降阶均质化方法是在 ABAQUS UMAT 层面实现的. ABAQUS 在每个增量步的迭代步时调用 UMAT, 考虑有限元计算框架中第 \(n\) 个增量步, 第 \(i+1\) 个迭代步. 在进入 UMAT 时, 已知前 \(n-1\) 个增量步的历史信息, 和当前迭代步 \(i+1\) 的位移. 为了使接下来方程的增量表达式更加清晰, 首先引入以下">
+<meta property="og:type" content="article">
+<meta property="og:title" content="降阶均质化方法层级分块计算">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/mech/multiscale/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E8%AE%A1%E7%AE%97/index.html">
+<meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="在有限元求解框架下的增量步与迭代步 降阶均质化方法是在 ABAQUS UMAT 层面实现的. ABAQUS 在每个增量步的迭代步时调用 UMAT, 考虑有限元计算框架中第 \(n\) 个增量步, 第 \(i+1\) 个迭代步. 在进入 UMAT 时, 已知前 \(n-1\) 个增量步的历史信息, 和当前迭代步 \(i+1\) 的位移. 为了使接下来方程的增量表达式更加清晰, 首先引入以下">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-12T01:36:46.000Z">
+<meta property="article:modified_time" content="2025-01-12T05:06:25.489Z">
+<meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="降阶均质化">
+<meta property="article:tag" content="Newton-Raphson 迭代">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://qiuxiaohuo.github.io/mech/multiscale/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E8%AE%A1%E7%AE%97/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/mech/multiscale/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E8%AE%A1%E7%AE%97/","path":"mech/multiscale/降阶均质化方法层级分块计算/","title":"降阶均质化方法层级分块计算"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>降阶均质化方法层级分块计算 | 邱小伙的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">邱小伙的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E6%9C%89%E9%99%90%E5%85%83%E6%B1%82%E8%A7%A3%E6%A1%86%E6%9E%B6%E4%B8%8B%E7%9A%84%E5%A2%9E%E9%87%8F%E6%AD%A5%E4%B8%8E%E8%BF%AD%E4%BB%A3%E6%AD%A5"><span class="nav-number">1.</span> <span class="nav-text">在有限元求解框架下的增量步与迭代步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%8D%E9%98%B6%E5%A4%9A%E5%B0%BA%E5%BA%A6%E8%AE%A1%E7%AE%97"><span class="nav-number">2.</span> <span class="nav-text"> 降阶多尺度计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E7%8A%B6%E6%80%81%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">多层级分块状态变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ptngrp-%E7%8A%B6%E6%80%81%E5%8F%98%E9%87%8F%E6%9B%B4%E6%96%B0"><span class="nav-number">4.</span> <span class="nav-text">PTNGRP 状态变量更新</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qiu Xiaohuo"
+      src="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+  <p class="site-author-name" itemprop="name">Qiu Xiaohuo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">101</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiuxiaohuo"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnFpdXhpYW9odW9AZ21haWwuY29t" title="E-Mail → mailto:qiuxiaohuo@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/multiscale/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E8%AE%A1%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="降阶均质化方法层级分块计算 | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          降阶均质化方法层级分块计算
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-01-12 09:36:46 / 修改时间：13:06:25" itemprop="dateCreated datePublished" datetime="2025-01-12T09:36:46+08:00">2025-01-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" itemprop="url" rel="index"><span itemprop="name">多尺度</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2
+id="在有限元求解框架下的增量步与迭代步">在有限元求解框架下的增量步与迭代步</h2>
+<p>降阶均质化方法是在 ABAQUS UMAT 层面实现的. ABAQUS
+在每个增量步的迭代步时调用 UMAT, 考虑有限元计算框架中第 <span
+class="math inline">\(n\)</span> 个增量步, 第 <span
+class="math inline">\(i+1\)</span> 个迭代步. 在进入 UMAT 时, 已知前
+<span class="math inline">\(n-1\)</span> 个增量步的历史信息,
+和当前迭代步 <span class="math inline">\(i+1\)</span> 的位移.
+为了使接下来方程的增量表达式更加清晰, 首先引入以下增量记号,
+它们写在力学变量之前, 表示不同的含义:</p>
+<ul>
+<li>记号 <span class="math inline">\(\delta\)</span>
+表示变量该迭代步的<strong>校正量</strong>;</li>
+<li>记号 <span class="math inline">\(\Delta_{n}^{i+1}\)</span> 表示在第
+<span class="math inline">\(i+1\)</span> 个迭代步时确定的第 <span
+class="math inline">\(n\)</span> 个增量步的增量. 若在第 <span
+class="math inline">\(i+1\)</span> 个迭代步收敛, 那么 <span
+class="math inline">\(\Delta_{n} :=\Delta_{n}^{i+1}\)</span>.</li>
+</ul>
+<p>我们再引入花括号 <span class="math inline">\(\{\cdot\}\)</span>
+表示分块物理量的集合. 例如 <span class="math inline">\(\{ \Delta
+\varepsilon \}\)</span> 表示分块上的应变 <span
+class="math inline">\(\Delta \varepsilon^{(\alpha)}\)</span>, <span
+class="math inline">\(\alpha=1,2,\ldots,N\)</span>.</p>
+<h2 id="降阶多尺度计算"><span id="more"></span> 降阶多尺度计算</h2>
+<p>在接下来的记号中, 使用 <span class="math inline">\([\cdot]\)</span>
+表示应用 Voigt 记法矩阵化的张量; <span
+class="math inline">\([:]=\mathrm{diag}(1,1,1,2,2,2)\)</span>, <span
+class="math inline">\([\boldsymbol{\epsilon}]\)</span> 和 <span
+class="math inline">\([\boldsymbol{\varepsilon}]\)</span>
+分别表示张量应变和工程应变, <span
+class="math inline">\([:][\boldsymbol{\epsilon}]=[\boldsymbol{\varepsilon}]\)</span>.
+计算在第 <span class="math inline">\(n+1\)</span>
+步时各分块上的平均应变分量. 待求解的方程为 <span class="math display">\[
+\boldsymbol{\epsilon}_{n+1}^{(\beta)} = \mathbb{E}^{(\beta)} :
+\boldsymbol{\epsilon}_{n+1}^{c}
++ \sum_{\alpha} \mathbb{P}^{(\beta\alpha)} :
+\boldsymbol{\mu}_{n+1}^{(\alpha)}
+\tag{1}
+\]</span> 写成增量形式, 并定义残差函数为 <span class="math display">\[
+\boldsymbol{r}^{(\beta)}(\{ \Delta \boldsymbol{\epsilon}^{(\alpha)}  \})
+\triangleq
+\Delta \boldsymbol{\epsilon}^{(\beta)}
+- \mathbb{E}^{(\beta)} : \Delta \boldsymbol{\epsilon}^{c}
+- \sum_{\alpha} \mathbb{P}^{(\beta\alpha)} : \Delta
+\boldsymbol{\mu}^{(\alpha)}
+\]</span> 应用 Voigt 记法, 将上述张量方程写成矩阵形式为 <span
+class="math display">\[
+\left[ \boldsymbol{r}^{(\beta)} \right]
+= \left[ \Delta \boldsymbol{\epsilon}^{(\beta)}  \right]
+- \left[ \mathbb{E}^{(\beta)} \right] \left[ \Delta
+\boldsymbol{\varepsilon}^{c} \right]
+- \sum_{\alpha} \left[ \mathbb{P}^{(\beta\alpha)} \right] \left[ \Delta
+\boldsymbol{\varkappa}^{(\alpha)} \right]
+\]</span> 式中, <span class="math inline">\(\left[ \Delta
+\boldsymbol{\varkappa}^{(\alpha)} \right]_{i} = [:]\left[ \Delta
+\boldsymbol{\mu}^{(\alpha)} \right]_{i}\)</span> 上式对平均应变求偏导数,
+就得到 Newton 迭代法中 Jacobian 矩阵的表达式: <span
+class="math display">\[
+\frac{ \partial \left[ \boldsymbol{r}^{(\beta)} \right]}{ \partial
+\left[ \Delta \boldsymbol{\varepsilon}^{(\gamma)}  \right]}
+= \delta^{\beta\gamma} [:]^{-1}
+- \sum_{\alpha} \left[ \mathbb{P}^{(\beta\alpha)} \right]
+\frac{ \partial \left[ \Delta \boldsymbol{\varkappa}^{(\alpha)}
+\right]}{ \partial \left[ \Delta
+\boldsymbol{\varepsilon}^{(\gamma)}  \right]}
+\]</span> 由于假设分块上的本征应变只与该分块上的平均应变相关, 所以 <span
+class="math display">\[
+\frac{ \partial \left[ \boldsymbol{r}^{(\beta)} \right]}{ \partial
+\left[ \Delta \boldsymbol{\varepsilon}^{(\gamma)}  \right]}
+= \delta^{\beta\gamma} [:]^{-1}
+- \left[ \mathbb{P}^{(\beta\gamma)} \right]
+\frac{ \partial \left[ \Delta \boldsymbol{\varkappa}^{(\gamma)}
+\right]}{ \partial \left[ \Delta
+\boldsymbol{\varepsilon}^{(\gamma)}  \right]}
+\]</span></p>
+<h2 id="多层级分块状态变量">多层级分块状态变量</h2>
+<p>应用 ROH 作为材料本构进行计算时, 状态变量可分为两类:</p>
+<ul>
+<li>各分块非弹性材料演化时的历史状态变量,
+称为<strong>材料状态变量</strong>;</li>
+<li>多尺度方程引入的状态变量, 比如分块上的平均应变和平均应力等,
+称为<strong>多尺度状态变量</strong>.</li>
+</ul>
+<p>新引入分块层级状态变量 <code>MESFE_P5001226_NSV_NCLUSTER</code>,
+并在结构体 <code>ROH_ptn6</code> 中加入新的数据 <code>cidx</code>,
+标识分块所属分块组序号. 分块组所对应的分块编号通过外部文件读取.
+根据概念大小, 有如下包含关系: <span class="math display">\[
+\text{Partition} \subseteq \text{PTNGroup} \subset \text{Phase}
+\]</span></p>
+<h2 id="ptngrp-状态变量更新">PTNGRP 状态变量更新</h2>
+<p>设在当前增量步时, PTNGRP 的数量为为 <code>NPTNGRP(int)</code>.
+首先更新分块所属分块组的序号, 然后组装分块组, 分块组的数据类型也是是
+<code>ROH_ptn6</code>, 接下来降阶多尺度方程的求解在分块组层级上执行.
+分块组状态变量应等于分块组所包含的任意单胞分块上的状态变量:</p>
+<p><span class="math display">\[
+\left[ \boldsymbol{\sigma}^{\langle \alpha \rangle} \right]^{n}
+:= \left[ \boldsymbol{\sigma}^{(\alpha_{i})} \right]^{n}, \quad
+\left[ \boldsymbol{\varepsilon}^{\langle \alpha \rangle} \right]^{n}
+:= \left[ \boldsymbol{\varepsilon}^{(\alpha_{i})} \right]^{n}, \quad
+\left[ \mathbb{E}_{\mathrm{tan}}^{\langle \alpha \rangle} \right]^{n}
+\triangleq \frac{ \partial \left[ \Delta
+\boldsymbol{\varepsilon}^{\langle \alpha \rangle} \right]^{n} }
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{c} \right]^{n} }
+:= \frac{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{(\alpha_{i})}
+\right]^{n} }
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{c} \right]^{n} }
+\]</span> 注意, 对于某一 分块组所拥有的<strong>所有子分块</strong>,
+它们的材料和多尺度状态变量应该是<strong>完全相同</strong>的: <span
+class="math display">\[
+\left[ \boldsymbol{\sigma}^{(\alpha_{i})} \right]^{n}
+= \left[ \boldsymbol{\sigma}^{(\alpha_{j})} \right]^{n}, \quad
+\left[ \boldsymbol{\varepsilon}^{(\alpha_{i})} \right]^{n}
+= \left[ \boldsymbol{\varepsilon}^{(\alpha_{j})} \right]^{n}, \quad
+\left[ \mathbb{E}_{\mathrm{tan}}^{(\alpha_{i})} \right]^{n}
+= \left[ \mathbb{E}_{\mathrm{tan}}^{(\alpha_{j})} \right]^{n} \\
+\alpha_{i},\alpha_{j} \in \{ i \mid \text{Partition}(i) \subseteq
+\text{PTNGRP} \langle \alpha \rangle \}
+\]</span> 式中, <span class="math inline">\(\langle \alpha
+\rangle\)</span> 表示分块组的编号, <span
+class="math inline">\((\alpha_{i})\)</span> 表示分块的编号.
+分块组的材料状态变量初始化为上一次增量步最终收敛得到的值: <span
+class="math display">\[
+\left[ \mathrm{statv}^{\langle \alpha \rangle} \right]_{0} := \left[
+\mathrm{statv}^{(\alpha_{i})} \right]^{n}
+\]</span> 应用上一增量步计算得到的瞬时应变影响张量, 根据当前宏观应变增量
+<span class="math inline">\(\left[ \Delta \boldsymbol{\varepsilon}^{c}
+\right]\)</span>, 更新各个分块组的初始平均应变增量: <span
+class="math display">\[
+\left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]_{1}
+:= \left[ \mathbb{E}_{\mathrm{tan}}^{\langle \alpha \rangle} \right]^{n}
+\left[ \Delta \boldsymbol{\varepsilon}^{c} \right]
+\]</span> 接下来应用 Newton 迭代法迭代求解各个分块组的平均应变. 设在第
+<span class="math inline">\(i\)</span> 次迭代步时分块组的平均应变增量为
+<span class="math inline">\(\left[ \Delta \varepsilon^{\langle \alpha
+\rangle} \right]_{i}\)</span>,代入到各相材料的 UMAT 中进行计算,
+得到相应的应力, 一致切线模量和状态变量:</p>
+<ul>
+<li><p>输入: <span class="math inline">\(\left[ \Delta
+\boldsymbol{\varepsilon}^{\langle \alpha \rangle} \right]_{i}\)</span>
+<span class="math inline">\(\left[ \mathrm{statv}^{\langle \alpha
+\rangle} \right]_{i-1}\)</span></p></li>
+<li><p>输出: <span
+class="math inline">\(\left[\boldsymbol{\sigma}^{\langle \alpha \rangle}
+\right]_{i} := \left[\boldsymbol{\sigma}^{\langle \alpha \rangle}
+\right]^{n} + \left[ \Delta \boldsymbol{\sigma}^{\langle \alpha \rangle}
+\right]_{i}\)</span> <span class="math inline">\(\frac{ \partial \left[
+\Delta \boldsymbol{\sigma}^{\langle \alpha \rangle} \right]_{i} } {
+\partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]_{i} }\)</span> <span class="math inline">\(\left[
+\mathrm{statv}^{\langle \alpha \rangle} \right]_{i}\)</span></p></li>
+</ul>
+<p>更新本征应变: <span class="math display">\[
+\left[ \boldsymbol{\varkappa}^{\langle \alpha \rangle} \right]_{i}
+:= \left[ \boldsymbol{\varepsilon}^{\langle \alpha \rangle} \right]^{n}
++ \left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]_{i}
+- [\mathbb{L}^{\langle \alpha \rangle}]^{-1}  : \left[
+\boldsymbol{\sigma}^{\langle \alpha \rangle} \right]_{i}
+\]</span> 以及本征应变关于分块应变的偏导数 <span class="math display">\[
+\frac{ \partial \left[ \Delta \boldsymbol{\varkappa}^{\langle \alpha
+\rangle} \right]_{i} }
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha
+\rangle} \right]_{i} }
+= [\boldsymbol{I}] - [\mathbb{L}^{\langle \alpha \rangle}]^{-1}
+\frac{ \partial \left[ \Delta \boldsymbol{\sigma}^{\langle \alpha
+\rangle} \right]_{i} }
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha
+\rangle} \right]_{i} }
+\]</span></p>
+<p>由此得到残差和 Jacobian 子矩阵分别为 $$ <em>{i} = </em>{i} - - <em>{}
+</em>{i}, \</p>
+<p>[]<em>{i}^{} { </em>{i}} = ^{} [:]^{-1} - { _{i}} $$</p>
+<p>组装多尺度系统的 Jacobian 矩阵 <span
+class="math inline">\([\mathbf{A}]_{i}\)</span>,
+得到分块组的平均应变迭代增量为 <span class="math display">\[
+\left[ \delta \boldsymbol{\varepsilon} \right]_{i+1}
+= -[\mathbf{A}]_{i}^{-1}
+\left[ \boldsymbol{r} \right]_{i}
+\]</span> 并更新 <span class="math inline">\(i+1\)</span>
+步的分块组平均应变:</p>
+<p><span class="math display">\[
+\left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]_{i+1}
+= \left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]_{i}
++ \left[ \delta \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]_{i+1}
+\]</span></p>
+<p>判断迭代收敛之后, 跳出 Newton 迭代过程, 继续判断是否需要分裂分块组.
+如果需要分裂分块组, 那么更新分块组的数量 <span class="math display">\[
+\mathrm{NCLUSTER} := \mathrm{NCLUSTER} + 1
+\]</span> 继续重复这一步的过程. 如果不需要分裂分块组的数量,
+那么确定最后一次迭代量为当前增量步的增量 <span
+class="math inline">\(\left[ \boldsymbol{\sigma}^{\langle \alpha
+\rangle} \right]^{n+1}\)</span> <span class="math inline">\(\frac{
+\partial \left[ \Delta \boldsymbol{\sigma}^{\langle \alpha \rangle}
+\right]^{n+1} } { \partial \left[ \Delta
+\boldsymbol{\varepsilon}^{\langle \alpha \rangle} \right]^{n+1}
+}\)</span> <span class="math inline">\(\left[ \mathrm{statv}^{\langle
+\alpha \rangle} \right]^{n+1}\)</span>
+并以此计算宏观应力和宏观一致切线模量: <span class="math display">\[
+\left[ \boldsymbol{\sigma}^{c} \right]^{n+1}
+= \sum_{\alpha} c^{\langle \alpha \rangle} \left[
+\boldsymbol{\sigma}^{\langle \alpha \rangle} \right]^{n+1}, \\
+\frac{ \partial \left[ \Delta \boldsymbol{\sigma}^{c} \right]^{n+1} }
+{ \partial \left[ \Delta  \boldsymbol{\varepsilon}^{c} \right]^{n+1} }
+= \sum_{\alpha} c^{\langle \alpha \rangle}
+\frac{ \partial \left[ \Delta \boldsymbol{\sigma}^{\langle \alpha
+\rangle} \right]^{n+1} }
+{ \partial \left[ \Delta  \boldsymbol{\varepsilon}^{\langle \alpha
+\rangle} \right]^{n+1} }
+\frac{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle \alpha
+\rangle} \right]^{n+1} }
+{ \partial \left[ \Delta  \boldsymbol{\varepsilon}^{c} \right]^{n+1} }
+= \sum_{\alpha} c^{\langle \alpha \rangle}
+\frac{ \partial \left[ \Delta \boldsymbol{\sigma}^{\langle \alpha
+\rangle} \right]^{n+1} }
+{ \partial \left[ \Delta  \boldsymbol{\varepsilon}^{\langle \alpha
+\rangle} \right]^{n+1} }
+\left[ \mathbb{E}_{\mathrm{tan}}^{\langle \alpha \rangle} \right]^{n+1}
+\]</span> 式中, <span class="math inline">\(\left[
+\mathbb{E}_{\mathrm{tan}}^{\langle \alpha \rangle}
+\right]^{n+1}\)</span> 为瞬时应变影响张量, 对式 (1)
+关于宏观应变增量求偏导数得到 <span class="math display">\[
+[:]^{-1}\frac{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle
+\beta \rangle} \right]^{n+1} }
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{c} \right]^{n+1} }
+= \left[ \mathbb{E}^{\langle \beta \rangle} \right]
++ \sum_{\gamma} \left[  \mathbb{P}^{\langle \beta\gamma \rangle} \right]
+\frac{ \partial \left[ \Delta \boldsymbol{\varkappa}^{\langle
+\gamma\rangle} \right]^{n+1}}
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle
+\gamma\rangle}  \right]^{n+1}}
+\frac{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle
+\gamma\rangle} \right]^{n+1}}
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{c}  \right]^{n+1}}
+\]</span> 移项之后, 得到 <span class="math display">\[
+\sum_{\gamma}  [\mathbf{A}]_{i}^{\langle \beta \gamma \rangle}
+\frac{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{\langle
+\gamma\rangle} \right]^{n+1}}
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{c}  \right]^{n+1}}
+= \left[ \mathbb{E}^{\langle \beta \rangle} \right]
+\]</span> 所以 <span class="math display">\[
+\frac{ \partial \left[ \Delta \boldsymbol{\varepsilon} \right]^{n+1}}
+{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{c}  \right]^{n+1}}
+= [\mathbf{A}]_{i}^{-1} \left[ \mathbb{E} \right]
+\]</span> 最后再根据分块组更新后的状态变量, 更新所属分块的状态变量:
+<span class="math display">\[
+\left[ \boldsymbol{\sigma}^{(\alpha_{i})} \right]^{n+1}
+:= \left[ \boldsymbol{\sigma}^{\langle \alpha \rangle} \right]^{n+1},
+\quad
+\left[ \boldsymbol{\varepsilon}^{(\alpha_{i})} \right]^{n+1}
+:= \left[ \boldsymbol{\varepsilon}^{\langle \alpha \rangle}
+\right]^{n+1}, \quad
+\left[ \mathbb{E}_{\mathrm{tan}}^{(\alpha_{i})} \right]^{n+1}
+:= \left[ \mathbb{E}_{\mathrm{tan}}^{\langle \alpha \rangle}
+\right]^{n+1}
+\]</span></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96/" rel="tag"># 降阶均质化</a>
+              <a href="/tags/Newton-Raphson-%E8%BF%AD%E4%BB%A3/" rel="tag"># Newton-Raphson 迭代</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/deutsche/%E7%AC%AC%E4%BA%8C%E8%99%9A%E6%8B%9F%E5%BC%8F/" rel="prev" title="">
+                  <i class="fa fa-angle-left"></i> 
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/mech/multiscale/%E5%BA%94%E7%94%A8%E7%9B%B8%E5%AE%B9%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E7%9A%84%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95/" rel="next" title="应用相容本征应变的降阶均质化方法">
+                  应用相容本征应变的降阶均质化方法 <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qiu Xiaohuo</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

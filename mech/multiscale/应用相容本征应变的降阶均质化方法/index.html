@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+  <meta name="google-site-verification" content="4IgN6N71kznUS9PIMp6itE5oUv0s3hzVzFzFOpC-4Ig">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="控制方程的渐进展开 位移的渐进展开式为 \[ u_{i}^{\zeta} &#x3D; u_{i}^{(0)}(x) + \zeta u_{i}^{(1)}(x,y) + \mathcal{O}(\zeta^2) \] 这里已经应用应变渐进展开式 \(\mathcal{O}({\zeta^{-1}})\) 项等于 0, 所以零阶项 \(u_{i}^{(0)}\) 只是关于变量 \(x\) 的函数">
+<meta property="og:type" content="article">
+<meta property="og:title" content="应用相容本征应变的降阶均质化方法">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/mech/multiscale/%E5%BA%94%E7%94%A8%E7%9B%B8%E5%AE%B9%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E7%9A%84%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="控制方程的渐进展开 位移的渐进展开式为 \[ u_{i}^{\zeta} &#x3D; u_{i}^{(0)}(x) + \zeta u_{i}^{(1)}(x,y) + \mathcal{O}(\zeta^2) \] 这里已经应用应变渐进展开式 \(\mathcal{O}({\zeta^{-1}})\) 项等于 0, 所以零阶项 \(u_{i}^{(0)}\) 只是关于变量 \(x\) 的函数">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-01-12T05:36:46.000Z">
+<meta property="article:modified_time" content="2025-01-12T05:18:11.638Z">
+<meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="本征应变">
+<meta property="article:tag" content="降阶均质化">
+<meta property="article:tag" content="影响函数">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://qiuxiaohuo.github.io/mech/multiscale/%E5%BA%94%E7%94%A8%E7%9B%B8%E5%AE%B9%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E7%9A%84%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/mech/multiscale/%E5%BA%94%E7%94%A8%E7%9B%B8%E5%AE%B9%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E7%9A%84%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95/","path":"mech/multiscale/应用相容本征应变的降阶均质化方法/","title":"应用相容本征应变的降阶均质化方法"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>应用相容本征应变的降阶均质化方法 | 邱小伙的博客</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
+  <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
+  <script src="/js/third-party/analytics/google-analytics.js"></script>
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">邱小伙的博客</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%96%B9%E7%A8%8B%E7%9A%84%E6%B8%90%E8%BF%9B%E5%B1%95%E5%BC%80"><span class="nav-number">1.</span> <span class="nav-text">控制方程的渐进展开</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E7%A7%BB%E7%9A%84%E4%B8%80%E9%98%B6%E9%A1%B9%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.</span> <span class="nav-text">位移的一阶项表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%AE%B9%E7%9A%84%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E5%9C%BA"><span class="nav-number">3.</span> <span class="nav-text">相容的本征应变场</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%AE%B9%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E5%BE%97%E5%88%B0%E7%9A%84%E8%A7%A3%E6%9E%90%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E5%BD%B1%E5%93%8D%E5%BC%A0%E9%87%8F"><span class="nav-number">3.1.</span> <span class="nav-text">相容本征应变得到的解析本征应变影响张量</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Qiu Xiaohuo"
+      src="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+  <p class="site-author-name" itemprop="name">Qiu Xiaohuo</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">10</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">101</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qiuxiaohuo"><i class="fab fa-github fa-fw"></i>GitHub</span>
+      </span>
+      <span class="links-of-author-item">
+        <span class="exturl" data-url="bWFpbHRvOnFpdXhpYW9odW9AZ21haWwuY29t" title="E-Mail → mailto:qiuxiaohuo@gmail.com"><i class="fa fa-envelope fa-fw"></i>E-Mail</span>
+      </span>
+  </div>
+  <div class="cc-license animated" itemprop="license">
+    <span class="exturl cc-opacity" data-url="aHR0cHM6Ly9jcmVhdGl2ZWNvbW1vbnMub3JnL2xpY2Vuc2VzL2J5LXNhLzQuMC9kZWVkLnpo"><img src="https://cdnjs.cloudflare.com/ajax/libs/creativecommons-vocabulary/2020.11.3/assets/license_badges/small/by_sa.svg" alt="Creative Commons"></span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/multiscale/%E5%BA%94%E7%94%A8%E7%9B%B8%E5%AE%B9%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E7%9A%84%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="应用相容本征应变的降阶均质化方法 | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          应用相容本征应变的降阶均质化方法
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-01-12 13:36:46 / 修改时间：13:18:11" itemprop="dateCreated datePublished" datetime="2025-01-12T13:36:46+08:00">2025-01-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" itemprop="url" rel="index"><span itemprop="name">多尺度</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="控制方程的渐进展开">控制方程的渐进展开</h2>
+<p>位移的渐进展开式为 <span class="math display">\[
+u_{i}^{\zeta} = u_{i}^{(0)}(x) + \zeta u_{i}^{(1)}(x,y) +
+\mathcal{O}(\zeta^2)
+\]</span> 这里已经应用应变渐进展开式 <span
+class="math inline">\(\mathcal{O}({\zeta^{-1}})\)</span> 项等于 0,
+所以零阶项 <span class="math inline">\(u_{i}^{(0)}\)</span> 只是关于变量
+<span class="math inline">\(x\)</span> 的函数. 应变,
+本征应变和应力的渐进展开式分别为 <span class="math display">\[
+\varepsilon_{ij}^{\zeta} = \varepsilon_{ij}^{(0)} + \zeta
+\varepsilon_{ij}^{(1)} + \mathcal{O}(\zeta^2)\\
+\mu_{ij}^{\zeta} = \mu_{ij}^{(0)} + \zeta \mu_{ij}^{(1)}
++  \mathcal{O}(\zeta^2) \\
+\sigma_{ij}^{\zeta} = \sigma_{ij}^{(0)} + \zeta \sigma_{ij}^{(1)}
++  \mathcal{O}(\zeta^2)
+\]</span> 位移,
+应变和应力渐进展开式的每一项分别通过几何方程和本构方程联系在一起: <span
+class="math display">\[
+\varepsilon_{ij}^{\zeta} = u_{(i,j)}^{\zeta}, \quad
+\sigma_{ij}^{\zeta} = L_{ijkl} \left( \varepsilon_{kl}^{\zeta} -
+\mu_{kl}^{\zeta} \right)
+\]</span> 对应得到渐进展开式每一阶的方程为 <span class="math display">\[
+\mathcal{O}(1):\varepsilon_{ij}^{(0)} = u_{(i,x_j)}^{(0)} +
+u_{(i,y_j)}^{(1)}, \quad
+\sigma_{ij}^{(0)} = L_{ijkl} \left( \varepsilon_{kl}^{(0)} -
+\mu_{kl}^{(0)} \right)
+\]</span> 以下用上标 <span class="math inline">\(\square^{f}\)</span>
+表示应变, 本征应变和应力场渐进展开式的零阶项. 将渐进展开项代入到控制方程
+<span class="math display">\[
+\sigma_{ij,j}^{\zeta} + b_{i}^{\zeta} = 0
+\]</span> 得到 <span class="math display">\[
+\begin{aligned}
+&amp;\mathcal{O}(\zeta^{-1}): \sigma_{ij,y_j}^{f} = 0 \\
+&amp;\mathcal{O}(1): \quad \sigma_{ij,x_j}^{f} + \sigma_{ij,y_j}^{(1)} +
+b_{i}^{(0)} = 0
+\end{aligned}
+\]</span></p>
+<h2 id="位移的一阶项表示">位移的一阶项表示</h2>
+<p>使用影响函数方法, 可以将宏观应变 <span
+class="math inline">\(\varepsilon_{ij}^{c} \triangleq
+u_{(i,x_j)}^{(0)}\)</span> 与本征应变 <span
+class="math inline">\(\mu_{ij}^{f}\)</span> 对位移一阶项 <span
+class="math inline">\(u_{i}^{(1)}\)</span> 的影响表示为 <span
+class="math display">\[
+u_{i}^{(1)} = H_{i}^{mn} \varepsilon_{mn}^{c}
++ \int_{\Theta} h_{i}^{mn}(y,y&#39;) \mu_{mn}^{f}(y&#39;)
+\mathrm{d}y&#39;
+\]</span> 式中, <span class="math inline">\(H_i^{mn}: \Theta \mapsto
+\mathbb{T}^3\)</span> 为位移影响函数 (displacement influence function),
+<span class="math inline">\(h_{i}^{mn}: \Theta \mapsto
+\mathbb{T}^3\)</span> 为本征应变影响函数 (transformation influence
+function for eigenstrain). 函数 <span
+class="math inline">\(h_{i}^{mn}\)</span>
+也称考虑本征应变的无体力项弹性方程的 Green 函数.</p>
+<p>将上式代入到精细尺度下的应变场 <span
+class="math inline">\(\varepsilon_{ij}^{f}\)</span>, 得到 <span
+class="math display">\[
+\varepsilon_{ij}^{f} = E_{ij}^{mn} \varepsilon_{mn}^{c}
++ \int_{\Theta} h_{(i,y_j)}^{mn}(y,y&#39;) \mu_{mn}^{f}(x,y&#39;)
+\mathrm{d}y&#39;
+\]</span> 式中, <span class="math inline">\(E_{ij}^{mn}: \Theta \mapsto
+\mathbb{T}^4\)</span> 为弹性应变影响函数 (elastic strain influence
+tensor), 定义为 <span class="math display">\[
+E_{ij}^{mn} \triangleq H_{(i,y_j)}^{mn} + I_{ij}^{mn}
+\]</span></p>
+<h2 id="相容的本征应变场">相容的本征应变场</h2>
+<p>若本征应变是相容的(compatible or impotent eigenstrain),
+那么它可以考虑为某个位移场 <span class="math inline">\(\left(
+u_{i}^{\mu} \right)^{\zeta}\)</span> 的梯度,
+由此精细尺度下的本征应变场可表示为 <span class="math display">\[
+\mu_{ij}^{f}(x,y) = u_{(i,x_j)}^{\mu(0)}(x) + u_{(i,y_j)}^{\mu(1)}(x,y)
+\]</span> 类似于宏观应变 <span
+class="math inline">\(\varepsilon^{c}\)</span>, 定义宏观本征应变 <span
+class="math inline">\(\mu_{ij}^{c}\)</span> <span
+class="math display">\[
+\mu_{ij}^{c} \triangleq u_{(i,x_j)}^{\mu(0)}
+\]</span> 将精细尺度下的本征应变表达式代入到位移的一阶项当中 <span
+class="math display">\[
+u_{i}^{(1)} = H_{i}^{mn} \varepsilon_{mn}^{c}
++ \int_{\Theta} h_{i}^{mn}(y,y&#39;)\mathrm{d}y&#39; \ \mu_{mn}^{c}
++ \int_{\Theta} h_{i}^{mn}(y,y&#39;) u_{(m,y_n)}^{\mu(1)}(x,y&#39;)
+\mathrm{d}y&#39;
+\]</span> 再代入到 <span
+class="math inline">\(\mathcal{O}(\zeta^{-1})\)</span>
+阶的控制方程中得到 <span class="math display">\[
+\left\{  
+L_{ijkl} E_{kl}^{mn} \varepsilon_{mn}^{c}
++ L_{ijkl} \left( \int_{\Theta}
+h_{(k,y_l)}^{mn}(y,y&#39;)\mathrm{d}y&#39; - I_{kl}^{mn} \right)
+\mu_{mn}^{c} \\
++ L_{ijkl} \left( \int_{\Theta} h_{(k,y_l)}^{mn}(y,y&#39;)
+u_{(m,y_n)}^{\mu(1)} \mathrm{d}y&#39; -u_{(k,y_l)}^{\mu(1)} \right)
+\right\}_{,y_j} = 0
+\]</span> 方程对任意的宏观应变 <span
+class="math inline">\(\varepsilon_{mn}^{c}\)</span> 和宏观本征应变 <span
+class="math inline">\(\mu_{mn}^{c}\)</span> 恒成立, 这就得到单胞 <span
+class="math inline">\(\Theta\)</span> 上的微分方程 <span
+class="math display">\[
+\left\{  
+L_{ijkl} E_{kl}^{mn}
+\right\}_{,y_j} = 0, \\
+\left\{  
+L_{ijkl} \left( R_{kl}^{mn} - I_{kl}^{mn} \right)
+\right\}_{,y_j} = 0, \\
+\left\{  
+L_{ijkl} \left( \int_{\Theta} h_{(k,y_l)}^{mn}(y,y&#39;)
+u_{(m,y_n)}^{\mu(1)} \mathrm{d}y&#39; -u_{(k,y_l)}^{\mu(1)} \right)
+\right\}_{,y_j} = 0
+\]</span> 式中, $R_{kl}^{mn}: ^4 $, <span
+class="math inline">\(R_{kl}^{mn}(y)= \int_{\Theta}
+h_{(k,y_l)}^{mn}(y,y&#39;)\mathrm{d}y&#39;\)</span>.
+根域位移影响函数的定义和它满足的方程, 可以确定 <span
+class="math display">\[
+R^{mn}_{kl} \equiv - H_{(k,y_l)}^{mn}
+\]</span> 再通过一些数学上的操作可以得到 <span class="math display">\[
+\int_{\Theta} h_{(k,y_l)}^{mn}(y,y&#39;) u_{(m,y_n)}^{\mu(1)}
+\mathrm{d}y&#39; \equiv u_{(k,y_l)}^{\mu(1)}
+\]</span> 这意味着 <span
+class="math inline">\(u_{(k,y_l)}^{\mu(1)}\)</span> 对应力场影响为零.
+最后得到用相容的本征应变表示的精细尺度下的应变场: <span
+class="math display">\[
+\varepsilon_{ij}^{f} = E_{ij}^{mn} \varepsilon_{mn}^{c}
+- H_{(i,y_j)}^{mn} \mu_{mn}^{c}
++ u_{(i,y_j)}^{\mu(1)}
+\]</span></p>
+<h3
+id="相容本征应变得到的解析本征应变影响张量">相容本征应变得到的解析本征应变影响张量</h3>
+<p>类似于降阶均质化方法, 同样设本征应变在单胞 <span
+class="math inline">\(\Theta\)</span> 上的分布为分片常值函数: <span
+class="math display">\[
+\mu_{ij}^{f}(x,y) \approx \sum_{\alpha} \chi^{(\alpha)}(y)
+\mu_{ij}^{(\alpha)}(x)
+\]</span> 并且考虑精细尺度下的应变场可以通过影响函数表示为 <span
+class="math display">\[
+\varepsilon_{ij}^{f} = E_{ij}^{mn} \varepsilon_{mn}^{c}
++ \sum_{\alpha}\widetilde{P}_{ij}^{mn, (\alpha)} \mu_{mn}^{(\alpha)}
+\]</span> 这就得到本征应变的一阶项与本征应变的影响函数关系为 <span
+class="math display">\[
+u_{(i,y_j)}^{\mu(1)}
+= \sum_{\alpha}\widetilde{P}_{ij}^{mn, (\alpha)} \mu_{mn}^{(\alpha)}
++ H_{(i,y_j)}^{mn} \mu_{mn}^{c}
+\]</span> 注意到 <span class="math inline">\(\mu_{ij}^{f} = \mu_{ij}^{c}
++ u_{(i,y_j)}^{\mu(1)}\)</span>, 将上式代入得到 <span
+class="math display">\[
+\sum_{\alpha} \chi^{(\alpha)}\mu_{ij}^{(\alpha)}
+= \sum_{\alpha}\widetilde{P}_{ij}^{mn, (\alpha)} \mu_{mn}^{(\alpha)}
++ E_{ij}^{mn} \mu_{mn}^{c}
+\]</span> 并且宏观本征应变等于各个分块上的本征应变的体积平均: <span
+class="math display">\[
+\mu_{mn}^{c} = \sum_{\alpha} c^{(\alpha)} \mu_{mn}^{(\alpha)}
+\]</span> 得到 <span class="math display">\[
+\sum_{\alpha} \left(
+\widetilde{P}_{ij}^{mn, (\alpha)}
++ c^{(\alpha)} E_{ij}^{mn}
+- I_{ij}^{mn,(\alpha)}\right)
+\mu_{mn}^{(\alpha)} \equiv 0
+\]</span> 对分块上的任意本征应变 <span class="math inline">\(\{
+\mu_{mn}^{(\alpha)} \}\)</span>, 上式应恒成立,
+最终得到关于本征应变影响函数的<strong>解析形式:</strong> <span
+class="math display">\[
+\widetilde{P}_{ij}^{mn, (\alpha)} \triangleq I_{ij}^{mn,(\alpha)} -
+c^{(\alpha)} E_{ij}^{mn}, \quad
+\forall \alpha
+\]</span> 需要指出的是,
+只有在<strong>基体主导下</strong>的变形模式才会使用如上形式的本征应变影响函数,
+这是为了解决使用不相容本征应变推导得到的基体相单分块影响函数,
+在基体变形主导的模式下锁定夹杂项的变形,
+导致宏观表征出的应力应变关系刚度太大. 为判断主导的变形模式(对于三维情景,
+变形模式分为三个方向上的拉伸和剪切),
+可以固定基体项和夹杂项为<strong>各向同性线弹性</strong>材料,
+基体相和夹杂相的模量分别设置为 <span class="math inline">\(1.0\)</span>
+和 <span class="math inline">\(10^{-8}\)</span>, 泊松比等于 <span
+class="math inline">\(0.0\)</span>, 根据均质化之后的宏观弹性模量计算得到
+<span class="math inline">\(E_1\)</span>, <span
+class="math inline">\(E_2\)</span>, <span
+class="math inline">\(E_3\)</span>, <span
+class="math inline">\(G_{23}\)</span>, <span
+class="math inline">\(G_{13}\)</span>, <span
+class="math inline">\(G_{12}\)</span>, 然后对比模量的阶次,
+确定主导的变形模式.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98/" rel="tag"># 本征应变</a>
+              <a href="/tags/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96/" rel="tag"># 降阶均质化</a>
+              <a href="/tags/%E5%BD%B1%E5%93%8D%E5%87%BD%E6%95%B0/" rel="tag"># 影响函数</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mech/multiscale/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E8%AE%A1%E7%AE%97/" rel="prev" title="降阶均质化方法层级分块计算">
+                  <i class="fa fa-angle-left"></i> 降阶均质化方法层级分块计算
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2025</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Qiu Xiaohuo</span>
+  </div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & <span class="exturl" data-url="aHR0cHM6Ly90aGVtZS1uZXh0LmpzLm9yZw==">NexT.Gemini</span> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="reading-progress-bar"></div>
+
+  <span class="exturl github-corner" data-url="aHR0cHM6Ly9naXRodWIuY29tL3FpdXhpYW9odW8=" title="在 GitHub 上关注我" aria-label="在 GitHub 上关注我"><svg width="80" height="80" viewBox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></span>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+  <script class="next-config" data-name="pdf" type="application/json">{"object_url":{"url":"https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.12/pdfobject.min.js","integrity":"sha256-g2xji1rlE3KsGVClvuxTbcR0Kn2+wtQADSff2Tbb4zA="},"url":"/lib/pdf/web/viewer.html"}</script>
+  <script src="/js/third-party/tags/pdf.js"></script>
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+  
+
+  <script class="next-config" data-name="enableMath" type="application/json">true</script><script class="next-config" data-name="mathjax" type="application/json">{"enable":true,"tags":"none","js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js","integrity":"sha256-MASABpB4tYktI2Oitl4t+78w/lyA+D7b/s9GEP0JOGI="}}</script>
+<script src="/js/third-party/math/mathjax.js"></script>
+
+
+
+</body>
+</html>

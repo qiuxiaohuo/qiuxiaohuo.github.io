@@ -28,7 +28,7 @@
 <meta property="og:description" content="首先, 我们先定义梯度, 散度和旋度的概念, 并特别强调对于高阶张量的定义, 这将规范我们使用的 notation. 然后, 我们以二维空间为例, 引出散度定理, Stokes 公式和 Gauss 公式. 最后, 我们再给出一般的张量场中这三种公式的形式. 梯度, 散度和旋度 我们引入记号 \(\nabla\), \(\nabla \cdot\), \(\nabla \times\),">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-07-19T03:02:02.000Z">
-<meta property="article:modified_time" content="2024-09-02T06:48:43.265Z">
+<meta property="article:modified_time" content="2025-01-05T03:24:38.988Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta property="article:tag" content="Stokes 公式">
 <meta property="article:tag" content="散度定理">
@@ -160,7 +160,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -171,7 +171,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-count">101</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -245,7 +245,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-02 14:48:43" itemprop="dateModified" datetime="2024-09-02T14:48:43+08:00">2024-09-02</time>
+      <time title="修改时间：2025-01-05 11:24:38" itemprop="dateModified" datetime="2025-01-05T11:24:38+08:00">2025-01-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -291,8 +291,8 @@ class="math display">\[
 class="math display">\[
 \nabla \times v = \begin{vmatrix}
 i &amp; j &amp; k \\
-\dfrac{\partial ~}{\partial x_1} &amp; \dfrac{\partial ~}{\partial x_1}
-&amp; \dfrac{\partial ~}{\partial x_1} \\
+\dfrac{\partial \ }{\partial x_1} &amp; \dfrac{\partial \ }{\partial
+x_1} &amp; \dfrac{\partial \ }{\partial x_1} \\
 v_1 &amp; v_2 &amp; v_3
 \end{vmatrix}
 \]</span> <span id="more"></span>可以看到,
@@ -345,7 +345,7 @@ B \times \nabla \triangleq \frac{\partial B}{\partial x_k} \times e_k
 v = \nabla u
 \]</span></p></li>
 <li><p>速度场的旋度 (vorticity) 等于 0: <span class="math display">\[
-\mathrm{curl}~ v \triangleq \frac{\partial v_y}{\partial x} -
+\mathrm{curl}\  v \triangleq \frac{\partial v_y}{\partial x} -
 \frac{\partial v_x}{\partial y} \equiv 0
 \]</span></p></li>
 </ol>
@@ -354,12 +354,13 @@ v = \nabla u
 内对旋度的积分等于在边界 <span class="math inline">\(C\)</span>
 上的第二类曲线积分: <span class="math display">\[
 \boxed{
-\int_{S} \mathrm{curl}~ v ~\mathrm{d}S =  \oint_{C} v \cdot \mathrm{d} r
+\int_{S} \mathrm{curl}\  v \ \mathrm{d}S =  \oint_{C} v \cdot \mathrm{d}
+r
 }
 \]</span> 条件 2 和 3 的等价性更加直接. 如果速度场满足条件 2,
 同时假设势函数 <span class="math inline">\(u\)</span> 二阶导数连续, 那么
 <span class="math display">\[
-\mathrm{curl}~ v
+\mathrm{curl}\  v
 = \frac{\partial^2 u}{\partial x \partial y} - \frac{\partial^2
 u}{\partial y \partial x}
 \equiv 0
@@ -379,7 +380,7 @@ u}{\partial y \partial x}
 守恒性质同样也可以通过全局和点态两种方式进行描述:</p>
 <ol type="1">
 <li><p>对任意闭合曲线, 通量等于 0: <span class="math display">\[
-\oint_{C} n \cdot v ~\mathrm{d}s = 0
+\oint_{C} n \cdot v \ \mathrm{d}s = 0
 \]</span></p></li>
 <li><p>速度场的散度恒等于 0: <span class="math display">\[
 \nabla \cdot v \equiv 0
@@ -390,22 +391,23 @@ u}{\partial y \partial x}
 等于在边界处 <span class="math inline">\(C\)</span> 的通量: <span
 class="math display">\[
 \boxed{
-\int_{S} \nabla \cdot v ~\mathrm{d}S = \oint_{C} n \cdot v ~\mathrm{d}s
+\int_{S} \nabla \cdot v \ \mathrm{d}S = \oint_{C} n \cdot v \
+\mathrm{d}s
 }
 \]</span></p>
 <h3 id="gauss-公式">Gauss 公式</h3>
 <p>Gauss 公式是分部积分公式在高维情景下的推广: <span
 class="math display">\[
-\int \boldsymbol{w} \cdot \nabla u ~\mathrm{d}S
-= \int u (-\nabla \cdot \boldsymbol{w}) ~\mathrm{d}S
-+ \int \nabla \cdot (u \boldsymbol{w}) ~\mathrm{d}S
+\int \boldsymbol{w} \cdot \nabla u \ \mathrm{d}S
+= \int u (-\nabla \cdot \boldsymbol{w}) \ \mathrm{d}S
++ \int \nabla \cdot (u \boldsymbol{w}) \ \mathrm{d}S
 \]</span> 上式最后一项可以通过散度定理化简为 <span
 class="math display">\[
 \boxed{
-\int \boldsymbol{w} \cdot \nabla u ~\mathrm{d}S
-= \int u (-\nabla \cdot \boldsymbol{w}) ~\mathrm{d}S
-+ \underbrace{\oint u~ \boldsymbol{w} \cdot \boldsymbol{n}
-~\mathrm{d}s}_{\bigstar}
+\int \boldsymbol{w} \cdot \nabla u \ \mathrm{d}S
+= \int u (-\nabla \cdot \boldsymbol{w}) \ \mathrm{d}S
++ \underbrace{\oint u\  \boldsymbol{w} \cdot \boldsymbol{n} \
+\mathrm{d}s}_{\bigstar}
 }
 \]</span> 这就得到了 Gauss 公式.</p>
 <h2 id="一般形式的散度定理">一般形式的散度定理</h2>
@@ -413,32 +415,32 @@ class="math display">\[
 class="math inline">\(\varphi\)</span>, 并假设边界 <span
 class="math inline">\(\partial V\)</span> 分片光滑, 那么以下等式成立:
 <span class="math display">\[
-\int_{V} \varphi_{,i} ~\mathrm{d}x = \int_{\partial V} \varphi n_i
-~\mathrm{d}\sigma(x), \quad i=1,2,3
+\int_{V} \varphi_{,i} \ \mathrm{d}x = \int_{\partial V} \varphi n_i \
+\mathrm{d}\sigma(x), \quad i=1,2,3
 \]</span> 首先考虑梯度运算, 写成分量形式为 <span class="math display">\[
-\int_V \nabla B ~\mathrm{d}x = \int_{V} B_{\cdot,i} e_i \otimes
-e_{\cdot} ~\mathrm{d}x
-= \int_{\partial V} B_{\cdot} n_i ~e_i \otimes e_{\cdot}
-~\mathrm{d}\sigma(x)
-= \int_{\partial V} n \otimes B  ~\mathrm{d}\sigma(x)
+\int_V \nabla B \ \mathrm{d}x = \int_{V} B_{\cdot,i} e_i \otimes
+e_{\cdot} \ \mathrm{d}x
+= \int_{\partial V} B_{\cdot} n_i \ e_i \otimes e_{\cdot} \
+\mathrm{d}\sigma(x)
+= \int_{\partial V} n \otimes B  \ \mathrm{d}\sigma(x)
 \]</span> 再考虑散度运算, <span class="math display">\[
-\int_{V} \nabla \cdot B ~\mathrm{d}x = \int_{V} B_{i\cdot,i} ~e_{\cdot}
-~\mathrm{d}x
-= \int_{\partial V} B_{i\cdot} n_i ~e_{\cdot} ~\mathrm{d}\sigma(x)
-= \int_{\partial V} n \cdot B ~\mathrm{d}\sigma(x)
+\int_{V} \nabla \cdot B \ \mathrm{d}x = \int_{V} B_{i\cdot,i} \
+e_{\cdot} \ \mathrm{d}x
+= \int_{\partial V} B_{i\cdot} n_i \ e_{\cdot} \ \mathrm{d}\sigma(x)
+= \int_{\partial V} n \cdot B \ \mathrm{d}\sigma(x)
 \]</span> 最后考虑旋度运算 <span class="math display">\[
-\int_{V} \nabla \times B ~\mathrm{d}x = \int_{V} B_{\cdot,i} ~ e_{i}
-\times e_{\cdot} ~\mathrm{d}x
-= \int_{\partial V} B_{\cdot} n_i ~ e_{i} \times e_{\cdot}
-~\mathrm{d}\sigma(x)
-= \int_{\partial V} n \times B ~\mathrm{d}\sigma(x)
+\int_{V} \nabla \times B \ \mathrm{d}x = \int_{V} B_{\cdot,i} \  e_{i}
+\times e_{\cdot} \ \mathrm{d}x
+= \int_{\partial V} B_{\cdot} n_i \  e_{i} \times e_{\cdot} \
+\mathrm{d}\sigma(x)
+= \int_{\partial V} n \times B \ \mathrm{d}\sigma(x)
 \]</span> 对于右侧的运算也是类似的, 因此, 如果我们定义一般的运算符 <span
 class="math inline">\(\divideontimes\)</span>, 代表梯度,
 散度或旋度的其中一种, 那么 <span class="math display">\[
-\int_V \nabla \divideontimes B ~\mathrm{d}x = \int_{\partial V} n
-\divideontimes B ~\mathrm{d}\sigma(x), \quad
-\int_V B \divideontimes \nabla ~\mathrm{d}x = \int_{\partial V} B
-\divideontimes n ~\mathrm{d}\sigma(x)
+\int_V \nabla \divideontimes B \ \mathrm{d}x = \int_{\partial V} n
+\divideontimes B \ \mathrm{d}\sigma(x), \quad
+\int_V B \divideontimes \nabla \ \mathrm{d}x = \int_{\partial V} B
+\divideontimes n \ \mathrm{d}\sigma(x)
 \]</span></p>
 
     </div>
@@ -485,7 +487,7 @@ class="math inline">\(\divideontimes\)</span>, 代表梯度,
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    <span itemprop="copyrightYear">2025</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>

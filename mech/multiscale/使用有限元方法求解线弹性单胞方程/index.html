@@ -20,18 +20,19 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="单胞方程的 statement 单胞方程张量场 \(E_{kl}^{(mn)}\) 求解 在三维情景, 线弹性条件下, 单胞方程的弱形式为: \[ \int_{Y} L_{ijkl} \frac{\partial H_k^{(mn)}}{\partial y_l} \frac{\partial v_i}{\partial y_j} \mathrm{d} Y &#x3D; -\int_{Y} L_{">
+    <meta name="description" content="单胞方程的 statement 单胞方程张量场 \(E_{kl}^{(mn)}\) 求解 在三维情景, 线弹性条件下, 单胞方程的弱形式为: \[ \int_{\Theta} L_{ijkl} \frac{\partial H_k^{(mn)}}{\partial y_l} \frac{\partial v_i}{\partial y_j} \mathrm{d} y &#x3D; -\int_{\">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用有限元方法求解单胞方程">
 <meta property="og:url" content="http://qiuxiaohuo.github.io/mech/multiscale/%E4%BD%BF%E7%94%A8%E6%9C%89%E9%99%90%E5%85%83%E6%96%B9%E6%B3%95%E6%B1%82%E8%A7%A3%E7%BA%BF%E5%BC%B9%E6%80%A7%E5%8D%95%E8%83%9E%E6%96%B9%E7%A8%8B/index.html">
 <meta property="og:site_name" content="邱小伙的博客">
-<meta property="og:description" content="单胞方程的 statement 单胞方程张量场 \(E_{kl}^{(mn)}\) 求解 在三维情景, 线弹性条件下, 单胞方程的弱形式为: \[ \int_{Y} L_{ijkl} \frac{\partial H_k^{(mn)}}{\partial y_l} \frac{\partial v_i}{\partial y_j} \mathrm{d} Y &#x3D; -\int_{Y} L_{">
+<meta property="og:description" content="单胞方程的 statement 单胞方程张量场 \(E_{kl}^{(mn)}\) 求解 在三维情景, 线弹性条件下, 单胞方程的弱形式为: \[ \int_{\Theta} L_{ijkl} \frac{\partial H_k^{(mn)}}{\partial y_l} \frac{\partial v_i}{\partial y_j} \mathrm{d} y &#x3D; -\int_{\">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404072344350%E5%86%97%E4%BD%99%E6%96%B9%E7%A8%8B%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
 <meta property="article:published_time" content="2024-04-10T01:36:46.000Z">
-<meta property="article:modified_time" content="2024-09-02T06:47:43.209Z">
+<meta property="article:modified_time" content="2025-01-12T05:05:47.063Z">
 <meta property="article:author" content="Qiu Xiaohuo">
-<meta property="article:tag" content="有限元">
+<meta property="article:tag" content="周期性边界条件">
+<meta property="article:tag" content="有限元离散化">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/qiuxiaohuo/picgo-bed/main/figs/202404072344350%E5%86%97%E4%BD%99%E6%96%B9%E7%A8%8B%E7%A4%BA%E6%84%8F%E5%9B%BE.png">
 
@@ -162,7 +163,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -173,7 +174,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-count">101</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -247,7 +248,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-02 14:47:43" itemprop="dateModified" datetime="2024-09-02T14:47:43+08:00">2024-09-02</time>
+      <time title="修改时间：2025-01-12 13:05:47" itemprop="dateModified" datetime="2025-01-12T13:05:47+08:00">2025-01-12</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -280,34 +281,26 @@
 class="math inline">\(E_{kl}^{(mn)}\)</span> 求解</h3>
 <p>在三维情景, 线弹性条件下, 单胞方程的弱形式为: <span
 class="math display">\[
-\int_{Y} L_{ijkl} \frac{\partial H_k^{(mn)}}{\partial y_l}
-\frac{\partial v_i}{\partial y_j} \mathrm{d} Y
-= -\int_{Y} L_{ij(mn)} \frac{\partial v_i}{\partial y_j} \mathrm{d} Y.
+\int_{\Theta} L_{ijkl} \frac{\partial H_k^{(mn)}}{\partial y_l}
+\frac{\partial v_i}{\partial y_j} \mathrm{d} y
+= -\int_{\Theta} L_{ij(mn)} \frac{\partial v_i}{\partial y_j} \mathrm{d}
+y.
 \tag{1}
 \]</span></p>
 <p>场变量 <span class="math inline">\(H_k^{(mn)}\)</span>
-满足周期性边界条件, <span id="more"></span>也即</p>
-<p><span class="math display">\[
-H_k^{(mn)}(y) = H_k^{(mn)}(y + kl).
-\]</span></p>
-<p>然而, 上述周期性边界条件只是提供了边界节点的约束条件,
-还不能唯一确定解. Fish 书中提供两种定解的方式:</p>
-<p><span class="math display">\[
-(1) \quad H_k^{(mn)} := 0, \text{ on } \partial
-\Theta^{\mathrm{vert}};\\
-(2) \quad \int_{\Theta} H_k^{(mn)} \mathrm{d} \Theta := 0.
-\]</span></p>
-<div class="note info"><p>在单胞方程中, <span class="math inline">\((mn)\)</span>
+满足周期性边界条件. <span id="more"></span></p>
+<blockquote>
+<p>[!NOTE]</p>
+<p>在单胞方程中, <span class="math inline">\((mn)\)</span>
 是对称的自由指标, 使用 <span class="math inline">\(()\)</span> 标注指标
 <span class="math inline">\(mn\)</span>
 是因为该组指标表示单胞可能的变形模式 (对于三维问题共有 6 种模式,
-每一种模式确定一组偏微分方程), 而不是一般意义下的 Euclidean
-空间中的坐标分量.</p>
-</div>
+每一种模式确定一组偏微分方程).</p>
+</blockquote>
 <p>求解出 <span class="math inline">\(H_{k}^{(mn)}\)</span> 后,
 可得到均质化的弹性模量为: <span class="math display">\[
-L_{ij(mn)}^{\mathrm{hom}} = \frac{1}{|Y|} \int_{Y} L_{ij(mn)} +
-L_{ijkl}H_{k,l}^{(mn)} \mathrm{d} Y.
+L_{ij(mn)}^{\mathrm{hom}} = \frac{1}{|\Theta|} \int_{\Theta} L_{ij(mn)}
++ L_{ijkl}H_{k,l}^{(mn)} \mathrm{d} y.
 \tag{2}
 \]</span></p>
 <p>式中，<span class="math inline">\(H_{k,l}^{(mn)} = \frac{\partial
@@ -315,31 +308,32 @@ H_{k}^{(mn)}}{\partial y_l}\)</span>​ 。如果记 <span
 class="math display">\[
 E_{kl}^{(mn)} \triangleq I_{kl}^{(mn)} + H_{k,l}^{(mn)}
 \]</span> 式中, <span
-class="math inline">\(I_{kl}^{(mn)}=\frac{1}{2}(\delta_{km}\delta_{ln}+\delta_{kn}\delta_{lm})\)</span>.
-式（2）可以表示为 <span class="math display">\[
-L_{ij(mn)}^{\mathrm{hom}} = \frac{1}{|Y|} \int_{Y} L_{ijkl}E_{kl}^{(mn)}
-\mathrm{d} Y.
+class="math inline">\(I_{kl}^{(mn)}=\frac{1}{2}(\delta_{km}\delta_{ln}+\delta_{kn}\delta_{lm})\)</span>,
+那么式 (2) 可以表示为 <span class="math display">\[
+L_{ij(mn)}^{\mathrm{hom}} = \frac{1}{|\Theta|} \int_{\Theta}
+L_{ijkl}E_{kl}^{(mn)} \mathrm{d} y.
 \]</span></p>
 <h3 id="reduced-order-单胞方程张量场-p_klmn-求解">Reduced Order
 单胞方程张量场 <span class="math inline">\(P_{kl}^{mn}\)</span>
 求解</h3>
 <p>降阶多尺度的单胞方程弱形式为 <span class="math display">\[
-\int_{Y} L_{ijkl}(y)  P_{kl}^{mn(\alpha)}(y) v_{i,j}(y) ~\mathrm{d}y
-= \int_{Y} L_{ijmn}(y) \chi^{(\alpha)}(y) v_{i,j}(y) ~\mathrm{d}y
+\int_{\Theta} L_{ijkl}(y)  P_{kl}^{mn(\alpha)}(y) v_{i,j}(y)
+~\mathrm{d}y
+= \int_{\Theta} L_{ijmn}(y) \chi^{(\alpha)}(y) v_{i,j}(y) ~\mathrm{d}y
 \quad \alpha=1,2, \ldots,N
 \tag{3}
 \]</span></p>
-<p>方程（1）（3）的区别在于右端项的积分区域，以及正负号。式（3）右端对
-partition
-求和，可以得到式（1）的右端项（相差一个负号）。方程（3）的边界条件与（1）相同。</p>
+<p>方程 (1) (3) 的区别在于右端项的积分区域，以及正负号。式 (3) 右端对
+partition 求和，可以得到式 (1) 的右端项 (相差一个负号) 。方程 (3)
+的边界条件与 (1) 相同。</p>
 <h2 id="单胞方程的有限元列式">单胞方程的有限元列式</h2>
 <p>将单胞方程中的张量分量表示为矩阵形式:</p>
 <p><span class="math display">\[
-L_{ijkl}(y) \rightarrow [D](y), \quad
-\frac{\partial v_i}{\partial y_j} \rightarrow [B][v], \quad
-\frac{\partial H_k^{(mn)}}{\partial y_l} \rightarrow [B][u]^{(mn)},
-\quad
-L_{ij(mn)}(y) \rightarrow [D](y) [\varepsilon]^{(mn)}.
+L_{ijkl}(y) \rightarrow [\mathbf{D}](y), \quad
+\frac{\partial v_i}{\partial y_j} \rightarrow [\mathbf{B}][v], \quad
+\frac{\partial H_k^{(I)}}{\partial y_l} \rightarrow
+[\mathbf{B}][u]^{(I)}, \quad
+L_{ij(I)}(y) \rightarrow [\mathbf{D}](y) [\varepsilon]^{(mn)}.
 \]</span></p>
 <p>式中, <span class="math inline">\(mn =
 \{11,22,33,23,13,12\}\)</span>. 为方便表示向量分量, 我们使用 Voigt 映射
@@ -376,6 +370,14 @@ class="math inline">\((mn)\)</span> 分量为 1, 其它分量为 0. 例如, 当
 <p>注意, 约束矩阵 <span
 class="math inline">\([C_{\mathrm{per}}]\)</span> 与变形模式 <span
 class="math inline">\(mn\)</span> 无关.</p>
+<p>如果考虑材料坐标系, 那么, 在材料坐标系下表示的材料模量 <span
+class="math inline">\([\mathrm{D}&#39;]\)</span>,
+需要通过四阶张量的旋转得到宏观坐标系下 <span
+class="math inline">\([\mathrm{D}]\)</span>: <span
+class="math display">\[
+L_{ijkl} = L&#39;_{mnrs} A_{mi} A_{nj} A_{rk} A_{sl}
+\]</span> 在求解有限元方程之后,
+得到的是宏观坐标系下的均质化之后的材料刚度矩阵.</p>
 <p>求解 6 组变形模式下的有限元方程, 得到 <span
 class="math inline">\([u]^{(mn)}\)</span> 后,
 再代入到均质化弹性张量方程中:</p>
@@ -407,6 +409,8 @@ c_m [D_m].
 <p>式中, <span class="math inline">\([D_f]\)</span> 和 <span
 class="math inline">\([D_m]\)</span>
 分别为纤维和基体材料的弹性模量矩阵.</p>
+<p>各个分块上的 E P 张量, 分别对应求解之后的应变场在分块上的平均, 因此 E
+P 张量的数值形式都是宏观坐标系下的张量. 此外对</p>
 <h2 id="单胞方程的求解">单胞方程的求解</h2>
 <p>使用有限元方法求解单胞方程需要解决如下问题:</p>
 <ol type="1">
@@ -554,7 +558,8 @@ class="math inline">\(\varepsilon^c\)</span> 引入的位移量, 求解得到的
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%9C%89%E9%99%90%E5%85%83/" rel="tag"># 有限元</a>
+              <a href="/tags/%E5%91%A8%E6%9C%9F%E6%80%A7%E8%BE%B9%E7%95%8C%E6%9D%A1%E4%BB%B6/" rel="tag"># 周期性边界条件</a>
+              <a href="/tags/%E6%9C%89%E9%99%90%E5%85%83%E7%A6%BB%E6%95%A3%E5%8C%96/" rel="tag"># 有限元离散化</a>
           </div>
 
         
@@ -588,7 +593,7 @@ class="math inline">\(\varepsilon^c\)</span> 引入的位移量, 求解得到的
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    <span itemprop="copyrightYear">2025</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>

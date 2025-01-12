@@ -152,7 +152,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">77</span>
+          <span class="site-state-item-count">80</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -163,7 +163,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">98</span>
+        <span class="site-state-item-count">101</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -191,6 +191,453 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/multiscale/%E5%BA%94%E7%94%A8%E7%9B%B8%E5%AE%B9%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E7%9A%84%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mech/multiscale/%E5%BA%94%E7%94%A8%E7%9B%B8%E5%AE%B9%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E7%9A%84%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95/" class="post-title-link" itemprop="url">应用相容本征应变的降阶均质化方法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-01-12 13:36:46 / 修改时间：13:18:11" itemprop="dateCreated datePublished" datetime="2025-01-12T13:36:46+08:00">2025-01-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" itemprop="url" rel="index"><span itemprop="name">多尺度</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="控制方程的渐进展开">控制方程的渐进展开</h2>
+<p>位移的渐进展开式为 <span class="math display">\[
+u_{i}^{\zeta} = u_{i}^{(0)}(x) + \zeta u_{i}^{(1)}(x,y) +
+\mathcal{O}(\zeta^2)
+\]</span> 这里已经应用应变渐进展开式 <span
+class="math inline">\(\mathcal{O}({\zeta^{-1}})\)</span> 项等于 0,
+所以零阶项 <span class="math inline">\(u_{i}^{(0)}\)</span> 只是关于变量
+<span class="math inline">\(x\)</span> 的函数. 应变,
+本征应变和应力的渐进展开式分别为 <span class="math display">\[
+\varepsilon_{ij}^{\zeta} = \varepsilon_{ij}^{(0)} + \zeta
+\varepsilon_{ij}^{(1)} + \mathcal{O}(\zeta^2)\\
+\mu_{ij}^{\zeta} = \mu_{ij}^{(0)} + \zeta \mu_{ij}^{(1)}
++  \mathcal{O}(\zeta^2) \\
+\sigma_{ij}^{\zeta} = \sigma_{ij}^{(0)} + \zeta \sigma_{ij}^{(1)}
++  \mathcal{O}(\zeta^2)
+\]</span> 位移,
+应变和应力渐进展开式的每一项分别通过几何方程和本构方程联系在一起: <span
+class="math display">\[
+\varepsilon_{ij}^{\zeta} = u_{(i,j)}^{\zeta}, \quad
+\sigma_{ij}^{\zeta} = L_{ijkl} \left( \varepsilon_{kl}^{\zeta} -
+\mu_{kl}^{\zeta} \right)
+\]</span> 对应得到渐进展开式每一阶的方程为 <span class="math display">\[
+\mathcal{O}(1):\varepsilon_{ij}^{(0)} = u_{(i,x_j)}^{(0)} +
+u_{(i,y_j)}^{(1)}, \quad
+\sigma_{ij}^{(0)} = L_{ijkl} \left( \varepsilon_{kl}^{(0)} -
+\mu_{kl}^{(0)} \right)
+\]</span> 以下用上标 <span class="math inline">\(\square^{f}\)</span>
+表示应变, 本征应变和应力场渐进展开式的零阶项. 将渐进展开项代入到控制方程
+<span class="math display">\[
+\sigma_{ij,j}^{\zeta} + b_{i}^{\zeta} = 0
+\]</span> 得到 <span class="math display">\[
+\begin{aligned}
+&amp;\mathcal{O}(\zeta^{-1}): \sigma_{ij,y_j}^{f} = 0 \\
+&amp;\mathcal{O}(1): \quad \sigma_{ij,x_j}^{f} + \sigma_{ij,y_j}^{(1)} +
+b_{i}^{(0)} = 0
+\end{aligned}
+\]</span></p>
+<h2 id="位移的一阶项表示">位移的一阶项表示</h2>
+<p>使用影响函数方法, 可以将宏观应变 <span
+class="math inline">\(\varepsilon_{ij}^{c} \triangleq
+u_{(i,x_j)}^{(0)}\)</span> 与本征应变 <span
+class="math inline">\(\mu_{ij}^{f}\)</span> 对位移一阶项 <span
+class="math inline">\(u_{i}^{(1)}\)</span> 的影响表示为 <span
+class="math display">\[
+u_{i}^{(1)} = H_{i}^{mn} \varepsilon_{mn}^{c}
++ \int_{\Theta} h_{i}^{mn}(y,y&#39;) \mu_{mn}^{f}(y&#39;)
+\mathrm{d}y&#39;
+\]</span> 式中, <span class="math inline">\(H_i^{mn}: \Theta \mapsto
+\mathbb{T}^3\)</span> 为位移影响函数 (displacement influence function),
+<span class="math inline">\(h_{i}^{mn}: \Theta \mapsto
+\mathbb{T}^3\)</span> 为本征应变影响函数 (transformation influence
+function for eigenstrain). 函数 <span
+class="math inline">\(h_{i}^{mn}\)</span>
+也称考虑本征应变的无体力项弹性方程的 Green 函数.</p>
+<p>将上式代入到精细尺度下的应变场 <span
+class="math inline">\(\varepsilon_{ij}^{f}\)</span>, 得到 <span
+class="math display">\[
+\varepsilon_{ij}^{f} = E_{ij}^{mn} \varepsilon_{mn}^{c}
++ \int_{\Theta} h_{(i,y_j)}^{mn}(y,y&#39;) \mu_{mn}^{f}(x,y&#39;)
+\mathrm{d}y&#39;
+\]</span> 式中, <span class="math inline">\(E_{ij}^{mn}: \Theta \mapsto
+\mathbb{T}^4\)</span> 为弹性应变影响函数 (elastic strain influence
+tensor), 定义为 <span class="math display">\[
+E_{ij}^{mn} \triangleq H_{(i,y_j)}^{mn} + I_{ij}^{mn}
+\]</span></p>
+<h2 id="相容的本征应变场">相容的本征应变场</h2>
+<p>若本征应变是相容的(compatible or impotent eigenstrain),
+那么它可以考虑为某个位移场 <span class="math inline">\(\left(
+u_{i}^{\mu} \right)^{\zeta}\)</span> 的梯度,
+由此精细尺度下的本征应变场可表示为 <span class="math display">\[
+\mu_{ij}^{f}(x,y) = u_{(i,x_j)}^{\mu(0)}(x) + u_{(i,y_j)}^{\mu(1)}(x,y)
+\]</span> 类似于宏观应变 <span
+class="math inline">\(\varepsilon^{c}\)</span>, 定义宏观本征应变 <span
+class="math inline">\(\mu_{ij}^{c}\)</span> <span
+class="math display">\[
+\mu_{ij}^{c} \triangleq u_{(i,x_j)}^{\mu(0)}
+\]</span> 将精细尺度下的本征应变表达式代入到位移的一阶项当中 <span
+class="math display">\[
+u_{i}^{(1)} = H_{i}^{mn} \varepsilon_{mn}^{c}
++ \int_{\Theta} h_{i}^{mn}(y,y&#39;)\mathrm{d}y&#39; \ \mu_{mn}^{c}
++ \int_{\Theta} h_{i}^{mn}(y,y&#39;) u_{(m,y_n)}^{\mu(1)}(x,y&#39;)
+\mathrm{d}y&#39;
+\]</span> 再代入到 <span
+class="math inline">\(\mathcal{O}(\zeta^{-1})\)</span>
+阶的控制方程中得到 <span class="math display">\[
+\left\{  
+L_{ijkl} E_{kl}^{mn} \varepsilon_{mn}^{c}
++ L_{ijkl} \left( \int_{\Theta}
+h_{(k,y_l)}^{mn}(y,y&#39;)\mathrm{d}y&#39; - I_{kl}^{mn} \right)
+\mu_{mn}^{c} \\
++ L_{ijkl} \left( \int_{\Theta} h_{(k,y_l)}^{mn}(y,y&#39;)
+u_{(m,y_n)}^{\mu(1)} \mathrm{d}y&#39; -u_{(k,y_l)}^{\mu(1)} \right)
+\right\}_{,y_j} = 0
+\]</span> 方程对任意的宏观应变 <span
+class="math inline">\(\varepsilon_{mn}^{c}\)</span> 和宏观本征应变 <span
+class="math inline">\(\mu_{mn}^{c}\)</span> 恒成立, 这就得到单胞 <span
+class="math inline">\(\Theta\)</span> 上的微分方程 <span
+class="math display">\[
+\left\{  
+L_{ijkl} E_{kl}^{mn}
+\right\}_{,y_j} = 0, \\
+\left\{  
+L_{ijkl} \left( R_{kl}^{mn} - I_{kl}^{mn} \right)
+\right\}_{,y_j} = 0, \\
+\left\{  
+L_{ijkl} \left( \int_{\Theta} h_{(k,y_l)}^{mn}(y,y&#39;)
+u_{(m,y_n)}^{\mu(1)} \mathrm{d}y&#39; -u_{(k,y_l)}^{\mu(1)} \right)
+\right\}_{,y_j} = 0
+\]</span> 式中, $R_{kl}^{mn}: ^4 $, <span
+class="math inline">\(R_{kl}^{mn}(y)= \int_{\Theta}
+h_{(k,y_l)}^{mn}(y,y&#39;)\mathrm{d}y&#39;\)</span>.
+根域位移影响函数的定义和它满足的方程, 可以确定 <span
+class="math display">\[
+R^{mn}_{kl} \equiv - H_{(k,y_l)}^{mn}
+\]</span> 再通过一些数学上的操作可以得到 <span class="math display">\[
+\int_{\Theta} h_{(k,y_l)}^{mn}(y,y&#39;) u_{(m,y_n)}^{\mu(1)}
+\mathrm{d}y&#39; \equiv u_{(k,y_l)}^{\mu(1)}
+\]</span> 这意味着 <span
+class="math inline">\(u_{(k,y_l)}^{\mu(1)}\)</span> 对应力场影响为零.
+最后得到用相容的本征应变表示的精细尺度下的应变场: <span
+class="math display">\[
+\varepsilon_{ij}^{f} = E_{ij}^{mn} \varepsilon_{mn}^{c}
+- H_{(i,y_j)}^{mn} \mu_{mn}^{c}
++ u_{(i,y_j)}^{\mu(1)}
+\]</span></p>
+<h3
+id="相容本征应变得到的解析本征应变影响张量">相容本征应变得到的解析本征应变影响张量</h3>
+<p>类似于降阶均质化方法, 同样设本征应变在单胞 <span
+class="math inline">\(\Theta\)</span> 上的分布为分片常值函数: <span
+class="math display">\[
+\mu_{ij}^{f}(x,y) \approx \sum_{\alpha} \chi^{(\alpha)}(y)
+\mu_{ij}^{(\alpha)}(x)
+\]</span> 并且考虑精细尺度下的应变场可以通过影响函数表示为 <span
+class="math display">\[
+\varepsilon_{ij}^{f} = E_{ij}^{mn} \varepsilon_{mn}^{c}
++ \sum_{\alpha}\widetilde{P}_{ij}^{mn, (\alpha)} \mu_{mn}^{(\alpha)}
+\]</span> 这就得到本征应变的一阶项与本征应变的影响函数关系为 <span
+class="math display">\[
+u_{(i,y_j)}^{\mu(1)}
+= \sum_{\alpha}\widetilde{P}_{ij}^{mn, (\alpha)} \mu_{mn}^{(\alpha)}
++ H_{(i,y_j)}^{mn} \mu_{mn}^{c}
+\]</span> 注意到 <span class="math inline">\(\mu_{ij}^{f} = \mu_{ij}^{c}
++ u_{(i,y_j)}^{\mu(1)}\)</span>, 将上式代入得到 <span
+class="math display">\[
+\sum_{\alpha} \chi^{(\alpha)}\mu_{ij}^{(\alpha)}
+= \sum_{\alpha}\widetilde{P}_{ij}^{mn, (\alpha)} \mu_{mn}^{(\alpha)}
++ E_{ij}^{mn} \mu_{mn}^{c}
+\]</span> 并且宏观本征应变等于各个分块上的本征应变的体积平均: <span
+class="math display">\[
+\mu_{mn}^{c} = \sum_{\alpha} c^{(\alpha)} \mu_{mn}^{(\alpha)}
+\]</span> 得到 <span class="math display">\[
+\sum_{\alpha} \left(
+\widetilde{P}_{ij}^{mn, (\alpha)}
++ c^{(\alpha)} E_{ij}^{mn}
+- I_{ij}^{mn,(\alpha)}\right)
+\mu_{mn}^{(\alpha)} \equiv 0
+\]</span> 对分块上的任意本征应变 <span class="math inline">\(\{
+\mu_{mn}^{(\alpha)} \}\)</span>, 上式应恒成立,
+最终得到关于本征应变影响函数的<strong>解析形式:</strong> <span
+class="math display">\[
+\widetilde{P}_{ij}^{mn, (\alpha)} \triangleq I_{ij}^{mn,(\alpha)} -
+c^{(\alpha)} E_{ij}^{mn}, \quad
+\forall \alpha
+\]</span> 需要指出的是,
+只有在<strong>基体主导下</strong>的变形模式才会使用如上形式的本征应变影响函数,
+这是为了解决使用不相容本征应变推导得到的基体相单分块影响函数,
+在基体变形主导的模式下锁定夹杂项的变形,
+导致宏观表征出的应力应变关系刚度太大. 为判断主导的变形模式(对于三维情景,
+变形模式分为三个方向上的拉伸和剪切),
+可以固定基体项和夹杂项为<strong>各向同性线弹性</strong>材料,
+基体相和夹杂相的模量分别设置为 <span class="math inline">\(1.0\)</span>
+和 <span class="math inline">\(10^{-8}\)</span>, 泊松比等于 <span
+class="math inline">\(0.0\)</span>, 根据均质化之后的宏观弹性模量计算得到
+<span class="math inline">\(E_1\)</span>, <span
+class="math inline">\(E_2\)</span>, <span
+class="math inline">\(E_3\)</span>, <span
+class="math inline">\(G_{23}\)</span>, <span
+class="math inline">\(G_{13}\)</span>, <span
+class="math inline">\(G_{12}\)</span>, 然后对比模量的阶次,
+确定主导的变形模式.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/mech/multiscale/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E8%AE%A1%E7%AE%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/mech/multiscale/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E8%AE%A1%E7%AE%97/" class="post-title-link" itemprop="url">降阶均质化方法层级分块计算</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2025-01-12 09:36:46 / 修改时间：13:06:25" itemprop="dateCreated datePublished" datetime="2025-01-12T09:36:46+08:00">2025-01-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%A4%9A%E5%B0%BA%E5%BA%A6/" itemprop="url" rel="index"><span itemprop="name">多尺度</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2
+id="在有限元求解框架下的增量步与迭代步">在有限元求解框架下的增量步与迭代步</h2>
+<p>降阶均质化方法是在 ABAQUS UMAT 层面实现的. ABAQUS
+在每个增量步的迭代步时调用 UMAT, 考虑有限元计算框架中第 <span
+class="math inline">\(n\)</span> 个增量步, 第 <span
+class="math inline">\(i+1\)</span> 个迭代步. 在进入 UMAT 时, 已知前
+<span class="math inline">\(n-1\)</span> 个增量步的历史信息,
+和当前迭代步 <span class="math inline">\(i+1\)</span> 的位移.
+为了使接下来方程的增量表达式更加清晰, 首先引入以下增量记号,
+它们写在力学变量之前, 表示不同的含义:</p>
+<ul>
+<li>记号 <span class="math inline">\(\delta\)</span>
+表示变量该迭代步的<strong>校正量</strong>;</li>
+<li>记号 <span class="math inline">\(\Delta_{n}^{i+1}\)</span> 表示在第
+<span class="math inline">\(i+1\)</span> 个迭代步时确定的第 <span
+class="math inline">\(n\)</span> 个增量步的增量. 若在第 <span
+class="math inline">\(i+1\)</span> 个迭代步收敛, 那么 <span
+class="math inline">\(\Delta_{n} :=\Delta_{n}^{i+1}\)</span>.</li>
+</ul>
+<p>我们再引入花括号 <span class="math inline">\(\{\cdot\}\)</span>
+表示分块物理量的集合. 例如 <span class="math inline">\(\{ \Delta
+\varepsilon \}\)</span> 表示分块上的应变 <span
+class="math inline">\(\Delta \varepsilon^{(\alpha)}\)</span>, <span
+class="math inline">\(\alpha=1,2,\ldots,N\)</span>.</p>
+<h2 id="降阶多尺度计算">
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/mech/multiscale/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E8%AE%A1%E7%AE%97/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/deutsche/%E7%AC%AC%E4%BA%8C%E8%99%9A%E6%8B%9F%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/deutsche/%E7%AC%AC%E4%BA%8C%E8%99%9A%E6%8B%9F%E5%BC%8F/" class="post-title-link" itemprop="url">未命名</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2024-09-13 10:38:10 / 修改时间：18:40:04" itemprop="dateCreated datePublished" datetime="2024-09-13T10:38:10+08:00">2024-09-13</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>时态只有完成和未完成之分</p>
+<blockquote>
+<p>Er arbeitet（他在工作）-&gt; Er würde arbeiten.</p>
+<p>Er arbeitete（他过去在工作） -&gt; Er hätte gearbeitet.
+（完成时体现在助动词 würden 上）</p>
+<p>Er habt gearbeitet （他完成了工作）-&gt; Er hätte gearbeitet.
+（与过去时相同）</p>
+<p>Er hatte gearbeitet （过去完成时）-&gt; Er hätte gearbeitet/Er hätte
+gearbeitet gehabt.</p>
+</blockquote>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -228,9 +675,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2024-09-02 10:02:00 / 修改时间：14:45:18" itemprop="dateCreated datePublished" datetime="2024-09-02T10:02:00+08:00">2024-09-02</time>
+      <time title="创建时间：2024-09-02 10:02:00" itemprop="dateCreated datePublished" datetime="2024-09-02T10:02:00+08:00">2024-09-02</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2024-10-01 14:26:12" itemprop="dateModified" datetime="2024-10-01T14:26:12+08:00">2024-10-01</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -618,7 +1071,7 @@ class="math inline">\(\lambda_3^2\)</span>,
 \]</span></p>
 <p>注意到 <span class="math inline">\(C\)</span> 的不变量与左
 Cauchy-Green 张量 <span class="math inline">\(B\)</span> 相同, 因此式
-(0) 中将 <span class="math inline">\(C\)</span> 替换为 <span
+(5) 中将 <span class="math inline">\(C\)</span> 替换为 <span
 class="math inline">\(B\)</span> 同样成立.</p>
 <p>Cayley-Hamilton 定理给出关于 <span class="math inline">\(C\)</span>
 <span class="math inline">\(B\)</span> 以及不变量作为系数的恒等式: <span
@@ -965,7 +1418,7 @@ t^{(i)} = \sigma_{ij} e_{j}, \quad \mathrm{or} \quad \sigma_{ij}
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-17 11:03:17" itemprop="dateModified" datetime="2024-08-17T11:03:17+08:00">2024-08-17</time>
+      <time title="修改时间：2024-09-15 10:16:31" itemprop="dateModified" datetime="2024-09-15T10:16:31+08:00">2024-09-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1378,7 +1831,7 @@ F_{Ii}^{-1} = \frac{\partial X_I}{\partial x_i}
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-02 14:48:31" itemprop="dateModified" datetime="2024-09-02T14:48:31+08:00">2024-09-02</time>
+      <time title="修改时间：2024-11-23 10:21:25" itemprop="dateModified" datetime="2024-11-23T10:21:25+08:00">2024-11-23</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1492,7 +1945,7 @@ class="math inline">\(\mathbb{F}^n\)</span></li>
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-02 14:48:43" itemprop="dateModified" datetime="2024-09-02T14:48:43+08:00">2024-09-02</time>
+      <time title="修改时间：2025-01-05 11:24:38" itemprop="dateModified" datetime="2025-01-05T11:24:38+08:00">2025-01-05</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -1532,8 +1985,8 @@ class="math display">\[
 class="math display">\[
 \nabla \times v = \begin{vmatrix}
 i &amp; j &amp; k \\
-\dfrac{\partial ~}{\partial x_1} &amp; \dfrac{\partial ~}{\partial x_1}
-&amp; \dfrac{\partial ~}{\partial x_1} \\
+\dfrac{\partial \ }{\partial x_1} &amp; \dfrac{\partial \ }{\partial
+x_1} &amp; \dfrac{\partial \ }{\partial x_1} \\
 v_1 &amp; v_2 &amp; v_3
 \end{vmatrix}
 \]</span>
@@ -2253,300 +2706,6 @@ f(x) =  \int_{\mathbb{R}^d} \hat f(\xi) e^{i2\pi x \cdot \xi}
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/Fourier-analysis/Bessel-%E4%BD%8D%E5%8A%BF%E5%92%8C-Yukawa-%E4%BD%8D%E5%8A%BF/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/math/Fourier-analysis/Bessel-%E4%BD%8D%E5%8A%BF%E5%92%8C-Yukawa-%E4%BD%8D%E5%8A%BF/" class="post-title-link" itemprop="url">Bessel 位势和 Yukawa 位势</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-06-25 20:26:33 / 修改时间：20:33:07" itemprop="dateCreated datePublished" datetime="2024-06-25T20:26:33+08:00">2024-06-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/Fourier-%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Fourier 分析</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>Bessel 方程定义为 <span class="math display">\[
--\Delta u + u = f
-\]</span> 为了求该方程的基本解, 方程右端非齐次项换成 Delta 函数 <span
-class="math inline">\(\delta\)</span>. 两边作 Fourier 变换, 就得到 <span
-class="math display">\[
-(1 + 4\pi^2 |\xi|^2) \widehat{B} = 1
-\]</span> 接下来要求解函数 <span
-class="math inline">\(\widehat{B}(\xi)\)</span> 的 Fourier 逆变换,
-又称为 Bessel 位势 <span class="math display">\[
-B(x)
-= \int_{\mathbb{R}^d} \frac{e^{i2\pi \xi \cdot x}}{1 + 4\pi^2 |\xi|^2}
-~\mathrm{d}\xi
-\]</span>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/math/Fourier-analysis/Bessel-%E4%BD%8D%E5%8A%BF%E5%92%8C-Yukawa-%E4%BD%8D%E5%8A%BF/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/math/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0/" class="post-title-link" itemprop="url">矩阵指数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2024-06-25 20:22:08 / 修改时间：20:38:16" itemprop="dateCreated datePublished" datetime="2024-06-25T20:22:08+08:00">2024-06-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>矩阵指数 (Matrix Exponential) 定义为 <span class="math display">\[
-e^{A} \triangleq \sum_{k=0}^{\infty} \frac{1}{k!}A^k
-\]</span> 因为之后要用到矩阵指数表示常微分方程组的解,
-所以在上式中加入时间项 <span class="math display">\[
-e^{At} \triangleq \sum_{k=0}^{\infty} \frac{t^k}{k!}A^k
-\]</span> 在接下来的计算中, 我们给出 <span
-class="math inline">\(e^{At}\)</span> 而不是 <span
-class="math inline">\(e^A\)</span>, 因为虽然 <span
-class="math inline">\(e^{At}\)</span> 与 <span
-class="math inline">\(e^{A}\)</span> 计算过程相同, 但是从 <span
-class="math inline">\(e^A\)</span> 的结果并不是可以很轻松地得到 <span
-class="math inline">\(e^{At}\)</span> 的形式.
-所以直接给出更一般的结论.</p>
-<p>通过级数的定义式, 可以得到一些特殊矩阵级数的表达式
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/math/%E7%9F%A9%E9%98%B5%E6%8C%87%E6%95%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/%E4%B8%80%E8%88%AC%E7%9A%84%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/math/%E4%B8%80%E8%88%AC%E7%9A%84%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F/" class="post-title-link" itemprop="url">一般的线性系统</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-06-25 20:20:41" itemprop="dateCreated datePublished" datetime="2024-06-25T20:20:41+08:00">2024-06-25</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-08-03 11:00:52" itemprop="dateModified" datetime="2024-08-03T11:00:52+08:00">2024-08-03</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E5%AD%A6/" itemprop="url" rel="index"><span itemprop="name">数学</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我们首先考虑常系数齐次系统 <span class="math display">\[
-\dot{x} = Ax \\
-x(0) = x_0
-\]</span> 该方程的解为 <span class="math display">\[
-x(t) = x_0 e^{At}
-\]</span>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/math/%E4%B8%80%E8%88%AC%E7%9A%84%E7%BA%BF%E6%80%A7%E7%B3%BB%E7%BB%9F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
     <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" title="下一页" aria-label="下一页" href="/page/2/"><i class="fa fa-angle-right"></i></a>
   </nav>
@@ -2559,7 +2718,7 @@ x(t) = x_0 e^{At}
 
   <div class="copyright">
     &copy; 
-    <span itemprop="copyrightYear">2024</span>
+    <span itemprop="copyrightYear">2025</span>
     <span class="with-love">
       <i class="fa fa-heart"></i>
     </span>
