@@ -18,7 +18,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha256-wiz7ZSCn/btzhjKDQBms9Hx4sSeUYsDrTLg7roPstac=" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
-<script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null,"activeClass":"valine"},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
     <meta name="description" content="在有限元求解框架下的增量步与迭代步 降阶均质化方法是在 ABAQUS UMAT 层面实现的. ABAQUS 在每个增量步的迭代步时调用 UMAT, 考虑有限元计算框架中第 \(n\) 个增量步, 第 \(i+1\) 个迭代步. 在进入 UMAT 时, 已知前 \(n-1\) 个增量步的历史信息, 和当前迭代步 \(i+1\) 的位移. 为了使接下来方程的增量表达式更加清晰, 首先引入以下">
 <meta property="og:type" content="article">
@@ -264,6 +264,20 @@
       <span class="post-meta-item-text">阅读次数：</span>
       <span id="busuanzi_value_page_pv"></span>
     </span>
+  
+  <span class="post-meta-item">
+    
+    <span class="post-meta-item-icon">
+      <i class="far fa-comment"></i>
+    </span>
+    <span class="post-meta-item-text">Valine：</span>
+  
+    <a title="valine" href="/mech/multiscale/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E8%AE%A1%E7%AE%97/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/mech/multiscale/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E8%AE%A1%E7%AE%97/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
 </div>
 
         </div>
@@ -568,6 +582,7 @@ class="math inline">\(\left[ \boldsymbol{\sigma}^{\langle \alpha
 
 
 
+    <div class="comments" id="valine-comments"></div>
 </div>
   </main>
 
@@ -643,6 +658,21 @@ class="math inline">\(\left[ \boldsymbol{\sigma}^{\langle \alpha
 <script src="/js/third-party/math/mathjax.js"></script>
 
 
+
+
+<script class="next-config" data-name="valine" type="application/json">{"enable":true,"appId":"Ul091zLWlReGPXyNDTM1luz3-gzGzoHsz","appKey":"TrP6rTnxFpqpvUZkSA73z5C2","serverURLs":"https://ul091zlw.api.lncldglobal.com","placeholder":"say something","avatar":"mm","meta":["nick","mail","link"],"pageSize":10,"lang":null,"visitor":false,"comment_count":true,"recordIP":false,"enableQQ":false,"requiredFields":[],"el":"#valine-comments","path":"/mech/multiscale/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96%E6%96%B9%E6%B3%95%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E8%AE%A1%E7%AE%97/"}</script>
+<script>
+document.addEventListener('page:loaded', () => {
+  NexT.utils.loadComments(CONFIG.valine.el)
+    .then(() => NexT.utils.getScript(
+      'https://fastly.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js',
+      { condition: window.Valine }
+    ))
+    .then(() => {
+      new Valine(CONFIG.valine);
+    });
+});
+</script>
 
 </body>
 </html>
