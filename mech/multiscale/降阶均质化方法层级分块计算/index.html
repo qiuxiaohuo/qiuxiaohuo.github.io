@@ -28,7 +28,7 @@
 <meta property="og:description" content="在有限元求解框架下的增量步与迭代步 降阶均质化方法是在 ABAQUS UMAT 层面实现的. ABAQUS 在每个增量步的迭代步时调用 UMAT, 考虑有限元计算框架中第 \(n\) 个增量步, 第 \(i+1\) 个迭代步. 在进入 UMAT 时, 已知前 \(n-1\) 个增量步的历史信息, 和当前迭代步 \(i+1\) 的位移. 为了使接下来方程的增量表达式更加清晰, 首先引入以下">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-12T01:36:46.000Z">
-<meta property="article:modified_time" content="2025-03-25T03:27:50.434Z">
+<meta property="article:modified_time" content="2025-03-25T07:39:37.539Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta property="article:tag" content="降阶均匀化">
 <meta property="article:tag" content="Newton-Raphson 迭代">
@@ -159,17 +159,19 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+          <a href="/categories/">
         <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">分类</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">114</span>
-        <span class="site-state-item-name">标签</span>
+          <a href="/tags/">
+        <span class="site-state-item-count">112</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -242,7 +244,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-25 11:27:50" itemprop="dateModified" datetime="2025-03-25T11:27:50+08:00">2025-03-25</time>
+      <time title="修改时间：2025-03-25 15:39:37" itemprop="dateModified" datetime="2025-03-25T15:39:37+08:00">2025-03-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -293,7 +295,7 @@ class="math inline">\(\Delta_{n} :=\Delta_{n}^{i+1}\)</span>.</li>
 表示分块物理量的集合. 例如 <span class="math inline">\(\{ \Delta
 \varepsilon \}\)</span> 表示分块上的应变 <span
 class="math inline">\(\Delta \varepsilon^{(\alpha)}\)</span>, <span
-class="math inline">\(\alpha=1,2,\ldots,N\)</span>.</p>
+class="math inline">\(\alpha=1,2,\ldots,N\)</span>.<span id="more"></span></p>
 <h2 id="降阶多尺度计算">降阶多尺度计算</h2>
 <p>在接下来的记号中, 使用 <span class="math inline">\([\cdot]\)</span>
 表示应用 Voigt 记法矩阵化的张量; <span

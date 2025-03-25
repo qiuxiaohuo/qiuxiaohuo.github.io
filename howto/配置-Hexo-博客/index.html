@@ -28,7 +28,7 @@
 <meta property="og:description" content="首先我们先理清一下这三者的关系：  Hexo 本身是自动生成博客网页的框架代码，它不需要我们自己编写网页（例如 .css，.js ），而是修改 _config.yml 文件提供的参量，自动生成静态网页，可以在本机浏览； NexT 是 Hexo 的主题插件，本身依赖于 Hexo，提供额外的主题。它同样也提供 _config.yml 文件供我们配置； 使用 Github 将生成的静">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-27T07:54:32.000Z">
-<meta property="article:modified_time" content="2025-03-25T02:54:44.044Z">
+<meta property="article:modified_time" content="2025-03-25T07:31:13.628Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta property="article:tag" content="hexo">
 <meta property="article:tag" content="NexT">
@@ -159,17 +159,19 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">78</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
+          <a href="/categories/">
         <span class="site-state-item-count">11</span>
-        <span class="site-state-item-name">分类</span>
+        <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">114</span>
-        <span class="site-state-item-name">标签</span>
+          <a href="/tags/">
+        <span class="site-state-item-count">112</span>
+        <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
 </div>
@@ -242,7 +244,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-25 10:54:44" itemprop="dateModified" datetime="2025-03-25T10:54:44+08:00">2025-03-25</time>
+      <time title="修改时间：2025-03-25 15:31:13" itemprop="dateModified" datetime="2025-03-25T15:31:13+08:00">2025-03-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -311,7 +313,14 @@ NexT 的文档中既包含了 Hexo
 <h3 id="自定义菜单栏内容">自定义菜单栏内容</h3>
 <p>NexT 提供的菜单栏内容如下：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-home</span></span><br><span class="line">  <span class="comment">#about: /about/ || fa fa-user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">fa</span> <span class="string">fa-archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || fa fa-calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || fa fa-sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || fa fa-heartbeat</span></span><br></pre></td></tr></table></figure>
-<p>我希望加入额外的标签页，用来记录点滴日常，新建标签如下</p>
+<p>如果要添加分类和标签页，首先使用命令生成对应的博客页面</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">hexo</span> <span class="string">new</span> <span class="string">page</span> <span class="string">categories</span></span><br><span class="line"><span class="string">hexo</span> <span class="string">new</span> <span class="string">page</span> <span class="string">tags</span></span><br></pre></td></tr></table></figure>
+<p>在 <code>source/</code> 目录下会多出
+<code>source/categories/index.md</code> 和
+<code>source/tags/index.md</code>，为了在博客页面中显示文档的分类和标签，还需要修改头部的代码：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="string">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">分类</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2024-04-10 23:40:31</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">&quot;categories&quot;</span></span><br><span class="line"><span class="attr">comments:</span> <span class="literal">false</span></span><br><span class="line"> <span class="string">---</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> <span class="string">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">标签</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2024-04-10 23:40:31</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">&quot;tags&quot;</span></span><br><span class="line"><span class="attr">comments:</span> <span class="literal">false</span></span><br><span class="line"> <span class="string">---</span></span><br></pre></td></tr></table></figure>
+<p>如果希望加入额外的标签页，新建标签如下</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">nichijou:</span> <span class="string">/nichijou/</span> <span class="string">||</span> <span class="string">fa-regular</span> <span class="string">fa-sun</span></span><br></pre></td></tr></table></figure>
 <p>其中 <code>fa-regular fa-sun</code> 是来自 <span class="exturl" data-url="aHR0cHM6Ly9mb250YXdlc29tZS5jb20v">font awesome<i class="fa fa-external-link-alt"></i></span>
 的图标。这时我们还需要配置语言，使得 NexT 能够识别关键词，在
