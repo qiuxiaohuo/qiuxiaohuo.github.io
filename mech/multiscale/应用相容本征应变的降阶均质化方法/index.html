@@ -28,10 +28,10 @@
 <meta property="og:description" content="控制方程的渐进展开 位移的渐进展开式为 \[ u_{i}^{\zeta} &#x3D; u_{i}^{(0)}(x) + \zeta u_{i}^{(1)}(x,y) + \mathcal{O}(\zeta^2) \] 这里已经应用应变渐进展开式 \(\mathcal{O}({\zeta^{-1}})\) 项等于 0, 所以零阶项 \(u_{i}^{(0)}\) 只是关于变量 \(x\) 的函数">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-12T05:36:46.000Z">
-<meta property="article:modified_time" content="2025-01-12T05:18:11.638Z">
+<meta property="article:modified_time" content="2025-03-08T09:24:50.186Z">
 <meta property="article:author" content="Qiu Xiaohuo">
-<meta property="article:tag" content="本征应变">
 <meta property="article:tag" content="降阶均质化">
+<meta property="article:tag" content="本征应变">
 <meta property="article:tag" content="影响函数">
 <meta name="twitter:card" content="summary">
 
@@ -145,7 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%96%B9%E7%A8%8B%E7%9A%84%E6%B8%90%E8%BF%9B%E5%B1%95%E5%BC%80"><span class="nav-number">1.</span> <span class="nav-text">控制方程的渐进展开</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E7%A7%BB%E7%9A%84%E4%B8%80%E9%98%B6%E9%A1%B9%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.</span> <span class="nav-text">位移的一阶项表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%AE%B9%E7%9A%84%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E5%9C%BA"><span class="nav-number">3.</span> <span class="nav-text">相容的本征应变场</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%AE%B9%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E5%BE%97%E5%88%B0%E7%9A%84%E8%A7%A3%E6%9E%90%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E5%BD%B1%E5%93%8D%E5%BC%A0%E9%87%8F"><span class="nav-number">3.1.</span> <span class="nav-text">相容本征应变得到的解析本征应变影响张量</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8E%A7%E5%88%B6%E6%96%B9%E7%A8%8B%E7%9A%84%E6%B8%90%E8%BF%9B%E5%B1%95%E5%BC%80"><span class="nav-number">1.</span> <span class="nav-text">控制方程的渐进展开</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E7%A7%BB%E7%9A%84%E4%B8%80%E9%98%B6%E9%A1%B9%E8%A1%A8%E7%A4%BA"><span class="nav-number">2.</span> <span class="nav-text">位移的一阶项表示</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%8C%E7%9B%B8%E6%9D%90%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">双相材料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B8%E5%AE%B9%E7%9A%84%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E5%9C%BA"><span class="nav-number">4.</span> <span class="nav-text">相容的本征应变场</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%B8%E5%AE%B9%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E5%BE%97%E5%88%B0%E7%9A%84%E8%A7%A3%E6%9E%90%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98%E5%BD%B1%E5%93%8D%E5%BC%A0%E9%87%8F"><span class="nav-number">4.1.</span> <span class="nav-text">相容本征应变得到的解析本征应变影响张量</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -160,19 +160,17 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">分类</span></a>
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">101</span>
-        <span class="site-state-item-name">标签</span></a>
+        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
@@ -237,9 +235,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-01-12 13:36:46 / 修改时间：13:18:11" itemprop="dateCreated datePublished" datetime="2025-01-12T13:36:46+08:00">2025-01-12</time>
+      <time title="创建时间：2025-01-12 13:36:46" itemprop="dateCreated datePublished" datetime="2025-01-12T13:36:46+08:00">2025-01-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-08 17:24:50" itemprop="dateModified" datetime="2025-03-08T17:24:50+08:00">2025-03-08</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -332,6 +336,44 @@ class="math display">\[
 tensor), 定义为 <span class="math display">\[
 E_{ij}^{mn} \triangleq H_{(i,y_j)}^{mn} + I_{ij}^{mn}
 \]</span></p>
+<h2 id="双相材料">双相材料</h2>
+<p>考虑纤维相为弹性材料, 基体相为理想塑性材料并处于理想塑性阶段.
+在纤维相上的平均应变 <span class="math inline">\(\Delta
+\boldsymbol{\varepsilon}^{(f)} =0\)</span>.
+若基体相上施加任意一个本征应变增量 <span class="math inline">\(\Delta
+\boldsymbol{\mu}^{(m)}\)</span>, 那么, 根据理想塑性本构关系有: <span
+class="math display">\[
+\Delta \boldsymbol{\varepsilon}^{(m)} = \Delta \boldsymbol{\mu}^{(m)}
+\]</span> 此时宏观应变增量等于 <span class="math display">\[
+\Delta \boldsymbol{\varepsilon}^{c}
+= c^{(m)} \Delta \boldsymbol{\varepsilon}^{(m)}
++ c^{(f)} \Delta \boldsymbol{\varepsilon}^{(f)}
+= c^{(m)} \Delta \boldsymbol{\mu}^{(m)}
+\]</span> 单胞上的应力增量应恒等于 0: <span class="math display">\[
+\Delta \boldsymbol{\sigma}^{f}
+= \mathbb{L}:(\Delta \boldsymbol{\varepsilon}^{f} - \Delta
+\boldsymbol{\mu}^{f})
+= \mathbb{L}:\mathbb{E}:\Delta \boldsymbol{\varepsilon}^{c}
++ \mathbb{L} : ( \mathbb{P}^{(m)} - \mathbb{I}^{(m)} ) : \Delta
+\boldsymbol{\mu}^{(m)} \\
+= \mathbb{L} : ( \mathbb{P}^{(m)} + c^{(m)} \mathbb{E} -
+\mathbb{I}^{(m)} ) : \Delta \boldsymbol{\mu}^{(m)}
+\equiv 0, \quad
+\forall \Delta \boldsymbol{\mu}^{(m)}
+\]</span> 注意到在各个分块上, 根据先前的假设, 有 <span
+class="math display">\[
+\Delta \boldsymbol{\sigma}^{(f)} = \Delta \boldsymbol{\sigma}^{(m)} = 0
+\]</span> 这要求 <span class="math display">\[
+\mathbb{P}^{(fm)} + c^{(m)} \mathbb{E}^{(f)} = 0, \\
+\mathbb{P}^{(mm)} + c^{(m)} \mathbb{E}^{(m)} - \mathbb{I} = 0
+\]</span></p>
+<blockquote>
+<p>论文中是得到影响函数的恒等式 <span class="math display">\[
+\mathbb{P}^{(m)} + c^{(m)} \mathbb{E} - \mathbb{I}^{(m)} \equiv 0
+\]</span> 但是我确实构造不出令应力场增量恒等于 0 的加载过程,
+因此很难排除掉纤维相上平均应变等于 0 但应变场不等于的情景.
+不过对上式在分块上进行平均后得到的影响张量的代数关系是准确的</p>
+</blockquote>
 <h2 id="相容的本征应变场">相容的本征应变场</h2>
 <p>若本征应变是相容的(compatible or impotent eigenstrain),
 那么它可以考虑为某个位移场 <span class="math inline">\(\left(
@@ -430,11 +472,23 @@ class="math display">\[
 \widetilde{P}_{ij}^{mn, (\alpha)} \triangleq I_{ij}^{mn,(\alpha)} -
 c^{(\alpha)} E_{ij}^{mn}, \quad
 \forall \alpha
+\]</span> 以及求取分块平均之后的代数形式: <span class="math display">\[
+\widetilde{P}_{ij}^{mn(\beta\alpha)}
+\triangleq \delta_{\alpha \beta} I_{ij}^{mn} - c^{(\alpha)}
+E_{ij}^{mn(\beta)}, \quad
+\forall \alpha
 \]</span> 需要指出的是,
 只有在<strong>基体主导下</strong>的变形模式才会使用如上形式的本征应变影响函数,
 这是为了解决使用不相容本征应变推导得到的基体相单分块影响函数,
 在基体变形主导的模式下锁定夹杂项的变形,
-导致宏观表征出的应力应变关系刚度太大. 为判断主导的变形模式(对于三维情景,
+导致宏观表征出的应力应变关系刚度太大.
+这在数值上意味着针对于基体主导的变形模式,
+对求解偏微分方程得到的本征应变影响张量 <span
+class="math inline">\([P_{ij}^{mn}]\)</span> 的<strong>列向量</strong>
+按照上式进行修正. ==在代码实现时, 要保证修正前后张量 <span
+class="math inline">\(A_{ij}^{mn}\)</span> 列向量中的最小值相等==</p>
+<blockquote>
+<p>为判断主导的变形模式(对于三维情景,
 变形模式分为三个方向上的拉伸和剪切),
 可以固定基体项和夹杂项为<strong>各向同性线弹性</strong>材料,
 基体相和夹杂相的模量分别设置为 <span class="math inline">\(1.0\)</span>
@@ -447,6 +501,21 @@ class="math inline">\(G_{23}\)</span>, <span
 class="math inline">\(G_{13}\)</span>, <span
 class="math inline">\(G_{12}\)</span>, 然后对比模量的阶次,
 确定主导的变形模式.</p>
+</blockquote>
+<p>根据定义,
+可以知道本征应变影响张量和弹性应变影响张量之间有如下解析关系: <span
+class="math display">\[
+\sum_{\beta} {P}_{kl}^{mn(\alpha\beta)}
++ E_{kl}^{mn(\alpha)}
+- I_{kl}^{mn}
+= 0, \quad \alpha=1,2,\ldots,N
+\]</span> 修正得到的本征应变影响张量同样满足与上式相同的恒等式:</p>
+<p><span class="math display">\[
+\sum_{\beta} \widetilde{P}_{kl}^{mn(\alpha\beta)}
++ E_{kl}^{mn(\alpha)}
+- I_{kl}^{mn}
+= 0, \quad \alpha=1,2,\ldots,N
+\]</span></p>
 
     </div>
 
@@ -456,8 +525,8 @@ class="math inline">\(G_{12}\)</span>, 然后对比模量的阶次,
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98/" rel="tag"># 本征应变</a>
               <a href="/tags/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96/" rel="tag"># 降阶均质化</a>
+              <a href="/tags/%E6%9C%AC%E5%BE%81%E5%BA%94%E5%8F%98/" rel="tag"># 本征应变</a>
               <a href="/tags/%E5%BD%B1%E5%93%8D%E5%87%BD%E6%95%B0/" rel="tag"># 影响函数</a>
           </div>
 
@@ -470,6 +539,9 @@ class="math inline">\(G_{12}\)</span>, 然后对比模量的阶次,
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/math/Fredholm%20%E6%80%A7%E8%B4%A8/" rel="next" title="">
+                   <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>

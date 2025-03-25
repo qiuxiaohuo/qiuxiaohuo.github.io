@@ -28,7 +28,7 @@
 <meta property="og:description" content="参考文献: HASHIN Z, SHTRIKMAN S. A variational approach to the theory of the elastic behaviour of multiphase materials[J&#x2F;OL]. Journal of the Mechanics and Physics of Solids, 1963, 11(2): 127-140. DOI:10">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-05-02T12:00:00.000Z">
-<meta property="article:modified_time" content="2024-09-02T06:47:08.337Z">
+<meta property="article:modified_time" content="2025-03-25T06:13:12.086Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta property="article:tag" content="变分原理">
 <meta property="article:tag" content="细观力学">
@@ -159,19 +159,17 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">分类</span></a>
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">101</span>
-        <span class="site-state-item-name">标签</span></a>
+        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
@@ -244,7 +242,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2024-09-02 14:47:08" itemprop="dateModified" datetime="2024-09-02T14:47:08+08:00">2024-09-02</time>
+      <time title="修改时间：2025-03-25 14:13:12" itemprop="dateModified" datetime="2025-03-25T14:13:12+08:00">2025-03-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -275,8 +273,6 @@
     <div class="post-body" itemprop="articleBody"><p>参考文献: HASHIN Z, SHTRIKMAN S. A variational approach to the theory
 of the elastic behaviour of multiphase materials[J/OL]. Journal of the
 Mechanics and Physics of Solids, 1963, 11(2): 127-140. DOI:<span class="exturl" data-url="aHR0cHM6Ly9kb2kub3JnLzEwLjEwMTYvMDAyMi01MDk2KDYzKTkwMDYwLTc=">10.1016/0022-5096(63)90060-7<i class="fa fa-external-link-alt"></i></span>.</p>
-<div class="note info"><p>本文主要是重述论文中的推导过程, 因而公式编号保持与原论文一致.</p>
-</div>
 <h2 id="hashin-shtrikman-变分原理">Hashin-Shtrikman 变分原理</h2>
 <p>Hashin-Shtrikman 变分原理考虑两个单胞 <span
 class="math inline">\(Y\)</span> 和 <span
@@ -307,30 +303,31 @@ class="math display">\[
 class="math display">\[
 p_{ij}(y) \triangleq \sigma_{ij} - L_{ijkl}^0\varepsilon_{kl} = \delta
 L_{ijkl}~\varepsilon_{kl}
-\]</span> <span id="more"></span>将两种单胞应变场的差值记为 <span
+\]</span> 将两种单胞应变场的差值记为 <span
 class="math inline">\(\widetilde \varepsilon\)</span>: <span
 class="math display">\[
 \varepsilon_{ij} \triangleq \varepsilon_{ij}^0 +
 \widetilde\varepsilon_{ij}
-\]</span> <div class="note success no-icon"><p>Hashin-Shtrikman 给出的关于 <span
+\]</span> &gt; Hashin-Shtrikman 给出的关于 <span
 class="math inline">\(p_{ij}\)</span> 与 <span
 class="math inline">\(\widetilde\varepsilon_{ij}\)</span>​
-的能量泛函表达式为 <span class="math display">\[
-U^p(p,\widetilde \varepsilon) = U^0 - \frac{1}{2} \int \left(
+的能量泛函表达式为 &gt; <span class="math display">\[
+&gt; U^p(p,\widetilde \varepsilon) = U^0 - \frac{1}{2} \int \left(
 p_{ij}~\delta L_{ijkl}^{-1}~p_{kl} - p_{ij} \widetilde\varepsilon_{ij} -
 2p_{ij}\varepsilon_{ij}^0 \right)  \mathrm{d} y
-\tag{2.6}
-\]</span> 以及辅助方程 <span class="math display">\[
-\left( L_{ijkl}^0 \widetilde\varepsilon_{kl} + p_{ij} \right)_{, ~j} = 0
-\]</span> 和边界条件 <span class="math display">\[
-\widetilde u_{i}(\partial Y) = 0
-\]</span> 式中, <span class="math inline">\(U^0 = \frac{1}{2}\int
-\sigma_{ij}^{0} \varepsilon_{ij}^{0} \mathrm{d} V\)</span>.
-使得该泛函取驻值的极化应力满足 <span class="math display">\[
-p_{ij} := (L_{ijkl} - L_{ijkl}^0) \varepsilon_{kl} = \delta L_{ijkl}
-\varepsilon_{kl}
-\]</span></p>
-</div></p>
+&gt; \tag{2.6}
+&gt; \]</span> &gt; 以及辅助方程 &gt; <span class="math display">\[
+&gt; \left( L_{ijkl}^0 \widetilde\varepsilon_{kl} + p_{ij} \right)_{,
+~j} = 0
+&gt; \]</span> &gt; 和边界条件 &gt; <span class="math display">\[
+&gt; \widetilde u_{i}(\partial Y) = 0
+&gt; \]</span> &gt; 式中, <span class="math inline">\(U^0 =
+\frac{1}{2}\int \sigma_{ij}^{0} \varepsilon_{ij}^{0} \mathrm{d}
+V\)</span>. 使得该泛函取驻值的极化应力满足 &gt; <span
+class="math display">\[
+&gt; p_{ij} := (L_{ijkl} - L_{ijkl}^0) \varepsilon_{kl} = \delta
+L_{ijkl} \varepsilon_{kl}
+&gt; \]</span></p>
 <p>如果考虑单胞 <span class="math inline">\(\widetilde Y\)</span>
 是由各向同性材料组成的, 那么在泛函表达式 (2.6) 中, <span
 class="math inline">\(p_{ij}\delta L_{ijkl}^{-1}~p_{kl}\)</span>

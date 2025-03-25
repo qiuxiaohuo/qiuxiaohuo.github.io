@@ -28,9 +28,9 @@
 <meta property="og:description" content="在有限元求解框架下的增量步与迭代步 降阶均质化方法是在 ABAQUS UMAT 层面实现的. ABAQUS 在每个增量步的迭代步时调用 UMAT, 考虑有限元计算框架中第 \(n\) 个增量步, 第 \(i+1\) 个迭代步. 在进入 UMAT 时, 已知前 \(n-1\) 个增量步的历史信息, 和当前迭代步 \(i+1\) 的位移. 为了使接下来方程的增量表达式更加清晰, 首先引入以下">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-12T01:36:46.000Z">
-<meta property="article:modified_time" content="2025-01-12T05:06:25.489Z">
+<meta property="article:modified_time" content="2025-03-25T03:27:50.434Z">
 <meta property="article:author" content="Qiu Xiaohuo">
-<meta property="article:tag" content="降阶均质化">
+<meta property="article:tag" content="降阶均匀化">
 <meta property="article:tag" content="Newton-Raphson 迭代">
 <meta name="twitter:card" content="summary">
 
@@ -144,7 +144,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E6%9C%89%E9%99%90%E5%85%83%E6%B1%82%E8%A7%A3%E6%A1%86%E6%9E%B6%E4%B8%8B%E7%9A%84%E5%A2%9E%E9%87%8F%E6%AD%A5%E4%B8%8E%E8%BF%AD%E4%BB%A3%E6%AD%A5"><span class="nav-number">1.</span> <span class="nav-text">在有限元求解框架下的增量步与迭代步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%8D%E9%98%B6%E5%A4%9A%E5%B0%BA%E5%BA%A6%E8%AE%A1%E7%AE%97"><span class="nav-number">2.</span> <span class="nav-text"> 降阶多尺度计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E7%8A%B6%E6%80%81%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">多层级分块状态变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ptngrp-%E7%8A%B6%E6%80%81%E5%8F%98%E9%87%8F%E6%9B%B4%E6%96%B0"><span class="nav-number">4.</span> <span class="nav-text">PTNGRP 状态变量更新</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9C%A8%E6%9C%89%E9%99%90%E5%85%83%E6%B1%82%E8%A7%A3%E6%A1%86%E6%9E%B6%E4%B8%8B%E7%9A%84%E5%A2%9E%E9%87%8F%E6%AD%A5%E4%B8%8E%E8%BF%AD%E4%BB%A3%E6%AD%A5"><span class="nav-number">1.</span> <span class="nav-text">在有限元求解框架下的增量步与迭代步</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%8D%E9%98%B6%E5%A4%9A%E5%B0%BA%E5%BA%A6%E8%AE%A1%E7%AE%97"><span class="nav-number">2.</span> <span class="nav-text">降阶多尺度计算</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%B1%82%E7%BA%A7%E5%88%86%E5%9D%97%E7%8A%B6%E6%80%81%E5%8F%98%E9%87%8F"><span class="nav-number">3.</span> <span class="nav-text">多层级分块状态变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ptngrp-%E7%8A%B6%E6%80%81%E5%8F%98%E9%87%8F%E6%9B%B4%E6%96%B0"><span class="nav-number">4.</span> <span class="nav-text">PTNGRP 状态变量更新</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -159,19 +159,17 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">80</span>
+          <span class="site-state-item-count">78</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
-          <a href="/categories/">
-        <span class="site-state-item-count">10</span>
-        <span class="site-state-item-name">分类</span></a>
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span>
       </div>
       <div class="site-state-item site-state-tags">
-          <a href="/tags/">
-        <span class="site-state-item-count">101</span>
-        <span class="site-state-item-name">标签</span></a>
+        <span class="site-state-item-count">114</span>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
@@ -236,9 +234,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-01-12 09:36:46 / 修改时间：13:06:25" itemprop="dateCreated datePublished" datetime="2025-01-12T09:36:46+08:00">2025-01-12</time>
+      <time title="创建时间：2025-01-12 09:36:46" itemprop="dateCreated datePublished" datetime="2025-01-12T09:36:46+08:00">2025-01-12</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-25 11:27:50" itemprop="dateModified" datetime="2025-03-25T11:27:50+08:00">2025-03-25</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -290,7 +294,7 @@ class="math inline">\(\Delta_{n} :=\Delta_{n}^{i+1}\)</span>.</li>
 \varepsilon \}\)</span> 表示分块上的应变 <span
 class="math inline">\(\Delta \varepsilon^{(\alpha)}\)</span>, <span
 class="math inline">\(\alpha=1,2,\ldots,N\)</span>.</p>
-<h2 id="降阶多尺度计算"><span id="more"></span> 降阶多尺度计算</h2>
+<h2 id="降阶多尺度计算">降阶多尺度计算</h2>
 <p>在接下来的记号中, 使用 <span class="math inline">\([\cdot]\)</span>
 表示应用 Voigt 记法矩阵化的张量; <span
 class="math inline">\([:]=\mathrm{diag}(1,1,1,2,2,2)\)</span>, <span
@@ -408,7 +412,7 @@ class="math display">\[
 <li><p>输入: <span class="math inline">\(\left[ \Delta
 \boldsymbol{\varepsilon}^{\langle \alpha \rangle} \right]_{i}\)</span>
 <span class="math inline">\(\left[ \mathrm{statv}^{\langle \alpha
-\rangle} \right]_{i-1}\)</span></p></li>
+\rangle} \right]^{n}\)</span></p></li>
 <li><p>输出: <span
 class="math inline">\(\left[\boldsymbol{\sigma}^{\langle \alpha \rangle}
 \right]_{i} := \left[\boldsymbol{\sigma}^{\langle \alpha \rangle}
@@ -535,7 +539,7 @@ class="math inline">\(\left[ \boldsymbol{\sigma}^{\langle \alpha
 
     <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/%E9%99%8D%E9%98%B6%E5%9D%87%E8%B4%A8%E5%8C%96/" rel="tag"># 降阶均质化</a>
+              <a href="/tags/%E9%99%8D%E9%98%B6%E5%9D%87%E5%8C%80%E5%8C%96/" rel="tag"># 降阶均匀化</a>
               <a href="/tags/Newton-Raphson-%E8%BF%AD%E4%BB%A3/" rel="tag"># Newton-Raphson 迭代</a>
           </div>
 
@@ -543,8 +547,8 @@ class="math inline">\(\left[ \boldsymbol{\sigma}^{\langle \alpha
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/deutsche/%E7%AC%AC%E4%BA%8C%E8%99%9A%E6%8B%9F%E5%BC%8F/" rel="prev" title="">
-                  <i class="fa fa-angle-left"></i> 
+                <a href="/mech/constitutive/%E5%BC%B9%E6%80%A7%E6%9C%89%E9%99%90%E5%8F%98%E5%BD%A2/" rel="prev" title="弹性有限变形">
+                  <i class="fa fa-angle-left"></i> 弹性有限变形
                 </a>
             </div>
             <div class="post-nav-item">
