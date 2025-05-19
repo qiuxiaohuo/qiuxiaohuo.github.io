@@ -87,7 +87,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li><li class="menu-item menu-item-log"><a href="/log/" rel="section"><i class="fa fa-calendar fa-fw"></i>更新日志</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -191,116 +191,6 @@
     </div>
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/PDE/Bessel-%E5%87%BD%E6%95%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/math/PDE/Bessel-%E5%87%BD%E6%95%B0/" class="post-title-link" itemprop="url">Bessel 函数</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2024-05-19 17:13:29" itemprop="dateCreated datePublished" datetime="2024-05-19T17:13:29+08:00">2024-05-19</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar-check"></i>
-      </span>
-      <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-06 10:58:45" itemprop="dateModified" datetime="2025-03-06T10:58:45+08:00">2025-03-06</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E5%81%8F%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/" itemprop="url" rel="index"><span itemprop="name">偏微分方程</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong><em>参考文献: Gilbert Strang, Introduction to applied
-mathematics</em></strong></p>
-<p>Bessel 函数是求解二维圆形区域上的振型方程引入的, 振型方程为 <span
-class="math display">\[
-\Delta u + \lambda u = 0, \quad
-u=0 \quad\text{on}\quad B(1,0)
-\]</span> 写成极坐标的形式为 <span class="math display">\[
-\frac{\partial^2 u}{\partial r^2}
-+ \frac{1}{r}\frac{\partial u}{\partial r}
-+ \frac{1}{r^2}\frac{\partial^2 u}{\partial \theta^2}
-+ \lambda u = 0
-\tag{1}
-\]</span> 如果将极坐标上的方程解 <span
-class="math inline">\(u(r,\theta)\)</span> 写成分离变量的形式, <span
-class="math inline">\(u(r,\theta) = A(\theta)B(r)\)</span>​,
-代入到上述方程中 <span class="math display">\[
-AB^{\prime\prime} + \frac{1}{r}AB^{\prime} +
-\frac{1}{r^2}A^{\prime\prime}B + \lambda AB = 0
-\]</span>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/math/PDE/Bessel-%E5%87%BD%E6%95%B0/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -503,6 +393,104 @@ class="math inline">\(n=1,2,\ldots\)</span>
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/dict/MATLAB-%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/dict/MATLAB-%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">MATLAB-相关</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-05-19 11:28:37" itemprop="dateCreated datePublished" datetime="2024-05-19T11:28:37+08:00">2024-05-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-19 17:27:09" itemprop="dateModified" datetime="2025-05-19T17:27:09+08:00">2025-05-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E8%AF%8D%E5%85%B8/" itemprop="url" rel="index"><span itemprop="name">技术词典</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2
+id="寻找矩阵中索引满足某一条件的数据">寻找矩阵中索引满足某一条件的数据</h2>
+<p>例如 <code>PTNIDX</code> 有两列数据, 第一列是单元的 tag,
+第二列是单元所属分块的编号, 那么想要找到所有分块编号为 <code>iptn</code>
+的单元编号, 可以用如下代码实现: <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elemID = PTNIDX(PTNIDX(:,<span class="number">2</span>)==iptn,<span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+<p>首先, <code>PTNIDX(:,2)==iptn</code> 返回长度为
+<code>size(PTNIDX,1)</code> 的逻辑数组, 逻辑数组可以作为数组的索引,
+并且逻辑值为<code>false</code> 的编号不返回数据, 例如返回的逻辑数组中
+<code>true</code> 的数量为 <code>ntrue</code>, 那么 <code>elemID</code>
+维度就是 <code>ntrue x 1</code></p>
+<p>如果想找到某一个单元标签所在数组 <code>elemID</code> 索引位置,
+那么使用函数 <code>find</code>: <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eidx = find(elemID==etag);</span><br></pre></td></tr></table></figure></p>
+<p>函数 <code>find</code> 会返回一个索引数组(如果确实找到这个元素的话),
+注意这与逻辑数组的索引方式是不同的</p>
+
       
     </div>
 

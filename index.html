@@ -87,7 +87,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li><li class="menu-item menu-item-log"><a href="/log/" rel="section"><i class="fa fa-calendar fa-fw"></i>更新日志</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -191,88 +191,6 @@
     </div>
 
     <div class="main-inner index posts-expand">
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/dict/MATLAB-%E7%9B%B8%E5%85%B3/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
-      <meta itemprop="name" content="Qiu Xiaohuo">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="undefined | 邱小伙的博客">
-      <meta itemprop="description" content="">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/dict/MATLAB-%E7%9B%B8%E5%85%B3/" class="post-title-link" itemprop="url">未命名</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-      
-
-      <time title="创建时间：2025-04-07 15:11:07 / 修改时间：18:13:31" itemprop="dateCreated datePublished" datetime="2025-04-07T15:11:07+08:00">2025-04-07</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="寻找满足某一条件的数据">寻找满足某一条件的数据</h2>
-<p>例如 <code>PTNIDX</code> 有两列数据, 第一列是单元的 tag,
-第二列是单元所属分块的编号, 那么想要找到所有分块编号为 <code>iptn</code>
-的单元编号, 可以用如下代码实现: <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elemID = PTNIDX(PTNIDX(:,<span class="number">2</span>)==iptn,<span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
-<p>首先, <code>PTNIDX(:,2)==iptn</code> 返回长度为
-<code>size(PTNIDX,1)</code> 的逻辑数组, 逻辑数组可以作为数组的索引,
-并且逻辑值为<code>false</code> 的编号不返回数据, 例如返回的逻辑数组中
-<code>true</code> 的数量为 <code>ntrue</code>, 那么 <code>elemID</code>
-维度就是 <code>ntrue x 1</code></p>
-<p>如果想找到某一个单元标签所在数组 <code>elemID</code> 索引位置,
-那么使用函数 <code>find</code>: <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eidx = find(elemID==etag);</span><br></pre></td></tr></table></figure></p>
-<p>函数 <code>find</code> 会返回一个索引数组(如果确实找到这个元素的话),
-注意这与逻辑数组的索引方式是不同的</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
 
     
 
@@ -1860,6 +1778,110 @@ f(x) =  \int_{\mathbb{R}^d} \hat f(\xi) e^{i2\pi x \cdot \xi}
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/lang/%E9%9F%A6%E4%BC%AF%E8%B0%88%E5%AD%A6%E8%80%85%E7%9A%84%E4%BA%BA%E6%A0%BC/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/math/Fourier-analysis/Bessel-%E4%BD%8D%E5%8A%BF%E5%92%8C-Yukawa-%E4%BD%8D%E5%8A%BF/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/math/Fourier-analysis/Bessel-%E4%BD%8D%E5%8A%BF%E5%92%8C-Yukawa-%E4%BD%8D%E5%8A%BF/" class="post-title-link" itemprop="url">Bessel 位势和 Yukawa 位势</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2024-06-25 20:26:33" itemprop="dateCreated datePublished" datetime="2024-06-25T20:26:33+08:00">2024-06-25</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-03-06 10:58:45" itemprop="dateModified" datetime="2025-03-06T10:58:45+08:00">2025-03-06</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/Fourier-%E5%88%86%E6%9E%90/" itemprop="url" rel="index"><span itemprop="name">Fourier 分析</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>Bessel 方程定义为 <span class="math display">\[
+-\Delta u + u = f
+\]</span> 为了求该方程的基本解, 方程右端非齐次项换成 Delta 函数 <span
+class="math inline">\(\delta\)</span>. 两边作 Fourier 变换, 就得到 <span
+class="math display">\[
+(1 + 4\pi^2 |\xi|^2) \widehat{B} = 1
+\]</span> 接下来要求解函数 <span
+class="math inline">\(\widehat{B}(\xi)\)</span> 的 Fourier 逆变换,
+又称为 Bessel 位势 <span class="math display">\[
+B(x)
+= \int_{\mathbb{R}^d} \frac{e^{i2\pi \xi \cdot x}}{1 + 4\pi^2 |\xi|^2}
+~\mathrm{d}\xi
+\]</span>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/math/Fourier-analysis/Bessel-%E4%BD%8D%E5%8A%BF%E5%92%8C-Yukawa-%E4%BD%8D%E5%8A%BF/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>

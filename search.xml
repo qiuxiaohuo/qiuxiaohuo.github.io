@@ -14721,9 +14721,10 @@ A(\lambda) = \lambda^{n} -\mathrm{tr}A~\lambda^{n-1} + \cdots
       </tags>
   </entry>
   <entry>
-    <title></title>
+    <title>MATLAB-相关</title>
     <url>/dict/MATLAB-%E7%9B%B8%E5%85%B3/</url>
-    <content><![CDATA[<h2 id="寻找满足某一条件的数据">寻找满足某一条件的数据</h2>
+    <content><![CDATA[<h2
+id="寻找矩阵中索引满足某一条件的数据">寻找矩阵中索引满足某一条件的数据</h2>
 <p>例如 <code>PTNIDX</code> 有两列数据, 第一列是单元的 tag,
 第二列是单元所属分块的编号, 那么想要找到所有分块编号为 <code>iptn</code>
 的单元编号, 可以用如下代码实现: <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">elemID = PTNIDX(PTNIDX(:,<span class="number">2</span>)==iptn,<span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
@@ -14737,5 +14738,11 @@ A(\lambda) = \lambda^{n} -\mathrm{tr}A~\lambda^{n-1} + \cdots
 <p>函数 <code>find</code> 会返回一个索引数组(如果确实找到这个元素的话),
 注意这与逻辑数组的索引方式是不同的</p>
 ]]></content>
+      <categories>
+        <category>技术词典</category>
+      </categories>
+      <tags>
+        <tag>MATLAB</tag>
+      </tags>
   </entry>
 </search>

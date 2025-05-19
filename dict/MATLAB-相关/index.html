@@ -20,16 +20,17 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="寻找满足某一条件的数据 例如 PTNIDX 有两列数据, 第一列是单元的 tag, 第二列是单元所属分块的编号, 那么想要找到所有分块编号为 iptn 的单元编号, 可以用如下代码实现: 1elemID &#x3D; PTNIDX(PTNIDX(:,2)&#x3D;&#x3D;iptn,1) 首先, PTNIDX(:,2)&#x3D;&#x3D;iptn 返回长度为 size(PTNIDX,1) 的逻辑数组, 逻辑数组可以作为数组的索引">
+    <meta name="description" content="寻找矩阵中索引满足某一条件的数据 例如 PTNIDX 有两列数据, 第一列是单元的 tag, 第二列是单元所属分块的编号, 那么想要找到所有分块编号为 iptn 的单元编号, 可以用如下代码实现: 1elemID &#x3D; PTNIDX(PTNIDX(:,2)&#x3D;&#x3D;iptn,1) 首先, PTNIDX(:,2)&#x3D;&#x3D;iptn 返回长度为 size(PTNIDX,1) 的逻辑数组, 逻辑数组可以作为">
 <meta property="og:type" content="article">
-<meta property="og:title" content="邱小伙的博客">
+<meta property="og:title" content="MATLAB-相关">
 <meta property="og:url" content="http://qiuxiaohuo.github.io/dict/MATLAB-%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="邱小伙的博客">
-<meta property="og:description" content="寻找满足某一条件的数据 例如 PTNIDX 有两列数据, 第一列是单元的 tag, 第二列是单元所属分块的编号, 那么想要找到所有分块编号为 iptn 的单元编号, 可以用如下代码实现: 1elemID &#x3D; PTNIDX(PTNIDX(:,2)&#x3D;&#x3D;iptn,1) 首先, PTNIDX(:,2)&#x3D;&#x3D;iptn 返回长度为 size(PTNIDX,1) 的逻辑数组, 逻辑数组可以作为数组的索引">
+<meta property="og:description" content="寻找矩阵中索引满足某一条件的数据 例如 PTNIDX 有两列数据, 第一列是单元的 tag, 第二列是单元所属分块的编号, 那么想要找到所有分块编号为 iptn 的单元编号, 可以用如下代码实现: 1elemID &#x3D; PTNIDX(PTNIDX(:,2)&#x3D;&#x3D;iptn,1) 首先, PTNIDX(:,2)&#x3D;&#x3D;iptn 返回长度为 size(PTNIDX,1) 的逻辑数组, 逻辑数组可以作为">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2025-04-07T07:11:07.221Z">
-<meta property="article:modified_time" content="2025-04-07T10:13:31.805Z">
+<meta property="article:published_time" content="2024-05-19T03:28:37.000Z">
+<meta property="article:modified_time" content="2025-05-19T09:27:09.572Z">
 <meta property="article:author" content="Qiu Xiaohuo">
+<meta property="article:tag" content="MATLAB">
 <meta name="twitter:card" content="summary">
 
 
@@ -37,10 +38,10 @@
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/dict/MATLAB-%E7%9B%B8%E5%85%B3/","path":"dict/MATLAB-相关/","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/dict/MATLAB-%E7%9B%B8%E5%85%B3/","path":"dict/MATLAB-相关/","title":"MATLAB-相关"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title> | 邱小伙的博客</title>
+<title>MATLAB-相关 | 邱小伙的博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -91,7 +92,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li><li class="menu-item menu-item-nichijou"><a href="/nichijou/" rel="section"><i class="fa-solid fa-sun fa-fw"></i>日常</a></li><li class="menu-item menu-item-log"><a href="/log/" rel="section"><i class="fa fa-calendar fa-fw"></i>更新日志</a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -142,7 +143,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BB%E6%89%BE%E6%BB%A1%E8%B6%B3%E6%9F%90%E4%B8%80%E6%9D%A1%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">1.</span> <span class="nav-text">寻找满足某一条件的数据</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BB%E6%89%BE%E7%9F%A9%E9%98%B5%E4%B8%AD%E7%B4%A2%E5%BC%95%E6%BB%A1%E8%B6%B3%E6%9F%90%E4%B8%80%E6%9D%A1%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">1.</span> <span class="nav-text">寻找矩阵中索引满足某一条件的数据</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -219,12 +220,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content=" | 邱小伙的博客">
+      <meta itemprop="name" content="MATLAB-相关 | 邱小伙的博客">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          
+          MATLAB-相关
         </h1>
 
         <div class="post-meta-container">
@@ -234,9 +235,24 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2025-04-07 15:11:07 / 修改时间：18:13:31" itemprop="dateCreated datePublished" datetime="2025-04-07T15:11:07+08:00">2025-04-07</time>
+      <time title="创建时间：2024-05-19 11:28:37" itemprop="dateCreated datePublished" datetime="2024-05-19T11:28:37+08:00">2024-05-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2025-05-19 17:27:09" itemprop="dateModified" datetime="2025-05-19T17:27:09+08:00">2025-05-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%8A%80%E6%9C%AF%E8%AF%8D%E5%85%B8/" itemprop="url" rel="index"><span itemprop="name">技术词典</span></a>
+        </span>
     </span>
 
   
@@ -255,7 +271,8 @@
     
     
     
-    <div class="post-body" itemprop="articleBody"><h2 id="寻找满足某一条件的数据">寻找满足某一条件的数据</h2>
+    <div class="post-body" itemprop="articleBody"><h2
+id="寻找矩阵中索引满足某一条件的数据">寻找矩阵中索引满足某一条件的数据</h2>
 <p>例如 <code>PTNIDX</code> 有两列数据, 第一列是单元的 tag,
 第二列是单元所属分块的编号, 那么想要找到所有分块编号为 <code>iptn</code>
 的单元编号, 可以用如下代码实现: <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elemID = PTNIDX(PTNIDX(:,<span class="number">2</span>)==iptn,<span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
@@ -276,16 +293,22 @@
     
 
     <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MATLAB/" rel="tag"># MATLAB</a>
+          </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/mech/multiscale/%E9%AB%98%E9%98%B6%E5%A4%9A%E5%B0%BA%E5%BA%A6%E6%96%B9%E6%B3%95%E5%BD%B1%E5%93%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E8%AE%A1%E7%AE%97/" rel="prev" title="高阶多尺度方法理论推导">
-                  <i class="fa fa-angle-left"></i> 高阶多尺度方法理论推导
+                <a href="/mech/constitutive/J2-%E5%A1%91%E6%80%A7%E6%9C%AC%E6%9E%84/" rel="prev" title="J2 塑性本构">
+                  <i class="fa fa-angle-left"></i> J2 塑性本构
                 </a>
             </div>
             <div class="post-nav-item">
+                <a href="/math/Chebyshev-%E5%A4%9A%E9%A1%B9%E5%BC%8F/" rel="next" title="Chebyshev 多项式">
+                  Chebyshev 多项式 <i class="fa fa-angle-right"></i>
+                </a>
             </div>
           </div>
     </footer>
