@@ -28,7 +28,7 @@
 <meta property="og:description" content="在有限元求解框架下的增量步与迭代步 降阶均质化方法是在 ABAQUS UMAT 层面实现的. ABAQUS 在每个增量步的迭代步时调用 UMAT, 考虑有限元计算框架中第 \(n\) 个增量步, 第 \(i+1\) 个迭代步. 在进入 UMAT 时, 已知前 \(n-1\) 个增量步的历史信息, 和当前迭代步 \(i+1\) 的位移. 为了使接下来方程的增量表达式更加清晰, 首先引入以下">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2025-01-12T01:36:46.000Z">
-<meta property="article:modified_time" content="2025-03-25T07:39:37.539Z">
+<meta property="article:modified_time" content="2025-05-19T09:13:22.213Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta property="article:tag" content="降阶均匀化">
 <meta property="article:tag" content="Newton-Raphson 迭代">
@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">73</span>
+          <span class="site-state-item-count">74</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -244,7 +244,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2025-03-25 15:39:37" itemprop="dateModified" datetime="2025-03-25T15:39:37+08:00">2025-03-25</time>
+      <time title="修改时间：2025-05-19 17:13:22" itemprop="dateModified" datetime="2025-05-19T17:13:22+08:00">2025-05-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -379,7 +379,7 @@ class="math display">\[
 := \frac{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{(\alpha_{i})}
 \right]^{n} }
 { \partial \left[ \Delta \boldsymbol{\varepsilon}^{c} \right]^{n} }
-\]</span> 注意, 对于某一 分块组所拥有的<strong>所有子分块</strong>,
+\]</span> 注意, 对于某一分块组所拥有的<strong>所有子分块</strong>,
 它们的材料和多尺度状态变量应该是<strong>完全相同</strong>的: <span
 class="math display">\[
 \left[ \boldsymbol{\sigma}^{(\alpha_{i})} \right]^{n}

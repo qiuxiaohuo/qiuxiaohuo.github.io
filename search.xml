@@ -13061,8 +13061,6 @@ E_{ij}^{mn} \triangleq H_{(i,y_j)}^{mn} + I_{ij}^{mn}
 \]</span></p>
 <h2 id="双相材料">双相材料</h2>
 <p>考虑纤维相为弹性材料, 基体相为理想塑性材料并处于理想塑性阶段.
-在纤维相上的平均应变 <span class="math inline">\(\Delta
-\boldsymbol{\varepsilon}^{(f)} =0\)</span>.
 若基体相上施加任意一个本征应变增量 <span class="math inline">\(\Delta
 \boldsymbol{\mu}^{(m)}\)</span>, 那么, 根据理想塑性本构关系有: <span
 class="math display">\[
@@ -13071,32 +13069,25 @@ class="math display">\[
 \Delta \boldsymbol{\varepsilon}^{c}
 = c^{(m)} \Delta \boldsymbol{\varepsilon}^{(m)}
 + c^{(f)} \Delta \boldsymbol{\varepsilon}^{(f)}
-= c^{(m)} \Delta \boldsymbol{\mu}^{(m)}
-\]</span> 单胞上的应力增量应恒等于 0: <span class="math display">\[
-\Delta \boldsymbol{\sigma}^{f}
-= \mathbb{L}:(\Delta \boldsymbol{\varepsilon}^{f} - \Delta
-\boldsymbol{\mu}^{f})
-= \mathbb{L}:\mathbb{E}:\Delta \boldsymbol{\varepsilon}^{c}
-+ \mathbb{L} : ( \mathbb{P}^{(m)} - \mathbb{I}^{(m)} ) : \Delta
-\boldsymbol{\mu}^{(m)} \\
-= \mathbb{L} : ( \mathbb{P}^{(m)} + c^{(m)} \mathbb{E} -
-\mathbb{I}^{(m)} ) : \Delta \boldsymbol{\mu}^{(m)}
-\equiv 0, \quad
-\forall \Delta \boldsymbol{\mu}^{(m)}
-\]</span> 注意到在各个分块上, 根据先前的假设, 有 <span
+= c^{(m)} \Delta \boldsymbol{\mu}^{(m)} + c^{(f)} \Delta
+\boldsymbol{\varepsilon}^{(f)}
+\]</span> 单胞上的应变场增量为 <span class="math display">\[
+\Delta \boldsymbol{\varepsilon}(\boldsymbol{y})
+=  c^{(f)} \mathbb{E}(\boldsymbol{y}): \Delta
+\boldsymbol{\varepsilon}^{(f)}
++ \left( \mathbb{P}^{(m)}(\boldsymbol{y}) + c^{(m)}
+\mathbb{E}(\boldsymbol{y}) \right) : \Delta \boldsymbol{\mu}^{(m)}
+\]</span> 在纤维相上求平均, 得到 <span class="math display">\[
+c^{(m)} \mathbb{E}^{(m)} : \Delta \boldsymbol{\varepsilon}^{(f)}
+= \left( \mathbb{P}^{(fm)} + c^{(m)} \mathbb{E}^{(f)} \right) : \Delta
+\boldsymbol{\mu}^{(m)}
+\]</span> 如果要求对任意本征应变, 纤维相的应变增量都等于 0, 这要求 <span
 class="math display">\[
-\Delta \boldsymbol{\sigma}^{(f)} = \Delta \boldsymbol{\sigma}^{(m)} = 0
-\]</span> 这要求 <span class="math display">\[
-\mathbb{P}^{(fm)} + c^{(m)} \mathbb{E}^{(f)} = 0, \\
-\mathbb{P}^{(mm)} + c^{(m)} \mathbb{E}^{(m)} - \mathbb{I} = 0
-\]</span></p>
-<blockquote>
-<p>论文中是得到影响函数的恒等式 <span class="math display">\[
-\mathbb{P}^{(m)} + c^{(m)} \mathbb{E} - \mathbb{I}^{(m)} \equiv 0
-\]</span> 但是我确实构造不出令应力场增量恒等于 0 的加载过程,
-因此很难排除掉纤维相上平均应变等于 0 但应变场不等于的情景.
-不过对上式在分块上进行平均后得到的影响张量的代数关系是准确的</p>
-</blockquote>
+\mathbb{P}^{(fm)} + c^{(m)} \mathbb{E}^{(f)} = 0
+\]</span> 如果考虑基体相被分成多个分块, 例如分成两块, 那么问题是,
+可能某一个分块上发生塑性变形, 但另一个分块上还处于弹性阶段,
+这就给分析带来困难.
+以及一个基体分块对另一个基体分块会产生怎样的影响呢?</p>
 <h2 id="相容的本征应变场">相容的本征应变场</h2>
 <p>若本征应变是相容的(compatible or impotent eigenstrain),
 那么它可以考虑为某个位移场 <span class="math inline">\(\left(
@@ -13694,7 +13685,7 @@ class="math display">\[
 := \frac{ \partial \left[ \Delta \boldsymbol{\varepsilon}^{(\alpha_{i})}
 \right]^{n} }
 { \partial \left[ \Delta \boldsymbol{\varepsilon}^{c} \right]^{n} }
-\]</span> 注意, 对于某一 分块组所拥有的<strong>所有子分块</strong>,
+\]</span> 注意, 对于某一分块组所拥有的<strong>所有子分块</strong>,
 它们的材料和多尺度状态变量应该是<strong>完全相同</strong>的: <span
 class="math display">\[
 \left[ \boldsymbol{\sigma}^{(\alpha_{i})} \right]^{n}
@@ -14728,5 +14719,23 @@ A(\lambda) = \lambda^{n} -\mathrm{tr}A~\lambda^{n-1} + \cdots
       <tags>
         <tag>行列式</tag>
       </tags>
+  </entry>
+  <entry>
+    <title></title>
+    <url>/dict/MATLAB-%E7%9B%B8%E5%85%B3/</url>
+    <content><![CDATA[<h2 id="寻找满足某一条件的数据">寻找满足某一条件的数据</h2>
+<p>例如 <code>PTNIDX</code> 有两列数据, 第一列是单元的 tag,
+第二列是单元所属分块的编号, 那么想要找到所有分块编号为 <code>iptn</code>
+的单元编号, 可以用如下代码实现: <figure class="highlight matlab"><table><tr><td class="code"><pre><span class="line">elemID = PTNIDX(PTNIDX(:,<span class="number">2</span>)==iptn,<span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+<p>首先, <code>PTNIDX(:,2)==iptn</code> 返回长度为
+<code>size(PTNIDX,1)</code> 的逻辑数组, 逻辑数组可以作为数组的索引,
+并且逻辑值为<code>false</code> 的编号不返回数据, 例如返回的逻辑数组中
+<code>true</code> 的数量为 <code>ntrue</code>, 那么 <code>elemID</code>
+维度就是 <code>ntrue x 1</code></p>
+<p>如果想找到某一个单元标签所在数组 <code>elemID</code> 索引位置,
+那么使用函数 <code>find</code>: <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">eidx = find(elemID==etag);</span><br></pre></td></tr></table></figure></p>
+<p>函数 <code>find</code> 会返回一个索引数组(如果确实找到这个元素的话),
+注意这与逻辑数组的索引方式是不同的</p>
+]]></content>
   </entry>
 </search>

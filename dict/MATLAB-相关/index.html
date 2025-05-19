@@ -20,23 +20,27 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"qiuxiaohuo.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.19.2","exturl":true,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"mac"},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"manual","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta property="og:type" content="website">
+    <meta name="description" content="寻找满足某一条件的数据 例如 PTNIDX 有两列数据, 第一列是单元的 tag, 第二列是单元所属分块的编号, 那么想要找到所有分块编号为 iptn 的单元编号, 可以用如下代码实现: 1elemID &#x3D; PTNIDX(PTNIDX(:,2)&#x3D;&#x3D;iptn,1) 首先, PTNIDX(:,2)&#x3D;&#x3D;iptn 返回长度为 size(PTNIDX,1) 的逻辑数组, 逻辑数组可以作为数组的索引">
+<meta property="og:type" content="article">
 <meta property="og:title" content="邱小伙的博客">
-<meta property="og:url" content="http://qiuxiaohuo.github.io/tags/https/index.html">
+<meta property="og:url" content="http://qiuxiaohuo.github.io/dict/MATLAB-%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="邱小伙的博客">
+<meta property="og:description" content="寻找满足某一条件的数据 例如 PTNIDX 有两列数据, 第一列是单元的 tag, 第二列是单元所属分块的编号, 那么想要找到所有分块编号为 iptn 的单元编号, 可以用如下代码实现: 1elemID &#x3D; PTNIDX(PTNIDX(:,2)&#x3D;&#x3D;iptn,1) 首先, PTNIDX(:,2)&#x3D;&#x3D;iptn 返回长度为 size(PTNIDX,1) 的逻辑数组, 逻辑数组可以作为数组的索引">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-04-07T07:11:07.221Z">
+<meta property="article:modified_time" content="2025-04-07T10:13:31.805Z">
 <meta property="article:author" content="Qiu Xiaohuo">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="http://qiuxiaohuo.github.io/tags/https/">
+<link rel="canonical" href="http://qiuxiaohuo.github.io/dict/MATLAB-%E7%9B%B8%E5%85%B3/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":false,"lang":"zh-CN","comments":"","permalink":"","path":"tags/https/index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://qiuxiaohuo.github.io/dict/MATLAB-%E7%9B%B8%E5%85%B3/","path":"dict/MATLAB-相关/","title":""}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>标签: https | 邱小伙的博客</title>
+<title> | 邱小伙的博客</title>
   
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BXPTL8SM4Z"></script>
   <script class="next-config" data-name="google_analytics" type="application/json">{"tracking_id":"G-BXPTL8SM4Z","only_pageview":false,"measure_protocol_api_secret":null}</script>
@@ -125,7 +129,7 @@
   
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -138,6 +142,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AF%BB%E6%89%BE%E6%BB%A1%E8%B6%B3%E6%9F%90%E4%B8%80%E6%9D%A1%E4%BB%B6%E7%9A%84%E6%95%B0%E6%8D%AE"><span class="nav-number">1.</span> <span class="nav-text">寻找满足某一条件的数据</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -190,50 +195,107 @@
 
     </div>
 
-    <div class="main-inner tag posts-collapse">
+    <div class="main-inner post posts-expand">
 
 
   
+
+
+<div class="post-block">
   
   
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <h1 class="collection-header">https
-          <small>标签</small>
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://qiuxiaohuo.github.io/dict/MATLAB-%E7%9B%B8%E5%85%B3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://tjupt.org/bitbucket/qiuxiaohuo.jpg">
+      <meta itemprop="name" content="Qiu Xiaohuo">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content=" | 邱小伙的博客">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
         </h1>
-      </div>
 
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2024</span>
+
+      <time title="创建时间：2025-04-07 15:11:07 / 修改时间：18:13:31" itemprop="dateCreated datePublished" datetime="2025-04-07T15:11:07+08:00">2025-04-07</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h2 id="寻找满足某一条件的数据">寻找满足某一条件的数据</h2>
+<p>例如 <code>PTNIDX</code> 有两列数据, 第一列是单元的 tag,
+第二列是单元所属分块的编号, 那么想要找到所有分块编号为 <code>iptn</code>
+的单元编号, 可以用如下代码实现: <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">elemID = PTNIDX(PTNIDX(:,<span class="number">2</span>)==iptn,<span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+<p>首先, <code>PTNIDX(:,2)==iptn</code> 返回长度为
+<code>size(PTNIDX,1)</code> 的逻辑数组, 逻辑数组可以作为数组的索引,
+并且逻辑值为<code>false</code> 的编号不返回数据, 例如返回的逻辑数组中
+<code>true</code> 的数量为 <code>ntrue</code>, 那么 <code>elemID</code>
+维度就是 <code>ntrue x 1</code></p>
+<p>如果想找到某一个单元标签所在数组 <code>elemID</code> 索引位置,
+那么使用函数 <code>find</code>: <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">eidx = find(elemID==etag);</span><br></pre></td></tr></table></figure></p>
+<p>函数 <code>find</code> 会返回一个索引数组(如果确实找到这个元素的话),
+注意这与逻辑数组的索引方式是不同的</p>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2024-04-13T14:10:04+08:00"
-              content="2024-04-13">
-          04-13
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/howto/Linux-%E4%B8%AD%E9%85%8D%E7%BD%AE%E5%B1%80%E5%9F%9F%E7%BD%91%E4%B8%8B%E7%9A%84-SVN-%E4%BB%93%E5%BA%93/" itemprop="url">
-            <span itemprop="name">Ubuntu + apache2 配置 https 协议下的 SVN 仓库</span>
-          </a>
-      </div>
+    <footer class="post-footer">
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/mech/multiscale/%E9%AB%98%E9%98%B6%E5%A4%9A%E5%B0%BA%E5%BA%A6%E6%96%B9%E6%B3%95%E5%BD%B1%E5%93%8D%E5%BC%A0%E9%87%8F%E7%9A%84%E8%AE%A1%E7%AE%97/" rel="prev" title="高阶多尺度方法理论推导">
+                  <i class="fa fa-angle-left"></i> 高阶多尺度方法理论推导
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
   </article>
+</div>
 
-    </div>
-  </div>
-  
-  
-  
+
+
+
+
 
 </div>
   </main>
